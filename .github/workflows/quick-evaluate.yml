@@ -58,11 +58,19 @@ jobs:
         with open('evaluation-results/scores.json') as f:
             scores = json.load(f)
         
+        # Read the original URLs that were submitted
+        with open('urls.txt') as f:
+            submitted_urls = [line.strip() for line in f if line.strip()]
+        
         total = len(scores)
         avg_score = sum(s['parseability_score'] for s in scores) / total if total > 0 else 0
         clean = sum(1 for s in scores if s['failure_mode'] == 'clean')
         
         print(f'## Quick Evaluation Results')
+        print(f'')
+        print(f'**URLs Evaluated:**')
+        for i, url in enumerate(submitted_urls, 1):
+            print(f'{i}. {url}')
         print(f'')
         print(f'**Summary:**')
         print(f'- Total URLs: {total}')
@@ -75,8 +83,17 @@ jobs:
             url = score.get('url', 'Unknown URL')
             score_val = score['parseability_score']
             mode = score['failure_mode']
-            emoji = 'PASS' if mode == 'clean' else 'WARN' if score_val >= 60 else 'FAIL'
-            print(f'- {emoji} {score_val:.0f}/100 - {url} ({mode})')
+            
+            if mode == 'clean':
+                emoji = '✅ PASS'
+            elif score_val >= 60:
+                emoji = '⚠️ WARN'
+            else:
+                emoji = '❌ FAIL'
+                
+            print(f'- {emoji} **{score_val:.0f}/100** - {url}')
+            if mode != 'clean':
+                print(f'  - Issue: {mode}')
         " > evaluation-results/summary.md
         
     - name: Display results in workflow summary
