@@ -1,0 +1,60 @@
+{
+  "name": "Documentation Evaluation Environment",
+  "image": "mcr.microsoft.com/devcontainers/python:3.9-bullseye",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "installDirectlyFromGitHubRelease": true
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "ppa": true,
+      "version": "latest"
+    }
+  },
+  
+  "onCreateCommand": [
+    "pip install --upgrade pip",
+    "pip install -r requirements.txt"
+  ],
+  
+  "postCreateCommand": [
+    "echo 'Welcome to the Retrievability Evaluation Environment! 🚀'",
+    "echo 'Try running: python -m retrievability.cli --help'",
+    "echo 'Sample evaluation: python -m retrievability.cli crawl samples/urls.txt --out test-snapshots/'"
+  ],
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.pylint",
+        "ms-toolsai.jupyter",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "redhat.vscode-yaml",
+        "streetsidesoftware.code-spell-checker"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "files.associations": {
+          "*.yml": "yaml",
+          "*.yaml": "yaml"
+        }
+      }
+    }
+  },
+  
+  "forwardPorts": [],
+  
+  "mounts": [
+    "source=${localWorkspaceFolder}/reports,target=/workspaces/retrieval/reports,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/samples,target=/workspaces/retrieval/samples,type=bind,consistency=cached"
+  ],
+  
+  "workspaceFolder": "/workspaces/retrieval",
+  
+  "remoteUser": "vscode"
+}
