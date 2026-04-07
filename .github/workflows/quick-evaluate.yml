@@ -42,16 +42,14 @@ jobs:
         
     - name: Run evaluation pipeline
       run: |
-        # Create output directory
         mkdir -p evaluation-results
-        
-        # Run full pipeline
         python -m retrievability.cli crawl urls.txt --out snapshots/
         python -m retrievability.cli parse snapshots/ --out evaluation-results/parse.json
         python -m retrievability.cli score evaluation-results/parse.json --out evaluation-results/scores.json
         python -m retrievability.cli report evaluation-results/scores.json --md evaluation-results/report.md
         
-        # Create summary for comment
+    - name: Generate summary
+      run: |
         python -c "
         import json
         with open('evaluation-results/scores.json') as f:
@@ -61,21 +59,21 @@ jobs:
         avg_score = sum(s['parseability_score'] for s in scores) / total if total > 0 else 0
         clean = sum(1 for s in scores if s['failure_mode'] == 'clean')
         
-        print(f'''## 📊 Quick Evaluation Results
-        
-**📈 Summary:**
-- **Total URLs:** {total}
-- **Average Score:** {avg_score:.1f}/100
-- **Agent-Ready:** {clean}/{total} ({clean/total*100:.1f}% if total > 0 else 0)
-
-**📋 Individual Scores:**''')
+        print(f'## Quick Evaluation Results')
+        print(f'')
+        print(f'**Summary:**')
+        print(f'- Total URLs: {total}')
+        print(f'- Average Score: {avg_score:.1f}/100')
+        print(f'- Agent-Ready: {clean}/{total} ({clean/total*100:.1f}%)')
+        print(f'')
+        print(f'**Individual Scores:**')
         
         for score in scores:
             url = score.get('url', 'Unknown URL')
             score_val = score['parseability_score']
             mode = score['failure_mode']
-            emoji = '✅' if mode == 'clean' else '⚠️' if score_val >= 60 else '❌'
-            print(f'- {emoji} **{score_val:.0f}/100** - {url} `({mode})`')
+            emoji = 'PASS' if mode == 'clean' else 'WARN' if score_val >= 60 else 'FAIL'
+            print(f'- {emoji} {score_val:.0f}/100 - {url} ({mode})')
         " > evaluation-results/summary.md
         
     - name: Comment results
@@ -86,22 +84,23 @@ jobs:
           const summary = fs.readFileSync('evaluation-results/summary.md', 'utf8');
           const report = fs.readFileSync('evaluation-results/report.md', 'utf8');
           
-          // Create comment with results
+          const body = `${summary}
+          
+          <details>
+          <summary>View Detailed Report</summary>
+          
+          ${report}
+          
+          </details>
+          
+          ---
+          *Evaluation completed via Quick URL Evaluation workflow*`;
+          
           await github.rest.repos.createCommitComment({
             owner: context.repo.owner,
             repo: context.repo.repo,
             commit_sha: context.sha,
-            body: `${summary}
-
-<details>
-<summary>📄 View Detailed Report</summary>
-
-${report}
-
-</details>
-
----
-*Evaluation completed via [Quick URL Evaluation workflow](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})*`
+            body: body
           });
           
     - name: Upload results as artifacts
