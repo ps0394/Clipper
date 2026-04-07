@@ -1,0 +1,307 @@
+"""Report generation for retrievability evaluation results."""
+
+import json
+from pathlib import Path
+from typing import Dict, List
+from datetime import datetime
+
+from .schemas import ScoreResult
+
+
+def generate_report(score_file: str, output_md: str) -> None:
+    """Generate human-readable markdown report from score results.
+    
+    Args:
+        score_file: JSON file with score results
+        output_md: Markdown file to save report
+    """
+    score_path = Path(score_file)
+    if not score_path.exists():
+        raise FileNotFoundError(f"Score file not found: {score_file}")
+    
+    with open(score_path, 'r', encoding='utf-8') as f:
+        score_results_data = json.load(f)
+    
+    # Generate markdown report content
+    report_content = _generate_markdown_report(score_results_data)
+    
+    # Save markdown report
+    output_path = Path(output_md)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(report_content)
+    
+    print(f"Report generated: {output_md}")
+
+
+def _generate_markdown_report(score_results: List[Dict]) -> str:
+    """Generate markdown report content.
+    
+    Args:
+        score_results: List of score result dictionaries
+        
+    Returns:
+        Markdown report content
+    """
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    # Calculate summary statistics
+    total_pages = len(score_results)
+    clean_pages = sum(1 for result in score_results if result['failure_mode'] == 'clean')
+    structure_missing = sum(1 for result in score_results if result['failure_mode'] == 'structure-missing')
+    extraction_noisy = sum(1 for result in score_results if result['failure_mode'] == 'extraction-noisy')
+    
+    avg_score = sum(result['parseability_score'] for result in score_results) / total_pages if total_pages > 0 else 0
+    
+    # Build report sections
+    report_lines = []
+    
+    # Header
+    report_lines.extend([
+        "# Retrievability Evaluation Report",
+        "",
+        f"Generated: {timestamp}",
+        f"Total Pages Evaluated: {total_pages}",
+        "",
+        "## Executive Summary",
+        "",
+        f"- **Average Parseability Score**: {avg_score:.1f}/100",
+        f"- **Clean Pages**: {clean_pages} ({clean_pages/total_pages*100:.1f}%)",
+        f"- **Structure Issues**: {structure_missing} ({structure_missing/total_pages*100:.1f}%)",
+        f"- **Extraction Issues**: {extraction_noisy} ({extraction_noisy/total_pages*100:.1f}%)",
+        ""
+    ])
+    
+    # Failure mode breakdown
+    report_lines.extend([
+        "## Failure Mode Analysis",
+        "",
+        "### Distribution",
+        "",
+        "| Failure Mode | Count | Percentage | Description |",
+        "|--------------|-------|------------|-------------|",
+        f"| clean | {clean_pages} | {clean_pages/total_pages*100:.1f}% | Ready for retrieval systems |",
+        f"| structure-missing | {structure_missing} | {structure_missing/total_pages*100:.1f}% | Lacks semantic HTML structure |",
+        f"| extraction-noisy | {extraction_noisy} | {extraction_noisy/total_pages*100:.1f}% | Has structure but content extraction issues |",
+        ""
+    ])
+    
+    # Individual page results
+    report_lines.extend([
+        "## Individual Page Results",
+        ""
+    ])
+    
+    # Sort by score (lowest first - most problematic)
+    sorted_results = sorted(score_results, key=lambda x: x['parseability_score'])
+    
+    for i, result in enumerate(sorted_results, 1):
+        score = result['parseability_score']
+        failure_mode = result['failure_mode']
+        subscores = result['subscores']
+        evidence = result['evidence_references']
+        
+        # Determine page identifier (use html_path as proxy for URL)
+        page_id = result.get('html_path', f'Page {i}')
+        
+        # Status emoji
+        if failure_mode == 'clean':
+            status_emoji = "✅"
+        elif failure_mode == 'structure-missing':
+            status_emoji = "❌"
+        else:  # extraction-noisy
+            status_emoji = "⚠️"
+        
+        report_lines.extend([
+            f"### {status_emoji} {page_id}",
+            "",
+            f"**Overall Score**: {score:.1f}/100",
+            f"**Failure Mode**: `{failure_mode}`",
+            ""
+        ])
+        
+        # What failed?
+        issues = _identify_issues(failure_mode, subscores)
+        if issues:
+            report_lines.extend([
+                "**What Failed:**",
+                ""
+            ])
+            for issue in issues:
+                report_lines.append(f"- {issue}")
+            report_lines.append("")
+        
+        # Why did it fail?
+        root_causes = _identify_root_causes(failure_mode, subscores, evidence)
+        if root_causes:
+            report_lines.extend([
+                "**Why It Failed:**",
+                ""
+            ])
+            for cause in root_causes:
+                report_lines.append(f"- {cause}")
+            report_lines.append("")
+        
+        # Who owns the fix?
+        owner_guidance = _identify_fix_owner(failure_mode, subscores)
+        if owner_guidance:
+            report_lines.extend([
+                "**Fix Owner:**",
+                "",
+                f"- {owner_guidance}",
+                ""
+            ])
+        
+        # Component scores
+        report_lines.extend([
+            "**Component Scores:**",
+            ""
+        ])
+        for component, component_score in subscores.items():
+            component_name = component.replace('_', ' ').title()
+            report_lines.append(f"- {component_name}: {component_score:.1f}/100")
+        
+        report_lines.extend(["", "---", ""])
+    
+    # Recommendations section if there are failures
+    if structure_missing > 0 or extraction_noisy > 0:
+        report_lines.extend([
+            "## Recommendations",
+            "",
+            _generate_recommendations(score_results),
+            ""
+        ])
+    
+    return "\n".join(report_lines)
+
+
+def _identify_issues(failure_mode: str, subscores: Dict[str, float]) -> List[str]:
+    """Identify specific issues based on failure mode and subscores.
+    
+    Args:
+        failure_mode: Failure mode classification
+        subscores: Component subscores
+        
+    Returns:
+        List of issue descriptions
+    """
+    issues = []
+    
+    if failure_mode == 'structure-missing':
+        semantic_score = subscores.get('semantic_structure', 0)
+        hierarchy_score = subscores.get('heading_hierarchy', 0)
+        
+        if semantic_score < 60:
+            issues.append("Missing semantic HTML elements (<main>, <article>)")
+        if hierarchy_score < 80:
+            issues.append("Invalid or missing heading hierarchy")
+    
+    elif failure_mode == 'extraction-noisy':
+        density_score = subscores.get('content_density', 0)
+        boilerplate_score = subscores.get('boilerplate_resistance', 0)
+        
+        if density_score < 60:
+            issues.append("Low content density - too much non-primary content")
+        if boilerplate_score < 60:
+            issues.append("High boilerplate contamination from navigation/sidebar elements")
+    
+    return issues
+
+
+def _identify_root_causes(failure_mode: str, subscores: Dict[str, float], evidence: List[str]) -> List[str]:
+    """Identify root causes based on evidence.
+    
+    Args:
+        failure_mode: Failure mode classification
+        subscores: Component subscores
+        evidence: List of evidence strings
+        
+    Returns:
+        List of root cause descriptions
+    """
+    causes = []
+    
+    # Parse evidence for specific indicators
+    has_main = any("main" in ev for ev in evidence)
+    has_article = any("article" in ev for ev in evidence)
+    no_headings = any("No headings found" in ev for ev in evidence)
+    hierarchy_violations = any("hierarchy violations" in ev for ev in evidence)
+    
+    if failure_mode == 'structure-missing':
+        if not has_main and not has_article:
+            causes.append("HTML lacks semantic content containers")
+        if no_headings:
+            causes.append("No heading structure to indicate content organization")
+        elif hierarchy_violations:
+            causes.append("Heading levels jump incorrectly (e.g., H1 directly to H3)")
+    
+    elif failure_mode == 'extraction-noisy':
+        density_score = subscores.get('content_density', 0)
+        if density_score < 60:
+            causes.append("Primary content not clearly distinguished from secondary content")
+        
+        boilerplate_score = subscores.get('boilerplate_resistance', 0)
+        if boilerplate_score < 60:
+            causes.append("Navigation, sidebar, or footer content overwhelms primary content")
+    
+    return causes
+
+
+def _identify_fix_owner(failure_mode: str, subscores: Dict[str, float]) -> str:
+    """Identify who likely owns the fix based on failure type.
+    
+    Args:
+        failure_mode: Failure mode classification
+        subscores: Component subscores
+        
+    Returns:
+        Fix owner guidance
+    """
+    if failure_mode == 'structure-missing':
+        semantic_score = subscores.get('semantic_structure', 0)
+        hierarchy_score = subscores.get('heading_hierarchy', 0)
+        
+        if semantic_score < 40 and hierarchy_score < 50:
+            return "**Frontend Developer** - HTML structure needs semantic markup and heading organization"
+        elif semantic_score < 40:
+            return "**Frontend Developer** - Add semantic HTML containers (<main>, <article>)"
+        elif hierarchy_score < 50:
+            return "**Content Author/Developer** - Fix heading hierarchy (H1→H2→H3 progression)"
+    
+    elif failure_mode == 'extraction-noisy':
+        return "**Frontend Developer** - Improve content/chrome separation and reduce boilerplate dominance"
+    
+    return "**Development Team** - Review page structure and content organization"
+
+
+def _generate_recommendations(score_results: List[Dict]) -> str:
+    """Generate overall recommendations based on failure patterns.
+    
+    Args:
+        score_results: List of score result dictionaries
+        
+    Returns:
+        Recommendations text
+    """
+    structure_issues = sum(1 for result in score_results if result['failure_mode'] == 'structure-missing')
+    extraction_issues = sum(1 for result in score_results if result['failure_mode'] == 'extraction-noisy')
+    
+    recommendations = []
+    
+    if structure_issues > 0:
+        recommendations.append(
+            "**For structure-missing pages**: Implement semantic HTML5 elements (<main>, <article>) "
+            "and ensure proper heading hierarchy (H1→H2→H3 without skipping levels)."
+        )
+    
+    if extraction_issues > 0:
+        recommendations.append(
+            "**For extraction-noisy pages**: Reduce navigation/sidebar dominance by moving primary content "
+            "higher in DOM order and using clearer content boundaries."
+        )
+    
+    if len(recommendations) == 0:
+        return "All pages passed evaluation. No structural improvements needed."
+    
+    return "\n\n".join(recommendations)
