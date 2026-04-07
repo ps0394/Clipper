@@ -126,7 +126,7 @@ jobs:
         echo "## 📄 [View Detailed Report](./weekly-audit/report.md)" >> weekly-audit/audit-summary.md
         
     - name: Upload audit results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: weekly-audit-${{ github.run_number }}
         path: weekly-audit/

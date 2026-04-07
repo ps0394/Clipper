@@ -118,7 +118,7 @@ jobs:
         fi
         
     - name: Upload results with custom retention
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: advanced-evaluation-results
         path: advanced-eval-results/
