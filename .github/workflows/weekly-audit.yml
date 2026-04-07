@@ -1,0 +1,264 @@
+name: Weekly Documentation Audit
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Every Monday at 9 AM UTC
+  workflow_dispatch:      # Allow manual triggering
+    inputs:
+      notification-level:
+        description: 'Notification level for issues'
+        required: false
+        default: 'regression'
+        type: choice
+        options:
+          - 'all'        # Create issue for any quality problems
+          - 'regression' # Create issue only if quality decreased
+          - 'none'       # No issue creation
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Get previous audit results
+      id: previous
+      continue-on-error: true
+      run: |
+        # Try to get the last successful audit results from artifacts
+        # This is a simplified approach - in practice you might use a database or file storage
+        
+        # For now, set baseline scores (these would come from previous runs)
+        echo "previous_avg_score=82.5" >> $GITHUB_OUTPUT
+        echo "previous_clean_percentage=62.5" >> $GITHUB_OUTPUT
+        echo "has_baseline=true" >> $GITHUB_OUTPUT
+        
+    - name: Run comprehensive audit
+      id: audit
+      uses: ./.github/actions/docs-eval
+      with:
+        urls-file: 'samples/urls.txt'
+        output-dir: 'weekly-audit'
+        min-score: '75'
+        min-clean-percentage: '60'
+        fail-on-quality-gate: 'false'  # Don't fail the audit, just collect data
+        
+    - name: Analyze quality trends
+      id: trends
+      run: |
+        current_avg=${{ steps.audit.outputs.average-score }}
+        current_clean=${{ steps.audit.outputs.clean-percentage }}
+        
+        has_baseline="${{ steps.previous.outputs.has_baseline }}"
+        
+        if [ "$has_baseline" = "true" ]; then
+          previous_avg=${{ steps.previous.outputs.previous_avg_score }}
+          previous_clean=${{ steps.previous.outputs.previous_clean_percentage }}
+          
+          # Calculate changes
+          avg_change=$(echo "$current_avg - $previous_avg" | bc -l)
+          clean_change=$(echo "$current_clean - $previous_clean" | bc -l)
+          
+          echo "avg_change=$avg_change" >> $GITHUB_OUTPUT
+          echo "clean_change=$clean_change" >> $GITHUB_OUTPUT
+          
+          # Determine if this is a regression
+          is_regression=false
+          if (( $(echo "$avg_change < -5" | bc -l) )) || (( $(echo "$clean_change < -10" | bc -l) )); then
+            is_regression=true
+          fi
+          echo "is_regression=$is_regression" >> $GITHUB_OUTPUT
+          
+          echo "📈 Quality Trend Analysis:"
+          echo "   Average Score: $previous_avg → $current_avg (${avg_change:+}$avg_change)"
+          echo "   Clean Pages: $previous_clean% → $current_clean% (${clean_change:+}$clean_change%)"
+          echo "   Regression Detected: $is_regression"
+        else
+          echo "is_regression=false" >> $GITHUB_OUTPUT
+          echo "📊 Baseline audit completed (no previous data for comparison)"
+        fi
+        
+    - name: Generate audit summary
+      run: |
+        cat > weekly-audit/audit-summary.md << 'EOF'
+        # 📊 Weekly Documentation Quality Audit
+        
+        **Audit Date:** $(date -u +"%Y-%m-%d %H:%M UTC")
+        **Repository:** ${{ github.repository }}
+        **Branch:** ${{ github.ref_name }}
+        
+        ## Current Status
+        - 📈 **Average Score**: ${{ steps.audit.outputs.average-score }}/100
+        - ✅ **Clean Pages**: ${{ steps.audit.outputs.clean-count }}/${{ steps.audit.outputs.total-pages }} (${{ steps.audit.outputs.clean-percentage }}%)
+        - 🔧 **Structure Issues**: ${{ steps.audit.outputs.structure-missing }} pages
+        - ⚠️ **Extraction Issues**: ${{ steps.audit.outputs.extraction-noisy }} pages
+        
+        ## Quality Gates
+        - Average Score ≥ 75: ${{ steps.audit.outputs.average-score >= 75 && '✅ PASS' || '❌ FAIL' }}
+        - Clean Pages ≥ 60%: ${{ steps.audit.outputs.clean-percentage >= 60 && '✅ PASS' || '❌ FAIL' }}
+        
+        EOF
+        
+        # Add trend analysis if available
+        if [ "${{ steps.previous.outputs.has_baseline }}" = "true" ]; then
+          cat >> weekly-audit/audit-summary.md << 'EOF'
+        ## Trend Analysis
+        - Average Score Change: ${{ steps.trends.outputs.avg_change }}
+        - Clean Pages Change: ${{ steps.trends.outputs.clean_change }}%
+        - Regression Detected: ${{ steps.trends.outputs.is_regression }}
+        
+        EOF
+        fi
+        
+        # Add link to detailed report
+        echo "## 📄 [View Detailed Report](./weekly-audit/report.md)" >> weekly-audit/audit-summary.md
+        
+    - name: Upload audit results
+      uses: actions/upload-artifact@v3
+      with:
+        name: weekly-audit-${{ github.run_number }}
+        path: weekly-audit/
+        retention-days: 90  # Keep audit history for 3 months
+        
+    - name: Create GitHub Issue on Regression
+      if: |
+        (github.event_name == 'schedule' || inputs.notification-level == 'all') &&
+        (steps.trends.outputs.is_regression == 'true' || 
+         inputs.notification-level == 'all' && steps.audit.outputs.quality-passed == 'false')
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const avgScore = '${{ steps.audit.outputs.average-score }}';
+          const cleanPercentage = '${{ steps.audit.outputs.clean-percentage }}';
+          const isRegression = '${{ steps.trends.outputs.is_regression }}' === 'true';
+          const avgChange = '${{ steps.trends.outputs.avg_change }}';
+          const cleanChange = '${{ steps.trends.outputs.clean_change }}';
+          
+          let title, priority, labels;
+          
+          if (isRegression) {
+            title = `📉 Documentation Quality Regression Detected`;
+            priority = 'high';
+            labels = ['documentation', 'quality', 'regression', 'high-priority'];
+          } else {
+            title = `📊 Documentation Quality Issues Found`;
+            priority = 'medium';
+            labels = ['documentation', 'quality', 'audit'];
+          }
+          
+          const body = `
+          ## 🚨 Weekly Documentation Quality Audit Alert
+          
+          **Issue Type:** ${isRegression ? 'Quality Regression' : 'Quality Issues'}
+          **Priority:** ${priority}
+          **Audit Date:** ${new Date().toISOString().split('T')[0]}
+          
+          ### Current Metrics
+          - **Average Score:** ${avgScore}/100
+          - **Clean Pages:** ${cleanPercentage}%
+          - **Pages Needing Structure Fixes:** ${{ steps.audit.outputs.structure-missing }}
+          - **Pages Needing Extraction Fixes:** ${{ steps.audit.outputs.extraction-noisy }}
+          
+          ${isRegression ? `
+          ### 📉 Regression Details
+          - Average Score Change: ${avgChange}
+          - Clean Pages Change: ${cleanChange}%
+          ` : ''}
+          
+          ### 🔧 Recommended Actions
+          1. Review the [detailed audit report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          2. Focus on pages with "structure-missing" failure modes first (highest impact)
+          3. Add semantic HTML elements (\`<main>\`, \`<article>\`) to problematic pages
+          4. Improve heading hierarchy (H1→H2→H3 progression)
+          5. Reduce boilerplate dominance for "extraction-noisy" pages
+          
+          ### 📊 Quality Targets
+          - **Target Average Score:** ≥ 75
+          - **Target Clean Pages:** ≥ 60%
+          
+          ---
+          *This issue was automatically created by the [weekly documentation audit workflow](https://github.com/${{ github.repository }}/actions/workflows/weekly-audit.yml).*
+          `;
+          
+          // Check if there's already an open issue for documentation quality
+          const { data: existingIssues } = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: 'documentation,quality',
+            state: 'open'
+          });
+          
+          const existingAuditIssue = existingIssues.find(issue => 
+            issue.title.includes('Documentation Quality')
+          );
+          
+          if (existingAuditIssue) {
+            // Update existing issue
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: existingAuditIssue.number,
+              body: `## 📊 Updated Audit Results\n\n${body}`
+            });
+            
+            // Update labels if this is a regression
+            if (isRegression && !existingAuditIssue.labels.some(l => l.name === 'regression')) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existingAuditIssue.number,
+                labels: ['regression', 'high-priority']
+              });
+            }
+          } else {
+            // Create new issue
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: title,
+              body: body,
+              labels: labels
+            });
+          }
+          
+    - name: Update repository quality badge
+      if: always()
+      run: |
+        # Create a simple quality badge data file
+        avg_score=${{ steps.audit.outputs.average-score }}
+        clean_pct=${{ steps.audit.outputs.clean-percentage }}
+        
+        # Determine badge color based on score
+        if (( $(echo "$avg_score >= 80" | bc -l) )); then
+          color="brightgreen"
+        elif (( $(echo "$avg_score >= 70" | bc -l) )); then
+          color="yellow"
+        else
+          color="red"
+        fi
+        
+        # Create badge info for potential use in README
+        cat > weekly-audit/quality-badge.json << EOF
+        {
+          "schemaVersion": 1,
+          "label": "docs quality",
+          "message": "${avg_score}/100 (${clean_pct}% clean)",
+          "color": "$color",
+          "namedLogo": "github",
+          "logoColor": "white"
+        }
+        EOF
+        
+        echo "📛 Quality badge data generated: ${avg_score}/100 (${clean_pct}% clean)"

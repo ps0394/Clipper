@@ -1,0 +1,238 @@
+name: Documentation Quality Check
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths: ['docs/**', '*.md', 'samples/urls.txt']
+  pull_request:
+    branches: [ main, develop ]
+    paths: ['docs/**', '*.md', 'samples/urls.txt']
+  schedule:
+    - cron: '0 2 * * 1'  # Weekly on Monday at 2 AM UTC
+  workflow_dispatch:      # Allow manual triggering
+
+jobs:
+  evaluate-docs:
+    runs-on: ubuntu-latest
+    
+    env:
+      RESULTS_DIR: evaluation-results
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Create results directory
+      run: mkdir -p ${{ env.RESULTS_DIR }}
+        
+    - name: Prepare URL list
+      run: |
+        # Use existing sample URLs as default
+        cp samples/urls.txt evaluation-urls.txt
+        
+        # Optional: Add any documentation URLs from the repo
+        if [ -f "docs/urls.txt" ]; then
+          cat docs/urls.txt >> evaluation-urls.txt
+        fi
+        
+        echo "URLs to evaluate:"
+        cat evaluation-urls.txt
+        
+    - name: Run retrievability evaluation pipeline
+      run: |
+        echo "🔍 Starting documentation retrievability evaluation..."
+        
+        # Step 1: Crawl URLs
+        echo "📥 Crawling documentation pages..."
+        python -m retrievability.cli crawl evaluation-urls.txt --out ${{ env.RESULTS_DIR }}/snapshots/
+        
+        # Step 2: Parse HTML and extract signals
+        echo "🧩 Parsing HTML and extracting signals..."
+        python -m retrievability.cli parse ${{ env.RESULTS_DIR }}/snapshots/ --out ${{ env.RESULTS_DIR }}/parse.json
+        
+        # Step 3: Score results and classify failure modes
+        echo "📊 Scoring results and classifying failure modes..."
+        python -m retrievability.cli score ${{ env.RESULTS_DIR }}/parse.json --out ${{ env.RESULTS_DIR }}/scores.json
+        
+        # Step 4: Generate human-readable report
+        echo "📄 Generating report..."
+        python -m retrievability.cli report ${{ env.RESULTS_DIR }}/scores.json --md ${{ env.RESULTS_DIR }}/report.md
+        
+        echo "✅ Evaluation pipeline completed"
+        
+    - name: Calculate quality metrics
+      id: metrics
+      run: |
+        python -c "
+        import json
+        import sys
+        
+        try:
+            with open('${{ env.RESULTS_DIR }}/scores.json') as f:
+                scores = json.load(f)
+            
+            if not scores:
+                print('No scores found')
+                sys.exit(1)
+                
+            # Calculate metrics
+            avg_score = sum(s['parseability_score'] for s in scores) / len(scores)
+            clean_count = sum(1 for s in scores if s['failure_mode'] == 'clean')
+            structure_missing = sum(1 for s in scores if s['failure_mode'] == 'structure-missing')
+            extraction_noisy = sum(1 for s in scores if s['failure_mode'] == 'extraction-noisy')
+            
+            total_pages = len(scores)
+            clean_percentage = (clean_count / total_pages) * 100
+            
+            print(f'AVERAGE_SCORE={avg_score:.1f}')
+            print(f'CLEAN_COUNT={clean_count}')
+            print(f'CLEAN_PERCENTAGE={clean_percentage:.1f}')
+            print(f'TOTAL_PAGES={total_pages}')
+            print(f'STRUCTURE_MISSING={structure_missing}')
+            print(f'EXTRACTION_NOISY={extraction_noisy}')
+            
+            # Set outputs for GitHub Actions
+            with open('$GITHUB_OUTPUT', 'a') as f:
+                f.write(f'avg_score={avg_score:.1f}\\n')
+                f.write(f'clean_count={clean_count}\\n')
+                f.write(f'clean_percentage={clean_percentage:.1f}\\n')
+                f.write(f'total_pages={total_pages}\\n')
+                f.write(f'structure_missing={structure_missing}\\n')
+                f.write(f'extraction_noisy={extraction_noisy}\\n')
+                
+        except Exception as e:
+            print(f'Error calculating metrics: {e}')
+            sys.exit(1)
+        "
+        
+    - name: Check quality gate
+      run: |
+        avg_score=${{ steps.metrics.outputs.avg_score }}
+        clean_percentage=${{ steps.metrics.outputs.clean_percentage }}
+        
+        echo "📈 Quality Metrics:"
+        echo "   Average Score: ${avg_score}/100"
+        echo "   Clean Pages: ${{ steps.metrics.outputs.clean_count }}/${{ steps.metrics.outputs.total_pages }} (${clean_percentage}%)"
+        echo "   Structure Issues: ${{ steps.metrics.outputs.structure_missing }}"
+        echo "   Extraction Issues: ${{ steps.metrics.outputs.extraction_noisy }}"
+        
+        # Quality gates
+        MIN_AVERAGE_SCORE=70
+        MIN_CLEAN_PERCENTAGE=60
+        
+        quality_passed=true
+        
+        if (( $(echo "${avg_score} < ${MIN_AVERAGE_SCORE}" | bc -l) )); then
+          echo "❌ Quality gate FAILED: Average score ${avg_score} is below ${MIN_AVERAGE_SCORE}"
+          quality_passed=false
+        fi
+        
+        if (( $(echo "${clean_percentage} < ${MIN_CLEAN_PERCENTAGE}" | bc -l) )); then
+          echo "❌ Quality gate FAILED: Clean pages ${clean_percentage}% is below ${MIN_CLEAN_PERCENTAGE}%"
+          quality_passed=false
+        fi
+        
+        if [ "$quality_passed" = true ]; then
+          echo "✅ Quality gates PASSED"
+        else
+          echo "Setting quality gate failure for PR checks..."
+          exit 1
+        fi
+        
+    - name: Generate summary for GitHub
+      run: |
+        cat > ${{ env.RESULTS_DIR }}/github-summary.md << 'EOF'
+        ## 📊 Documentation Quality Report
+        
+        **Overall Metrics:**
+        - 📈 **Average Score**: ${{ steps.metrics.outputs.avg_score }}/100
+        - ✅ **Clean Pages**: ${{ steps.metrics.outputs.clean_count }}/${{ steps.metrics.outputs.total_pages }} (${{ steps.metrics.outputs.clean_percentage }}%)
+        - 🔧 **Need Structure Fixes**: ${{ steps.metrics.outputs.structure_missing }}
+        - ⚠️ **Need Extraction Fixes**: ${{ steps.metrics.outputs.extraction_noisy }}
+        
+        **Quality Gates:**
+        - Average Score ≥ 70: ${{ steps.metrics.outputs.avg_score >= 70 && '✅ PASS' || '❌ FAIL' }}
+        - Clean Pages ≥ 60%: ${{ steps.metrics.outputs.clean_percentage >= 60 && '✅ PASS' || '❌ FAIL' }}
+        
+        <details>
+        <summary>📄 View Detailed Report</summary>
+        
+        EOF
+        
+        # Append the detailed report
+        cat ${{ env.RESULTS_DIR }}/report.md >> ${{ env.RESULTS_DIR }}/github-summary.md
+        
+        echo "" >> ${{ env.RESULTS_DIR }}/github-summary.md
+        echo "</details>" >> ${{ env.RESULTS_DIR }}/github-summary.md
+        
+    - name: Upload evaluation results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: retrieval-evaluation-results-${{ github.run_number }}
+        path: |
+          ${{ env.RESULTS_DIR }}/
+          evaluation-urls.txt
+        retention-days: 30
+        
+    - name: Comment on PR with results
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const path = '${{ env.RESULTS_DIR }}/github-summary.md';
+          
+          if (fs.existsSync(path)) {
+            const summary = fs.readFileSync(path, 'utf8');
+            
+            // Find existing bot comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('Documentation Quality Report')
+            );
+            
+            const commentBody = `${summary}
+            
+            ---
+            *Automated evaluation by [retrievability-eval](https://github.com/${context.repo.owner}/${context.repo.repo}) • [View full results](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})*`;
+            
+            if (botComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: commentBody
+              });
+            }
+          }
+          
+    - name: Set job summary
+      if: always()
+      run: |
+        cat ${{ env.RESULTS_DIR }}/github-summary.md >> $GITHUB_STEP_SUMMARY
