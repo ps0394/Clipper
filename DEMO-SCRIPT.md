@@ -27,6 +27,7 @@ rm -rf test/ test.txt
 
 # 4. Ensure backup results exist
 ls demo-results-expanded/  # Should show crawl_results.json, scores.json
+ls enhanced-demo-backup.txt  # Phase 1 actionable examples
 
 # 5. Have fallback summary ready
 python -c "
@@ -51,7 +52,7 @@ for score, mode, domain in results:
 
 ## Pre-Demo Setup (30 seconds)
 
-**SAY**: *"I'm going to show you a tool that evaluates how well documentation works with AI systems and search engines. We'll test 9 real websites including major cloud providers."*
+**SAY**: *"I'm going to show you a tool that evaluates documentation quality for AI systems and gives you actionable fixes with code examples. We'll test 9 real websites and get priority-ranked improvements."*
 
 **SHOW**: Display the demo URLs file
 ```bash
@@ -59,43 +60,40 @@ for score, mode, domain in results:
 cat demo-urls.txt
 ```
 
-**KEY POINT**: "We're testing Microsoft, AWS, Google, Wikipedia, GitHub, and Stack Overflow - sites your teams probably reference daily."
+**KEY POINT**: "We're testing Microsoft, AWS, Google, Wikipedia, GitHub, and Stack Overflow - sites your teams probably reference daily. But here's the kicker: we'll get specific HTML fixes with before/after code examples."
 
 ---
 
 ## Live Evaluation (2 minutes)
 
-### Step 1: Crawl (45 seconds)
-**SAY**: *"Let's evaluate these 9 sites in real-time. First, we fetch all the pages."*
+### ⚡ Express Mode Demo (90 seconds)
+**SAY**: *"Let me show you our express mode - complete evaluation with actionable reports in one command."*
 
+```bash
+python -m retrievability.cli express demo-urls.txt --out demo-live-results/
+```
+
+**💡 Windows PowerShell Note**: If you see Unicode encoding errors, use:
+```bash
+# Alternative for Windows PowerShell
+$env:PYTHONIOENCODING="utf-8"
+python -m retrievability.cli express demo-urls.txt --out demo-live-results/
+# OR run step-by-step if needed
+```
+
+**TALK WHILE RUNNING** (express mode does crawl → parse → score → report automatically):
+- "This runs our complete pipeline: crawl, parse, score, and generate actionable reports"
+- "We're analyzing semantic structure, heading hierarchy, content density, and boilerplate resistance"
+- "The output includes priority-ranked fixes with actual HTML code examples"
+- "Notice it's not just scores - it's implementable solutions"
+
+**ALTERNATIVE**: Step-by-step if you want to show the pipeline:
 ```bash
 python -m retrievability.cli crawl demo-urls.txt --out demo-live-results/
-```
-
-**TALK WHILE CRAWLING** (~30 seconds of execution time):
-- "We're grabbing HTML from each site - Microsoft, AWS, Google, Wikipedia..."
-- "The tool saves snapshots locally so analysis is consistent and repeatable"  
-- "Notice we're testing the sites your teams probably reference daily"
-- **Watch for**: All 9 URLs should crawl successfully (status 200)
-
-**IF INTERNET ISSUES**: Immediately switch to backup: *"Let me show you results from a recent run..."*
-
-### Step 2: Parse & Score (75 seconds)
-**SAY**: *"Now we analyze the HTML and calculate retrievability scores based on 5 dimensions."*
-
-```bash
 python -m retrievability.cli parse demo-live-results/ --out demo-live-results/parse.json
-python -m retrievability.cli score demo-live-results/parse.json --out demo-live-results/scores.json  
+python -m retrievability.cli score demo-live-results/parse.json --out demo-live-results/scores.json
+python -m retrievability.cli report demo-live-results/scores.json --md demo-live-results/report.md
 ```
-
-**EXPLAIN THE 5 SCORING DIMENSIONS WHILE COMMANDS RUN**:
-1. **Semantic Structure** (25%) - "Does it use `<main>`, `<article>` elements?"
-2. **Heading Hierarchy** (20%) - "Is the H1→H2→H3 flow logical?" 
-3. **Content Density** (25%) - "How much actual content vs. navigation/chrome?"
-4. **Rich Content** (10%) - "Are there code blocks, tables, structured data?"
-5. **Boilerplate Resistance** (20%) - "Can AI extract content without noise?"
-
-**KEY MESSAGE WHILE PROCESSING**: *"These aren't subjective opinions - these are deterministic signals that predict how well AI systems can work with your content."*
 
 ---
 
@@ -118,8 +116,10 @@ for score, mode, domain in results:
 
 **BACKUP RESULTS** (if live demo had issues):
 ```bash
-cat backup-results.txt  # Pre-generated summary
-# OR
+cat enhanced-demo-backup.txt  # Shows Phase 1 features
+# OR original backup:
+cat backup-results.txt  # Simple ranking
+# OR from expanded results:
 python -c "
 import json
 with open('demo-results-expanded/crawl_results.json', 'r') as f: crawl = json.load(f)
@@ -132,67 +132,104 @@ with open('demo-results-expanded/scores.json', 'r') as f: scores = json.load(f)
 
 ### The Shocking Results (60 seconds)
 
-**SAY**: *"Here's what we found - and it might surprise you:"*
+**SAY**: *"Here's what we found - and the actionable insights will transform how you think about documentation:"*
 
 **TOP PERFORMERS (85-88 points)**:
-- 🏆 **Wikipedia**: "Excellent content density and semantic structure"
-- ✅ **Microsoft Learn**: "Consistent enterprise documentation standards"
+- 🏆 **Wikipedia**: "Excellent semantic structure - and we'll show you exactly how to copy their approach"
+- ✅ **Microsoft Learn**: "Enterprise documentation standard with clear improvement roadmap"
 
 **MIDDLE TIER (75-80 points)**:  
-- ⚠️ **Google Developer Docs**: "Good content, but extraction challenges"
+- ⚠️ **Google Developer Docs**: "Good content, but our report shows 3 specific fixes worth +15 points"
 
 **POOR PERFORMERS (40-65 points)**:
-- ❌ **AWS Docs**: "Missing semantic HTML structure"  
-- ❌ **Google Cloud**: "Major structure gaps"
-- ❌ **GitHub Docs**: "Boilerplate contamination"
-- ❌ **Stack Overflow**: "Heavy navigation, poor content extraction"
+- ❌ **AWS Docs**: "Missing semantic HTML - but 2 code changes get them to 80+"  
+- ❌ **Google Cloud**: "Major structure gaps - priority fixes identified"
+- ❌ **GitHub Docs**: "Boilerplate contamination - we show exact HTML patterns to fix it"
+- ❌ **Stack Overflow**: "Heavy navigation overwhelming content - actionable solutions provided"
 
-### Key Insights for Documentation Teams (90 seconds)
+### 🎯 Actionable Report Showcase (90 seconds)
 
-**INSIGHT 1 - Content beats brand**: 
-*"Wikipedia outperforms AWS and Google Cloud. It's not about company size - it's about technical approach to content structure."*
-
-**INSIGHT 2 - Structure is everything**:
-*"The difference between 88 points and 42 points? Semantic HTML elements and proper heading hierarchy."*
-
-**INSIGHT 3 - Boilerplate kills performance**:
-*"Even good content fails if it's drowning in navigation, sidebars, and chrome."*
-
-**SHOW DETAILED BREAKDOWN** (if time permits):
+**SHOW THE ACTIONABLE MAGIC**:
 ```bash
-python -m retrievability.cli report demo-results/scores.json --md demo-results/report.md
-# Show specific failure modes and fix recommendations
+cat demo-live-results/report.md  # Show actual actionable report
+# OR use backup: cat enhanced-report.md
 ```
+
+**HIGHLIGHT KEY FEATURES** (point to actual report sections):
+
+**1. Priority-Ranked Fixes**:
+*"Look at this table - it tells teams exactly what to fix first:"*
+
+```
+| Fix | Impact | Effort | Score Gain | Priority |
+| Add `<main>` element | High | Low | +15 pts | 🔥 Critical |
+| Fix heading hierarchy | High | Medium | +12 pts | 🔥 Critical |
+```
+
+**2. Copy-Paste Code Examples**:
+*"No more abstract advice - here's exact HTML to fix every issue:"*
+
+```html
+<!-- Before (problematic) -->
+<div class="content">
+  <h1>Page Title</h1>
+  
+<!-- After (semantic) -->
+<main>
+  <article>
+    <h1>Page Title</h1>
+```
+
+**3. Content Beats Brand Names**:
+*"Wikipedia (88 points) outperforms AWS (63) and Google Cloud (51). Why? Better semantic structure, not bigger engineering teams."*
 
 ---
 
 ## Takeaways & Next Steps (60 seconds)
 
-### What Documentation Teams Should Track
-**SAY**: *"Here are the metrics that matter for your content:"*
+### What Documentation Teams Get Now
+**SAY**: *"This isn't just analysis - it's a complete improvement roadmap:"*
 
-1. **Semantic Structure Score** - Are you using `<main>` and `<article>` elements?
-2. **Content Density Ratio** - How much of your page is actual content vs. chrome?
-3. **Heading Hierarchy Health** - Is your H1→H2→H3 flow logical?
-4. **Boilerplate Resistance** - Can AI systems extract your content cleanly?
+**🎯 Priority-Driven Action Plan**:
+- **Impact scoring**: Which fixes give biggest score improvements
+- **Effort estimates**: Low/Medium/High implementation difficulty  
+- **Score predictions**: Expected point gains (+15 pts, +12 pts, etc.)
+- **Visual priorities**: 🔥 Critical, ⚠️ Important, 📋 Planned
 
-### Quick Integration Options
-**OPTION 1 - CLI Audit**: `python -m retrievability.cli express your-urls.txt --out results/`
+**💻 Copy-Paste Solutions**:
+- **Before/after HTML**: See exactly what to change
+- **Framework-agnostic**: Works with React, Vue, static sites, CMSs
+- **Semantic patterns**: `<main>`, `<article>`, heading hierarchy
+- **Content organization**: Reduce boilerplate contamination
 
-**OPTION 2 - GitHub Integration**: Add our reusable action to your workflow:
+### Integration Options That Actually Work
+**OPTION 1 - Express Audit**: 
+```bash
+python -m retrievability.cli express your-urls.txt --out results/
+cat results/report.md  # Get actionable fixes immediately
+```
+
+**OPTION 2 - GitHub Quality Gates**: 
 ```yaml
 - uses: ps0394/Retrieval/.github/actions/docs-eval@main
   with:
     urls-file: 'docs/urls.txt'
     min-score: '75'
+# Blocks deployment if quality drops
 ```
 
-**OPTION 3 - One-off Agent**: `scripts/url-agent.py --file urls.txt --name "audit"`
+**OPTION 3 - Pre-Publication Checks**:
+```bash
+# Before publishing new docs
+echo "https://staging.example.com/new-guide" > staging.txt
+python -m retrievability.cli express staging.txt --out staging-check/
+cat staging-check/report.md  # Get specific fixes before going live
+```
 
 ### The Bottom Line
-**SAY**: *"In 5 minutes, we evaluated 9 major documentation sites and found that content structure beats everything else. Wikipedia, with no engineering budget for 'modern' docs infrastructure, outperformed AWS and Google because they focus on semantic HTML and content density."*
+**SAY**: *"In 5 minutes, we've shown you that content structure beats everything else. Wikipedia, with no 'modern' docs infrastructure, outperformed AWS and Google because they focus on semantic HTML and content organization. Your teams can do the same - and now you have the exact roadmap to get there."*
 
-**FINAL MESSAGE**: *"Your documentation teams can compete with Big Tech by focusing on the fundamentals: clean semantic structure, logical headings, and minimal chrome contamination."*
+**FINAL MESSAGE**: *"This tool doesn't just tell you what's broken - it shows you exactly how to fix it, prioritizes your work, and gives you copy-paste solutions. Documentation quality is no longer a mystery."*
 
 ---
 
@@ -211,6 +248,11 @@ cat backup-results.txt
 **SAY**: *"In production, this runs in under 60 seconds, but networks vary."*
 
 ### If CLI Errors Occur
+**UNICODE/ENCODING ISSUES** (Windows PowerShell): 
+```bash
+$env:PYTHONIOENCODING="utf-8"  # Set encoding
+chcp 65001  # Change console to UTF-8
+```
 **DEPENDENCY ISSUES**: 
 ```bash
 pip install -r requirements.txt  # Quick fix attempt

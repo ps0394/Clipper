@@ -1,0 +1,51 @@
+# Enhanced Demo Results - Phase 1 Features
+
+## Priority Fixes Example (Stack Overflow - 42.1/100):
+
+| Fix | Impact | Effort | Score Gain | Priority |
+|-----|--------|--------|------------|----------|
+| Add `<main>` element | High | Low | +15 pts | 🔥 Critical |
+| Fix heading hierarchy | High | Medium | +12 pts | 🔥 Critical |
+| Add `<article>` wrapper | Medium | Low | +10 pts | ⚠️ Important |
+
+## Code Examples:
+
+### Add Semantic HTML Structure:
+```html
+<!-- Before (problematic) -->
+<div class="content">
+  <h1>Page Title</h1>
+  <p>Content here...</p>
+</div>
+
+<!-- After (semantic) -->
+<main>
+  <article>
+    <h1>Page Title</h1>
+    <p>Content here...</p>
+  </article>
+</main>
+```
+
+### Fix Heading Hierarchy:
+```html
+<!-- Before (hierarchy jumps) -->
+<h1>Main Title</h1>
+<h3>Subsection</h3>  <!-- ❌ Skip H2 -->
+<h2>Section</h2>     <!-- ❌ Wrong order -->
+
+<!-- After (proper hierarchy) -->
+<h1>Main Title</h1>
+<h2>Section</h2>
+<h3>Subsection</h3>  <!-- ✅ Logical flow -->
+```
+
+## Overall Rankings:
+88.4 | clean           | en.wikipedia.org
+88.0 | clean           | en.wikipedia.org  
+83.7 | clean           | learn.microsoft.com
+77.1 | extraction-noisy| developers.google.com
+63.3 | structure-missing| docs.aws.amazon.com
+50.8 | structure-missing| cloud.google.com
+42.1 | structure-missing| stackoverflow.com
+41.8 | extraction-noisy | docs.github.com
