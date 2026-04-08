@@ -1,4 +1,4 @@
-"""Setup script for retrievability evaluation system."""
+"""Setup script for YARA (Yet Another Retrieval Analyzer)."""
 
 from setuptools import setup, find_packages
 

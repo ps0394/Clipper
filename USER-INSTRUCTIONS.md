@@ -25,7 +25,7 @@ pip install -r requirements.txt
 ```bash
 python -m retrievability.cli --help
 ```
-You should see the command help menu with 4 available commands: `crawl`, `parse`, `score`, `report`.
+You should see the command help menu with 5 available commands: `crawl`, `parse`, `score`, `report`, and `negotiate` (for content negotiation testing).
 
 ## 📚 Documentation Structure
 
@@ -89,6 +89,22 @@ python -m retrievability.cli report results/scores.json --md results/report.md
 - Creates executive summary with statistics
 - Lists individual page results with actionable insights
 - Identifies who should fix issues (Frontend Developer vs Content Author)
+
+#### 🆕 6. Test Content Negotiation (Advanced)
+```bash
+python -m retrievability.cli negotiate urls.txt --out negotiation-results/
+```
+**What this does:**
+- Tests if sites serve markdown, JSON, or plain text alternatives for AI agents
+- Measures payload reduction and response performance across formats
+- Detects agent optimization (sites already optimized for AI consumption)
+- Scores content negotiation quality (0-100 scale)
+
+### 🚀 Express Mode - Complete Pipeline
+Run all steps in one command:
+```bash
+python -m retrievability.cli express urls.txt --out results/
+```
 
 ## Advanced Usage
 

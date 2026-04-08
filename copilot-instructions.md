@@ -2,7 +2,7 @@
 Purpose: This file provides authoritative instructions for GitHub Copilot (VS Code) when working in this repository. Copilot should treat this document as a system-level constraint and design contract for all code generation, reasoning, and suggestions.
 
 
-This repository implements a CLI-first retrievability evaluation prototype. Copilot must optimize for determinism, auditability, and repeatability, not autonomous behavior.
+This repository implements YARA (Yet Another Retrieval Analyzer), a CLI-first retrievability evaluation system with agent-ready content negotiation testing. Copilot must optimize for determinism, auditability, and repeatability, not autonomous behavior.
 
 **GitHub Integration Available**: This repository includes GitHub Copilot Chat integration and agent automation scripts while preserving CLI-first principles. Copilot can guide users to these interfaces but must not suggest bypassing the underlying CLI architecture.
 
@@ -44,8 +44,8 @@ retrievability-eval/
 ├─ README.md              # Product definition and non-goals
 ├─ retrievability/
 │  ├─ __init__.py
-│  ├─ cli.py              # argparse / click entrypoint
-│  ├─ crawl.py            # URL fetch + HTML snapshot
+│  ├─ cli.py              # argparse entrypoint (5 commands: crawl, parse, score, report, negotiate)
+│  ├─ crawl.py            # URL fetch + HTML snapshot + content negotiation testing
 │  ├─ parse.py            # extractability signals
 │  ├─ score.py            # scoring + failure modes
 │  └─ schemas.py          # JSON output contracts
@@ -64,10 +64,14 @@ Python is the default language unless explicitly overridden.
 
 4. CLI Contract (Hard Requirement)
 Copilot must respect and help implement this CLI interface exactly:
+```
 retrievability crawl urls.txt --out snapshots/
 retrievability parse snapshots/ --out parse.json
 retrievability score parse.json --out report.json
 retrievability report report.json --md report.md
+retrievability negotiate urls.txt --out negotiation/ 
+retrievability express urls.txt --out results/
+```
 
 
 Rules:

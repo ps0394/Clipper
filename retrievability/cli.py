@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 from typing import List
 
-from .crawl import crawl_urls
+from .crawl import crawl_urls, crawl_with_content_negotiation
 from .parse import parse_snapshots  
 from .score import score_parse_results
 from .report import generate_report
@@ -102,6 +102,14 @@ def main():
     crawl_group.add_argument('--stdin', action='store_true', help='Read URLs from stdin (one per line)')
     crawl_parser.add_argument('--out', required=True, help='Output directory for HTML snapshots')
     
+    # Content Negotiation command
+    negotiate_parser = subparsers.add_parser('negotiate', help='Test content negotiation - check for markdown, JSON, etc.')
+    negotiate_group = negotiate_parser.add_mutually_exclusive_group(required=True)
+    negotiate_group.add_argument('urls_file', nargs='?', help='Path to file containing URLs (one per line)')
+    negotiate_group.add_argument('--urls', nargs='+', help='URLs to test directly (space-separated)')
+    negotiate_group.add_argument('--stdin', action='store_true', help='Read URLs from stdin (one per line)')
+    negotiate_parser.add_argument('--out', required=True, help='Output directory for content negotiation results')
+    
     # Parse command  
     parse_parser = subparsers.add_parser('parse', help='Extract parseability signals from HTML snapshots')
     parse_parser.add_argument('snapshots_dir', help='Directory containing HTML snapshots')
@@ -138,6 +146,13 @@ def main():
             urls_file = _create_urls_file(args)
             try:
                 crawl_urls(urls_file, args.out)
+            finally:
+                _cleanup_temp_file(urls_file, getattr(args, 'urls_file', None))
+            
+        elif args.command == 'negotiate':
+            urls_file = _create_urls_file(args)
+            try:
+                crawl_with_content_negotiation(urls_file, args.out)
             finally:
                 _cleanup_temp_file(urls_file, getattr(args, 'urls_file', None))
             

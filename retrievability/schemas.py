@@ -74,3 +74,41 @@ class ReportResult:
             'parse_result': self.parse_result.to_dict(), 
             'score_result': self.score_result.to_dict()
         }
+
+
+@dataclass
+class FormatResponse:
+    """Single format response in content negotiation testing."""
+    accept_header: str
+    content_type: str
+    content_length: int
+    status_code: int
+    content_hash: str  # MD5 hash to detect identical content across formats
+    html_path: str     # Where content is saved (relative to snapshots dir)
+    response_time_ms: int  # Response time for performance comparison
+    
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass 
+class ContentNegotiationResult:
+    """Content negotiation test results for a single URL."""
+    url: str
+    timestamp: str
+    baseline_format: FormatResponse      # HTML request (text/html)
+    alternative_formats: List[FormatResponse]  # Other Accept header tests
+    format_availability_score: float    # 0-100 based on available alternatives
+    content_consistency_score: float    # Are different formats actually different?
+    agent_optimization_detected: bool   # True if site appears agent-optimized
+    
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            'url': self.url,
+            'timestamp': self.timestamp,
+            'baseline_format': self.baseline_format.to_dict(),
+            'alternative_formats': [fmt.to_dict() for fmt in self.alternative_formats],
+            'format_availability_score': self.format_availability_score,
+            'content_consistency_score': self.content_consistency_score,
+            'agent_optimization_detected': self.agent_optimization_detected
+        }

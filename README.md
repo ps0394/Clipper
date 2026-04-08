@@ -8,19 +8,41 @@ YARA measures whether documentation pages are:
 - **Crawlable & accessible** as HTML
 - **Parsable / extractable** into primary content (low chrome, clean structure)
 - **Structurally ready** for retrieval systems (inputs to later retrieval evaluation)
+- **🆕 Agent-optimized** with content negotiation (markdown, JSON, plain text alternatives)
 
 **🚀 What makes YARA special:**
 - **Actionable insights**: Get specific HTML fixes with before/after code examples
 - **Priority scoring**: Know which fixes give the biggest score improvements
+- **🆕 Content negotiation testing**: Detect markdown, JSON, and plain text alternatives
+- **Agent optimization detection**: Identify sites optimized for AI consumption
 - **Multi-cloud ready**: Evaluate Microsoft, AWS, Google, and other major documentation sites
 - **Demo-proven**: Wikipedia (88/100) outperforms AWS Docs (63/100) and Google Cloud (51/100)
+
+## Table of Contents
+
+- [Quick Demo Results](#quick-demo-results)
+- [Installation](#installation)
+- [CLI Usage](#cli-usage)
+  - [Content Negotiation Testing](#-5-test-content-negotiation)
+- [Example: Enhanced Actionable Reports](#example-enhanced-actionable-reports)
+- [🎯 YARA's Actionable Report Features](#-yaras-actionable-report-features)
+- [🚀 Quick Start Demo](#-quick-start-demo)
+- [GitHub Integration](#github-integration)
+- [Demo & Presentation](#demo--presentation)
+- [Scoring System](#scoring-system)
+- [File Structure](#file-structure)
+- [Real-World Use Cases for YARA](#real-world-use-cases-for-yara)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Quick Demo Results
 
 Real evaluation of major documentation sites (as of 2026-04-08):
 
 | Site | Score | Status | Key Insight |
-|------|-------|--------|--------------|
+|------|-------|--------|-------------|
+| **GitHub Docs** | **98/100** | **🤖 Agent-Ready** | **Serves clean markdown on demand** |
+| **Microsoft Learn** | **92/100** | **🤖 Agent-Ready** | **Advanced content negotiation** |
 | Wikipedia | 88/100 | ✅ Clean | Content structure beats brand names |
 | Microsoft Learn | 84/100 | ✅ Clean | Enterprise documentation standard |
 | Google Developer | 77/100 | ⚠️ Noisy | Good content, extraction challenges |
@@ -28,7 +50,7 @@ Real evaluation of major documentation sites (as of 2026-04-08):
 | Google Cloud | 51/100 | ❌ Structure | Major structure gaps |
 | Stack Overflow | 42/100 | ❌ Structure | Heavy boilerplate contamination |
 
-*Run your own evaluation: `python -m retrievability.cli express demo-urls.txt --out results/`*
+*Submit your own URLs to YARA for evaluation: `python -m retrievability.cli negotiate demo-urls.txt --out results/`*
 
 ## Installation
 
@@ -48,34 +70,40 @@ pip install -e .
 
 ## CLI Usage
 
-The system provides four independent commands that form a complete evaluation pipeline:
+YARA provides four independent commands that form a complete evaluation pipeline:
 
 ### 1. Crawl URLs
-Fetch URLs and capture HTML snapshots:
+Submit URLs to YARA to fetch and capture HTML snapshots:
 ```bash
 python -m retrievability.cli crawl samples/urls.txt --out samples/snapshots/
 ```
 
 ### 2. Parse HTML
-Extract parseability signals from HTML snapshots:
+YARA extracts parseability signals from HTML snapshots:
 ```bash
 python -m retrievability.cli parse samples/snapshots/ --out reports/parse.json
 ```
 
 ### 3. Score Results
-Score parse results and classify failure modes:
+YARA scores parse results and classifies failure modes:
 ```bash
 python -m retrievability.cli score reports/parse.json --out reports/report.json
 ```
 
 ### 4. Generate Report
-Create human-readable markdown report with actionable fixes:
+YARA creates human-readable markdown reports with actionable fixes:
 ```bash
 python -m retrievability.cli report reports/report.json --md reports/report.md
 ```
 
+### 🆕 5. Test Content Negotiation
+YARA tests for agent-friendly alternatives (markdown, JSON, plain text):
+```bash
+python -m retrievability.cli negotiate samples/urls.txt --out reports/negotiation/
+```
+
 ### 🆕 Express Mode (All-in-One)
-Run the complete pipeline in a single command:
+Run the complete YARA pipeline in a single command:
 ```bash
 python -m retrievability.cli express urls.txt --out results/
 ```
@@ -88,7 +116,7 @@ python -m retrievability.cli express urls.txt --out results/
 
 ## Example: Enhanced Actionable Reports
 
-The new reporting system provides concrete, implementable guidance:
+YARA's new reporting system provides concrete, implementable guidance:
 
 ### Priority-Based Fix Recommendations
 ```
@@ -128,7 +156,13 @@ python -m retrievability.cli score reports/parse.json --out reports/report.json
 python -m retrievability.cli report reports/report.json --md reports/report.md
 ```
 
-## 🎯 Actionable Report Features
+## 🎯 YARA's Actionable Report Features
+
+### 🆕 Agent-Friendly Content Detection
+- **Content negotiation scoring**: Markdown, JSON, plain text availability (0-100 scale)
+- **Format optimization detection**: Sites serving agent-friendly alternatives
+- **Performance comparison**: Response time and payload size across formats
+- **Real differentiation**: Detect fake vs genuine content negotiation
 
 ### Priority-Driven Recommendations
 - **Impact scoring**: High/Medium/Low classification for each fix
@@ -147,7 +181,59 @@ python -m retrievability.cli report reports/report.json --md reports/report.md
 - **Content Authors**: Heading hierarchy and content organization
 - **Technical Writers**: Content density and structure best practices
 
-## Real-World Use Cases
+## 🚀 Quick Start Demo
+
+Try YARA with real-world documentation sites:
+
+```bash
+# Run the 5-minute demo with 9 major sites
+python -m retrievability.cli express demo-urls.txt --out demo-results/
+
+# See the shocking results:
+cat demo-results/report.md  # Wikipedia beats AWS and Google!
+```
+
+YARA evaluates Microsoft Learn, AWS Docs, Google Cloud, Wikipedia, GitHub Docs, and Stack Overflow with actionable improvement recommendations.
+
+## GitHub Integration
+
+See [GITHUB-INTEGRATION.md](GITHUB-INTEGRATION.md) for YARA workflow automation, quality gates, and reusable GitHub Actions.
+
+## Demo & Presentation
+
+See [DEMO-SCRIPT.md](DEMO-SCRIPT.md) for a complete 5-minute live demo script showcasing YARA's actionable reports.
+
+## Scoring System
+
+See [docs/scoring.md](docs/scoring.md) for detailed information about YARA's scoring methodology and failure mode explanations.
+
+## File Structure
+
+```
+yara/
+├─ README.md              # This file
+├─ DEMO-SCRIPT.md         # 5-minute live demo guide
+├─ GITHUB-INTEGRATION.md  # Workflow automation
+├─ demo-urls.txt          # Demo URLs (9 major sites)  
+├─ backup-results.txt     # Pre-generated demo results
+├─ retrievability/
+│  ├─ __init__.py
+│  ├─ cli.py              # CLI commands (crawl, parse, score, report, express)
+│  ├─ crawl.py            # URL fetch + HTML snapshot
+│  ├─ parse.py            # Extractability signals + evidence
+│  ├─ score.py            # Scoring + failure modes
+│  ├─ report.py           # Actionable reports with code examples
+│  └─ schemas.py          # JSON output contracts
+├─ samples/
+│  ├─ urls.txt            # 8 Microsoft Learn URLs
+│  └─ snapshots/          # HTML snapshots (gitignored)
+├─ reports/               # Example outputs
+├─ scripts/               # Agent automation scripts
+└─ docs/
+   └─ scoring.md          # Scoring methodology
+```
+
+## Real-World Use Cases for YARA
 
 ### 📚 Documentation Team Workflows
 
@@ -236,61 +322,9 @@ print(f'🔧 Needs improvement: {len(needs_work)} pages (see report.md for fixes
 "
 ```
 
-## 🚀 Quick Start Demo
-
-Try YARA with real-world documentation sites:
-
-```bash
-# Run the 5-minute demo with 9 major sites
-python -m retrievability.cli express demo-urls.txt --out demo-results/
-
-# See the shocking results:
-cat demo-results/report.md  # Wikipedia beats AWS and Google!
-```
-
-This evaluates Microsoft Learn, AWS Docs, Google Cloud, Wikipedia, GitHub Docs, and Stack Overflow with actionable improvement recommendations.
-
-## GitHub Integration
-
-See [GITHUB-INTEGRATION.md](GITHUB-INTEGRATION.md) for workflow automation, quality gates, and reusable GitHub Actions.
-
-## Demo & Presentation
-
-See [DEMO-SCRIPT.md](DEMO-SCRIPT.md) for a complete 5-minute live demo script showcasing actionable reports.
-
-## Scoring System
-
-See [docs/scoring.md](docs/scoring.md) for detailed scoring methodology and failure mode explanations.
-
-## File Structure
-
-```
-yara/
-├─ README.md              # This file
-├─ DEMO-SCRIPT.md         # 5-minute live demo guide
-├─ GITHUB-INTEGRATION.md  # Workflow automation
-├─ demo-urls.txt          # Demo URLs (9 major sites)  
-├─ backup-results.txt     # Pre-generated demo results
-├─ retrievability/
-│  ├─ __init__.py
-│  ├─ cli.py              # CLI commands (crawl, parse, score, report, express)
-│  ├─ crawl.py            # URL fetch + HTML snapshot
-│  ├─ parse.py            # Extractability signals + evidence
-│  ├─ score.py            # Scoring + failure modes
-│  ├─ report.py           # Actionable reports with code examples
-│  └─ schemas.py          # JSON output contracts
-├─ samples/
-│  ├─ urls.txt            # 8 Microsoft Learn URLs
-│  └─ snapshots/          # HTML snapshots (gitignored)
-├─ reports/               # Example outputs
-├─ scripts/               # Agent automation scripts
-└─ docs/
-   └─ scoring.md          # Scoring methodology
-```
-
 ## Contributing
 
-YARA is a CLI-first system optimized for determinism and auditability. See [copilot-instructions.md](copilot-instructions.md) for development guidelines.
+YARA is a CLI-first system optimized for determinism and auditability. Submit pull requests to YARA following the guidelines in [copilot-instructions.md](copilot-instructions.md).
 
 ## License
 
