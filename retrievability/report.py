@@ -153,6 +153,35 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
                 ""
             ])
         
+        # Priority fixes (NEW)
+        priority_fixes = _generate_priority_fixes(failure_mode, subscores, score)
+        if priority_fixes:
+            report_lines.extend([
+                "**Priority Fixes:**",
+                "",
+                "| Fix | Impact | Effort | Score Gain | Priority |",
+                "|-----|--------|--------|------------|----------|",
+            ])
+            for fix in priority_fixes:
+                report_lines.append(f"| {fix['name']} | {fix['impact']} | {fix['effort']} | +{fix['score_gain']} pts | {fix['priority']} |")
+            report_lines.append("")
+        
+        # Code examples (NEW)
+        code_examples = _generate_code_examples(failure_mode, subscores)
+        if code_examples:
+            report_lines.extend([
+                "**How to Fix:**",
+                "",
+            ])
+            for example in code_examples:
+                report_lines.extend([
+                    f"**{example['title']}:**",
+                    "```html",
+                    example['code'],
+                    "```",
+                    ""
+                ])
+        
         # Component scores
         report_lines.extend([
             "**Component Scores:**",
@@ -273,6 +302,176 @@ def _identify_fix_owner(failure_mode: str, subscores: Dict[str, float]) -> str:
         return "**Frontend Developer** - Improve content/chrome separation and reduce boilerplate dominance"
     
     return "**Development Team** - Review page structure and content organization"
+
+
+def _generate_priority_fixes(failure_mode: str, subscores: Dict[str, float], current_score: float) -> List[Dict]:
+    """Generate prioritized fixes based on impact and effort.
+    
+    Args:
+        failure_mode: Failure mode classification
+        subscores: Component subscores
+        current_score: Current overall score
+        
+    Returns:
+        List of prioritized fix dictionaries
+    """
+    fixes = []
+    
+    if failure_mode == 'structure-missing':
+        semantic_score = subscores.get('semantic_structure', 0)
+        hierarchy_score = subscores.get('heading_hierarchy', 0)
+        
+        if semantic_score < 60:
+            fixes.append({
+                'name': 'Add `<main>` element',
+                'impact': 'High',
+                'effort': 'Low',
+                'score_gain': 15,
+                'priority': '🔥 Critical'
+            })
+            fixes.append({
+                'name': 'Add `<article>` wrapper',
+                'impact': 'Medium',
+                'effort': 'Low',
+                'score_gain': 10,
+                'priority': '⚠️ Important'
+            })
+        
+        if hierarchy_score < 80:
+            score_gain = 12 if hierarchy_score < 50 else 8
+            priority = '🔥 Critical' if hierarchy_score < 50 else '⚠️ Important'
+            fixes.append({
+                'name': 'Fix heading hierarchy',
+                'impact': 'High' if hierarchy_score < 50 else 'Medium',
+                'effort': 'Medium',
+                'score_gain': score_gain,
+                'priority': priority
+            })
+    
+    elif failure_mode == 'extraction-noisy':
+        density_score = subscores.get('content_density', 0)
+        boilerplate_score = subscores.get('boilerplate_resistance', 0)
+        
+        if density_score < 60:
+            fixes.append({
+                'name': 'Improve content density',
+                'impact': 'High',
+                'effort': 'Medium',
+                'score_gain': 18,
+                'priority': '🔥 Critical'
+            })
+        
+        if boilerplate_score < 60:
+            fixes.append({
+                'name': 'Reduce boilerplate',
+                'impact': 'High',
+                'effort': 'High',
+                'score_gain': 15,
+                'priority': '📋 Planned'
+            })
+    
+    # Sort by score gain (highest impact first)
+    return sorted(fixes, key=lambda x: x['score_gain'], reverse=True)
+
+
+def _generate_code_examples(failure_mode: str, subscores: Dict[str, float]) -> List[Dict]:
+    """Generate HTML code examples for fixes.
+    
+    Args:
+        failure_mode: Failure mode classification
+        subscores: Component subscores
+        
+    Returns:
+        List of code example dictionaries
+    """
+    examples = []
+    
+    if failure_mode == 'structure-missing':
+        semantic_score = subscores.get('semantic_structure', 0)
+        hierarchy_score = subscores.get('heading_hierarchy', 0)
+        
+        if semantic_score < 60:
+            examples.append({
+                'title': 'Add Semantic HTML Structure',
+                'code': '''<!-- Before (problematic) -->
+<div class="content">
+  <h1>Page Title</h1>
+  <p>Content here...</p>
+</div>
+
+<!-- After (semantic) -->
+<main>
+  <article>
+    <h1>Page Title</h1>
+    <p>Content here...</p>
+  </article>
+</main>'''
+            })
+        
+        if hierarchy_score < 80:
+            examples.append({
+                'title': 'Fix Heading Hierarchy',
+                'code': '''<!-- Before (hierarchy jumps) -->
+<h1>Main Title</h1>
+<h3>Subsection</h3>  <!-- ❌ Skip H2 -->
+<h2>Section</h2>     <!-- ❌ Wrong order -->
+
+<!-- After (proper hierarchy) -->
+<h1>Main Title</h1>
+<h2>Section</h2>
+<h3>Subsection</h3>  <!-- ✅ Logical flow -->'''
+            })
+    
+    elif failure_mode == 'extraction-noisy':
+        density_score = subscores.get('content_density', 0)
+        boilerplate_score = subscores.get('boilerplate_resistance', 0)
+        
+        if density_score < 60:
+            examples.append({
+                'title': 'Improve Content Density',
+                'code': '''<!-- Before (content scattered) -->
+<div class="page">
+  <nav>...</nav>        <!-- Noise -->
+  <aside>...</aside>    <!-- Noise -->
+  <div class="content">
+    <p>Main content</p>
+  </div>
+  <footer>...</footer>  <!-- Noise -->
+</div>
+
+<!-- After (content prioritized) -->
+<div class="page">
+  <main>
+    <article>
+      <p>Main content</p>
+    </article>
+  </main>
+  <nav>...</nav>
+  <aside>...</aside>
+  <footer>...</footer>
+</div>'''
+            })
+        
+        if boilerplate_score < 60:
+            examples.append({
+                'title': 'Reduce Boilerplate Contamination',
+                'code': '''<!-- Use semantic elements to separate content -->
+<body>
+  <header>Site navigation</header>
+  
+  <main>  <!-- ✅ Primary content area -->
+    <article>
+      <h1>Article Title</h1>
+      <p>Article content...</p>
+    </article>
+  </main>
+  
+  <aside>Sidebar content</aside>  <!-- ✅ Secondary -->
+  <footer>Footer links</footer>   <!-- ✅ Auxiliary -->
+</body>'''
+            })
+    
+    return examples
 
 
 def _generate_recommendations(score_results: List[Dict]) -> str:
