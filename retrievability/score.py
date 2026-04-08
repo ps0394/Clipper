@@ -2,19 +2,37 @@
 
 import json
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
 import math
+import os
 
 from .schemas import ScoreResult, ParseResult
+from .hybrid_score import HybridScorer
 
 
-def score_parse_results(parse_file: str, output_file: str) -> None:
-    """Score parse results and classify failure modes.
+def score_parse_results(parse_file: str, output_file: str, use_hybrid: bool = True, 
+                       api_key: Optional[str] = None) -> None:
+    """Score parse results using YARA 2.0 hybrid methodology or legacy YARA.
     
     Args:
         parse_file: JSON file with parse results
         output_file: JSON file to save score results
+        use_hybrid: Use YARA 2.0 hybrid scoring (default: True)
+        api_key: PageSpeed Insights API key for Lighthouse analysis
     """
+    # Check for API key in environment if not provided
+    if not api_key:
+        api_key = os.environ.get('PAGESPEED_API_KEY')
+    
+    # Use hybrid scoring by default (YARA 2.0)
+    if use_hybrid:
+        print("🚀 Using YARA 2.0 Hybrid Scoring Engine")
+        hybrid_scorer = HybridScorer(pagespeed_api_key=api_key)
+        hybrid_scorer.score_parse_results(parse_file, output_file)
+        return
+    
+    # Legacy YARA scoring (deprecated)
+    print("⚠️  Using Legacy YARA Scoring (deprecated - consider --hybrid)")
     parse_path = Path(parse_file)
     if not parse_path.exists():
         raise FileNotFoundError(f"Parse file not found: {parse_file}")

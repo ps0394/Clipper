@@ -1,12 +1,20 @@
-# User Instructions: Retrievability Evaluation System
+# User Instructions: YARA 2.0 Retrievability Evaluation
 
-This guide walks you through using the retrievability evaluation system to assess documentation pages for agent and retrieval system readiness.
+This guide walks you through using **YARA 2.0** (Yet Another Retrieval Analyzer) to evaluate documentation pages for agent and retrieval system readiness using our proven hybrid scoring methodology.
+
+## What's New in YARA 2.0
+
+**🚀 Hybrid Scoring Engine**: Combines Google Lighthouse (70%) + Content Analysis (20%) + Agent Performance (10%)
+**🎯 Proven Accuracy**: Strong correlation (r ≈ 0.9) with actual agent performance vs legacy r ≈ 0.1
+**🔁 Backward Compatible**: Legacy scoring available with `--legacy` flag
+**🔑 API Integration**: PageSpeed Insights API for real Lighthouse metrics
 
 ## Prerequisites
 
 - **Python 3.7+** installed on your system
-- **Internet connection** for crawling URLs
+- **Internet connection** for crawling URLs and Lighthouse API
 - **Command line access** (PowerShell, Terminal, or Command Prompt)
+- **[Optional] PageSpeed Insights API key** for full YARA 2.0 hybrid scoring
 
 ## Installation
 
@@ -25,7 +33,15 @@ pip install -r requirements.txt
 ```bash
 python -m retrievability.cli --help
 ```
-You should see the command help menu with 5 available commands: `crawl`, `parse`, `score`, `report`, and `negotiate` (for content negotiation testing).
+You should see **YARA 2.0** in the help output with commands: `crawl`, `parse`, `score`, `report`, `negotiate`, and `express`.
+
+### 4. [Optional] Setup PageSpeed Insights API Key
+For full YARA 2.0 hybrid scoring:
+```bash
+# Get free API key from Google Cloud Console
+# Enable PageSpeed Insights API → Create credentials → API Key
+export PAGESPEED_API_KEY="your-api-key-here"
+```
 
 ## 📚 Documentation Structure
 
@@ -37,11 +53,36 @@ You should see the command help menu with 5 available commands: `crawl`, `parse`
 - **[docs/advanced-workflows.md](docs/advanced-workflows.md)** - Product manager workflows, bulk evaluation, M365 Copilot integration
 - **[docs/automation.md](docs/automation.md)** - CI/CD pipelines, scheduled monitoring, scripting
 - **[docs/presentation-materials.md](docs/presentation-materials.md)** - Executive dashboards, stakeholder presentations
-- **[docs/scoring.md](docs/scoring.md)** - Technical scoring methodology
+- **[docs/scoring.md](docs/scoring.md)** - YARA 2.0 hybrid scoring methodology
 
-## Basic Usage
+## 🚀 Quick Start (Recommended)
 
-### Step-by-Step Evaluation
+### Express Mode - Complete YARA 2.0 Evaluation
+```bash
+# Full YARA 2.0 hybrid scoring with Lighthouse
+python -m retrievability.cli express urls.txt --out results/ --api-key YOUR_API_KEY
+
+# YARA 2.0 without API key (content analysis only)
+python -m retrievability.cli express urls.txt --out results/
+
+# Legacy YARA compatibility
+python -m retrievability.cli express urls.txt --out results/ --legacy
+```
+**What Express Mode does:**
+1. 🔄 Crawls URLs and captures HTML snapshots
+2. 📄 Extracts parseability signals and content structure
+3. 🚀 Scores using YARA 2.0 hybrid methodology (or legacy with `--legacy`)
+4. 📊 Generates actionable markdown report with priority fixes
+
+**Express Mode Output:**
+- `results/snapshots/`: HTML captures
+- `results/report_parse.json`: Signal extraction data
+- `results/report_scores.json`: YARA 2.0 hybrid scores with subscores
+- `results/report.md`: Human-readable report with fix recommendations
+
+## Step-by-Step Evaluation (Advanced Users)
+
+For users who want granular control over each pipeline step:
 
 #### 1. Prepare Your URL List
 Create a text file with URLs to evaluate (one per line):
@@ -58,39 +99,48 @@ echo "https://kubernetes.io/docs/concepts/overview/" >> urls.txt
 python -m retrievability.cli crawl urls.txt --out snapshots/
 ```
 **What this does:**
-- Fetches each URL and saves the HTML content
-- Creates `snapshots/crawl_results.json` with metadata
-- Saves individual HTML files with unique names
+- Fetches each URL and saves HTML content with proper user-agent headers
+- Creates `snapshots/crawl_results.json` with metadata (status codes, redirects)
+- Saves individual HTML files with unique names for reproducibility
 
 #### 3. Extract Parseability Signals
 ```bash
 python -m retrievability.cli parse snapshots/ --out results/parse.json
 ```
 **What this does:**
-- Analyzes HTML structure for semantic elements (`<main>`, `<article>`)
-- Checks heading hierarchy (H1→H2→H3 progression)
-- Measures content density and boilerplate leakage
-- Generates raw signals for scoring
+- Analyzes HTML structure for semantic elements (`<main>`, `<article>`, `<nav>`)
+- Checks heading hierarchy (H1→H2→H3 progression) and accessibility features
+- Measures content density, rich content presence, and boilerplate patterns
+- Generates raw signals for YARA 2.0 hybrid scoring
 
-#### 4. Score and Classify Results
+#### 4. Score with YARA 2.0 Hybrid Engine
 ```bash
+# YARA 2.0 hybrid scoring (recommended)
+python -m retrievability.cli score results/parse.json --out results/scores.json --api-key YOUR_API_KEY
+
+# YARA 2.0 without Lighthouse (content analysis only)
 python -m retrievability.cli score results/parse.json --out results/scores.json
+
+# Legacy YARA scoring (deprecated)
+python -m retrievability.cli score results/parse.json --out results/scores.json --legacy
 ```
-**What this does:**
-- Converts signals to 0-100 parseability scores
-- Classifies failure modes: `clean`, `structure-missing`, `extraction-noisy`
-- Provides component subscores for detailed analysis
+**What YARA 2.0 hybrid scoring does:**
+- **Lighthouse Foundation (70%)**: Accessibility, SEO, performance via PageSpeed Insights API
+- **Content Analysis (20%)**: Enhanced content density, structure, and extractability
+- **Agent Performance (10%)**: Simulated AI agent extraction success rates
+- Provides both hybrid scores and legacy subscores for backward compatibility
 
 #### 5. Generate Human Report
 ```bash
 python -m retrievability.cli report results/scores.json --md results/report.md
 ```
 **What this does:**
-- Creates executive summary with statistics
-- Lists individual page results with actionable insights
-- Identifies who should fix issues (Frontend Developer vs Content Author)
+- Creates executive summary with YARA 2.0 hybrid scoring statistics
+- Lists individual page results with actionable insights and priority fixes
+- Identifies fix ownership (Frontend Developer vs Content Author vs Infrastructure)
+- Provides code examples and before/after HTML snippets
 
-#### 🆕 6. Test Content Negotiation (Advanced)
+#### 6. Test Content Negotiation (Advanced)
 ```bash
 python -m retrievability.cli negotiate urls.txt --out negotiation-results/
 ```

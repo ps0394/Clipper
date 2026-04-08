@@ -52,10 +52,35 @@ def _cleanup_temp_file(file_path: str, original_file: str = None):
 def _print_summary(score_file: str, quiet: bool = False):
     """Print evaluation summary from score file."""
     import json
+    from pathlib import Path
     
     try:
         with open(score_file) as f:
             scores = json.load(f)
+        
+        # Try to find the corresponding crawl_results.json file
+        # Check both same directory and snapshots subdirectory
+        score_path = Path(score_file)
+        crawl_file = score_path.parent / "crawl_results.json"
+        snapshots_crawl_file = score_path.parent / "snapshots" / "crawl_results.json"
+        
+        urls = []
+        
+        # Try snapshots subdirectory first, then same directory
+        if snapshots_crawl_file.exists():
+            try:
+                with open(snapshots_crawl_file) as f:
+                    crawl_results = json.load(f)
+                urls = [result['url'] for result in crawl_results]
+            except:
+                pass  # Fallback to trying same directory
+        elif crawl_file.exists():
+            try:
+                with open(crawl_file) as f:
+                    crawl_results = json.load(f)
+                urls = [result['url'] for result in crawl_results]
+            except:
+                pass  # Fallback to unknown URLs
         
         total = len(scores)
         if total == 0:
@@ -63,17 +88,23 @@ def _print_summary(score_file: str, quiet: bool = False):
             return
             
         avg_score = sum(s['parseability_score'] for s in scores) / total
-        clean = sum(1 for s in scores if s['failure_mode'] == 'clean')
+        # Count ready URLs (success in hybrid mode, clean in legacy)
+        clean = sum(1 for s in scores if s['failure_mode'] in ['clean', 'success'])
         
         if not quiet:
-            print(f"\n📊 Evaluation Results:")
+            print(f"\n📊 YARA 2.0 Evaluation Results:")
             print(f"├─ Total URLs: {total}")
             print(f"├─ Average Score: {avg_score:.1f}/100")
             print(f"└─ Agent-Ready: {clean}/{total} ({clean/total*100:.1f}%)")
             
             print(f"\n📋 Individual Results:")
-            for score in scores:
-                url = score.get('url', 'Unknown URL')
+            for i, score in enumerate(scores):
+                # Get URL from crawl results if available, otherwise use fallback
+                if i < len(urls):
+                    url = urls[i]
+                else:
+                    url = score.get('url', 'Unknown URL')
+                
                 score_val = score['parseability_score']
                 mode = score['failure_mode']
                 emoji = '✅' if mode == 'clean' else '⚠️' if score_val >= 60 else '❌'
@@ -116,9 +147,11 @@ def main():
     parse_parser.add_argument('--out', required=True, help='Output JSON file for parse results')
     
     # Score command
-    score_parser = subparsers.add_parser('score', help='Score parse results and classify failure modes')
+    score_parser = subparsers.add_parser('score', help='Score parse results using YARA 2.0 hybrid methodology')
     score_parser.add_argument('parse_file', help='JSON file with parse results')
     score_parser.add_argument('--out', required=True, help='Output JSON file for score results')
+    score_parser.add_argument('--legacy', action='store_true', help='Use legacy YARA scoring (deprecated)')
+    score_parser.add_argument('--api-key', help='PageSpeed Insights API key for Lighthouse analysis')
     
     # Report command
     report_parser = subparsers.add_parser('report', help='Generate human-readable markdown report')
@@ -134,6 +167,8 @@ def main():
     express_parser.add_argument('--out', default='./evaluation', help='Output directory for all results (default: ./evaluation)')
     express_parser.add_argument('--name', default='report', help='Base name for output files (default: report)')
     express_parser.add_argument('--quiet', '-q', action='store_true', help='Only output final summary')
+    express_parser.add_argument('--legacy', action='store_true', help='Use legacy YARA scoring (deprecated)')
+    express_parser.add_argument('--api-key', help='PageSpeed Insights API key for Lighthouse analysis (or set PAGESPEED_API_KEY env var)')
     
     args = parser.parse_args()
     
@@ -160,7 +195,9 @@ def main():
             parse_snapshots(args.snapshots_dir, args.out)
             
         elif args.command == 'score':
-            score_parse_results(args.parse_file, args.out)
+            use_hybrid = not getattr(args, 'legacy', False)
+            api_key = getattr(args, 'api_key', None)
+            score_parse_results(args.parse_file, args.out, use_hybrid=use_hybrid, api_key=api_key)
             
         elif args.command == 'report':
             generate_report(args.score_file, args.md)
@@ -194,8 +231,13 @@ def main():
                 parse_snapshots(str(snapshots_dir), str(parse_file))
                 
                 if not args.quiet:
-                    print(f"3️⃣ Scoring results...")
-                score_parse_results(str(parse_file), str(score_file))
+                    if getattr(args, 'legacy', False):
+                        print(f"3️⃣ Scoring results (Legacy YARA)...")
+                    else:
+                        print(f"3️⃣ Scoring results (YARA 2.0 Hybrid)...")
+                use_hybrid = not getattr(args, 'legacy', False)
+                api_key = getattr(args, 'api_key', None)
+                score_parse_results(str(parse_file), str(score_file), use_hybrid=use_hybrid, api_key=api_key)
                 
                 if not args.quiet:
                     print(f"4️⃣ Generating report...")

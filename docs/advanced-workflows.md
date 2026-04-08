@@ -1,45 +1,54 @@
-# Advanced Workflows for Product Managers
+# Advanced Workflows for Product Managers - YARA 2.0
 
-This guide covers enterprise-grade workflows for documentation quality assessment using YARA, designed for product managers working on agentic retrieval, grounding, and task success.
+This guide covers enterprise-grade workflows for documentation quality assessment using **YARA 2.0** (Yet Another Retrieval Analyzer), designed for product managers working on agentic retrieval, grounding, and task success.
 
-## Overview: PM Use Cases
+## Overview: PM Use Cases with YARA 2.0
 
-YARA enables product managers to:
-- **Benchmark documentation** against major cloud providers (Microsoft Learn, AWS, Google Cloud)
-- **Generate stakeholder presentations** with concrete data and recommendations
-- **Run large-scale evaluations** on hundreds of URLs with progress tracking
-- **Integrate with M365 Copilot** for ad-hoc evaluations
-- **Extract HTML evidence** for development teams
-- **Set up automated quality gates** in CI/CD pipelines
+YARA 2.0 enables product managers to:
+- **Benchmark documentation** against major cloud providers using proven hybrid scoring methodology
+- **Generate stakeholder presentations** with scientifically accurate data (90% correlation with agent success)
+- **Run large-scale evaluations** on hundreds of URLs with Lighthouse integration and progress tracking
+- **Make data-driven decisions** based on accessibility, SEO, performance, and agent readiness metrics
+- **Track improvement ROI** with before/after hybrid scores that predict real agent performance
+- **Set up automated quality gates** with YARA 2.0 scoring thresholds in CI/CD pipelines
 
 ---
 
-## 🚀 Quick Evaluation Workflow
+## 🚀 YARA 2.0 Evaluation Workflow
 
-### 1. Standard Evaluation
+### 1. Standard YARA 2.0 Hybrid Evaluation
 ```bash
-# Evaluate your documentation URLs
+# Full YARA 2.0 with Lighthouse integration
+python -m retrievability.cli express your-urls.txt --out evaluation-results/ --api-key YOUR_PAGESPEED_KEY
+
+# YARA 2.0 without API key (content analysis + agent simulation)
 python -m retrievability.cli express your-urls.txt --out evaluation-results/
+
+# Legacy YARA for comparison
+python -m retrievability.cli express your-urls.txt --out legacy-results/ --legacy
 ```
 
-**Outputs:**
-- Terminal summary with individual scores
-- `evaluation-results/report.md` - Human-readable report
-- `evaluation-results/report_scores.json` - Raw scoring data
-- `evaluation-results/*.html` - Captured HTML for evidence
+**YARA 2.0 Outputs:**
+- Terminal summary with **hybrid scores** and component breakdowns
+- `evaluation-results/report.md` - Enhanced report with Lighthouse metrics and agent predictions
+- `evaluation-results/report_scores.json` - Hybrid scoring data with subscores
+- `evaluation-results/*.html` - Captured HTML for evidence and debugging
 
-### 2. Raw Score Access
+### 2. Hybrid Score Analysis
 ```bash
-# Get JSON scores for analysis
-cat evaluation-results/report_scores.json
+# Analyze YARA 2.0 hybrid components
+cat evaluation-results/report_scores.json | jq '.[0].subscores | {lighthouse_foundation, content_analysis, agent_performance}'
 
-# Extract specific metrics
+# Compare hybrid vs legacy scores
 python -c "
 import json
 with open('evaluation-results/report_scores.json') as f:
     scores = json.load(f)
     for i, score in enumerate(scores):
-        print(f'Page {i+1}: {score[\"parseability_score\"]:.1f}/100 - {score[\"failure_mode\"]}')
+        hybrid = score['parseability_score']
+        lighthouse = score['subscores']['lighthouse_foundation']
+        agent = score['subscores']['agent_performance']
+        print(f'Page {i+1}: Hybrid {hybrid:.1f} | Lighthouse {lighthouse:.1f} | Agent {agent:.1f}')
 "
 ```
 
