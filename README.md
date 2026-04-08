@@ -2,6 +2,25 @@
 
 A CLI-first tool for evaluating documentation page retrievability and readiness for AI agent consumption. **Now with actionable reports featuring code examples and priority scoring!**
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Quick Demo Results](#quick-demo-results)
+- [Installation](#installation)
+- [CLI Usage](#cli-usage)
+  - [Content Negotiation Testing](#-5-test-content-negotiation)
+- [Example: Enhanced Actionable Reports](#example-enhanced-actionable-reports)
+- [🎯 YARA's Actionable Report Features](#-yaras-actionable-report-features)
+- [🚀 Quick Start Demo](#-quick-start-demo)
+- [GitHub Integration](#github-integration)
+- [Demo & Presentation](#demo--presentation)
+- [Scoring System](#scoring-system)
+- [File Structure](#file-structure)
+- [Non-Goals](#non-goals)
+- [Real-World Use Cases for YARA](#real-world-use-cases-for-yara)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Overview
 
 YARA measures whether documentation pages are:
@@ -18,8 +37,10 @@ YARA measures whether documentation pages are:
 - **Multi-cloud ready**: Evaluate Microsoft, AWS, Google, and other major documentation sites
 - **Demo-proven**: Wikipedia (88/100) outperforms AWS Docs (63/100) and Google Cloud (51/100)
 
-## Table of Contents
+## Quick Demo Results
 
+- [Non-Goals](#non-goals)
+- [Real-World Use Cases for YARA](#real-world-use-cases-for-yara)
 - [Quick Demo Results](#quick-demo-results)
 - [Installation](#installation)
 - [CLI Usage](#cli-usage)
@@ -31,7 +52,6 @@ YARA measures whether documentation pages are:
 - [Demo & Presentation](#demo--presentation)
 - [Scoring System](#scoring-system)
 - [File Structure](#file-structure)
-- [Real-World Use Cases for YARA](#real-world-use-cases-for-yara)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -232,6 +252,17 @@ yara/
 └─ docs/
    └─ scoring.md          # Scoring methodology
 ```
+
+## Non-Goals
+
+YARA is focused on **pre-retrieval evaluation** and does not:
+- **Replace content creation tools** - YARA evaluates existing docs, doesn't write content  
+- **Perform end-to-end RAG testing** - YARA measures retrieval-readiness, not retrieval accuracy
+- **Execute autonomous agent tasks** - YARA provides deterministic analysis, not AI decision-making
+- **Modify documentation automatically** - YARA gives actionable recommendations for human teams
+- **Evaluate content quality or accuracy** - YARA focuses on structural and technical readiness
+
+YARA provides the foundation layer that makes high-quality retrieval and agent systems possible.
 
 ## Real-World Use Cases for YARA
 
