@@ -27,6 +27,18 @@ python -m retrievability.cli --help
 ```
 You should see the command help menu with 4 available commands: `crawl`, `parse`, `score`, `report`.
 
+## 📚 Documentation Structure
+
+**Start here:**
+- **This guide** - Step-by-step basic usage
+- **[README.md](README.md)** - Quick overview and demo results
+
+**Advanced use cases:**
+- **[docs/advanced-workflows.md](docs/advanced-workflows.md)** - Product manager workflows, bulk evaluation, M365 Copilot integration
+- **[docs/automation.md](docs/automation.md)** - CI/CD pipelines, scheduled monitoring, scripting
+- **[docs/presentation-materials.md](docs/presentation-materials.md)** - Executive dashboards, stakeholder presentations
+- **[docs/scoring.md](docs/scoring.md)** - Technical scoring methodology
+
 ## Basic Usage
 
 ### Step-by-Step Evaluation

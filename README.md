@@ -1,15 +1,15 @@
-# Retrievability Evaluation System
+# YARA - Yet Another Retrieval Analyzer
 
 A CLI-first tool for evaluating documentation page retrievability and readiness for AI agent consumption. **Now with actionable reports featuring code examples and priority scoring!**
 
 ## Overview
 
-This system measures whether documentation pages are:
+YARA measures whether documentation pages are:
 - **Crawlable & accessible** as HTML
 - **Parsable / extractable** into primary content (low chrome, clean structure)
 - **Structurally ready** for retrieval systems (inputs to later retrieval evaluation)
 
-**🚀 What makes this special:**
+**🚀 What makes YARA special:**
 - **Actionable insights**: Get specific HTML fixes with before/after code examples
 - **Priority scoring**: Know which fixes give the biggest score improvements
 - **Multi-cloud ready**: Evaluate Microsoft, AWS, Google, and other major documentation sites
@@ -79,6 +79,12 @@ Run the complete pipeline in a single command:
 ```bash
 python -m retrievability.cli express urls.txt --out results/
 ```
+
+**📚 Documentation:**
+- **New users**: See [USER-INSTRUCTIONS.md](USER-INSTRUCTIONS.md) for step-by-step guide
+- **Product managers**: See [docs/advanced-workflows.md](docs/advanced-workflows.md) for enterprise workflows
+- **Developers**: See [docs/automation.md](docs/automation.md) for scripting and integration
+- **Scoring details**: See [docs/scoring.md](docs/scoring.md) for technical details
 
 ## Example: Enhanced Actionable Reports
 
@@ -232,7 +238,7 @@ print(f'🔧 Needs improvement: {len(needs_work)} pages (see report.md for fixes
 
 ## 🚀 Quick Start Demo
 
-Try the system with real-world documentation sites:
+Try YARA with real-world documentation sites:
 
 ```bash
 # Run the 5-minute demo with 9 major sites
@@ -259,7 +265,7 @@ See [docs/scoring.md](docs/scoring.md) for detailed scoring methodology and fail
 ## File Structure
 
 ```
-retrievability-eval/
+yara/
 ├─ README.md              # This file
 ├─ DEMO-SCRIPT.md         # 5-minute live demo guide
 ├─ GITHUB-INTEGRATION.md  # Workflow automation
@@ -284,7 +290,7 @@ retrievability-eval/
 
 ## Contributing
 
-This is a CLI-first system optimized for determinism and auditability. See [copilot-instructions.md](copilot-instructions.md) for development guidelines.
+YARA is a CLI-first system optimized for determinism and auditability. See [copilot-instructions.md](copilot-instructions.md) for development guidelines.
 
 ## License
 
