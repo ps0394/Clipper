@@ -62,7 +62,7 @@ jobs:
         
         # Step 3: Score results and classify failure modes
         echo "📊 Scoring results and classifying failure modes..."
-        python -m retrievability.cli score ${{ env.RESULTS_DIR }}/parse.json --out ${{ env.RESULTS_DIR }}/scores.json
+        python -m retrievability.cli score ${{ env.RESULTS_DIR }}/parse.json --out ${{ env.RESULTS_DIR }}/scores.json --legacy
         
         # Step 4: Generate human-readable report
         echo "📄 Generating report..."
