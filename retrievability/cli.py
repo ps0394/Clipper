@@ -88,11 +88,11 @@ def _print_summary(score_file: str, quiet: bool = False):
             return
             
         avg_score = sum(s['parseability_score'] for s in scores) / total
-        # Count ready URLs (success in hybrid mode, clean in legacy)
+        # Count ready URLs (success in hybrid mode)
         clean = sum(1 for s in scores if s['failure_mode'] in ['clean', 'success'])
         
         if not quiet:
-            print(f"\n📊 YARA 2.0 Evaluation Results:")
+            print(f"\n📊 YARA 3.0 Evaluation Results:")
             print(f"├─ Total URLs: {total}")
             print(f"├─ Average Score: {avg_score:.1f}/100")
             print(f"└─ Agent-Ready: {clean}/{total} ({clean/total*100:.1f}%)")
@@ -147,11 +147,10 @@ def main():
     parse_parser.add_argument('--out', required=True, help='Output JSON file for parse results')
     
     # Score command
-    score_parser = subparsers.add_parser('score', help='Score parse results using YARA 2.0 hybrid methodology')
+    score_parser = subparsers.add_parser('score', help='Score parse results using YARA 3.0 standards-based methodology')
     score_parser.add_argument('parse_file', help='JSON file with parse results')
     score_parser.add_argument('--out', required=True, help='Output JSON file for score results')
-    score_parser.add_argument('--legacy', action='store_true', help='Use legacy YARA scoring (deprecated)')
-    score_parser.add_argument('--api-key', help='PageSpeed Insights API key for Lighthouse analysis')
+    score_parser.add_argument('--api-key', help='Deprecated: YARA 3.0 is API-free and uses industry standards')
     
     # Report command
     report_parser = subparsers.add_parser('report', help='Generate human-readable markdown report')
@@ -167,8 +166,7 @@ def main():
     express_parser.add_argument('--out', default='./evaluation', help='Output directory for all results (default: ./evaluation)')
     express_parser.add_argument('--name', default='report', help='Base name for output files (default: report)')
     express_parser.add_argument('--quiet', '-q', action='store_true', help='Only output final summary')
-    express_parser.add_argument('--legacy', action='store_true', help='Use legacy YARA scoring (deprecated)')
-    express_parser.add_argument('--api-key', help='PageSpeed Insights API key for Lighthouse analysis (or set PAGESPEED_API_KEY env var)')
+    express_parser.add_argument('--api-key', help='Deprecated: YARA 3.0 is API-free and uses industry standards')
     
     args = parser.parse_args()
     
@@ -195,9 +193,8 @@ def main():
             parse_snapshots(args.snapshots_dir, args.out)
             
         elif args.command == 'score':
-            use_hybrid = not getattr(args, 'legacy', False)
             api_key = getattr(args, 'api_key', None)
-            score_parse_results(args.parse_file, args.out, use_hybrid=use_hybrid, api_key=api_key)
+            score_parse_results(args.parse_file, args.out, api_key=api_key)
             
         elif args.command == 'report':
             generate_report(args.score_file, args.md)
@@ -231,13 +228,9 @@ def main():
                 parse_snapshots(str(snapshots_dir), str(parse_file))
                 
                 if not args.quiet:
-                    if getattr(args, 'legacy', False):
-                        print(f"3️⃣ Scoring results (Legacy YARA)...")
-                    else:
-                        print(f"3️⃣ Scoring results (YARA 2.0 Hybrid)...")
-                use_hybrid = not getattr(args, 'legacy', False)
+                    print(f"3️⃣ Scoring results (YARA 3.0 Standards-Based)...")
                 api_key = getattr(args, 'api_key', None)
-                score_parse_results(str(parse_file), str(score_file), use_hybrid=use_hybrid, api_key=api_key)
+                score_parse_results(str(parse_file), str(score_file), api_key=api_key)
                 
                 if not args.quiet:
                     print(f"4️⃣ Generating report...")

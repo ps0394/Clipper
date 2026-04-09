@@ -1,8 +1,26 @@
-# YARA 2.0 core dependencies
-beautifulsoup4>=4.9.0  # HTML parsing for content analysis and agent simulation
-requests>=2.25.0       # HTTP requests for crawling and PageSpeed Insights API
+# YARA 3.0 - Standards-Based Dependencies (API-Free)
 
-# Optional development dependencies (install with pip install -e .[dev])
+# Industry Standards Evaluation Stack
+axe-selenium-python>=2.1.6    # WCAG 2.1 accessibility (Deque Systems standard)
+selenium>=4.0.0                # W3C WebDriver standard
+extruct>=0.13.0                # Schema.org structured data extraction (W3C)
+advertools>=0.13.0             # Professional SEO framework
+httpx>=0.24.0                  # Modern HTTP standard (RFC compliance)
+beautifulsoup4>=4.9.0          # HTML parsing standard (retained)
+
+# Core Web Standards
+lxml>=4.9.0                    # High-performance XML/HTML parser
+html5lib>=1.1                  # HTML5 parser (W3C compliant)
+jsonschema>=4.0.0              # JSON Schema validation
+pyquery>=1.4.0                 # jQuery-style HTML manipulation
+
+# HTTP & Content Standards
+charset-normalizer>=3.0.0     # Character encoding detection
+
+# Optional: Browser automation (for WCAG testing)
+chromedriver-autoinstaller>=0.6.0  # Auto Chrome driver management
+
+# Development dependencies (install with pip install -e .[dev])
 # pytest>=6.0.0
 # black>=21.0.0
 # flake8>=3.8.0

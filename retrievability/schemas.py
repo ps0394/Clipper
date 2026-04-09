@@ -49,14 +49,26 @@ class ParseResult:
 
 @dataclass
 class ScoreResult:
-    """Scoring output schema."""
-    parseability_score: float  # 0-100
-    failure_mode: str  # extraction-noisy | structure-missing | clean
-    subscores: Dict[str, float]
-    evidence_references: List[str]
+    """YARA 3.0 Standards-Based Scoring Output Schema."""
+    parseability_score: float              # 0-100 final Access Gate score
+    failure_mode: str                      # Standards-based failure classification
+    html_path: str                         # Source HTML file path
+    url: str                              # Evaluated URL
+    component_scores: Dict[str, float]     # Individual component scores (WCAG, HTML5, etc.)
+    audit_trail: Dict[str, Any]           # Detailed evaluation evidence and methodology
+    standards_authority: Dict[str, str]    # Standards authority mapping for each component
+    evaluation_methodology: str           # YARA 3.0 methodology identifier
+    
+    # Backward compatibility
+    subscores: Optional[Dict[str, float]] = None
+    evidence_references: Optional[List[str]] = None
     
     def to_dict(self) -> Dict[str, Any]:
-        return asdict(self)
+        result = asdict(self)
+        # Ensure component_scores are included in subscores for backward compatibility
+        if not self.subscores:
+            result['subscores'] = self.component_scores
+        return result
 
 
 @dataclass
