@@ -121,7 +121,7 @@ class HybridScorer:
         
         # Enhanced subscores including hybrid components
         hybrid_subscores = {
-            # Legacy YARA subscores (for compatibility)
+            # Core YARA subscores
             'semantic_structure': content_subscores['semantic_structure'],
             'heading_hierarchy': content_subscores['heading_hierarchy'], 
             'content_density': content_subscores['content_density'],
@@ -158,18 +158,24 @@ class HybridScorer:
         """Get Lighthouse scores via PageSpeed Insights API."""
         
         if not url:
-            return {'accessibility': 0, 'seo': 0, 'performance': 0}
+            raise ValueError("[ERROR] URL required for Lighthouse analysis")
+        
+        if not self.pagespeed_api_key:
+            raise ValueError(
+                "[ERROR] LIGHTHOUSE UNAVAILABLE, YARA CANNOT RUN\n"
+                "\n"
+                "PageSpeed Insights API key is required for YARA 2.0 hybrid scoring.\n"
+                "Set PAGESPEED_API_KEY environment variable or pass --api-key parameter."
+            )
             
         api_url = "https://www.googleapis.com/pagespeedonline/v5/runPagespeed"
         
         params = {
             'url': url,
             'category': ['accessibility', 'seo', 'performance'],
-            'strategy': 'desktop'
+            'strategy': 'desktop',
+            'key': self.pagespeed_api_key
         }
-        
-        if self.pagespeed_api_key:
-            params['key'] = self.pagespeed_api_key
             
         try:
             print(f"  📡 Getting Lighthouse scores...")
@@ -184,13 +190,31 @@ class HybridScorer:
                     'seo': categories.get('seo', {}).get('score', 0) * 100,
                     'performance': categories.get('performance', {}).get('score', 0) * 100
                 }
+            elif response.status_code == 429:
+                raise ValueError(
+                    f"[ERROR] LIGHTHOUSE API RATE LIMITED (HTTP {response.status_code})\n"
+                    "\n"
+                    "PageSpeed Insights API quota exceeded. Please:\n"
+                    "  • Wait and try again later\n"
+                    "  • Check your API key quota at: https://console.developers.google.com/\n"
+                    "  • Consider upgrading your API quota if needed"
+                )
             else:
-                print(f"    ⚠️ Lighthouse API error: {response.status_code}")
-                return {'accessibility': 0, 'seo': 0, 'performance': 0}
+                raise ValueError(
+                    f"[ERROR] LIGHTHOUSE API ERROR (HTTP {response.status_code})\n"
+                    "\n"
+                    f"PageSpeed Insights API returned error {response.status_code}.\n"
+                    "Please check your API key and try again.\n"
+                    f"Response: {response.text[:200]}"
+                )
                 
-        except Exception as e:
-            print(f"    ❌ Lighthouse exception: {e}")
-            return {'accessibility': 0, 'seo': 0, 'performance': 0}
+        except requests.exceptions.RequestException as e:
+            raise ValueError(
+                f"[ERROR] LIGHTHOUSE API CONNECTION FAILED\n"
+                "\n"
+                f"Could not connect to PageSpeed Insights API: {e}\n"
+                "Please check your internet connection and try again."
+            )
     
     def _calculate_content_subscores(self, signals: Dict, evidence: Dict, parse_data: Dict) -> Dict[str, float]:
         """Calculate enhanced content analysis subscores."""
@@ -265,7 +289,7 @@ class HybridScorer:
             return self._analyze_agent_extraction(html_content)
             
         except Exception as e:
-            print(f"    ⚠️ Agent simulation failed: {e}")
+            print(f"    [WARN] Agent simulation failed: {e}")
             return {'extraction_quality': 25, 'success_rate': 25}  # Fallback scores
     
     def _analyze_agent_extraction(self, html_content: str) -> Dict[str, float]:

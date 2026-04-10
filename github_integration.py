@@ -23,7 +23,7 @@ class GitHubDocsEvaluator:
         self.github_token = github_token or os.getenv('GITHUB_TOKEN')
         
     def run_evaluation_pipeline(self, urls_file: str, output_dir: str) -> Dict:
-        """Run the complete retrievability evaluation pipeline.
+        """Run the complete YARA evaluation pipeline.
         
         Args:
             urls_file: Path to file containing URLs to evaluate
@@ -168,7 +168,7 @@ class GitHubDocsEvaluator:
 def main():
     """CLI entry point for GitHub integration helper."""
     parser = argparse.ArgumentParser(
-        description="GitHub integration helper for retrievability evaluation"
+        description="GitHub integration helper for YARA (Yet Another Retrieval Analyzer)"
     )
     parser.add_argument('command', choices=['evaluate', 'check-gates'], 
                        help='Command to run')

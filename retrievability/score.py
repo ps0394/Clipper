@@ -1,4 +1,4 @@
-﻿"""YARA 3.0 Standards-Based Scoring Engine.
+﻿"""Clipper Standards-Based Scoring Engine.
 
 API-free scoring using industry standards for agent-ready content evaluation.
 Replaces API-dependent Lighthouse scoring with defensible standards methodology.
@@ -22,15 +22,15 @@ def score_parse_results(parse_file: str, output_file: str, api_key: Optional[str
     """
     # YARA 3.0 deprecation notice for API key
     if api_key:
-        print("⚠️  API key parameter is deprecated in YARA 3.0")
+        print("[WARN] API key parameter is deprecated in YARA 3.0")
         print("   YARA 3.0 uses industry standards and is completely API-free")
     
-    print("🚀 YARA 3.0 Standards-Based Access Gate Evaluator")
-    print("├─ WCAG 2.1 Accessibility (Deque axe-core) - 25%")
-    print("├─ W3C Semantic HTML Analysis - 25%")
-    print("├─ Schema.org Structured Data - 20%")
-    print("├─ HTTP Standards Compliance (RFC 7231) - 15%")
-    print("└─ Agent-Focused Content Quality - 15%")
+    print("[CLIPPER] Standards-Based Access Gate Evaluator")
+    print("|- WCAG 2.1 Accessibility (Deque axe-core) - 25%")
+    print("|- W3C Semantic HTML Analysis - 25%")
+    print("|- Schema.org Structured Data - 20%")
+    print("|- HTTP Standards Compliance (RFC 7231) - 15%")
+    print("+- Agent-Focused Content Quality - 15%")
     
     # Initialize standards-based evaluator
     evaluator = AccessGateEvaluator()

@@ -1,18 +1,18 @@
-# YARA 3.0 - Yet Another Retrieval Analyzer
+# Clipper - Command-Line Interface Progressive Performance Evaluation & Reporting
 
-**🚀 Standards-Based Access Gate Evaluation for Agent-Ready Content!**
+**Standards-Based Access Gate Evaluation for Agent-Ready Content**
 
-A defensible, enterprise-ready CLI tool for evaluating **"Can agents reliably access Microsoft information?"** using established industry frameworks. YARA 3.0 delivers **API-free**, **standards-based** evaluation with complete **audit traceability** for agent-ready content optimization.
+A defensible, enterprise-ready CLI tool for evaluating agent accessibility to content using established industry frameworks. Clipper delivers API-free, standards-based evaluation with complete audit traceability for content optimization.
 
 ## Table of Contents
 
 - [Overview](#overview)
-- [🆕 YARA 3.0 Standards Revolution](#-yara-30-standards-revolution)
+- [Clipper Standards Framework](#clipper-standards-framework)
 - [Quick Demo Results](#quick-demo-results)
 - [Installation](#installation) 
 - [CLI Usage](#cli-usage)
-- [🎯 Enterprise Features](#-enterprise-features)
-- [🚀 Quick Start Demo](#-quick-start-demo)
+- [Enterprise Features](#enterprise-features)
+- [Quick Start Demo](#quick-start-demo)
 - [Standards Authority Mapping](#standards-authority-mapping)
 - [Example: Audit Trail Reports](#example-audit-trail-reports)
 - [Scoring System](#scoring-system)
@@ -23,17 +23,17 @@ A defensible, enterprise-ready CLI tool for evaluating **"Can agents reliably ac
 
 ## Overview
 
-YARA 3.0 represents a **major standards-based overhaul** that delivers:
+Clipper provides standards-based content evaluation with:
 
-- **🏛️ Industry Standards**: No custom algorithms - every score traceable to recognized authorities
-- **🚫 Zero API Dependencies**: Completely local evaluation using proven standards frameworks
-- **⚡ Immediate Copilot Usability**: Runs directly from assistant conversations without setup
-- **🏢 Enterprise Defensible**: Comprehensive audit trails and standards authority documentation
-- **🤖 Agent-Focused**: Optimized for Access Gate evaluation and content accessibility
+- **Industry Standards**: Every score traceable to recognized authorities (WCAG, W3C, Schema.org)
+- **Zero API Dependencies**: Local evaluation using established standards frameworks
+- **Immediate Usability**: Runs directly from command line without external dependencies
+- **Enterprise Defensible**: Comprehensive audit trails and standards authority documentation
+- **Agent-focused**: Optimized for Access Gate evaluation and content accessibility
 
-**🎯 Core Question Answered:** *"Can agents reliably access Microsoft information?"*
+**Core Question:** *Can agents reliably access this content?*
 
-## 🆕 YARA 3.0 Standards Revolution
+## Clipper Standards Framework
 
 ### **Industry-Standard Evaluation Stack (API-Free)**
 ```python
@@ -71,16 +71,16 @@ STANDARDS_AUTHORITY = {
 
 ## Quick Demo Results
 
-**YARA 3.0 standards-based evaluation** of major documentation sites:
+**Clipper standards-based evaluation** of major documentation sites:
 
-| Site | YARA 3.0 Score | Primary Strengths | Improvement Areas |
-|------|----------------|-------------------|-------------------|
+| Site | Clipper Score | Primary Strengths | Improvement Areas |
+|------|---------------|-------------------|-------------------|
 | **Microsoft Learn** | **85+ Range** | **Excellent HTTP compliance, good structure** | **WCAG optimization needed** |
 | **Upsun PHP SDK** | **41.4/100** | **Perfect HTTP negotiation (100/100)** | **Accessibility, semantic markup** |  
 | GitHub Docs | 80+ Range | Strong semantic HTML, accessibility | Schema.org enhancement |
 | AWS Documentation | 70+ Range | Good content quality | Structured data gaps |
 
-*Try YARA 3.0 immediately: No API keys, no setup required!*
+*Try Clipper immediately: No API keys, no setup required!*
 
 ```bash
 # Works from any Copilot conversation
@@ -92,8 +92,8 @@ python main.py express --urls https://your-docs.com --out results/
 ### **Instant Setup (API-Free)**
 ```bash
 # 1. Clone repository
-git clone https://github.com/your-org/yara-retrieval.git
-cd yara-retrieval
+git clone https://github.com/your-org/clipper-content-evaluation.git
+cd clipper-content-evaluation
 
 # 2. Install standards-based dependencies  
 pip install -r requirements.txt
@@ -109,16 +109,16 @@ python main.py express --help
 - Works completely offline ✅
 
 ### **Copilot Integration**
-YARA 3.0 is designed for immediate use from GitHub Copilot conversations:
+Clipper is designed for immediate use from GitHub Copilot conversations:
 
 ```bash
 # Just run it - no configuration needed
-python main.py express yara3-test-urls.txt --out evaluation-results
+python main.py express clipper-test-urls.txt --out evaluation-results
 ```
 
 ## CLI Usage
 
-YARA 3.0 provides a complete **standards-based evaluation pipeline**:
+Clipper provides a complete **standards-based evaluation pipeline**:
 
 ### **🚀 Express Mode (Recommended)**
 Run complete Access Gate evaluation in one command:
@@ -143,7 +143,7 @@ python main.py crawl samples/urls.txt --out snapshots/
 # 2. Parse Content (extract structural signals)  
 python main.py parse snapshots/ --out parse-results.json
 
-# 3. Standards Evaluation (YARA 3.0 methodology)
+# 3. Standards Evaluation (Clipper methodology)
 python main.py score parse-results.json --out scores.json
 
 # 4. Generate Report (actionable insights)
@@ -176,7 +176,7 @@ Every evaluation generates comprehensive documentation:
       "passes_count": 47
     }
   },
-  "evaluation_methodology": "YARA 3.0 Standards-Based Access Gate"
+  "evaluation_methodology": "Clipper Standards-Based Access Gate"
 }
 ```
 
@@ -199,7 +199,7 @@ fi
 
 ## 🚀 Quick Start Demo
 
-**5-Minute YARA 3.0 Validation:**
+**5-Minute Clipper Validation:**
 
 ```bash
 # 1. Test with Upsun PHP SDK (validation example)
@@ -215,7 +215,7 @@ jq '.audit_trail' demo-results/validation_scores.json
 
 **Expected Output:**
 ```
-YARA 3.0 Evaluation Results:
+Clipper Evaluation Results:
 ├─ Total URLs: 1
 ├─ Average Score: 41.4/100  
 └─ Agent-Ready: 0/1 (0.0%)
@@ -230,7 +230,7 @@ Component Breakdown:
 
 ## Standards Authority Mapping
 
-YARA 3.0 builds on established industry standards:
+Clipper builds on established industry standards:
 
 | Component | Authority | Implementation | Weight |
 |-----------|-----------|----------------|--------|
@@ -244,11 +244,11 @@ YARA 3.0 builds on established industry standards:
 
 ## Example: Audit Trail Reports
 
-YARA 3.0 generates comprehensive audit documentation:
+Clipper generates comprehensive audit documentation:
 
 ### **Standards Compliance Summary**
 ```markdown
-## YARA 3.0 Access Gate Evaluation
+## Clipper Access Gate Evaluation
 
 **Final Score:** 41.4/100 (significant_issues)
 **Evaluation Methodology:** Standards-Based Access Gate
@@ -301,18 +301,18 @@ Based on agent accessibility impact research:
 
 ## GitHub Integration
 
-YARA 3.0 integrates seamlessly with CI/CD workflows:
+Clipper integrates seamlessly with CI/CD workflows:
 
 ```yaml
-# .github/workflows/yara-quality-gate.yml
-name: YARA 3.0 Quality Gate
+# .github/workflows/clipper-quality-gate.yml
+name: Clipper Quality Gate
 on: [pull_request]
 jobs:
   evaluate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: YARA Standards Evaluation
+      - name: Clipper Standards Evaluation
         run: |
           python main.py express docs-urls.txt --out pr-evaluation/ --quiet
           score=$(jq '.parseability_score' pr-evaluation/report_scores.json)
@@ -324,12 +324,12 @@ jobs:
 ## File Structure
 
 ```
-yara-3.0/
+clipper/
 ├─ README.md                           # This comprehensive guide
 ├─ main.py                            # CLI entry point
 ├─ requirements.txt                   # Standards-based dependencies
 ├─ retrievability/
-│  ├─ cli.py                         # YARA 3.0 CLI interface
+│  ├─ cli.py                         # Clipper CLI interface
 │  ├─ access_gate_evaluator.py       # Standards-based evaluation engine
 │  ├─ score.py                       # YARA 3.0 scoring orchestration
 │  ├─ crawl.py                       # URL acquisition
@@ -339,7 +339,7 @@ yara-3.0/
 ├─ samples/
 │  ├─ urls.txt                       # Sample Microsoft Learn URLs
 │  └─ snapshots/                     # HTML snapshot storage
-├─ yara3-test-results/              # Validation test outputs
+├─ clipper-test-results/              # Validation test outputs
 ├─ scripts/                         # Automation utilities
 └─ docs/                           # Technical documentation
 ```

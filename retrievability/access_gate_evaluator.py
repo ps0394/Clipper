@@ -1,4 +1,4 @@
-"""YARA 3.0 - Standards-Based Access Gate Evaluator.
+"""Clipper - Standards-Based Access Gate Evaluator.
 
 Industry-standard, API-free evaluation for agent-ready content optimization.
 Replaces API-dependent Lighthouse scoring with defensible standards-based methodology.
@@ -14,6 +14,8 @@ import logging
 # Standards-based evaluation imports
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from axe_selenium_python import Axe
 import extruct
 from bs4 import BeautifulSoup, Comment
@@ -27,7 +29,7 @@ from .schemas import ScoreResult
 
 
 class AccessGateEvaluator:
-    """YARA 3.0 Standards-Based Access Gate Evaluator.
+    """Clipper Standards-Based Access Gate Evaluator.
     
     Evaluates "Can agents reliably access Microsoft information?" using
     established industry frameworks with complete API independence.
@@ -135,7 +137,7 @@ class AccessGateEvaluator:
             component_scores=scores,
             audit_trail=audit_trail,
             standards_authority=self.STANDARDS_AUTHORITY,
-            evaluation_methodology="YARA 3.0 Standards-Based Access Gate"
+            evaluation_methodology="Clipper Standards-Based Access Gate"
         )
     
     def _load_html_content(self, html_path: str) -> Optional[str]:
@@ -157,9 +159,19 @@ class AccessGateEvaluator:
                         # Try looking in various common snapshot locations
                         possible_locations = [
                             Path.cwd() / "snapshots" / html_path,
-                            Path.cwd() / "yara3-test-results" / "snapshots" / html_path,
-                            Path(html_path).parent / "snapshots" / Path(html_path).name
+                            Path.cwd() / "clipper-test-results" / "snapshots" / html_path,
+                            Path(html_path).parent / "snapshots" / Path(html_path).name,
+                            # Check all subdirectories with snapshots folders
                         ]
+                        
+                        # Also check for any directory ending with snapshots  
+                        for item in Path.cwd().iterdir():
+                            if item.is_dir():
+                                snapshot_dir = item / "snapshots"
+                                if snapshot_dir.exists():
+                                    candidate = snapshot_dir / html_path
+                                    if candidate.exists():
+                                        possible_locations.append(candidate)
                         
                         for location in possible_locations:
                             if location.exists():
@@ -167,6 +179,7 @@ class AccessGateEvaluator:
                                 break
                         else:
                             self.logger.error(f"HTML file not found in any expected location: {html_path}")
+                            self.logger.error(f"Searched in: {[str(loc) for loc in possible_locations]}")
                             return None
             
             if not html_file.exists():
@@ -200,12 +213,21 @@ class AccessGateEvaluator:
         
         try:
             if url and self._is_valid_url(url):
-                # Live evaluation with Selenium + axe-core
-                score, details = self._run_axe_evaluation(url)
-                audit_trail.update(details)
-                return score, audit_trail
+                # Try live evaluation with Selenium + axe-core first
+                try:
+                    score, details = self._run_axe_evaluation(url)
+                    audit_trail.update(details)
+                    audit_trail['evaluation_method'] = 'Live browser with axe-core'
+                    return score, audit_trail
+                except Exception as axe_error:
+                    self.logger.warning(f"[WARN] Axe browser evaluation failed, falling back to static analysis: {axe_error}")
+                    # Fall back to static analysis when axe fails
+                    audit_trail['axe_fallback_reason'] = str(axe_error)
+                    audit_trail['evaluation_method'] = 'Static HTML analysis (axe-core unavailable)'
+                    return self._evaluate_static_accessibility(html_content, audit_trail)
             else:
                 # Static HTML analysis fallback
+                audit_trail['evaluation_method'] = 'Static HTML analysis (no live URL)'
                 return self._evaluate_static_accessibility(html_content, audit_trail)
                 
         except Exception as e:
@@ -217,13 +239,36 @@ class AccessGateEvaluator:
         """Run axe-core accessibility evaluation on live URL."""
         driver = None
         try:
-            # Setup Chrome driver
-            driver = webdriver.Chrome(options=self.chrome_options)
+            # Setup Chrome driver with additional stability options
+            chrome_options = Options()
+            chrome_options.add_argument('--headless')
+            chrome_options.add_argument('--no-sandbox')
+            chrome_options.add_argument('--disable-dev-shm-usage')
+            chrome_options.add_argument('--disable-gpu')
+            chrome_options.add_argument('--window-size=1920,1080')
+            chrome_options.add_argument('--disable-web-security')
+            chrome_options.add_argument('--disable-features=VizDisplayCompositor')
+            
+            driver = webdriver.Chrome(options=chrome_options)
             driver.set_page_load_timeout(self.timeout)
             driver.get(url)
             
-            # Run axe evaluation
+            # Wait for page to load completely
+            WebDriverWait(driver, 10).until(
+                lambda d: d.execute_script("return document.readyState") == "complete"
+            )
+            
+            # Run axe evaluation with proper injection
             axe = Axe(driver)
+            
+            # Critical fix: Inject axe-core JavaScript before running evaluation
+            axe.inject()
+            
+            # Verify axe was injected successfully
+            axe_available = driver.execute_script("return typeof axe !== 'undefined';")
+            if not axe_available:
+                raise Exception("axe-core injection failed - axe object not available in page")
+            
             results = axe.run()
             
             # Calculate score based on violations
@@ -250,10 +295,14 @@ class AccessGateEvaluator:
             
         except Exception as e:
             self.logger.error(f"Axe evaluation failed for {url}: {e}")
-            return 0.0, {'error': str(e)}
+            # Re-raise exception to trigger fallback to static analysis
+            raise Exception(f"Browser accessibility evaluation failed: {e}")
         finally:
             if driver:
-                driver.quit()
+                try:
+                    driver.quit()
+                except:
+                    pass  # Ignore cleanup errors
     
     def _evaluate_static_accessibility(self, html_content: str, audit_trail: Dict) -> Tuple[float, Dict]:
         """Fallback accessibility evaluation for static HTML."""
@@ -543,7 +592,7 @@ class AccessGateEvaluator:
             component_scores={},
             audit_trail={'error': error_message},
             standards_authority=self.STANDARDS_AUTHORITY,
-            evaluation_methodology="YARA 3.0 Standards-Based Access Gate"
+            evaluation_methodology="Clipper Standards-Based Access Gate"
         )
     
     # Helper methods for specific evaluations

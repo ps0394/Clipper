@@ -93,11 +93,11 @@ def _print_summary(score_file: str, quiet: bool = False):
         
         if not quiet:
             print(f"\n📊 YARA 3.0 Evaluation Results:")
-            print(f"├─ Total URLs: {total}")
-            print(f"├─ Average Score: {avg_score:.1f}/100")
-            print(f"└─ Agent-Ready: {clean}/{total} ({clean/total*100:.1f}%)")
+            print(f"|- Total URLs: {total}")
+            print(f"|- Average Score: {avg_score:.1f}/100")
+            print(f"+- Agent-Ready: {clean}/{total} ({clean/total*100:.1f}%)")
             
-            print(f"\n📋 Individual Results:")
+            print(f"\n[RESULTS] Individual Results:")
             for i, score in enumerate(scores):
                 # Get URL from crawl results if available, otherwise use fallback
                 if i < len(urls):
@@ -107,7 +107,7 @@ def _print_summary(score_file: str, quiet: bool = False):
                 
                 score_val = score['parseability_score']
                 mode = score['failure_mode']
-                emoji = '✅' if mode == 'clean' else '⚠️' if score_val >= 60 else '❌'
+                emoji = '[PASS]' if mode == 'clean' else '[WARN]' if score_val >= 60 else '[FAIL]'
                 print(f"  {emoji} {score_val:3.0f}/100 - {url}")
         else:
             print(f"{avg_score:.1f}/100 average, {clean}/{total} clean")
@@ -147,10 +147,10 @@ def main():
     parse_parser.add_argument('--out', required=True, help='Output JSON file for parse results')
     
     # Score command
-    score_parser = subparsers.add_parser('score', help='Score parse results using YARA 3.0 standards-based methodology')
+    score_parser = subparsers.add_parser('score', help='Score parse results using Clipper standards-based methodology')
     score_parser.add_argument('parse_file', help='JSON file with parse results')
     score_parser.add_argument('--out', required=True, help='Output JSON file for score results')
-    score_parser.add_argument('--api-key', help='Deprecated: YARA 3.0 is API-free and uses industry standards')
+    score_parser.add_argument('--api-key', help='Deprecated: Clipper is API-free and uses industry standards')
     
     # Report command
     report_parser = subparsers.add_parser('report', help='Generate human-readable markdown report')
@@ -166,7 +166,7 @@ def main():
     express_parser.add_argument('--out', default='./evaluation', help='Output directory for all results (default: ./evaluation)')
     express_parser.add_argument('--name', default='report', help='Base name for output files (default: report)')
     express_parser.add_argument('--quiet', '-q', action='store_true', help='Only output final summary')
-    express_parser.add_argument('--api-key', help='Deprecated: YARA 3.0 is API-free and uses industry standards')
+    express_parser.add_argument('--api-key', help='Deprecated: Clipper is API-free and uses industry standards')
     
     args = parser.parse_args()
     
@@ -215,8 +215,8 @@ def main():
                 
                 if not args.quiet:
                     print(f"🔄 Running evaluation pipeline...")
-                    print(f"├─ Output directory: {out_dir}")
-                    print(f"└─ Report files: {args.name}_*")
+                    print(f"|- Output directory: {out_dir}")
+                    print(f"+- Report files: {args.name}_*")
                 
                 # Run pipeline
                 if not args.quiet:
@@ -228,7 +228,7 @@ def main():
                 parse_snapshots(str(snapshots_dir), str(parse_file))
                 
                 if not args.quiet:
-                    print(f"3️⃣ Scoring results (YARA 3.0 Standards-Based)...")
+                    print(f"3️⃣ Scoring results (Clipper Standards-Based)...")
                 api_key = getattr(args, 'api_key', None)
                 score_parse_results(str(parse_file), str(score_file), api_key=api_key)
                 

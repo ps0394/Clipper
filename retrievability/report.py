@@ -107,11 +107,11 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
         
         # Status emoji
         if failure_mode == 'clean':
-            status_emoji = "✅"
+            status_emoji = "[PASS]"
         elif failure_mode == 'structure-missing':
-            status_emoji = "❌"
+            status_emoji = "[FAIL]"
         else:  # extraction-noisy
-            status_emoji = "⚠️"
+            status_emoji = "[WARN]"
         
         report_lines.extend([
             f"### {status_emoji} {page_id}",
@@ -327,19 +327,19 @@ def _generate_priority_fixes(failure_mode: str, subscores: Dict[str, float], cur
                 'impact': 'High',
                 'effort': 'Low',
                 'score_gain': 15,
-                'priority': '🔥 Critical'
+                'priority': '[CRITICAL]'
             })
             fixes.append({
                 'name': 'Add `<article>` wrapper',
                 'impact': 'Medium',
                 'effort': 'Low',
                 'score_gain': 10,
-                'priority': '⚠️ Important'
+                'priority': '[IMPORTANT]'
             })
         
         if hierarchy_score < 80:
             score_gain = 12 if hierarchy_score < 50 else 8
-            priority = '🔥 Critical' if hierarchy_score < 50 else '⚠️ Important'
+            priority = '[CRITICAL]' if hierarchy_score < 50 else '[IMPORTANT]'
             fixes.append({
                 'name': 'Fix heading hierarchy',
                 'impact': 'High' if hierarchy_score < 50 else 'Medium',

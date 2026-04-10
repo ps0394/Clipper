@@ -1,6 +1,6 @@
-# GitHub Integration Quick Start
+# YARA GitHub Integration Quick Start
 
-This guide shows how to use the retrievability evaluation system in your GitHub workflows.
+This guide shows how to use YARA (Yet Another Retrieval Analyzer) in your GitHub workflows.
 
 ## 🚀 One-Click Setup for Any Repository
 
@@ -26,7 +26,7 @@ jobs:
     
     # Use the reusable evaluation action
     - name: Evaluate documentation quality
-      uses: ps0394/Retrieval/.github/actions/docs-eval@main
+      uses: ps0394/YARA/.github/actions/docs-eval@main
       with:
         urls-file: 'docs/urls.txt'  # Your documentation URLs
         min-score: '75'
@@ -50,7 +50,7 @@ That's it! Your PRs will now get automatic documentation quality reports.
 
 ```yaml
 - name: Production-ready check
-  uses: ps0394/Retrieval/.github/actions/docs-eval@main
+  uses: ps0394/YARA/.github/actions/docs-eval@main
   with:
     urls-file: 'production-urls.txt'
     min-score: '85'              # Strict production standards
@@ -58,7 +58,7 @@ That's it! Your PRs will now get automatic documentation quality reports.
     fail-on-quality-gate: 'true' # Fail deployment if not met
 
 - name: Development monitoring  
-  uses: ps0394/Retrieval/.github/actions/docs-eval@main
+  uses: ps0394/YARA/.github/actions/docs-eval@main
   with:
     urls-file: 'dev-urls.txt'
     min-score: '60'              # Lower bar for development
@@ -78,7 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: ps0394/Retrieval/.github/actions/docs-eval@main
+    - uses: ps0394/YARA/.github/actions/docs-eval@main
       with:
         urls-file: 'all-docs-urls.txt'
         min-score: '70'
@@ -105,7 +105,7 @@ jobs:
 ```yaml
 - name: Evaluate docs
   id: eval
-  uses: ps0394/Retrieval/.github/actions/docs-eval@main
+  uses: ps0394/YARA/.github/actions/docs-eval@main
   with:
     urls-file: 'docs-urls.txt'
 
@@ -173,7 +173,7 @@ deploy:
   needs: [build, test]
   steps:
   - name: Check documentation quality
-    uses: ps0394/Retrieval/.github/actions/docs-eval@main
+    uses: ps0394/YARA/.github/actions/docs-eval@main
     with:
       urls-file: 'deployment-docs.txt'
       min-score: '80'
@@ -192,7 +192,7 @@ strategy:
     
 steps:
 - name: Evaluate ${{ matrix.environment }} docs
-  uses: ps0394/Retrieval/.github/actions/docs-eval@main
+  uses: ps0394/YARA/.github/actions/docs-eval@main
   with:
     urls-file: '${{ matrix.environment }}-urls.txt'
     min-score: ${{ matrix.environment == 'production' && '85' || '75' }}
@@ -205,7 +205,7 @@ steps:
 ```yaml
 - name: Evaluate docs
   id: eval
-  uses: ps0394/Retrieval/.github/actions/docs-eval@main
+  uses: ps0394/YARA/.github/actions/docs-eval@main
   with:
     urls-file: 'docs-urls.txt'
 

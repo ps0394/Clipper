@@ -1,27 +1,26 @@
-# User Instructions: YARA 2.0 Retrievability Evaluation
+# User Instructions: Clipper Content Evaluation
 
-This guide walks you through using **YARA 2.0** (Yet Another Retrieval Analyzer) to evaluate documentation pages for agent and retrieval system readiness using our proven hybrid scoring methodology.
+This guide walks you through using **Clipper** (Command-Line Interface Progressive Performance Evaluation & Reporting) to evaluate content for agent accessibility using standards-based evaluation methodology.
 
-## What's New in YARA 2.0
+## What is Clipper
 
-**🚀 Hybrid Scoring Engine**: Combines Google Lighthouse (70%) + Content Analysis (20%) + Agent Performance (10%)
-**🎯 Proven Accuracy**: Strong correlation (r ≈ 0.9) with actual agent performance vs legacy r ≈ 0.1
-**🔁 Backward Compatible**: Legacy scoring available with `--legacy` flag
-**🔑 API Integration**: PageSpeed Insights API for real Lighthouse metrics
+**Standards-Based Evaluation Engine**: Combines WCAG 2.1 (25%) + W3C Semantic HTML (25%) + Schema.org (20%) + HTTP Standards (15%) + Content Quality (15%)
+**Enterprise Defensible**: Built on established industry standards with complete audit trails
+**API-Free Operation**: No external API dependencies - completely local evaluation
 
 ## Prerequisites
 
 - **Python 3.7+** installed on your system
-- **Internet connection** for crawling URLs and Lighthouse API
+- **Internet connection** for crawling URLs
 - **Command line access** (PowerShell, Terminal, or Command Prompt)
-- **[Optional] PageSpeed Insights API key** for full YARA 2.0 hybrid scoring
+- **No API keys required** - Clipper operates completely offline
 
 ## Installation
 
 ### 1. Clone or Download the System
 ```bash
-git clone https://github.com/ps0394/Retrieval.git
-cd Retrieval
+git clone https://github.com/your-org/clipper-content-evaluation.git
+cd clipper-content-evaluation
 ```
 
 ### 2. Install Python Dependencies
@@ -29,337 +28,189 @@ cd Retrieval
 pip install -r requirements.txt
 ```
 
-### 3. Verify Installation
+### 3. Test Installation
 ```bash
-python -m retrievability.cli --help
-```
-You should see **YARA 2.0** in the help output with commands: `crawl`, `parse`, `score`, `report`, `negotiate`, and `express`.
-
-### 4. [Optional] Setup PageSpeed Insights API Key
-For full YARA 2.0 hybrid scoring:
-```bash
-# Get free API key from Google Cloud Console
-# Enable PageSpeed Insights API → Create credentials → API Key
-export PAGESPEED_API_KEY="your-api-key-here"
+python main.py express --help
 ```
 
-## 📚 Documentation Structure
+You should see **Clipper** in the help output with commands: `crawl`, `parse`, `score`, `report`, `negotiate`, and `express`.
 
-**Start here:**
-- **This guide** - Step-by-step basic usage
-- **[README.md](README.md)** - Quick overview and demo results
+## Optional Configuration
 
-**Advanced use cases:**
-- **[docs/advanced-workflows.md](docs/advanced-workflows.md)** - Product manager workflows, bulk evaluation, M365 Copilot integration
-- **[docs/automation.md](docs/automation.md)** - CI/CD pipelines, scheduled monitoring, scripting
-- **[docs/presentation-materials.md](docs/presentation-materials.md)** - Executive dashboards, stakeholder presentations
-- **[docs/scoring.md](docs/scoring.md)** - YARA 2.0 hybrid scoring methodology
-
-## 🚀 Quick Start (Recommended)
-
-### Express Mode - Complete YARA 2.0 Evaluation
-```bash
-# Full YARA 2.0 hybrid scoring with Lighthouse
-python -m retrievability.cli express urls.txt --out results/ --api-key YOUR_API_KEY
-
-# YARA 2.0 without API key (content analysis only)
-python -m retrievability.cli express urls.txt --out results/
-
-# Legacy YARA compatibility
-python -m retrievability.cli express urls.txt --out results/ --legacy
-```
-**What Express Mode does:**
-1. 🔄 Crawls URLs and captures HTML snapshots
-2. 📄 Extracts parseability signals and content structure
-3. 🚀 Scores using YARA 2.0 hybrid methodology (or legacy with `--legacy`)
-4. 📊 Generates actionable markdown report with priority fixes
-
-**Express Mode Output:**
-- `results/snapshots/`: HTML captures
-- `results/report_parse.json`: Signal extraction data
-- `results/report_scores.json`: YARA 2.0 hybrid scores with subscores
-- `results/report.md`: Human-readable report with fix recommendations
-
-## Step-by-Step Evaluation (Advanced Users)
-
-For users who want granular control over each pipeline step:
-
-#### 1. Prepare Your URL List
-Create a text file with URLs to evaluate (one per line):
+For enhanced logging and debugging:
 
 ```bash
-# Create urls.txt
-echo "https://learn.microsoft.com/en-us/azure/functions/functions-overview" > urls.txt
-echo "https://docs.python.org/3/tutorial/introduction.html" >> urls.txt
-echo "https://kubernetes.io/docs/concepts/overview/" >> urls.txt
+# Enable verbose logging
+export CLIPPER_LOG_LEVEL=DEBUG
 ```
 
-#### 2. Crawl Documentation Pages
-```bash
-python -m retrievability.cli crawl urls.txt --out snapshots/
-```
-**What this does:**
-- Fetches each URL and saves HTML content with proper user-agent headers
-- Creates `snapshots/crawl_results.json` with metadata (status codes, redirects)
-- Saves individual HTML files with unique names for reproducibility
+## Documentation Reference
 
-#### 3. Extract Parseability Signals
-```bash
-python -m retrievability.cli parse snapshots/ --out results/parse.json
-```
-**What this does:**
-- Analyzes HTML structure for semantic elements (`<main>`, `<article>`, `<nav>`)
-- Checks heading hierarchy (H1→H2→H3 progression) and accessibility features
-- Measures content density, rich content presence, and boilerplate patterns
-- Generates raw signals for YARA 2.0 hybrid scoring
+- **[README.md](README.md)** - Complete Clipper documentation
+- **[docs/scoring.md](docs/scoring.md)** - Clipper standards-based scoring methodology
 
-#### 4. Score with YARA 2.0 Hybrid Engine
-```bash
-# YARA 2.0 hybrid scoring (recommended)
-python -m retrievability.cli score results/parse.json --out results/scores.json --api-key YOUR_API_KEY
+## Usage Examples
 
-# YARA 2.0 without Lighthouse (content analysis only)
-python -m retrievability.cli score results/parse.json --out results/scores.json
-
-# Legacy YARA scoring (deprecated)
-python -m retrievability.cli score results/parse.json --out results/scores.json --legacy
-```
-**What YARA 2.0 hybrid scoring does:**
-- **Lighthouse Foundation (70%)**: Accessibility, SEO, performance via PageSpeed Insights API
-- **Content Analysis (20%)**: Enhanced content density, structure, and extractability
-- **Agent Performance (10%)**: Simulated AI agent extraction success rates
-- Provides both hybrid scores and legacy subscores for backward compatibility
-
-#### 5. Generate Human Report
-```bash
-python -m retrievability.cli report results/scores.json --md results/report.md
-```
-**What this does:**
-- Creates executive summary with YARA 2.0 hybrid scoring statistics
-- Lists individual page results with actionable insights and priority fixes
-- Identifies fix ownership (Frontend Developer vs Content Author vs Infrastructure)
-- Provides code examples and before/after HTML snippets
-
-#### 6. Test Content Negotiation (Advanced)
-```bash
-python -m retrievability.cli negotiate urls.txt --out negotiation-results/
-```
-**What this does:**
-- Tests if sites serve markdown, JSON, or plain text alternatives for AI agents
-- Measures payload reduction and response performance across formats
-- Detects agent optimization (sites already optimized for AI consumption)
-- Scores content negotiation quality (0-100 scale)
-
-### 🚀 Express Mode - Complete Pipeline
-Run all steps in one command:
-```bash
-python -m retrievability.cli express urls.txt --out results/
-```
-
-## Advanced Usage
-
-### Custom URL Lists
-
-Create focused evaluations for specific documentation sets:
+### Express Mode - Complete Clipper Evaluation
 
 ```bash
-# Microsoft Learn pages
-echo "https://learn.microsoft.com/en-us/dotnet/core/introduction" > ms-learn.txt
-echo "https://learn.microsoft.com/en-us/azure/app-service/overview" >> ms-learn.txt
+# Full Clipper standards-based scoring
+python main.py express --urls https://learn.microsoft.com/azure --out results/
 
-# API documentation
-echo "https://docs.github.com/en/rest/overview" > api-docs.txt
-echo "https://stripe.com/docs/api" >> api-docs.txt
+# Multiple URLs evaluation
+python main.py express samples/urls.txt --out results/ --name comprehensive
 
-# Run separate evaluations
-python -m retrievability.cli crawl ms-learn.txt --out ms-snapshots/
-python -m retrievability.cli crawl api-docs.txt --out api-snapshots/
+# Clipper evaluation with minimal output
+python main.py express samples/urls.txt --out results/ --quiet
 ```
 
-### Batch Processing Multiple Projects
+**What Express Mode Does:**
+1. 📄 Crawls URLs and captures HTML content
+2. 🔍 Parses content for structural signals
+3. 📊 Scores using Clipper standards-based methodology
+4. 📋 Generates comprehensive reports with audit trails
+
+**Output Files:**
+- `results/report.md`: Human-readable report with recommendations
+- `results/report_scores.json`: Clipper scores with component breakdown
+- `results/report_parse.json`: Raw parsing results and structured data
+
+### Step-by-Step Pipeline
+
+For detailed analysis, run individual components:
+
+#### 1. Crawl URLs
+```bash
+# Download and snapshot content
+python main.py crawl samples/urls.txt --out snapshots/
+```
+
+#### 2. Parse Content  
+```bash
+# Extract structural signals
+python main.py parse snapshots/ --out parse-results.json
+```
+- Generates raw signals for Clipper standards-based scoring
+
+#### 3. Score with Clipper Standards Engine
+```bash
+# Clipper standards-based scoring (recommended)
+python main.py score parse-results.json --out scores.json
+
+# Clipper with detailed component analysis
+python main.py score parse-results.json --out scores.json --detailed
+```
+
+**What Clipper Standards Scoring Does:**
+- **WCAG 2.1 Accessibility** (25%): Automated accessibility analysis using axe-core
+- **W3C Semantic HTML** (25%): HTML5 semantic elements and ARIA compliance
+- **Schema.org Structured Data** (20%): JSON-LD, microdata analysis
+- **HTTP Standards** (15%): Content negotiation and RFC compliance
+- **Content Quality** (15%): Agent-optimized content metrics
+
+#### 4. Generate Reports
+```bash
+# Create comprehensive markdown report
+python main.py report scores.json --md executive-summary.md
+```
+- Creates executive summary with Clipper scoring statistics
+- Includes component-level recommendations
+- Provides standards authority references
+
+### Content Negotiation Testing
+```bash
+# Test HTTP content negotiation for agent compatibility
+python main.py negotiate samples/urls.txt --out negotiation-results/
+```
+
+## Output Structure
+
+### Comprehensive Results Directory
+```
+results/
+├── report.md                 # Human-readable evaluation report  
+├── report_scores.json        # Clipper component scores
+├── report_parse.json         # Raw content analysis
+└── snapshots/                # HTML content snapshots
+    ├── site1_snapshot.html
+    └── site2_snapshot.html
+```
+
+### Clipper Score Format
+```json
+{
+  "overall_score": 75.2,
+  "component_scores": {
+    "wcag_accessibility": 85.0,
+    "semantic_html": 72.5,
+    "structured_data": 68.0,
+    "http_compliance": 90.0,
+    "content_quality": 80.5
+  },
+  "standards_authority": {
+    "accessibility": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "semantics": "HTML5 Semantic Elements (W3C)"
+  }
+}
+```
+
+## Quick Command Reference
 
 ```bash
-# Evaluate multiple documentation sets
-for project in project-a project-b project-c; do
-    python -m retrievability.cli crawl ${project}-urls.txt --out ${project}-snapshots/
-    python -m retrievability.cli parse ${project}-snapshots/ --out results/${project}-parse.json
-    python -m retrievability.cli score results/${project}-parse.json --out results/${project}-scores.json
-    python -m retrievability.cli report results/${project}-scores.json --md results/${project}-report.md
-done
-```
+# Single URL quick evaluation
+python main.py express --urls https://example.com --out quick/
 
-### Working with Existing HTML Files
+# Batch evaluation with URLs from file
+python main.py express urls.txt --out batch-results/
 
-If you already have HTML files, create the expected directory structure:
+# Quiet mode for CI/CD integration
+python main.py express urls.txt --out results/ --quiet
 
-```bash
-mkdir my-snapshots
-# Copy your HTML files to my-snapshots/
-# Create crawl_results.json manually or use existing snapshots as template
+# Content negotiation analysis
+python main.py negotiate urls.txt --out negotiate/
 
-python -m retrievability.cli parse my-snapshots/ --out my-parse.json
-```
-
-## Understanding Results
-
-### Reading the Markdown Report
-
-The generated report (`report.md`) contains:
-
-#### Executive Summary
-```markdown
-- **Average Parseability Score**: 82.5/100
-- **Clean Pages**: 5 (62.5%)
-- **Structure Issues**: 0 (0.0%)  
-- **Extraction Issues**: 3 (37.5%)
-```
-
-#### Individual Page Analysis
-Each page shows:
-- **Overall Score** (0-100)
-- **Failure Mode** (`clean` | `structure-missing` | `extraction-noisy`)
-- **What Failed** - Specific issues identified
-- **Why It Failed** - Root causes from evidence
-- **Fix Owner** - Who should address the issues
-- **Component Scores** - Breakdown by evaluation criteria
-
-### Using JSON Data for Automation
-
-The JSON outputs are designed for programmatic consumption:
-
-```python
-import json
-
-# Load scoring results
-with open('results/scores.json', 'r') as f:
-    scores = json.load(f)
-
-# Filter pages by failure mode
-clean_pages = [s for s in scores if s['failure_mode'] == 'clean']
-problem_pages = [s for s in scores if s['parseability_score'] < 60]
-
-# Extract specific signals for custom logic
-for score in scores:
-    density = score['subscores']['content_density']
-    if density < 50:
-        print(f"Low content density detected: {score.get('html_path', 'unknown')}")
-```
-
-### Score Interpretation
-
-| Score Range | Meaning | Action Required |
-|-------------|---------|-----------------|
-| **90-100** | Excellent | Ready for production agents |
-| **80-89** | Good | Minor optimizations recommended |
-| **60-79** | Fair | Moderate improvements needed |
-| **40-59** | Poor | Significant structural fixes required |
-| **0-39** | Critical | Complete restructuring needed |
-
-## Common Workflows
-
-### 1. Documentation Audit
-**Goal:** Assess existing documentation quality
-```bash
-# Collect all your docs URLs
-python -m retrievability.cli crawl all-docs.txt --out audit-snapshots/
-python -m retrievability.cli parse audit-snapshots/ --out audit-parse.json
-python -m retrievability.cli score audit-parse.json --out audit-scores.json
-python -m retrievability.cli report audit-scores.json --md audit-report.md
-
-# Review audit-report.md for prioritized improvements
-```
-
-### 2. Pre-Agent Validation
-**Goal:** Verify documentation is ready for AI agent consumption
-```bash
-# Test critical pages before agent deployment
-python -m retrievability.cli crawl critical-pages.txt --out validation-snapshots/
-# ... run full pipeline ...
-
-# Only deploy agent if average score > 80
-```
-
-### 3. Continuous Quality Monitoring
-**Goal:** Track documentation quality over time
-```bash
-# Run weekly evaluations
-python -m retrievability.cli crawl docs-urls.txt --out weekly-$(date +%Y-%m-%d)/
-# ... process results ...
-# Compare scores week-over-week for regression detection
-```
-
-### 4. Developer Feedback Loop
-**Goal:** Guide developers on fixing structure issues
-```bash
-# Generate targeted reports for specific teams
-python -m retrievability.cli crawl frontend-docs.txt --out frontend-snapshots/
-# ... generate report ...
-# Share report.md with frontend team highlighting "Fix Owner" sections
+# Help for any command
+python main.py [command] --help
 ```
 
 ## Troubleshooting
 
-### Command Not Found
-If `python -m retrievability.cli` doesn't work:
-```bash
-# Try explicit Python path
-C:/Python313/python.exe -m retrievability.cli --help
+### Common Issues
 
-# Or install as package
-pip install -e .
-retrievability --help
+**Issue**: Import errors during installation
+**Solution**: Ensure Python 3.7+ and run `pip install --upgrade pip` before installing requirements
+
+**Issue**: Selenium WebDriver errors
+**Solution**: Chrome/Chromium browser required for automated accessibility testing
+
+**Issue**: Network connectivity errors
+**Solution**: Check internet connection and firewall settings for HTTPS access
+
+### Getting Help
+
+1. **Check command help**: `python main.py [command] --help`
+2. **Enable verbose logging**: Set `CLIPPER_LOG_LEVEL=DEBUG`
+3. **Review parsing results**: Check `report_parse.json` for content extraction issues
+4. **Validate URLs**: Ensure URLs are accessible and return valid HTML content
+
+## Enterprise Integration
+
+### Quality Gate Integration
+```bash
+# CI/CD pipeline example
+python main.py express staging-urls.txt --out quality-gate/ --quiet
+SCORE=$(jq '.overall_score' quality-gate/report_scores.json)
+if (( $(echo "$SCORE >= 70.0" | bc -l) )); then
+  echo "✅ Quality gate passed: $SCORE"
+else
+  echo "❌ Quality gate failed: $SCORE - see audit trail"
+  exit 1
+fi
 ```
 
-### Empty Results
-If no pages are parsed:
-- Check that URLs in your input file are accessible
-- Verify `crawl_results.json` contains successful HTTP responses (status 200)
-- Ensure HTML files exist in the snapshots directory
-
-### Low Scores Across All Pages
-If all pages score poorly:
-- Review the [docs/scoring.md](docs/scoring.md) to understand criteria
-- Check if pages use semantic HTML5 elements (`<main>`, `<article>`)
-- Verify heading hierarchy follows H1→H2→H3 progression
-
-### Network Issues
-If crawling fails:
-- Check internet connection
-- Verify URLs are publicly accessible
-- Some sites may block automated requests - try with different User-Agent
-
-## Integration with CI/CD
-
-Add quality gates to your documentation pipeline:
-
-```bash
-# In your CI script
-python -m retrievability.cli crawl docs/urls.txt --out ci-snapshots/
-python -m retrievability.cli parse ci-snapshots/ --out ci-parse.json
-python -m retrievability.cli score ci-parse.json --out ci-scores.json
-
-# Fail build if average score < 70
-python -c "
-import json
-with open('ci-scores.json') as f:
-    scores = json.load(f)
-avg_score = sum(s['parseability_score'] for s in scores) / len(scores)
-exit(0 if avg_score >= 70 else 1)
-"
-```
-
-## Getting Help
-
-- **Scoring Details:** See [docs/scoring.md](docs/scoring.md)
-- **System Architecture:** See [README.md](README.md)  
-- **CLI Reference:** Run `python -m retrievability.cli --help`
-- **Issues:** Check GitHub issues or create new ones
-
-## Next Steps
-
-After evaluating your documentation:
-1. **Prioritize fixes** based on failure modes and scores
-2. **Address structure-missing pages first** (highest impact)
-3. **Re-run evaluations** after implementing fixes
-4. **Set up monitoring** for ongoing quality assurance
-5. **Deploy agents** once average scores meet your thresholds
+### Audit Trail Access
+Clipper generates complete audit trails for compliance:
+- Standards authority mapping for each component
+- Evaluation methodology documentation
+- Score calculation transparency
+- Industry framework references

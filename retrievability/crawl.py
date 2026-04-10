@@ -171,7 +171,7 @@ def _test_content_negotiation(url: str, output_dir: Path) -> ContentNegotiationR
     
     session = requests.Session()
     session.headers.update({
-        'User-Agent': 'YARA-ContentNegotiation/1.0 (Agent-Friendly Docs Evaluator)'
+        'User-Agent': 'Clipper-ContentEvaluation/1.0 (Agent-Friendly Content Evaluator)'
     })
     
     baseline_format = None
