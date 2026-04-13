@@ -99,8 +99,24 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
     for i, result in enumerate(sorted_results, 1):
         score = result['parseability_score']
         failure_mode = result['failure_mode']
-        subscores = result['subscores']
-        evidence = result['evidence_references']
+        # Use correct field names from Clipper format
+        component_scores = result.get('component_scores', result.get('subscores', {}))
+        audit_trail = result.get('audit_trail', {})
+        
+        # Extract evidence references from audit trail
+        evidence = []
+        for component, trail_data in audit_trail.items():
+            if isinstance(trail_data, dict) and 'violations' in trail_data:
+                evidence.append(f"{component}: {len(trail_data['violations'])} violations found")
+            elif isinstance(trail_data, dict) and 'evidence' in trail_data:
+                if isinstance(trail_data['evidence'], list):
+                    evidence.extend(trail_data['evidence'])
+                else:
+                    evidence.append(str(trail_data['evidence']))
+        
+        # Fallback to legacy evidence_references if available
+        if not evidence and 'evidence_references' in result and result['evidence_references']:
+            evidence = result['evidence_references']
         
         # Determine page identifier (use html_path as proxy for URL)
         page_id = result.get('html_path', f'Page {i}')
@@ -122,7 +138,7 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
         ])
         
         # What failed?
-        issues = _identify_issues(failure_mode, subscores)
+        issues = _identify_issues(failure_mode, component_scores)
         if issues:
             report_lines.extend([
                 "**What Failed:**",
@@ -133,7 +149,7 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
             report_lines.append("")
         
         # Why did it fail?
-        root_causes = _identify_root_causes(failure_mode, subscores, evidence)
+        root_causes = _identify_root_causes(failure_mode, component_scores, evidence)
         if root_causes:
             report_lines.extend([
                 "**Why It Failed:**",
@@ -144,7 +160,7 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
             report_lines.append("")
         
         # Who owns the fix?
-        owner_guidance = _identify_fix_owner(failure_mode, subscores)
+        owner_guidance = _identify_fix_owner(failure_mode, component_scores)
         if owner_guidance:
             report_lines.extend([
                 "**Fix Owner:**",
@@ -154,7 +170,7 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
             ])
         
         # Priority fixes (NEW)
-        priority_fixes = _generate_priority_fixes(failure_mode, subscores, score)
+        priority_fixes = _generate_priority_fixes(failure_mode, component_scores, score)
         if priority_fixes:
             report_lines.extend([
                 "**Priority Fixes:**",
@@ -167,7 +183,7 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
             report_lines.append("")
         
         # Code examples (NEW)
-        code_examples = _generate_code_examples(failure_mode, subscores)
+        code_examples = _generate_code_examples(failure_mode, component_scores)
         if code_examples:
             report_lines.extend([
                 "**How to Fix:**",
@@ -187,7 +203,7 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
             "**Component Scores:**",
             ""
         ])
-        for component, component_score in subscores.items():
+        for component, component_score in component_scores.items():
             component_name = component.replace('_', ' ').title()
             report_lines.append(f"- {component_name}: {component_score:.1f}/100")
         
