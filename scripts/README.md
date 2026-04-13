@@ -182,3 +182,84 @@ response = requests.post(
 ## Next Steps
 
 The agent approach gives you exactly what you wanted - a simple interface where you provide URLs and get evaluation results back without manual UI interaction. You can integrate these scripts into larger automation workflows, CI/CD pipelines, or use them for regular audits.
+
+---
+
+# 🎯 YARA Benchmarking & Validation Scripts
+
+These scripts help validate YARA's accuracy and ensure consistent evaluation results.
+
+## Available Benchmarking Tools
+
+### 1. Benchmark Validation - `benchmark-validation.py`
+
+Validates YARA results against curated expectations:
+
+```bash
+# Validate evaluation results
+python scripts/benchmark-validation.py results/scores.json
+
+# Strict validation for CI/CD
+python scripts/benchmark-validation.py results/scores.json --fail-threshold 10.0 --accuracy-threshold 0.8
+
+# Save detailed report
+python scripts/benchmark-validation.py results/scores.json --output validation-report.md
+```
+
+### 2. Create Benchmark Sets - `create-benchmark.py`
+
+Creates curated URL sets for testing:
+
+```bash
+# List available benchmark sets
+python scripts/create-benchmark.py list
+
+# Create champion sites (should score 80-100)
+python scripts/create-benchmark.py create champions --output benchmark-urls/champions.txt
+
+# Create problematic sites (should score 20-50)  
+python scripts/create-benchmark.py create problematic --output benchmark-urls/problematic.txt
+
+# Validate URLs are accessible
+python scripts/create-benchmark.py validate
+```
+
+### 3. Consistency Testing - `consistency-test.py`
+
+Tests if YARA gives consistent results across multiple runs:
+
+```bash
+# Test consistency (3 runs)
+python scripts/consistency-test.py samples/urls.txt --runs 3
+
+# Extensive testing (5 runs with report)
+python scripts/consistency-test.py samples/urls.txt --runs 5 --output consistency-report.md --verbose
+```
+
+## Quick Benchmarking Workflow
+
+```bash
+# 1. Create benchmark dataset
+python scripts/create-benchmark.py create mixed --output benchmark-urls/mixed.txt
+
+# 2. Run YARA evaluation  
+python -m retrievability.cli express benchmark-urls/mixed.txt --out benchmark-results --name benchmark
+
+# 3. Validate results
+python scripts/benchmark-validation.py benchmark-results/benchmark_scores.json
+
+# 4. Test consistency
+python scripts/consistency-test.py benchmark-urls/mixed.txt --runs 3
+```
+
+## Expected Results
+
+**✅ Good Validation:** 80%+ pass rate, <10 point deviations  
+**⚠️ Needs Review:** 60-80% pass rate, 10-20 point deviations  
+**❌ Poor Accuracy:** <60% pass rate, >20 point deviations  
+
+**✅ Consistent:** Standard deviation <2.0 points  
+**⚠️ Acceptable:** Standard deviation 2.0-5.0 points  
+**❌ Unreliable:** Standard deviation >5.0 points  
+
+See [docs/benchmarking-quickstart.md](../docs/benchmarking-quickstart.md) for comprehensive benchmarking guide.

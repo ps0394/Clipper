@@ -1,0 +1,129 @@
+[
+  {
+    "parseability_score": 23.525,
+    "failure_mode": "severe_issues",
+    "html_path": "28f3848e8ba8.html",
+    "url": "https://httpbin.org/html",
+    "component_scores": {
+      "wcag_accessibility": 0.0,
+      "semantic_html": 2.0,
+      "structured_data": 0,
+      "http_compliance": 100.0,
+      "content_quality": 53.5
+    },
+    "audit_trail": {
+      "wcag_accessibility": {
+        "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+        "method": "Automated accessibility evaluation",
+        "violations": [],
+        "passes": [],
+        "score_calculation": "Based on violation severity and frequency",
+        "error": "Message: javascript error: axe is not defined\nJavaScript stack:\nReferenceError: axe is not defined\n    at eval (eval at <anonymous> (:457:26), <anonymous>:3:73)\n    at eval (eval at <anonymous> (:457:26), <anonymous>:3:120)\n    at <anonymous>:457:47\n    at new Promise (<anonymous>)\n    at executeAsyncScript (<anonymous>:451:17)\n    at <anonymous>:481:29\n    at callFunction (<anonymous>:386:22)\n    at <anonymous>:400:23\n    at <anonymous>:401:3\n  (Session info: chrome=146.0.7680.178)\nStacktrace:\n\tchromedriver!GetHandleVerifier [0x7ff6cf7929c5+2ed785]\n\tchromedriver!GetHandleVerifier [0x7ff6cf4ba0d0+14e90]\n\tchromedriver!(No symbol) [0x7ff6cf21db2d]\n\tchromedriver!(No symbol) [0x7ff6cf22960e]\n\tchromedriver!(No symbol) [0x7ff6cf2c568f]\n\tchromedriver!(No symbol) [0x7ff6cf29ff8a]\n\tchromedriver!(No symbol) [0x7ff6cf2c3b9b]\n\tchromedriver!(No symbol) [0x7ff6cf269298]\n\tchromedriver!(No symbol) [0x7ff6cf26a183]\n\tchromedriver!GetHandleVerifier [0x7ff6cf7bde0d+318bcd]\n\tchromedriver!GetHandleVerifier [0x7ff6cf7b8588+313348]\n\tchromedriver!GetHandleVerifier [0x7ff6cf7d9d7a+334b3a]\n\tchromedriver!GetHandleVerifier [0x7ff6cf4d6785+31545]\n\tchromedriver!GetHandleVerifier [0x7ff6cf4dfacc+3a88c]\n\tchromedriver!GetHandleVerifier [0x7ff6cf4c3634+1e3f4]\n\tchromedriver!GetHandleVerifier [0x7ff6cf4c37e6+1e5a6]\n\tchromedriver!GetHandleVerifier [0x7ff6cf4a7e37+2bf7]\n\tKERNEL32!BaseThreadInitThunk [0x7ffb7cb5e957+17]\n\tntdll!RtlUserThreadStart [0x7ffb7e18421c+2c]\n"
+      },
+      "semantic_html": {
+        "standard": "HTML5 Semantic Elements (W3C)",
+        "method": "Semantic markup analysis",
+        "elements_found": [],
+        "score_calculation": "Based on semantic element coverage and proper usage",
+        "semantic_elements_found": [],
+        "aria_elements_count": 0,
+        "heading_elements_count": 1,
+        "scoring_breakdown": {
+          "semantic_coverage": 0.0,
+          "aria_bonus": 0,
+          "heading_bonus": 2
+        }
+      },
+      "structured_data": {
+        "standard": "Schema.org (Google/Microsoft/Yahoo)",
+        "method": "Structured data extraction and validation",
+        "formats_found": [],
+        "score_calculation": "Based on structured data richness and completeness",
+        "extracted_metadata": {
+          "json_ld_items": 0,
+          "microdata_items": 0,
+          "opengraph_items": 0,
+          "microformat_items": 0
+        },
+        "score_breakdown": {
+          "json_ld": 0,
+          "microdata": 0,
+          "opengraph": 0,
+          "microformat": 0
+        },
+        "sample_structured_data": {}
+      },
+      "http_compliance": {
+        "standard": "RFC 7231 Content Negotiation (IETF)",
+        "method": "HTTP headers and content negotiation analysis",
+        "score_calculation": "Based on content negotiation support and header compliance",
+        "content_negotiation_tests": {
+          "text/html": {
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "content_length": 3741
+          },
+          "application/json": {
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "content_length": 3741
+          },
+          "text/markdown": {
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "content_length": 3741
+          },
+          "text/plain": {
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "content_length": 3741
+          },
+          "application/xml": {
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "content_length": 3741
+          }
+        },
+        "successful_negotiations": 5,
+        "total_tests": 5
+      },
+      "content_quality": {
+        "standard": "Established content analysis metrics",
+        "method": "Agent-focused content quality evaluation",
+        "score_calculation": "Based on content structure, readability, and agent accessibility",
+        "content_metrics": {
+          "total_text_length": 3625,
+          "total_html_length": 3752,
+          "text_html_ratio": 0.9661513859275054,
+          "headings_count": 1,
+          "paragraphs_count": 1,
+          "links_count": 0,
+          "internal_links_count": 0,
+          "avg_sentence_length": 27.5
+        },
+        "quality_breakdown": {
+          "text_html_ratio": 25,
+          "content_structure": 3.5,
+          "navigation_quality": 0,
+          "readability": 25
+        }
+      }
+    },
+    "standards_authority": {
+      "accessibility": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "semantics": "HTML5 Semantic Elements (W3C)",
+      "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+      "http_compliance": "RFC 7231 Content Negotiation (IETF)",
+      "content_quality": "Established content analysis metrics"
+    },
+    "evaluation_methodology": "Clipper Standards-Based Access Gate",
+    "subscores": {
+      "wcag_accessibility": 0.0,
+      "semantic_html": 2.0,
+      "structured_data": 0,
+      "http_compliance": 100.0,
+      "content_quality": 53.5
+    },
+    "evidence_references": null
+  }
+]

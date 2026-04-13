@@ -1,0 +1,1839 @@
+ <!DOCTYPE html>
+		<html
+			class="layout layout-holy-grail   show-table-of-contents conceptual show-breadcrumb default-focus"
+			lang="en-us"
+			dir="ltr"
+			data-authenticated="false"
+			data-auth-status-determined="false"
+			data-target="docs"
+			x-ms-format-detection="none"
+		>
+			
+		<head>
+			<title>Introduction to Azure Storage - Cloud storage on Azure | Microsoft Learn</title>
+			<meta charset="utf-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="color-scheme" content="light dark" />
+
+			<meta name="description" content="The Azure Storage platform is Microsoft&#39;s cloud storage solution. Azure Storage provides highly available, secure, durable, massively scalable, and redundant storage for data objects in the cloud. Learn about the services available in Azure Storage and how you can use them in your applications, services, or enterprise solutions." />
+			<link rel="canonical" href="https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction" /> 
+
+			<!-- Non-customizable open graph and sharing-related metadata -->
+			<meta name="twitter:card" content="summary_large_image" />
+			<meta name="twitter:site" content="@MicrosoftLearn" />
+			<meta property="og:type" content="website" />
+			<meta property="og:image:alt" content="Microsoft Learn" />
+			<meta property="og:image" content="https://learn.microsoft.com/en-us/media/open-graph-image.png" />
+			<!-- Page specific open graph and sharing-related metadata -->
+			<meta property="og:title" content="Introduction to Azure Storage - Cloud storage on Azure" />
+			<meta property="og:url" content="https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction" />
+			<meta property="og:description" content="The Azure Storage platform is Microsoft&#39;s cloud storage solution. Azure Storage provides highly available, secure, durable, massively scalable, and redundant storage for data objects in the cloud. Learn about the services available in Azure Storage and how you can use them in your applications, services, or enterprise solutions." />
+			<meta name="platform_id" content="66fdf02f-df3a-67a6-deee-23219d44e316" /> <meta name="scope" content="Azure" />
+			<meta name="locale" content="en-us" />
+			 
+			<meta name="uhfHeaderId" content="azure" />
+
+			<meta name="page_type" content="conceptual" />
+
+			<!--page specific meta tags-->
+			
+
+			<!-- custom meta tags -->
+			
+		<meta name="breadcrumb_path" content="/azure/bread/toc.json" />
+	
+		<meta name="feedback_help_link_url" content="https://learn.microsoft.com/answers/tags/125/azure-blob-storage/" />
+	
+		<meta name="feedback_help_link_type" content="get-help-at-qna" />
+	
+		<meta name="feedback_product_url" content="https://feedback.azure.com/d365community/forum/a8bb4a47-3525-ec11-b6e6-000d3a4f0f84" />
+	
+		<meta name="feedback_system" content="Standard" />
+	
+		<meta name="permissioned-type" content="public" />
+	
+		<meta name="recommendations" content="true" />
+	
+		<meta name="recommendation_types" content="Training" />
+	
+		<meta name="recommendation_types" content="Certification" />
+	
+		<meta name="ms.suite" content="office" />
+	
+		<meta name="adobe-target" content="true" />
+	
+		<meta name="learn_banner_products" content="azure" />
+	
+		<meta name="manager" content="akashdubey" />
+	
+		<meta name="ms.reviewer" content="akashdubey-ms" />
+	
+		<meta name="services" content="storage" />
+	
+		<meta name="author" content="akashdubey-ms" />
+	
+		<meta name="ms.service" content="azure-storage" />
+	
+		<meta name="ms.topic" content="concept-article" />
+	
+		<meta name="ms.date" content="2025-03-26T00:00:00Z" />
+	
+		<meta name="ms.author" content="akashdubey" />
+	
+		<meta name="ms.subservice" content="storage-common-concepts" />
+	
+		<meta name="document_id" content="2550031e-4cf6-8d15-84e3-1c2b58951f80" />
+	
+		<meta name="document_version_independent_id" content="1a927119-0540-dfd9-9435-5c29c014daff" />
+	
+		<meta name="updated_at" content="2026-04-02T18:15:00Z" />
+	
+		<meta name="original_content_git_url" content="https://github.com/MicrosoftDocs/azure-docs-pr/blob/live/articles/storage/common/storage-introduction.md" />
+	
+		<meta name="gitcommit" content="https://github.com/MicrosoftDocs/azure-docs-pr/blob/ad5c1a0ab562fe16ba7862eeef0e4d0c80c43c23/articles/storage/common/storage-introduction.md" />
+	
+		<meta name="git_commit_id" content="ad5c1a0ab562fe16ba7862eeef0e4d0c80c43c23" />
+	
+		<meta name="site_name" content="Docs" />
+	
+		<meta name="depot_name" content="Azure.azure-documents" />
+	
+		<meta name="schema" content="Conceptual" />
+	
+		<meta name="toc_rel" content="../blobs/toc.json" />
+	
+		<meta name="pdf_url_template" content="https://learn.microsoft.com/pdfstore/en-us/Azure.azure-documents/{branchName}{pdfName}" />
+	
+		<meta name="word_count" content="3445" />
+	
+		<meta name="asset_id" content="storage/common/storage-introduction" />
+	
+		<meta name="moniker_range_name" content="" />
+	
+		<meta name="item_type" content="Content" />
+	
+		<meta name="source_path" content="articles/storage/common/storage-introduction.md" />
+	
+		<meta name="previous_tlsh_hash" content="95B1FCA2B70CD3B0EFA24E026B7B465485F0C4887AF09DCC043961E1C4591E3A4BB87DA5EF57AB021A35EBA322EAFA447195FF3980AC335A5B61502FC10C575A17D57BF6EE" />
+	
+		<meta name="github_feedback_content_git_url" content="https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/storage/common/storage-introduction.md" />
+	
+		<meta name="markdown_url" content="https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction?accept=text/markdown" />
+	 
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/de8ce683-cbe1-461b-bae7-77db0888ec6d" data-source="generated" />
+	
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/68ec7f3a-2bc6-459f-b959-19beb729907d" data-source="generated" />
+	
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/01a89bec-e73f-4ce0-a00a-ae34ad62e5fe" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/a06cf482-4ca9-4582-a142-bcf842258d42" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/90370425-aca4-4a39-9533-d52e5e002a5d" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/50038ab9-5431-4515-9dfc-c24291ef4fce" data-source="generated" />
+	
+
+			<!-- assets and js globals -->
+			
+			<link rel="stylesheet" href="/static/assets/0.4.03384.7698-a05785c1/styles/site.css" />
+			
+			<script src="https://wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js"></script>
+			<script src="https://js.monitor.azure.com/scripts/c/ms.jsll-4.min.js"></script>
+			<script src="/_themes/docs.theme/master/en-us/_themes/global/deprecation.js"></script>
+
+			<!-- msdocs global object -->
+			<script id="msdocs-script">
+		var msDocs = {
+  "environment": {
+    "accessLevel": "online",
+    "azurePortalHostname": "portal.azure.com",
+    "reviewFeatures": false,
+    "supportLevel": "production",
+    "systemContent": true,
+    "siteName": "learn",
+    "legacyHosting": false
+  },
+  "data": {
+    "contentLocale": "en-us",
+    "contentDir": "ltr",
+    "userLocale": "en-us",
+    "userDir": "ltr",
+    "pageTemplate": "Conceptual",
+    "brand": "azure",
+    "context": {},
+    "standardFeedback": true,
+    "showFeedbackReport": false,
+    "feedbackHelpLinkType": "get-help-at-qna",
+    "feedbackHelpLinkUrl": "https://learn.microsoft.com/answers/tags/125/azure-blob-storage/",
+    "feedbackSystem": "Standard",
+    "feedbackGitHubRepo": "MicrosoftDocs/azure-docs",
+    "feedbackProductUrl": "https://feedback.azure.com/d365community/forum/a8bb4a47-3525-ec11-b6e6-000d3a4f0f84",
+    "extendBreadcrumb": false,
+    "isEditDisplayable": true,
+    "isPrivateUnauthorized": false,
+    "hideViewSource": false,
+    "isPermissioned": false,
+    "hasRecommendations": true,
+    "contributors": [
+      {
+        "name": "akashdubey-ms",
+        "url": "https://github.com/akashdubey-ms"
+      },
+      {
+        "name": "roygara",
+        "url": "https://github.com/roygara"
+      },
+      {
+        "name": "eh8",
+        "url": "https://github.com/eh8"
+      },
+      {
+        "name": "cynthn",
+        "url": "https://github.com/cynthn"
+      },
+      {
+        "name": "b-ahibbard",
+        "url": "https://github.com/b-ahibbard"
+      },
+      {
+        "name": "pauljewellmsft",
+        "url": "https://github.com/pauljewellmsft"
+      },
+      {
+        "name": "mikefrobbins",
+        "url": "https://github.com/mikefrobbins"
+      },
+      {
+        "name": "Padmalathas",
+        "url": "https://github.com/Padmalathas"
+      },
+      {
+        "name": "normesta",
+        "url": "https://github.com/normesta"
+      },
+      {
+        "name": "denisacatalinastan",
+        "url": "https://github.com/denisacatalinastan"
+      },
+      {
+        "name": "schoag-msft",
+        "url": "https://github.com/schoag-msft"
+      },
+      {
+        "name": "khdownie",
+        "url": "https://github.com/khdownie"
+      },
+      {
+        "name": "ShraddhaSSwadi",
+        "url": "https://github.com/ShraddhaSSwadi"
+      },
+      {
+        "name": "stevenmatthew",
+        "url": "https://github.com/stevenmatthew"
+      },
+      {
+        "name": "SaibabaBalapur-MSFT",
+        "url": "https://github.com/SaibabaBalapur-MSFT"
+      },
+      {
+        "name": "tamram",
+        "url": "https://github.com/tamram"
+      },
+      {
+        "name": "pritamso",
+        "url": "https://github.com/pritamso"
+      },
+      {
+        "name": "jborsecnik",
+        "url": "https://github.com/jborsecnik"
+      },
+      {
+        "name": "sumitkharche",
+        "url": "https://github.com/sumitkharche"
+      },
+      {
+        "name": "atikmapari",
+        "url": "https://github.com/atikmapari"
+      },
+      {
+        "name": "SumanthMarigowda",
+        "url": "https://github.com/SumanthMarigowda"
+      },
+      {
+        "name": "DCtheGeek",
+        "url": "https://github.com/DCtheGeek"
+      },
+      {
+        "name": "mhopkins-msft",
+        "url": "https://github.com/mhopkins-msft"
+      },
+      {
+        "name": "rolyon",
+        "url": "https://github.com/rolyon"
+      },
+      {
+        "name": "john-par",
+        "url": "https://github.com/john-par"
+      },
+      {
+        "name": "rboucher",
+        "url": "https://github.com/rboucher"
+      },
+      {
+        "name": "twooley",
+        "url": "https://github.com/twooley"
+      },
+      {
+        "name": "bandersmsft",
+        "url": "https://github.com/bandersmsft"
+      },
+      {
+        "name": "rachrobins",
+        "url": "https://github.com/rachrobins"
+      },
+      {
+        "name": "MarkMcGee1",
+        "url": "https://github.com/MarkMcGee1"
+      },
+      {
+        "name": "SumanthMarigowda-MSFT-zz",
+        "url": "https://github.com/SumanthMarigowda-MSFT-zz"
+      },
+      {
+        "name": "v-kents",
+        "url": "https://github.com/v-kents"
+      },
+      {
+        "name": "nschonni",
+        "url": "https://github.com/nschonni"
+      },
+      {
+        "name": "rcabr",
+        "url": "https://github.com/rcabr"
+      },
+      {
+        "name": "alkohli",
+        "url": "https://github.com/alkohli"
+      },
+      {
+        "name": "MarkMcGeeAtAquent",
+        "url": "https://github.com/MarkMcGeeAtAquent"
+      },
+      {
+        "name": "v-viksur",
+        "url": "https://github.com/v-viksur"
+      },
+      {
+        "name": "qnal",
+        "url": "https://github.com/qnal"
+      },
+      {
+        "name": "AlanSt",
+        "url": "https://github.com/AlanSt"
+      },
+      {
+        "name": "kuhussai",
+        "url": "https://github.com/kuhussai"
+      },
+      {
+        "name": "v-anpasi",
+        "url": "https://github.com/v-anpasi"
+      },
+      {
+        "name": "mimig1",
+        "url": "https://github.com/mimig1"
+      },
+      {
+        "name": "yaronyg",
+        "url": "https://github.com/yaronyg"
+      },
+      {
+        "name": "Lisaco88",
+        "url": "https://github.com/Lisaco88"
+      },
+      {
+        "name": "wmgries",
+        "url": "https://github.com/wmgries"
+      },
+      {
+        "name": "robinsh",
+        "url": "https://github.com/robinsh"
+      },
+      {
+        "name": "tompratt-AQ",
+        "url": "https://github.com/tompratt-AQ"
+      }
+    ]
+  },
+  "functions": {}
+};;
+	</script>
+
+			<!-- base scripts, msdocs global should be before this -->
+			<script src="/static/assets/0.4.03384.7698-a05785c1/scripts/en-us/index-docs.js"></script>
+			
+
+			<!-- json-ld -->
+			
+		</head>
+	
+			<body
+				id="body"
+				data-bi-name="body"
+				class="layout-body "
+				lang="en-us"
+				dir="ltr"
+			>
+				<header class="layout-body-header">
+		<div class="header-holder has-default-focus">
+			
+		<a
+			href="#main"
+			
+			style="z-index: 1070"
+			class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body"
+			
+		>
+			Skip to main content
+		</a>
+	
+		<a
+			href="#"
+			data-skip-to-ask-learn
+			style="z-index: 1070"
+			class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body"
+			hidden
+		>
+			Skip to Ask Learn chat experience
+		</a>
+	
+
+			<div hidden id="cookie-consent-holder" data-test-id="cookie-consent-container"></div>
+			<!-- Unsupported browser warning -->
+			<div
+				id="unsupported-browser"
+				style="background-color: white; color: black; padding: 16px; border-bottom: 1px solid grey;"
+				hidden
+			>
+				<div style="max-width: 800px; margin: 0 auto;">
+					<p style="font-size: 24px">This browser is no longer supported.</p>
+					<p style="font-size: 16px; margin-top: 16px;">
+						Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+					</p>
+					<div style="margin-top: 12px;">
+						<a
+							href="https://go.microsoft.com/fwlink/p/?LinkID=2092881 "
+							style="background-color: #0078d4; border: 1px solid #0078d4; color: white; padding: 6px 12px; border-radius: 2px; display: inline-block;"
+						>
+							Download Microsoft Edge
+						</a>
+						<a
+							href="https://learn.microsoft.com/en-us/lifecycle/faq/internet-explorer-microsoft-edge"
+							style="background-color: white; padding: 6px 12px; border: 1px solid #505050; color: #171717; border-radius: 2px; display: inline-block;"
+						>
+							More info about Internet Explorer and Microsoft Edge
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- site header -->
+			<div
+				id="ms--site-header"
+				data-test-id="site-header-wrapper"
+				itemscope="itemscope"
+				itemtype="http://schema.org/Organization"
+			>
+				<div
+					id="ms--mobile-nav"
+					class="site-header display-none-tablet padding-inline-none gap-none"
+					data-bi-name="mobile-header"
+					data-test-id="mobile-header"
+				></div>
+				<div
+					id="ms--primary-nav"
+					class="site-header display-none display-flex-tablet"
+					data-bi-name="L1-header"
+					data-test-id="primary-header"
+				></div>
+				<div
+					id="ms--secondary-nav"
+					class="site-header display-none display-flex-tablet"
+					data-bi-name="L2-header"
+					data-test-id="secondary-header"
+					
+				></div>
+			</div>
+			
+		<!-- banner -->
+		<div data-banner>
+			<div id="disclaimer-holder"></div>
+			
+		</div>
+		<!-- banner end -->
+	
+		</div>
+	</header>
+				 <section
+					id="layout-body-menu"
+					class="layout-body-menu display-flex"
+					data-bi-name="menu"
+			  >
+					
+		<div
+			id="left-container"
+			class="left-container display-none display-block-tablet padding-inline-sm padding-bottom-sm width-full"
+			data-toc-container="true"
+		>
+			<!-- Regular TOC content (default) -->
+			<div id="ms--toc-content" class="height-full">
+				<nav
+					id="affixed-left-container"
+					class="margin-top-sm-tablet position-sticky display-flex flex-direction-column"
+					aria-label="Primary"
+					data-bi-name="left-toc"
+					role="navigation"
+				></nav>
+			</div>
+			<!-- Collapsible TOC content (hidden by default) -->
+			<div id="ms--toc-content-collapsible" class="height-full" hidden>
+				<nav
+					id="affixed-left-container"
+					class="margin-top-sm-tablet position-sticky display-flex flex-direction-column"
+					aria-label="Primary"
+					data-bi-name="left-toc"
+					role="navigation"
+				>
+					<div
+						id="ms--collapsible-toc-header"
+						class="display-flex flex-direction-row-reverse justify-content-space-between align-items-center margin-bottom-xxs"
+					>
+						<button
+							type="button"
+							class="button button-clear inner-focus"
+							data-collapsible-toc-toggle
+							aria-expanded="true"
+							aria-controls="ms--collapsible-toc-content"
+							aria-label="Table of contents"
+						>
+							<span class="icon font-size-xxl" aria-hidden="true">
+								<span class="docon docon-panel-left-contract"></span>
+							</span>
+						</button>
+						<div id="ms--collapsible-toc-moniker-slot" class="flex-grow-1"></div>
+					</div>
+				</nav>
+			</div>
+		</div>
+	
+			  </section>
+
+				<main
+					id="main"
+					role="main"
+					class="layout-body-main "
+					data-bi-name="content"
+					lang="en-us"
+					dir="ltr"
+				>
+					
+			<div
+		id="ms--content-header"
+		class="content-header default-focus border-bottom-none"
+		data-bi-name="content-header"
+	>
+		<div class="content-header-controls margin-xxs margin-inline-sm-tablet">
+			<button
+				type="button"
+				class="contents-button button button-sm margin-right-xxs"
+				data-bi-name="contents-expand"
+				aria-haspopup="true"
+				data-contents-button
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-menu"></span></span>
+				<span class="contents-expand-title"> Table of contents </span>
+			</button>
+			<button
+				type="button"
+				class="ap-collapse-behavior ap-expanded button button-sm"
+				data-bi-name="ap-collapse"
+				aria-controls="action-panel"
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-exit-mode"></span></span>
+				<span>Exit editor mode</span>
+			</button>
+		</div>
+	</div>
+			<div data-main-column class="padding-sm padding-top-none padding-top-sm-tablet">
+				<div>
+					
+		<div id="article-header" class="background-color-body margin-bottom-xs display-none-print">
+			<div class="display-flex align-items-center justify-content-space-between">
+				
+		<details
+			id="article-header-breadcrumbs-overflow-popover"
+			class="popover"
+			data-for="article-header-breadcrumbs"
+		>
+			<summary
+				class="button button-clear button-primary button-sm inner-focus"
+				aria-label="All breadcrumbs"
+			>
+				<span class="icon">
+					<span class="docon docon-more"></span>
+				</span>
+			</summary>
+			<div id="article-header-breadcrumbs-overflow" class="popover-content padding-none"></div>
+		</details>
+
+		<bread-crumbs
+			id="article-header-breadcrumbs"
+			role="group"
+			aria-label="Breadcrumbs"
+			data-test-id="article-header-breadcrumbs"
+			class="overflow-hidden flex-grow-1 margin-right-sm margin-right-md-tablet margin-right-lg-desktop margin-left-negative-xxs padding-left-xxs"
+		></bread-crumbs>
+	 
+		<div
+			id="article-header-page-actions"
+			class="opacity-none margin-left-auto display-flex flex-wrap-no-wrap align-items-stretch"
+		>
+			
+		<button
+			class="button button-sm border-none inner-focus display-none-tablet flex-shrink-0 "
+			data-bi-name="ask-learn-assistant-entry"
+			data-test-id="ask-learn-assistant-modal-entry-mobile"
+			data-ask-learn-modal-entry
+			
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-label="Ask Learn"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button
+			class="button button-sm display-none display-inline-flex-tablet display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn "
+			data-bi-name="ask-learn-assistant-entry"
+			
+			data-test-id="ask-learn-assistant-modal-entry-tablet"
+			data-ask-learn-modal-entry
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button
+			class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn "
+			data-bi-name="ask-learn-assistant-entry"
+			
+			data-test-id="ask-learn-assistant-flyout-entry"
+			data-ask-learn-flyout-entry
+			data-flyout-button="toggle"
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-controls="ask-learn-flyout"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	 
+		<button
+			type="button"
+			id="ms--focus-mode-button"
+			data-focus-mode
+			data-bi-name="focus-mode-entry"
+			class="button button-sm flex-shrink-0 margin-right-xxs display-none display-inline-flex-desktop"
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-glasses"></span>
+			</span>
+			<span>Focus mode</span>
+		</button>
+	 
+
+			<details class="popover popover-right" id="article-header-page-actions-overflow">
+				<summary
+					class="justify-content-flex-start button button-clear button-sm button-primary inner-focus"
+					aria-label="More actions"
+					title="More actions"
+				>
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-more-vertical"></span>
+					</span>
+				</summary>
+				<div class="popover-content">
+					
+		<button
+			data-page-action-item="overflow-mobile"
+			type="button"
+			class="button-block button-sm inner-focus button button-clear display-none-tablet justify-content-flex-start text-align-left"
+			data-bi-name="contents-expand"
+			data-contents-button
+			data-popover-close
+		>
+			<span class="icon" aria-hidden="true"
+				><span class="docon docon-editor-list-bullet"></span
+			></span>
+			<span class="contents-expand-title">Table of contents</span>
+		</button>
+	 
+		<a
+			id="lang-link-overflow"
+			class="button-sm inner-focus button button-clear button-block justify-content-flex-start text-align-left"
+			data-bi-name="language-toggle"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			data-read-in-link
+			href="#"
+			hidden
+		>
+			<span class="icon" aria-hidden="true" data-read-in-link-icon>
+				<span class="docon docon-locale-globe"></span>
+			</span>
+			<span data-read-in-link-text>Read in English</span>
+		</a>
+	 
+		<button
+			type="button"
+			class="collection button button-clear button-sm button-block justify-content-flex-start text-align-left inner-focus"
+			data-list-type="collection"
+			data-bi-name="collection"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			data-popover-close
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-circle-addition"></span>
+			</span>
+			<span class="collection-status">Add</span>
+		</button>
+	
+					
+		<button
+			type="button"
+			class="collection button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus"
+			data-list-type="plan"
+			data-bi-name="plan"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			data-popover-close
+			hidden
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-circle-addition"></span>
+			</span>
+			<span class="plan-status">Add to plan</span>
+		</button>
+	  
+		<a
+			data-contenteditbtn
+			class="button button-clear button-block button-sm inner-focus justify-content-flex-start text-align-left text-decoration-none"
+			data-bi-name="edit"
+			
+			href="https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/storage/common/storage-introduction.md"
+			data-original_content_git_url="https://github.com/MicrosoftDocs/azure-docs-pr/blob/live/articles/storage/common/storage-introduction.md"
+			data-original_content_git_url_template="{repo}/blob/{branch}/articles/storage/common/storage-introduction.md"
+			data-pr_repo=""
+			data-pr_branch=""
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-edit-outline"></span>
+			</span>
+			<span>Edit</span>
+		</a>
+	
+					
+		<hr class="margin-block-xxs" />
+		<h4 class="font-size-sm padding-left-xxs">Share via</h4>
+		
+					<a
+						class="button button-clear button-sm inner-focus button-block justify-content-flex-start text-align-left text-decoration-none share-facebook"
+						data-bi-name="facebook"
+						data-page-action-item="overflow-all"
+						href="#"
+					>
+						<span class="icon color-primary" aria-hidden="true">
+							<span class="docon docon-facebook-share"></span>
+						</span>
+						<span>Facebook</span>
+					</a>
+
+					<a
+						href="#"
+						class="button button-clear button-sm inner-focus button-block justify-content-flex-start text-align-left text-decoration-none share-twitter"
+						data-bi-name="twitter"
+						data-page-action-item="overflow-all"
+					>
+						<span class="icon color-text" aria-hidden="true">
+							<span class="docon docon-xlogo-share"></span>
+						</span>
+						<span>x.com</span>
+					</a>
+
+					<a
+						href="#"
+						class="button button-clear button-sm inner-focus button-block justify-content-flex-start text-align-left text-decoration-none share-linkedin"
+						data-bi-name="linkedin"
+						data-page-action-item="overflow-all"
+					>
+						<span class="icon color-primary" aria-hidden="true">
+							<span class="docon docon-linked-in-logo"></span>
+						</span>
+						<span>LinkedIn</span>
+					</a>
+					<a
+						href="#"
+						class="button button-clear button-sm inner-focus button-block justify-content-flex-start text-align-left text-decoration-none share-email"
+						data-bi-name="email"
+						data-page-action-item="overflow-all"
+					>
+						<span class="icon color-primary" aria-hidden="true">
+							<span class="docon docon-mail-message"></span>
+						</span>
+						<span>Email</span>
+					</a>
+			  
+	 
+		<hr class="margin-block-xxs" />
+		
+				<button
+					class="button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus"
+					type="button"
+					data-bi-name="copy-markdown"
+					data-page-action-item="overflow-all"
+					data-copy-markdown
+					data-copy-state="idle"
+					data-check-hidden="true"
+				>
+					<span class="icon color-primary" aria-hidden="true">
+						<span data-show-when="idle" class="docon docon-code-lang"></span>
+						<span data-show-when="loading" class="loader" hidden></span>
+						<span data-show-when="success" class="docon docon-check-mark" hidden></span>
+					</span>
+					<span>Copy Markdown</span>
+				</button>
+		   
+				<button
+					class="button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus"
+					type="button"
+					data-bi-name="print"
+					data-page-action-item="overflow-all"
+					data-popover-close
+					data-print-page
+					data-check-hidden="true"
+				>
+					<span class="icon color-primary" aria-hidden="true">
+						<span class="docon docon-print"></span>
+					</span>
+					<span>Print</span>
+				</button>
+		  
+	
+				</div>
+			</details>
+		</div>
+	
+			</div>
+		</div>
+	  
+		<!-- privateUnauthorizedTemplate is hidden by default -->
+		<div unauthorized-private-section data-bi-name="permission-content-unauthorized-private" hidden>
+			<hr class="hr margin-top-xs margin-bottom-sm" />
+			<div class="notification notification-info">
+				<div class="notification-content">
+					<p class="margin-top-none notification-title">
+						<span class="icon" aria-hidden="true"
+							><span class="docon docon-exclamation-circle-solid"></span
+						></span>
+						<span>Note</span>
+					</p>
+					<p class="margin-top-none authentication-determined not-authenticated">
+						Access to this page requires authorization. You can try <a class="docs-sign-in" href="#" data-bi-name="permission-content-sign-in">signing in</a> or <a  class="docs-change-directory" data-bi-name="permisson-content-change-directory">changing directories</a>.
+					</p>
+					<p class="margin-top-none authentication-determined authenticated">
+						Access to this page requires authorization. You can try <a class="docs-change-directory" data-bi-name="permisson-content-change-directory">changing directories</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	
+					<div class="content"><h1 id="introduction-to-azure-storage">Introduction to Azure Storage</h1></div>
+					
+		<div
+			id="article-metadata"
+			data-bi-name="article-metadata"
+			data-test-id="article-metadata"
+			class="page-metadata-container display-flex gap-xxs justify-content-space-between align-items-center flex-wrap-wrap"
+		>
+			 
+				<div
+					id="user-feedback"
+					class="margin-block-xxs display-none display-none-print"
+					hidden
+					data-hide-on-archived
+				>
+					
+		<button
+			id="user-feedback-button"
+			data-test-id="conceptual-feedback-button"
+			class="button button-sm button-clear button-primary display-none"
+			type="button"
+			data-bi-name="user-feedback-button"
+			data-user-feedback-button
+			hidden
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-like"></span>
+			</span>
+			<span>Feedback</span>
+		</button>
+	
+				</div>
+		  
+		</div>
+	 
+		<div data-id="ai-summary" class="display-none-print">
+			<div id="ms--ai-summary-cta" class="margin-top-xs display-flex align-items-center">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-sparkle-fill gradient-text-vivid"></span>
+				</span>
+				<button
+					id="ms--ai-summary"
+					type="button"
+					class="tag tag-sm tag-suggestion margin-left-xxs"
+					data-test-id="ai-summary-cta"
+					data-bi-name="ai-summary-cta"
+					data-an="ai-summary"
+				>
+					<span class="ai-summary-cta-text">
+						Summarize this article for me
+					</span>
+				</button>
+			</div>
+			<!-- Slot where the client will render the summary card after the user clicks the CTA -->
+			<div id="ms--ai-summary-header" class="margin-top-xs"></div>
+		</div>
+	 
+		<nav
+			id="center-doc-outline"
+			class="doc-outline is-hidden-desktop display-none-print margin-bottom-sm"
+			data-bi-name="intopic toc"
+			aria-label="In this article"
+		>
+			<h2 id="ms--in-this-article" class="title is-6 margin-block-xs">
+				In this article
+			</h2>
+		</nav>
+	
+					<div class="content"><p>The Azure Storage platform is Microsoft's cloud storage solution for modern data storage scenarios. Azure Storage offers highly available, massively scalable, durable, and secure storage for a variety of data objects in the cloud. Azure Storage data objects are accessible from anywhere in the world over HTTP or HTTPS via a REST API. Azure Storage also offers client libraries for developers building applications or services with .NET, Java, Python, JavaScript, C++, and Go. Developers and IT professionals can use Azure PowerShell and Azure CLI to write scripts for data management or configuration tasks. The Azure portal and Azure Storage Explorer provide user-interface tools for interacting with Azure Storage.</p>
+<h2 id="benefits-of-azure-storage">Benefits of Azure Storage</h2>
+<p>Azure Storage services offer the following benefits for application developers and IT professionals:</p>
+<ul>
+<li><strong>Durable and highly available.</strong> Redundancy ensures that your data is safe in the event of transient hardware failures. You can also opt to replicate data across data centers or geographical regions for additional protection from local catastrophe or natural disaster. Data replicated in this way remains highly available in the event of an unexpected outage.</li>
+<li><strong>Secure.</strong> All data written to an Azure storage account is encrypted by the service. Azure Storage provides you with fine-grained control over who has access to your data.</li>
+<li><strong>Scalable.</strong> Azure Storage is designed to be massively scalable to meet the data storage and performance needs of today's applications.</li>
+<li><strong>Managed.</strong> Azure handles hardware maintenance, updates, and critical issues for you.</li>
+<li><strong>Accessible.</strong> Data in Azure Storage is accessible from anywhere in the world over HTTP or HTTPS. Microsoft provides client libraries for Azure Storage in a variety of languages, including .NET, Java, Node.js, Python, Go, and others, as well as a mature REST API. Azure Storage supports scripting in Azure PowerShell or Azure CLI. And the Azure portal and Azure Storage Explorer offer easy visual solutions for working with your data.</li>
+</ul>
+<h2 id="azure-storage-data-services">Azure Storage data services</h2>
+<p>The Azure Storage platform includes the following data services:</p>
+<ul>
+<li><a href="../blobs/storage-blobs-introduction" data-linktype="relative-path">Azure Blobs</a>: A massively scalable object store for text and binary data. Also includes support for big data analytics through Data Lake Storage.</li>
+<li><a href="../files/storage-files-introduction" data-linktype="relative-path">Azure Files</a>: Managed file shares for cloud or on-premises deployments.</li>
+<li><a href="../elastic-san/elastic-san-introduction" data-linktype="relative-path">Azure Elastic SAN</a>: A fully integrated solution that simplifies deploying, scaling, managing, and configuring a SAN in Azure.</li>
+<li><a href="../queues/storage-queues-introduction" data-linktype="relative-path">Azure Queues</a>: A messaging store for reliable messaging between application components.</li>
+<li><a href="../tables/table-storage-overview" data-linktype="relative-path">Azure Tables</a>: A NoSQL store for schemaless storage of structured data.</li>
+<li><a href="/en-us/azure/virtual-machines/managed-disks-overview" data-linktype="absolute-path">Azure managed disks</a>: Block-level storage volumes for Azure VMs.</li>
+<li><a href="/en-us/azure/storage/container-storage/container-storage-introduction" data-linktype="absolute-path">Azure Container Storage</a>: A volume management, deployment, and orchestration service built natively for containers.</li>
+</ul>
+<p>Each service is accessed through a storage account with a unique address. To get started, see <a href="storage-account-create" data-linktype="relative-path">Create a storage account</a>.</p>
+<p>Additionally, Azure provides the following specialized storage:</p>
+<ul>
+<li><a href="../../azure-netapp-files/azure-netapp-files-introduction" data-linktype="relative-path">Azure NetApp Files</a>: Enterprise files storage, powered by NetApp: makes it easy for enterprise line-of-business (LOB) and storage professionals to migrate and run complex, file-based applications with no code change. Azure NetApp Files is managed via NetApp accounts and can be accessed via NFS, SMB and dual-protocol volumes. To get started, see <a href="../../azure-netapp-files/azure-netapp-files-create-netapp-account" data-linktype="relative-path">Create a NetApp account</a>.</li>
+<li><a href="/en-us/azure/azure-managed-lustre/amlfs-overview" data-linktype="absolute-path">Azure Managed Lustre</a>: A high-performance distributed parallel file system solution, ideal for HPC workloads that require high throughput and low latency.</li>
+</ul>
+<p>For help in deciding which data services to use for your scenario, see <a href="/en-us/azure/cloud-adoption-framework/ready/considerations/storage-options" data-linktype="absolute-path">Review your storage options</a> in the Microsoft Cloud Adoption Framework.</p>
+<h2 id="review-options-for-storing-data-in-azure">Review options for storing data in Azure</h2>
+<p>Azure provides a variety of storage tools and services. To determine which Azure technology is best suited for your scenario, see <a href="/en-us/azure/cloud-adoption-framework/ready/considerations/storage-options" data-linktype="absolute-path">Review your storage options</a> in the Azure Cloud Adoption Framework.</p>
+<h2 id="sample-scenarios-for-azure-storage-services">Sample scenarios for Azure Storage services</h2>
+<p>The following table compares Azure Storage services and shows example scenarios for each.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Azure Files</strong></td>
+<td>Offers fully managed cloud file shares that you can access from anywhere via the industry standard <a href="/en-us/windows/win32/fileio/microsoft-smb-protocol-and-cifs-protocol-overview" data-linktype="absolute-path">Server Message Block (SMB) protocol</a>, <a href="https://en.wikipedia.org/wiki/Network_File_System" data-linktype="external">Network File System (NFS) protocol</a>, and <a href="/en-us/rest/api/storageservices/file-service-rest-api" data-linktype="absolute-path">Azure Files REST API</a>.<br><br>You can mount Azure file shares from cloud or on-premises deployments of Windows, Linux, and macOS.</td>
+<td>You want to "lift and shift" an application to the cloud that already uses the native file system APIs to share data between it and other applications running in Azure.<br><br>You want to replace or supplement on-premises file servers or NAS devices.<br><br> You want to store development and debugging tools that need to be accessed from many virtual machines.</td>
+</tr>
+<tr>
+<td><strong>Azure NetApp Files</strong></td>
+<td>Offers a fully managed, highly available, enterprise-grade NAS service that can handle the most demanding, high-performance, low-latency workloads requiring advanced data management capabilities.</td>
+<td>You have a difficult-to-migrate workload such as POSIX-compliant Linux and Windows applications, SAP HANA, databases, high-performance compute (HPC) infrastructure and apps, and enterprise web applications. <br><br> You require support for multiple file-storage protocols in a single service, including NFSv3, NFSv4.1, and SMB3.1.x, enables a wide range of application lift-and-shift scenarios, with no need for code changes.</td>
+</tr>
+<tr>
+<td><strong>Azure Blobs</strong></td>
+<td>Allows unstructured data to be stored and accessed at a massive scale in block blobs.<br><br>Also supports <a href="../blobs/data-lake-storage-introduction" data-linktype="relative-path">Azure Data Lake Storage</a> for enterprise big data analytics solutions.</td>
+<td>You want your application to support streaming and random access scenarios.<br><br>You want to be able to access application data from anywhere.<br><br>You want to build an enterprise data lake on Azure and perform big data analytics.</td>
+</tr>
+<tr>
+<td><strong>Azure Elastic SAN</strong></td>
+<td>Azure Elastic SAN is a fully integrated solution that simplifies deploying, scaling, managing, and configuring a SAN, while also offering built-in cloud capabilities like high availability.</td>
+<td>You want large scale storage that is interoperable with multiple types of compute resources (such as SQL, MariaDB, Azure virtual machines, and Azure Kubernetes Services) accessed via the <a href="https://en.wikipedia.org/wiki/ISCSI" data-linktype="external">internet Small Computer Systems Interface</a> (iSCSI) protocol.</td>
+</tr>
+<tr>
+<td><strong>Azure Disks</strong></td>
+<td>Allows data to be persistently stored and accessed from an attached virtual hard disk.</td>
+<td>You want to "lift and shift" applications that use native file system APIs to read and write data to persistent disks.<br><br>You want to store data that isn't required to be accessed from outside the virtual machine to which the disk is attached.</td>
+</tr>
+<tr>
+<td><strong>Azure Container Storage</strong></td>
+<td>Azure Container Storage is a volume management, deployment, and orchestration service that integrates with Kubernetes and is built natively for containers.</td>
+<td>You want to dynamically and automatically provision persistent volumes to store data for stateful applications running on Kubernetes clusters.</td>
+</tr>
+<tr>
+<td><strong>Azure Queues</strong></td>
+<td>Allows for asynchronous message queueing between application components.</td>
+<td>You want to decouple application components and use asynchronous messaging to communicate between them.<br><br>For guidance around when to use Queue Storage versus Service Bus queues, see <a href="../../service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted" data-linktype="relative-path">Storage queues and Service Bus queues - compared and contrasted</a>.</td>
+</tr>
+<tr>
+<td><strong>Azure Tables</strong></td>
+<td>Allows you to store structured NoSQL data in the cloud, providing a key/attribute store with a schemaless design.</td>
+<td>You want to store flexible datasets like user data for web applications, address books, device information, or other types of metadata your service requires. <br><br>For guidance around when to use Table Storage versus Azure Cosmos DB for Table, see <a href="/en-us/azure/cosmos-db/table-support" data-linktype="absolute-path">Developing with Azure Cosmos DB for Table and Azure Table Storage</a>.</td>
+</tr>
+<tr>
+<td><strong>Azure Managed Lustre</strong></td>
+<td>Offers a fully managed, pay-as-you-go file system for high-performance computing (HPC) and AI workloads. Designed to simplify operations, reduce setup costs, and eliminate complex maintenance.</td>
+<td>You want to run HPC workloads that require high throughput and low latency. <br><br>You want to run Lustre workloads in the cloud without the need to manage the underlying infrastructure.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="blob-storage">Blob Storage</h2>
+<p>Azure Blob Storage is Microsoft's object storage solution for the cloud. Blob Storage is optimized for storing massive amounts of unstructured data, such as text or binary data.</p>
+<p>Blob Storage is ideal for:</p>
+<ul>
+<li>Serving images or documents directly to a browser.</li>
+<li>Storing files for distributed access.</li>
+<li>Streaming video and audio.</li>
+<li>Storing data for backup and restore, disaster recovery, and archiving.</li>
+<li>Storing data for analysis by an on-premises or Azure-hosted service.</li>
+</ul>
+<p>Objects in Blob Storage can be accessed from anywhere in the world via HTTP or HTTPS. Users or client applications can access blobs via URLs, the <a href="/en-us/rest/api/storageservices/blob-service-rest-api" data-linktype="absolute-path">Azure Storage REST API</a>, <a href="/en-us/powershell/module/az.storage" data-linktype="absolute-path">Azure PowerShell</a>, <a href="/en-us/cli/azure/storage" data-linktype="absolute-path">Azure CLI</a>, or an Azure Storage client library. The storage client libraries are available for multiple languages, including <a href="/en-us/dotnet/api/overview/azure/storage" data-linktype="absolute-path">.NET</a>, <a href="/en-us/java/api/overview/azure/storage" data-linktype="absolute-path">Java</a>, <a href="https://azure.github.io/azure-storage-node" data-linktype="external">Node.js</a>, and <a href="/en-us/python/api/overview/azure/storage" data-linktype="absolute-path">Python</a>.</p>
+<p>Clients can also securely connect to Blob Storage by using SSH File Transfer Protocol (SFTP) and mount Blob Storage containers by using the Network File System (NFS) 3.0 protocol.</p>
+<p>For more information about Blob Storage, see <a href="../blobs/storage-blobs-introduction" data-linktype="relative-path">Introduction to Blob Storage</a>.</p>
+<h2 id="azure-files">Azure Files</h2>
+<p><a href="../files/storage-files-introduction" data-linktype="relative-path">Azure Files</a> enables you to set up highly available network file shares that can be accessed by using the industry standard <a href="/en-us/windows/win32/fileio/microsoft-smb-protocol-and-cifs-protocol-overview" data-linktype="absolute-path">Server Message Block (SMB) protocol</a>, <a href="https://en.wikipedia.org/wiki/Network_File_System" data-linktype="external">Network File System (NFS) protocol</a>, and <a href="/en-us/rest/api/storageservices/file-service-rest-api" data-linktype="absolute-path">Azure Files REST API</a>. That means that multiple VMs can share the same files with both read and write access. You can also read the files using the REST interface or the storage client libraries.</p>
+<p>One thing that distinguishes Azure Files from files on a corporate file share is that you can access the files from anywhere in the world using a URL that points to the file and includes a shared access signature (SAS) token. You can generate SAS tokens; they allow specific access to a private asset for a specific amount of time.</p>
+<p>File shares can be used for many common scenarios:</p>
+<ul>
+<li><p>Many on-premises applications use file shares. This feature makes it easier to migrate those applications that share data to Azure. If you mount the file share to the same drive letter that the on-premises application uses, the part of your application that accesses the file share should work with minimal, if any, changes.</p>
+</li>
+<li><p>Configuration files can be stored on a file share and accessed from multiple VMs. Tools and utilities used by multiple developers in a group can be stored on a file share, ensuring that everybody can find them, and that they use the same version.</p>
+</li>
+<li><p>Resource logs, metrics, and crash dumps are just three examples of data that can be written to a file share and processed or analyzed later.</p>
+</li>
+</ul>
+<p>For more information about Azure Files, see <a href="../files/storage-files-introduction" data-linktype="relative-path">Introduction to Azure Files</a>.</p>
+<p>Some SMB features aren't applicable to the cloud. For more information, see <a href="/en-us/rest/api/storageservices/features-not-supported-by-the-azure-file-service" data-linktype="absolute-path">Features not supported by the Azure File service</a>.</p>
+<h2 id="azure-elastic-san">Azure Elastic SAN</h2>
+<p>Azure Elastic storage area network (SAN) is Microsoft's answer to the problem of workload optimization and integration between your large scale databases and performance-intensive mission-critical applications. Elastic SAN is a fully integrated solution that simplifies deploying, scaling, managing, and configuring a SAN, while also offering built-in cloud capabilities like high availability.</p>
+<p>Elastic SAN is designed for large scale IO-intensive workloads and top tier databases such as SQL, MariaDB, and support hosting the workloads on virtual machines, or containers such as Azure Kubernetes Service. Elastic SAN volumes are compatible with a wide variety of compute resources through the <a href="https://en.wikipedia.org/wiki/ISCSI" data-linktype="external">iSCSI</a> protocol. Some other benefits of Elastic SAN include a simplified deployment and management interface. Since you can manage storage for multiple compute resources from a single interface, and cost optimization.</p>
+<p>For more information about Azure Elastic SAN, see <a href="../elastic-san/elastic-san-introduction" data-linktype="relative-path">What is Azure Elastic SAN?</a></p>
+<h2 id="azure-container-storage">Azure Container Storage</h2>
+<p>Azure Container Storage integrates with Kubernetes and utilizes existing Azure Storage offerings for actual data storage, offering a volume orchestration and management solution purposely built for containers. You can choose any of the supported backing storage options to create a storage pool for your persistent volumes.</p>
+<p>Azure Container Storage offers substantial benefits:</p>
+<ul>
+<li>Rapid scale out of stateful pods</li>
+<li>Improved performance for stateful workloads</li>
+<li>Kubernetes-native volume orchestration</li>
+</ul>
+<p>For more information about Azure Container Storage, see <a href="../container-storage/container-storage-introduction" data-linktype="relative-path">What is Azure Container Storage?</a></p>
+<h2 id="queue-storage">Queue Storage</h2>
+<p>The Azure Queue service is used to store and retrieve messages. Queue messages can be up to 64 KB in size, and a queue can contain millions of messages. Queues are generally used to store lists of messages to be processed asynchronously.</p>
+<p>For example, say you want your customers to be able to upload pictures, and you want to create thumbnails for each picture. You could have your customer wait for you to create the thumbnails while uploading the pictures. An alternative would be to use a queue. When the customer finishes their upload, write a message to the queue. Then have an Azure Function retrieve the message from the queue and create the thumbnails. Each of the parts of this processing can be scaled separately, giving you more control when tuning it for your usage.</p>
+<p>For more information about Azure Queues, see <a href="../queues/storage-queues-introduction" data-linktype="relative-path">Introduction to Queues</a>.</p>
+<h2 id="table-storage">Table Storage</h2>
+<p>Azure Table Storage is now part of Azure Cosmos DB. To see Azure Table Storage documentation, see the <a href="../tables/table-storage-overview" data-linktype="relative-path">Azure Table Storage overview</a>. In addition to the existing Azure Table Storage service, there's a new Azure Cosmos DB for Table offering that provides throughput-optimized tables, global distribution, and automatic secondary indexes. To learn more and try out the new premium experience, see <a href="/en-us/azure/cosmos-db/table-introduction" data-linktype="absolute-path">Azure Cosmos DB for Table</a>.</p>
+<p>For more information about Table Storage, see <a href="../tables/table-storage-overview" data-linktype="relative-path">Overview of Azure Table Storage</a>.</p>
+<h2 id="disk-storage">Disk Storage</h2>
+<p>An Azure managed disk is a virtual hard disk (VHD). You can think of it like a physical disk in an on-premises server but, virtualized. Azure managed disks are stored as page blobs, which are a random IO storage object in Azure. We call a managed disk 'managed' because it's an abstraction over page blobs, blob containers, and Azure storage accounts. With managed disks, all you have to do is provision the disk, and Azure takes care of the rest.</p>
+<p>For more information about managed disks, see <a href="/en-us/azure/virtual-machines/managed-disks-overview" data-linktype="absolute-path">Introduction to Azure managed disks</a>.</p>
+<h2 id="azure-netapp-files">Azure NetApp Files</h2>
+<p><a href="../../azure-netapp-files/azure-netapp-files-introduction" data-linktype="relative-path">Azure NetApp Files</a> is an enterprise-class, high-performance, metered file storage service. Azure NetApp Files supports any workload type and is highly available by default. You can select service and performance levels, create NetApp accounts, capacity pools, volumes, and manage data protection.</p>
+<p>For more information about Azure NetApp Files, see <a href="../../azure-netapp-files/azure-netapp-files-introduction" data-linktype="relative-path">Introduction to Azure NetApp Files</a>.</p>
+<p>For a comparison of Azure Files and Azure NetApp Files, refer to <a href="../files/storage-files-netapp-comparison" data-linktype="relative-path">Azure Files and Azure NetApp Files comparison</a>.</p>
+<h2 id="azure-managed-lustre">Azure Managed Lustre</h2>
+<p><a href="/en-us/azure/azure-managed-lustre/amlfs-overview" data-linktype="absolute-path">Azure Managed Lustre</a> is a managed file system that offers scalable, powerful, cost-effective storage for HPC workloads.</p>
+<p>Key features and benefits of Azure Managed Lustre include:</p>
+<ul>
+<li><strong>Accelerate HPC workloads</strong>: Offers a high-performance distributed parallel file system solution, ideal for HPC workloads that require high throughput and low latency.</li>
+<li><strong>Purpose-built managed service</strong>: Provides the benefits of a Lustre parallel file system without the complexity of managing the underlying infrastructure. Azure Managed Lustre is a fully managed service that simplifies operations, reduces setup costs, and eliminates complex maintenance.</li>
+<li><strong>Azure Blob Storage integration</strong>: Allows you to connect Azure Managed Lustre file systems with Azure Blob Storage containers for optimal data placement and cost management. For more information, see <a href="/en-us/azure/azure-managed-lustre/blob-integration" data-linktype="absolute-path">Azure Blob Storage integration</a>.</li>
+<li><strong>Azure Kubernetes Service (AKS) integration</strong>: Allows you to containerize workloads using the available AKS-compatible CSI driver. For more information, see <a href="/en-us/azure/azure-managed-lustre/use-csi-driver-kubernetes" data-linktype="absolute-path">Use Azure Managed Lustre with Kubernetes</a>.</li>
+</ul>
+<h2 id="types-of-storage-accounts">Types of storage accounts</h2>
+<p>Azure Storage offers several types of storage accounts. Each type supports different features and has its own pricing model. For more information about storage account types, see <a href="storage-account-overview" data-linktype="relative-path">Azure storage account overview</a>.</p>
+<h2 id="secure-access-to-storage-accounts">Secure access to storage accounts</h2>
+<p>Every request to Azure Storage must be authorized. Azure Storage supports the following authorization methods:</p>
+<ul>
+<li><strong>Microsoft Entra integration for blob, file, queue, and table data.</strong> Azure Storage supports authentication and authorization with Microsoft Entra ID for the Blob, File, Table, and Queue services via Azure role-based access control (Azure RBAC). Authorizing requests with Microsoft Entra ID is recommended for superior security and ease of use. For more information, see <a href="authorize-data-access" data-linktype="relative-path">Authorize access to data in Azure Storage</a>. See <a href="../files/authorize-data-operations-portal" data-linktype="relative-path">Authorize access to file data in the Azure portal</a> to authorize access to file data using your Microsoft Entra account.</li>
+<li><strong>Identity-based authentication over SMB for Azure Files.</strong> Azure Files supports identity-based authorization over SMB (Server Message Block) through either on-premises Active Directory Domain Services (AD DS), Microsoft Entra Domain Services, or Microsoft Entra Kerberos (hybrid user accounts only). For more information, see <a href="../files/storage-files-active-directory-overview" data-linktype="relative-path">Overview of Azure Files identity-based authentication support for SMB access</a> and <a href="../files/storage-files-planning#identity" data-linktype="relative-path">Planning for an Azure Files deployment</a>.</li>
+<li><strong>Authorization with Shared Key.</strong> The Azure Storage Blob, Files, Queue, and Table services support authorization with Shared Key. A client using Shared Key authorization passes a header with every request that is signed using the storage account access key. For more information, see <a href="/en-us/rest/api/storageservices/authorize-with-shared-key" data-linktype="absolute-path">Authorize with Shared Key</a>.</li>
+<li><strong>Authorization using shared access signatures (SAS).</strong> A shared access signature (SAS) is a string containing a security token that can be appended to the URI for a storage resource. The security token encapsulates constraints such as permissions and the interval of access. For more information, see <a href="storage-sas-overview" data-linktype="relative-path">Using Shared Access Signatures (SAS)</a>.</li>
+<li><strong>Active Directory Domain Services with Azure NetApp Files.</strong> Azure NetApp Files features such as SMB volumes, dual-protocol volumes, and NFSv4.1 Kerberos volumes are designed to be used with AD DS. For more information, see <a href="../../azure-netapp-files/understand-guidelines-active-directory-domain-service-site" data-linktype="relative-path">Understand guidelines for Active Directory Domain Services site design and planning for Azure NetApp Files</a> or learn how to <a href="../../azure-netapp-files/configure-ldap-over-tls" data-linktype="relative-path">Configure ADDS LDAP over TLS for Azure NetApp Files</a>.</li>
+</ul>
+<h2 id="encryption">Encryption</h2>
+<p>There are two basic kinds of encryption available for Azure Storage. For more information about security and encryption, see the <a href="../blobs/security-recommendations" data-linktype="relative-path">Azure Storage security guide</a>.</p>
+<h3 id="encryption-at-rest">Encryption at rest</h3>
+<p>Azure Storage encryption protects and safeguards your data to meet your organizational security and compliance commitments. Azure Storage automatically encrypts all data prior to persisting to the storage account and decrypts it prior to retrieval. The encryption, decryption, and key management processes are transparent to users. Customers can also choose to manage their own keys using Azure Key Vault. For more information, see <a href="storage-service-encryption" data-linktype="relative-path">Azure Storage encryption for data at rest</a>.</p>
+<p>All Azure NetApp Files volumes are encrypted using the FIPS 140-2 standard. See <a href="../../azure-netapp-files/faq-security#can-the-storage-be-encrypted-at-rest" data-linktype="relative-path">Security FAQs for Azure NetApp Files</a>.</p>
+<h3 id="client-side-encryption">Client-side encryption</h3>
+<p>The Azure Storage client libraries provide methods for encrypting data from the client library before sending it across the wire and decrypting the response. Data encrypted via client-side encryption is also encrypted at rest by Azure Storage. For more information about client-side encryption, see <a href="storage-client-side-encryption" data-linktype="relative-path">Client-side encryption with .NET for Azure Storage</a>.</p>
+<p>Azure NetApp Files data traffic is inherently secure by design, as it doesn't provide a public endpoint and data traffic stays within customer-owned VNet. Data-in-flight isn't encrypted by default. However, data traffic from an Azure VM (running an NFS or SMB client) to Azure NetApp Files is as secure as any other Azure-VM-to-VM traffic. NFSv4.1 and SMB3 data-in-flight encryption can optionally be enabled. See <a href="../../azure-netapp-files/faq-security#can-the-network-traffic-between-the-azure-virtual-machine-vm-and-the-storage-be-encrypted" data-linktype="relative-path">Security FAQs for Azure NetApp Files</a>.</p>
+<h2 id="redundancy">Redundancy</h2>
+<p>To ensure that your data is durable, Azure Storage stores multiple copies of your data. When you set up your storage account, you select a redundancy option. For more information, see <a href="storage-redundancy?toc=/azure/storage/blobs/toc.json" data-linktype="relative-path">Azure Storage redundancy</a> and <a href="../files/files-redundancy" data-linktype="relative-path">Azure Files data redundancy</a>.</p>
+<p>Azure NetApp Files provides locally redundant storage with <a href="https://azure.microsoft.com/support/legal/sla/netapp/v1_1/" data-linktype="external">99.99% availability</a>.</p>
+<h2 id="transfer-data-to-and-from-azure-storage">Transfer data to and from Azure Storage</h2>
+<p>You have several options for moving data into or out of Azure Storage. Which option you choose depends on the size of your dataset and your network bandwidth. For more information, see <a href="storage-choose-data-transfer-solution" data-linktype="relative-path">Choose an Azure solution for data transfer</a>.</p>
+<p>Azure NetApp Files provides NFS and SMB volumes. You can use any file-based copy tool to migrate data to the service. For more information, see <a href="../../azure-netapp-files/faq-data-migration-protection" data-linktype="relative-path">Data migration and protection FAQs for Azure NetApp Files</a>.</p>
+<h2 id="pricing">Pricing</h2>
+<p>When making decisions about how your data is stored and accessed, you should also consider the costs involved. For more information, see <a href="https://azure.microsoft.com/pricing/details/storage/" data-linktype="external">Azure Storage pricing</a>.</p>
+<p>Azure NetApp Files cloud file storage service is charged per hour based on the provisioned <a href="../../azure-netapp-files/azure-netapp-files-understand-storage-hierarchy#capacity_pools" data-linktype="relative-path">capacity pool</a> capacity. For more information, see <a href="https://azure.microsoft.com/pricing/details/netapp/" data-linktype="external">Azure NetApp Files storage pricing</a>.</p>
+<h2 id="storage-apis-libraries-and-tools">Storage APIs, libraries, and tools</h2>
+<p>You can access resources in a storage account by any language that can make HTTP/HTTPS requests. Additionally, Azure Storage offer programming libraries for several popular languages. These libraries simplify many aspects of working with Azure Storage by handling details such as synchronous and asynchronous invocation, batching of operations, exception management, automatic retries, operational behavior, and so forth. Libraries are currently available for the following languages and platforms, with others in the pipeline:</p>
+<h3 id="azure-storage-data-api-and-library-references">Azure Storage data API and library references</h3>
+<ul>
+<li><a href="/en-us/rest/api/storageservices/" data-linktype="absolute-path">Azure Storage REST API</a></li>
+<li><a href="/en-us/dotnet/api/overview/azure/storage" data-linktype="absolute-path">Azure Storage client libraries for .NET</a></li>
+<li><a href="/en-us/java/api/overview/azure/storage" data-linktype="absolute-path">Azure Storage client libraries for Java</a></li>
+<li><a href="/en-us/javascript/api/overview/azure/storage" data-linktype="absolute-path">Azure Storage client libraries for JavaScript</a></li>
+<li><a href="/en-us/python/api/overview/azure/storage" data-linktype="absolute-path">Azure Storage client libraries for Python</a></li>
+<li><a href="https://github.com/Azure/azure-sdk-for-go/tree/main/sdk/storage/" data-linktype="external">Azure Storage client libraries for Go</a></li>
+<li><a href="https://github.com/Azure/azure-sdk-for-cpp/tree/main/sdk/storage" data-linktype="external">Azure Storage client libraries for C++</a></li>
+</ul>
+<h3 id="azure-storage-management-api-and-library-references">Azure Storage management API and library references</h3>
+<ul>
+<li><a href="/en-us/rest/api/storagerp/" data-linktype="absolute-path">Storage Resource Provider REST API</a></li>
+<li><a href="/en-us/dotnet/api/overview/azure/resourcemanager.storage-readme" data-linktype="absolute-path">Storage Resource Provider Client Library for .NET</a></li>
+<li><a href="/en-us/previous-versions/azure/reference/ee460790(v=azure.100)" data-linktype="absolute-path">Storage Service Management REST API (Classic)</a></li>
+<li><a href="/en-us/rest/api/storageservices/file-service-rest-api" data-linktype="absolute-path">Azure Files REST API</a></li>
+<li><a href="../../azure-netapp-files/azure-netapp-files-develop-with-rest-api" data-linktype="relative-path">Azure NetApp Files REST API</a></li>
+</ul>
+<h3 id="azure-storage-data-movement-api">Azure Storage data movement API</h3>
+<ul>
+<li><a href="storage-use-data-movement-library" data-linktype="relative-path">Storage Data Movement Client Library for .NET</a></li>
+</ul>
+<h3 id="tools-and-utilities">Tools and utilities</h3>
+<ul>
+<li><a href="/en-us/powershell/module/az.storage" data-linktype="absolute-path">Azure PowerShell Cmdlets for Storage</a></li>
+<li><a href="/en-us/cli/azure/storage" data-linktype="absolute-path">Azure CLI Cmdlets for Storage</a></li>
+<li><a href="storage-use-azcopy-v10" data-linktype="relative-path">AzCopy Command-Line Utility</a></li>
+<li><a href="https://azure.microsoft.com/features/storage-explorer/" data-linktype="external">Azure Storage Explorer</a> is a free, standalone app from Microsoft that enables you to work visually with Azure Storage data on Windows, macOS, and Linux.</li>
+<li><a href="https://azure.microsoft.com/resources/templates/?resourceType=Microsoft.Storage" data-linktype="external">Azure Resource Manager templates for Azure Storage</a></li>
+</ul>
+<h2 id="next-steps">Next steps</h2>
+<p>To get up and running with Azure Storage, see <a href="storage-account-create" data-linktype="relative-path">Create a storage account</a>.</p>
+</div>
+					
+		<div
+			id="ms--inline-notifications"
+			class="margin-block-xs"
+			data-bi-name="inline-notification"
+		></div>
+	 
+		<div
+			id="assertive-live-region"
+			role="alert"
+			aria-live="assertive"
+			class="visually-hidden"
+			aria-relevant="additions"
+			aria-atomic="true"
+		></div>
+		<div
+			id="polite-live-region"
+			role="status"
+			aria-live="polite"
+			class="visually-hidden"
+			aria-relevant="additions"
+			aria-atomic="true"
+		></div>
+	
+					
+		<!-- feedback section -->
+		<section
+			id="site-user-feedback-footer"
+			class="font-size-sm margin-top-md display-none-print display-none-desktop"
+			data-test-id="site-user-feedback-footer"
+			data-bi-name="site-feedback-section"
+		>
+			<hr class="hr" />
+			<h2 id="ms--feedback" class="title is-3">Feedback</h2>
+			<div class="display-flex flex-wrap-wrap align-items-center">
+				<p class="font-weight-semibold margin-xxs margin-left-none">
+					Was this page helpful?
+				</p>
+				<div class="buttons">
+					<button
+						class="thumb-rating-button like button button-primary button-sm"
+						data-test-id="footer-rating-yes"
+						data-binary-rating-response="rating-yes"
+						type="button"
+						title="This article is helpful"
+						data-bi-name="button-rating-yes"
+						aria-pressed="false"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-like"></span>
+						</span>
+						<span>Yes</span>
+					</button>
+					<button
+						class="thumb-rating-button dislike button button-primary button-sm"
+						id="standard-rating-no-button"
+						hidden
+						data-test-id="footer-rating-no"
+						data-binary-rating-response="rating-no"
+						type="button"
+						title="This article is not helpful"
+						data-bi-name="button-rating-no"
+						aria-pressed="false"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-dislike"></span>
+						</span>
+						<span>No</span>
+					</button>
+					<details
+						class="popover popover-top"
+						id="mobile-help-popover"
+						data-test-id="footer-feedback-popover"
+					>
+						<summary
+							class="thumb-rating-button dislike button button-primary button-sm"
+							data-test-id="details-footer-rating-no"
+							data-binary-rating-response="rating-no"
+							title="This article is not helpful"
+							data-bi-name="button-rating-no"
+							aria-pressed="false"
+							data-bi-an="feedback-unhelpful-popover"
+						>
+							<span class="icon" aria-hidden="true">
+								<span class="docon docon-dislike"></span>
+							</span>
+							<span>No</span>
+						</summary>
+						<div
+							class="popover-content width-200 width-300-tablet"
+							role="dialog"
+							aria-labelledby="popover-heading"
+							aria-describedby="popover-description"
+						>
+							<p id="popover-heading" class="font-size-lg margin-bottom-xxs font-weight-semibold">
+								Need help with this topic?
+							</p>
+							<p id="popover-description" class="font-size-sm margin-bottom-xs">
+								Want to try using Ask Learn to clarify or guide you through this topic?
+							</p>
+							
+		<div class="buttons flex-direction-row flex-wrap justify-content-center gap-xxs">
+			<div>
+		<button
+			class="button button-sm border inner-focus display-none margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-test-id="ask-learn-assistant-modal-entry-mobile-feedback"
+			data-ask-learn-modal-entry-feedback
+			data-bi-an=feedback-unhelpful-popover
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-label="Ask Learn"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button
+			class="button button-sm display-inline-flex display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-modal-entry-tablet-feedback"
+			data-ask-learn-modal-entry-feedback
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button
+			class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-flyout-entry-feedback"
+			data-ask-learn-flyout-entry-show-only
+			data-flyout-button="toggle"
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-controls="ask-learn-flyout"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	</div>
+			<button
+				type="button"
+				class="button button-sm margin-right-xxs"
+				data-help-option="suggest-fix"
+				data-bi-name="feedback-suggest"
+				data-bi-an="feedback-unhelpful-popover"
+				data-test-id="suggest-fix"
+			>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-feedback"></span>
+				</span>
+				<span> Suggest a fix? </span>
+			</button>
+		</div>
+	
+						</div>
+					</details>
+				</div>
+			</div>
+		</section>
+		<!-- end feedback section -->
+	
+				</div>
+				
+		<div id="ms--additional-resources-mobile" class="display-none-print">
+			<hr class="hr" hidden />
+			<h2 id="ms--additional-resources-mobile-heading" class="title is-3" hidden>
+				Additional resources
+			</h2>
+			
+		<section
+			id="right-rail-recommendations-mobile"
+			class=""
+			data-bi-name="recommendations"
+			hidden
+		></section>
+	 
+		<section
+			id="right-rail-training-mobile"
+			class=""
+			data-bi-name="learning-resource-card"
+			hidden
+		></section>
+	 
+		<section
+			id="right-rail-events-mobile"
+			class=""
+			data-bi-name="events-card"
+			hidden
+		></section>
+	
+		</div>
+	 
+		<div
+			id="article-metadata-footer"
+			data-bi-name="article-metadata-footer"
+			data-test-id="article-metadata-footer"
+			class="page-metadata-container"
+		>
+			<hr class="hr" />
+			<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+				<li class="visibility-hidden-visual-diff">
+			<span class="badge badge-sm text-wrap-pretty">
+				<span>Last updated on <local-time format="twoDigitNumeric"
+		datetime="2025-03-27T17:09:00.000Z"
+		data-article-date-source="calculated"
+		class="is-invisible"
+	>
+		2025-03-27
+	</local-time></span>
+			</span>
+		</li>
+			</ul>
+		</div>
+	
+			</div>
+			
+		<div
+			id="action-panel"
+			role="region"
+			aria-label="Action Panel"
+			class="action-panel"
+			tabindex="-1"
+		></div>
+	
+		
+				</main>
+				<aside
+					id="layout-body-aside"
+					class="layout-body-aside "
+					data-bi-name="aside"
+					aria-label="Additional resources"
+			  >
+					
+		<div
+			id="ms--additional-resources"
+			class="right-container padding-sm display-none display-block-desktop height-full"
+			data-bi-name="pageactions"
+		>
+			<div id="affixed-right-container" data-bi-name="right-column">
+				
+		<nav
+			id="side-doc-outline"
+			class="doc-outline border-bottom padding-bottom-xs margin-bottom-xs"
+			data-bi-name="intopic toc"
+			aria-label="In this article"
+		>
+			<h3>In this article</h3>
+		</nav>
+	
+				<!-- Feedback -->
+				
+		<section
+			id="ms--site-user-feedback-right-rail"
+			class="font-size-sm display-none-print"
+			data-test-id="site-user-feedback-right-rail"
+			data-bi-name="site-feedback-right-rail"
+		>
+			<p class="font-weight-semibold margin-bottom-xs">Was this page helpful?</p>
+			<div class="buttons">
+				<button
+					class="thumb-rating-button like button button-primary button-sm"
+					data-test-id="right-rail-rating-yes"
+					data-binary-rating-response="rating-yes"
+					type="button"
+					title="This article is helpful"
+					data-bi-name="button-rating-yes"
+					aria-pressed="false"
+				>
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-like"></span>
+					</span>
+					<span>Yes</span>
+				</button>
+				<button
+					class="thumb-rating-button dislike button button-primary button-sm"
+					id="right-rail-no-button"
+					hidden
+					data-test-id="right-rail-rating-no"
+					data-binary-rating-response="rating-no"
+					type="button"
+					title="This article is not helpful"
+					data-bi-name="button-rating-no"
+					aria-pressed="false"
+				>
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-dislike"></span>
+					</span>
+					<span>No</span>
+				</button>
+				<details class="popover popover-right" id="help-popover" data-test-id="feedback-popover">
+					<summary
+						tabindex="0"
+						class="thumb-rating-button dislike button button-primary button-sm"
+						data-test-id="details-right-rail-rating-no"
+						data-binary-rating-response="rating-no"
+						title="This article is not helpful"
+						data-bi-name="button-rating-no"
+						aria-pressed="false"
+						data-bi-an="feedback-unhelpful-popover"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-dislike"></span>
+						</span>
+						<span>No</span>
+					</summary>
+					<div
+						class="popover-content width-200 width-300-tablet"
+						role="dialog"
+						aria-labelledby="popover-heading"
+						aria-describedby="popover-description"
+					>
+						<p
+							id="popover-heading-right-rail"
+							class="font-size-lg margin-bottom-xxs font-weight-semibold"
+						>
+							Need help with this topic?
+						</p>
+						<p id="popover-description-right-rail" class="font-size-sm margin-bottom-xs">
+							Want to try using Ask Learn to clarify or guide you through this topic?
+						</p>
+						
+		<div class="buttons flex-direction-row flex-wrap justify-content-center gap-xxs">
+			<div>
+		<button
+			class="button button-sm border inner-focus display-none margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-test-id="ask-learn-assistant-modal-entry-mobile-feedback"
+			data-ask-learn-modal-entry-feedback
+			data-bi-an=feedback-unhelpful-popover
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-label="Ask Learn"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button
+			class="button button-sm display-inline-flex display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-modal-entry-tablet-feedback"
+			data-ask-learn-modal-entry-feedback
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button
+			class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-flyout-entry-feedback"
+			data-ask-learn-flyout-entry-show-only
+			data-flyout-button="toggle"
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-controls="ask-learn-flyout"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	</div>
+			<button
+				type="button"
+				class="button button-sm margin-right-xxs"
+				data-help-option="suggest-fix"
+				data-bi-name="feedback-suggest"
+				data-bi-an="feedback-unhelpful-popover"
+				data-test-id="suggest-fix"
+			>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-feedback"></span>
+				</span>
+				<span> Suggest a fix? </span>
+			</button>
+		</div>
+	
+					</div>
+				</details>
+			</div>
+		</section>
+	
+			</div>
+		</div>
+	
+			  </aside> <section
+					id="layout-body-flyout"
+					class="layout-body-flyout "
+					data-bi-name="flyout"
+			  >
+					 <div
+	class="height-full border-left background-color-body-medium"
+	id="ask-learn-flyout"
+></div>
+			  </section> <div class="layout-body-footer " data-bi-name="layout-footer">
+		<footer
+			id="footer"
+			data-test-id="footer"
+			data-bi-name="footer"
+			class="footer-layout has-padding has-default-focus border-top  uhf-container"
+			role="contentinfo"
+		>
+			<div class="display-flex gap-xs flex-wrap-wrap is-full-height padding-right-lg-desktop">
+				
+		<a
+			data-mscc-ic="false"
+			href="#"
+			data-bi-name="select-locale"
+			class="locale-selector-link flex-shrink-0 button button-sm button-clear external-link-indicator"
+			id=""
+			title=""
+			><span class="icon" aria-hidden="true"
+				><span class="docon docon-world"></span></span
+			><span class="local-selector-link-text">en-us</span></a
+		>
+	 <div class="ccpa-privacy-link" data-ccpa-privacy-link hidden>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://aka.ms/yourcaliforniaprivacychoices"
+			data-bi-name="your-privacy-choices"
+			class="button button-sm button-clear flex-shrink-0 external-link-indicator"
+			id=""
+			title=""
+			>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 30 14"
+			xml:space="preserve"
+			height="16"
+			width="43"
+			aria-hidden="true"
+			focusable="false"
+		>
+			<path
+				d="M7.4 12.8h6.8l3.1-11.6H7.4C4.2 1.2 1.6 3.8 1.6 7s2.6 5.8 5.8 5.8z"
+				style="fill-rule:evenodd;clip-rule:evenodd;fill:#fff"
+			></path>
+			<path
+				d="M22.6 0H7.4c-3.9 0-7 3.1-7 7s3.1 7 7 7h15.2c3.9 0 7-3.1 7-7s-3.2-7-7-7zm-21 7c0-3.2 2.6-5.8 5.8-5.8h9.9l-3.1 11.6H7.4c-3.2 0-5.8-2.6-5.8-5.8z"
+				style="fill-rule:evenodd;clip-rule:evenodd;fill:#06f"
+			></path>
+			<path
+				d="M24.6 4c.2.2.2.6 0 .8L22.5 7l2.2 2.2c.2.2.2.6 0 .8-.2.2-.6.2-.8 0l-2.2-2.2-2.2 2.2c-.2.2-.6.2-.8 0-.2-.2-.2-.6 0-.8L20.8 7l-2.2-2.2c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0l2.2 2.2L23.8 4c.2-.2.6-.2.8 0z"
+				style="fill:#fff"
+			></path>
+			<path
+				d="M12.7 4.1c.2.2.3.6.1.8L8.6 9.8c-.1.1-.2.2-.3.2-.2.1-.5.1-.7-.1L5.4 7.7c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0L8 8.6l3.8-4.5c.2-.2.6-.2.9 0z"
+				style="fill:#06f"
+			></path>
+		</svg>
+	
+			<span>Your Privacy Choices</span></a
+		>
+	
+	</div>
+				<div class="flex-shrink-0">
+		<div class="dropdown has-caret-up">
+			<button
+				data-test-id="theme-selector-button"
+				class="dropdown-trigger button button-clear button-sm inner-focus theme-dropdown-trigger"
+				aria-controls="{{ themeMenuId }}"
+				aria-expanded="false"
+				title="Theme"
+				data-bi-name="theme"
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-sun"></span></span>
+				<span>Theme</span>
+				<span class="icon expanded-indicator" aria-hidden="true">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<div class="dropdown-menu" id="{{ themeMenuId }}" role="menu">
+				<ul class="theme-selector padding-xxs" data-test-id="theme-dropdown-menu">
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="light"
+						>
+							<span class="theme-light margin-right-xxs">
+								<span
+									class="theme-selector-icon border display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> Light </span>
+						</button>
+					</li>
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="dark"
+						>
+							<span class="theme-dark margin-right-xxs">
+								<span
+									class="border theme-selector-icon display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> Dark </span>
+						</button>
+					</li>
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="high-contrast"
+						>
+							<span class="theme-high-contrast margin-right-xxs">
+								<span
+									class="border theme-selector-icon display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> High contrast </span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+			</div>
+			<ul class="links" data-bi-name="footerlinks">
+				<li class="manage-cookies-holder" hidden=""></li>
+				<li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/principles-for-ai-generated-content"
+			data-bi-name="aiDisclaimer"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>AI Disclaimer</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/previous-versions/"
+			data-bi-name="archivelink"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Previous Versions</a
+		>
+	
+	</li> <li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://techcommunity.microsoft.com/t5/microsoft-learn-blog/bg-p/MicrosoftLearnBlog"
+			data-bi-name="bloglink"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Blog</a
+		>
+	
+	</li> <li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/contribute"
+			data-bi-name="contributorGuide"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Contribute</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://go.microsoft.com/fwlink/?LinkId=521839"
+			data-bi-name="privacy"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Privacy</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://go.microsoft.com/fwlink/?linkid=2259814"
+			data-bi-name="consumer-health-privacy"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Consumer Health Privacy</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/legal/termsofuse"
+			data-bi-name="termsofuse"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Terms of Use</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://www.microsoft.com/legal/intellectualproperty/Trademarks/"
+			data-bi-name="trademarks"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Trademarks</a
+		>
+	
+	</li>
+				<li>&copy; Microsoft 2026</li>
+			</ul>
+		</footer>
+	</footer>
+			</body>
+		</html>
