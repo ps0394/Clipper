@@ -2,7 +2,7 @@
 Purpose: This file provides authoritative instructions for GitHub Copilot (VS Code) when working in this repository. Copilot should treat this document as a system-level constraint and design contract for all code generation, reasoning, and suggestions.
 
 
-This repository implements YARA (Yet Another Retrieval Analyzer), a CLI-first retrievability evaluation system with agent-ready content negotiation testing. Copilot must optimize for determinism, auditability, and repeatability, not autonomous behavior.
+This repository implements Clipper (Command-Line Interface Progressive Performance Evaluation & Reporting), a CLI-first retrievability evaluation system with agent-ready content negotiation testing. Copilot must optimize for determinism, auditability, and repeatability, not autonomous behavior.
 
 **GitHub Integration Available**: This repository includes GitHub Copilot Chat integration and agent automation scripts while preserving CLI-first principles. Copilot can guide users to these interfaces but must not suggest bypassing the underlying CLI architecture.
 

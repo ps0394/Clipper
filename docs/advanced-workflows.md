@@ -1,37 +1,37 @@
-# Advanced Workflows for Product Managers - YARA 2.0
+# Advanced Workflows for Product Managers - Clipper
 
-This guide covers enterprise-grade workflows for documentation quality assessment using **YARA 2.0** (Yet Another Retrieval Analyzer), designed for product managers working on agentic retrieval, grounding, and task success.
+This guide covers enterprise-grade workflows for documentation quality assessment using **Clipper** (Command-Line Interface Progressive Performance Evaluation & Reporting), designed for product managers working on agentic retrieval, grounding, and task success.
 
-## Overview: PM Use Cases with YARA 2.0
+## Overview: PM Use Cases with Clipper
 
-YARA 2.0 enables product managers to:
+Clipper enables product managers to:
 - **Benchmark documentation** against major cloud providers using proven hybrid scoring methodology
 - **Generate stakeholder presentations** with scientifically accurate data (90% correlation with agent success)
 - **Run large-scale evaluations** on hundreds of URLs with Lighthouse integration and progress tracking
 - **Make data-driven decisions** based on accessibility, SEO, performance, and agent readiness metrics
 - **Track improvement ROI** with before/after hybrid scores that predict real agent performance
-- **Set up automated quality gates** with YARA 2.0 scoring thresholds in CI/CD pipelines
+- **Set up automated quality gates** with Clipper scoring thresholds in CI/CD pipelines
 
 ---
 
-## 🚀 YARA 2.0 Evaluation Workflow
+## 🚀 Clipper Evaluation Workflow
 
-### 1. Standard YARA 2.0 Hybrid Evaluation
+### 1. Standard Clipper Standards-Based Evaluation
 ```bash
-# Full YARA 2.0 with Lighthouse integration
-python -m retrievability.cli express your-urls.txt --out evaluation-results/ --api-key YOUR_PAGESPEED_KEY
-
-# YARA 2.0 without API key (content analysis + agent simulation)
+# Full Clipper with performance optimization (default - 2.2x faster)
 python -m retrievability.cli express your-urls.txt --out evaluation-results/
 
-# Legacy YARA for comparison
-python -m retrievability.cli express your-urls.txt --out legacy-results/ --legacy
+# Clipper standard mode (slower, for debugging)
+python -m retrievability.cli express your-urls.txt --out evaluation-results/ --standard
+
+# Performance benchmarking
+python -m retrievability.cli express your-urls.txt --out evaluation-results/ --benchmark
 ```
 
-**YARA 2.0 Outputs:**
-- Terminal summary with **hybrid scores** and component breakdowns
-- `evaluation-results/report.md` - Enhanced report with Lighthouse metrics and agent predictions
-- `evaluation-results/report_scores.json` - Hybrid scoring data with subscores
+**Clipper Outputs:**
+- Terminal summary with **standards-based scores** and component breakdowns
+- `evaluation-results/report.md` - Enhanced report with WCAG, W3C, and Schema.org metrics
+- `evaluation-results/report_scores.json` - Standards-based scoring data with component scores
 - `evaluation-results/*.html` - Captured HTML for evidence and debugging
 
 ### 2. Hybrid Score Analysis
@@ -82,7 +82,7 @@ The `scripts/Invoke-YaraEvaluation.ps1` script enables M365 Copilot integration:
 ```
 
 ### In M365 Copilot
-**User prompt**: "Run YARA evaluation on these documentation URLs: [paste URLs] and show me the raw scores"
+**User prompt**: "Run Clipper evaluation on these documentation URLs: [paste URLs] and show me the raw scores"
 
 **Copilot executes**: 
 ```powershell

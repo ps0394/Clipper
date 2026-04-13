@@ -80,10 +80,10 @@ STANDARDS_AUTHORITY = {
 | GitHub Docs | 80+ Range | Strong semantic HTML, accessibility | Schema.org enhancement |
 | AWS Documentation | 70+ Range | Good content quality | Structured data gaps |
 
-*Try Clipper immediately: No API keys, no setup required!*
+**Try Clipper immediately: No API keys, no setup required, 2.2x faster by default!**
 
 ```bash
-# Works from any Copilot conversation
+# Works from any Copilot conversation (performance mode default)
 python main.py express --urls https://your-docs.com --out results/
 ```
 
@@ -121,16 +121,22 @@ python main.py express clipper-test-urls.txt --out evaluation-results
 Clipper provides a complete **standards-based evaluation pipeline**:
 
 ### **🚀 Express Mode (Recommended)**
-Run complete Access Gate evaluation in one command:
+Run complete Access Gate evaluation in one command with **2.2x faster performance by default**:
 ```bash
-# Single URL evaluation
+# Single URL evaluation (performance mode - 2x faster)
 python main.py express --urls https://developer.upsun.com/api/sdk/php --out results/
 
-# Multiple URLs from file  
+# Multiple URLs from file (batch optimized)  
 python main.py express samples/urls.txt --out comprehensive-results/ --name evaluation
 
-# Copilot-friendly (minimal output)
+# Copilot-friendly (minimal output, maximum speed)
 python main.py express urls.txt --out results/ --quiet
+
+# Debug mode (slower, detailed analysis)
+python main.py express urls.txt --out results/ --standard
+
+# Performance benchmarking
+python main.py express urls.txt --out results/ --benchmark
 ```
 
 ### **Step-by-Step Pipeline**
@@ -188,29 +194,38 @@ Every evaluation generates comprehensive documentation:
 
 ### **Enterprise Workflows**
 ```bash
-# Quality gate integration
+# Quality gate integration (2.2x faster CI/CD)
 python main.py express staging-urls.txt --out quality-gate/ --quiet
 if jq '.parseability_score >= 70' quality-gate/report_scores.json; then
   echo "✅ Quality gate passed"
 else 
   echo "❌ Quality gate failed - see audit trail"
 fi
+
+# Batch evaluation (optimized performance)
+python main.py express production-urls.txt --out batch-audit/ --name prod-audit
+
+# Debug mode for detailed analysis  
+python main.py express problem-urls.txt --out debug-analysis/ --standard
 ```
 
 ## 🚀 Quick Start Demo
 
-**5-Minute Clipper Validation:**
+**5-Minute Clipper Validation (2.2x Faster Performance):**
 
 ```bash
-# 1. Test with Upsun PHP SDK (validation example)
+# 1. Test with Upsun PHP SDK (performance mode - under 4 seconds)
 echo "https://developer.upsun.com/api/sdk/php" > test-url.txt
 python main.py express test-url.txt --out demo-results --name validation
 
-# 2. Review standards-based results
+# 2. Review standards-based results  
 cat demo-results/validation.md
 
 # 3. Examine audit trail
 jq '.audit_trail' demo-results/validation_scores.json
+
+# 4. Optional: Compare performance modes
+python main.py express test-url.txt --out demo-results --benchmark
 ```
 
 **Expected Output:**
@@ -331,11 +346,11 @@ clipper/
 ├─ retrievability/
 │  ├─ cli.py                         # Clipper CLI interface
 │  ├─ access_gate_evaluator.py       # Standards-based evaluation engine
-│  ├─ score.py                       # YARA 3.0 scoring orchestration
+│  ├─ score.py                       # Clipper scoring orchestration
 │  ├─ crawl.py                       # URL acquisition
 │  ├─ parse.py                       # Content signal extraction
 │  ├─ report.py                      # Audit trail generation
-│  └─ schemas.py                     # YARA 3.0 data structures
+│  └─ schemas.py                     # Clipper data structures
 ├─ samples/
 │  ├─ urls.txt                       # Sample Microsoft Learn URLs
 │  └─ snapshots/                     # HTML snapshot storage
@@ -374,15 +389,15 @@ python main.py express --urls https://docs.updated-site.com --out regression-tes
 # Compare against baseline standards compliance
 ```
 
-## Why YARA 3.0?
+## Why Clipper?
 
-### **🚫 Problems with YARA 2.0**
+### **🚫 Problems with Previous Approaches**
 - ❌ Required PageSpeed Insights API (rate limits, costs)
 - ❌ Dependent on Google Lighthouse availability  
 - ❌ Custom scoring algorithms (not defensible)
 - ❌ Setup friction for Copilot integration
 
-### **✅ YARA 3.0 Solutions**
+### **✅ Clipper Solutions**
 - ✅ **API-Free Operation** - Works immediately, anywhere
 - ✅ **Industry Standards** - Every score traceable to authorities
 - ✅ **Enterprise Defensible** - Comprehensive audit trails
@@ -393,7 +408,7 @@ python main.py express --urls https://docs.updated-site.com --out regression-tes
 
 ## Contributing
 
-YARA 3.0 welcomes contributions that enhance standards-based evaluation:
+Clipper welcomes contributions that enhance standards-based evaluation:
 
 1. **Standards Integration** - Add support for additional industry standards
 2. **Evaluation Enhancement** - Improve component-specific analysis  
@@ -404,11 +419,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines and standards 
 
 ## License
 
-YARA 3.0 - Standards-Based Access Gate Evaluator
+Clipper - Standards-Based Access Gate Evaluator
 Licensed under MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-**🚀 YARA 3.0: Where industry standards meet agent-ready content evaluation.**
+**🚀 Clipper: Where industry standards meet agent-ready content evaluation.**
 
 

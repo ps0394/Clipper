@@ -185,15 +185,15 @@ The agent approach gives you exactly what you wanted - a simple interface where 
 
 ---
 
-# 🎯 YARA Benchmarking & Validation Scripts
+# 🎯 Clipper Benchmarking & Validation Scripts
 
-These scripts help validate YARA's accuracy and ensure consistent evaluation results.
+These scripts help validate Clipper's accuracy and ensure consistent evaluation results.
 
 ## Available Benchmarking Tools
 
 ### 1. Benchmark Validation - `benchmark-validation.py`
 
-Validates YARA results against curated expectations:
+Validates Clipper results against curated expectations:
 
 ```bash
 # Validate evaluation results
@@ -226,7 +226,7 @@ python scripts/create-benchmark.py validate
 
 ### 3. Consistency Testing - `consistency-test.py`
 
-Tests if YARA gives consistent results across multiple runs:
+Tests if Clipper gives consistent results across multiple runs:
 
 ```bash
 # Test consistency (3 runs)
@@ -242,7 +242,7 @@ python scripts/consistency-test.py samples/urls.txt --runs 5 --output consistenc
 # 1. Create benchmark dataset
 python scripts/create-benchmark.py create mixed --output benchmark-urls/mixed.txt
 
-# 2. Run YARA evaluation  
+# 2. Run Clipper evaluation  
 python -m retrievability.cli express benchmark-urls/mixed.txt --out benchmark-results --name benchmark
 
 # 3. Validate results
