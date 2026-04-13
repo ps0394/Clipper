@@ -48,25 +48,15 @@ jobs:
         echo "URLs to evaluate:"
         cat evaluation-urls.txt
         
-    - name: Run retrievability evaluation pipeline
+    - name: Run YARA evaluation pipeline
+      env:
+        PAGESPEED_API_KEY: ${{ secrets.PAGESPEED_API_KEY }}
       run: |
-        echo "🔍 Starting documentation retrievability evaluation..."
+        echo "🔍 Starting YARA documentation evaluation..."
         
-        # Step 1: Crawl URLs
-        echo "📥 Crawling documentation pages..."
-        python -m retrievability.cli crawl evaluation-urls.txt --out ${{ env.RESULTS_DIR }}/snapshots/
-        
-        # Step 2: Parse HTML and extract signals
-        echo "🧩 Parsing HTML and extracting signals..."
-        python -m retrievability.cli parse ${{ env.RESULTS_DIR }}/snapshots/ --out ${{ env.RESULTS_DIR }}/parse.json
-        
-        # Step 3: Score results and classify failure modes
-        echo "📊 Scoring results and classifying failure modes..."
-        python -m retrievability.cli score ${{ env.RESULTS_DIR }}/parse.json --out ${{ env.RESULTS_DIR }}/scores.json
-        
-        # Step 4: Generate human-readable report
-        echo "📄 Generating report..."
-        python -m retrievability.cli report ${{ env.RESULTS_DIR }}/scores.json --md ${{ env.RESULTS_DIR }}/report.md
+        # Run YARA 2.0 hybrid evaluation
+        echo "🚀 Running YARA 2.0 Hybrid evaluation..."
+        python -m retrievability.cli express evaluation-urls.txt --out ${{ env.RESULTS_DIR }} --name evaluation
         
         echo "✅ Evaluation pipeline completed"
         
@@ -78,7 +68,7 @@ jobs:
         import sys
         
         try:
-            with open('${{ env.RESULTS_DIR }}/scores.json') as f:
+            with open('${{ env.RESULTS_DIR }}/evaluation_scores.json') as f:
                 scores = json.load(f)
             
             if not scores:
@@ -98,6 +88,18 @@ jobs:
             print(f'CLEAN_COUNT={clean_count}')
             print(f'CLEAN_PERCENTAGE={clean_percentage:.1f}')
             print(f'TOTAL_PAGES={total_pages}')
+            
+            # Output for GitHub Actions
+            with open('${{ github.env }}', 'a') as f:
+                f.write(f'AVERAGE_SCORE={avg_score:.1f}\n')
+                f.write(f'CLEAN_COUNT={clean_count}\n') 
+                f.write(f'CLEAN_PERCENTAGE={clean_percentage:.1f}\n')
+                f.write(f'TOTAL_PAGES={total_pages}\n')
+                
+        except Exception as e:
+            print(f'Error calculating metrics: {e}')
+            sys.exit(1)
+        "
             print(f'STRUCTURE_MISSING={structure_missing}')
             print(f'EXTRACTION_NOISY={extraction_noisy}')
             

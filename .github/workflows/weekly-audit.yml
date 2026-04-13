@@ -54,6 +54,7 @@ jobs:
         min-score: '75'
         min-clean-percentage: '60'
         fail-on-quality-gate: 'false'  # Don't fail the audit, just collect data
+        api-key: ${{ secrets.PAGESPEED_API_KEY }}
         
     - name: Analyze quality trends
       id: trends

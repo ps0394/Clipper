@@ -37,7 +37,7 @@ When a user requests URL evaluation:
 1. Extract all URLs from their message
 2. Use the GitHub CLI to trigger the quick-evaluate.yml workflow:
    ```
-   gh workflow run quick-evaluate.yml --repo ps0394/Retrieval -f urls="[URL list]" -f output_name="copilot-[timestamp]"
+   gh workflow run quick-evaluate.yml --repo ps0394/YARA -f urls="[URL list]" -f output_name="copilot-[timestamp]"
    ```
 3. Monitor the workflow status and inform the user of progress
 4. Once complete, provide a summary of the results and a link to the full workflow run

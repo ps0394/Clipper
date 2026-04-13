@@ -27,14 +27,14 @@ For URL evaluation requests, I will execute:
 
 ```bash
 gh workflow run quick-evaluate.yml \
-  --repo ps0394/Retrieval \
+  --repo ps0394/YARA \
   -f urls="[parsed URLs, one per line]" \
   -f output_name="copilot-eval-[timestamp]"
 ```
 
 Then monitor completion with:
 ```bash  
-gh run list --repo ps0394/Retrieval --workflow quick-evaluate.yml --limit 1
+gh run list --repo ps0394/YARA --workflow quick-evaluate.yml --limit 1
 ```
 
 ### Response Format
