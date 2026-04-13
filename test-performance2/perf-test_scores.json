@@ -1,0 +1,276 @@
+[
+  {
+    "parseability_score": 36.025,
+    "failure_mode": "severe_issues",
+    "html_path": "28f3848e8ba8.html",
+    "url": "https://httpbin.org/html",
+    "component_scores": {
+      "wcag_accessibility": 50,
+      "structured_data": 0,
+      "http_compliance": 100.0,
+      "semantic_html": 2.0,
+      "content_quality": 53.5
+    },
+    "audit_trail": {
+      "wcag_accessibility": {
+        "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+        "method": "Optimized accessibility evaluation",
+        "optimization": "WebDriver pooling + async operations",
+        "violations_count": 4,
+        "passes_count": 8,
+        "violations": [
+          {
+            "description": "Ensures each HTML document contains a non-empty <title> element",
+            "help": "Documents must have <title> element to aid in navigation",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/document-title?application=axeAPI",
+            "id": "document-title",
+            "impact": "serious",
+            "nodes": [
+              {
+                "all": [],
+                "any": [
+                  {
+                    "data": null,
+                    "id": "doc-has-title",
+                    "impact": "serious",
+                    "message": "Document does not have a non-empty <title> element",
+                    "relatedNodes": []
+                  }
+                ],
+                "failureSummary": "Fix any of the following:\n  Document does not have a non-empty <title> element",
+                "html": "<html>",
+                "impact": "serious",
+                "none": [],
+                "target": [
+                  "html"
+                ]
+              }
+            ],
+            "tags": [
+              "cat.text-alternatives",
+              "wcag2a",
+              "wcag242"
+            ]
+          },
+          {
+            "description": "Ensures every HTML document has a lang attribute",
+            "help": "<html> element must have a lang attribute",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/html-has-lang?application=axeAPI",
+            "id": "html-has-lang",
+            "impact": "serious",
+            "nodes": [
+              {
+                "all": [],
+                "any": [
+                  {
+                    "data": null,
+                    "id": "has-lang",
+                    "impact": "serious",
+                    "message": "The <html> element does not have a lang attribute",
+                    "relatedNodes": []
+                  }
+                ],
+                "failureSummary": "Fix any of the following:\n  The <html> element does not have a lang attribute",
+                "html": "<html>",
+                "impact": "serious",
+                "none": [],
+                "target": [
+                  "html"
+                ]
+              }
+            ],
+            "tags": [
+              "cat.language",
+              "wcag2a",
+              "wcag311"
+            ]
+          },
+          {
+            "description": "Ensures the page has only one main landmark and each iframe in the page has at most one main landmark",
+            "help": "Page must have one main landmark",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/landmark-one-main?application=axeAPI",
+            "id": "landmark-one-main",
+            "impact": "moderate",
+            "nodes": [
+              {
+                "all": [
+                  {
+                    "data": null,
+                    "id": "page-has-main",
+                    "impact": "moderate",
+                    "message": "Page does not have a main landmark",
+                    "relatedNodes": []
+                  }
+                ],
+                "any": [],
+                "failureSummary": "Fix all of the following:\n  Page does not have a main landmark",
+                "html": "<html>",
+                "impact": "moderate",
+                "none": [],
+                "target": [
+                  "html"
+                ]
+              }
+            ],
+            "tags": [
+              "cat.semantics",
+              "best-practice"
+            ]
+          },
+          {
+            "description": "Ensures all page content is contained by landmarks",
+            "help": "All page content must be contained by landmarks",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/region?application=axeAPI",
+            "id": "region",
+            "impact": "moderate",
+            "nodes": [
+              {
+                "all": [],
+                "any": [
+                  {
+                    "data": null,
+                    "id": "region",
+                    "impact": "moderate",
+                    "message": "Some page content is not contained by landmarks",
+                    "relatedNodes": [
+                      {
+                        "html": "<h1>Herman Melville - Moby-Dick</h1>",
+                        "target": [
+                          "h1"
+                        ]
+                      },
+                      {
+                        "html": "<p>",
+                        "target": [
+                          "p"
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks",
+                "html": "<html>",
+                "impact": "moderate",
+                "none": [],
+                "target": [
+                  "html"
+                ]
+              }
+            ],
+            "tags": [
+              "cat.keyboard",
+              "best-practice"
+            ]
+          }
+        ],
+        "evaluation_method": "Pooled WebDriver + axe-core"
+      },
+      "structured_data": {
+        "standard": "Schema.org (Google/Microsoft/Yahoo)",
+        "method": "Structured data extraction and validation",
+        "formats_found": [],
+        "score_calculation": "Based on structured data richness and completeness",
+        "extracted_metadata": {
+          "json_ld_items": 0,
+          "microdata_items": 0,
+          "opengraph_items": 0,
+          "microformat_items": 0
+        },
+        "score_breakdown": {
+          "json_ld": 0,
+          "microdata": 0,
+          "opengraph": 0,
+          "microformat": 0
+        },
+        "sample_structured_data": {}
+      },
+      "http_compliance": {
+        "standard": "RFC 7231 Content Negotiation (IETF)",
+        "method": "Async HTTP standards compliance check",
+        "negotiation_tests": [
+          {
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "content_length": "3741"
+          },
+          {
+            "accept": "application/json",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "content_length": "3741"
+          },
+          {
+            "accept": "text/plain",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "content_length": "3741"
+          },
+          {
+            "accept": "application/xml",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "content_length": "3741"
+          }
+        ],
+        "successful_negotiations": 4,
+        "score_calculation": "4/4 successful negotiations"
+      },
+      "semantic_html": {
+        "standard": "HTML5 Semantic Elements (W3C)",
+        "method": "Semantic markup analysis",
+        "elements_found": [],
+        "score_calculation": "Based on semantic element coverage and proper usage",
+        "semantic_elements_found": [],
+        "aria_elements_count": 0,
+        "heading_elements_count": 1,
+        "scoring_breakdown": {
+          "semantic_coverage": 0.0,
+          "aria_bonus": 0,
+          "heading_bonus": 2
+        }
+      },
+      "content_quality": {
+        "standard": "Established content analysis metrics",
+        "method": "Agent-focused content quality evaluation",
+        "score_calculation": "Based on content structure, readability, and agent accessibility",
+        "content_metrics": {
+          "total_text_length": 3625,
+          "total_html_length": 3752,
+          "text_html_ratio": 0.9661513859275054,
+          "headings_count": 1,
+          "paragraphs_count": 1,
+          "links_count": 0,
+          "internal_links_count": 0,
+          "avg_sentence_length": 27.5
+        },
+        "quality_breakdown": {
+          "text_html_ratio": 25,
+          "content_structure": 3.5,
+          "navigation_quality": 0,
+          "readability": 25
+        }
+      },
+      "_performance_metrics": {
+        "evaluation_time_seconds": 35.55,
+        "optimization_mode": "performance_async"
+      }
+    },
+    "standards_authority": {
+      "accessibility": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "semantics": "HTML5 Semantic Elements (W3C)",
+      "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+      "http_compliance": "RFC 7231 Content Negotiation (IETF)",
+      "content_quality": "Established content analysis metrics"
+    },
+    "evaluation_methodology": "Clipper Performance-Optimized Access Gate",
+    "subscores": {
+      "wcag_accessibility": 50,
+      "structured_data": 0,
+      "http_compliance": 100.0,
+      "semantic_html": 2.0,
+      "content_quality": 53.5
+    },
+    "evidence_references": null
+  }
+]

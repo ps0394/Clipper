@@ -152,6 +152,9 @@ def main():
     score_parser.add_argument('parse_file', help='JSON file with parse results')
     score_parser.add_argument('--out', required=True, help='Output JSON file for score results')
     score_parser.add_argument('--api-key', help='Deprecated: Clipper is API-free and uses industry standards')
+    score_parser.add_argument('--performance', action='store_true', help='Enable performance optimization mode (2-3x faster, default: enabled)')
+    score_parser.add_argument('--standard', action='store_true', help='Use standard evaluation mode (for comparison/debugging)')
+    score_parser.add_argument('--benchmark', action='store_true', help='Run performance comparison benchmark')
     
     # Report command
     report_parser = subparsers.add_parser('report', help='Generate human-readable markdown report')
@@ -168,6 +171,9 @@ def main():
     express_parser.add_argument('--name', default='report', help='Base name for output files (default: report)')
     express_parser.add_argument('--quiet', '-q', action='store_true', help='Only output final summary')
     express_parser.add_argument('--api-key', help='Deprecated: Clipper is API-free and uses industry standards')
+    express_parser.add_argument('--performance', action='store_true', help='Enable performance optimization mode (2-3x faster, DEFAULT)')
+    express_parser.add_argument('--standard', action='store_true', help='Use standard evaluation mode (slower, for debugging)')
+    express_parser.add_argument('--benchmark', action='store_true', help='Run performance comparison after evaluation')
     
     args = parser.parse_args()
     
@@ -200,10 +206,25 @@ def main():
             parse_snapshots(args.snapshots_dir, args.out)
             
         elif args.command == 'score':
-            # Lazy import - load only when needed
-            from .score import score_parse_results
-            api_key = getattr(args, 'api_key', None)
-            score_parse_results(args.parse_file, args.out, api_key=api_key)
+            # Determine which scoring mode to use
+            use_performance = not args.standard  # Default to performance mode unless --standard is specified
+            
+            if args.benchmark:
+                # Run benchmark comparison
+                from .performance_score import benchmark_performance_modes
+                benchmark_performance_modes(args.parse_file)
+                return
+            
+            if use_performance:
+                # Use performance-optimized scoring
+                from .performance_score import score_parse_results_fast
+                api_key = getattr(args, 'api_key', None)
+                score_parse_results_fast(args.parse_file, args.out, api_key=api_key, use_performance_mode=True)
+            else:
+                # Use standard scoring for comparison/debugging
+                from .score import score_parse_results
+                api_key = getattr(args, 'api_key', None)
+                score_parse_results(args.parse_file, args.out, api_key=api_key)
             
         elif args.command == 'report':
             # Lazy import - load only when needed
@@ -211,10 +232,18 @@ def main():
             generate_report(args.score_file, args.md)
             
         elif args.command == 'express':
+            # Determine scoring mode
+            use_performance = not args.standard  # Default to performance mode
+            
             # Lazy imports - load only when needed
             from .crawl import crawl_urls
-            from .parse import parse_snapshots  
-            from .score import score_parse_results
+            from .parse import parse_snapshots
+            
+            if use_performance:
+                from .performance_score import score_parse_results_fast
+            else:
+                from .score import score_parse_results
+                
             from .report import generate_report
             
             # Full pipeline execution
@@ -231,7 +260,8 @@ def main():
                 report_file = out_dir / f'{args.name}.md'
                 
                 if not args.quiet:
-                    print(f"🔄 Running evaluation pipeline...")
+                    mode_str = "Performance Mode" if use_performance else "Standard Mode"
+                    print(f"🔄 Running evaluation pipeline ({mode_str})...")
                     print(f"|- Output directory: {out_dir}")
                     print(f"+- Report files: {args.name}_*")
                 
@@ -245,9 +275,15 @@ def main():
                 parse_snapshots(str(snapshots_dir), str(parse_file))
                 
                 if not args.quiet:
-                    print(f"3️⃣ Scoring results (Clipper Standards-Based)...")
+                    performance_text = "Performance-Optimized" if use_performance else "Standard"
+                    print(f"3️⃣ Scoring results (Clipper {performance_text})...")
+                    
                 api_key = getattr(args, 'api_key', None)
-                score_parse_results(str(parse_file), str(score_file), api_key=api_key)
+                
+                if use_performance:
+                    score_parse_results_fast(str(parse_file), str(score_file), api_key=api_key, use_performance_mode=True)
+                else:
+                    score_parse_results(str(parse_file), str(score_file), api_key=api_key)
                 
                 if not args.quiet:
                     print(f"4️⃣ Generating report...")
@@ -258,6 +294,13 @@ def main():
                 
                 if not args.quiet:
                     print(f"\n📄 Full report saved to: {report_file}")
+                
+                # Run benchmark if requested
+                if args.benchmark:
+                    if not args.quiet:
+                        print(f"\n🏁 Running performance benchmark...")
+                    from .performance_score import benchmark_performance_modes
+                    benchmark_performance_modes(str(parse_file))
                 
             finally:
                 _cleanup_temp_file(urls_file, getattr(args, 'urls_file', None))
