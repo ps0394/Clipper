@@ -1,22 +1,44 @@
 """JSON output contracts and data schemas for retrievability evaluation."""
 
 from typing import Dict, List, Optional, Any
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 from datetime import datetime
 import json
 
 
 @dataclass
+class RedirectStep:
+    """Individual redirect step in chain."""
+    from_url: str
+    to_url: str
+    status_code: int
+    redirect_time_ms: float
+    headers: Dict[str, str] = field(default_factory=dict)
+    
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass
 class CrawlResult:
-    """Per-URL crawl output schema."""
+    """Per-URL crawl output schema with redirect chain tracking."""
     url: str
     timestamp: str
     status: int
     headers: Dict[str, str]
     html_path: str
     
+    # Redirect chain tracking (Phase 1 enhancement)
+    redirect_chain: List[RedirectStep] = field(default_factory=list)
+    redirect_count: int = 0
+    total_redirect_time_ms: float = 0.0
+    final_response_time_ms: float = 0.0
+    final_url: str = ""  # URL after all redirects
+    
     def to_dict(self) -> Dict[str, Any]:
-        return asdict(self)
+        result = asdict(self)
+        result['redirect_chain'] = [step.to_dict() for step in self.redirect_chain]
+        return result
 
 
 @dataclass  

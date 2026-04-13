@@ -1,4 +1,4 @@
-"""URL crawling and HTML snapshot capture."""
+"""URL crawling and HTML snapshot capture with redirect chain tracking."""
 
 import json
 import hashlib
@@ -7,9 +7,9 @@ from datetime import datetime
 from pathlib import Path
 from typing import List, Dict
 import requests
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urljoin
 
-from .schemas import CrawlResult, FormatResponse, ContentNegotiationResult
+from .schemas import CrawlResult, FormatResponse, ContentNegotiationResult, RedirectStep
 
 
 def crawl_urls(urls_file: str, output_dir: str) -> None:
@@ -54,32 +54,90 @@ def crawl_urls(urls_file: str, output_dir: str) -> None:
 
 
 def _crawl_single_url(url: str, output_dir: Path) -> CrawlResult:
-    """Crawl a single URL and capture HTML snapshot.
+    """Crawl a single URL with redirect chain tracking.
     
     Args:
         url: URL to crawl
         output_dir: Directory to save HTML snapshot
         
     Returns:
-        CrawlResult with capture details
+        CrawlResult with capture details and redirect chain analysis
     """
     timestamp = datetime.now().isoformat()
+    original_url = url
     
     session = requests.Session()
     session.headers.update({
-        'User-Agent': 'Retrievability-Eval/1.0 (Documentation Analysis Tool)'
+        'User-Agent': 'Clipper-Eval/3.0 (Content Evaluation Tool with Redirect Analysis)'
     })
     
+    # Track redirect chain manually
+    redirect_chain = []
+    total_start_time = time.time()
+    redirect_start_time = total_start_time
+    
     try:
-        # Perform HTTP request with redirects
-        response = session.get(url, timeout=30, allow_redirects=True)
+        # Manual redirect handling for chain tracking
+        current_url = url
+        max_redirects = 10  # Prevent infinite loops
+        redirect_count = 0
         
-        # Generate unique filename based on URL hash  
-        url_hash = hashlib.md5(url.encode('utf-8')).hexdigest()[:12]
+        while redirect_count < max_redirects:
+            step_start_time = time.time()
+            
+            # Make request without following redirects
+            response = session.get(current_url, timeout=30, allow_redirects=False)
+            
+            step_time_ms = (time.time() - step_start_time) * 1000
+            
+            # Check if this is a redirect
+            if response.status_code in [301, 302, 303, 307, 308]:
+                location = response.headers.get('Location')
+                if not location:
+                    break  # No location header, stop
+                
+                # Handle relative URLs
+                if not location.startswith(('http://', 'https://')):
+                    location = urljoin(current_url, location)
+                
+                # Record redirect step
+                redirect_step = RedirectStep(
+                    from_url=current_url,
+                    to_url=location,
+                    status_code=response.status_code,
+                    redirect_time_ms=step_time_ms,
+                    headers=dict(response.headers)
+                )
+                redirect_chain.append(redirect_step)
+                
+                current_url = location
+                redirect_count += 1
+                
+                # Check for redirect loops
+                visited_urls = [step.to_url for step in redirect_chain]
+                if visited_urls.count(current_url) > 1:
+                    break  # Redirect loop detected
+                    
+            else:
+                # Final response (non-redirect)
+                break
+        
+        # Get final response if we ended on a redirect
+        if response.status_code in [301, 302, 303, 307, 308]:
+            final_start_time = time.time()
+            response = session.get(current_url, timeout=30, allow_redirects=False)
+            final_response_time_ms = (time.time() - final_start_time) * 1000
+        else:
+            final_response_time_ms = step_time_ms
+            
+        total_redirect_time_ms = (time.time() - redirect_start_time) * 1000 - final_response_time_ms
+        
+        # Generate unique filename based on original URL hash  
+        url_hash = hashlib.md5(original_url.encode('utf-8')).hexdigest()[:12]
         html_filename = f"{url_hash}.html"
         html_path = output_dir / html_filename
         
-        # Save raw HTML
+        # Save raw HTML from final response
         with open(html_path, 'w', encoding='utf-8', errors='replace') as f:
             f.write(response.text)
         
@@ -87,23 +145,33 @@ def _crawl_single_url(url: str, output_dir: Path) -> CrawlResult:
         headers = dict(response.headers)
         
         return CrawlResult(
-            url=url,
+            url=original_url,
             timestamp=timestamp, 
             status=response.status_code,
             headers=headers,
-            html_path=str(html_path.name)  # Relative to snapshots dir
+            html_path=str(html_path.name),  # Relative to snapshots dir
+            redirect_chain=redirect_chain,
+            redirect_count=len(redirect_chain),
+            total_redirect_time_ms=total_redirect_time_ms,
+            final_response_time_ms=final_response_time_ms,
+            final_url=current_url
         )
         
     except requests.RequestException as e:
         # Handle network/HTTP errors - create result with error status
-        print(f"Error crawling {url}: {e}")
+        print(f"Error crawling {original_url}: {e}")
         
         return CrawlResult(
-            url=url,
+            url=original_url,
             timestamp=timestamp,
             status=0,  # Indicates request failure
             headers={'error': str(e)},
-            html_path=""  # No HTML saved for failed requests
+            html_path="",  # No HTML saved for failed requests
+            redirect_chain=redirect_chain,  # Include any redirects that worked
+            redirect_count=len(redirect_chain),
+            total_redirect_time_ms=0.0,
+            final_response_time_ms=0.0,
+            final_url=original_url
         )
 
 
