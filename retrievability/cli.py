@@ -7,10 +7,11 @@ import os
 from pathlib import Path
 from typing import List
 
-from .crawl import crawl_urls, crawl_with_content_negotiation
-from .parse import parse_snapshots  
-from .score import score_parse_results
-from .report import generate_report
+# Lazy imports - load modules only when needed to avoid hanging on startup
+# from .crawl import crawl_urls, crawl_with_content_negotiation
+# from .parse import parse_snapshots  
+# from .score import score_parse_results
+# from .report import generate_report
 
 
 def _create_urls_file(args) -> str:
@@ -176,6 +177,8 @@ def main():
     
     try:
         if args.command == 'crawl':
+            # Lazy import - load only when needed
+            from .crawl import crawl_urls
             urls_file = _create_urls_file(args)
             try:
                 crawl_urls(urls_file, args.out)
@@ -183,6 +186,8 @@ def main():
                 _cleanup_temp_file(urls_file, getattr(args, 'urls_file', None))
             
         elif args.command == 'negotiate':
+            # Lazy import - load only when needed
+            from .crawl import crawl_with_content_negotiation
             urls_file = _create_urls_file(args)
             try:
                 crawl_with_content_negotiation(urls_file, args.out)
@@ -190,16 +195,28 @@ def main():
                 _cleanup_temp_file(urls_file, getattr(args, 'urls_file', None))
             
         elif args.command == 'parse':
+            # Lazy import - load only when needed
+            from .parse import parse_snapshots
             parse_snapshots(args.snapshots_dir, args.out)
             
         elif args.command == 'score':
+            # Lazy import - load only when needed
+            from .score import score_parse_results
             api_key = getattr(args, 'api_key', None)
             score_parse_results(args.parse_file, args.out, api_key=api_key)
             
         elif args.command == 'report':
+            # Lazy import - load only when needed
+            from .report import generate_report
             generate_report(args.score_file, args.md)
             
         elif args.command == 'express':
+            # Lazy imports - load only when needed
+            from .crawl import crawl_urls
+            from .parse import parse_snapshots  
+            from .score import score_parse_results
+            from .report import generate_report
+            
             # Full pipeline execution
             urls_file = _create_urls_file(args)
             
