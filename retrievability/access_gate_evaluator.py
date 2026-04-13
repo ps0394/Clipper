@@ -79,12 +79,14 @@ class AccessGateEvaluator:
         self.chrome_options.add_argument('--disable-dev-shm-usage')
         self.chrome_options.add_argument('--disable-web-security')
     
-    def evaluate_access_gate(self, parse_data: Dict, url: Optional[str] = None) -> ScoreResult:
+    def evaluate_access_gate(self, parse_data: Dict, url: Optional[str] = None, 
+                             crawl_data: Optional[Dict] = None) -> ScoreResult:
         """Evaluate Access Gate score using industry standards.
         
         Args:
             parse_data: Dictionary containing parse result data
             url: URL for live standards evaluation (optional)
+            crawl_data: Dictionary containing crawl result data with redirect chain (optional)
             
         Returns:
             ScoreResult with standards-based scores and audit trail
@@ -114,9 +116,9 @@ class AccessGateEvaluator:
         scores['structured_data'], audit_trail['structured_data'] = \
             self._evaluate_structured_data(html_content, url)
         
-        # 4. HTTP Standards Compliance (15%) - RFC 7231
+        # 4. HTTP Standards Compliance (15%) - RFC 7231 + Redirect Efficiency
         scores['http_compliance'], audit_trail['http_compliance'] = \
-            self._evaluate_http_compliance(html_content, url)
+            self._evaluate_http_compliance_enhanced(html_content, url, crawl_data)
         
         # 5. Content Quality (15%) - Agent-focused analysis
         scores['content_quality'], audit_trail['content_quality'] = \
@@ -452,6 +454,152 @@ class AccessGateEvaluator:
             audit_trail['error'] = str(e)
             return 0.0, audit_trail
     
+    def _evaluate_http_compliance_enhanced(self, html_content: str, url: Optional[str], 
+                                         crawl_data: Optional[Dict]) -> Tuple[float, Dict]:
+        """Evaluate HTTP standards compliance with redirect efficiency analysis.
+        
+        Returns:
+            Tuple of (score 0-100, audit_trail_dict)
+        """
+        audit_trail = {
+            'standard': 'RFC 7231 Content Negotiation (IETF) + Redirect Efficiency',
+            'method': 'Enhanced HTTP compliance with redirect chain analysis',
+            'score_calculation': 'Content negotiation (60%) + Redirect efficiency (40%)'
+        }
+        
+        try:
+            # Get base HTTP compliance score (60% of component)
+            base_score, base_audit = self._evaluate_http_compliance(html_content, url)
+            content_nego_score = base_score * 0.6
+            
+            # New: Redirect efficiency scoring (40% of component)
+            if crawl_data and 'redirect_chain' in crawl_data:
+                redirect_score, redirect_audit = self._evaluate_redirect_efficiency(crawl_data)
+            else:
+                # Fallback: No redirect data available, assume optimal (no redirects)
+                redirect_score = 40.0  # Full redirect efficiency score
+                redirect_audit = {
+                    'method': 'No redirect data available (assuming direct access)',
+                    'redirect_efficiency_score': redirect_score,
+                    'fallback_reason': 'Missing crawl data with redirect chain'
+                }
+            
+            final_score = content_nego_score + redirect_score
+            
+            # Combine audit trails
+            audit_trail.update({
+                'content_negotiation': base_audit,
+                'redirect_efficiency': redirect_audit,
+                'scoring_breakdown': {
+                    'content_negotiation_score': content_nego_score,
+                    'redirect_efficiency_score': redirect_score,
+                    'total_score': final_score
+                }
+            })
+            
+            return final_score, audit_trail
+            
+        except Exception as e:
+            self.logger.error(f"Enhanced HTTP compliance evaluation failed: {e}")
+            # Fallback to basic HTTP compliance
+            return self._evaluate_http_compliance(html_content, url)
+    
+    def _evaluate_redirect_efficiency(self, crawl_data: Dict) -> Tuple[float, Dict]:
+        """Evaluate redirect chain efficiency for HTTP compliance.
+        
+        Analyzes redirect chains for performance impact and standards compliance.
+        
+        Args:
+            crawl_data: Dictionary containing redirect_chain and timing data
+            
+        Returns:
+            Tuple of (score 0-40, audit_trail_dict)
+        """
+        audit_trail = {
+            'standard': 'HTTP Redirect Best Practices (RFC 7231)',
+            'method': 'Redirect chain analysis and performance evaluation',
+            'score_calculation': 'Chain length (25) + Redirect types (10) + Performance (5)'
+        }
+        
+        try:
+            redirect_chain = crawl_data.get('redirect_chain', [])
+            redirect_count = crawl_data.get('redirect_count', 0)
+            total_redirect_time = crawl_data.get('total_redirect_time_ms', 0.0)
+            final_response_time = crawl_data.get('final_response_time_ms', 1.0)
+            
+            score_components = {}
+            
+            # 1. Chain length scoring (0-25 points)
+            if redirect_count == 0:
+                score_components['chain_length'] = 25  # Perfect - no redirects
+            elif redirect_count <= 2:
+                score_components['chain_length'] = 20  # Good - reasonable redirects
+            elif redirect_count <= 4:
+                score_components['chain_length'] = 10  # Moderate - getting excessive
+            else:
+                score_components['chain_length'] = 0   # Poor - too many redirects
+            
+            # 2. Redirect type analysis (0-10 points)
+            proper_redirects = 0
+            redirect_types = {}
+            
+            for step in redirect_chain:
+                status_code = step.get('status_code', 0)
+                redirect_types[status_code] = redirect_types.get(status_code, 0) + 1
+                if status_code in [301, 302, 303, 307, 308]:
+                    proper_redirects += 1
+            
+            if redirect_count > 0:
+                redirect_type_ratio = proper_redirects / redirect_count
+                score_components['redirect_types'] = redirect_type_ratio * 10
+            else:
+                score_components['redirect_types'] = 10  # No redirects = perfect
+            
+            # 3. Performance impact analysis (0-5 points)
+            if final_response_time > 0:
+                redirect_ratio = total_redirect_time / (total_redirect_time + final_response_time)
+                # Lower redirect ratio = better performance
+                performance_score = max(5 - (redirect_ratio * 10), 0)
+                score_components['performance_impact'] = min(performance_score, 5)
+            else:
+                score_components['performance_impact'] = 5
+            
+            final_score = sum(score_components.values())
+            
+            audit_trail.update({
+                'redirect_analysis': {
+                    'redirect_count': redirect_count,
+                    'chain_details': redirect_chain[:3] if len(redirect_chain) <= 3 else redirect_chain[:3] + [{'truncated': f'{len(redirect_chain)-3} more redirects'}],
+                    'redirect_types_breakdown': redirect_types,
+                    'proper_redirect_codes': proper_redirects,
+                    'total_redirect_time_ms': total_redirect_time,
+                    'final_response_time_ms': final_response_time,
+                    'performance_ratio': total_redirect_time / (total_redirect_time + final_response_time) if final_response_time > 0 else 0
+                },
+                'score_breakdown': score_components,
+                'efficiency_classification': self._classify_redirect_efficiency(redirect_count, total_redirect_time)
+            })
+            
+            return min(final_score, 40), audit_trail  # Cap at 40 points (40% of HTTP compliance)
+            
+        except Exception as e:
+            self.logger.error(f"Redirect efficiency evaluation failed: {e}")
+            audit_trail['error'] = str(e)
+            return 40.0, audit_trail  # Default to full score on error
+    
+    def _classify_redirect_efficiency(self, redirect_count: int, total_redirect_time: float) -> str:
+        """Classify redirect chain efficiency for reporting."""
+        if redirect_count == 0:
+            return 'optimal (direct access)'
+        elif redirect_count <= 2 and total_redirect_time < 500:
+            return 'good (standard redirects)'
+        elif redirect_count <= 4 and total_redirect_time < 1000:
+            return 'moderate (acceptable chain)'
+        elif redirect_count <= 6:
+            return 'poor (excessive redirects)'
+        else:
+            return 'critical (redirect chain too long)'
+
     def _evaluate_http_compliance(self, html_content: str, url: Optional[str]) -> Tuple[float, Dict]:
         """Evaluate HTTP standards compliance (RFC 7231).
         

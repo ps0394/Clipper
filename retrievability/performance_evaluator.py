@@ -169,8 +169,9 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
         self.evaluation_times = []
         self.start_time = None
     
-    async def evaluate_access_gate_async(self, parse_data: Dict, url: Optional[str] = None) -> ScoreResult:
-        """Async version of evaluate_access_gate with performance optimizations."""
+    async def evaluate_access_gate_async(self, parse_data: Dict, url: Optional[str] = None, 
+                                       crawl_data: Optional[Dict] = None) -> ScoreResult:
+        """Async version of evaluate_access_gate with performance optimizations and redirect analysis."""
         start_time = time.time()
         
         try:
@@ -195,14 +196,14 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
                     tasks.extend([
                         ('wcag_accessibility', self._evaluate_wcag_accessibility_async(html_content, url)),
                         ('structured_data', self._evaluate_structured_data_async(html_content, url)),
-                        ('http_compliance', self._evaluate_http_compliance_async(html_content, url))
+                        ('http_compliance', self._evaluate_http_compliance_enhanced_async(html_content, url, crawl_data))
                     ])
                 else:
                     # Fallback async tasks for URLs not available
                     tasks.extend([
                         ('wcag_accessibility', self._evaluate_wcag_fallback_async(html_content)),
                         ('structured_data', self._evaluate_structured_data_async(html_content, url)),
-                        ('http_compliance', self._evaluate_http_compliance_async(html_content, url))
+                        ('http_compliance', self._evaluate_http_compliance_enhanced_async(html_content, url, crawl_data))
                     ])
                 
                 # Sync tasks (run in executor) - create callables
@@ -392,7 +393,26 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             self.logger.error(f"Async structured data evaluation failed: {e}")
             return 0.0, {'error': str(e)}
     
-    async def _evaluate_http_compliance_async(self, html_content: str, url: Optional[str]) -> Tuple[float, Dict]:
+    async def _evaluate_http_compliance_enhanced_async(self, html_content: str, url: Optional[str],
+                                                     crawl_data: Optional[Dict]) -> Tuple[float, Dict]:
+        """Async version of enhanced HTTP compliance with redirect efficiency."""
+        try:
+            # Create a sync evaluator and call the enhanced method
+            from .access_gate_evaluator import AccessGateEvaluator
+            evaluator = AccessGateEvaluator()
+            
+            # Run the enhanced HTTP compliance in executor to avoid blocking
+            loop = asyncio.get_event_loop()
+            result = await loop.run_in_executor(
+                self.executor, 
+                evaluator._evaluate_http_compliance_enhanced,
+                html_content, url, crawl_data
+            )
+            return result
+            
+        except Exception as e:
+            # Fallback to basic HTTP compliance
+            return await self._evaluate_http_compliance_async(html_content, url)
         """Async HTTP compliance evaluation."""
         audit_trail = {
             'standard': 'RFC 7231 Content Negotiation (IETF)', 

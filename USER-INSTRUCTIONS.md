@@ -4,7 +4,7 @@ This guide walks you through using **Clipper** (Command-Line Interface Progressi
 
 ## What is Clipper
 
-**Standards-Based Evaluation Engine**: Combines WCAG 2.1 (25%) + W3C Semantic HTML (25%) + Schema.org (20%) + HTTP Standards (15%) + Content Quality (15%)
+**Standards-Based Evaluation Engine**: Combines WCAG 2.1 (25%) + W3C Semantic HTML (25%) + Schema.org (20%) + HTTP Standards + Redirects (15%) + Content Quality (15%)
 **Enterprise Defensible**: Built on established industry standards with complete audit trails
 **API-Free Operation**: No external API dependencies - completely local evaluation
 
@@ -121,7 +121,7 @@ python main.py score parse-results.json --out scores.json --detailed
 - **WCAG 2.1 Accessibility** (25%): Automated accessibility analysis using axe-core
 - **W3C Semantic HTML** (25%): HTML5 semantic elements and ARIA compliance
 - **Schema.org Structured Data** (20%): JSON-LD, microdata analysis
-- **HTTP Standards** (15%): Content negotiation and RFC compliance
+- **HTTP Standards + Redirects** (15%): Content negotiation and redirect efficiency analysis
 - **Content Quality** (15%): Agent-optimized content metrics
 
 #### 4. Generate Reports
@@ -163,12 +163,53 @@ results/
     "http_compliance": 90.0,
     "content_quality": 80.5
   },
+  "audit_trail": {
+    "http_compliance": {
+      "content_negotiation": {...},
+      "redirect_efficiency": {
+        "redirect_analysis": {
+          "redirect_count": 1,
+          "efficiency_classification": "good (standard redirects)",
+          "performance_ratio": 0.15
+        }
+      }
+    }
+  },
   "standards_authority": {
     "accessibility": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
     "semantics": "HTML5 Semantic Elements (W3C)"
   }
 }
 ```
+
+## Enhanced HTTP Compliance Scoring
+
+Clipper now includes **redirect efficiency analysis** as part of HTTP compliance evaluation:
+
+### **HTTP Standards + Redirects Component (15% of total score)**
+- **Content Negotiation (60%)** - Server's ability to provide different content formats
+- **Redirect Efficiency (40%)** - Quality and performance of redirect chains **[NEW]**
+
+### **What Redirect Efficiency Evaluates:**
+1. **Chain Length** - Fewer redirects = better score
+   - 0 redirects: 25/25 points (optimal)
+   - 1-2 redirects: 20/25 points (good)  
+   - 3-4 redirects: 10/25 points (moderate)
+   - 5+ redirects: 0/25 points (poor)
+
+2. **Redirect Types** - Proper HTTP status codes
+   - 301, 302, 303, 307, 308: Good
+   - Invalid or missing status codes: Penalty
+
+3. **Performance Impact** - Redirect overhead analysis
+   - Low redirect-to-content time ratio: Better score
+   - High redirect overhead: Lower score
+
+### **Real-World Impact:**
+- **Direct URLs (no redirects)**: Get full HTTP compliance bonus
+- **Standard redirects (http→https)**: Minor score impact
+- **Excessive redirect chains**: Meaningful score penalty
+- **Redirect loops**: Early detection prevents evaluation failures
 
 ## Quick Command Reference
 

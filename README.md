@@ -49,16 +49,18 @@ beautifulsoup4        # HTML parsing standard
 1. **🛡️ WCAG 2.1 Accessibility (25%)** - Deque axe-core engine, legal compliance standard
 2. **🏗️ W3C Semantic HTML (25%)** - HTML5 semantic elements, ARIA roles  
 3. **📊 Schema.org Structured Data (20%)** - JSON-LD, microdata, Open Graph
-4. **🌐 HTTP Standards Compliance (15%)** - Content negotiation (RFC 7231)
+4. **🌐 HTTP Standards Compliance (15%)** - Content negotiation + Redirect efficiency
 5. **📝 Content Quality Metrics (15%)** - Agent-optimized content analysis
-
+**NEW: Enhanced HTTP Compliance** now includes redirect chain analysis:
+- **Content Negotiation (60%)** - RFC 7231 format support and headers
+- **Redirect Efficiency (40%)** - Chain length, performance, and status code analysis
 ### **Standards Authority Mapping**
 ```python
 STANDARDS_AUTHORITY = {
     'accessibility': 'WCAG 2.1 AA (W3C) + axe-core (Deque Systems)',
     'semantics': 'HTML5 Semantic Elements (W3C)', 
     'structured_data': 'Schema.org (Google/Microsoft/Yahoo)',
-    'http_compliance': 'RFC 7231 Content Negotiation (IETF)',
+    'http_compliance': 'RFC 7231 Content Negotiation + Redirect Efficiency (IETF)',
     'content_quality': 'Established content analysis metrics'
 }
 ```
@@ -239,7 +241,7 @@ Component Breakdown:
   wcag_accessibility: 0.0/100 (WCAG 2.1 AA + axe-core)
   semantic_html: 36.4/100 (HTML5 Semantic Elements)
   structured_data: 30.0/100 (Schema.org)
-  http_compliance: 100.0/100 (RFC 7231 Content Negotiation)
+  http_compliance: 100.0/100 (RFC 7231 + Redirect Efficiency)
   content_quality: 75.5/100 (Agent-focused analysis)
 ```
 
@@ -252,7 +254,7 @@ Clipper builds on established industry standards:
 | **WCAG Accessibility** | W3C + Deque Systems | axe-selenium-python | 25% |
 | **Semantic HTML** | W3C HTML5 Specification | BeautifulSoup + html5lib | 25% |
 | **Structured Data** | Schema.org Consortium | extruct library | 20% |
-| **HTTP Compliance** | IETF RFC 7231 | httpx + content negotiation | 15% |
+| **HTTP Compliance** | IETF RFC 7231 + Redirect Analysis | httpx + redirect efficiency | 15% |
 | **Content Quality** | Established metrics | Agent-focused analysis | 15% |
 
 **🏛️ No Custom Algorithms:** Every score component is traceable to recognized industry standards.
@@ -273,7 +275,7 @@ Clipper generates comprehensive audit documentation:
 - **WCAG 2.1 Accessibility**: 0.0/100 (axe-core evaluation failed, static fallback applied)
 - **W3C Semantic HTML**: 36.4/100 (Basic semantic elements present, optimization needed)
 - **Schema.org Data**: 30.0/100 (Some structured data detected, expansion recommended)
-- **HTTP RFC Compliance**: 100.0/100 (Excellent content negotiation support)
+- **HTTP RFC Compliance**: 100.0/100 (Excellent content negotiation + optimal redirects)
 - **Content Quality**: 75.5/100 (Good agent-focused metrics, minor improvements)
 ```
 
@@ -311,7 +313,7 @@ Based on agent accessibility impact research:
 - **Accessibility (25%)** - Critical for universal access
 - **Semantic HTML (25%)** - Essential for content structure
 - **Structured Data (20%)** - Important for agent parsing
-- **HTTP Compliance (15%)** - Valuable for content negotiation  
+- **HTTP Compliance (15%)** - Content negotiation + Redirect efficiency analysis  
 - **Content Quality (15%)** - Baseline for agent consumption
 
 ## GitHub Integration

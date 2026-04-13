@@ -9,7 +9,7 @@ import json
 import os
 import time
 from pathlib import Path
-from typing import Optional, List, Dict
+from typing import Optional, List, Dict, Tuple
 from concurrent.futures import ThreadPoolExecutor
 
 from .performance_evaluator import get_performance_evaluator, PerformanceOptimizedEvaluator
@@ -50,17 +50,19 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
     with open(parse_path, 'r', encoding='utf-8') as f:
         parse_results_data = json.load(f)
     
-    # Load URLs from crawl results for enhanced evaluation
-    urls = _load_urls_from_crawl_results(parse_path)
+    # Load URLs and crawl data for enhanced evaluation
+    urls, crawl_results = _load_crawl_data_for_performance_scoring(parse_path)
     
     print(f"📊 Evaluating {len(parse_results_data)} documents using performance-optimized standards...")
+    if crawl_results:
+        print(f"   Enhanced with redirect chain analysis for HTTP compliance")
     
     if use_performance_mode:
         # Use async performance evaluator
-        score_results = asyncio.run(_evaluate_with_performance_mode(parse_results_data, urls))
+        score_results = asyncio.run(_evaluate_with_performance_mode(parse_results_data, urls, crawl_results))
     else:
         # Use standard evaluator for comparison
-        score_results = _evaluate_with_standard_mode(parse_results_data, urls)
+        score_results = _evaluate_with_standard_mode(parse_results_data, urls, crawl_results)
     
     # Save results
     output_path = Path(output_file)
@@ -85,15 +87,17 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
             print(f"🏃 Performance: {avg_per_url:.1f}s/URL avg (est. {improvement:.0f}% faster than standard mode)")
 
 
-async def _evaluate_with_performance_mode(parse_results_data: List[Dict], urls: List[str]) -> List:
-    """Evaluate using performance-optimized async evaluator."""
+async def _evaluate_with_performance_mode(parse_results_data: List[Dict], urls: List[str], 
+                                         crawl_results: List[Dict]) -> List:
+    """Evaluate using performance-optimized async evaluator with redirect analysis."""
     evaluator = get_performance_evaluator()
     
     # Create tasks for all evaluations
     tasks = []
     for i, parse_data in enumerate(parse_results_data):
         url = urls[i] if i < len(urls) else None
-        task = evaluator.evaluate_access_gate_async(parse_data, url)
+        crawl_data = crawl_results[i] if i < len(crawl_results) else None
+        task = evaluator.evaluate_access_gate_async(parse_data, url, crawl_data)
         tasks.append(task)
     
     # Process in batches to avoid overwhelming the system
@@ -126,17 +130,19 @@ async def _evaluate_with_performance_mode(parse_results_data: List[Dict], urls: 
     return results
 
 
-def _evaluate_with_standard_mode(parse_results_data: List[Dict], urls: List[str]) -> List:
-    """Evaluate using standard synchronous evaluator for comparison."""
+def _evaluate_with_standard_mode(parse_results_data: List[Dict], urls: List[str], 
+                                crawl_results: List[Dict]) -> List:
+    """Evaluate using standard synchronous evaluator for comparison with redirect analysis."""
     evaluator = AccessGateEvaluator()
     results = []
     
     for i, parse_data in enumerate(parse_results_data):
         url = urls[i] if i < len(urls) else None
+        crawl_data = crawl_results[i] if i < len(crawl_results) else None
         print(f"  Standards evaluation: {parse_data.get('html_path', f'item_{i+1}')}")
         
         try:
-            result = evaluator.evaluate_access_gate(parse_data, url)
+            result = evaluator.evaluate_access_gate(parse_data, url, crawl_data)
             results.append(result)
         except Exception as e:
             print(f"  [WARN] Evaluation failed for item {i+1}: {e}")
