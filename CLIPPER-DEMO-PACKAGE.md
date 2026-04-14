@@ -7,20 +7,20 @@
 ## **📋 Demo Options**
 
 ### **⚡ 30-Second Quick Demo**
-```bash
+```powershell
 # Instant validation - single URL
 python main.py express --urls https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview --out quick-demo --quiet
 ``` 
 
 ### **🎯 5-Minute Comprehensive Demo** 
-```bash
+```powershell
 # Multiple sites with detailed analysis
 python main.py express clipper-demo-urls.txt --out clipper-showcase --name comprehensive
-cat clipper-showcase/comprehensive.md
+Get-Content clipper-showcase/comprehensive.md
 ```
 
 ### **🎪 10-Minute Interactive Demo**
-```bash  
+```powershell  
 # Guided walkthrough with explanations
 python run_clipper_demo.py
 ```
@@ -84,7 +84,7 @@ python run_clipper_demo.py
 
 ### **For Technical Audience**
 - Focus on **component breakdown** and audit trail examination
-- Show **jq queries** for programmatic analysis  
+- Show **jq queries** for programmatic analysis (requires jq: `winget install jqlang.jq`)  
 - Demonstrate **quality gate integration** scenarios
 - Highlight **standards traceability** for compliance
 
@@ -104,7 +104,7 @@ python run_clipper_demo.py
 
 ## **🚀 Quick Start Commands**
 
-```bash
+```powershell
 # Validate demo setup
 python -c "from pathlib import Path; print('Demo ready!' if Path('clipper-demo-urls.txt').exists() else 'Setup needed')"
 
@@ -114,7 +114,7 @@ python main.py express clipper-demo-urls.txt --out validation --quiet
 # Check results
 python -c "import json; r=json.load(open('validation/report_scores.json')); print(f'Average: {sum(s[\"parseability_score\"] for s in r)/len(r):.1f}/100')"
 
-# Component analysis
+# Component analysis (requires jq: winget install jqlang.jq)
 jq '.[] | {url, score: .parseability_score, wcag: .component_scores.wcag_accessibility, semantic: .component_scores.semantic_html}' validation/report_scores.json
 
 # Standards authority  
@@ -126,18 +126,21 @@ jq '.[0].standards_authority' validation/report_scores.json
 ## **💡 Demo Scenarios**
 
 ### **Scenario 1: CI/CD Quality Gate**
-```bash
+```powershell
 # Simulate documentation quality gate
 python main.py express clipper-demo-urls.txt --out ci-demo --quiet
-if [ $(jq 'map(.parseability_score) | add / length' ci-demo/report_scores.json | cut -d. -f1) -ge 70 ]; then
-    echo "PASSED: Documentation ready for deployment"  
-else
-    echo "FAILED: Quality improvements needed"
-fi
+
+# Quality gate check (requires jq: winget install jqlang.jq)
+$avgScore = jq 'map(.parseability_score) | add / length' ci-demo/report_scores.json
+if ([int]$avgScore -ge 70) {
+    Write-Host "PASSED: Documentation ready for deployment"
+} else {
+    Write-Host "FAILED: Quality improvements needed"
+}
 ```
 
 ### **Scenario 2: Content Migration Validation** 
-```bash
+```powershell
 # Before/after comparison
 python main.py express clipper-demo-urls.txt --out migration-before --name baseline
 # (simulate content updates)
@@ -146,9 +149,11 @@ python main.py express clipper-demo-urls.txt --out migration-after --name improv
 ```
 
 ### **Scenario 3: Accessibility Audit**
-```bash
+```powershell
 # WCAG compliance check
 python main.py express clipper-demo-urls.txt --out wcag-audit --name accessibility
+
+# Filter accessible content (requires jq: winget install jqlang.jq)
 jq '.[] | select(.component_scores.wcag_accessibility >= 80) | {url, wcag_score: .component_scores.wcag_accessibility}' wcag-audit/accessibility_scores.json
 ```
 
