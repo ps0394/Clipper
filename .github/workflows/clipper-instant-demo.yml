@@ -1,6 +1,10 @@
 name: Clipper Instant Demo (30 seconds)
 
 on:
+  push:
+    branches:
+      - main
+      - 'copilot/**'
   workflow_dispatch:
     inputs:
       url:
