@@ -1,8 +1,8 @@
-# Clipper - Command-Line Interface Progressive Performance Evaluation & Reporting
+# Clipper - **C**ommand-**L**ine **I**nterface **P**rogressive **P**erformance **E**valuation & **R**eporting
 
 **Standards-Based Access Gate Evaluation for Agent-Ready Content**
 
-A defensible, enterprise-ready CLI tool for evaluating agent accessibility to content using established industry frameworks. Clipper delivers API-free, standards-based evaluation with complete audit traceability for content optimization.
+Clipper is a CLI tool for evaluating agent accessibility to content using established industry frameworks. Clipper delivers API-free, standards-based evaluation with complete audit traceability for content optimization. This means you can use an agent to evaluate URLs and receive a score based on understood industry-standard retrieval best practices.
 
 ## Table of Contents
 
