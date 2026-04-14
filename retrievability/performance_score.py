@@ -77,7 +77,7 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
     print(f"   Results saved: {output_file}")
     print(f"   Methodology: Industry standards ({'Performance Mode' if use_performance_mode else 'Standard Mode'})")
     
-    # Display performance statistics if available
+    # Display enhanced performance statistics if available
     if use_performance_mode:
         evaluator = get_performance_evaluator()
         stats = evaluator.get_performance_stats()
@@ -86,6 +86,29 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
             estimated_standard_time = avg_per_url * 2.5  # Estimated standard mode time
             improvement = ((estimated_standard_time - avg_per_url) / estimated_standard_time) * 100
             print(f"🏃 Performance: {avg_per_url:.1f}s/URL avg (est. {improvement:.0f}% faster than standard mode)")
+        
+        # Try to get parallel execution metrics from the results
+        try:
+            with open(output_file, 'r', encoding='utf-8') as f:
+                results = json.load(f)
+            
+            if results and isinstance(results, list) and len(results) > 0:
+                first_result = results[0]
+                if 'audit_trail' in first_result and '_performance_metrics' in first_result['audit_trail']:
+                    perf_metrics = first_result['audit_trail']['_performance_metrics']
+                    if 'timing_analysis' in perf_metrics:
+                        timing = perf_metrics['timing_analysis']
+                        fast_time = timing.get('fast_group_time_seconds', 0)
+                        browser_time = timing.get('browser_group_time_seconds', 0)
+                        total_time = timing.get('total_parallel_time_seconds', 0)
+                        improvement_pct = timing.get('performance_improvement_percent', 0)
+                        
+                        print(f"⚡ Parallel Execution:")
+                        print(f"   Fast components (HTML, Schema, HTTP, Content): {fast_time}s")
+                        print(f"   Browser component (WCAG Accessibility): {browser_time}s")
+                        print(f"   Total parallel time: {total_time}s (~{improvement_pct:.1f}% faster)")
+        except (FileNotFoundError, json.JSONDecodeError, KeyError):
+            pass  # Silently skip if metrics not available
 
 
 async def _evaluate_with_performance_mode(parse_results_data: List[Dict], urls: List[str], 
