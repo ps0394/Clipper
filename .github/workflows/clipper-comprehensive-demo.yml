@@ -78,39 +78,38 @@ jobs:
           echo "📊 **COMPREHENSIVE DEMO RESULTS**"
           
           # Calculate aggregate metrics
-          python -c "
-          import json
-          
-          with open('clipper-showcase/comprehensive_scores.json') as f:
-              data = json.load(f)
-          
-          if data:
-              scores = [item['parseability_score'] for item in data]
-              avg_score = sum(scores) / len(scores)
-              clean_sites = sum(1 for score in scores if score >= 70)
-              total_sites = len(scores)
-              
-              print(f'Total Sites Evaluated: {total_sites}')
-              print(f'Average Score: {avg_score:.1f}/100')
-              print(f'Clean Sites (≥70): {clean_sites}/{total_sites} ({clean_sites/total_sites*100:.1f}%)')
-              print()
-              
-              # Top performers
-              scored_sites = [(item['url'], item['parseability_score']) for item in data]
-              scored_sites.sort(key=lambda x: x[1], reverse=True)
-              
-              print('🏆 Top Performers:')
-              for i, (url, score) in enumerate(scored_sites[:3]):
-                  print(f'  {i+1}. {score:.1f}/100 - {url}')
-              
-              print()
-              print('📈 All Results:')
-              for url, score in scored_sites:
-                  status = '🟢' if score >= 80 else '🟡' if score >= 60 else '🟠' if score >= 40 else '🔴'
-                  print(f'  {status} {score:.1f}/100 - {url}')
-          else:
-              print('No results found')
-          "
+          python3 << 'PYEOF'
+        import json
+
+        with open('clipper-showcase/comprehensive_scores.json') as f:
+            data = json.load(f)
+
+        if data:
+            scores = [item['parseability_score'] for item in data]
+            avg_score = sum(scores) / len(scores)
+            clean_sites = sum(1 for score in scores if score >= 70)
+            total_sites = len(scores)
+
+            print(f'Total Sites Evaluated: {total_sites}')
+            print(f'Average Score: {avg_score:.1f}/100')
+            print(f'Clean Sites (>=70): {clean_sites}/{total_sites} ({clean_sites/total_sites*100:.1f}%)')
+            print()
+
+            scored_sites = [(item['url'], item['parseability_score']) for item in data]
+            scored_sites.sort(key=lambda x: x[1], reverse=True)
+
+            print('Top Performers:')
+            for i, (url, score) in enumerate(scored_sites[:3]):
+                print(f'  {i+1}. {score:.1f}/100 - {url}')
+
+            print()
+            print('All Results:')
+            for url, score in scored_sites:
+                status = 'PASS' if score >= 80 else 'OK' if score >= 60 else 'WARN' if score >= 40 else 'FAIL'
+                print(f'  [{status}] {score:.1f}/100 - {url}')
+        else:
+            print('No results found')
+        PYEOF
         else
           echo "❌ Demo failed - no results generated"
         fi
@@ -121,36 +120,36 @@ jobs:
           echo ""
           echo "📋 **COMPONENT ANALYSIS ACROSS ALL SITES**"
           
-          python -c "
-          import json
-          from collections import defaultdict
-          
-          with open('clipper-showcase/comprehensive_scores.json') as f:
-              data = json.load(f)
-          
-          if data:
-              component_totals = defaultdict(list)
-              
-              for item in data:
-                  if 'component_scores' in item:
-                      for component, score in item['component_scores'].items():
-                          component_totals[component].append(score)
-              
-              print('Average Component Scores:')
-              for component, scores in component_totals.items():
-                  if scores:
-                      avg = sum(scores) / len(scores)
-                      component_name = {
-                          'wcag_accessibility': '🌟 WCAG Accessibility',
-                          'semantic_html': '🏗️  Semantic HTML',
-                          'structured_data': '📋 Structured Data', 
-                          'http_compliance': '🌐 HTTP Compliance',
-                          'content_quality': '📝 Content Quality'
-                      }.get(component, component)
-                      
-                      status = '🟢' if avg >= 80 else '🟡' if avg >= 60 else '🟠' if avg >= 40 else '🔴'
-                      print(f'  {status} {component_name}: {avg:.1f}/100')
-          "
+          python3 << 'PYEOF'
+        import json
+        from collections import defaultdict
+
+        with open('clipper-showcase/comprehensive_scores.json') as f:
+            data = json.load(f)
+
+        if data:
+            component_totals = defaultdict(list)
+
+            for item in data:
+                if 'component_scores' in item:
+                    for component, score in item['component_scores'].items():
+                        component_totals[component].append(score)
+
+            print('Average Component Scores:')
+            for component, scores in component_totals.items():
+                if scores:
+                    avg = sum(scores) / len(scores)
+                    component_name = {
+                        'wcag_accessibility': 'WCAG Accessibility',
+                        'semantic_html': 'Semantic HTML',
+                        'structured_data': 'Structured Data',
+                        'http_compliance': 'HTTP Compliance',
+                        'content_quality': 'Content Quality'
+                    }.get(component, component)
+
+                    status = 'PASS' if avg >= 80 else 'OK' if avg >= 60 else 'WARN' if avg >= 40 else 'FAIL'
+                    print(f'  [{status}] {component_name}: {avg:.1f}/100')
+        PYEOF
         fi
         
     - name: Upload Demo Results
@@ -169,37 +168,36 @@ jobs:
         echo "" >> $GITHUB_STEP_SUMMARY
         
         if [ -f clipper-showcase/comprehensive_scores.json ]; then
-          python -c "
-          import json
-          
-          with open('clipper-showcase/comprehensive_scores.json') as f:
-              data = json.load(f)
-          
-          if data:
-              scores = [item['parseability_score'] for item in data]
-              avg_score = sum(scores) / len(scores)
-              clean_sites = sum(1 for score in scores if score >= 70)
-              total_sites = len(scores)
-              
-              print(f'**Total Sites:** {total_sites}')
-              print(f'**Average Score:** {avg_score:.1f}/100')
-              print(f'**Quality Gate Pass Rate:** {clean_sites}/{total_sites} ({clean_sites/total_sites*100:.1f}%)')
-              print('')
-              
-              print('### Detailed Results')
-              print('')
-              print('| Rank | Score | URL | Status |')
-              print('|------|-------|-----|--------|')
-              
-              scored_sites = [(item['url'], item['parseability_score']) for item in data]
-              scored_sites.sort(key=lambda x: x[1], reverse=True)
-              
-              for i, (url, score) in enumerate(scored_sites):
-                  status = '🟢 Excellent' if score >= 80 else '🟡 Good' if score >= 60 else '🟠 Needs Work' if score >= 40 else '🔴 Critical'
-                  # Truncate long URLs for display
-                  display_url = url if len(url) <= 60 else url[:57] + '...'
-                  print(f'| {i+1} | {score:.1f}/100 | {display_url} | {status} |')
-          " >> $GITHUB_STEP_SUMMARY
+          python3 << 'PYEOF' >> $GITHUB_STEP_SUMMARY
+        import json
+
+        with open('clipper-showcase/comprehensive_scores.json') as f:
+            data = json.load(f)
+
+        if data:
+            scores = [item['parseability_score'] for item in data]
+            avg_score = sum(scores) / len(scores)
+            clean_sites = sum(1 for score in scores if score >= 70)
+            total_sites = len(scores)
+
+            print(f'**Total Sites:** {total_sites}')
+            print(f'**Average Score:** {avg_score:.1f}/100')
+            print(f'**Quality Gate Pass Rate:** {clean_sites}/{total_sites} ({clean_sites/total_sites*100:.1f}%)')
+            print('')
+
+            print('### Detailed Results')
+            print('')
+            print('| Rank | Score | URL | Status |')
+            print('|------|-------|-----|--------|')
+
+            scored_sites = [(item['url'], item['parseability_score']) for item in data]
+            scored_sites.sort(key=lambda x: x[1], reverse=True)
+
+            for i, (url, score) in enumerate(scored_sites):
+                status = 'Excellent' if score >= 80 else 'Good' if score >= 60 else 'Needs Work' if score >= 40 else 'Critical'
+                display_url = url if len(url) <= 60 else url[:57] + '...'
+                print(f'| {i+1} | {score:.1f}/100 | {display_url} | {status} |')
+        PYEOF
           
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "✅ **Comprehensive evaluation completed successfully!**" >> $GITHUB_STEP_SUMMARY
