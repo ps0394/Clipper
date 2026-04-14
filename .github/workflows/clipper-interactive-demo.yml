@@ -36,15 +36,21 @@ jobs:
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.11'
         
     - name: Install Chrome for live demonstration
       uses: browser-actions/setup-chrome@v1
+      with:
+        chrome-version: stable
+
+    - name: Install ChromeDriver
+      run: |
+        pip install webdriver-manager
       
     - name: Install dependencies
       run: |
@@ -487,7 +493,7 @@ jobs:
         echo "✅ Interactive demo package ready for delivery"
         
     - name: Upload Interactive Demo Package
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       if: always()
       with:
         name: clipper-interactive-demo
