@@ -71,7 +71,7 @@ def _parse_html_file(html_file: Path) -> ParseResult:
     evidence = _gather_evidence(soup)
     
     return ParseResult(
-        html_path=str(html_file.name),
+        html_path=str(html_file.resolve()),
         signals=signals,
         evidence=evidence
     )
