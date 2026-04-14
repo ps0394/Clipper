@@ -1,0 +1,140 @@
+name: Clipper Instant Demo (30 seconds)
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL to evaluate (default: Microsoft Learn Azure Functions)'
+        required: false
+        default: 'https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview'
+  schedule:
+    - cron: '0 9 * * 1'  # Weekly Monday 9 AM showcase
+
+jobs:
+  instant-demo:
+    runs-on: ubuntu-latest
+    name: "⚡ 30-Second Quick Demo"
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install Chrome for WCAG evaluation
+      uses: browser-actions/setup-chrome@v1
+      
+    - name: Install dependencies
+      run: |
+        pip install -e .
+        
+    - name: Run Instant Demo
+      run: |
+        echo "🚀 Starting Clipper Instant Demo..."
+        echo "📊 Evaluating: ${{ github.event.inputs.url || 'https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview' }}"
+        
+        python main.py express \
+          --urls "${{ github.event.inputs.url || 'https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview' }}" \
+          --out instant-demo \
+          --quiet
+          
+        echo "✅ Clipper Instant Demo Complete!"
+        
+    - name: Display Results Summary
+      run: |
+        if [ -f instant-demo/report_scores.json ]; then
+          echo "📊 **INSTANT DEMO RESULTS**"
+          
+          # Extract key metrics
+          SCORE=$(python -c "
+          import json
+          with open('instant-demo/report_scores.json') as f:
+              data = json.load(f)
+              if data and len(data) > 0:
+                  print(f\"{data[0]['parseability_score']:.1f}\")
+              else:
+                  print('0.0')
+          ")
+          
+          echo "Overall Score: ${SCORE}/100"
+          echo ""
+          echo "Component Breakdown:"
+          python -c "
+          import json
+          with open('instant-demo/report_scores.json') as f:
+              data = json.load(f)
+              if data and len(data) > 0 and 'component_scores' in data[0]:
+                  scores = data[0]['component_scores']
+                  print(f'  🌟 WCAG Accessibility: {scores.get(\"wcag_accessibility\", 0):.1f}/100')
+                  print(f'  🏗️  Semantic HTML: {scores.get(\"semantic_html\", 0):.1f}/100') 
+                  print(f'  📋 Structured Data: {scores.get(\"structured_data\", 0):.1f}/100')
+                  print(f'  🌐 HTTP Compliance: {scores.get(\"http_compliance\", 0):.1f}/100')
+                  print(f'  📝 Content Quality: {scores.get(\"content_quality\", 0):.1f}/100')
+          "
+        else
+          echo "❌ Demo failed - no results generated"
+        fi
+        
+    - name: Upload Demo Results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: instant-demo-results
+        path: instant-demo/
+        retention-days: 7
+        
+    - name: Create Summary
+      run: |
+        echo "## ⚡ Clipper Instant Demo Results" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**URL Evaluated:** ${{ github.event.inputs.url || 'https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview' }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [ -f instant-demo/report_scores.json ]; then
+          SCORE=$(python -c "
+          import json
+          with open('instant-demo/report_scores.json') as f:
+              data = json.load(f)
+              if data and len(data) > 0:
+                  print(f\"{data[0]['parseability_score']:.1f}\")
+              else:
+                  print('0.0')
+          ")
+          
+          echo "**Overall Score:** ${SCORE}/100" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Component Scores" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          python -c "
+          import json
+          with open('instant-demo/report_scores.json') as f:
+              data = json.load(f)
+              if data and len(data) > 0 and 'component_scores' in data[0]:
+                  scores = data[0]['component_scores']
+                  print(f'| Component | Score | Status |')
+                  print(f'|-----------|-------|--------|')
+                  
+                  def get_status(score):
+                      if score >= 80: return '🟢 Excellent'
+                      elif score >= 60: return '🟡 Good'  
+                      elif score >= 40: return '🟠 Needs Work'
+                      else: return '🔴 Critical'
+                  
+                  print(f'| WCAG Accessibility | {scores.get(\"wcag_accessibility\", 0):.1f}/100 | {get_status(scores.get(\"wcag_accessibility\", 0))} |')
+                  print(f'| Semantic HTML | {scores.get(\"semantic_html\", 0):.1f}/100 | {get_status(scores.get(\"semantic_html\", 0))} |')
+                  print(f'| Structured Data | {scores.get(\"structured_data\", 0):.1f}/100 | {get_status(scores.get(\"structured_data\", 0))} |')
+                  print(f'| HTTP Compliance | {scores.get(\"http_compliance\", 0):.1f}/100 | {get_status(scores.get(\"http_compliance\", 0))} |')
+                  print(f'| Content Quality | {scores.get(\"content_quality\", 0):.1f}/100 | {get_status(scores.get(\"content_quality\", 0))} |')
+          " >> $GITHUB_STEP_SUMMARY
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Demo completed successfully!**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "> This demonstrates Clipper's zero-setup functionality with immediate, standards-based evaluation." >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ **Demo failed** - Check logs for details" >> $GITHUB_STEP_SUMMARY
+        fi

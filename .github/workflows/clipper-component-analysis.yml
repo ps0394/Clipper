@@ -1,0 +1,599 @@
+name: Clipper Component Analysis
+
+on:
+  workflow_dispatch:
+    inputs:
+      analysis_depth:
+        description: 'Analysis depth level'
+        type: choice
+        options:
+        - 'quick-overview'
+        - 'detailed-breakdown'
+        - 'comprehensive-deep-dive'
+        default: 'detailed-breakdown'
+      focus_component:
+        description: 'Component to focus analysis on (optional)'
+        type: choice
+        options:
+        - 'all-components'
+        - 'wcag-accessibility'
+        - 'html-validation'  
+        - 'structured-data'
+        - 'http-compliance'
+        - 'content-quality'
+        default: 'all-components'
+      sample_urls:
+        description: 'URLs for component analysis (one per line)'
+        required: false
+  schedule:
+    # Bi-weekly component analysis on Fridays at 4pm UTC
+    - cron: '0 16 * * 5/2'
+
+jobs:
+  component-analysis:
+    runs-on: ubuntu-latest
+    name: "🔬 Technical Component Analysis"
+    
+    outputs:
+      analysis_summary: ${{ steps.component-deep-dive.outputs.analysis_summary }}
+      component_scores: ${{ steps.component-deep-dive.outputs.component_scores }}
+      recommendations: ${{ steps.component-deep-dive.outputs.recommendations }}
+    
+    steps:
+    - name: Checkout repository  
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install Chrome for component evaluation
+      uses: browser-actions/setup-chrome@v1
+      
+    - name: Install dependencies
+      run: |
+        pip install -e .
+        
+    - name: Prepare Component Analysis Dataset
+      run: |
+        DEPTH="${{ github.event.inputs.analysis_depth || 'detailed-breakdown' }}"
+        FOCUS="${{ github.event.inputs.focus_component || 'all-components' }}"
+        
+        if [ -n "${{ github.event.inputs.sample_urls }}" ]; then
+          echo "${{ github.event.inputs.sample_urls }}" > component-analysis-urls.txt
+          echo "📋 Using provided URLs for component analysis"
+        else
+          echo "🔬 Creating component analysis test suite..."
+          
+          # Create diverse test cases for comprehensive component analysis
+          cat > component-analysis-urls.txt << 'EOF'
+        https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview
+        https://www.w3.org/WAI/WCAG21/quickref/
+        https://schema.org/docs/gs.html
+        https://developer.mozilla.org/en-US/docs/Web/HTML
+        https://httpwg.org/specs/rfc7231.html
+        EOF
+          
+          echo "✅ Created diverse component analysis dataset"
+        fi
+        
+        echo "🎯 Analysis Configuration:"
+        echo "  - Depth: $DEPTH"
+        echo "  - Focus: $FOCUS"
+        echo "  - URLs for analysis:"
+        cat component-analysis-urls.txt
+        
+    - name: Execute Component Analysis Evaluation
+      run: |
+        echo "🔬 Starting comprehensive component analysis..."
+        echo "📊 Evaluating all 5 Clipper standards components"
+        
+        python main.py express \
+          component-analysis-urls.txt \
+          --out component-analysis \
+          --name analysis-data \
+          --quiet
+          
+    - name: Deep Component Analysis
+      id: component-deep-dive
+      run: |
+        DEPTH="${{ github.event.inputs.analysis_depth || 'detailed-breakdown' }}"
+        FOCUS="${{ github.event.inputs.focus_component || 'all-components' }}"
+        
+        if [ -f component-analysis/analysis-data_scores.json ]; then
+          echo "🔬 Conducting deep technical component analysis..."
+          
+          python -c "
+          import json
+          import statistics
+          from collections import defaultdict
+          
+          depth = '$DEPTH'
+          focus = '$FOCUS'
+          
+          with open('component-analysis/analysis-data_scores.json') as f:
+              results = json.load(f)
+          
+          if not results:
+              print('❌ No component analysis data available')
+              exit(1)
+          
+          print('🔬 CLIPPER COMPONENT DEEP DIVE ANALYSIS')
+          print('=' * 60)
+          print(f'Analysis Depth: {depth}')
+          print(f'Component Focus: {focus}')
+          print(f'Sample Size: {len(results)} URLs')
+          print()
+          
+          # Component definitions and scoring criteria
+          components_info = {
+              'wcag_accessibility': {
+                  'name': '♿ WCAG 2.1 AA Accessibility',
+                  'weight': '25%',
+                  'authority': 'W3C Web Accessibility Initiative',
+                  'purpose': 'Legal compliance, inclusive design',
+                  'evaluation': 'Live browser automation with axe-core',
+                  'thresholds': {'excellent': 85, 'good': 70, 'acceptable': 60, 'poor': 40}
+              },
+              'semantic_html': {
+                  'name': '🏗️  W3C HTML5 Semantic Markup',
+                  'weight': '25%', 
+                  'authority': 'World Wide Web Consortium (W3C)',
+                  'purpose': 'Standards conformance, SEO, accessibility foundation',
+                  'evaluation': 'W3C validator integration, semantic analysis',
+                  'thresholds': {'excellent': 90, 'good': 80, 'acceptable': 70, 'poor': 50}
+              },
+              'structured_data': {
+                  'name': '📋 Schema.org Structured Data',
+                  'weight': '20%',
+                  'authority': 'Schema.org (Google, Microsoft, Yahoo, Yandex)',
+                  'purpose': 'Search engine optimization, data exchange',
+                  'evaluation': 'JSON-LD, Microdata, RDFa detection and validation',
+                  'thresholds': {'excellent': 60, 'good': 40, 'acceptable': 20, 'poor': 10}
+              },
+              'http_compliance': {
+                  'name': '🌐 HTTP/1.1 Protocol Compliance',
+                  'weight': '15%',
+                  'authority': 'Internet Engineering Task Force (IETF RFC 7231)',
+                  'purpose': 'Network performance, caching, standards compliance',
+                  'evaluation': 'Response headers, status codes, protocol analysis',
+                  'thresholds': {'excellent': 95, 'good': 85, 'acceptable': 75, 'poor': 60}
+              },
+              'content_quality': {
+                  'name': '📝 Content Quality & Structure',
+                  'weight': '15%',
+                  'authority': 'Content accessibility and readability standards',
+                  'purpose': 'Agent comprehension, user experience, clarity',
+                  'evaluation': 'Content analysis, structure evaluation, readability',
+                  'thresholds': {'excellent': 80, 'good': 70, 'acceptable': 60, 'poor': 40}
+              }
+          }
+          
+          # Collect component data
+          component_data = defaultdict(list)
+          
+          for result in results:
+              if 'component_scores' in result:
+                  for component, score in result['component_scores'].items():
+                      component_data[component].append(score)
+          
+          analysis_summary = {}
+          
+          # Analyze each component
+          for component, scores in component_data.items():
+              if component in components_info and scores:
+                  info = components_info[component]
+                  
+                  # Statistical analysis
+                  avg_score = statistics.mean(scores)
+                  median_score = statistics.median(scores)
+                  std_dev = statistics.stdev(scores) if len(scores) > 1 else 0
+                  min_score = min(scores)
+                  max_score = max(scores)
+                  
+                  # Performance classification
+                  thresholds = info['thresholds']
+                  if avg_score >= thresholds['excellent']:
+                      performance = 'EXCELLENT'
+                      status = '✅'
+                  elif avg_score >= thresholds['good']:
+                      performance = 'GOOD'
+                      status = '🟢'
+                  elif avg_score >= thresholds['acceptable']:
+                      performance = 'ACCEPTABLE'
+                      status = '🟡'
+                  else:
+                      performance = 'NEEDS IMPROVEMENT'
+                      status = '🔴'
+                  
+                  analysis_summary[component] = {
+                      'avg_score': avg_score,
+                      'performance': performance,
+                      'status': status
+                  }
+                  
+                  # Skip detailed output if not focused component
+                  if focus != 'all-components' and component != focus.replace('-', '_'):
+                      continue
+                  
+                  print(f'{info[\"name\"]}')
+                  print(f'Authority: {info[\"authority\"]}')
+                  print(f'Framework Weight: {info[\"weight\"]}')
+                  print(f'Evaluation Method: {info[\"evaluation\"]}')
+                  print(f'Purpose: {info[\"purpose\"]}')
+                  print()
+                  print(f'Statistical Analysis:')
+                  print(f'  Average Score: {avg_score:.1f}/100 - {status} {performance}')
+                  print(f'  Score Range: {min_score:.1f} - {max_score:.1f}')
+                  print(f'  Median: {median_score:.1f}')
+                  print(f'  Std Deviation: {std_dev:.1f}')
+                  print()
+                  
+                  if depth == 'comprehensive-deep-dive':
+                      print(f'Performance Benchmarks:')
+                      print(f'  🟢 Excellent: ≥{thresholds[\"excellent\"]}/100')
+                      print(f'  🟡 Good: ≥{thresholds[\"good\"]}/100') 
+                      print(f'  🟠 Acceptable: ≥{thresholds[\"acceptable\"]}/100')
+                      print(f'  🔴 Poor: <{thresholds[\"acceptable\"]}/100')
+                      print()
+                      
+                      # Distribution analysis
+                      excellent_count = sum(1 for s in scores if s >= thresholds['excellent'])
+                      good_count = sum(1 for s in scores if thresholds['good'] <= s < thresholds['excellent'])
+                      acceptable_count = sum(1 for s in scores if thresholds['acceptable'] <= s < thresholds['good'])
+                      poor_count = sum(1 for s in scores if s < thresholds['acceptable'])
+                      
+                      print(f'Score Distribution:')
+                      print(f'  🟢 Excellent: {excellent_count}/{len(scores)} ({excellent_count/len(scores)*100:.1f}%)')
+                      print(f'  🟡 Good: {good_count}/{len(scores)} ({good_count/len(scores)*100:.1f}%)')
+                      print(f'  🟠 Acceptable: {acceptable_count}/{len(scores)} ({acceptable_count/len(scores)*100:.1f}%)')
+                      print(f'  🔴 Poor: {poor_count}/{len(scores)} ({poor_count/len(scores)*100:.1f}%)')
+                      print()
+                  
+                  print('-' * 60)
+                  print()
+          
+          # Cross-component correlation analysis (detailed/comprehensive only)
+          if depth in ['detailed-breakdown', 'comprehensive-deep-dive'] and focus == 'all-components':
+              print('🔗 CROSS-COMPONENT CORRELATION ANALYSIS')
+              print('=' * 50)
+              
+              # Find patterns between components
+              site_scores = {}
+              for i, result in enumerate(results):
+                  if 'component_scores' in result:
+                      site_scores[i] = result['component_scores']
+              
+              if site_scores:
+                  # Accessibility-HTML correlation
+                  wcag_html_pairs = []
+                  wcag_schema_pairs = []
+                  
+                  for site in site_scores.values():
+                      if 'wcag_accessibility' in site and 'semantic_html' in site:
+                          wcag_html_pairs.append((site['wcag_accessibility'], site['semantic_html']))
+                      if 'wcag_accessibility' in site and 'structured_data' in site:
+                          wcag_schema_pairs.append((site['wcag_accessibility'], site['structured_data']))
+                  
+                  if wcag_html_pairs:
+                      # Simple correlation analysis
+                      wcag_scores = [pair[0] for pair in wcag_html_pairs]
+                      html_scores = [pair[1] for pair in wcag_html_pairs]
+                      
+                      avg_wcag = statistics.mean(wcag_scores)
+                      avg_html = statistics.mean(html_scores)
+                      
+                      print(f'WCAG ↔ HTML Relationship:')
+                      print(f'  Average WCAG: {avg_wcag:.1f}/100')
+                      print(f'  Average HTML: {avg_html:.1f}/100')
+                      
+                      if avg_wcag > 70 and avg_html > 80:
+                          print(f'  Pattern: ✅ Strong semantic HTML supports accessibility')
+                      elif avg_wcag < 50 and avg_html < 60:
+                          print(f'  Pattern: ⚠️ Poor HTML structure impacts accessibility')
+                      else:
+                          print(f'  Pattern: 🔄 Mixed correlation - site-specific factors')
+                      print()
+          
+          # Generate recommendations based on analysis
+          recommendations = []
+          
+          for component, data in analysis_summary.items():
+              if data['performance'] in ['NEEDS IMPROVEMENT']:
+                  info = components_info.get(component, {})
+                  component_name = info.get('name', component)
+                  
+                  if component == 'wcag_accessibility':
+                      recommendations.append('Implement axe-core accessibility testing in CI/CD pipeline')
+                      recommendations.append('Provide keyboard navigation and screen reader compatibility')
+                  elif component == 'semantic_html':
+                      recommendations.append('Use W3C HTML validator in development workflow')
+                      recommendations.append('Implement proper heading hierarchy and semantic elements')
+                  elif component == 'structured_data':
+                      recommendations.append('Add Schema.org JSON-LD markup for content types')
+                      recommendations.append('Implement structured data validation testing')
+                  elif component == 'http_compliance':
+                      recommendations.append('Review HTTP response headers and caching directives')
+                      recommendations.append('Ensure proper status code usage and redirects')
+                  elif component == 'content_quality':
+                      recommendations.append('Improve content structure and readability metrics')
+                      recommendations.append('Implement content quality guidelines and review processes')
+          
+          if not recommendations:
+              recommendations = ['All components performing within acceptable ranges - maintain current standards']
+          
+          # Set outputs
+          import json as json_module
+          print(f'::set-output name=analysis_summary::{json_module.dumps(analysis_summary)}')
+          print(f'::set-output name=component_scores::{json_module.dumps(dict(component_data))}')
+          print(f'::set-output name=recommendations::{json_module.dumps(recommendations)}')
+          
+          print('🏁 Component analysis completed')
+          "
+        else
+          echo "❌ Component analysis evaluation failed"
+          echo "::set-output name=analysis_summary::{}"
+          echo "::set-output name=component_scores::{}"
+          echo "::set-output name=recommendations::[]"
+        fi
+        
+    - name: Generate Technical Component Report
+      run: |
+        if [ -f component-analysis/analysis-data_scores.json ]; then
+          echo "📊 Generating detailed component analysis report..."
+          
+          # Create comprehensive technical report
+          cat > component-analysis-report.md << 'EOF'
+        # Clipper 3.0 Component Analysis Report
+        
+        ## Executive Summary
+        
+        This report provides a comprehensive technical analysis of Clipper's 5-component evaluation framework applied to a representative dataset of web resources.
+        
+        ## Framework Overview
+        
+        Clipper 3.0 evaluates web content across 5 standardized components:
+        
+        | Component | Weight | Authority | Purpose |
+        |-----------|--------|-----------|---------|
+        | ♿ WCAG 2.1 AA | 25% | W3C WAI | Legal compliance, accessibility |
+        | 🏗️ HTML5 Semantic | 25% | W3C | Standards conformance, SEO |
+        | 📋 Schema.org | 20% | Schema.org Consortium | Data exchange, search optimization |
+        | 🌐 HTTP/1.1 | 15% | IETF RFC 7231 | Network performance, protocol compliance |
+        | 📝 Content Quality | 15% | Best practices | Agent comprehension, readability |
+        
+        EOF
+        
+        # Add detailed component analysis
+        python -c "
+        import json
+        
+        with open('component-analysis/analysis-data_scores.json') as f:
+            data = json.load(f)
+        
+        if data:
+            print()
+            print('## Individual Site Component Breakdown')
+            print()
+            print('| URL | WCAG | HTML | Schema | HTTP | Content | Overall |')
+            print('|-----|------|------|--------|------|---------|---------|')
+            
+            for result in data:
+                url = result.get('url', 'Unknown')
+                overall = result['parseability_score']
+                
+                # Extract component scores with defaults
+                comp = result.get('component_scores', {})
+                wcag = comp.get('wcag_accessibility', 0)
+                html = comp.get('semantic_html', 0)
+                schema = comp.get('structured_data', 0)
+                http = comp.get('http_compliance', 0)
+                content = comp.get('content_quality', 0)
+                
+                # Truncate URL for display
+                display_url = url if len(url) <= 40 else url[:37] + '...'
+                
+                print(f'| {display_url} | {wcag:.0f} | {html:.0f} | {schema:.0f} | {http:.0f} | {content:.0f} | {overall:.1f} |')
+        " >> component-analysis-report.md
+        
+        # Add component-specific insights
+        cat >> component-analysis-report.md << 'EOF'
+        
+        ## Component Analysis Insights
+        
+        ### Accessibility (WCAG 2.1 AA)
+        - **Evaluation Method**: Live browser automation with axe-core
+        - **Key Factors**: Color contrast, keyboard navigation, screen reader support
+        - **Impact**: Legal compliance, user inclusion, market reach
+        
+        ### Semantic HTML (W3C HTML5)
+        - **Evaluation Method**: W3C validator integration and semantic analysis  
+        - **Key Factors**: Valid markup, proper element usage, document structure
+        - **Impact**: SEO performance, accessibility foundation, interoperability
+        
+        ### Structured Data (Schema.org)
+        - **Evaluation Method**: JSON-LD, Microdata, RDFa detection
+        - **Key Factors**: Content type markup, property completeness, validation
+        - **Impact**: Search visibility, rich snippets, data exchange
+        
+        ### HTTP Compliance (RFC 7231)
+        - **Evaluation Method**: Protocol analysis, header inspection
+        - **Key Factors**: Status codes, caching directives, response headers
+        - **Impact**: Network performance, browser compatibility, standards compliance
+        
+        ### Content Quality
+        - **Evaluation Method**: Structure analysis, readability assessment
+        - **Key Factors**: Content organization, clarity, comprehensibility
+        - **Impact**: Agent understanding, user experience, information effectiveness
+        
+        ## Methodology Notes
+        
+        - Scores are normalized to 0-100 scale for consistency
+        - Component weights reflect real-world importance for agent consumption
+        - Evaluation uses production-grade tools and standards
+        - Results represent snapshot analysis - monitor for changes over time
+        
+        EOF
+        
+        echo "✅ Technical component report generated"
+        fi
+        
+    - name: Create Component Visualization Data
+      run: |
+        if [ -f component-analysis/analysis-data_scores.json ]; then
+          echo "📈 Creating component visualization dataset..."
+          
+          # Generate CSV for component analysis visualization
+          python -c "
+          import json
+          import csv
+          
+          with open('component-analysis/analysis-data_scores.json') as f:
+              data = json.load(f)
+          
+          with open('component-visualization.csv', 'w', newline='') as csvfile:
+              writer = csv.writer(csvfile)
+              
+              # Headers
+              writer.writerow(['URL', 'WCAG_Accessibility', 'HTML_Semantic', 'Schema_Data', 
+                             'HTTP_Compliance', 'Content_Quality', 'Overall_Score'])
+              
+              # Data rows
+              for result in data:
+                  url = result.get('url', 'Unknown')
+                  overall = result['parseability_score']
+                  
+                  comp = result.get('component_scores', {})
+                  wcag = comp.get('wcag_accessibility', 0)
+                  html = comp.get('semantic_html', 0) 
+                  schema = comp.get('structured_data', 0)
+                  http = comp.get('http_compliance', 0)
+                  content = comp.get('content_quality', 0)
+                  
+                  writer.writerow([url, wcag, html, schema, http, content, overall])
+          
+          print('✅ Component visualization data created: component-visualization.csv')
+          "
+          
+          # Create simple summary stats
+          python -c "
+          import json
+          from collections import defaultdict
+          
+          with open('component-analysis/analysis-data_scores.json') as f:
+              data = json.load(f)
+          
+          if data:
+              component_totals = defaultdict(list)
+              
+              for result in data:
+                  if 'component_scores' in result:
+                      for comp, score in result['component_scores'].items():
+                          component_totals[comp].append(score)
+              
+              with open('component-summary-stats.json', 'w') as f:
+                  stats = {}
+                  for comp, scores in component_totals.items():
+                      if scores:
+                          stats[comp] = {
+                              'average': sum(scores) / len(scores),
+                              'min': min(scores),
+                              'max': max(scores),
+                              'count': len(scores)
+                          }
+                  json.dump(stats, f, indent=2)
+          
+          print('✅ Component summary statistics created')
+          "
+        fi
+        
+    - name: Upload Component Analysis Results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: component-analysis-results
+        path: |
+          component-analysis/
+          component-analysis-report.md
+          component-visualization.csv
+          component-summary-stats.json
+        retention-days: 60
+        
+    - name: Create Component Analysis Summary
+      if: always()
+      run: |
+        echo "## 🔬 Component Analysis Results" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        DEPTH="${{ github.event.inputs.analysis_depth || 'detailed-breakdown' }}"
+        FOCUS="${{ github.event.inputs.focus_component || 'all-components' }}"
+        
+        echo "### 🎯 Analysis Configuration" >> $GITHUB_STEP_SUMMARY
+        echo "- **Analysis Depth**: $DEPTH" >> $GITHUB_STEP_SUMMARY
+        echo "- **Component Focus**: $FOCUS" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [ -f component-analysis/analysis-data_scores.json ]; then
+          echo "### 📊 Component Performance Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Generate component summary table
+          python -c "
+          import json
+          from collections import defaultdict
+          
+          with open('component-analysis/analysis-data_scores.json') as f:
+              data = json.load(f)
+          
+          if data:
+              component_totals = defaultdict(list)
+              
+              for result in data:
+                  if 'component_scores' in result:
+                      for comp, score in result['component_scores'].items():
+                          component_totals[comp].append(score)
+              
+              component_names = {
+                  'wcag_accessibility': '♿ WCAG 2.1',
+                  'semantic_html': '🏗️ HTML5', 
+                  'structured_data': '📋 Schema.org',
+                  'http_compliance': '🌐 HTTP/1.1',
+                  'content_quality': '📝 Content'
+              }
+              
+              print('| Component | Average Score | Performance | Sample Size |')
+              print('|-----------|---------------|-------------|-------------|')
+              
+              for comp, scores in component_totals.items():
+                  if scores and comp in component_names:
+                      avg = sum(scores) / len(scores)
+                      name = component_names[comp]
+                      
+                      if avg >= 80:
+                          perf = '🟢 Excellent'
+                      elif avg >= 70:
+                          perf = '🟡 Good'
+                      elif avg >= 60:
+                          perf = '🟠 Acceptable'
+                      else:
+                          perf = '🔴 Needs Work'
+                      
+                      print(f'| {name} | {avg:.1f}/100 | {perf} | {len(scores)} sites |')
+          " >> $GITHUB_STEP_SUMMARY
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🎯 Key Findings" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Add component-specific insights
+          echo "- **Framework Weights**: WCAG (25%), HTML (25%), Schema (20%), HTTP (15%), Content (15%)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Evaluation Standards**: W3C, IETF RFC 7231, Schema.org consortium specifications" >> $GITHUB_STEP_SUMMARY
+          echo "- **Analysis Tools**: Live browser automation, W3C validators, protocol analyzers" >> $GITHUB_STEP_SUMMARY
+          echo "- **Report Deliverables**: Technical analysis, visualization data, summary statistics" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ **Analysis failed** - No component data available for evaluation" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "> 💡 **Component analysis provides technical insights into web standards compliance across 5 key evaluation frameworks. Use this data to prioritize improvements and understand performance patterns.**" >> $GITHUB_STEP_SUMMARY

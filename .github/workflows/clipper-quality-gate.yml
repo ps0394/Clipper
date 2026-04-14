@@ -1,0 +1,282 @@
+name: Clipper Quality Gate Simulation
+
+on:
+  workflow_dispatch:
+    inputs:
+      quality_threshold:
+        description: 'Minimum quality score threshold (default: 70)'
+        required: false
+        default: '70'
+      urls_file:
+        description: 'URLs file to use (default: clipper-demo-urls.txt)'
+        required: false  
+        default: 'clipper-demo-urls.txt'
+      fail_on_quality_gate:
+        description: 'Fail job if quality gate not met'
+        type: boolean
+        required: false
+        default: true
+  pull_request:
+    paths: ['docs/**', '*.md', 'clipper-demo-urls.txt']
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    name: "🚪 CI/CD Quality Gate Simulation"
+    
+    outputs:
+      quality_gate_passed: ${{ steps.quality-check.outputs.passed }}
+      average_score: ${{ steps.quality-check.outputs.average_score }}
+      pass_rate: ${{ steps.quality-check.outputs.pass_rate }}
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install Chrome for WCAG evaluation
+      uses: browser-actions/setup-chrome@v1
+      
+    - name: Install dependencies
+      run: |
+        pip install -e .
+        
+    - name: Prepare URLs for evaluation
+      run: |
+        URLS_FILE="${{ github.event.inputs.urls_file || 'clipper-demo-urls.txt' }}"
+        
+        if [ ! -f "$URLS_FILE" ]; then
+          echo "⚠️ URLs file not found: $URLS_FILE"
+          echo "Creating production-ready demo URLs..."
+          
+          cat > clipper-demo-urls.txt << EOF
+        https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview
+        https://docs.microsoft.com/en-us/dotnet/
+        https://www.w3.org/WAI/WCAG21/quickref/
+        https://schema.org/docs/gs.html
+        EOF
+          
+          echo "✅ Created quality gate test URLs"
+        else
+          echo "✅ Using URLs file: $URLS_FILE"
+          echo "URLs for quality gate evaluation:"
+          cat "$URLS_FILE"
+        fi
+        
+    - name: Run Quality Gate Evaluation
+      run: |
+        echo "🚪 Starting Quality Gate Simulation..."
+        echo "📊 Threshold: ${{ github.event.inputs.quality_threshold || '70' }}/100"
+        echo "📋 Evaluating URLs for production readiness..."
+        
+        python main.py express \
+          "${{ github.event.inputs.urls_file || 'clipper-demo-urls.txt' }}" \
+          --out quality-gate \
+          --name gate-test \
+          --quiet
+          
+    - name: Quality Gate Analysis
+      id: quality-check
+      run: |
+        THRESHOLD=${{ github.event.inputs.quality_threshold || '70' }}
+        
+        if [ -f quality-gate/gate-test_scores.json ]; then
+          echo "🔍 Analyzing quality gate results..."
+          
+          # Quality gate logic
+          RESULTS=$(python -c "
+          import json
+          import sys
+          
+          threshold = float('$THRESHOLD')
+          
+          with open('quality-gate/gate-test_scores.json') as f:
+              results = json.load(f)
+          
+          if not results:
+              print('No results found')
+              sys.exit(1)
+          
+          # Calculate metrics
+          scores = [r['parseability_score'] for r in results]
+          passed = sum(1 for score in scores if score >= threshold)
+          total = len(scores)
+          average = sum(scores) / len(scores) if scores else 0
+          pass_rate = (passed / total) * 100 if total > 0 else 0
+          
+          print(f'Quality Gate: {passed}/{total} URLs passed (≥{threshold} points)')
+          print(f'Average Score: {average:.1f}/100')
+          print(f'Pass Rate: {pass_rate:.1f}%')
+          
+          # Detailed breakdown
+          print()
+          print('Detailed Results:')
+          for i, result in enumerate(results):
+              url = result.get('url', f'URL {i+1}')
+              score = result['parseability_score']
+              status = '✅ PASS' if score >= threshold else '❌ FAIL'
+              print(f'  {status} {score:.1f}/100 - {url}')
+          
+          # Set outputs
+          print(f'::set-output name=passed::{passed == total}')
+          print(f'::set-output name=average_score::{average:.1f}')
+          print(f'::set-output name=pass_rate::{pass_rate:.1f}')
+          
+          if passed == total:
+              print()
+              print('✅ ALL URLS READY FOR AGENT CONSUMPTION')
+              sys.exit(0)
+          else:
+              print()
+              print('⚠️ Some URLs need improvement - check audit trails')
+              sys.exit(1) if '${{ github.event.inputs.fail_on_quality_gate }}' == 'true' else sys.exit(0)
+          ")
+        else
+          echo "❌ Quality gate evaluation failed - no results found"
+          echo "::set-output name=passed::false"
+          echo "::set-output name=average_score::0.0"
+          echo "::set-output name=pass_rate::0.0"
+          exit 1
+        fi
+        
+    - name: Generate Quality Report
+      if: always()
+      run: |
+        if [ -f quality-gate/gate-test_scores.json ]; then
+          echo "📊 **QUALITY GATE REPORT**"
+          
+          # Component-level quality analysis
+          python -c "
+          import json
+          from collections import defaultdict
+          
+          with open('quality-gate/gate-test_scores.json') as f:
+              data = json.load(f)
+          
+          if data:
+              print()
+              print('Component-Level Quality Analysis:')
+              
+              component_totals = defaultdict(list)
+              for item in data:
+                  if 'component_scores' in item:
+                      for component, score in item['component_scores'].items():
+                          component_totals[component].append(score)
+              
+              components = {
+                  'wcag_accessibility': ('🌟 WCAG Accessibility', 'Legal compliance, user inclusion'),
+                  'semantic_html': ('🏗️  Semantic HTML', 'Structure, SEO performance'),
+                  'structured_data': ('📋 Structured Data', 'Search engine optimization'),
+                  'http_compliance': ('🌐 HTTP Standards', 'Network performance, caching'),
+                  'content_quality': ('📝 Content Quality', 'Agent comprehension, clarity')
+              }
+              
+              for component, scores in component_totals.items():
+                  if scores and component in components:
+                      avg = sum(scores) / len(scores)
+                      name, purpose = components[component]
+                      status = '✅' if avg >= 70 else '⚠️' if avg >= 50 else '❌'
+                      print(f'  {status} {name}: {avg:.1f}/100 - {purpose}')
+          "
+        fi
+        
+    - name: Upload Quality Gate Results  
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: quality-gate-results
+        path: quality-gate/
+        retention-days: 90  # Keep quality reports longer
+        
+    - name: Create Quality Gate Summary
+      if: always()
+      run: |
+        echo "## 🚪 Quality Gate Simulation Results" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        GATE_STATUS="${{ steps.quality-check.outputs.passed }}"
+        AVG_SCORE="${{ steps.quality-check.outputs.average_score }}"
+        PASS_RATE="${{ steps.quality-check.outputs.pass_rate }}"
+        THRESHOLD="${{ github.event.inputs.quality_threshold || '70' }}"
+        
+        if [ "$GATE_STATUS" = "true" ]; then
+          echo "### ✅ Quality Gate: **PASSED**" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "### ❌ Quality Gate: **FAILED**" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "| Metric | Value | Status |" >> $GITHUB_STEP_SUMMARY
+        echo "|--------|-------|--------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Threshold | ${THRESHOLD}/100 | Required minimum |" >> $GITHUB_STEP_SUMMARY
+        echo "| Average Score | ${AVG_SCORE}/100 | $([ $(echo "${AVG_SCORE} >= ${THRESHOLD}" | bc -l) -eq 1 ] && echo "🟢 Above threshold" || echo "🔴 Below threshold") |" >> $GITHUB_STEP_SUMMARY
+        echo "| Pass Rate | ${PASS_RATE}% | $([ $(echo "${PASS_RATE} >= 80" | bc -l) -eq 1 ] && echo "🟢 Excellent" || echo "🟡 Needs improvement") |" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [ -f quality-gate/gate-test_scores.json ]; then
+          echo "### Individual Site Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          python -c "
+          import json
+          
+          threshold = float('$THRESHOLD')
+          
+          with open('quality-gate/gate-test_scores.json') as f:
+              data = json.load(f)
+          
+          if data:
+              print('| URL | Score | Status | Key Issues |')
+              print('|-----|-------|--------|------------|')
+              
+              for result in data:
+                  url = result.get('url', 'Unknown')
+                  score = result['parseability_score']
+                  status = 'PASS ✅' if score >= threshold else 'FAIL ❌'
+                  
+                  # Identify key improvement areas
+                  issues = []
+                  if 'component_scores' in result:
+                      components = result['component_scores']
+                      if components.get('wcag_accessibility', 100) < 50:
+                          issues.append('Accessibility')
+                      if components.get('semantic_html', 100) < 50:
+                          issues.append('HTML Structure')
+                      if components.get('structured_data', 100) < 30:
+                          issues.append('Schema Data')
+                  
+                  issues_text = ', '.join(issues) if issues else 'Minor improvements'
+                  display_url = url if len(url) <= 50 else url[:47] + '...'
+                  
+                  print(f'| {display_url} | {score:.1f}/100 | {status} | {issues_text} |')
+          " >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        if [ "$GATE_STATUS" = "true" ]; then
+          echo "> ✅ **All content meets production quality standards and is ready for agent consumption.**" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "> ⚠️ **Quality improvements needed before production deployment. Review audit trails for specific recommendations.**" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+  post-quality-gate:
+    needs: quality-gate
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Quality Gate Status Check
+      run: |
+        echo "Quality Gate Status: ${{ needs.quality-gate.outputs.quality_gate_passed }}"
+        echo "Average Score: ${{ needs.quality-gate.outputs.average_score }}/100"
+        echo "Pass Rate: ${{ needs.quality-gate.outputs.pass_rate }}%"
+        
+        if [ "${{ needs.quality-gate.outputs.quality_gate_passed }}" = "true" ]; then
+          echo "🎉 Quality gate passed - ready for deployment!"
+        else
+          echo "🔄 Quality gate failed - improvements needed before deployment"
+        fi

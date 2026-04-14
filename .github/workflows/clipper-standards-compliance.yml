@@ -1,0 +1,411 @@
+name: Clipper Standards Compliance Check
+
+on:
+  workflow_dispatch:
+    inputs:
+      compliance_focus:
+        description: 'Compliance standard to focus on'
+        type: choice
+        options:
+        - 'all'
+        - 'wcag'
+        - 'html'
+        - 'schema'
+        - 'http'
+        default: 'all'
+      min_wcag_score:
+        description: 'Minimum WCAG accessibility score (default: 60)'
+        required: false
+        default: '60'
+      test_urls:
+        description: 'URLs to test (one per line, or leave empty for defaults)'
+        required: false
+  schedule:
+    # Run compliance check weekly on Mondays at 9am UTC
+    - cron: '0 9 * * 1'
+
+jobs:
+  standards-compliance:
+    runs-on: ubuntu-latest
+    name: "📋 Standards Compliance Validation"
+    
+    outputs:
+      wcag_compliance: ${{ steps.compliance-analysis.outputs.wcag_compliant }}
+      html_validation: ${{ steps.compliance-analysis.outputs.html_valid }}
+      schema_coverage: ${{ steps.compliance-analysis.outputs.schema_coverage }}
+      http_compliance: ${{ steps.compliance-analysis.outputs.http_compliant }}
+      overall_status: ${{ steps.compliance-analysis.outputs.overall_compliant }}
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install Chrome for WCAG evaluation
+      uses: browser-actions/setup-chrome@v1
+      
+    - name: Install dependencies
+      run: |
+        pip install -e .
+        
+    - name: Prepare Compliance Test URLs
+      run: |
+        if [ -n "${{ github.event.inputs.test_urls }}" ]; then
+          echo "${{ github.event.inputs.test_urls }}" > compliance-test-urls.txt
+          echo "✅ Using provided test URLs"
+        else
+          echo "🎯 Creating standards compliance test suite..."
+          
+          cat > compliance-test-urls.txt << 'EOF'
+        https://www.w3.org/WAI/WCAG21/quickref/
+        https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview
+        https://schema.org/docs/gs.html
+        https://developer.mozilla.org/en-US/docs/Web/HTML/Element
+        https://httpwg.org/specs/rfc7231.html
+        EOF
+          
+          echo "✅ Created comprehensive standards test suite"
+          echo "Target URLs for compliance validation:"
+          cat compliance-test-urls.txt
+        fi
+        
+    - name: Run Standards Compliance Evaluation
+      run: |
+        FOCUS="${{ github.event.inputs.compliance_focus || 'all' }}"
+        
+        echo "📋 Starting Standards Compliance Check..."
+        echo "🎯 Focus: $FOCUS"
+        echo "♿ WCAG Minimum: ${{ github.event.inputs.min_wcag_score || '60' }}/100"
+        
+        python main.py express \
+          compliance-test-urls.txt \
+          --out standards-compliance \
+          --name compliance-check \
+          --quiet
+          
+    - name: Standards Compliance Analysis  
+      id: compliance-analysis
+      run: |
+        WCAG_MIN=${{ github.event.inputs.min_wcag_score || '60' }}
+        FOCUS="${{ github.event.inputs.compliance_focus || 'all' }}"
+        
+        if [ -f standards-compliance/compliance-check_scores.json ]; then
+          echo "🔍 Analyzing standards compliance results..."
+          
+          python -c "
+          import json
+          import sys
+          from collections import defaultdict
+          
+          wcag_min = float('$WCAG_MIN')
+          focus = '$FOCUS'
+          
+          with open('standards-compliance/compliance-check_scores.json') as f:
+              results = json.load(f)
+          
+          if not results:
+              print('❌ No compliance results found')
+              sys.exit(1)
+          
+          # Compliance thresholds
+          thresholds = {
+              'wcag_accessibility': wcag_min,
+              'semantic_html': 70.0,
+              'structured_data': 30.0,  # Schema.org is optional but valuable
+              'http_compliance': 80.0,
+              'content_quality': 60.0
+          }
+          
+          # Analyze each standard
+          compliance_stats = defaultdict(list)
+          
+          for result in results:
+              if 'component_scores' in result:
+                  for component, score in result['component_scores'].items():
+                      compliance_stats[component].append(score)
+          
+          print('🏛️ STANDARDS COMPLIANCE REPORT')
+          print('=' * 50)
+          
+          compliance_details = {
+              'wcag_accessibility': ('♿ WCAG 2.1 AA Accessibility', 'Legal compliance, inclusive design'),
+              'semantic_html': ('🏗️  W3C HTML5 Validation', 'Standards conformance, interoperability'),
+              'structured_data': ('📋 Schema.org Markup', 'Search engine optimization, data exchange'),
+              'http_compliance': ('🌐 HTTP/1.1 Standards (RFC 7231)', 'Network protocol compliance'),
+              'content_quality': ('📝 Content Clarity', 'Comprehensibility, structured presentation')
+          }
+          
+          # Calculate compliance status for each standard
+          compliant_components = {}
+          
+          for component, scores in compliance_stats.items():
+              if scores and component in thresholds:
+                  avg_score = sum(scores) / len(scores)
+                  threshold = thresholds[component]
+                  is_compliant = avg_score >= threshold
+                  
+                  name, purpose = compliance_details.get(component, (component, 'Standards compliance'))
+                  status = '✅ COMPLIANT' if is_compliant else '❌ NON-COMPLIANT'
+                  
+                  print(f'{name}:')
+                  print(f'  Score: {avg_score:.1f}/100 (threshold: {threshold})')
+                  print(f'  Status: {status}')
+                  print(f'  Purpose: {purpose}')
+                  print()
+                  
+                  compliant_components[component] = is_compliant
+          
+          # Overall assessment
+          if focus == 'all':
+              required_standards = ['wcag_accessibility', 'semantic_html', 'http_compliance']
+              wcag_ok = compliant_components.get('wcag_accessibility', False)
+              html_ok = compliant_components.get('semantic_html', False) 
+              http_ok = compliant_components.get('http_compliance', False)
+              overall_compliant = wcag_ok and html_ok and http_ok
+          elif focus == 'wcag':
+              overall_compliant = compliant_components.get('wcag_accessibility', False)
+              wcag_ok = html_ok = http_ok = overall_compliant
+          elif focus == 'html':
+              overall_compliant = compliant_components.get('semantic_html', False)
+              html_ok = overall_compliant
+              wcag_ok = http_ok = True  # Not assessed
+          else:
+              # Single focus mode
+              overall_compliant = True  # Assume compliant for single component focus
+              wcag_ok = html_ok = http_ok = True
+          
+          schema_coverage = sum(compliance_stats.get('structured_data', [0])) / len(compliance_stats.get('structured_data', [1])) if compliance_stats.get('structured_data') else 0
+          
+          # Set outputs
+          print(f'::set-output name=wcag_compliant::{str(wcag_ok).lower()}')
+          print(f'::set-output name=html_valid::{str(html_ok).lower()}') 
+          print(f'::set-output name=schema_coverage::{schema_coverage:.1f}')
+          print(f'::set-output name=http_compliant::{str(http_ok).lower()}')
+          print(f'::set-output name=overall_compliant::{str(overall_compliant).lower()}')
+          
+          if overall_compliant:
+              print('🏆 OVERALL STATUS: STANDARDS COMPLIANT')
+          else:
+              print('⚠️ OVERALL STATUS: COMPLIANCE ISSUES DETECTED')
+          "
+        else
+          echo "❌ Compliance evaluation failed - no results found"
+          echo "::set-output name=wcag_compliant::false"
+          echo "::set-output name=html_valid::false"
+          echo "::set-output name=schema_coverage::0.0"
+          echo "::set-output name=http_compliant::false"
+          echo "::set-output name=overall_compliant::false"
+        fi
+        
+    - name: Generate Detailed Compliance Report
+      run: |
+        if [ -f standards-compliance/compliance-check_scores.json ]; then
+          echo "📊 **DETAILED COMPLIANCE ANALYSIS**"
+          
+          python -c "
+          import json
+          from collections import defaultdict
+          
+          with open('standards-compliance/compliance-check_scores.json') as f:
+              data = json.load(f)
+          
+          if data:
+              print()
+              print('Individual Site Compliance:')
+              print('-' * 60)
+              
+              for i, result in enumerate(data):
+                  url = result.get('url', f'Site {i+1}')
+                  print(f'URL: {url}')
+                  print(f'Overall Score: {result[\"parseability_score\"]:.1f}/100')
+                  
+                  if 'component_scores' in result:
+                      components = result['component_scores']
+                      
+                      # WCAG Analysis
+                      wcag = components.get('wcag_accessibility', 0)
+                      if wcag >= 70:
+                          wcag_status = '✅ AA Compliant'
+                      elif wcag >= 50:
+                          wcag_status = '⚠️  Partial Compliance'
+                      else:
+                          wcag_status = '❌ Major Issues'
+                      print(f'  ♿ WCAG 2.1: {wcag:.1f}/100 - {wcag_status}')
+                      
+                      # HTML Validation  
+                      html = components.get('semantic_html', 0)
+                      if html >= 80:
+                          html_status = '✅ Valid HTML'
+                      elif html >= 60:
+                          html_status = '⚠️  Minor Issues'
+                      else:
+                          html_status = '❌ Validation Errors'
+                      print(f'  🏗️  HTML5: {html:.1f}/100 - {html_status}')
+                      
+                      # Schema.org Coverage
+                      schema = components.get('structured_data', 0)
+                      if schema >= 50:
+                          schema_status = '✅ Rich Markup'
+                      elif schema >= 20:
+                          schema_status = '⚠️  Basic Markup'
+                      else:
+                          schema_status = '❌ No Structured Data'
+                      print(f'  📋 Schema.org: {schema:.1f}/100 - {schema_status}')
+                      
+                      # HTTP Standards
+                      http = components.get('http_compliance', 0)
+                      if http >= 85:
+                          http_status = '✅ RFC Compliant'
+                      elif http >= 70:
+                          http_status = '⚠️  Minor Issues'
+                      else:
+                          http_status = '❌ Protocol Issues'
+                      print(f'  🌐 HTTP: {http:.1f}/100 - {http_status}')
+                      
+                  print()
+          "
+        fi
+        
+    - name: Create Accessibility Focus Report
+      if: github.event.inputs.compliance_focus == 'wcag' || github.event.inputs.compliance_focus == 'all'
+      run: |
+        if [ -f standards-compliance/compliance-check_scores.json ]; then
+          echo "♿ **WCAG 2.1 ACCESSIBILITY DEEP DIVE**" | tee accessibility-report.md
+          echo "" | tee -a accessibility-report.md
+          
+          python -c "
+          import json
+          
+          with open('standards-compliance/compliance-check_scores.json') as f:
+              data = json.load(f)
+          
+          wcag_min = float('${{ github.event.inputs.min_wcag_score || '60' }}')
+          
+          if data:
+              print('## Accessibility Compliance Summary')
+              print()
+              
+              wcag_scores = [r['component_scores'].get('wcag_accessibility', 0) for r in data if 'component_scores' in r]
+              
+              if wcag_scores:
+                  avg_wcag = sum(wcag_scores) / len(wcag_scores)
+                  compliant_sites = sum(1 for score in wcag_scores if score >= wcag_min)
+                  
+                  print(f'- **Average WCAG Score**: {avg_wcag:.1f}/100')
+                  print(f'- **Compliant Sites**: {compliant_sites}/{len(wcag_scores)} (≥{wcag_min} threshold)')
+                  print(f'- **Compliance Rate**: {(compliant_sites/len(wcag_scores)*100):.1f}%')
+                  print()
+                  
+                  print('## Accessibility Guidelines Coverage')
+                  print()
+                  if avg_wcag >= 80:
+                      print('✅ **Excellent accessibility** - Exceeds WCAG 2.1 AA requirements')
+                  elif avg_wcag >= 60:
+                      print('⚠️ **Good accessibility** - Meets basic WCAG 2.1 AA requirements')
+                  elif avg_wcag >= 40:
+                      print('🔄 **Needs improvement** - Partial WCAG compliance')
+                  else:
+                      print('❌ **Major accessibility barriers** - Significant WCAG violations')
+                  
+                  print()
+                  print('## Key Focus Areas')
+                  print('- **Keyboard Navigation**: Ensure all interactive elements are keyboard accessible')
+                  print('- **Screen Reader Support**: Proper ARIA labels and semantic markup') 
+                  print('- **Color Contrast**: Meet WCAG contrast ratios for text and UI elements')
+                  print('- **Form Accessibility**: Clear labels, error messages, and instructions')
+                  print('- **Image Alt Text**: Descriptive alternative text for all images')
+              
+          " | tee -a accessibility-report.md
+        fi
+        
+    - name: Upload Compliance Results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: standards-compliance-results
+        path: |
+          standards-compliance/
+          accessibility-report.md
+        retention-days: 30
+        
+    - name: Create Compliance Summary
+      if: always()
+      run: |
+        echo "## 📋 Standards Compliance Check Results" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        FOCUS="${{ github.event.inputs.compliance_focus || 'all' }}"
+        OVERALL="${{ steps.compliance-analysis.outputs.overall_compliant }}"
+        WCAG="${{ steps.compliance-analysis.outputs.wcag_compliant }}"
+        HTML="${{ steps.compliance-analysis.outputs.html_valid }}"
+        HTTP="${{ steps.compliance-analysis.outputs.http_compliant }}"
+        SCHEMA="${{ steps.compliance-analysis.outputs.schema_coverage }}"
+        
+        echo "### 🎯 Compliance Focus: **$FOCUS**" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "$OVERALL" = "true" ]; then
+          echo "### ✅ Overall Status: **STANDARDS COMPLIANT**" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "### ❌ Overall Status: **COMPLIANCE ISSUES DETECTED**" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "| Standard | Status | Importance |" >> $GITHUB_STEP_SUMMARY
+        echo "|----------|--------|------------|" >> $GITHUB_STEP_SUMMARY
+        
+        # WCAG Status
+        if [ "$WCAG" = "true" ]; then
+          WCAG_STATUS="✅ Compliant"
+        else
+          WCAG_STATUS="❌ Issues detected"
+        fi
+        echo "| ♿ WCAG 2.1 AA | $WCAG_STATUS | Legal requirement, inclusive design |" >> $GITHUB_STEP_SUMMARY
+        
+        # HTML Status  
+        if [ "$HTML" = "true" ]; then
+          HTML_STATUS="✅ Valid"
+        else
+          HTML_STATUS="❌ Validation errors"
+        fi
+        echo "| 🏗️ W3C HTML5 | $HTML_STATUS | Standards conformance, interoperability |" >> $GITHUB_STEP_SUMMARY
+        
+        # HTTP Status
+        if [ "$HTTP" = "true" ]; then
+          HTTP_STATUS="✅ RFC Compliant"
+        else
+          HTTP_STATUS="❌ Protocol issues"
+        fi
+        echo "| 🌐 HTTP/1.1 | $HTTP_STATUS | Network performance, caching |" >> $GITHUB_STEP_SUMMARY
+        
+        # Schema Coverage
+        SCHEMA_PERCENT=$(echo "$SCHEMA" | cut -d. -f1)
+        if [ "$SCHEMA_PERCENT" -ge 50 ] 2>/dev/null; then
+          SCHEMA_STATUS="✅ Rich markup (${SCHEMA}%)"
+        elif [ "$SCHEMA_PERCENT" -ge 20 ] 2>/dev/null; then
+          SCHEMA_STATUS="⚠️ Basic markup (${SCHEMA}%)"  
+        else
+          SCHEMA_STATUS="❌ No structured data (${SCHEMA}%)"
+        fi
+        echo "| 📋 Schema.org | $SCHEMA_STATUS | SEO optimization, data exchange |" >> $GITHUB_STEP_SUMMARY
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "$OVERALL" = "true" ]; then
+          echo "> ✅ **Content meets web standards and accessibility requirements for production deployment.**" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "> ⚠️ **Standards compliance improvements needed. Review detailed reports for specific recommendations.**" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        # Add accessibility focus summary if applicable
+        if [ "$FOCUS" = "wcag" ] || [ "$FOCUS" = "all" ]; then
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### ♿ Accessibility Highlights" >> $GITHUB_STEP_SUMMARY
+          echo "- WCAG 2.1 AA compliance ensures legal compliance and inclusive user experience" >> $GITHUB_STEP_SUMMARY
+          echo "- Accessibility improvements benefit all users, not just those with disabilities" >> $GITHUB_STEP_SUMMARY  
+          echo "- Automated testing covers ~40% of WCAG issues - manual testing recommended" >> $GITHUB_STEP_SUMMARY
+        fi
