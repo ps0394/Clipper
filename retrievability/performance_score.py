@@ -14,6 +14,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 from .performance_evaluator import get_performance_evaluator, PerformanceOptimizedEvaluator
 from .access_gate_evaluator import AccessGateEvaluator
+from .score import _load_crawl_data_for_scoring
 
 
 def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optional[str] = None, 
@@ -51,7 +52,7 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
         parse_results_data = json.load(f)
     
     # Load URLs and crawl data for enhanced evaluation
-    urls, crawl_results = _load_crawl_data_for_performance_scoring(parse_path)
+    urls, crawl_results = _load_crawl_data_for_scoring(parse_path)
     
     print(f"📊 Evaluating {len(parse_results_data)} documents using performance-optimized standards...")
     if crawl_results:

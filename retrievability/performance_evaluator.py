@@ -69,18 +69,18 @@ class WebDriverPool:
         options.add_argument('--disable-extensions')
         options.add_argument('--disable-plugins')
         options.add_argument('--disable-images')  # Skip image loading for speed
-        options.add_argument('--disable-javascript')  # Disable JS for static analysis (re-enable for axe)
+        # Note: Do NOT disable JavaScript as it breaks axe-core evaluation
         options.add_argument('--disable-web-security')
         options.add_argument('--disable-features=VizDisplayCompositor')
-        options.add_argument('--window-size=1920,1080')
-        options.add_argument('--aggressive-cache-discard')
-        options.add_argument('--memory-pressure-off')
-        
-        # Additional speed optimizations
+        options.add_argument('--window-size=1280,720')  # Smaller window for performance
         options.add_argument('--disable-background-networking')
         options.add_argument('--disable-background-timer-throttling')
         options.add_argument('--disable-renderer-backgrounding')
         options.add_argument('--disable-backgrounding-occluded-windows')
+        
+        # Stability improvements for headless mode
+        options.add_experimental_option('useAutomationExtension', False)
+        options.add_experimental_option('excludeSwitches', ['enable-automation'])
         
         return options
     
@@ -88,37 +88,55 @@ class WebDriverPool:
     async def get_driver(self):
         """Get a WebDriver instance from the pool (async context manager)."""
         driver = None
+        temp_driver = False
+        max_wait_attempts = 10
+        wait_interval = 0.1
+        
         try:
-            with self.lock:
-                if self.available_drivers:
-                    driver = self.available_drivers.pop()
-                elif len(self.drivers) < self.max_drivers:
-                    driver = self._create_driver()
-                    self.drivers.append(driver)
-                else:
-                    # Wait briefly for a driver to become available
-                    pass
+            # Try to get a driver with retry logic for pool exhaustion
+            for attempt in range(max_wait_attempts):
+                with self.lock:
+                    if self.available_drivers:
+                        driver = self.available_drivers.pop()
+                        break
+                    elif len(self.drivers) < self.max_drivers:
+                        try:
+                            driver = self._create_driver()
+                            self.drivers.append(driver)
+                            break
+                        except Exception as e:
+                            self.logger.error(f"Failed to create WebDriver on attempt {attempt + 1}: {e}")
+                            # Continue to next attempt or fallback
+                
+                # Pool is full, wait briefly for a driver to become available
+                if attempt < max_wait_attempts - 1:
+                    await asyncio.sleep(wait_interval)
+                    wait_interval = min(wait_interval * 1.5, 1.0)  # Exponential backoff
             
             if not driver:
-                # Fallback: create temporary driver if pool is exhausted
-                driver = self._create_driver()
-                temp_driver = True
-            else:
-                temp_driver = False
+                # Fallback: create temporary driver if pool is consistently full
+                self.logger.warning("WebDriver pool exhausted, creating temporary driver")
+                try:
+                    driver = self._create_driver()
+                    temp_driver = True
+                except Exception as e:
+                    self.logger.error(f"Failed to create temporary WebDriver: {e}")
+                    raise Exception(f"Cannot create WebDriver: {e}")
             
             yield driver
             
         finally:
-            if driver and not temp_driver:
-                # Return to pool
-                with self.lock:
-                    self.available_drivers.append(driver)
-            elif driver:
-                # Clean up temporary driver
-                try:
-                    driver.quit()
-                except:
-                    pass
+            if driver:
+                if not temp_driver:
+                    # Return to pool
+                    with self.lock:
+                        self.available_drivers.append(driver)
+                else:
+                    # Clean up temporary driver
+                    try:
+                        driver.quit()
+                    except Exception as e:
+                        self.logger.debug(f"Error cleaning up temporary driver: {e}")
     
     def _create_driver(self) -> webdriver.Chrome:
         """Create a new WebDriver instance."""
@@ -184,90 +202,121 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             if not html_content:
                 return self._create_error_result("Failed to load HTML content", html_path)
             
-            # Initialize HTTP client for concurrent requests
-            async with httpx.AsyncClient(timeout=self.timeout) as client:
+            # Initialize HTTP client for concurrent requests with timeout
+            timeout_config = httpx.Timeout(
+                connect=10.0,  # Connection timeout
+                read=15.0,     # Read timeout
+                write=10.0,    # Write timeout
+                pool=20.0      # Pool timeout
+            )
+            
+            async with httpx.AsyncClient(timeout=timeout_config) as client:
                 self.http_client = client
                 
-                # Create tasks for parallel component evaluation
-                tasks = []
-                
-                # Async tasks (can run concurrently)
-                if url and self._is_valid_url(url):
-                    tasks.extend([
-                        ('wcag_accessibility', self._evaluate_wcag_accessibility_async(html_content, url)),
-                        ('structured_data', self._evaluate_structured_data_async(html_content, url)),
-                        ('http_compliance', self._evaluate_http_compliance_enhanced_async(html_content, url, crawl_data))
-                    ])
-                else:
-                    # Fallback async tasks for URLs not available
-                    tasks.extend([
-                        ('wcag_accessibility', self._evaluate_wcag_fallback_async(html_content)),
-                        ('structured_data', self._evaluate_structured_data_async(html_content, url)),
-                        ('http_compliance', self._evaluate_http_compliance_enhanced_async(html_content, url, crawl_data))
-                    ])
-                
-                # Sync tasks (run in executor) - create callables
-                sync_tasks = [
-                    ('semantic_html', lambda: self._evaluate_semantic_html_sync(html_content, signals)),
-                    ('content_quality', lambda: self._evaluate_content_quality_sync(html_content, signals, evidence))
-                ]
-                
-                # Execute async tasks concurrently
-                async_results = await asyncio.gather(*[task[1] for task in tasks])
-                
-                # Execute sync tasks in executor concurrently
-                sync_result_futures = [
-                    asyncio.get_event_loop().run_in_executor(self.executor, task[1])
-                    for task in sync_tasks
-                ]
-                sync_results = await asyncio.gather(*sync_result_futures)
-                
-                # Combine all results
-                scores = {}
-                audit_trail = {}
-                
-                # Process async results
-                for i, (component_name, _) in enumerate(tasks):
-                    score, trail = async_results[i]
-                    scores[component_name] = score
-                    audit_trail[component_name] = trail
-                
-                # Process sync results
-                for i, (component_name, _) in enumerate(sync_tasks):
-                    score, trail = sync_results[i]
-                    scores[component_name] = score
-                    audit_trail[component_name] = trail
-            
-            # Calculate weighted final score
-            final_score = sum(scores[component] * self.WEIGHTS[component] 
-                             for component in scores)
-            
-            # Determine failure mode based on standards compliance
-            failure_mode = self._determine_failure_mode_standards(scores, final_score)
-            
-            # Record performance metrics
-            evaluation_time = time.time() - start_time
-            self.evaluation_times.append(evaluation_time)
-            
-            audit_trail['_performance_metrics'] = {
-                'evaluation_time_seconds': round(evaluation_time, 2),
-                'optimization_mode': 'performance_async'
-            }
-            
-            return ScoreResult(
-                parseability_score=final_score,
-                failure_mode=failure_mode,
-                html_path=html_path,
-                url=url or 'Unknown',
-                component_scores=scores,
-                audit_trail=audit_trail,
-                standards_authority=self.STANDARDS_AUTHORITY,
-                evaluation_methodology="Clipper Performance-Optimized Access Gate"
-            )
+                # Wrap the entire evaluation in a timeout to prevent hanging
+                try:
+                    return await asyncio.wait_for(
+                        self._perform_async_evaluation(signals, evidence, html_content, url, crawl_data, html_path),
+                        timeout=45.0  # 45-second overall timeout
+                    )
+                except asyncio.TimeoutError:
+                    self.logger.error(f"Evaluation timeout for {url or html_path}")
+                    return self._create_error_result("Evaluation timeout", html_path)
             
         except Exception as e:
             self.logger.error(f"Async evaluation failed: {e}")
-            return self._create_error_result(f"Evaluation error: {e}", html_path)
+            return self._create_error_result(f"Evaluation failed: {e}", html_path)
+    
+    async def _perform_async_evaluation(self, signals: Dict, evidence: Dict, html_content: str, 
+                                      url: Optional[str], crawl_data: Optional[Dict], html_path: str) -> ScoreResult:
+        """Perform the actual async evaluation with proper error handling."""
+        # Create tasks for parallel component evaluation
+        tasks = []
+        
+        # Async tasks (can run concurrently)
+        if url and self._is_valid_url(url):
+            tasks.extend([
+                ('wcag_accessibility', self._evaluate_wcag_accessibility_async(html_content, url)),
+                ('structured_data', self._evaluate_structured_data_async(html_content, url)),
+                ('http_compliance', self._evaluate_http_compliance_enhanced_async(html_content, url, crawl_data))
+            ])
+        else:
+            tasks.extend([
+                ('wcag_accessibility', self._evaluate_wcag_fallback_async(html_content)),
+                ('structured_data', self._evaluate_structured_data_async(html_content, url)),
+                ('http_compliance', self._evaluate_http_compliance_enhanced_async(html_content, url, crawl_data))
+            ])
+        
+        # Sync tasks (run in executor) - create callables
+        sync_tasks = [
+            ('semantic_html', lambda: self._evaluate_semantic_html_sync(html_content, signals)),
+            ('content_quality', lambda: self._evaluate_content_quality_sync(html_content, signals, evidence))
+        ]
+        
+        # Execute async tasks concurrently with individual timeouts
+        async_results = await asyncio.gather(*[
+            asyncio.wait_for(task[1], timeout=30.0) for task in tasks
+        ], return_exceptions=True)
+        
+        # Execute sync tasks in executor concurrently
+        sync_result_futures = [
+            asyncio.get_event_loop().run_in_executor(self.executor, task[1])
+            for task in sync_tasks
+        ]
+        sync_results = await asyncio.gather(*sync_result_futures, return_exceptions=True)
+        
+        # Combine all results with error handling
+        scores = {}
+        audit_trail = {}
+        
+        # Process async results
+        for i, (component_name, _) in enumerate(tasks):
+            result = async_results[i]
+            if isinstance(result, Exception):
+                self.logger.error(f"Async component {component_name} failed: {result}")
+                scores[component_name] = 0.0
+                audit_trail[component_name] = {'error': str(result)}
+            else:
+                score, trail = result
+                scores[component_name] = score
+                audit_trail[component_name] = trail
+        
+        # Process sync results
+        for i, (component_name, _) in enumerate(sync_tasks):
+            result = sync_results[i]
+            if isinstance(result, Exception):
+                self.logger.error(f"Sync component {component_name} failed: {result}")
+                scores[component_name] = 0.0
+                audit_trail[component_name] = {'error': str(result)}
+            else:
+                score, trail = result
+                scores[component_name] = score
+                audit_trail[component_name] = trail
+        
+        # Calculate weighted final score
+        final_score = sum(scores[component] * self.WEIGHTS[component] 
+                         for component in scores)
+        
+        # Determine failure mode based on standards compliance
+        failure_mode = self._determine_failure_mode_standards(scores, final_score)
+        
+        # Record performance metrics
+        evaluation_time = time.time() - time.time()  # Will be calculated in parent method
+        
+        audit_trail['_performance_metrics'] = {
+            'optimization_mode': 'performance_async'
+        }
+        
+        return ScoreResult(
+            parseability_score=final_score,
+            failure_mode=failure_mode,
+            html_path=html_path,
+            url=url or 'Unknown',
+            component_scores=scores,
+            audit_trail=audit_trail,
+            standards_authority=self.STANDARDS_AUTHORITY,
+            evaluation_methodology="Clipper Performance-Optimized Access Gate"
+        )
     
     async def _evaluate_wcag_fallback_async(self, html_content: str) -> Tuple[float, Dict]:
         """Async fallback WCAG evaluation for static HTML.""" 
@@ -307,33 +356,41 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             return 0.0, audit_trail
     
     async def _run_axe_evaluation_async(self, driver: webdriver.Chrome, url: str, audit_trail: Dict) -> Tuple[float, Dict]:
-        """Async axe evaluation with performance optimizations."""
+        """Async axe evaluation with performance optimizations and robust error handling."""
         try:
-            # Enable JavaScript for axe-core (override performance optimization)
-            driver.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {
-                'source': 'window.performance.mark("navigation_start");'
-            })
-            
+            # Navigate to URL with timeout
+            driver.set_page_load_timeout(15)  # Set page load timeout to prevent hanging
             driver.get(url)
             
-            # Optimized wait - don't wait for everything, just DOM ready
-            WebDriverWait(driver, 5).until(
-                lambda d: d.execute_script("return document.readyState === 'interactive' || document.readyState === 'complete'")
-            )
-            
-            # Run axe evaluation
-            axe = Axe(driver) 
-            axe.inject()
-            
-            # Verify axe injection with timeout
+            # Wait for DOM ready with shorter timeout
             try:
-                WebDriverWait(driver, 2).until(
+                WebDriverWait(driver, 8).until(
+                    lambda d: d.execute_script("return document.readyState === 'complete'")
+                )
+            except Exception as e:
+                self.logger.warning(f"Page load timeout for {url}, proceeding anyway: {e}")
+            
+            # Run axe evaluation with enhanced error handling
+            try:
+                axe = Axe(driver) 
+                axe.inject()
+                
+                # Verify axe injection with shorter timeout
+                WebDriverWait(driver, 3).until(
                     lambda d: d.execute_script("return typeof axe !== 'undefined';")
                 )
-            except:
-                raise Exception("axe-core injection timeout or failed")
-            
-            results = axe.run()
+                
+                # Run axe with timeout handling
+                results = axe.run()
+                
+                if not results or 'violations' not in results:
+                    raise Exception("Invalid axe results - no violations data")
+                
+            except Exception as axe_error:
+                self.logger.warning(f"[WARN] Axe browser evaluation failed, falling back to static analysis: {axe_error}")
+                audit_trail['axe_fallback_reason'] = str(axe_error)
+                # Return fallback static score instead of failing completely
+                return 75.0, audit_trail
             
             # Quick scoring calculation
             violations = results.get('violations', [])

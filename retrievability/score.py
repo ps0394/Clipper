@@ -126,18 +126,3 @@ def _load_crawl_data_for_scoring(parse_path: Path) -> tuple[list[str], list[dict
     except Exception as e:
         print(f"   [WARN] Failed to load crawl results: {e}")
         return [], []
-        parse_path.parent.parent / "crawl_results.json"
-    ]
-    
-    for crawl_file in possible_locations:
-        if crawl_file.exists():
-            try:
-                with open(crawl_file, 'r', encoding='utf-8') as f:
-                    crawl_data = json.load(f)
-                return [item['url'] for item in crawl_data]
-            except Exception as e:
-                print(f"Warning: Could not load URLs from {crawl_file}: {e}")
-                continue
-    
-    print("Note: No crawl_results.json found - using static evaluation only")
-    return []
