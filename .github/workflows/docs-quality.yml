@@ -63,59 +63,43 @@ jobs:
     - name: Calculate quality metrics
       id: metrics
       run: |
-        python -c "
-        import json
-        import sys
-        
+        python3 << 'PYEOF'
+        import json, sys, os
+
         try:
             with open('${{ env.RESULTS_DIR }}/evaluation_scores.json') as f:
                 scores = json.load(f)
-            
+
             if not scores:
                 print('No scores found')
                 sys.exit(1)
-                
-            # Calculate metrics
+
             avg_score = sum(s['parseability_score'] for s in scores) / len(scores)
             clean_count = sum(1 for s in scores if s['failure_mode'] == 'clean')
             structure_missing = sum(1 for s in scores if s['failure_mode'] == 'structure-missing')
             extraction_noisy = sum(1 for s in scores if s['failure_mode'] == 'extraction-noisy')
-            
             total_pages = len(scores)
             clean_percentage = (clean_count / total_pages) * 100
-            
+
             print(f'AVERAGE_SCORE={avg_score:.1f}')
             print(f'CLEAN_COUNT={clean_count}')
             print(f'CLEAN_PERCENTAGE={clean_percentage:.1f}')
             print(f'TOTAL_PAGES={total_pages}')
-            
-            # Output for GitHub Actions
-            with open('${{ github.env }}', 'a') as f:
-                f.write(f'AVERAGE_SCORE={avg_score:.1f}\n')
-                f.write(f'CLEAN_COUNT={clean_count}\n') 
-                f.write(f'CLEAN_PERCENTAGE={clean_percentage:.1f}\n')
-                f.write(f'TOTAL_PAGES={total_pages}\n')
-                
-        except Exception as e:
-            print(f'Error calculating metrics: {e}')
-            sys.exit(1)
-        "
             print(f'STRUCTURE_MISSING={structure_missing}')
             print(f'EXTRACTION_NOISY={extraction_noisy}')
-            
-            # Set outputs for GitHub Actions
-            with open('$GITHUB_OUTPUT', 'a') as f:
-                f.write(f'avg_score={avg_score:.1f}\\n')
-                f.write(f'clean_count={clean_count}\\n')
-                f.write(f'clean_percentage={clean_percentage:.1f}\\n')
-                f.write(f'total_pages={total_pages}\\n')
-                f.write(f'structure_missing={structure_missing}\\n')
-                f.write(f'extraction_noisy={extraction_noisy}\\n')
-                
+
+            with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+                f.write(f'avg_score={avg_score:.1f}\n')
+                f.write(f'clean_count={clean_count}\n')
+                f.write(f'clean_percentage={clean_percentage:.1f}\n')
+                f.write(f'total_pages={total_pages}\n')
+                f.write(f'structure_missing={structure_missing}\n')
+                f.write(f'extraction_noisy={extraction_noisy}\n')
+
         except Exception as e:
             print(f'Error calculating metrics: {e}')
             sys.exit(1)
-        "
+        PYEOF
         
     - name: Check quality gate
       run: |
@@ -152,28 +136,33 @@ jobs:
         fi
         
     - name: Generate summary for GitHub
+      if: always()
       run: |
-        cat > ${{ env.RESULTS_DIR }}/github-summary.md << 'EOF'
+        AVG="${{ steps.metrics.outputs.avg_score }}"
+        CLEAN="${{ steps.metrics.outputs.clean_count }}"
+        TOTAL="${{ steps.metrics.outputs.total_pages }}"
+        PCT="${{ steps.metrics.outputs.clean_percentage }}"
+        STRUCT="${{ steps.metrics.outputs.structure_missing }}"
+        EXTRACT="${{ steps.metrics.outputs.extraction_noisy }}"
+
+        cat > ${{ env.RESULTS_DIR }}/github-summary.md << EOF
         ## 📊 Documentation Quality Report
-        
+
         **Overall Metrics:**
-        - 📈 **Average Score**: ${{ steps.metrics.outputs.avg_score }}/100
-        - ✅ **Clean Pages**: ${{ steps.metrics.outputs.clean_count }}/${{ steps.metrics.outputs.total_pages }} (${{ steps.metrics.outputs.clean_percentage }}%)
-        - 🔧 **Need Structure Fixes**: ${{ steps.metrics.outputs.structure_missing }}
-        - ⚠️ **Need Extraction Fixes**: ${{ steps.metrics.outputs.extraction_noisy }}
-        
-        **Quality Gates:**
-        - Average Score ≥ 70: ${{ steps.metrics.outputs.avg_score >= 70 && '✅ PASS' || '❌ FAIL' }}
-        - Clean Pages ≥ 60%: ${{ steps.metrics.outputs.clean_percentage >= 60 && '✅ PASS' || '❌ FAIL' }}
-        
+        - 📈 **Average Score**: ${AVG:-N/A}/100
+        - ✅ **Clean Pages**: ${CLEAN:-0}/${TOTAL:-0} (${PCT:-0}%)
+        - 🔧 **Need Structure Fixes**: ${STRUCT:-N/A}
+        - ⚠️ **Need Extraction Fixes**: ${EXTRACT:-N/A}
+
         <details>
         <summary>📄 View Detailed Report</summary>
-        
+
         EOF
-        
-        # Append the detailed report
-        cat ${{ env.RESULTS_DIR }}/report.md >> ${{ env.RESULTS_DIR }}/github-summary.md
-        
+
+        if [ -f "${{ env.RESULTS_DIR }}/report.md" ]; then
+          cat ${{ env.RESULTS_DIR }}/report.md >> ${{ env.RESULTS_DIR }}/github-summary.md
+        fi
+
         echo "" >> ${{ env.RESULTS_DIR }}/github-summary.md
         echo "</details>" >> ${{ env.RESULTS_DIR }}/github-summary.md
         
@@ -237,4 +226,8 @@ jobs:
     - name: Set job summary
       if: always()
       run: |
-        cat ${{ env.RESULTS_DIR }}/github-summary.md >> $GITHUB_STEP_SUMMARY
+        if [ -f "${{ env.RESULTS_DIR }}/github-summary.md" ]; then
+          cat ${{ env.RESULTS_DIR }}/github-summary.md >> $GITHUB_STEP_SUMMARY
+        else
+          echo "⚠️ Summary not available — check workflow logs." >> $GITHUB_STEP_SUMMARY
+        fi

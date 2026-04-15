@@ -180,108 +180,104 @@ jobs:
           echo "🎉 Evaluation successful! Let's explore the results..."
           echo ""
           
-          # Interactive results analysis
-          python -c "
-          import json
-          import sys
-          
-          with open('interactive-demo/results/live-demo_scores.json') as f:
-              results = json.load(f)
-          
-          if not results:
-              print('❌ No results available for demo')
-              sys.exit(1)
-          
-          result = results[0]  # First (and likely only) result
-          url = result.get('url', 'Demo URL')
-          overall_score = result['parseability_score']
-          
-          print('🎯 LIVE DEMO RESULTS')
-          print('=' * 40)
-          print(f'URL Evaluated: {url}')
-          print(f'Overall Agent Retrievability Score: {overall_score:.1f}/100')
-          print()
-          
-          # Component breakdown with explanations
-          if 'component_scores' in result:
-              components = result['component_scores']
-              
-              component_details = [
-                  ('wcag_accessibility', '♿ WCAG 2.1 AA Accessibility', 25, 'Legal compliance, inclusive design'),
-                  ('semantic_html', '🏗️  W3C HTML5 Validation', 25, 'Standards conformance, SEO foundation'),
-                  ('structured_data', '📋 Schema.org Structured Data', 20, 'Search optimization, data exchange'),
-                  ('http_compliance', '🌐 HTTP/1.1 Protocol', 15, 'Network performance, caching'),
-                  ('content_quality', '📝 Content Quality', 15, 'Agent comprehension, readability')
-              ]
-              
-              print('COMPONENT-BY-COMPONENT BREAKDOWN:')
-              print('-' * 50)
-              
-              total_weighted = 0
-              
-              for comp_key, comp_name, weight, purpose in component_details:
-                  score = components.get(comp_key, 0)
-                  weighted_contrib = (score * weight) / 100
-                  total_weighted += weighted_contrib
-                  
-                  # Status indicator
-                  if score >= 80:
-                      status = '✅ Excellent'
-                      icon = '🟢'
-                  elif score >= 70:
-                      status = '🟢 Good'
-                      icon = '🟢'
-                  elif score >= 60:
-                      status = '🟡 Acceptable'
-                      icon = '🟡'
-                  elif score >= 40:
-                      status = '🟠 Needs Work'
-                      icon = '🟠'
-                  else:
-                      status = '🔴 Poor'
-                      icon = '🔴'
-                  
-                  print(f'{comp_name}:')
-                  print(f'  Score: {score:.1f}/100 ({weight}% weight) = {weighted_contrib:.1f} weighted points')
-                  print(f'  Status: {icon} {status}')
-                  print(f'  Purpose: {purpose}')
-                  print()
-              
-              print(f'CALCULATED TOTAL: {total_weighted:.1f}/100 (matches overall score: {overall_score:.1f})')
-              print()
-              
-              # Overall assessment
-              if overall_score >= 80:
-                  assessment = '🟢 EXCELLENT - This content is highly optimized for agent consumption'
-                  recommendation = 'Maintain current standards and monitor for regression'
-              elif overall_score >= 65:
-                  assessment = '🟡 GOOD - Content is well-suited for agents with minor improvements possible'
-                  recommendation = 'Consider targeted improvements in lower-scoring components'  
-              elif overall_score >= 50:
-                  assessment = '🟠 ACCEPTABLE - Content is usable by agents but has significant improvement opportunities'
-                  recommendation = 'Focus on accessibility and semantic markup improvements'
-              else:
-                  assessment = '🔴 NEEDS IMPROVEMENT - Content has barriers to effective agent consumption'
-                  recommendation = 'Comprehensive improvements needed across multiple components'
-              
-              print(f'OVERALL ASSESSMENT: {assessment}')
-              print(f'RECOMMENDATION: {recommendation}')
-              
-              # Set outputs
-              demo_insights = f'Score: {overall_score:.1f}/100, Assessment: {assessment}'
-              print(f'::set-output name=demo_completed::true')
-              print(f'::set-output name=evaluation_score::{overall_score:.1f}')
-              print(f'::set-output name=demo_insights::{demo_insights}')
-          else:
-              print('::set-output name=demo_completed::false')
-              print('::set-output name=evaluation_score::0.0')
-              print('::set-output name=demo_insights::Component data not available')
-          "
+          python3 << 'PYEOF'
+        import json, sys, os
+
+        with open('interactive-demo/results/live-demo_scores.json') as f:
+            results = json.load(f)
+
+        if not results:
+            print('❌ No results available for demo')
+            sys.exit(1)
+
+        result = results[0]
+        url = result.get('url', 'Demo URL')
+        overall_score = result['parseability_score']
+
+        print('🎯 LIVE DEMO RESULTS')
+        print('=' * 40)
+        print(f'URL Evaluated: {url}')
+        print(f'Overall Agent Retrievability Score: {overall_score:.1f}/100')
+        print()
+
+        if 'component_scores' in result:
+            components = result['component_scores']
+
+            component_details = [
+                ('wcag_accessibility', '♿ WCAG 2.1 AA Accessibility', 25, 'Legal compliance, inclusive design'),
+                ('semantic_html', '🏗️  W3C HTML5 Validation', 25, 'Standards conformance, SEO foundation'),
+                ('structured_data', '📋 Schema.org Structured Data', 20, 'Search optimization, data exchange'),
+                ('http_compliance', '🌐 HTTP/1.1 Protocol', 15, 'Network performance, caching'),
+                ('content_quality', '📝 Content Quality', 15, 'Agent comprehension, readability')
+            ]
+
+            print('COMPONENT-BY-COMPONENT BREAKDOWN:')
+            print('-' * 50)
+
+            total_weighted = 0
+
+            for comp_key, comp_name, weight, purpose in component_details:
+                score = components.get(comp_key, 0)
+                weighted_contrib = (score * weight) / 100
+                total_weighted += weighted_contrib
+
+                if score >= 80:
+                    status = '✅ Excellent'
+                    icon = '🟢'
+                elif score >= 70:
+                    status = '🟢 Good'
+                    icon = '🟢'
+                elif score >= 60:
+                    status = '🟡 Acceptable'
+                    icon = '🟡'
+                elif score >= 40:
+                    status = '🟠 Needs Work'
+                    icon = '🟠'
+                else:
+                    status = '🔴 Poor'
+                    icon = '🔴'
+
+                print(f'{comp_name}:')
+                print(f'  Score: {score:.1f}/100 ({weight}% weight) = {weighted_contrib:.1f} weighted points')
+                print(f'  Status: {icon} {status}')
+                print(f'  Purpose: {purpose}')
+                print()
+
+            print(f'CALCULATED TOTAL: {total_weighted:.1f}/100 (matches overall score: {overall_score:.1f})')
+            print()
+
+            if overall_score >= 80:
+                assessment = '🟢 EXCELLENT - This content is highly optimized for agent consumption'
+                recommendation = 'Maintain current standards and monitor for regression'
+            elif overall_score >= 65:
+                assessment = '🟡 GOOD - Content is well-suited for agents with minor improvements possible'
+                recommendation = 'Consider targeted improvements in lower-scoring components'
+            elif overall_score >= 50:
+                assessment = '🟠 ACCEPTABLE - Content is usable by agents but has significant improvement opportunities'
+                recommendation = 'Focus on accessibility and semantic markup improvements'
+            else:
+                assessment = '🔴 NEEDS IMPROVEMENT - Content has barriers to effective agent consumption'
+                recommendation = 'Comprehensive improvements needed across multiple components'
+
+            print(f'OVERALL ASSESSMENT: {assessment}')
+            print(f'RECOMMENDATION: {recommendation}')
+
+            demo_insights = f'Score: {overall_score:.1f}/100, Assessment: {assessment}'
+            with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+                f.write(f'demo_completed=true\n')
+                f.write(f'evaluation_score={overall_score:.1f}\n')
+                f.write(f'demo_insights={demo_insights}\n')
+        else:
+            with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+                f.write('demo_completed=false\n')
+                f.write('evaluation_score=0.0\n')
+                f.write('demo_insights=Component data not available\n')
+        PYEOF
         else
           echo "❌ Demo evaluation failed - no results to display"
-          echo "::set-output name=demo_completed::false"
-          echo "::set-output name=evaluation_score::0.0"
-          echo "::set-output name=demo_insights::Demo evaluation failed"
+          echo "demo_completed=false" >> "$GITHUB_OUTPUT"
+          echo "evaluation_score=0.0" >> "$GITHUB_OUTPUT"
+          echo "demo_insights=Demo evaluation failed" >> "$GITHUB_OUTPUT"
         fi
         
     - name: "Step 4: Practical Applications & Use Cases"
