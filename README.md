@@ -2,7 +2,7 @@
 
 **Standards-Based Access Gate Evaluation for Agent-Ready Content**
 
-Clipper is a CLI tool for evaluating agent accessibility to content using established industry frameworks. Clipper delivers API-free, standards-based evaluation with complete audit traceability for content optimization. This means you can use an agent to evaluate URLs and receive a score based on understood industry-standard retrieval best practices.
+Clipper is a CLI tool for evaluating agent accessibility to content using established industry frameworks. Clipper delivers API-free, standards-based evaluation with complete audit traceability for content optimization. This means you can use an agent to evaluate URLs and receive a score based on understood industry-standard retrieval best practices. Clipper uses standards that are industry best practices for retrieval that help agents (like crawlers) access, parse and index information. 
 
 ## Table of Contents
 
