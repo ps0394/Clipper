@@ -1,0 +1,489 @@
+[
+  {
+    "parseability_score": 48.76201080980554,
+    "failure_mode": "significant_issues",
+    "html_path": "/home/runner/work/Clipper/Clipper/results/snapshots/3f490659f456.html",
+    "url": "https://learn.microsoft.com/en-us/azure/copilot/overview",
+    "component_scores": {
+      "structured_data": 13,
+      "http_compliance": 99.99991378995918,
+      "semantic_html": 72.72727272727272,
+      "content_quality": 86.5347037299565,
+      "wcag_accessibility": 0
+    },
+    "audit_trail": {
+      "structured_data": {
+        "standard": "Schema.org (Google/Microsoft/Yahoo)",
+        "method": "Structured data extraction and validation",
+        "formats_found": [],
+        "score_calculation": "Based on structured data richness and completeness",
+        "extracted_metadata": {
+          "json_ld_items": 0,
+          "microdata_items": 1,
+          "opengraph_items": 1,
+          "microformat_items": 0
+        },
+        "score_breakdown": {
+          "json_ld": 0,
+          "microdata": 8,
+          "opengraph": 5,
+          "microformat": 0
+        },
+        "sample_structured_data": {
+          "microdata": [
+            {
+              "type": "http://schema.org/Organization",
+              "value": ""
+            }
+          ],
+          "opengraph": [
+            {
+              "namespace": {
+                "og": "http://ogp.me/ns#"
+              },
+              "properties": [
+                [
+                  "og:type",
+                  "website"
+                ],
+                [
+                  "og:image:alt",
+                  "Microsoft Learn"
+                ],
+                [
+                  "og:image",
+                  "https://learn.microsoft.com/en-us/media/open-graph-image.png"
+                ],
+                [
+                  "og:title",
+                  "Azure Copilot Overview"
+                ],
+                [
+                  "og:url",
+                  "https://learn.microsoft.com/en-us/azure/copilot/overview"
+                ],
+                [
+                  "og:description",
+                  "Azure Copilot is an AI-powered tool to help you do more with Azure."
+                ]
+              ]
+            }
+          ]
+        },
+        "optimization": "parallel_fast_group"
+      },
+      "http_compliance": {
+        "standard": "RFC 7231 Content Negotiation (IETF) + Redirect Efficiency",
+        "method": "Enhanced HTTP compliance with redirect chain analysis",
+        "score_calculation": "Content negotiation (60%) + Redirect efficiency (40%)",
+        "content_negotiation": {
+          "standard": "RFC 7231 Content Negotiation (IETF)",
+          "method": "HTTP headers and content negotiation analysis",
+          "score_calculation": "Based on content negotiation support and header compliance",
+          "content_negotiation_tests": {
+            "text/html": {
+              "status_code": 200,
+              "content_type": "text/html",
+              "content_length": 52199
+            },
+            "application/json": {
+              "status_code": 200,
+              "content_type": "text/html",
+              "content_length": 52199
+            },
+            "text/markdown": {
+              "status_code": 200,
+              "content_type": "text/markdown; charset=utf-8",
+              "content_length": 6512
+            },
+            "text/plain": {
+              "status_code": 200,
+              "content_type": "text/markdown; charset=utf-8",
+              "content_length": 6512
+            },
+            "application/xml": {
+              "status_code": 200,
+              "content_type": "text/html",
+              "content_length": 52199
+            }
+          },
+          "successful_negotiations": 5,
+          "total_tests": 5
+        },
+        "redirect_efficiency": {
+          "standard": "HTTP Redirect Best Practices (RFC 7231)",
+          "method": "Redirect chain analysis and performance evaluation",
+          "score_calculation": "Chain length (25) + Redirect types (10) + Performance (5)",
+          "redirect_analysis": {
+            "redirect_count": 0,
+            "chain_details": [],
+            "redirect_types_breakdown": {},
+            "proper_redirect_codes": 0,
+            "total_redirect_time_ms": 0.0030994415283203125,
+            "final_response_time_ms": 359.51900482177734,
+            "performance_ratio": 8.621004081713855e-06
+          },
+          "score_breakdown": {
+            "chain_length": 25,
+            "redirect_types": 10,
+            "performance_impact": 4.999913789959183
+          },
+          "efficiency_classification": "optimal (direct access)"
+        },
+        "scoring_breakdown": {
+          "content_negotiation_score": 60.0,
+          "redirect_efficiency_score": 39.99991378995918,
+          "total_score": 99.99991378995918
+        },
+        "optimization": "parallel_fast_group"
+      },
+      "semantic_html": {
+        "standard": "HTML5 Semantic Elements (W3C)",
+        "method": "Semantic markup analysis",
+        "elements_found": [],
+        "score_calculation": "Based on semantic element coverage and proper usage",
+        "semantic_elements_found": [
+          {
+            "element": "header",
+            "count": 1,
+            "proper_usage": true
+          },
+          {
+            "element": "nav",
+            "count": 4,
+            "proper_usage": true
+          },
+          {
+            "element": "main",
+            "count": 1,
+            "proper_usage": true
+          },
+          {
+            "element": "section",
+            "count": 7,
+            "proper_usage": true
+          },
+          {
+            "element": "aside",
+            "count": 1,
+            "proper_usage": true
+          },
+          {
+            "element": "footer",
+            "count": 1,
+            "proper_usage": true
+          }
+        ],
+        "aria_elements_count": 14,
+        "heading_elements_count": 12,
+        "scoring_breakdown": {
+          "semantic_coverage": 32.72727272727273,
+          "aria_bonus": 20,
+          "heading_bonus": 20
+        },
+        "optimization": "parallel_fast_group"
+      },
+      "content_quality": {
+        "standard": "Established content analysis metrics",
+        "method": "Agent-focused content quality evaluation",
+        "score_calculation": "Based on content structure, readability, and agent accessibility",
+        "content_metrics": {
+          "total_text_length": 6021,
+          "total_html_length": 52199,
+          "text_html_ratio": 0.11534703729956512,
+          "headings_count": 12,
+          "paragraphs_count": 28,
+          "links_count": 37,
+          "internal_links_count": 22,
+          "avg_sentence_length": 15.92156862745098
+        },
+        "quality_breakdown": {
+          "text_html_ratio": 11.534703729956512,
+          "content_structure": 25,
+          "navigation_quality": 25,
+          "readability": 25
+        },
+        "optimization": "parallel_fast_group"
+      },
+      "wcag_accessibility": {
+        "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+        "method": "Optimized accessibility evaluation",
+        "optimization": "browser_separate",
+        "violations_count": 3,
+        "passes_count": 39,
+        "violations": [
+          {
+            "description": "Ensures role attribute has an appropriate value for the element",
+            "help": "ARIA role must be appropriate for the element",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+            "id": "aria-allowed-role",
+            "impact": "minor",
+            "nodes": [
+              {
+                "all": [],
+                "any": [
+                  {
+                    "data": [
+                      "combobox"
+                    ],
+                    "id": "aria-allowed-role",
+                    "impact": "minor",
+                    "message": "role combobox  is not allowed for given element",
+                    "relatedNodes": []
+                  }
+                ],
+                "failureSummary": "Fix any of the following:\n  role combobox  is not allowed for given element",
+                "html": "<input role=\"combobox\" maxlength=\"100\" aria-autocomplete=\"list\" autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\" id=\"site-header-search-autocomplete-input-mobile\" data-test-id=\"site-header-search-autocomplete-input-mobile\" class=\"autocomplete-input input \n\t\t\t\t\t\t\n\t\t\t\t\t\twidth-full\" type=\"search\" name=\"terms\" aria-expanded=\"false\" aria-owns=\"ax-1-listbox\" aria-controls=\"ax-1-listbox\" aria-activedescendant=\"\" aria-label=\"Search\" aria-describedby=\"ms--site-header-search-autocomplete-input-mobile-description\" placeholder=\"Search\" data-bi-name=\"site-header-search-autocomplete-input-mobile\" pattern=\".*\">",
+                "impact": "minor",
+                "none": [],
+                "target": [
+                  "#site-header-search-autocomplete-input-mobile"
+                ]
+              },
+              {
+                "all": [],
+                "any": [
+                  {
+                    "data": [
+                      "combobox"
+                    ],
+                    "id": "aria-allowed-role",
+                    "impact": "minor",
+                    "message": "role combobox  is not allowed for given element",
+                    "relatedNodes": []
+                  }
+                ],
+                "failureSummary": "Fix any of the following:\n  role combobox  is not allowed for given element",
+                "html": "<input role=\"combobox\" maxlength=\"100\" aria-autocomplete=\"list\" autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\" id=\"site-header-search-autocomplete-input\" data-test-id=\"site-header-search-autocomplete-input\" class=\"autocomplete-input input input-sm\n\t\t\t\t\t\t\n\t\t\t\t\t\twidth-full\" type=\"search\" name=\"terms\" aria-expanded=\"false\" aria-owns=\"ax-0-listbox\" aria-controls=\"ax-0-listbox\" aria-activedescendant=\"\" aria-label=\"Search\" aria-describedby=\"ms--site-header-search-autocomplete-input-description\" placeholder=\"Search\" data-bi-name=\"site-header-search-autocomplete-input\" pattern=\".*\">",
+                "impact": "minor",
+                "none": [],
+                "target": [
+                  "#site-header-search-autocomplete-input"
+                ]
+              },
+              {
+                "all": [],
+                "any": [
+                  {
+                    "data": [
+                      "navigation"
+                    ],
+                    "id": "aria-allowed-role",
+                    "impact": "minor",
+                    "message": "role navigation  is not allowed for given element",
+                    "relatedNodes": []
+                  }
+                ],
+                "failureSummary": "Fix any of the following:\n  role navigation  is not allowed for given element",
+                "html": "<nav id=\"affixed-left-container\" class=\"margin-top-sm-tablet position-sticky display-flex flex-direction-column\" aria-label=\"Primary\" data-bi-name=\"left-toc\" role=\"navigation\" style=\"top: 24px; height: calc(-173.906px + 100vh); max-height: 3036px;\">",
+                "impact": "minor",
+                "none": [],
+                "target": [
+                  "#affixed-left-container"
+                ]
+              },
+              {
+                "all": [],
+                "any": [
+                  {
+                    "data": [
+                      "combobox"
+                    ],
+                    "id": "aria-allowed-role",
+                    "impact": "minor",
+                    "message": "role combobox  is not allowed for given element",
+                    "relatedNodes": []
+                  }
+                ],
+                "failureSummary": "Fix any of the following:\n  role combobox  is not allowed for given element",
+                "html": "<input role=\"combobox\" maxlength=\"100\" aria-autocomplete=\"list\" autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\" id=\"ax-2\" data-test-id=\"ax-2\" class=\"autocomplete-input input input-sm\n\t\t\t\t\t\tcontrol has-icons-left\n\t\t\t\t\t\twidth-full\" type=\"text\" aria-expanded=\"false\" aria-owns=\"ax-3-listbox\" aria-controls=\"ax-3-listbox\" aria-activedescendant=\"\" aria-describedby=\"ms--ax-2-description\" placeholder=\"Find by title\" pattern=\".*\">",
+                "impact": "minor",
+                "none": [],
+                "target": [
+                  "#ax-2"
+                ]
+              },
+              {
+                "all": [],
+                "any": [
+                  {
+                    "data": [
+                      "main"
+                    ],
+                    "id": "aria-allowed-role",
+                    "impact": "minor",
+                    "message": "role main  is not allowed for given element",
+                    "relatedNodes": []
+                  }
+                ],
+                "failureSummary": "Fix any of the following:\n  role main  is not allowed for given element",
+                "html": "<main id=\"main\" role=\"main\" class=\"layout-body-main \" data-bi-name=\"content\" lang=\"en-us\" dir=\"ltr\">",
+                "impact": "minor",
+                "none": [],
+                "target": [
+                  "#main"
+                ]
+              },
+              {
+                "all": [],
+                "any": [
+                  {
+                    "data": [
+                      "contentinfo"
+                    ],
+                    "id": "aria-allowed-role",
+                    "impact": "minor",
+                    "message": "role contentinfo  is not allowed for given element",
+                    "relatedNodes": []
+                  }
+                ],
+                "failureSummary": "Fix any of the following:\n  role contentinfo  is not allowed for given element",
+                "html": "<footer id=\"footer\" data-test-id=\"footer\" data-bi-name=\"footer\" class=\"footer-layout has-padding has-default-focus border-top  uhf-container\" role=\"contentinfo\">",
+                "impact": "minor",
+                "none": [],
+                "target": [
+                  "#footer"
+                ]
+              }
+            ],
+            "tags": [
+              "cat.aria",
+              "best-practice"
+            ]
+          },
+          {
+            "description": "Ensures all ARIA attributes have valid values",
+            "help": "ARIA attributes must conform to valid values",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-valid-attr-value?application=axeAPI",
+            "id": "aria-valid-attr-value",
+            "impact": "critical",
+            "nodes": [
+              {
+                "all": [
+                  {
+                    "data": [
+                      "aria-controls=\"ms--collapsible-toc-content\""
+                    ],
+                    "id": "aria-valid-attr-value",
+                    "impact": "critical",
+                    "message": "Invalid ARIA attribute value: aria-controls=\"ms--collapsible-toc-content\"",
+                    "relatedNodes": []
+                  }
+                ],
+                "any": [],
+                "failureSummary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"ms--collapsible-toc-content\"",
+                "html": "<button type=\"button\" class=\"button button-clear inner-focus\" data-collapsible-toc-toggle=\"\" aria-expanded=\"true\" aria-controls=\"ms--collapsible-toc-content\" aria-label=\"Collapse\" title=\"Collapse\" data-bi-name=\"toc-collapse\">",
+                "impact": "critical",
+                "none": [],
+                "target": [
+                  "button[data-collapsible-toc-toggle=\"\"]"
+                ]
+              },
+              {
+                "all": [
+                  {
+                    "data": [
+                      "aria-controls=\"{{ themeMenuId }}\""
+                    ],
+                    "id": "aria-valid-attr-value",
+                    "impact": "critical",
+                    "message": "Invalid ARIA attribute value: aria-controls=\"{{ themeMenuId }}\"",
+                    "relatedNodes": []
+                  }
+                ],
+                "any": [],
+                "failureSummary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"{{ themeMenuId }}\"",
+                "html": "<button data-test-id=\"theme-selector-button\" class=\"dropdown-trigger button button-clear button-sm inner-focus theme-dropdown-trigger\" aria-controls=\"{{ themeMenuId }}\" aria-expanded=\"false\" title=\"Theme\" data-bi-name=\"theme\">",
+                "impact": "critical",
+                "none": [],
+                "target": [
+                  ".theme-dropdown-trigger"
+                ]
+              }
+            ],
+            "tags": [
+              "cat.aria",
+              "wcag2a",
+              "wcag412"
+            ]
+          },
+          {
+            "description": "Ensures every form element has a label",
+            "help": "Form elements must have labels",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/label?application=axeAPI",
+            "id": "label",
+            "impact": "critical",
+            "nodes": [
+              {
+                "all": [],
+                "any": [],
+                "failureSummary": "Fix all of the following:\n  Form element has explicit <label> that is hidden",
+                "html": "<input role=\"combobox\" maxlength=\"100\" aria-autocomplete=\"list\" autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\" id=\"ax-2\" data-test-id=\"ax-2\" class=\"autocomplete-input input input-sm\n\t\t\t\t\t\tcontrol has-icons-left\n\t\t\t\t\t\twidth-full\" type=\"text\" aria-expanded=\"false\" aria-owns=\"ax-3-listbox\" aria-controls=\"ax-3-listbox\" aria-activedescendant=\"\" aria-describedby=\"ms--ax-2-description\" placeholder=\"Find by title\" pattern=\".*\">",
+                "impact": "critical",
+                "none": [
+                  {
+                    "data": null,
+                    "id": "hidden-explicit-label",
+                    "impact": "critical",
+                    "message": "Form element has explicit <label> that is hidden",
+                    "relatedNodes": []
+                  }
+                ],
+                "target": [
+                  "#ax-2"
+                ]
+              }
+            ],
+            "tags": [
+              "cat.forms",
+              "wcag2a",
+              "wcag332",
+              "wcag131",
+              "section508",
+              "section508.22.n"
+            ]
+          }
+        ],
+        "evaluation_method": "Pooled WebDriver + axe-core"
+      },
+      "_performance_metrics": {
+        "optimization_mode": "performance_parallel_optimized",
+        "execution_strategy": "fast_components_parallel_browser_separate",
+        "fast_components": [
+          "structured_data",
+          "http_compliance",
+          "semantic_html",
+          "content_quality"
+        ],
+        "browser_components": [
+          "wcag_accessibility"
+        ],
+        "timing_analysis": {
+          "fast_group_time_seconds": 3.63,
+          "browser_group_time_seconds": 3.63,
+          "total_parallel_time_seconds": 3.63,
+          "estimated_sequential_time_seconds": 7.25,
+          "time_saved_seconds": 3.63,
+          "performance_improvement_percent": 50.0
+        },
+        "performance_improvement_target": "20-40% faster execution through optimal parallelization"
+      }
+    },
+    "standards_authority": {
+      "accessibility": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "semantics": "HTML5 Semantic Elements (W3C)",
+      "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+      "http_compliance": "RFC 7231 Content Negotiation (IETF)",
+      "content_quality": "Established content analysis metrics"
+    },
+    "evaluation_methodology": "Clipper Performance-Parallel-Optimized Access Gate",
+    "subscores": {
+      "structured_data": 13,
+      "http_compliance": 99.99991378995918,
+      "semantic_html": 72.72727272727272,
+      "content_quality": 86.5347037299565,
+      "wcag_accessibility": 0
+    },
+    "evidence_references": null
+  }
+]
