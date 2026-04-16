@@ -51,9 +51,6 @@ beautifulsoup4        # HTML parsing standard
 3. **📊 Schema.org Structured Data (20%)** - JSON-LD, microdata, Open Graph
 4. **🌐 HTTP Standards Compliance (15%)** - Content negotiation + Redirect efficiency
 5. **📝 Content Quality Metrics (15%)** - Agent-optimized content analysis
-**NEW: Enhanced HTTP Compliance** now includes redirect chain analysis:
-- **Content Negotiation (60%)** - RFC 7231 format support and headers
-- **Redirect Efficiency (40%)** - Chain length, performance, and status code analysis
 ### **Standards Authority Mapping**
 ```python
 STANDARDS_AUTHORITY = {
@@ -315,6 +312,24 @@ Based on agent accessibility impact research:
 - **Structured Data (20%)** - Important for agent parsing
 - **HTTP Compliance (15%)** - Content negotiation + Redirect efficiency analysis  
 - **Content Quality (15%)** - Baseline for agent consumption
+
+### **HTTP Compliance Sub-Components**
+The HTTP Compliance score (15% of overall) is split into two sub-components:
+
+| Sub-component | Weight | What it measures |
+|---|---|---|
+| **Content Negotiation** | 60% | Sends requests with 5 different `Accept` headers (`text/html`, `application/json`, `text/markdown`, `text/plain`, `application/xml`). Score = proportion returning HTTP 200. |
+| **Redirect Efficiency** | 40% | Evaluates redirect chain length (0 hops is optimal, >4 penalized), proper status codes (301/302/303/307/308), and performance impact of redirects relative to total response time. |
+
+### **Content Quality Sub-Signals**
+The Content Quality score (15% of overall) is the sum of 4 sub-signals, each worth up to 25 points:
+
+| Sub-signal | Max Points | What it measures |
+|---|---|---|
+| **Text-to-HTML Ratio** | 25 | Ratio of text content to total HTML. A ratio of 0.25+ earns full marks. |
+| **Content Structure** | 25 | Presence of headings (3 pts each) and paragraphs (0.5 pts each). |
+| **Navigation Quality** | 25 | Internal links (2 pts each). External links are excluded. |
+| **Readability** | 25 | Penalizes deviation from an optimal average sentence length of 15 words. |
 
 ## GitHub Integration
 
