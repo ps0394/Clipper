@@ -34,11 +34,12 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
         print("   Clipper uses industry standards and is completely API-free")
     
     print("[CLIPPER] Performance-Optimized Access Gate Evaluator")
-    print("|- WCAG 2.1 Accessibility (Deque axe-core) - 25%")
     print("|- W3C Semantic HTML Analysis - 25%")
+    print("|- Content Extractability (Mozilla Readability) - 20%")
     print("|- Schema.org Structured Data - 20%")
-    print("|- HTTP Standards Compliance (RFC 7231) - 15%")
-    print("+- Agent-Focused Content Quality - 15%")
+    print("|- DOM Navigability (WCAG 2.1 / axe-core) - 15%")
+    print("|- Metadata Completeness (Dublin Core / OpenGraph) - 10%")
+    print("+- HTTP Compliance (RFC 7231 / robots / cache) - 10%")
     print(f"🚀 Performance Mode: {'ENABLED' if use_performance_mode else 'DISABLED'}")
     
     start_time = time.time()
@@ -104,8 +105,8 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
                         improvement_pct = timing.get('performance_improvement_percent', 0)
                         
                         print(f"⚡ Parallel Execution:")
-                        print(f"   Fast components (HTML, Schema, HTTP, Content): {fast_time}s")
-                        print(f"   Browser component (WCAG Accessibility): {browser_time}s")
+                        print(f"   Fast components (HTML, Schema, Extractability, Metadata, HTTP): {fast_time}s")
+                        print(f"   Browser component (DOM Navigability): {browser_time}s")
                         print(f"   Total parallel time: {total_time}s (~{improvement_pct:.1f}% faster)")
         except (FileNotFoundError, json.JSONDecodeError, KeyError):
             pass  # Silently skip if metrics not available

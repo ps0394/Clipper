@@ -25,11 +25,11 @@ Clipper is a CLI tool for evaluating agent accessibility to content using establ
 
 Clipper provides standards-based content evaluation with:
 
-- **Industry Standards**: Every score traceable to recognized authorities (WCAG, W3C, Schema.org)
+- **Industry Standards**: Every score traceable to recognized authorities (W3C, Schema.org, Mozilla Readability, WCAG)
 - **Zero API Dependencies**: Local evaluation using established standards frameworks
 - **Immediate Usability**: Runs directly from command line without external dependencies
 - **Enterprise Defensible**: Comprehensive audit trails and standards authority documentation
-- **Agent-focused**: Optimized for Access Gate evaluation and content accessibility
+- **Agent-focused**: Evaluates whether agents can access, extract, and use page content for grounding
 
 **Core Question:** *Can agents reliably access this content?*
 
@@ -38,27 +38,31 @@ Clipper provides standards-based content evaluation with:
 ### **Industry-Standard Evaluation Stack (API-Free)**
 ```python
 # Standards-based dependencies - no APIs required
-axe-selenium-python    # WCAG 2.1 accessibility (Deque Systems)
+axe-selenium-python    # WCAG 2.1 DOM navigability (Deque Systems)
 selenium              # W3C WebDriver standard  
 extruct               # Schema.org structured data (W3C)
+readability-lxml      # Mozilla Readability content extraction
 httpx                 # Modern HTTP standard (RFC compliance)
 beautifulsoup4        # HTML parsing standard
 ```
 
-### **5-Component Standards Framework**
-1. **🛡️ WCAG 2.1 Accessibility (25%)** - Deque axe-core engine, legal compliance standard
-2. **🏗️ W3C Semantic HTML (25%)** - HTML5 semantic elements, ARIA roles  
-3. **📊 Schema.org Structured Data (20%)** - JSON-LD, microdata, Open Graph
-4. **🌐 HTTP Standards Compliance (15%)** - Content negotiation + Redirect efficiency
-5. **📝 Content Quality Metrics (15%)** - Agent-optimized content analysis
+### **6-Pillar Evaluation Framework**
+1. **🏗️ W3C Semantic HTML (25%)** - HTML5 semantic elements, ARIA roles
+2. **📄 Content Extractability (20%)** - Mozilla Readability signal-to-noise analysis
+3. **📊 Schema.org Structured Data (20%)** - JSON-LD quality, type validation, field completeness
+4. **🛡️ DOM Navigability (15%)** - WCAG 2.1 / Deque axe-core DOM evaluation
+5. **🏷️ Metadata Completeness (10%)** - Dublin Core, Schema.org, OpenGraph field coverage
+6. **🌐 HTTP Compliance (10%)** - Reachability, redirects, robots.txt, cache headers
+
 ### **Standards Authority Mapping**
 ```python
 STANDARDS_AUTHORITY = {
-    'accessibility': 'WCAG 2.1 AA (W3C) + axe-core (Deque Systems)',
-    'semantics': 'HTML5 Semantic Elements (W3C)', 
+    'semantic_html': 'HTML5 Semantic Elements (W3C)',
+    'content_extractability': 'Mozilla Readability (Firefox Reader View algorithm)',
     'structured_data': 'Schema.org (Google/Microsoft/Yahoo)',
-    'http_compliance': 'RFC 7231 Content Negotiation + Redirect Efficiency (IETF)',
-    'content_quality': 'Established content analysis metrics'
+    'dom_navigability': 'WCAG 2.1 AA (W3C) + axe-core (Deque Systems)',
+    'metadata_completeness': 'Dublin Core + Schema.org + OpenGraph',
+    'http_compliance': 'RFC 7231 + robots.txt + Cache headers'
 }
 ```
 
@@ -74,12 +78,12 @@ STANDARDS_AUTHORITY = {
 
 | Site | Clipper Score | Primary Strengths | Improvement Areas |
 |------|---------------|-------------------|-------------------|
-| **Microsoft Learn** | **85+ Range** | **Excellent HTTP compliance, good structure** | **WCAG optimization needed** |
-| **Upsun PHP SDK** | **41.4/100** | **Perfect HTTP negotiation (100/100)** | **Accessibility, semantic markup** |  
-| GitHub Docs | 80+ Range | Strong semantic HTML, accessibility | Schema.org enhancement |
-| AWS Documentation | 70+ Range | Good content quality | Structured data gaps |
+| **Microsoft Learn** | **50-60 Range** | **Full metadata, good extractability, strong HTML** | **Structured data quality, DOM navigability** |
+| **Wikipedia** | **62.2/100** | **Rich structured data (85), good extraction** | **DOM navigability, metadata gaps** |
+| **GitHub Docs** | **54.9/100** | **Strong DOM navigability (85), good HTML** | **Structured data, metadata** |
+| **MDN Web Docs** | **55.3/100** | **Excellent semantic HTML (84), good HTTP** | **Structured data quality** |
 
-**Try Clipper immediately: No API keys, no setup required, 2.2x faster by default!**
+**Try Clipper immediately: No API keys, no setup required.**
 
 ```bash
 # Works from any Copilot conversation (performance mode default)
@@ -120,9 +124,9 @@ python main.py express clipper-test-urls.txt --out evaluation-results
 Clipper provides a complete **standards-based evaluation pipeline**:
 
 ### **🚀 Express Mode (Recommended)**
-Run complete Access Gate evaluation in one command with **2.2x faster performance by default**:
+Run complete Access Gate evaluation in one command:
 ```bash
-# Single URL evaluation (performance mode - 2x faster)
+# Single URL evaluation
 python main.py express --urls https://developer.upsun.com/api/sdk/php --out results/
 
 # Multiple URLs from file (batch optimized)  
@@ -170,15 +174,25 @@ Every evaluation generates comprehensive documentation:
 ```json
 {
   "standards_authority": {
-    "accessibility": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
-    "semantics": "HTML5 Semantic Elements (W3C)"
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
   },
   "audit_trail": {
-    "wcag_accessibility": {
+    "dom_navigability": {
       "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
-      "method": "Automated accessibility evaluation",
+      "method": "Automated DOM navigability evaluation",
       "violations_count": 3,
       "passes_count": 47
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability",
+      "extraction_ratio": 0.45,
+      "extracted_text_length": 12340,
+      "structure_preservation": 28
     }
   },
   "evaluation_methodology": "Clipper Standards-Based Access Gate"
@@ -193,7 +207,7 @@ Every evaluation generates comprehensive documentation:
 
 ### **Enterprise Workflows**
 ```bash
-# Quality gate integration (2.2x faster CI/CD)
+# Quality gate integration
 python main.py express staging-urls.txt --out quality-gate/ --quiet
 if jq '.parseability_score >= 70' quality-gate/report_scores.json; then
   echo "✅ Quality gate passed"
@@ -210,11 +224,11 @@ python main.py express problem-urls.txt --out debug-analysis/ --standard
 
 ## 🚀 Quick Start Demo
 
-**5-Minute Clipper Validation (2.2x Faster Performance):**
+**5-Minute Clipper Validation:**
 
 ```bash
-# 1. Test with Upsun PHP SDK (performance mode - under 4 seconds)
-echo "https://developer.upsun.com/api/sdk/php" > test-url.txt
+# 1. Test with a documentation URL
+echo "https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview" > test-url.txt
 python main.py express test-url.txt --out demo-results --name validation
 
 # 2. Review standards-based results  
@@ -222,37 +236,36 @@ cat demo-results/validation.md
 
 # 3. Examine audit trail
 jq '.audit_trail' demo-results/validation_scores.json
-
-# 4. Optional: Compare performance modes
-python main.py express test-url.txt --out demo-results --benchmark
 ```
 
 **Expected Output:**
 ```
 Clipper Evaluation Results:
 ├─ Total URLs: 1
-├─ Average Score: 41.4/100  
+├─ Average Score: 60.7/100  
 └─ Agent-Ready: 0/1 (0.0%)
 
 Component Breakdown:
-  wcag_accessibility: 0.0/100 (WCAG 2.1 AA + axe-core)
-  semantic_html: 36.4/100 (HTML5 Semantic Elements)
-  structured_data: 30.0/100 (Schema.org)
-  http_compliance: 100.0/100 (RFC 7231 + Redirect Efficiency)
-  content_quality: 75.5/100 (Agent-focused analysis)
+  semantic_html: 72.7/100 (HTML5 Semantic Elements)
+  content_extractability: 74.5/100 (Mozilla Readability)
+  structured_data: 12.0/100 (Schema.org)
+  dom_navigability: 35.0/100 (WCAG 2.1 / axe-core)
+  metadata_completeness: 100.0/100 (Dublin Core / OpenGraph)
+  http_compliance: 100.0/100 (RFC 7231 / robots / cache)
 ```
 
 ## Standards Authority Mapping
 
 Clipper builds on established industry standards:
 
-| Component | Authority | Implementation | Weight |
-|-----------|-----------|----------------|--------|
-| **WCAG Accessibility** | W3C + Deque Systems | axe-selenium-python | 25% |
+| Pillar | Authority | Implementation | Weight |
+|--------|-----------|----------------|--------|
 | **Semantic HTML** | W3C HTML5 Specification | BeautifulSoup + html5lib | 25% |
+| **Content Extractability** | Mozilla Readability | readability-lxml | 20% |
 | **Structured Data** | Schema.org Consortium | extruct library | 20% |
-| **HTTP Compliance** | IETF RFC 7231 + Redirect Analysis | httpx + redirect efficiency | 15% |
-| **Content Quality** | Established metrics | Agent-focused analysis | 15% |
+| **DOM Navigability** | W3C + Deque Systems | axe-selenium-python | 15% |
+| **Metadata Completeness** | Dublin Core / Schema.org / OpenGraph | BeautifulSoup | 10% |
+| **HTTP Compliance** | IETF RFC 7231 + robots.txt | httpx | 10% |
 
 **🏛️ No Custom Algorithms:** Every score component is traceable to recognized industry standards.
 
@@ -264,36 +277,37 @@ Clipper generates comprehensive audit documentation:
 ```markdown
 ## Clipper Access Gate Evaluation
 
-**Final Score:** 41.4/100 (significant_issues)
+**Final Score:** 60.7/100 (moderate_issues)
 **Evaluation Methodology:** Standards-Based Access Gate
-**Standards Compliance:** 5/5 frameworks evaluated
+**Standards Compliance:** 6/6 frameworks evaluated
 
-### Component Analysis
-- **WCAG 2.1 Accessibility**: 0.0/100 (axe-core evaluation failed, static fallback applied)
-- **W3C Semantic HTML**: 36.4/100 (Basic semantic elements present, optimization needed)
-- **Schema.org Data**: 30.0/100 (Some structured data detected, expansion recommended)
-- **HTTP RFC Compliance**: 100.0/100 (Excellent content negotiation + optimal redirects)
-- **Content Quality**: 75.5/100 (Good agent-focused metrics, minor improvements)
+### Pillar Analysis
+- **Semantic HTML**: 72.7/100 (Good semantic coverage, ARIA roles present)
+- **Content Extractability**: 74.5/100 (Clean extraction via Readability, structure preserved)
+- **Structured Data**: 12.0/100 (Limited JSON-LD quality, missing key fields)
+- **DOM Navigability**: 35.0/100 (Accessibility violations detected, capped per-rule)
+- **Metadata Completeness**: 100.0/100 (All metadata fields present)
+- **HTTP Compliance**: 100.0/100 (Reachable, no robots blocks, cache headers present)
 ```
 
 ### **Actionable Recommendations**
 ```markdown
 ### Priority Fixes (Standards-Based)
 
-🔥 **Critical - WCAG 2.1 Compliance**
-- Install axe-core for proper accessibility evaluation
+🔥 **Critical - Structured Data Quality**
+- Add complete JSON-LD with @type, name, author, dateModified, description
+- Validate Schema.org required properties for declared types
+- Include OpenGraph and microdata alongside JSON-LD
+
+⚠️ **Important - DOM Navigability**
 - Add `aria-label` attributes to navigation elements
 - Ensure color contrast ratios meet WCAG AA standards
+- Fix heading hierarchy violations
 
-⚠️ **Important - Semantic HTML (W3C)**
+📋 **Recommended - Semantic HTML**
 - Add `<main>` element wrapper (HTML5 semantic requirement)
 - Implement proper heading hierarchy (h1 → h2 → h3)
 - Use `<article>` elements for content sections
-
-📋 **Recommended - Schema.org Enhancement**
-- Add JSON-LD structured data for better agent parsing
-- Implement OpenGraph metadata for content sharing
-- Consider microdata markup for enhanced semantics
 ```
 
 ## Scoring System
@@ -305,31 +319,56 @@ Clipper generates comprehensive audit documentation:
 - **40-59**: `significant_issues` - Major optimization required
 - **0-39**: `severe_issues` - Substantial restructuring needed
 
-### **Component Weight Distribution**
-Based on agent accessibility impact research:
-- **Accessibility (25%)** - Critical for universal access
-- **Semantic HTML (25%)** - Essential for content structure
-- **Structured Data (20%)** - Important for agent parsing
-- **HTTP Compliance (15%)** - Content negotiation + Redirect efficiency analysis  
-- **Content Quality (15%)** - Baseline for agent consumption
+### **Pillar Weight Distribution**
+Based on agent retrievability impact:
+- **Semantic HTML (25%)** - Essential for content structure and agent parsing
+- **Content Extractability (20%)** - Can agents cleanly extract the content?
+- **Structured Data (20%)** - Machine-readable metadata for agent understanding
+- **DOM Navigability (15%)** - Accessible DOM structure for crawlers
+- **Metadata Completeness (10%)** - Identity, authorship, and currency signals
+- **HTTP Compliance (10%)** - Reachability, crawl permissions, cacheability
 
-### **HTTP Compliance Sub-Components**
-The HTTP Compliance score (15% of overall) is split into two sub-components:
-
-| Sub-component | Weight | What it measures |
-|---|---|---|
-| **Content Negotiation** | 60% | Sends requests with 5 different `Accept` headers (`text/html`, `application/json`, `text/markdown`, `text/plain`, `application/xml`). Score = proportion returning HTTP 200. |
-| **Redirect Efficiency** | 40% | Evaluates redirect chain length (0 hops is optimal, >4 penalized), proper status codes (301/302/303/307/308), and performance impact of redirects relative to total response time. |
-
-### **Content Quality Sub-Signals**
-The Content Quality score (15% of overall) is the sum of 4 sub-signals, each worth up to 25 points:
+### **Content Extractability Sub-Signals**
+The Content Extractability score (20% of overall) uses Mozilla Readability to measure extraction quality:
 
 | Sub-signal | Max Points | What it measures |
 |---|---|---|
-| **Text-to-HTML Ratio** | 25 | Ratio of text content to total HTML. A ratio of 0.25+ earns full marks. |
-| **Content Structure** | 25 | Presence of headings (3 pts each) and paragraphs (0.5 pts each). |
-| **Navigation Quality** | 25 | Internal links (2 pts each). External links are excluded. |
-| **Readability** | 25 | Penalizes deviation from an optimal average sentence length of 15 words. |
+| **Signal-to-Noise Ratio** | 40 | Ratio of extracted meaningful text to total page text. Optimal range: 0.3-0.8. |
+| **Structure Preservation** | 30 | Do headings, lists, and code blocks survive extraction? (10 pts each category) |
+| **Boundary Detection** | 30 | Did Readability find a clear article boundary? Checks title extraction, content length, and `<main>`/`<article>` overlap. |
+
+### **Structured Data Sub-Signals**
+The Structured Data score (20% of overall) evaluates schema quality, not just presence:
+
+| Sub-signal | Max Points | What it measures |
+|---|---|---|
+| **Type Appropriateness** | 20 | Does the `@type` match recognized content types (Article, WebPage, HowTo, etc.)? |
+| **Field Completeness** | 30 | Does JSON-LD include key fields: `name`, `dateModified`, `author`, `description`, etc.? |
+| **Multiple Formats** | 20 | Are JSON-LD, OpenGraph, and microdata all present? |
+| **Schema Validation** | 30 | Are required properties present for the declared Schema.org type? |
+
+### **HTTP Compliance Sub-Signals**
+The HTTP Compliance score (10% of overall) is split into four sub-signals:
+
+| Sub-signal | Max Points | What it measures |
+|---|---|---|
+| **HTML Reachability** | 20 | Does the URL serve a 200 response to `Accept: text/html`? |
+| **Redirect Efficiency** | 30 | Chain length (0 hops optimal, >4 penalized), proper status codes, performance impact. |
+| **Crawl Permissions** | 25 | `robots.txt` allows access + no `<meta name="robots" content="noindex">` blocking. |
+| **Cache Headers** | 25 | Presence of `ETag`, `Last-Modified`, and `Cache-Control` headers. |
+
+### **Metadata Completeness Fields**
+The Metadata Completeness score (10% of overall) checks for 7 key fields across Dublin Core, Schema.org, and OpenGraph:
+
+| Field | Max Points | Sources checked |
+|---|---|---|
+| **Title** | 15 | `<title>`, `og:title`, Schema.org `name`/`headline` |
+| **Description** | 15 | `<meta name="description">`, `og:description`, Schema.org `description` |
+| **Author/Publisher** | 15 | `<meta name="author">`, Schema.org `author`/`publisher` |
+| **Date** | 15 | `<meta>` date tags, Schema.org `dateModified`/`datePublished`, `<time>` elements |
+| **Topic/Category** | 15 | `<meta name="ms.topic">`, Schema.org `articleSection`, `<meta name="keywords">` |
+| **Language** | 10 | `<html lang="">`, `<meta http-equiv="content-language">` |
+| **Canonical URL** | 15 | `<link rel="canonical">` |
 
 ## GitHub Integration
 
@@ -389,14 +428,14 @@ python main.py express staging-docs-urls.txt --out quality-check/
 ```bash
 # Quarterly accessibility audits
 python main.py express corporate-docs.txt --out compliance-audit/
-jq '.audit_trail.wcag_accessibility' compliance-audit/report_scores.json
+jq '.audit_trail.dom_navigability' compliance-audit/report_scores.json
 ```
 
 ### **🤖 Agent Integration Teams** 
 ```bash
 # Validate agent-ready content
 python main.py express api-documentation.txt --out agent-readiness/
-# Verify HTTP content negotiation and structured data availability
+# Verify content extractability, structured data, and metadata coverage
 ```
 
 ### **🔍 Quality Assurance**

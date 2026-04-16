@@ -245,32 +245,24 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
         # Group 1: Fast non-browser components (run in parallel)
         # Group 2: Browser-dependent component (runs separately)
         
-        # Fast components that don't require browser automation
-        fast_tasks = []
+        # Fast async tasks (network-based, no browser needed)
+        fast_tasks = [
+            ('structured_data', self._evaluate_structured_data_async(html_content, url)),
+            ('http_compliance', self._evaluate_http_compliance_enhanced_async(html_content, url, crawl_data))
+        ]
         
-        # HTTP compliance and structured data (network-based, no browser needed)
-        if url and self._is_valid_url(url):
-            fast_tasks.extend([
-                ('structured_data', self._evaluate_structured_data_async(html_content, url)),
-                ('http_compliance', self._evaluate_http_compliance_enhanced_async(html_content, url, crawl_data))
-            ])
-        else:
-            fast_tasks.extend([
-                ('structured_data', self._evaluate_structured_data_async(html_content, url)),
-                ('http_compliance', self._evaluate_http_compliance_enhanced_async(html_content, url, crawl_data))
-            ])
-        
-        # HTML and content analysis (CPU-based, no browser needed)
+        # Fast sync tasks (CPU-based, no browser needed)
         fast_sync_tasks = [
             ('semantic_html', lambda: self._evaluate_semantic_html_sync(html_content, signals)),
-            ('content_quality', lambda: self._evaluate_content_quality_sync(html_content, signals, evidence))
+            ('content_extractability', lambda: self._evaluate_content_extractability(html_content, signals)),
+            ('metadata_completeness', lambda: self._evaluate_metadata_completeness(html_content, url))
         ]
         
         # Browser-dependent component (slowest, runs separately)
         if url and self._is_valid_url(url):
-            browser_task = ('wcag_accessibility', self._evaluate_wcag_accessibility_async(html_content, url))
+            browser_task = ('dom_navigability', self._evaluate_wcag_accessibility_async(html_content, url))
         else:
-            browser_task = ('wcag_accessibility', self._evaluate_wcag_fallback_async(html_content))
+            browser_task = ('dom_navigability', self._evaluate_wcag_fallback_async(html_content))
         
         # === OPTIMIZED PARALLEL EXECUTION ===
         
@@ -369,8 +361,8 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
         audit_trail['_performance_metrics'] = {
             'optimization_mode': 'performance_parallel_optimized',
             'execution_strategy': 'fast_components_parallel_browser_separate',
-            'fast_components': ['structured_data', 'http_compliance', 'semantic_html', 'content_quality'],
-            'browser_components': ['wcag_accessibility'],
+            'fast_components': ['structured_data', 'http_compliance', 'semantic_html', 'content_extractability', 'metadata_completeness'],
+            'browser_components': ['dom_navigability'],
             'timing_analysis': {
                 'fast_group_time_seconds': round(fast_execution_time, 2),
                 'browser_group_time_seconds': round(browser_execution_time, 2),
@@ -467,12 +459,16 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
                 # Return fallback static score instead of failing completely
                 return 75.0, audit_trail
             
-            # Quick scoring calculation
+            # Quick scoring calculation with per-rule caps
             violations = results.get('violations', [])
-            penalty = sum(
-                {'critical': 25, 'serious': 15, 'moderate': 10, 'minor': 5}.get(v.get('impact', 'minor'), 5) * len(v.get('nodes', []))
-                for v in violations
-            )
+            MAX_PENALTY_PER_RULE = 25
+            severity_weights = {'critical': 25, 'serious': 15, 'moderate': 10, 'minor': 5}
+            penalty = 0
+            for v in violations:
+                impact = v.get('impact', 'minor')
+                node_count = len(v.get('nodes', []))
+                rule_penalty = severity_weights.get(impact, 5) * min(node_count, 3)
+                penalty += min(rule_penalty, MAX_PENALTY_PER_RULE)
             
             score = max(0, 100 - penalty)
             

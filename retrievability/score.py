@@ -26,11 +26,12 @@ def score_parse_results(parse_file: str, output_file: str, api_key: Optional[str
         print("   YARA 3.0 uses industry standards and is completely API-free")
     
     print("[CLIPPER] Standards-Based Access Gate Evaluator")
-    print("|- WCAG 2.1 Accessibility (Deque axe-core) - 25%")
     print("|- W3C Semantic HTML Analysis - 25%")
+    print("|- Content Extractability (Mozilla Readability) - 20%")
     print("|- Schema.org Structured Data - 20%")
-    print("|- HTTP Standards Compliance (RFC 7231 + Redirects) - 15%")
-    print("+- Agent-Focused Content Quality - 15%")
+    print("|- DOM Navigability (WCAG 2.1 / axe-core) - 15%")
+    print("|- Metadata Completeness (Dublin Core / OpenGraph) - 10%")
+    print("+- HTTP Compliance (RFC 7231 / robots / cache) - 10%")
     
     # Initialize standards-based evaluator
     evaluator = AccessGateEvaluator()

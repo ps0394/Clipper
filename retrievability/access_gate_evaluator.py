@@ -25,39 +25,45 @@ import advertools
 from pyquery import PyQuery as pq
 import charset_normalizer
 
+# Mozilla Readability for content extractability evaluation
+from readability import Document as ReadabilityDocument
+
 from .schemas import ScoreResult
 
 
 class AccessGateEvaluator:
     """Clipper Standards-Based Access Gate Evaluator.
     
-    Evaluates "Can agents reliably access Microsoft information?" using
+    Evaluates "Can agents reliably access and use this content?" using
     established industry frameworks with complete API independence.
     
-    Standards Authority Mapping:
-    - WCAG 2.1 AA (W3C) + axe-core (Deque Systems) - 25%
-    - HTML5 Semantic Elements (W3C) - 25% 
-    - Schema.org (Google/Microsoft/Yahoo) - 20%
-    - RFC 7231 Content Negotiation (IETF) - 15%
-    - Established content analysis metrics - 15%
+    Pillar Weights:
+    - HTML5 Semantic Elements (W3C) - 25%
+    - Content Extractability (Mozilla Readability) - 20%
+    - Schema.org Structured Data - 20%
+    - DOM Navigability (WCAG 2.1 / axe-core) - 15%
+    - Metadata Completeness (Dublin Core / Schema.org / OpenGraph) - 10%
+    - HTTP Compliance (RFC 7231 / robots / cache) - 10%
     """
     
     # Evaluation weights (must sum to 1.0)
     WEIGHTS = {
-        'wcag_accessibility': 0.25,     # WCAG 2.1 evaluation
-        'semantic_html': 0.25,          # W3C semantic HTML analysis
-        'structured_data': 0.20,        # Schema.org structured data
-        'http_compliance': 0.15,        # HTTP standards compliance
-        'content_quality': 0.15         # Agent-focused content metrics
+        'semantic_html': 0.25,              # W3C semantic HTML analysis
+        'content_extractability': 0.20,     # Mozilla Readability content extraction
+        'structured_data': 0.20,            # Schema.org structured data
+        'dom_navigability': 0.15,           # WCAG 2.1 / axe-core DOM evaluation
+        'metadata_completeness': 0.10,      # Dublin Core / Schema.org / OpenGraph metadata
+        'http_compliance': 0.10             # Agent-focused HTTP compliance
     }
     
     # Standards authority documentation
     STANDARDS_AUTHORITY = {
-        'accessibility': 'WCAG 2.1 AA (W3C) + axe-core (Deque Systems)',
-        'semantics': 'HTML5 Semantic Elements (W3C)',
+        'semantic_html': 'HTML5 Semantic Elements (W3C)',
+        'content_extractability': 'Mozilla Readability (Firefox Reader View algorithm)',
         'structured_data': 'Schema.org (Google/Microsoft/Yahoo)',
-        'http_compliance': 'RFC 7231 Content Negotiation (IETF)',
-        'content_quality': 'Established content analysis metrics'
+        'dom_navigability': 'WCAG 2.1 AA (W3C) + axe-core (Deque Systems)',
+        'metadata_completeness': 'Dublin Core + Schema.org + OpenGraph',
+        'http_compliance': 'RFC 7231 + robots.txt + Cache headers'
     }
     
     def __init__(self, headless: bool = True, timeout: int = 30):
@@ -104,25 +110,29 @@ class AccessGateEvaluator:
         scores = {}
         audit_trail = {}
         
-        # 1. WCAG 2.1 Accessibility (25%) - Deque axe-core
-        scores['wcag_accessibility'], audit_trail['wcag_accessibility'] = \
-            self._evaluate_wcag_accessibility(html_content, url)
-        
-        # 2. W3C Semantic HTML (25%) - HTML5 semantic elements  
+        # 1. W3C Semantic HTML (25%) - HTML5 semantic elements  
         scores['semantic_html'], audit_trail['semantic_html'] = \
             self._evaluate_semantic_html(html_content, signals)
+        
+        # 2. Content Extractability (20%) - Mozilla Readability
+        scores['content_extractability'], audit_trail['content_extractability'] = \
+            self._evaluate_content_extractability(html_content, signals)
         
         # 3. Schema.org Structured Data (20%) - extruct analysis
         scores['structured_data'], audit_trail['structured_data'] = \
             self._evaluate_structured_data(html_content, url)
         
-        # 4. HTTP Standards Compliance (15%) - RFC 7231 + Redirect Efficiency
+        # 4. DOM Navigability (15%) - WCAG 2.1 / axe-core
+        scores['dom_navigability'], audit_trail['dom_navigability'] = \
+            self._evaluate_wcag_accessibility(html_content, url)
+        
+        # 5. Metadata Completeness (10%) - Dublin Core / Schema.org / OpenGraph
+        scores['metadata_completeness'], audit_trail['metadata_completeness'] = \
+            self._evaluate_metadata_completeness(html_content, url)
+        
+        # 6. HTTP Compliance (10%) - Agent-focused HTTP compliance
         scores['http_compliance'], audit_trail['http_compliance'] = \
             self._evaluate_http_compliance_enhanced(html_content, url, crawl_data)
-        
-        # 5. Content Quality (15%) - Agent-focused analysis
-        scores['content_quality'], audit_trail['content_quality'] = \
-            self._evaluate_content_quality(html_content, signals, evidence)
         
         # Calculate weighted final score
         final_score = sum(scores[component] * self.WEIGHTS[component] 
@@ -277,14 +287,27 @@ class AccessGateEvaluator:
             violations = results.get('violations', [])
             passes = results.get('passes', [])
             
-            # Scoring logic: 100 - (critical*25 + serious*15 + moderate*10 + minor*5)
+            # Scoring logic: 100 - sum of capped per-rule penalties
+            # Diminishing returns: only first 3 nodes per rule count fully
+            # Cap: no single rule can cost more than 25 points
+            MAX_PENALTY_PER_RULE = 25
             penalty = 0
             severity_weights = {'critical': 25, 'serious': 15, 'moderate': 10, 'minor': 5}
+            penalty_per_rule = {}
             
             for violation in violations:
                 impact = violation.get('impact', 'minor')
                 node_count = len(violation.get('nodes', []))
-                penalty += severity_weights.get(impact, 5) * node_count
+                rule_id = violation.get('id', 'unknown')
+                rule_penalty = severity_weights.get(impact, 5) * min(node_count, 3)
+                capped_penalty = min(rule_penalty, MAX_PENALTY_PER_RULE)
+                penalty_per_rule[rule_id] = {
+                    'impact': impact,
+                    'node_count': node_count,
+                    'raw_penalty': severity_weights.get(impact, 5) * node_count,
+                    'capped_penalty': capped_penalty
+                }
+                penalty += capped_penalty
             
             score = max(0, 100 - penalty)
             
@@ -292,7 +315,8 @@ class AccessGateEvaluator:
                 'violations_count': len(violations),
                 'passes_count': len(passes),
                 'violations': violations[:10],  # Keep first 10 for audit trail
-                'total_penalty': penalty
+                'total_penalty': penalty,
+                'penalty_per_rule': penalty_per_rule
             }
             
         except Exception as e:
@@ -395,16 +419,16 @@ class AccessGateEvaluator:
             return 0.0, audit_trail
     
     def _evaluate_structured_data(self, html_content: str, url: Optional[str]) -> Tuple[float, Dict]:
-        """Evaluate Schema.org structured data using extruct.
+        """Evaluate Schema.org structured data quality and completeness.
         
         Returns:
             Tuple of (score 0-100, audit_trail_dict)
         """
         audit_trail = {
             'standard': 'Schema.org (Google/Microsoft/Yahoo)',
-            'method': 'Structured data extraction and validation',
+            'method': 'Structured data quality and completeness validation',
             'formats_found': [],
-            'score_calculation': 'Based on structured data richness and completeness'
+            'score_calculation': 'Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)'
         }
         
         try:
@@ -415,26 +439,107 @@ class AccessGateEvaluator:
                 syntaxes=['json-ld', 'microdata', 'opengraph', 'microformat']
             )
             
-            # Score based on structured data richness
+            json_ld_data = metadata.get('json-ld', [])
+            microdata = metadata.get('microdata', [])
+            opengraph = metadata.get('opengraph', [])
+            microformat = metadata.get('microformat', [])
+            
             score_components = {}
             
-            # JSON-LD (preferred format) - up to 40 points
-            json_ld_data = metadata.get('json-ld', [])
-            score_components['json_ld'] = min(len(json_ld_data) * 10, 40)
+            # 1. Schema type appropriateness (0-20 points)
+            # Does the @type match common content types?
+            type_score = 0
+            schema_types = []
+            content_types = {
+                'Article', 'TechArticle', 'HowTo', 'WebPage', 'WebSite',
+                'FAQPage', 'APIReference', 'SoftwareApplication',
+                'Organization', 'Person', 'Product', 'BreadcrumbList',
+                'ItemList', 'CollectionPage', 'AboutPage', 'ContactPage',
+                'CreativeWork', 'DigitalDocument', 'Report', 'ScholarlyArticle',
+                'BlogPosting', 'NewsArticle', 'Course', 'Event', 'Review'
+            }
+            for item in json_ld_data:
+                if isinstance(item, dict):
+                    schema_type = item.get('@type', '')
+                    if isinstance(schema_type, list):
+                        schema_types.extend(schema_type)
+                    else:
+                        schema_types.append(schema_type)
             
-            # Microdata - up to 25 points
-            microdata = metadata.get('microdata', [])
-            score_components['microdata'] = min(len(microdata) * 8, 25)
+            if schema_types:
+                matched = sum(1 for t in schema_types if t in content_types)
+                type_score = min((matched / max(len(schema_types), 1)) * 20, 20)
+            score_components['type_appropriateness'] = type_score
             
-            # Open Graph - up to 20 points
-            opengraph = metadata.get('opengraph', [])
-            score_components['opengraph'] = min(len(opengraph) * 5, 20)
+            # 2. Field completeness (0-30 points)
+            # Does JSON-LD include key fields?
+            key_fields = ['name', 'description', 'dateModified', 'author', 'publisher',
+                         'headline', 'datePublished', 'image', 'url']
+            fields_found = set()
+            for item in json_ld_data:
+                if isinstance(item, dict):
+                    for field in key_fields:
+                        if item.get(field):
+                            fields_found.add(field)
             
-            # Microformats - up to 15 points
-            microformat = metadata.get('microformat', [])
-            score_components['microformat'] = min(len(microformat) * 3, 15)
+            if key_fields:
+                completeness_ratio = len(fields_found) / len(key_fields)
+                score_components['field_completeness'] = completeness_ratio * 30
+            else:
+                score_components['field_completeness'] = 0
             
-            final_score = sum(score_components.values())
+            # 3. Multiple formats (0-20 points)
+            # JSON-LD + OpenGraph + microdata present?
+            formats_present = sum([
+                bool(json_ld_data),
+                bool(opengraph),
+                bool(microdata),
+                bool(microformat)
+            ])
+            # 1 format = 5, 2 = 12, 3 = 17, 4 = 20
+            format_scores = {0: 0, 1: 5, 2: 12, 3: 17, 4: 20}
+            score_components['multiple_formats'] = format_scores.get(formats_present, 20)
+            
+            # 4. Schema.org validation (0-30 points)
+            # Are required properties present for the declared type?
+            validation_score = 0
+            # Common required fields by type
+            type_required_fields = {
+                'Article': ['headline', 'author', 'datePublished'],
+                'TechArticle': ['headline', 'author', 'datePublished'],
+                'WebPage': ['name', 'description'],
+                'WebSite': ['name', 'url'],
+                'Organization': ['name', 'url'],
+                'BreadcrumbList': ['itemListElement'],
+                'FAQPage': ['mainEntity'],
+                'HowTo': ['name', 'step'],
+                'Product': ['name', 'description'],
+            }
+            
+            validated_types = 0
+            total_types_checked = 0
+            for item in json_ld_data:
+                if isinstance(item, dict):
+                    schema_type = item.get('@type', '')
+                    if isinstance(schema_type, list):
+                        schema_type = schema_type[0] if schema_type else ''
+                    required = type_required_fields.get(schema_type)
+                    if required:
+                        total_types_checked += 1
+                        present = sum(1 for f in required if item.get(f))
+                        if present == len(required):
+                            validated_types += 1
+                        else:
+                            validated_types += present / len(required) * 0.5
+            
+            if total_types_checked > 0:
+                validation_score = (validated_types / total_types_checked) * 30
+            elif json_ld_data:
+                # Has JSON-LD but unrecognized types — give partial credit
+                validation_score = 10
+            score_components['schema_validation'] = validation_score
+            
+            final_score = min(sum(score_components.values()), 100)
             
             audit_trail.update({
                 'extracted_metadata': {
@@ -443,6 +548,9 @@ class AccessGateEvaluator:
                     'opengraph_items': len(opengraph),
                     'microformat_items': len(microformat)
                 },
+                'schema_types_found': schema_types,
+                'key_fields_found': list(fields_found),
+                'formats_present': formats_present,
                 'score_breakdown': score_components,
                 'sample_structured_data': self._sample_structured_data(metadata)
             })
@@ -456,53 +564,172 @@ class AccessGateEvaluator:
     
     def _evaluate_http_compliance_enhanced(self, html_content: str, url: Optional[str], 
                                          crawl_data: Optional[Dict]) -> Tuple[float, Dict]:
-        """Evaluate HTTP standards compliance with redirect efficiency analysis.
+        """Evaluate HTTP standards compliance: accessibility for agents.
+        
+        Focused on what matters for agent retrieval:
+        - HTML reachability (text/html response)
+        - Redirect efficiency
+        - robots.txt / meta robots (crawl permissions)
+        - Cache headers (ETag, Last-Modified, Cache-Control)
         
         Returns:
             Tuple of (score 0-100, audit_trail_dict)
         """
         audit_trail = {
-            'standard': 'RFC 7231 Content Negotiation (IETF) + Redirect Efficiency',
-            'method': 'Enhanced HTTP compliance with redirect chain analysis',
-            'score_calculation': 'Content negotiation (60%) + Redirect efficiency (40%)'
+            'standard': 'RFC 7231 + robots.txt + Cache headers',
+            'method': 'Agent-focused HTTP compliance evaluation',
+            'score_calculation': 'HTML reachability (20) + Redirect efficiency (30) + Robots/crawl permissions (25) + Cache headers (25)'
         }
         
         try:
-            # Get base HTTP compliance score (60% of component)
-            base_score, base_audit = self._evaluate_http_compliance(html_content, url)
-            content_nego_score = base_score * 0.6
+            score_components = {}
             
-            # New: Redirect efficiency scoring (40% of component)
+            # 1. HTML reachability (0-20 points) — does the URL serve text/html?
+            html_reach_score = 0
+            html_reach_audit = {}
+            if url and self._is_valid_url(url):
+                try:
+                    response = httpx.get(
+                        url,
+                        headers={'Accept': 'text/html'},
+                        timeout=self.timeout,
+                        follow_redirects=True
+                    )
+                    html_reach_audit['status_code'] = response.status_code
+                    html_reach_audit['content_type'] = response.headers.get('content-type', '')
+                    if response.status_code == 200:
+                        html_reach_score = 20
+                    elif response.status_code in (301, 302, 307, 308):
+                        html_reach_score = 15  # Redirects but reachable
+                    elif response.status_code < 400:
+                        html_reach_score = 10
+                    else:
+                        html_reach_score = 0
+                except Exception as e:
+                    html_reach_audit['error'] = str(e)
+                    html_reach_score = 0
+            else:
+                # Static analysis fallback — assume reachable if we have HTML
+                html_reach_score = 15
+                html_reach_audit['method'] = 'Static fallback (no live URL)'
+            score_components['html_reachability'] = html_reach_score
+            audit_trail['html_reachability'] = html_reach_audit
+            
+            # 2. Redirect efficiency (0-30 points)
             if crawl_data and 'redirect_chain' in crawl_data:
                 redirect_score, redirect_audit = self._evaluate_redirect_efficiency(crawl_data)
+                # Scale from 0-40 to 0-30
+                score_components['redirect_efficiency'] = (redirect_score / 40) * 30
             else:
-                # Fallback: No redirect data available, assume optimal (no redirects)
-                redirect_score = 40.0  # Full redirect efficiency score
-                redirect_audit = {
-                    'method': 'No redirect data available (assuming direct access)',
-                    'redirect_efficiency_score': redirect_score,
-                    'fallback_reason': 'Missing crawl data with redirect chain'
-                }
+                score_components['redirect_efficiency'] = 30.0  # Assume optimal
+                redirect_audit = {'method': 'No redirect data (assuming direct access)'}
+            audit_trail['redirect_efficiency'] = redirect_audit
             
-            final_score = content_nego_score + redirect_score
+            # 3. Robots / crawl permissions (0-25 points)
+            robots_score = 0
+            robots_audit = {}
             
-            # Combine audit trails
-            audit_trail.update({
-                'content_negotiation': base_audit,
-                'redirect_efficiency': redirect_audit,
-                'scoring_breakdown': {
-                    'content_negotiation_score': content_nego_score,
-                    'redirect_efficiency_score': redirect_score,
-                    'total_score': final_score
-                }
-            })
+            # Check <meta name="robots"> in HTML
+            soup = BeautifulSoup(html_content, 'html.parser')
+            meta_robots = soup.find('meta', attrs={'name': lambda n: n and n.lower() == 'robots'})
+            if meta_robots:
+                robots_content = (meta_robots.get('content', '') or '').lower()
+                robots_audit['meta_robots'] = robots_content
+                has_noindex = 'noindex' in robots_content
+                has_nofollow = 'nofollow' in robots_content
+                if has_noindex:
+                    robots_score = 0  # Page explicitly blocks indexing
+                    robots_audit['blocked'] = True
+                elif has_nofollow:
+                    robots_score = 15  # Can index but not follow links
+                else:
+                    robots_score = 15  # Meta robots present and permissive
+            else:
+                robots_score = 15  # No meta robots = permissive by default
+                robots_audit['meta_robots'] = 'none (permissive by default)'
+            
+            # Check robots.txt (if live URL available)
+            if url and self._is_valid_url(url):
+                try:
+                    parsed = urlparse(url)
+                    robots_url = f"{parsed.scheme}://{parsed.netloc}/robots.txt"
+                    robots_response = httpx.get(robots_url, timeout=10, follow_redirects=True)
+                    robots_audit['robots_txt_status'] = robots_response.status_code
+                    if robots_response.status_code == 200:
+                        robots_text = robots_response.text
+                        # Simple check: look for Disallow on the URL path
+                        path = parsed.path or '/'
+                        is_blocked = False
+                        for line in robots_text.splitlines():
+                            line = line.strip()
+                            if line.lower().startswith('disallow:'):
+                                disallowed = line.split(':', 1)[1].strip()
+                                if disallowed and path.startswith(disallowed):
+                                    is_blocked = True
+                                    break
+                        if is_blocked:
+                            robots_score = max(robots_score - 15, 0)
+                            robots_audit['robots_txt_blocked'] = True
+                        else:
+                            robots_score += 10
+                            robots_audit['robots_txt_blocked'] = False
+                    else:
+                        robots_score += 10  # No robots.txt = permissive
+                        robots_audit['robots_txt_blocked'] = False
+                except Exception as e:
+                    robots_score += 5  # Can't check, partial credit
+                    robots_audit['robots_txt_error'] = str(e)
+            else:
+                robots_score += 5  # No URL to check
+            
+            score_components['crawl_permissions'] = min(robots_score, 25)
+            audit_trail['crawl_permissions'] = robots_audit
+            
+            # 4. Cache headers (0-25 points)
+            cache_score = 0
+            cache_audit = {}
+            if url and self._is_valid_url(url):
+                try:
+                    # Use HEAD request to check cache headers
+                    head_response = httpx.head(url, timeout=10, follow_redirects=True)
+                    headers = head_response.headers
+                    
+                    has_etag = 'etag' in headers
+                    has_last_modified = 'last-modified' in headers
+                    has_cache_control = 'cache-control' in headers
+                    
+                    cache_audit['etag'] = headers.get('etag', 'absent')
+                    cache_audit['last_modified'] = headers.get('last-modified', 'absent')
+                    cache_audit['cache_control'] = headers.get('cache-control', 'absent')
+                    
+                    if has_etag:
+                        cache_score += 10
+                    if has_last_modified:
+                        cache_score += 10
+                    if has_cache_control:
+                        cc = headers.get('cache-control', '').lower()
+                        if 'no-store' in cc:
+                            cache_score += 2  # Has header but blocks caching
+                        else:
+                            cache_score += 5
+                except Exception as e:
+                    cache_audit['error'] = str(e)
+            else:
+                cache_score = 12  # Neutral without live URL
+                cache_audit['method'] = 'Static fallback (no live URL)'
+            
+            score_components['cache_headers'] = min(cache_score, 25)
+            audit_trail['cache_headers'] = cache_audit
+            
+            final_score = min(sum(score_components.values()), 100)
+            audit_trail['score_breakdown'] = score_components
             
             return final_score, audit_trail
             
         except Exception as e:
-            self.logger.error(f"Enhanced HTTP compliance evaluation failed: {e}")
-            # Fallback to basic HTTP compliance
-            return self._evaluate_http_compliance(html_content, url)
+            self.logger.error(f"HTTP compliance evaluation failed: {e}")
+            audit_trail['error'] = str(e)
+            return 0.0, audit_trail
     
     def _evaluate_redirect_efficiency(self, crawl_data: Dict) -> Tuple[float, Dict]:
         """Evaluate redirect chain efficiency for HTTP compliance.
@@ -714,6 +941,324 @@ class AccessGateEvaluator:
             
         except Exception as e:
             self.logger.error(f"Content quality evaluation failed: {e}")
+            audit_trail['error'] = str(e)
+            return 0.0, audit_trail
+    
+    def _evaluate_content_extractability(self, html_content: str, signals: Dict) -> Tuple[float, Dict]:
+        """Evaluate content extractability using Mozilla Readability algorithm.
+        
+        Measures how cleanly an agent can extract meaningful content from the page,
+        using the same algorithm as Firefox Reader View.
+        
+        Returns:
+            Tuple of (score 0-100, audit_trail_dict)
+        """
+        audit_trail = {
+            'standard': 'Mozilla Readability (Firefox Reader View algorithm)',
+            'method': 'Content extraction completeness and cleanliness analysis',
+            'score_calculation': 'Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)'
+        }
+        
+        try:
+            soup = BeautifulSoup(html_content, 'html.parser')
+            raw_text = soup.get_text(separator=' ', strip=True)
+            raw_text_length = len(raw_text)
+            
+            if raw_text_length == 0:
+                audit_trail['error'] = 'No text content found in page'
+                return 0.0, audit_trail
+            
+            # Run Mozilla Readability extraction
+            doc = ReadabilityDocument(html_content)
+            extracted_html = doc.summary()
+            extracted_title = doc.short_title()
+            
+            extracted_soup = BeautifulSoup(extracted_html, 'html.parser')
+            extracted_text = extracted_soup.get_text(separator=' ', strip=True)
+            extracted_text_length = len(extracted_text)
+            
+            score_components = {}
+            
+            # 1. Signal-to-noise ratio (0-40 points)
+            # Ratio of extracted meaningful text to raw page text
+            if raw_text_length > 0:
+                extraction_ratio = extracted_text_length / raw_text_length
+                # Optimal: 0.3-0.8 (page has content with some chrome removed)
+                # Too low (<0.1): readability couldn't find content
+                # Too high (>0.9): page is mostly content (good) or extraction failed to filter
+                if extraction_ratio < 0.05:
+                    ratio_score = extraction_ratio * 200  # Very low extraction = poor
+                elif extraction_ratio < 0.15:
+                    ratio_score = 10 + (extraction_ratio - 0.05) * 200
+                elif extraction_ratio <= 0.85:
+                    ratio_score = 30 + (min(extraction_ratio, 0.7) / 0.7) * 10  # Good range
+                else:
+                    ratio_score = 35  # Very high ratio is still good
+                score_components['signal_to_noise'] = min(ratio_score, 40)
+            else:
+                score_components['signal_to_noise'] = 0
+            
+            # 2. Structure preservation (0-30 points)
+            # Do headings, lists, and code blocks survive extraction?
+            original_headings = len(soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']))
+            extracted_headings = len(extracted_soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']))
+            
+            original_lists = len(soup.find_all(['ul', 'ol']))
+            extracted_lists = len(extracted_soup.find_all(['ul', 'ol']))
+            
+            original_code = len(soup.find_all(['pre', 'code']))
+            extracted_code = len(extracted_soup.find_all(['pre', 'code']))
+            
+            structure_score = 0
+            # Headings preservation (0-10)
+            if original_headings > 0:
+                heading_ratio = min(extracted_headings / original_headings, 1.0)
+                structure_score += heading_ratio * 10
+            else:
+                structure_score += 5  # No headings to preserve — neutral
+            
+            # Lists preservation (0-10)
+            if original_lists > 0:
+                list_ratio = min(extracted_lists / original_lists, 1.0)
+                structure_score += list_ratio * 10
+            else:
+                structure_score += 5  # Neutral
+            
+            # Code blocks preservation (0-10)
+            if original_code > 0:
+                code_ratio = min(extracted_code / original_code, 1.0)
+                structure_score += code_ratio * 10
+            else:
+                structure_score += 5  # Neutral
+            
+            score_components['structure_preservation'] = min(structure_score, 30)
+            
+            # 3. Content boundary detection (0-30 points)
+            # Did readability find a clear article boundary?
+            boundary_score = 0
+            
+            # Check if a title was extracted
+            if extracted_title and len(extracted_title.strip()) > 0:
+                boundary_score += 10
+            
+            # Check if extraction produced meaningful content (>100 chars)
+            if extracted_text_length > 100:
+                boundary_score += 10
+            elif extracted_text_length > 20:
+                boundary_score += 5
+            
+            # Check if main content region exists in original (helps readability)
+            main_element = soup.find('main') or soup.find('article')
+            if main_element:
+                main_text = main_element.get_text(separator=' ', strip=True)
+                main_text_length = len(main_text)
+                # How much of <main> content survived extraction?
+                if main_text_length > 0 and extracted_text_length > 0:
+                    # Use word overlap as a rough measure
+                    main_words = set(main_text.lower().split()[:200])
+                    extracted_words = set(extracted_text.lower().split()[:200])
+                    if main_words:
+                        overlap = len(main_words & extracted_words) / len(main_words)
+                        boundary_score += overlap * 10
+                    else:
+                        boundary_score += 5
+                else:
+                    boundary_score += 5
+            else:
+                # No <main>/<article> — readability has to guess boundaries
+                boundary_score += 3
+            
+            score_components['boundary_detection'] = min(boundary_score, 30)
+            
+            final_score = min(sum(score_components.values()), 100)
+            
+            audit_trail.update({
+                'extraction_metrics': {
+                    'raw_text_length': raw_text_length,
+                    'extracted_text_length': extracted_text_length,
+                    'extraction_ratio': round(extracted_text_length / raw_text_length, 3) if raw_text_length > 0 else 0,
+                    'extracted_title': extracted_title,
+                    'original_headings': original_headings,
+                    'extracted_headings': extracted_headings,
+                    'original_lists': original_lists,
+                    'extracted_lists': extracted_lists,
+                    'original_code_blocks': original_code,
+                    'extracted_code_blocks': extracted_code,
+                    'has_main_element': bool(soup.find('main')),
+                    'has_article_element': bool(soup.find('article'))
+                },
+                'score_breakdown': score_components
+            })
+            
+            return final_score, audit_trail
+            
+        except Exception as e:
+            self.logger.error(f"Content extractability evaluation failed: {e}")
+            audit_trail['error'] = str(e)
+            return 0.0, audit_trail
+    
+    def _evaluate_metadata_completeness(self, html_content: str, url: Optional[str]) -> Tuple[float, Dict]:
+        """Evaluate metadata completeness across Dublin Core, Schema.org, and OpenGraph.
+        
+        Checks for the presence of key metadata fields that agents use
+        to understand page identity, authorship, and currency.
+        
+        Returns:
+            Tuple of (score 0-100, audit_trail_dict)
+        """
+        audit_trail = {
+            'standard': 'Dublin Core + Schema.org + OpenGraph metadata',
+            'method': 'Metadata field presence and quality check',
+            'score_calculation': 'Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)'
+        }
+        
+        try:
+            soup = BeautifulSoup(html_content, 'html.parser')
+            
+            # Extract JSON-LD for Schema.org fields
+            json_ld_data = {}
+            for script in soup.find_all('script', type='application/ld+json'):
+                try:
+                    data = json.loads(script.string or '{}')
+                    if isinstance(data, list):
+                        for item in data:
+                            if isinstance(item, dict):
+                                json_ld_data.update(item)
+                    elif isinstance(data, dict):
+                        json_ld_data.update(data)
+                except (json.JSONDecodeError, TypeError):
+                    pass
+            
+            field_scores = {}
+            field_sources = {}
+            
+            # 1. Title (15 points) — <title>, og:title, or Schema.org name
+            title_tag = soup.find('title')
+            og_title = soup.find('meta', property='og:title')
+            schema_name = json_ld_data.get('name') or json_ld_data.get('headline')
+            has_title = bool(
+                (title_tag and title_tag.get_text(strip=True)) or
+                (og_title and og_title.get('content', '').strip()) or
+                schema_name
+            )
+            field_scores['title'] = 15 if has_title else 0
+            field_sources['title'] = [
+                s for s, v in [
+                    ('title_tag', title_tag and title_tag.get_text(strip=True)),
+                    ('og:title', og_title and og_title.get('content', '').strip()),
+                    ('schema:name', schema_name)
+                ] if v
+            ]
+            
+            # 2. Description (15 points) — <meta name="description">, og:description
+            meta_desc = soup.find('meta', attrs={'name': 'description'})
+            og_desc = soup.find('meta', property='og:description')
+            schema_desc = json_ld_data.get('description')
+            has_desc = bool(
+                (meta_desc and meta_desc.get('content', '').strip()) or
+                (og_desc and og_desc.get('content', '').strip()) or
+                schema_desc
+            )
+            field_scores['description'] = 15 if has_desc else 0
+            field_sources['description'] = [
+                s for s, v in [
+                    ('meta:description', meta_desc and meta_desc.get('content', '').strip()),
+                    ('og:description', og_desc and og_desc.get('content', '').strip()),
+                    ('schema:description', schema_desc)
+                ] if v
+            ]
+            
+            # 3. Author/Publisher (15 points)
+            meta_author = soup.find('meta', attrs={'name': 'author'})
+            schema_author = json_ld_data.get('author')
+            schema_publisher = json_ld_data.get('publisher')
+            has_author = bool(
+                (meta_author and meta_author.get('content', '').strip()) or
+                schema_author or schema_publisher
+            )
+            field_scores['author'] = 15 if has_author else 0
+            field_sources['author'] = [
+                s for s, v in [
+                    ('meta:author', meta_author and meta_author.get('content', '').strip()),
+                    ('schema:author', schema_author),
+                    ('schema:publisher', schema_publisher)
+                ] if v
+            ]
+            
+            # 4. Date published/modified (15 points)
+            meta_date = soup.find('meta', attrs={'name': lambda n: n and 'date' in n.lower()}) if soup.find('meta', attrs={'name': True}) else None
+            time_element = soup.find('time', attrs={'datetime': True})
+            schema_date = json_ld_data.get('dateModified') or json_ld_data.get('datePublished')
+            has_date = bool(
+                (meta_date and meta_date.get('content', '').strip()) or
+                time_element or schema_date
+            )
+            field_scores['date'] = 15 if has_date else 0
+            field_sources['date'] = [
+                s for s, v in [
+                    ('meta:date', meta_date and meta_date.get('content', '').strip()),
+                    ('time_element', time_element and time_element.get('datetime', '')),
+                    ('schema:date', schema_date)
+                ] if v
+            ]
+            
+            # 5. Topic/Category (15 points)
+            meta_topic = soup.find('meta', attrs={'name': lambda n: n and n.lower() in ('ms.topic', 'topic', 'category', 'keywords')}) if soup.find('meta', attrs={'name': True}) else None
+            schema_section = json_ld_data.get('articleSection')
+            meta_keywords = soup.find('meta', attrs={'name': 'keywords'})
+            has_topic = bool(
+                (meta_topic and meta_topic.get('content', '').strip()) or
+                schema_section or
+                (meta_keywords and meta_keywords.get('content', '').strip())
+            )
+            field_scores['topic'] = 15 if has_topic else 0
+            field_sources['topic'] = [
+                s for s, v in [
+                    ('meta:topic', meta_topic and meta_topic.get('content', '').strip()),
+                    ('schema:articleSection', schema_section),
+                    ('meta:keywords', meta_keywords and meta_keywords.get('content', '').strip())
+                ] if v
+            ]
+            
+            # 6. Language (10 points)
+            html_lang = soup.find('html', attrs={'lang': True})
+            meta_lang = soup.find('meta', attrs={'http-equiv': lambda v: v and v.lower() == 'content-language'})
+            has_lang = bool(
+                (html_lang and html_lang.get('lang', '').strip()) or
+                (meta_lang and meta_lang.get('content', '').strip())
+            )
+            field_scores['language'] = 10 if has_lang else 0
+            field_sources['language'] = [
+                s for s, v in [
+                    ('html:lang', html_lang and html_lang.get('lang', '').strip()),
+                    ('meta:content-language', meta_lang and meta_lang.get('content', '').strip())
+                ] if v
+            ]
+            
+            # 7. Canonical URL (15 points)
+            canonical = soup.find('link', rel='canonical')
+            has_canonical = bool(canonical and canonical.get('href', '').strip())
+            field_scores['canonical_url'] = 15 if has_canonical else 0
+            field_sources['canonical_url'] = [
+                s for s, v in [
+                    ('link:canonical', canonical and canonical.get('href', '').strip())
+                ] if v
+            ]
+            
+            final_score = sum(field_scores.values())
+            
+            audit_trail.update({
+                'field_scores': field_scores,
+                'field_sources': field_sources,
+                'fields_present': sum(1 for v in field_scores.values() if v > 0),
+                'fields_total': len(field_scores),
+                'json_ld_type': json_ld_data.get('@type', 'none')
+            })
+            
+            return min(final_score, 100), audit_trail
+            
+        except Exception as e:
+            self.logger.error(f"Metadata completeness evaluation failed: {e}")
             audit_trail['error'] = str(e)
             return 0.0, audit_trail
     
