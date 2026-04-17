@@ -2,7 +2,9 @@
 
 **Standards-Based Access Gate Evaluation for Agent-Ready Content**
 
-Clipper is a CLI tool for evaluating agent accessibility to content using established industry frameworks. Clipper delivers API-free, standards-based evaluation with complete audit traceability for content optimization. This means you can use an agent to evaluate URLs and receive a score based on understood industry-standard retrieval best practices. Clipper uses standards that are industry best practices for retrieval that help agents (like crawlers) access, parse and index information. 
+HTTP crawlers build search indexes. Copilot training pipelines ingest documentation. Retrieval-augmented agents pull content on demand to ground responses. Before any of them can succeed — before agents can sequence deployment steps, mediate task completion, or reason about architecture — the content itself must be accessible, extractable, and machine-readable.
+
+Clipper measures that foundational layer. It evaluates live URLs against six industry-standard pillars (W3C Semantic HTML, Mozilla Readability, Schema.org, WCAG/axe-core, Dublin Core/OpenGraph, RFC 7231) and returns a score with a complete audit trail — no APIs, no credentials, no external dependencies.
 
 ## Table of Contents
 
