@@ -1,3 +1,147 @@
+# Clipper Scoring System
+
+Clipper evaluates whether agents can reliably access, extract, and use web page content. It scores pages 0–100 across six industry-standard pillars, entirely API-free.
+
+## Pillars and Weights
+
+| Pillar | Weight | Standard | Implementation |
+|--------|--------|----------|----------------|
+| **Semantic HTML** | 25% | W3C HTML5 Specification | BeautifulSoup + html5lib |
+| **Content Extractability** | 20% | Mozilla Readability | readability-lxml |
+| **Structured Data** | 20% | Schema.org Consortium | extruct |
+| **DOM Navigability** | 15% | WCAG 2.1 AA + Deque axe-core | axe-selenium-python |
+| **Metadata Completeness** | 10% | Dublin Core / Schema.org / OpenGraph | BeautifulSoup |
+| **HTTP Compliance** | 10% | RFC 7231 + robots.txt | httpx |
+
+The final score is a weighted sum: each pillar produces a 0–100 score, multiplied by its weight.
+
+## Score Classification
+
+| Range | Classification | Meaning |
+|-------|---------------|---------|
+| 90–100 | `clean` | Fully agent-ready |
+| 75–89 | `minor_issues` | Nearly agent-ready |
+| 60–74 | `moderate_issues` | Improvements needed |
+| 40–59 | `significant_issues` | Major optimization required |
+| 0–39 | `severe_issues` | Substantial restructuring needed |
+
+## Pillar Details
+
+### 1. Semantic HTML (25%)
+
+Measures HTML5 semantic element coverage and proper usage.
+
+**Scoring breakdown:**
+- **Semantic element coverage** (60%): Checks for `<header>`, `<nav>`, `<main>`, `<article>`, `<section>`, `<aside>`, `<footer>`, `<figure>`, `<figcaption>`, `<time>`, `<mark>`. Score = (found / total) × 60.
+- **ARIA landmarks** (20%): Counts elements with `role` attributes. Up to 20 points.
+- **Heading elements** (20%): Counts `<h1>`–`<h6>` elements. Up to 20 points.
+
+Validates proper usage (e.g., exactly one `<main>`, reasonable `<header>`/`<footer>` count).
+
+### 2. Content Extractability (20%)
+
+Uses the Mozilla Readability algorithm (same as Firefox Reader View) to measure how cleanly an agent can extract meaningful content.
+
+| Sub-signal | Max Points | What it measures |
+|---|---|---|
+| **Signal-to-Noise Ratio** | 40 | Ratio of extracted meaningful text to total page text. Optimal range: 0.3–0.8. |
+| **Structure Preservation** | 30 | Do headings, lists, and code blocks survive extraction? (10 pts each) |
+| **Boundary Detection** | 30 | Did Readability find a clear article boundary? Checks title extraction, content length, and `<main>`/`<article>` overlap. |
+
+### 3. Structured Data (20%)
+
+Evaluates Schema.org structured data quality using the extruct library.
+
+| Sub-signal | Max Points | What it measures |
+|---|---|---|
+| **Type Appropriateness** | 20 | Does `@type` match recognized content types (Article, WebPage, HowTo, etc.)? |
+| **Field Completeness** | 30 | Does JSON-LD include `name`, `dateModified`, `author`, `description`, etc.? |
+| **Multiple Formats** | 20 | Are JSON-LD, OpenGraph, and microdata all present? (1 format = 5, 2 = 12, 3 = 17, 4 = 20) |
+| **Schema Validation** | 30 | Are required properties present for the declared Schema.org type? |
+
+### 4. DOM Navigability (15%)
+
+Evaluates WCAG 2.1 AA compliance using Deque's axe-core engine via Selenium.
+
+**Live evaluation** (when URL is available):
+- Runs axe-core in a headless Chrome browser against the live page.
+- Scores start at 100 and subtract penalties per violation rule.
+- Severity weights: critical = 25, serious = 15, moderate = 10, minor = 5.
+- **Per-rule cap**: No single rule can cost more than 25 points. Only the first 3 nodes per rule incur full penalty (diminishing returns).
+
+**Static fallback** (no live URL or browser unavailable):
+- Checks: `lang` attribute, `<title>` presence, image alt texts, heading structure, link descriptions.
+- Score = (passed checks / total checks) × 100.
+
+### 5. Metadata Completeness (10%)
+
+Checks for 7 key metadata fields across Dublin Core, Schema.org, and OpenGraph standards.
+
+| Field | Max Points | Sources checked |
+|---|---|---|
+| **Title** | 15 | `<title>`, `og:title`, Schema.org `name`/`headline` |
+| **Description** | 15 | `<meta name="description">`, `og:description`, Schema.org `description` |
+| **Author/Publisher** | 15 | `<meta name="author">`, Schema.org `author`/`publisher` |
+| **Date** | 15 | `<meta>` date tags, Schema.org `dateModified`/`datePublished`, `<time>` elements |
+| **Topic/Category** | 15 | `<meta name="ms.topic">`, Schema.org `articleSection`, `<meta name="keywords">` |
+| **Language** | 10 | `<html lang="">`, `<meta http-equiv="content-language">` |
+| **Canonical URL** | 15 | `<link rel="canonical">` |
+
+Each field scores 0 (absent) or full points (present and non-empty).
+
+### 6. HTTP Compliance (10%)
+
+Evaluates whether agents can reach and cache the content.
+
+| Sub-signal | Max Points | What it measures |
+|---|---|---|
+| **HTML Reachability** | 20 | Does the URL serve a 200 response to `Accept: text/html`? |
+| **Redirect Efficiency** | 30 | Chain length (0 hops = optimal, >4 penalized), proper status codes, performance impact. |
+| **Crawl Permissions** | 25 | `robots.txt` allows access for generic agents (`User-agent: *`) + no `<meta name="robots" content="noindex">`. |
+| **Cache Headers** | 25 | Presence of `ETag`, `Last-Modified`, and `Cache-Control` headers. |
+
+The robots.txt parser respects `User-agent` directives and only applies rules from the `User-agent: *` block. `Allow`/`Disallow` conflicts are resolved by longest-match precedence.
+
+## Audit Trail
+
+Every evaluation produces a complete audit trail documenting:
+- The standard authority for each pillar
+- The evaluation method used (live browser, static HTML, fallback)
+- Score breakdowns per sub-signal
+- Specific violations, elements found, and fields checked
+
+```json
+{
+  "parseability_score": 60.7,
+  "failure_mode": "moderate_issues",
+  "component_scores": {
+    "semantic_html": 72.7,
+    "content_extractability": 74.5,
+    "structured_data": 12.0,
+    "dom_navigability": 35.0,
+    "metadata_completeness": 100.0,
+    "http_compliance": 100.0
+  },
+  "audit_trail": { "..." : "..." },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate"
+}
+```
+
+## Architecture
+
+- **Entry points**: `score.py` (standard mode), `performance_score.py` (async/parallel mode)
+- **Evaluator**: `access_gate_evaluator.py` — `AccessGateEvaluator` class
+- **Each pillar**: A `_evaluate_*` method returning `Tuple[float, Dict]` (score 0–100, audit trail)
+- **Weights**: `WEIGHTS` dict at class level (must sum to 1.0)
+- **Output schema**: `schemas.py` — `ScoreResult` dataclass
 # YARA 2.0 Hybrid Scoring System
 
 This document explains how **YARA 2.0** (Yet Another Retrieval Analyzer) evaluates documentation pages using its proven hybrid scoring methodology that combines industry-standard web metrics with agent-specific analysis.
