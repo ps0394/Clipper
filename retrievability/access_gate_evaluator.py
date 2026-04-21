@@ -657,16 +657,8 @@ class AccessGateEvaluator:
                     robots_audit['robots_txt_status'] = robots_response.status_code
                     if robots_response.status_code == 200:
                         robots_text = robots_response.text
-                        # Simple check: look for Disallow on the URL path
                         path = parsed.path or '/'
-                        is_blocked = False
-                        for line in robots_text.splitlines():
-                            line = line.strip()
-                            if line.lower().startswith('disallow:'):
-                                disallowed = line.split(':', 1)[1].strip()
-                                if disallowed and path.startswith(disallowed):
-                                    is_blocked = True
-                                    break
+                        is_blocked = self._check_robots_txt_blocked(robots_text, path)
                         if is_blocked:
                             robots_score = max(robots_score - 15, 0)
                             robots_audit['robots_txt_blocked'] = True
@@ -1229,3 +1221,50 @@ class AccessGateEvaluator:
             if data_list and isinstance(data_list, list):
                 sample[format_name] = data_list[:2]  # First 2 items only
         return sample
+    
+    def _check_robots_txt_blocked(self, robots_text: str, path: str) -> bool:
+        """Parse robots.txt and check if the path is blocked for generic agents.
+        
+        Respects User-agent directives: only considers rules under User-agent: *
+        (the wildcard block that applies to unnamed/generic crawlers).
+        
+        Args:
+            robots_text: Raw robots.txt content
+            path: URL path to check (e.g. '/docs/overview')
+            
+        Returns:
+            True if the path is disallowed for generic agents
+        """
+        in_wildcard_block = False
+        wildcard_rules = []  # List of (allow: bool, path_pattern: str)
+        
+        for line in robots_text.splitlines():
+            line = line.split('#', 1)[0].strip()  # Strip comments
+            if not line:
+                continue
+            
+            lower_line = line.lower()
+            
+            if lower_line.startswith('user-agent:'):
+                agent = line.split(':', 1)[1].strip()
+                in_wildcard_block = agent == '*'
+            elif in_wildcard_block:
+                if lower_line.startswith('disallow:'):
+                    rule_path = line.split(':', 1)[1].strip()
+                    if rule_path:  # Empty Disallow means allow all
+                        wildcard_rules.append((False, rule_path))
+                elif lower_line.startswith('allow:'):
+                    rule_path = line.split(':', 1)[1].strip()
+                    if rule_path:
+                        wildcard_rules.append((True, rule_path))
+        
+        # Match rules: longest matching path wins (standard robots.txt precedence)
+        best_match_len = -1
+        is_allowed = True  # Default: allowed if no rules match
+        
+        for allowed, rule_path in wildcard_rules:
+            if path.startswith(rule_path) and len(rule_path) > best_match_len:
+                best_match_len = len(rule_path)
+                is_allowed = allowed
+        
+        return not is_allowed
