@@ -54,7 +54,7 @@ beautifulsoup4        # HTML parsing standard
 3. **📊 Schema.org Structured Data (20%)** - JSON-LD quality, type validation, field completeness
 4. **🛡️ DOM Navigability (15%)** - WCAG 2.1 / Deque axe-core DOM evaluation
 5. **🏷️ Metadata Completeness (10%)** - Dublin Core, Schema.org, OpenGraph field coverage
-6. **🌐 HTTP Compliance (10%)** - Reachability, redirects, robots.txt, cache headers
+6. **🌐 HTTP Compliance (10%)** - Reachability, redirects, robots.txt, cache headers, agent content hints
 
 ### **Standards Authority Mapping**
 ```python
@@ -328,7 +328,7 @@ Based on agent retrievability impact:
 - **Structured Data (20%)** - Machine-readable metadata for agent understanding
 - **DOM Navigability (15%)** - Accessible DOM structure for crawlers
 - **Metadata Completeness (10%)** - Identity, authorship, and currency signals
-- **HTTP Compliance (10%)** - Reachability, crawl permissions, cacheability
+- **HTTP Compliance (10%)** - Reachability, crawl permissions, cacheability, agent content hints
 
 ### **Content Extractability Sub-Signals**
 The Content Extractability score (20% of overall) uses Mozilla Readability to measure extraction quality:
@@ -350,14 +350,22 @@ The Structured Data score (20% of overall) evaluates schema quality, not just pr
 | **Schema Validation** | 30 | Are required properties present for the declared Schema.org type? |
 
 ### **HTTP Compliance Sub-Signals**
-The HTTP Compliance score (10% of overall) is split into four sub-signals:
+The HTTP Compliance score (10% of overall) is split into five sub-signals:
 
 | Sub-signal | Max Points | What it measures |
 |---|---|---|
-| **HTML Reachability** | 20 | Does the URL serve a 200 response to `Accept: text/html`? |
-| **Redirect Efficiency** | 30 | Chain length (0 hops optimal, >4 penalized), proper status codes, performance impact. |
-| **Crawl Permissions** | 25 | `robots.txt` allows access + no `<meta name="robots" content="noindex">` blocking. |
-| **Cache Headers** | 25 | Presence of `ETag`, `Last-Modified`, and `Cache-Control` headers. |
+| **HTML Reachability** | 15 | Does the URL serve a 200 response to `Accept: text/html`? |
+| **Redirect Efficiency** | 25 | Chain length (0 hops optimal, >4 penalized), proper status codes, performance impact. |
+| **Crawl Permissions** | 20 | `robots.txt` allows access + no `<meta name="robots" content="noindex">` blocking. |
+| **Cache Headers** | 20 | Presence of `ETag`, `Last-Modified`, and `Cache-Control` headers. |
+| **Agent Content Hints** | 20 | Signals that the page offers machine-readable alternate formats or LLM-specific endpoints. |
+
+**Agent Content Hints** detects:
+- `<link rel="alternate" type="text/markdown">` (6 pts) — markdown alternate link
+- `<meta name="markdown_url">` (4 pts) — markdown URL metadata (e.g. Microsoft Learn)
+- `data-llm-hint` attributes (4 pts) — explicit LLM guidance in HTML
+- `llms.txt` references (3 pts) — site-level LLM endpoint declaration
+- Non-HTML `<link rel="alternate">` (3 pts) — any non-HTML alternate format (JSON, XML, etc.)
 
 ### **Metadata Completeness Fields**
 The Metadata Completeness score (10% of overall) checks for 7 key fields across Dublin Core, Schema.org, and OpenGraph:

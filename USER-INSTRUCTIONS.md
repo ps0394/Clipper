@@ -4,7 +4,7 @@ This guide walks you through using **Clipper** (Command-Line Interface Progressi
 
 ## What is Clipper
 
-**Standards-Based Evaluation Engine**: Combines WCAG 2.1 (25%) + W3C Semantic HTML (25%) + Schema.org (20%) + HTTP Standards + Redirects (15%) + Content Quality (15%)
+**Standards-Based Evaluation Engine**: Combines W3C Semantic HTML (25%) + Content Extractability (20%) + Schema.org (20%) + DOM Navigability (15%) + Metadata Completeness (10%) + HTTP Compliance (10%)
 **Enterprise Defensible**: Built on established industry standards with complete audit trails
 **API-Free Operation**: No external API dependencies - completely local evaluation
 
@@ -118,11 +118,12 @@ python main.py score parse-results.json --out scores.json --detailed
 ```
 
 **What Clipper Standards Scoring Does:**
-- **WCAG 2.1 Accessibility** (25%): Automated accessibility analysis using axe-core
 - **W3C Semantic HTML** (25%): HTML5 semantic elements and ARIA compliance
-- **Schema.org Structured Data** (20%): JSON-LD, microdata analysis
-- **HTTP Standards + Redirects** (15%): Content negotiation and redirect efficiency analysis
-- **Content Quality** (15%): Agent-optimized content metrics
+- **Content Extractability** (20%): Mozilla Readability signal-to-noise analysis
+- **Schema.org Structured Data** (20%): JSON-LD quality, type validation, field completeness
+- **DOM Navigability** (15%): WCAG 2.1 / Deque axe-core DOM evaluation
+- **Metadata Completeness** (10%): Dublin Core, Schema.org, OpenGraph field coverage
+- **HTTP Compliance** (10%): Reachability, redirects, robots.txt, cache headers, agent content hints
 
 #### 4. Generate Reports
 ```bash
@@ -155,61 +156,64 @@ results/
 ### Clipper Score Format
 ```json
 {
-  "overall_score": 75.2,
+  "parseability_score": 60.7,
+  "failure_mode": "moderate_issues",
   "component_scores": {
-    "wcag_accessibility": 85.0,
-    "semantic_html": 72.5,
-    "structured_data": 68.0,
-    "http_compliance": 90.0,
-    "content_quality": 80.5
+    "semantic_html": 72.7,
+    "content_extractability": 74.5,
+    "structured_data": 12.0,
+    "dom_navigability": 35.0,
+    "metadata_completeness": 100.0,
+    "http_compliance": 71.5
   },
   "audit_trail": {
     "http_compliance": {
-      "content_negotiation": {...},
-      "redirect_efficiency": {
-        "redirect_analysis": {
-          "redirect_count": 1,
-          "efficiency_classification": "good (standard redirects)",
-          "performance_ratio": 0.15
-        }
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 12.5,
+        "crawl_permissions": 20,
+        "cache_headers": 20,
+        "agent_content_hints": 4
       }
     }
   },
   "standards_authority": {
-    "accessibility": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
-    "semantics": "HTML5 Semantic Elements (W3C)"
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
   }
 }
 ```
 
-## Enhanced HTTP Compliance Scoring
+## HTTP Compliance Scoring
 
-Clipper now includes **redirect efficiency analysis** as part of HTTP compliance evaluation:
+Clipper evaluates HTTP compliance across **five sub-signals** (10% of total score):
 
-### **HTTP Standards + Redirects Component (15% of total score)**
-- **Content Negotiation (60%)** - Server's ability to provide different content formats
-- **Redirect Efficiency (40%)** - Quality and performance of redirect chains **[NEW]**
+### **Sub-Signal Breakdown**
+| Sub-signal | Max Points | What it measures |
+|---|---|---|
+| **HTML Reachability** | 15 | Does the URL serve a 200 response to `Accept: text/html`? |
+| **Redirect Efficiency** | 25 | Chain length, proper status codes, performance impact |
+| **Crawl Permissions** | 20 | `robots.txt` allows access + no `noindex` meta |
+| **Cache Headers** | 20 | Presence of `ETag`, `Last-Modified`, `Cache-Control` |
+| **Agent Content Hints** | 20 | Machine-readable alternate formats and LLM-specific endpoints |
 
-### **What Redirect Efficiency Evaluates:**
-1. **Chain Length** - Fewer redirects = better score
-   - 0 redirects: 25/25 points (optimal)
-   - 1-2 redirects: 20/25 points (good)  
-   - 3-4 redirects: 10/25 points (moderate)
-   - 5+ redirects: 0/25 points (poor)
+### **Agent Content Hints (New)**
+Detects whether pages declare machine-readable content formats:
+- `<link rel="alternate" type="text/markdown">` (6 pts)
+- `<meta name="markdown_url">` (4 pts) — e.g. Microsoft Learn
+- `data-llm-hint` attributes (4 pts)
+- `llms.txt` references (3 pts)
+- Non-HTML `<link rel="alternate">` (3 pts)
 
-2. **Redirect Types** - Proper HTTP status codes
-   - 301, 302, 303, 307, 308: Good
-   - Invalid or missing status codes: Penalty
-
-3. **Performance Impact** - Redirect overhead analysis
-   - Low redirect-to-content time ratio: Better score
-   - High redirect overhead: Lower score
-
-### **Real-World Impact:**
-- **Direct URLs (no redirects)**: Get full HTTP compliance bonus
-- **Standard redirects (http→https)**: Minor score impact
-- **Excessive redirect chains**: Meaningful score penalty
-- **Redirect loops**: Early detection prevents evaluation failures
+### **Redirect Efficiency**
+- 0 redirects: Full points (optimal)
+- 1-2 redirects: Minor deduction
+- 3-4 redirects: Moderate penalty
+- 5+ redirects: Significant penalty
 
 ## Quick Command Reference
 
