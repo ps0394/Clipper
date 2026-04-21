@@ -483,6 +483,20 @@ Clipper welcomes contributions that enhance standards-based evaluation:
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines and standards compliance requirements.
 
+### Running tests
+
+Pillar behavior is locked in by a small offline fixture suite. Install dev
+dependencies and run pytest:
+
+```bash
+pip install -r requirements-dev.txt
+pytest -q
+```
+
+The suite completes in under a second, requires no network or browser, and
+runs automatically in CI on every pull request. See [docs/testing.md](docs/testing.md)
+for the fixture layout and guidance on adding new fixtures.
+
 ## License
 
 Clipper - Standards-Based Access Gate Evaluator

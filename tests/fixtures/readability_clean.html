@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Readability Clean Article</title>
+    <meta name="description" content="Clean article body for Mozilla Readability extraction.">
+</head>
+<body>
+    <header><nav><a href="/">Home</a></nav></header>
+    <main>
+        <article>
+            <h1>Readability Clean Article</h1>
+            <p>Mozilla Readability is the algorithm Firefox Reader View uses to extract the primary article body from a web page. It favors long runs of paragraph text inside a containing element and penalizes navigation, advertising, and boilerplate markers.</p>
+            <p>This fixture exists precisely so that Readability can identify a single clean article body. The paragraphs are long enough to pass the length threshold Readability uses, and the surrounding chrome is minimal.</p>
+            <p>When an agent asks "what is this page about?", the answer should come from this article block and nothing else. A well-structured page makes that easy. A cluttered page makes it hard.</p>
+            <p>The clipper scoring engine uses Readability as a proxy signal: if Readability can extract a substantial fraction of the page as article text, the page is considered extractable by agents that rely on similar heuristics.</p>
+            <h2>Why this matters</h2>
+            <p>Agents that consume documentation often extract text before reasoning over it. If extraction fails, everything downstream fails. A page that scores well on Readability is one where the primary content is clearly demarcated and not buried under promotional chrome.</p>
+            <p>That separation is exactly what this fixture provides: a single article element, paragraphs of real length, and essentially no competing content elsewhere in the document.</p>
+        </article>
+    </main>
+    <footer><p>&copy; 2026</p></footer>
+</body>
+</html>
