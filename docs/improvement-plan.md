@@ -44,6 +44,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 **Exit criterion:** `pytest` passes locally and in CI. One failing assertion on a deliberate scoring break confirms tests actually catch regressions.
 
+**Docs updates:** `README.md` contributor section gains a "Running tests" subsection (`pip install -r requirements-dev.txt`, `pytest`). `docs/` gets a short `testing.md` describing the fixture layout and how to add a new pillar fixture.
+
 **Est. effort:** 1 session.
 
 ---
@@ -63,6 +65,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 **Exit criterion:** A forced network failure on one pillar produces a score that reflects only the successful pillars, with the failure clearly surfaced.
 
+**Docs updates:** `docs/scoring.md` gains a "Partial evaluations" section explaining the three outcomes (scored / fallback / could-not-evaluate), how weight renormalization works, and what the `[PARTIAL]` CLI tag means. `retrievability/schemas.py` docstrings updated for the new `partial_evaluation` and `failed_pillars` fields. `README.md` scoring summary notes that failed pillars are excluded, not zeroed.
+
 **Est. effort:** 1–2 sessions.
 
 ---
@@ -80,6 +84,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 - Persist under `ScoreResult.audit_trail['_environment']`.
 
 **Exit criterion:** Every `*_scores.json` includes environment metadata. No scoring logic change.
+
+**Docs updates:** `docs/scoring.md` documents the `audit_trail._environment` block and why it matters for comparing scores across runs. `README.md` output-format section lists the environment fields.
 
 **Est. effort:** Folds into the 0.2 session.
 
@@ -118,6 +124,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 **Exit criterion:** Running against a known landing page (Storage Samples) produces a meaningfully higher `parseability_score` than `universal_score`, and the type is detected correctly. Tutorial pages unchanged vs. today.
 
+**Docs updates:** `docs/scoring.md` gets a new "Content-type profiles" section with the full weight table, detection rules (including precedence: `ms.topic` > JSON-LD `@type` > URL heuristics > DOM fallback), and an explanation of `parseability_score` vs. `universal_score`. `README.md` updated so the headline scoring description mentions type-adjusted scoring as the primary number. `USER-INSTRUCTIONS.md` gains a "How the score is chosen for a page" walkthrough.
+
 **Dependencies:** Phase 0.1 (need pillar tests before messing with weights).
 
 **Est. effort:** 2–3 sessions (detection, profiles, calibration against real URLs).
@@ -136,6 +144,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 - Update the markdown report template to surface the preview per URL.
 
 **Exit criterion:** The generated markdown report shows an "Extracted preview" block under each URL's extractability score.
+
+**Docs updates:** `docs/scoring.md` extractability section notes that a text preview is now persisted and surfaced in the report. If the full-text snapshot feature flag is added, document the flag and its storage implications in `USER-INSTRUCTIONS.md`.
 
 **Est. effort:** 1 session.
 
@@ -162,6 +172,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 3. **No change to `ScoreResult`.** This is purely a report-generation layer change.
 
 **Exit criterion:** A Learn evaluation of 16 URLs produces a report where the top section lists template issues by count, and per-page findings only show page-specific variation.
+
+**Docs updates:** `USER-INSTRUCTIONS.md` "Reading a report" section gains a description of the Template findings vs. Page-specific findings split, with a short example. No schema change, so `schemas.py` docs are untouched.
 
 **Est. effort:** 1–2 sessions.
 
@@ -194,6 +206,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 **Exit criterion:** A page with JS-heavy content (e.g. modern SPA docs site) shows a meaningful delta; a static HTML page shows ~0 delta. Report flags the gap.
 
+**Docs updates:** `README.md` and `USER-INSTRUCTIONS.md` document the new `--render-mode rendered|raw|both` flag with recommended defaults for different agent classes (RAG crawlers → `raw`, browser-based agents → `rendered`, audits → `both`). `docs/scoring.md` gains a "Rendering modes" section explaining the pessimistic default (`min(rendered, raw)`), the `parseability_delta` metric, and when a large delta is expected vs. a red flag.
+
 **Dependencies:** Phase 1.1 (content-type detection works identically for raw HTML). Phase 0.2 (raw fetch needs graceful failure for pillars it can't fully score).
 
 **Est. effort:** 3–4 sessions. This phase is the sneaky one — "add a second score per URL" touches every pillar, adds a report axis, and doubles storage volume.
@@ -224,6 +238,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 **Exit criterion:** AKS FAQ's incomplete `FAQPage` now scores below a page with a complete one, with the audit trail explaining which fields are missing.
 
+**Docs updates:** `docs/scoring.md` structured-data section gains per-type field expectation tables (Article / FAQPage / HowTo / BreadcrumbList) and the field-completeness formula. Clarify that only these four types are validated and that other `@type` values still count for presence but not completeness.
+
 **Dependencies:** Phase 0.1 (needs a JSON-LD fixture per type).
 
 **Est. effort:** 1 session.
@@ -247,6 +263,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 **Exit criterion:** `clipper history <url>` works against local JSON result files. The storage abstraction is in place for Phase 5 to drop in Azure implementations.
 
+**Docs updates:** `README.md` and `USER-INSTRUCTIONS.md` document the new `history` command with examples. `docs/` gets a short `storage.md` describing the `StorageBackend` protocol so Phase 5 has a clear extension point.
+
 **Est. effort:** 1 session.
 
 ---
@@ -261,6 +279,8 @@ See [`docs/engineering-audit.md`](engineering-audit.md) Section 5.4 for the full
 - Storage abstraction ✓ (Phase 4.2)
 
 The migration can proceed through Phases 1–6 of the audit plan without scoring-code changes.
+
+**Docs updates:** A new `docs/deployment.md` covers the Azure architecture, service responsibilities (Container Apps, Cosmos DB, Blob Storage, Key Vault), environment variables, and operational runbook. `README.md` gains a "Running Clipper as a service" section pointing at the deployment doc. The `StorageBackend` documentation from Phase 4.2 is extended with the Cosmos implementation contract.
 
 **Est. effort:** Not feasible through Copilot-assisted sessions alone. Requires an Azure subscription, infrastructure decisions, deployment pipelines, and live-system troubleshooting that sit outside this workflow. The code changes (Playwright swap, Cosmos/Blob backends, FastAPI wrapper, Dockerfile, OpenTelemetry instrumentation) can be authored here — call it ~8–12 sessions of code work — but the deployment, scaling tune, and hardening are human-driven.
 
@@ -287,6 +307,8 @@ The migration can proceed through Phases 1–6 of the audit plan without scoring
 4. Correlation study: once enough data exists, report per-pillar correlation coefficients against the LLM score. This is the only way to empirically tune pillar weights.
 
 **Exit criterion:** An LLM score is producible for any evaluated URL. A small correlation report validates (or doesn't) that the structural score predicts LLM performance.
+
+**Docs updates:** `docs/scoring.md` gains a "LLM ground-truth validation" section covering the prompt set, grading metrics (ROUGE-L, fact-overlap, hallucination rate), and cost expectations. `README.md` documents the `--llm-validate` flag with a caveat that it requires LLM credentials. If the correlation study changes pillar weights, publish the findings as `docs/scoring-calibration.md` and link it from the scoring doc.
 
 **Est. effort:** 2–3 sessions to scaffold the evaluator, prompts, and scoring metrics. The correlation study itself is a research activity, not a coding task — size it against available data, not sessions.
 
