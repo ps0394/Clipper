@@ -29,6 +29,21 @@ import charset_normalizer
 from readability import Document as ReadabilityDocument
 
 from .schemas import ScoreResult
+from . import __version__ as CLIPPER_VERSION
+
+
+class PillarEvaluationError(Exception):
+    """Raised when a pillar cannot be evaluated at all.
+
+    The orchestrator catches this, records the pillar in ``failed_pillars``,
+    and renormalizes the final score over the surviving pillars rather than
+    treating the failure as a score of zero.
+    """
+
+    def __init__(self, pillar: str, reason: str):
+        super().__init__(f"{pillar}: {reason}")
+        self.pillar = pillar
+        self.reason = reason
 
 
 class AccessGateEvaluator:
@@ -106,41 +121,58 @@ class AccessGateEvaluator:
         if not html_content:
             return self._create_error_result("Failed to load HTML content", html_path)
         
-        # Component evaluations (all API-free, standards-based)
-        scores = {}
-        audit_trail = {}
-        
-        # 1. W3C Semantic HTML (25%) - HTML5 semantic elements  
-        scores['semantic_html'], audit_trail['semantic_html'] = \
-            self._evaluate_semantic_html(html_content, signals)
-        
-        # 2. Content Extractability (20%) - Mozilla Readability
-        scores['content_extractability'], audit_trail['content_extractability'] = \
-            self._evaluate_content_extractability(html_content, signals)
-        
-        # 3. Schema.org Structured Data (20%) - extruct analysis
-        scores['structured_data'], audit_trail['structured_data'] = \
-            self._evaluate_structured_data(html_content, url)
-        
-        # 4. DOM Navigability (15%) - WCAG 2.1 / axe-core
-        scores['dom_navigability'], audit_trail['dom_navigability'] = \
-            self._evaluate_wcag_accessibility(html_content, url)
-        
-        # 5. Metadata Completeness (10%) - Dublin Core / Schema.org / OpenGraph
-        scores['metadata_completeness'], audit_trail['metadata_completeness'] = \
-            self._evaluate_metadata_completeness(html_content, url)
-        
-        # 6. HTTP Compliance (10%) - Agent-focused HTTP compliance
-        scores['http_compliance'], audit_trail['http_compliance'] = \
-            self._evaluate_http_compliance_enhanced(html_content, url, crawl_data)
-        
-        # Calculate weighted final score
-        final_score = sum(scores[component] * self.WEIGHTS[component] 
-                         for component in scores)
-        
+        # Component evaluations (all API-free, standards-based).
+        # Each pillar may succeed (numeric score), fall back (numeric score +
+        # fallback marker in audit trail), or raise PillarEvaluationError. The
+        # orchestrator drops raising pillars from the final weighted average
+        # rather than zeroing them, so a transient network failure no longer
+        # contaminates the score of the surviving pillars.
+        pillar_callables = [
+            ('semantic_html',          lambda: self._evaluate_semantic_html(html_content, signals)),
+            ('content_extractability', lambda: self._evaluate_content_extractability(html_content, signals)),
+            ('structured_data',        lambda: self._evaluate_structured_data(html_content, url)),
+            ('dom_navigability',       lambda: self._evaluate_wcag_accessibility(html_content, url)),
+            ('metadata_completeness',  lambda: self._evaluate_metadata_completeness(html_content, url)),
+            ('http_compliance',        lambda: self._evaluate_http_compliance_enhanced(html_content, url, crawl_data)),
+        ]
+
+        scores: Dict[str, float] = {}
+        audit_trail: Dict[str, Any] = {}
+        failed_pillars: List[str] = []
+
+        for pillar_name, pillar_fn in pillar_callables:
+            try:
+                score_value, pillar_audit = pillar_fn()
+                scores[pillar_name] = score_value
+                audit_trail[pillar_name] = pillar_audit
+            except PillarEvaluationError as e:
+                failed_pillars.append(pillar_name)
+                audit_trail[pillar_name] = {
+                    'status': 'could_not_evaluate',
+                    'reason': e.reason,
+                }
+                self.logger.error(f"Pillar '{pillar_name}' could not be evaluated: {e.reason}")
+
+        # Record evaluator environment for reproducibility (Phase 0.3).
+        audit_trail['_environment'] = self._capture_environment(audit_trail)
+
+        partial_evaluation = bool(failed_pillars)
+
+        # Final score renormalizes over surviving pillar weights. If every
+        # pillar failed the score is 0 and the failure mode reflects that.
+        if scores:
+            surviving_weight = sum(self.WEIGHTS[p] for p in scores)
+            final_score = sum(
+                scores[p] * self.WEIGHTS[p] for p in scores
+            ) / surviving_weight if surviving_weight > 0 else 0.0
+        else:
+            final_score = 0.0
+
         # Determine failure mode based on standards compliance
-        failure_mode = self._determine_failure_mode_standards(scores, final_score)
-        
+        failure_mode = self._determine_failure_mode_standards(
+            scores, final_score, partial_evaluation=partial_evaluation
+        )
+
         return ScoreResult(
             parseability_score=final_score,
             failure_mode=failure_mode,
@@ -149,7 +181,9 @@ class AccessGateEvaluator:
             component_scores=scores,
             audit_trail=audit_trail,
             standards_authority=self.STANDARDS_AUTHORITY,
-            evaluation_methodology="Clipper Standards-Based Access Gate"
+            evaluation_methodology="Clipper Standards-Based Access Gate",
+            partial_evaluation=partial_evaluation,
+            failed_pillars=failed_pillars,
         )
     
     def _load_html_content(self, html_path: str) -> Optional[str]:
@@ -245,8 +279,8 @@ class AccessGateEvaluator:
         except Exception as e:
             self.logger.error(f"WCAG evaluation failed: {e}")
             audit_trail['error'] = str(e)
-            return 0.0, audit_trail
-    
+            raise PillarEvaluationError('dom_navigability', str(e)) from e
+
     def _run_axe_evaluation(self, url: str) -> Tuple[float, Dict]:
         """Run axe-core accessibility evaluation on live URL."""
         driver = None
@@ -310,13 +344,25 @@ class AccessGateEvaluator:
                 penalty += capped_penalty
             
             score = max(0, 100 - penalty)
-            
+
+            # Capture tool versions so Phase 0.3 reproducibility metadata
+            # has something to report for the live-browser path.
+            browser_version = driver.capabilities.get('browserVersion') \
+                or driver.capabilities.get('version', 'unknown')
+            chromedriver_version = (
+                driver.capabilities.get('chrome', {}).get('chromedriverVersion', 'unknown')
+            )
+            axe_version = results.get('testEngine', {}).get('version', 'unknown')
+
             return score, {
                 'violations_count': len(violations),
                 'passes_count': len(passes),
                 'violations': violations[:10],  # Keep first 10 for audit trail
                 'total_penalty': penalty,
-                'penalty_per_rule': penalty_per_rule
+                'penalty_per_rule': penalty_per_rule,
+                'browser_version': browser_version,
+                'chromedriver_version': chromedriver_version,
+                'axe_version': axe_version,
             }
             
         except Exception as e:
@@ -416,7 +462,7 @@ class AccessGateEvaluator:
         except Exception as e:
             self.logger.error(f"Semantic HTML evaluation failed: {e}")
             audit_trail['error'] = str(e)
-            return 0.0, audit_trail
+            raise PillarEvaluationError('semantic_html', str(e)) from e
     
     def _evaluate_structured_data(self, html_content: str, url: Optional[str]) -> Tuple[float, Dict]:
         """Evaluate Schema.org structured data quality and completeness.
@@ -560,7 +606,7 @@ class AccessGateEvaluator:
         except Exception as e:
             self.logger.error(f"Structured data evaluation failed: {e}")
             audit_trail['error'] = str(e)
-            return 0.0, audit_trail
+            raise PillarEvaluationError('structured_data', str(e)) from e
     
     def _evaluate_http_compliance_enhanced(self, html_content: str, url: Optional[str], 
                                          crawl_data: Optional[Dict]) -> Tuple[float, Dict]:
@@ -742,7 +788,7 @@ class AccessGateEvaluator:
         except Exception as e:
             self.logger.error(f"HTTP compliance evaluation failed: {e}")
             audit_trail['error'] = str(e)
-            return 0.0, audit_trail
+            raise PillarEvaluationError('http_compliance', str(e)) from e
     
     def _evaluate_redirect_efficiency(self, crawl_data: Dict) -> Tuple[float, Dict]:
         """Evaluate redirect chain efficiency for HTTP compliance.
@@ -991,7 +1037,7 @@ class AccessGateEvaluator:
         except Exception as e:
             self.logger.error(f"Content extractability evaluation failed: {e}")
             audit_trail['error'] = str(e)
-            return 0.0, audit_trail
+            raise PillarEvaluationError('content_extractability', str(e)) from e
     
     def _evaluate_metadata_completeness(self, html_content: str, url: Optional[str]) -> Tuple[float, Dict]:
         """Evaluate metadata completeness across Dublin Core, Schema.org, and OpenGraph.
@@ -1156,10 +1202,25 @@ class AccessGateEvaluator:
         except Exception as e:
             self.logger.error(f"Metadata completeness evaluation failed: {e}")
             audit_trail['error'] = str(e)
-            return 0.0, audit_trail
+            raise PillarEvaluationError('metadata_completeness', str(e)) from e
     
-    def _determine_failure_mode_standards(self, scores: Dict[str, float], final_score: float) -> str:
-        """Determine failure mode based on standards compliance."""
+    def _determine_failure_mode_standards(
+        self,
+        scores: Dict[str, float],
+        final_score: float,
+        partial_evaluation: bool = False,
+    ) -> str:
+        """Determine failure mode based on standards compliance.
+
+        When a run could not evaluate every pillar, the final score is a
+        weighted average over the survivors — possibly inflated or deflated
+        relative to a full run. Flag those cases so downstream tooling can
+        treat the score with appropriate caution.
+        """
+        if not scores:
+            return 'evaluation_error'
+        if partial_evaluation:
+            return 'partial_evaluation'
         if final_score >= 90:
             return 'clean'
         elif final_score >= 75:
@@ -1170,6 +1231,41 @@ class AccessGateEvaluator:
             return 'significant_issues'
         else:
             return 'severe_issues'
+
+    def _capture_environment(self, audit_trail: Dict[str, Any]) -> Dict[str, Any]:
+        """Capture evaluator environment metadata for reproducibility.
+
+        Records Clipper version, Python version, platform, and known
+        library versions. Browser and axe-core versions are populated only
+        when the WCAG pillar successfully ran against a live URL (that path
+        writes them into its own audit block); the helper copies them up
+        here so consumers have a single place to look.
+        """
+        import platform
+        import sys
+
+        env: Dict[str, Any] = {
+            'clipper_version': CLIPPER_VERSION,
+            'python_version': sys.version.split()[0],
+            'platform': platform.platform(),
+        }
+
+        # Library versions we care about for scoring reproducibility.
+        for pkg in ('beautifulsoup4', 'readability-lxml', 'extruct',
+                    'httpx', 'axe-selenium-python', 'selenium'):
+            try:
+                import importlib.metadata as importlib_metadata
+                env[pkg] = importlib_metadata.version(pkg)
+            except Exception:
+                env[pkg] = 'unknown'
+
+        # Surface browser/axe versions if WCAG pillar captured them.
+        wcag_audit = audit_trail.get('dom_navigability', {}) or {}
+        for key in ('browser_version', 'chromedriver_version', 'axe_version'):
+            if key in wcag_audit:
+                env[key] = wcag_audit[key]
+
+        return env
     
     def _create_error_result(self, error_message: str, html_path: str) -> ScoreResult:
         """Create error result for failed evaluations."""

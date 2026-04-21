@@ -320,6 +320,8 @@ Clipper generates comprehensive audit documentation:
 - **60-74**: `moderate_issues` - Improvements needed
 - **40-59**: `significant_issues` - Major optimization required
 - **0-39**: `severe_issues` - Substantial restructuring needed
+- **`partial_evaluation`** - One or more pillars could not be evaluated (e.g., network timeout). The final score is a weighted average over the surviving pillars and the dropped pillars are listed in `failed_pillars`. See [docs/scoring.md](docs/scoring.md#partial-evaluations) for the full contract.
+- **`evaluation_error`** - Every pillar failed; no usable score.
 
 ### **Pillar Weight Distribution**
 Based on agent retrievability impact:

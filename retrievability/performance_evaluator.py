@@ -295,54 +295,58 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             browser_execution_time = time.time() - browser_start_time
         
         # === RESULT AGGREGATION ===
-        
-        scores = {}
-        audit_trail = {}
-        
-        # Process fast async results
-        for i, (component_name, _) in enumerate(fast_tasks):
-            result = fast_async_results[i]
+        # Mirrors the synchronous path in AccessGateEvaluator.evaluate_access_gate:
+        # exceptions turn into entries in failed_pillars (dropped from the
+        # weighted average) rather than zeros that contaminate the score.
+
+        scores: Dict[str, float] = {}
+        audit_trail: Dict[str, Any] = {}
+        failed_pillars: List[str] = []
+
+        def _accept(component_name: str, result, optimization: str) -> None:
             if isinstance(result, Exception):
-                self.logger.error(f"Fast async component {component_name} failed: {result}")
-                scores[component_name] = 0.0
-                audit_trail[component_name] = {'error': str(result), 'optimization': 'parallel_fast_group'}
-            else:
-                score, trail = result
-                scores[component_name] = score
-                audit_trail[component_name] = trail
-                audit_trail[component_name]['optimization'] = 'parallel_fast_group'
-        
-        # Process fast sync results
-        for i, (component_name, _) in enumerate(fast_sync_tasks):
-            result = fast_sync_results[i]
-            if isinstance(result, Exception):
-                self.logger.error(f"Fast sync component {component_name} failed: {result}")
-                scores[component_name] = 0.0
-                audit_trail[component_name] = {'error': str(result), 'optimization': 'parallel_fast_group'}
-            else:
-                score, trail = result
-                scores[component_name] = score
-                audit_trail[component_name] = trail
-                audit_trail[component_name]['optimization'] = 'parallel_fast_group'
-        
-        # Process browser result
-        component_name = browser_task[0]
-        if isinstance(browser_result, Exception):
-            self.logger.error(f"Browser component {component_name} failed: {browser_result}")
-            scores[component_name] = 0.0
-            audit_trail[component_name] = {'error': str(browser_result), 'optimization': 'browser_separate'}
-        else:
-            score, trail = browser_result
+                self.logger.error(f"Pillar '{component_name}' could not be evaluated: {result}")
+                failed_pillars.append(component_name)
+                audit_trail[component_name] = {
+                    'status': 'could_not_evaluate',
+                    'reason': str(result),
+                    'optimization': optimization,
+                }
+                return
+            score, trail = result
             scores[component_name] = score
             audit_trail[component_name] = trail
-            audit_trail[component_name]['optimization'] = 'browser_separate'
-        
-        # Calculate weighted final score
-        final_score = sum(scores[component] * self.WEIGHTS[component] 
-                         for component in scores)
-        
+            audit_trail[component_name]['optimization'] = optimization
+
+        # Process fast async results
+        for i, (component_name, _) in enumerate(fast_tasks):
+            _accept(component_name, fast_async_results[i], 'parallel_fast_group')
+
+        # Process fast sync results
+        for i, (component_name, _) in enumerate(fast_sync_tasks):
+            _accept(component_name, fast_sync_results[i], 'parallel_fast_group')
+
+        # Process browser result
+        _accept(browser_task[0], browser_result, 'browser_separate')
+
+        # Record evaluator environment for reproducibility (Phase 0.3).
+        audit_trail['_environment'] = self._capture_environment(audit_trail)
+
+        partial_evaluation = bool(failed_pillars)
+
+        # Renormalize the weighted average over surviving pillars.
+        if scores:
+            surviving_weight = sum(self.WEIGHTS[p] for p in scores)
+            final_score = sum(
+                scores[p] * self.WEIGHTS[p] for p in scores
+            ) / surviving_weight if surviving_weight > 0 else 0.0
+        else:
+            final_score = 0.0
+
         # Determine failure mode based on standards compliance
-        failure_mode = self._determine_failure_mode_standards(scores, final_score)
+        failure_mode = self._determine_failure_mode_standards(
+            scores, final_score, partial_evaluation=partial_evaluation
+        )
         
         # Record performance metrics with optimization details
         total_execution_time = max(fast_execution_time, browser_execution_time)
@@ -374,7 +378,9 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             component_scores=scores,
             audit_trail=audit_trail,
             standards_authority=self.STANDARDS_AUTHORITY,
-            evaluation_methodology="Clipper Performance-Parallel-Optimized Access Gate"
+            evaluation_methodology="Clipper Performance-Parallel-Optimized Access Gate",
+            partial_evaluation=partial_evaluation,
+            failed_pillars=failed_pillars,
         )
     
     async def _evaluate_wcag_fallback_async(self, html_content: str) -> Tuple[float, Dict]:

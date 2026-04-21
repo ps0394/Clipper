@@ -143,6 +143,75 @@ Every evaluation produces a complete audit trail documenting:
 }
 ```
 
+## Partial Evaluations
+
+Each pillar evaluator produces one of three outcomes:
+
+1. **Scored successfully** — returns a numeric score 0–100 and an audit
+   block. The pillar's `evaluation_method` (in its audit entry) identifies
+   which path produced the number.
+2. **Scored with fallback** — a preferred path failed and a conservative
+   fallback produced a number. The audit block records both the failure
+   reason (e.g., `axe_fallback_reason`) and the fallback method (e.g.,
+   `evaluation_method: "Static HTML analysis (axe-core unavailable)"`).
+   The pillar is still treated as scored; the fallback marker in the audit
+   trail is the signal that the number is more conservative than a full
+   run would have produced.
+3. **Could not evaluate** — a catastrophic failure (network timeout,
+   parser crash, browser automation unavailable) left no usable number.
+   The pillar is excluded from the final score entirely, listed in
+   `failed_pillars`, and marked in its audit entry as
+   `status: "could_not_evaluate"` with a `reason`.
+
+When one or more pillars fall into outcome 3, the final
+`parseability_score` is a **weighted average over the surviving pillars
+only**. Weights are renormalized so they still sum to 1.0 across the
+survivors. A failing pillar is never treated as a score of zero — that
+would corrupt every aggregate (average, trend, comparison) downstream.
+
+When this happens:
+
+- `partial_evaluation` is `true`.
+- `failed_pillars` lists the affected pillar keys.
+- `failure_mode` is `"partial_evaluation"` (ranks above the numeric
+  bands so consumers know the number carries a caveat).
+- The CLI result line shows `[PARTIAL]` instead of `[PASS]` / `[WARN]` /
+  `[FAIL]`, followed by the list of failed pillars.
+
+If **every** pillar fails, the result is `failure_mode:
+"evaluation_error"`, `parseability_score: 0.0`, and
+`component_scores: {}`.
+
+## Environment Metadata
+
+Each audit trail includes an `_environment` block recording the tool
+versions used for the run. This matters because axe-core, Chrome, and
+the HTML parsing stack all drift over time; two scores of the same page
+on different days can disagree because the tooling changed, not because
+the page did.
+
+```json
+"_environment": {
+  "clipper_version": "3.0.0",
+  "python_version": "3.11.9",
+  "platform": "Windows-10-...",
+  "beautifulsoup4": "4.12.3",
+  "readability-lxml": "0.8.1",
+  "extruct": "0.18.0",
+  "httpx": "0.27.0",
+  "axe-selenium-python": "2.1.6",
+  "selenium": "4.21.0",
+  "browser_version": "124.0.6367.119",
+  "chromedriver_version": "124.0.6367.119 (...)",
+  "axe_version": "4.9.1"
+}
+```
+
+The `browser_version`, `chromedriver_version`, and `axe_version` fields
+are populated only when the DOM navigability pillar actually ran
+axe-core against a live URL. They are omitted for runs that took the
+static-HTML fallback path.
+
 ## Architecture
 
 - **Entry points**: `score.py` (standard mode), `performance_score.py` (async/parallel mode)

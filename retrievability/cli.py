@@ -108,8 +108,13 @@ def _print_summary(score_file: str, quiet: bool = False):
                 
                 score_val = score['parseability_score']
                 mode = score['failure_mode']
-                emoji = '[PASS]' if mode == 'clean' else '[WARN]' if score_val >= 60 else '[FAIL]'
-                print(f"  {emoji} {score_val:3.0f}/100 - {url}")
+                if score.get('partial_evaluation'):
+                    emoji = '[PARTIAL]'
+                else:
+                    emoji = '[PASS]' if mode == 'clean' else '[WARN]' if score_val >= 60 else '[FAIL]'
+                failed = score.get('failed_pillars') or []
+                suffix = f"  (failed: {', '.join(failed)})" if failed else ''
+                print(f"  {emoji} {score_val:3.0f}/100 - {url}{suffix}")
         else:
             print(f"{avg_score:.1f}/100 average, {clean}/{total} clean")
             
