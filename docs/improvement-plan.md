@@ -27,6 +27,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 0.1 Pillar fixture test suite
 
+**Status:** Completed (commit `52188e4`, 2026-04-21).
+
 **Why:** Zero tests exist today. Every scoring change is shipped blind. This phase is non-negotiable before any scoring work.
 
 **Scope:**
@@ -52,6 +54,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 0.2 Failure-mode transparency
 
+**Status:** Completed (commit `5aaab14`, 2026-04-21).
+
 **Why:** Network timeouts (Stripe, Google redirect chains) currently score a URL as 0 on affected pillars. That 0 is indistinguishable from "the site is actually bad." Every downstream aggregation (average, trend, comparison) is skewed.
 
 **Scope:**
@@ -72,6 +76,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 ---
 
 ### 0.3 Evaluator reproducibility
+
+**Status:** Completed (landed with 0.2 in commit `5aaab14`, 2026-04-21).
 
 **Why:** Chrome and axe-core silently version-drift between runs. Two evaluations of the same page can produce different scores, and there is no way to tell whether the page changed or the tooling did.
 
@@ -94,6 +100,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 ## Phase 1 — Model correctness
 
 ### 1.1 Content-type-aware scoring profiles (original Issue #3)
+
+**Status:** Not started.
 
 **Why:** This is the single biggest accuracy improvement available. Today, Clipper applies a prose-biased rubric uniformly to tutorials, landing pages, API references, and sample catalogs, producing systematic false negatives on non-prose content.
 
@@ -134,6 +142,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 1.2 Extraction preview (original Issue #4)
 
+**Status:** Not started.
+
 **Why:** Extractability scores are opaque in isolation. A 33/100 makes instant sense when you see the three sentences that were extracted.
 
 **Scope:**
@@ -154,6 +164,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 ## Phase 2 — Report usability at scale
 
 ### 2.1 Template consistency analysis (original Issue #6)
+
+**Status:** Not started.
 
 **Why:** On Learn-scale evaluations (15+ URLs), per-page findings drown the report. Clustering identical sub-scores turns 96 findings into ~6 template issues plus 10 content issues. This is a report-level change, not a scoring change.
 
@@ -182,6 +194,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 ## Phase 3 — Agent-model alignment
 
 ### 3.1 Rendering-mode dimension (merged Issues #1 + #2)
+
+**Status:** Not started.
 
 **Why:** Majority of agents (RAG crawlers, search indexers, API-based agents) don't render JavaScript. Clipper systematically overstates these pages' quality today. This is the biggest real-world accuracy gap.
 
@@ -218,6 +232,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 4.1 JSON-LD field completeness (original Issue #5, scoped down)
 
+**Status:** Not started.
+
 **Why:** Today structured_data awards points for presence, not quality. A JSON-LD block with just `@type: Article` scores the same as one with all required Article fields.
 
 **Scope:**
@@ -248,6 +264,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 4.2 Historical storage (original Issue #8, subsumed into Azure migration)
 
+**Status:** Not started.
+
 **Why:** Trend analysis has real value, but the proposed local SQLite store duplicates what Cosmos DB will provide and wastes migration effort.
 
 **Scope:**
@@ -271,6 +289,8 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ## Phase 5 — Azure migration
 
+**Status:** Not started.
+
 See [`docs/engineering-audit.md`](engineering-audit.md) Section 5.4 for the full migration plan. At this point in the sequence, the prerequisites from that plan are already done:
 
 - Test suite ✓ (Phase 0.1)
@@ -289,6 +309,8 @@ The migration can proceed through Phases 1–6 of the audit plan without scoring
 ## Phase 6 — Ground-truth validation
 
 ### 6.1 LLM extraction quality test (original Issue #9)
+
+**Status:** Not started.
 
 **Why:** Every other item in this plan is proxy measurement — structural signals that *should* correlate with agent retrievability. This is the only item that measures it directly. If the structural-to-LLM correlation turns out to be weak, the whole pillar-weight debate changes.
 
@@ -324,20 +346,20 @@ Clipper's value is measurement, not discovery. A search-API integration adds mai
 
 ## Summary sequencing
 
-| Phase | Item | Original issue | Priority | Sessions |
-|---|---|---|---|---|
-| 0.1 | Pillar fixture test suite | — (audit) | P0 prerequisite | 1 |
-| 0.2 | Failure-mode transparency | — (audit) | P0 prerequisite | 1–2 |
-| 0.3 | Evaluator reproducibility | — (audit) | P0 prerequisite | folded into 0.2 |
-| 1.1 | Content-type-aware profiles | #3 | P0 | 2–3 |
-| 1.2 | Extraction preview | #4 | P1 | 1 |
-| 2.1 | Template consistency | #6 | P0 | 1–2 |
-| 3.1 | Rendering-mode dimension | #1 + #2 (merged) | P1 | 3–4 |
-| 4.1 | JSON-LD field completeness | #5 | P2 | 1 |
-| 4.2 | Storage abstraction | #8 (subsumed) | P2 | 1 |
-| 5 | Azure migration | see audit | P2 | ~8–12 code sessions + human deployment work |
-| 6.1 | LLM ground-truth | #9 | P2 (strategic) | 2–3 to scaffold; research time on top |
-| — | Auto-discovery | #7 | Won't do | — |
+| Phase | Item | Original issue | Priority | Sessions | Status |
+|---|---|---|---|---|---|
+| 0.1 | Pillar fixture test suite | — (audit) | P0 prerequisite | 1 | Completed (`52188e4`) |
+| 0.2 | Failure-mode transparency | — (audit) | P0 prerequisite | 1–2 | Completed (`5aaab14`) |
+| 0.3 | Evaluator reproducibility | — (audit) | P0 prerequisite | folded into 0.2 | Completed (`5aaab14`) |
+| 1.1 | Content-type-aware profiles | #3 | P0 | 2–3 | Not started |
+| 1.2 | Extraction preview | #4 | P1 | 1 | Not started |
+| 2.1 | Template consistency | #6 | P0 | 1–2 | Not started |
+| 3.1 | Rendering-mode dimension | #1 + #2 (merged) | P1 | 3–4 | Not started |
+| 4.1 | JSON-LD field completeness | #5 | P2 | 1 | Not started |
+| 4.2 | Storage abstraction | #8 (subsumed) | P2 | 1 | Not started |
+| 5 | Azure migration | see audit | P2 | ~8–12 code sessions + human deployment work | Not started |
+| 6.1 | LLM ground-truth | #9 | P2 (strategic) | 2–3 to scaffold; research time on top | Not started |
+| — | Auto-discovery | #7 | Won't do | — | Rejected |
 
 **Phases 0–4 total: roughly 13–18 sessions.** That's the executable portion through this workflow. Phases 5 and 6 have code components I can author but cannot fully complete without infrastructure access and research time outside the session model.
 
