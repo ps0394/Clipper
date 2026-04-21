@@ -118,7 +118,7 @@ Clipper is designed for immediate use from GitHub Copilot conversations:
 
 ```bash
 # Just run it - no configuration needed
-python main.py express clipper-test-urls.txt --out evaluation-results
+python main.py express urls/clipper-test-urls.txt --out evaluation-results
 ```
 
 ## CLI Usage

@@ -26,7 +26,7 @@ Clipper transforms documentation evaluation using **industry standards** instead
 # python main.py express --api-key YOUR_PAGESPEED_KEY urls.txt --out results/
 
 # Clipper - API-free operation! 
-python main.py express clipper-demo-urls.txt --out clipper-demo --name standards-evaluation
+python main.py express urls/clipper-demo-urls.txt --out clipper-demo --name standards-evaluation
 ```
 
 **Key Points:**

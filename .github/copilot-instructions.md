@@ -11,7 +11,7 @@ python main.py express --urls https://example.com --out results --quiet
 
 ### Multiple URLs from a file
 ```bash
-python main.py express clipper-demo-urls.txt --out results --name evaluation-name --quiet
+python main.py express urls/clipper-demo-urls.txt --out results --name evaluation-name --quiet
 ```
 
 ### Key flags
@@ -81,7 +81,7 @@ Each entry in `*_scores.json` contains:
   - `access_gate_evaluator.py` — Component evaluators (WCAG, HTML, Schema.org, HTTP, Content)
   - `report.py` — Markdown report generation
   - `schemas.py` — JSON output contracts
-- `clipper-demo-urls.txt` — 11 demo URLs across 4 categories
+- `urls/clipper-demo-urls.txt` — 11 demo URLs across 4 categories
 - `samples/urls.txt` — Sample URL list
 
 ## Important Notes

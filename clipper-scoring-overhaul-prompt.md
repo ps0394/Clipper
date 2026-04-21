@@ -144,8 +144,8 @@ Update `STANDARDS_AUTHORITY` dict, `evaluate_access_gate()` orchestration, and a
 
 After all changes, re-run:
 ```bash
-python main.py express learn-analysis-urls.txt --out evaluation/learn-analysis-v2 --name learn-v2 --standard
-python main.py express competitive-analysis-urls.txt --out evaluation/competitive-analysis-v2 --name competitive-v2 --standard
+python main.py express urls/learn-analysis-urls.txt --out evaluation/learn-analysis-v2 --name learn-v2 --standard
+python main.py express urls/competitive-analysis-urls.txt --out evaluation/competitive-analysis-v2 --name competitive-v2 --standard
 ```
 
 Compare v1 vs v2 scores to validate the changes produce more meaningful differentiation.

@@ -10,7 +10,7 @@ echo "✅ Clipper Demo Complete! Check quick-demo/ for results"
 ## **Comprehensive Demo (5 minutes)**
 ```powershell
 # Full demo with multiple sites
-python main.py express clipper-demo-urls.txt --out clipper-comprehensive --name standards-showcase
+python main.py express urls/clipper-demo-urls.txt --out clipper-comprehensive --name standards-showcase
 
 # View results
 Get-Content clipper-comprehensive/standards-showcase.md
@@ -25,7 +25,7 @@ python run_clipper_demo.py
 ## **Component Analysis Demo**
 ```powershell
 # Run evaluation and analyze components
-python main.py express clipper-demo-urls.txt --out component-analysis --name detailed
+python main.py express urls/clipper-demo-urls.txt --out component-analysis --name detailed
 
 # Show component scores (requires jq: winget install jqlang.jq)
 jq '.[] | {url, final_score: .parseability_score, components: .component_scores}' component-analysis/detailed_scores.json
@@ -37,7 +37,7 @@ jq '.[0].standards_authority' component-analysis/detailed_scores.json
 ## **Enterprise Audit Trail Demo**
 ```powershell
 # Generate audit documentation
-python main.py express clipper-demo-urls.txt --out enterprise-demo --name audit-trail
+python main.py express urls/clipper-demo-urls.txt --out enterprise-demo --name audit-trail
 
 # Examine audit trails (requires jq: winget install jqlang.jq)
 jq '.[0].audit_trail' enterprise-demo/audit-trail_scores.json

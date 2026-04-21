@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       urls_file:
-        description: 'URLs file to use (default: clipper-demo-urls.txt)'
+        description: 'URLs file to use (default: urls/clipper-demo-urls.txt)'
         required: false
-        default: 'clipper-demo-urls.txt'
+        default: 'urls/clipper-demo-urls.txt'
   schedule:
     - cron: '0 10 * * 2'  # Weekly Tuesday 10 AM comprehensive test
 
@@ -39,13 +39,14 @@ jobs:
         
     - name: Verify demo URLs file
       run: |
-        URLS_FILE="${{ github.event.inputs.urls_file || 'clipper-demo-urls.txt' }}"
+        URLS_FILE="${{ github.event.inputs.urls_file || 'urls/clipper-demo-urls.txt' }}"
         
         if [ ! -f "$URLS_FILE" ]; then
-          echo "⚠️ URLs file not found: $URLS_FILE"
+          echo "Warning: URLs file not found: $URLS_FILE"
           echo "Creating demo URLs file..."
           
-          cat > clipper-demo-urls.txt << EOF
+          mkdir -p urls
+          cat > urls/clipper-demo-urls.txt << EOF
         https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview
         https://docs.microsoft.com/en-us/dotnet/
         https://www.w3.org/WAI/WCAG21/quickref/
@@ -63,10 +64,10 @@ jobs:
     - name: Run Comprehensive Demo
       run: |
         echo "🚀 Starting Clipper Comprehensive Demo..."
-        echo "📊 Evaluating multiple sites from: ${{ github.event.inputs.urls_file || 'clipper-demo-urls.txt' }}"
+        echo "Evaluating multiple sites from: ${{ github.event.inputs.urls_file || 'urls/clipper-demo-urls.txt' }}"
         
         python main.py express \
-          "${{ github.event.inputs.urls_file || 'clipper-demo-urls.txt' }}" \
+          "${{ github.event.inputs.urls_file || 'urls/clipper-demo-urls.txt' }}" \
           --out clipper-showcase \
           --name comprehensive
           
@@ -164,7 +165,7 @@ jobs:
       run: |
         echo "## 🎯 Clipper Comprehensive Demo Results" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "**URLs File:** ${{ github.event.inputs.urls_file || 'clipper-demo-urls.txt' }}" >> $GITHUB_STEP_SUMMARY
+        echo "**URLs File:** ${{ github.event.inputs.urls_file || 'urls/clipper-demo-urls.txt' }}" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         
         if [ -f clipper-showcase/comprehensive_scores.json ]; then
