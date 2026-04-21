@@ -118,7 +118,7 @@ Clipper is designed for immediate use from GitHub Copilot conversations:
 
 ```bash
 # Just run it - no configuration needed
-python main.py express urls/clipper-test-urls.txt --out evaluation-results
+python main.py express urls/clipper-demo-urls.txt --out evaluation-results
 ```
 
 ## CLI Usage
@@ -407,22 +407,22 @@ jobs:
 ```
 clipper/
 ├─ README.md                           # This comprehensive guide
-├─ main.py                            # CLI entry point
-├─ requirements.txt                   # Standards-based dependencies
+├─ USER-INSTRUCTIONS.md                # End-user walkthrough
+├─ main.py                             # CLI entry point
+├─ requirements.txt                    # Standards-based dependencies
 ├─ retrievability/
-│  ├─ cli.py                         # Clipper CLI interface
-│  ├─ access_gate_evaluator.py       # Standards-based evaluation engine
-│  ├─ score.py                       # Clipper scoring orchestration
-│  ├─ crawl.py                       # URL acquisition
-│  ├─ parse.py                       # Content signal extraction
-│  ├─ report.py                      # Audit trail generation
-│  └─ schemas.py                     # Clipper data structures
-├─ samples/
-│  ├─ urls.txt                       # Sample Microsoft Learn URLs
-│  └─ snapshots/                     # HTML snapshot storage
-├─ clipper-test-results/              # Validation test outputs
-├─ scripts/                         # Automation utilities
-└─ docs/                           # Technical documentation
+│  ├─ cli.py                           # Clipper CLI interface
+│  ├─ access_gate_evaluator.py         # Standards-based evaluation engine
+│  ├─ performance_evaluator.py         # Async/parallel evaluator
+│  ├─ score.py / performance_score.py  # Scoring orchestration
+│  ├─ crawl.py                         # URL acquisition + redirect tracking
+│  ├─ parse.py                         # Content signal extraction
+│  ├─ report.py                        # Audit trail + markdown report
+│  └─ schemas.py                       # Clipper data structures
+├─ urls/                               # Curated URL lists for evaluation
+├─ samples/                            # Sample URLs and snapshots
+├─ scripts/                            # Automation utilities
+└─ docs/                               # Technical documentation
 ```
 
 ## Real-World Use Cases
