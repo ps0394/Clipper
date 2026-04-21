@@ -6,6 +6,8 @@
 
 **Principle:** Every phase must leave the tool in a shippable state. No multi-PR branches that only work at the end.
 
+**Effort unit:** Estimates below are given in **sessions** — one session being roughly an hour or two of focused Copilot-assisted work that produces a landed PR or a committed deliverable. This is the honest unit for how this work is being executed; conventional sprint sizing is not applicable.
+
 ---
 
 ## Sequencing rationale
@@ -42,7 +44,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 **Exit criterion:** `pytest` passes locally and in CI. One failing assertion on a deliberate scoring break confirms tests actually catch regressions.
 
-**Est. scope:** 1 PR.
+**Est. effort:** 1 session.
 
 ---
 
@@ -61,7 +63,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 **Exit criterion:** A forced network failure on one pillar produces a score that reflects only the successful pillars, with the failure clearly surfaced.
 
-**Est. scope:** 1 PR.
+**Est. effort:** 1–2 sessions.
 
 ---
 
@@ -79,7 +81,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 **Exit criterion:** Every `*_scores.json` includes environment metadata. No scoring logic change.
 
-**Est. scope:** Small. Can land in the same PR as 0.2.
+**Est. effort:** Folds into the 0.2 session.
 
 ---
 
@@ -118,7 +120,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 **Dependencies:** Phase 0.1 (need pillar tests before messing with weights).
 
-**Est. scope:** 1 larger PR or 2 small ones (detection, then profiles).
+**Est. effort:** 2–3 sessions (detection, profiles, calibration against real URLs).
 
 ---
 
@@ -135,7 +137,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 **Exit criterion:** The generated markdown report shows an "Extracted preview" block under each URL's extractability score.
 
-**Est. scope:** 1 small PR.
+**Est. effort:** 1 session.
 
 ---
 
@@ -161,7 +163,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 **Exit criterion:** A Learn evaluation of 16 URLs produces a report where the top section lists template issues by count, and per-page findings only show page-specific variation.
 
-**Est. scope:** 1 PR.
+**Est. effort:** 1–2 sessions.
 
 ---
 
@@ -194,7 +196,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 **Dependencies:** Phase 1.1 (content-type detection works identically for raw HTML). Phase 0.2 (raw fetch needs graceful failure for pillars it can't fully score).
 
-**Est. scope:** Medium PR. ~1 week.
+**Est. effort:** 3–4 sessions. This phase is the sneaky one — "add a second score per URL" touches every pillar, adds a report axis, and doubles storage volume.
 
 ---
 
@@ -224,7 +226,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 **Dependencies:** Phase 0.1 (needs a JSON-LD fixture per type).
 
-**Est. scope:** 1 PR.
+**Est. effort:** 1 session.
 
 ---
 
@@ -245,7 +247,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 **Exit criterion:** `clipper history <url>` works against local JSON result files. The storage abstraction is in place for Phase 5 to drop in Azure implementations.
 
-**Est. scope:** Small PR.
+**Est. effort:** 1 session.
 
 ---
 
@@ -259,6 +261,8 @@ See [`docs/engineering-audit.md`](engineering-audit.md) Section 5.4 for the full
 - Storage abstraction ✓ (Phase 4.2)
 
 The migration can proceed through Phases 1–6 of the audit plan without scoring-code changes.
+
+**Est. effort:** Not feasible through Copilot-assisted sessions alone. Requires an Azure subscription, infrastructure decisions, deployment pipelines, and live-system troubleshooting that sit outside this workflow. The code changes (Playwright swap, Cosmos/Blob backends, FastAPI wrapper, Dockerfile, OpenTelemetry instrumentation) can be authored here — call it ~8–12 sessions of code work — but the deployment, scaling tune, and hardening are human-driven.
 
 ---
 
@@ -284,7 +288,7 @@ The migration can proceed through Phases 1–6 of the audit plan without scoring
 
 **Exit criterion:** An LLM score is producible for any evaluated URL. A small correlation report validates (or doesn't) that the structural score predicts LLM performance.
 
-**Est. scope:** Large. Multiple PRs.
+**Est. effort:** 2–3 sessions to scaffold the evaluator, prompts, and scoring metrics. The correlation study itself is a research activity, not a coding task — size it against available data, not sessions.
 
 ---
 
@@ -298,20 +302,22 @@ Clipper's value is measurement, not discovery. A search-API integration adds mai
 
 ## Summary sequencing
 
-| Phase | Item | Original issue | Priority |
-|---|---|---|---|
-| 0.1 | Pillar fixture test suite | — (audit) | P0 prerequisite |
-| 0.2 | Failure-mode transparency | — (audit) | P0 prerequisite |
-| 0.3 | Evaluator reproducibility | — (audit) | P0 prerequisite |
-| 1.1 | Content-type-aware profiles | #3 | P0 |
-| 1.2 | Extraction preview | #4 | P1 |
-| 2.1 | Template consistency | #6 | P0 |
-| 3.1 | Rendering-mode dimension | #1 + #2 (merged) | P1 |
-| 4.1 | JSON-LD field completeness | #5 | P2 |
-| 4.2 | Storage abstraction | #8 (subsumed) | P2 |
-| 5 | Azure migration | see audit | P2 |
-| 6.1 | LLM ground-truth | #9 | P2 (strategic) |
-| — | Auto-discovery | #7 | Won't do |
+| Phase | Item | Original issue | Priority | Sessions |
+|---|---|---|---|---|
+| 0.1 | Pillar fixture test suite | — (audit) | P0 prerequisite | 1 |
+| 0.2 | Failure-mode transparency | — (audit) | P0 prerequisite | 1–2 |
+| 0.3 | Evaluator reproducibility | — (audit) | P0 prerequisite | folded into 0.2 |
+| 1.1 | Content-type-aware profiles | #3 | P0 | 2–3 |
+| 1.2 | Extraction preview | #4 | P1 | 1 |
+| 2.1 | Template consistency | #6 | P0 | 1–2 |
+| 3.1 | Rendering-mode dimension | #1 + #2 (merged) | P1 | 3–4 |
+| 4.1 | JSON-LD field completeness | #5 | P2 | 1 |
+| 4.2 | Storage abstraction | #8 (subsumed) | P2 | 1 |
+| 5 | Azure migration | see audit | P2 | ~8–12 code sessions + human deployment work |
+| 6.1 | LLM ground-truth | #9 | P2 (strategic) | 2–3 to scaffold; research time on top |
+| — | Auto-discovery | #7 | Won't do | — |
+
+**Phases 0–4 total: roughly 13–18 sessions.** That's the executable portion through this workflow. Phases 5 and 6 have code components I can author but cannot fully complete without infrastructure access and research time outside the session model.
 
 ---
 
