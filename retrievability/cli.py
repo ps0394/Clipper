@@ -93,7 +93,7 @@ def _print_summary(score_file: str, quiet: bool = False):
         clean = sum(1 for s in scores if s['failure_mode'] in ['clean', 'success'])
         
         if not quiet:
-            print(f"\n📊 Clipper Evaluation Results:")
+            print(f"\n[RESULTS] Clipper Evaluation Results:")
             print(f"|- Total URLs: {total}")
             print(f"|- Average Score: {avg_score:.1f}/100")
             print(f"+- Agent-Ready: {clean}/{total} ({clean/total*100:.1f}%)")

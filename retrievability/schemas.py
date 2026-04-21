@@ -51,6 +51,7 @@ class ParseSignals:
     code_blocks_count: int
     tables_count: int
     boilerplate_leakage_estimate: float
+    agent_content_hints: Dict[str, Any] = field(default_factory=dict)
     
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)

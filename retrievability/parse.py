@@ -103,6 +103,9 @@ def _extract_parseability_signals(soup: BeautifulSoup) -> ParseSignals:
     # Estimate boilerplate leakage
     boilerplate_leakage_estimate = _estimate_boilerplate_leakage(soup)
     
+    # Detect agent content hints
+    agent_content_hints = _detect_agent_content_hints(soup)
+    
     return ParseSignals(
         has_main_element=has_main,
         has_article_element=has_article,
@@ -110,7 +113,8 @@ def _extract_parseability_signals(soup: BeautifulSoup) -> ParseSignals:
         text_density_ratio=text_density_ratio,
         code_blocks_count=code_blocks_count,
         tables_count=tables_count,
-        boilerplate_leakage_estimate=boilerplate_leakage_estimate
+        boilerplate_leakage_estimate=boilerplate_leakage_estimate,
+        agent_content_hints=agent_content_hints
     )
 
 
@@ -256,3 +260,65 @@ def _gather_evidence(soup: BeautifulSoup) -> Dict[str, Any]:
     }
     
     return evidence
+
+
+def _detect_agent_content_hints(soup: BeautifulSoup) -> Dict[str, Any]:
+    """Detect agent-friendly content hints in HTML.
+    
+    Scans for signals that a site explicitly supports machine-readable
+    content formats: alternate format links, markdown URLs, LLM hints,
+    and llms.txt references.
+    """
+    hints = {
+        'has_markdown_alternate': False,
+        'has_markdown_url_meta': False,
+        'has_llm_hints': False,
+        'has_llms_txt_ref': False,
+        'has_non_html_alternate': False,
+        'details': []
+    }
+
+    # Check <link rel="alternate"> elements
+    for link in soup.find_all('link', rel=lambda r: r and 'alternate' in r):
+        link_type = (link.get('type') or '').lower()
+        href = link.get('href', '')
+
+        if 'markdown' in link_type:
+            hints['has_markdown_alternate'] = True
+            hints['details'].append(f'link rel=alternate type={link_type} href={href[:80]}')
+
+        elif link_type and 'html' not in link_type and 'rss' not in link_type and 'atom' not in link_type:
+            # Non-HTML, non-feed alternate (e.g. application/json)
+            hints['has_non_html_alternate'] = True
+            hints['details'].append(f'link rel=alternate type={link_type} href={href[:80]}')
+
+        # data-llm-hint on any <link>
+        if link.get('data-llm-hint'):
+            hints['has_llm_hints'] = True
+            hints['details'].append(f'data-llm-hint: {link["data-llm-hint"][:100]}')
+
+    # Check <link rel="index"> with llms.txt reference
+    for link in soup.find_all('link', rel=lambda r: r and 'index' in r):
+        href = (link.get('href') or '').lower()
+        if 'llms' in href:
+            hints['has_llms_txt_ref'] = True
+            hints['details'].append(f'llms.txt ref: {link.get("href", "")[:100]}')
+        if link.get('data-llm-hint'):
+            hints['has_llm_hints'] = True
+            hints['details'].append(f'data-llm-hint: {link["data-llm-hint"][:100]}')
+
+    # Check <meta name="markdown_url">
+    md_meta = soup.find('meta', attrs={'name': lambda n: n and n.lower() == 'markdown_url'})
+    if md_meta and md_meta.get('content'):
+        hints['has_markdown_url_meta'] = True
+        hints['details'].append(f'meta markdown_url: {md_meta["content"][:100]}')
+
+    # Check <a> or <link> referencing llms.txt anywhere
+    if not hints['has_llms_txt_ref']:
+        for tag in soup.find_all(['a', 'link'], href=True):
+            if 'llms.txt' in (tag['href'] or '').lower():
+                hints['has_llms_txt_ref'] = True
+                hints['details'].append(f'llms.txt link: {tag["href"][:100]}')
+                break
+
+    return hints

@@ -578,13 +578,13 @@ class AccessGateEvaluator:
         audit_trail = {
             'standard': 'RFC 7231 + robots.txt + Cache headers',
             'method': 'Agent-focused HTTP compliance evaluation',
-            'score_calculation': 'HTML reachability (20) + Redirect efficiency (30) + Robots/crawl permissions (25) + Cache headers (25)'
+            'score_calculation': 'HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)'
         }
         
         try:
             score_components = {}
             
-            # 1. HTML reachability (0-20 points) — does the URL serve text/html?
+            # 1. HTML reachability (0-15 points) — does the URL serve text/html?
             html_reach_score = 0
             html_reach_audit = {}
             if url and self._is_valid_url(url):
@@ -598,34 +598,32 @@ class AccessGateEvaluator:
                     html_reach_audit['status_code'] = response.status_code
                     html_reach_audit['content_type'] = response.headers.get('content-type', '')
                     if response.status_code == 200:
-                        html_reach_score = 20
+                        html_reach_score = 15
                     elif response.status_code in (301, 302, 307, 308):
-                        html_reach_score = 15  # Redirects but reachable
+                        html_reach_score = 11
                     elif response.status_code < 400:
-                        html_reach_score = 10
+                        html_reach_score = 8
                     else:
                         html_reach_score = 0
                 except Exception as e:
                     html_reach_audit['error'] = str(e)
                     html_reach_score = 0
             else:
-                # Static analysis fallback — assume reachable if we have HTML
-                html_reach_score = 15
+                html_reach_score = 11
                 html_reach_audit['method'] = 'Static fallback (no live URL)'
             score_components['html_reachability'] = html_reach_score
             audit_trail['html_reachability'] = html_reach_audit
             
-            # 2. Redirect efficiency (0-30 points)
+            # 2. Redirect efficiency (0-25 points)
             if crawl_data and 'redirect_chain' in crawl_data:
                 redirect_score, redirect_audit = self._evaluate_redirect_efficiency(crawl_data)
-                # Scale from 0-40 to 0-30
-                score_components['redirect_efficiency'] = (redirect_score / 40) * 30
+                score_components['redirect_efficiency'] = (redirect_score / 40) * 25
             else:
-                score_components['redirect_efficiency'] = 30.0  # Assume optimal
+                score_components['redirect_efficiency'] = 25.0
                 redirect_audit = {'method': 'No redirect data (assuming direct access)'}
             audit_trail['redirect_efficiency'] = redirect_audit
             
-            # 3. Robots / crawl permissions (0-25 points)
+            # 3. Robots / crawl permissions (0-20 points)
             robots_score = 0
             robots_audit = {}
             
@@ -638,14 +636,14 @@ class AccessGateEvaluator:
                 has_noindex = 'noindex' in robots_content
                 has_nofollow = 'nofollow' in robots_content
                 if has_noindex:
-                    robots_score = 0  # Page explicitly blocks indexing
+                    robots_score = 0
                     robots_audit['blocked'] = True
                 elif has_nofollow:
-                    robots_score = 15  # Can index but not follow links
+                    robots_score = 10
                 else:
-                    robots_score = 15  # Meta robots present and permissive
+                    robots_score = 12
             else:
-                robots_score = 15  # No meta robots = permissive by default
+                robots_score = 12
                 robots_audit['meta_robots'] = 'none (permissive by default)'
             
             # Check robots.txt (if live URL available)
@@ -660,29 +658,28 @@ class AccessGateEvaluator:
                         path = parsed.path or '/'
                         is_blocked = self._check_robots_txt_blocked(robots_text, path)
                         if is_blocked:
-                            robots_score = max(robots_score - 15, 0)
+                            robots_score = max(robots_score - 12, 0)
                             robots_audit['robots_txt_blocked'] = True
                         else:
-                            robots_score += 10
+                            robots_score += 8
                             robots_audit['robots_txt_blocked'] = False
                     else:
-                        robots_score += 10  # No robots.txt = permissive
+                        robots_score += 8  # No robots.txt = permissive
                         robots_audit['robots_txt_blocked'] = False
                 except Exception as e:
-                    robots_score += 5  # Can't check, partial credit
+                    robots_score += 4  # Can't check, partial credit
                     robots_audit['robots_txt_error'] = str(e)
             else:
-                robots_score += 5  # No URL to check
+                robots_score += 4  # No URL to check
             
-            score_components['crawl_permissions'] = min(robots_score, 25)
+            score_components['crawl_permissions'] = min(robots_score, 20)
             audit_trail['crawl_permissions'] = robots_audit
             
-            # 4. Cache headers (0-25 points)
+            # 4. Cache headers (0-20 points)
             cache_score = 0
             cache_audit = {}
             if url and self._is_valid_url(url):
                 try:
-                    # Use HEAD request to check cache headers
                     head_response = httpx.head(url, timeout=10, follow_redirects=True)
                     headers = head_response.headers
                     
@@ -695,23 +692,47 @@ class AccessGateEvaluator:
                     cache_audit['cache_control'] = headers.get('cache-control', 'absent')
                     
                     if has_etag:
-                        cache_score += 10
+                        cache_score += 8
                     if has_last_modified:
-                        cache_score += 10
+                        cache_score += 8
                     if has_cache_control:
                         cc = headers.get('cache-control', '').lower()
                         if 'no-store' in cc:
-                            cache_score += 2  # Has header but blocks caching
+                            cache_score += 1
                         else:
-                            cache_score += 5
+                            cache_score += 4
                 except Exception as e:
                     cache_audit['error'] = str(e)
             else:
-                cache_score = 12  # Neutral without live URL
+                cache_score = 10
                 cache_audit['method'] = 'Static fallback (no live URL)'
             
-            score_components['cache_headers'] = min(cache_score, 25)
+            score_components['cache_headers'] = min(cache_score, 20)
             audit_trail['cache_headers'] = cache_audit
+            
+            # 5. Agent content hints (0-20 points) — does the HTML declare
+            #    machine-readable alternate formats or LLM-specific endpoints?
+            agent_hints_score = 0
+            agent_hints_audit = {}
+            
+            # Re-use the soup already created for robots check
+            from .parse import _detect_agent_content_hints
+            hints = _detect_agent_content_hints(soup)
+            agent_hints_audit['signals_found'] = hints
+            
+            if hints.get('has_markdown_alternate'):
+                agent_hints_score += 6   # <link rel="alternate" type="text/markdown">
+            if hints.get('has_markdown_url_meta'):
+                agent_hints_score += 4   # <meta name="markdown_url">
+            if hints.get('has_llm_hints'):
+                agent_hints_score += 4   # data-llm-hint attributes
+            if hints.get('has_llms_txt_ref'):
+                agent_hints_score += 3   # llms.txt reference
+            if hints.get('has_non_html_alternate'):
+                agent_hints_score += 3   # any non-HTML <link rel="alternate">
+            
+            score_components['agent_content_hints'] = min(agent_hints_score, 20)
+            audit_trail['agent_content_hints'] = agent_hints_audit
             
             final_score = min(sum(score_components.values()), 100)
             audit_trail['score_breakdown'] = score_components

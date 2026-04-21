@@ -40,7 +40,7 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
     print("|- DOM Navigability (WCAG 2.1 / axe-core) - 15%")
     print("|- Metadata Completeness (Dublin Core / OpenGraph) - 10%")
     print("+- HTTP Compliance (RFC 7231 / robots / cache) - 10%")
-    print(f"🚀 Performance Mode: {'ENABLED' if use_performance_mode else 'DISABLED'}")
+    print(f"[PERF] Performance Mode: {'ENABLED' if use_performance_mode else 'DISABLED'}")
     
     start_time = time.time()
     
@@ -55,7 +55,7 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
     # Load URLs and crawl data for enhanced evaluation
     urls, crawl_results = _load_crawl_data_for_scoring(parse_path)
     
-    print(f"📊 Evaluating {len(parse_results_data)} documents using performance-optimized standards...")
+    print(f"[EVAL] Evaluating {len(parse_results_data)} documents using performance-optimized standards...")
     if crawl_results:
         print(f"   Enhanced with redirect chain analysis for HTTP compliance")
     
@@ -74,7 +74,7 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
         json.dump([result.to_dict() for result in score_results], f, indent=2)
     
     evaluation_time = time.time() - start_time
-    print(f"✅ Performance-optimized evaluation completed in {evaluation_time:.1f}s!")
+    print(f"[DONE] Performance-optimized evaluation completed in {evaluation_time:.1f}s!")
     print(f"   Results saved: {output_file}")
     print(f"   Methodology: Industry standards ({'Performance Mode' if use_performance_mode else 'Standard Mode'})")
     
@@ -86,7 +86,7 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
             avg_per_url = stats['average_time_seconds']
             estimated_standard_time = avg_per_url * 2.5  # Estimated standard mode time
             improvement = ((estimated_standard_time - avg_per_url) / estimated_standard_time) * 100
-            print(f"🏃 Performance: {avg_per_url:.1f}s/URL avg (est. {improvement:.0f}% faster than standard mode)")
+            print(f"[PERF] Performance: {avg_per_url:.1f}s/URL avg (est. {improvement:.0f}% faster than standard mode)")
         
         # Try to get parallel execution metrics from the results
         try:
@@ -104,7 +104,7 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
                         total_time = timing.get('total_parallel_time_seconds', 0)
                         improvement_pct = timing.get('performance_improvement_percent', 0)
                         
-                        print(f"⚡ Parallel Execution:")
+                        print(f"[PERF] Parallel Execution:")
                         print(f"   Fast components (HTML, Schema, Extractability, Metadata, HTTP): {fast_time}s")
                         print(f"   Browser component (DOM Navigability): {browser_time}s")
                         print(f"   Total parallel time: {total_time}s (~{improvement_pct:.1f}% faster)")
@@ -280,7 +280,7 @@ def benchmark_performance_modes(parse_file: str, iterations: int = 3) -> Dict:
         'raw_results': results
     }
     
-    print(f"\n📊 Benchmark Results:")
+    print(f"\n[RESULTS] Benchmark Results:")
     print(f"  Performance Mode: {avg_performance:.2f}s avg")
     print(f"  Standard Mode: {avg_standard:.2f}s avg")
     print(f"  Speed Improvement: {improvement:.1f}% ({summary['speed_improvement_factor']}x faster)")

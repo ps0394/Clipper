@@ -91,14 +91,22 @@ Each field scores 0 (absent) or full points (present and non-empty).
 
 ### 6. HTTP Compliance (10%)
 
-Evaluates whether agents can reach and cache the content.
+Evaluates whether agents can reach, cache, and negotiate machine-readable content.
 
 | Sub-signal | Max Points | What it measures |
 |---|---|---|
-| **HTML Reachability** | 20 | Does the URL serve a 200 response to `Accept: text/html`? |
-| **Redirect Efficiency** | 30 | Chain length (0 hops = optimal, >4 penalized), proper status codes, performance impact. |
-| **Crawl Permissions** | 25 | `robots.txt` allows access for generic agents (`User-agent: *`) + no `<meta name="robots" content="noindex">`. |
-| **Cache Headers** | 25 | Presence of `ETag`, `Last-Modified`, and `Cache-Control` headers. |
+| **HTML Reachability** | 15 | Does the URL serve a 200 response to `Accept: text/html`? |
+| **Redirect Efficiency** | 25 | Chain length (0 hops = optimal, >4 penalized), proper status codes, performance impact. |
+| **Crawl Permissions** | 20 | `robots.txt` allows access for generic agents (`User-agent: *`) + no `<meta name="robots" content="noindex">`. |
+| **Cache Headers** | 20 | Presence of `ETag`, `Last-Modified`, and `Cache-Control` headers. |
+| **Agent Content Hints** | 20 | Signals that the page offers machine-readable alternate formats or LLM-specific endpoints. |
+
+**Agent Content Hints** checks for:
+- `<link rel="alternate" type="text/markdown">` (6 pts) — markdown alternate link
+- `<meta name="markdown_url">` (4 pts) — markdown URL metadata (e.g. Microsoft Learn)
+- `data-llm-hint` attributes (4 pts) — explicit LLM guidance in HTML
+- `llms.txt` references (3 pts) — site-level LLM endpoint declaration
+- Non-HTML `<link rel="alternate">` (3 pts) — any non-HTML alternate format (JSON, XML, etc.)
 
 The robots.txt parser respects `User-agent` directives and only applies rules from the `User-agent: *` block. `Allow`/`Disallow` conflicts are resolved by longest-match precedence.
 
