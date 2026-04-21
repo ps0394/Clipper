@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Hybrid Agent-Ready Assessment Framework
-Combining Lighthouse foundation + YARA content analysis + direct agent performance validation
+Combining Lighthouse foundation + Clipper content analysis + direct agent performance validation
 """
 
 import json
@@ -446,10 +446,10 @@ class HybridFramework:
             "### Methodology",
             "This hybrid framework combines:",
             "- **Lighthouse metrics (70%)** - Proven accessibility, SEO, and performance standards", 
-            "- **Content analysis (20%)** - YARA-inspired content density and structure evaluation",
+            "- **Content analysis (20%)** - Clipper-inspired content density and structure evaluation",
             "- **Agent performance (10%)** - Direct simulation of AI agent content extraction",
             "",
-            "### Advantages over YARA",
+            "### Advantages over Clipper",
             "- Uses established Lighthouse metrics as foundation",
             "- Directly tests agent extraction capabilities", 
             "- Provides actionable accessibility and SEO recommendations",

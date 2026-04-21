@@ -55,7 +55,7 @@ class ClipperDemo:
             result = subprocess.run(clipper_cmd, capture_output=True, text=True, timeout=300)
             
             if result.returncode == 0:
-                print("✅ YARA 3.0 evaluation completed successfully!")
+                print("[PASS] Clipper evaluation completed successfully!")
                 return True
             else:
                 print(f"❌ Evaluation failed: {result.stderr}")
@@ -79,7 +79,7 @@ class ClipperDemo:
             with open(scores_file) as f:
                 results = json.load(f)
             
-            print("\n📊 YARA 3.0 Evaluation Results:")
+            print("\n[RESULTS] Clipper Evaluation Results:")
             print(f"├─ Total URLs Evaluated: {len(results)}")
             
             # Calculate summary stats

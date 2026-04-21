@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compare YARA scores with Boilerpipe content extraction quality."""
+"""Compare Clipper scores with Boilerpipe content extraction quality."""
 
 import json
 import argparse
@@ -29,7 +29,7 @@ class BoilerplateExtraction:
     word_count: int
 
 @dataclass
-class YaraScore:
+class ClipperScore:
     url: str
     parseability_score: float
     content_density: float
@@ -123,8 +123,8 @@ def load_html_snapshots(snapshots_dir: str) -> Dict[str, str]:
     
     return html_content
 
-def load_yara_results(results_dir: str) -> List[YaraScore]:
-    """Load YARA results from evaluation directory."""
+def load_clipper_results(results_dir: str) -> List[ClipperScore]:
+    """Load Clipper results from evaluation directory."""
     
     results_path = Path(results_dir)
     scores_file = None
@@ -144,7 +144,7 @@ def load_yara_results(results_dir: str) -> List[YaraScore]:
             break
     
     if not scores_file or not crawl_file:
-        raise FileNotFoundError(f"Cannot find YARA results in {results_dir}")
+        raise FileNotFoundError(f"Cannot find Clipper results in {results_dir}")
     
     # Load URLs
     with open(crawl_file) as f:
@@ -155,11 +155,11 @@ def load_yara_results(results_dir: str) -> List[YaraScore]:
     with open(scores_file) as f:
         scores_data = json.load(f)
     
-    yara_scores = []
+    clipper_scores = []
     for i, score_data in enumerate(scores_data):
         if i < len(urls):
             subscores = score_data.get('subscores', {})
-            yara_scores.append(YaraScore(
+            clipper_scores.append(ClipperScore(
                 url=urls[i],
                 parseability_score=score_data['parseability_score'],
                 content_density=subscores.get('content_density', 0),
@@ -167,16 +167,16 @@ def load_yara_results(results_dir: str) -> List[YaraScore]:
                 failure_mode=score_data['failure_mode']
             ))
     
-    return yara_scores
+    return clipper_scores
 
-def run_boilerpipe_comparison(yara_results_dir: str) -> Dict:
-    """Run comprehensive YARA vs Boilerpipe comparison."""
+def run_boilerpipe_comparison(clipper_results_dir: str) -> Dict:
+    """Run comprehensive Clipper vs Boilerpipe comparison."""
     
-    print("🔄 Loading YARA results...")
-    yara_scores = load_yara_results(yara_results_dir)
+    print("Loading Clipper results...")
+    clipper_scores = load_clipper_results(clipper_results_dir)
     
     # Determine snapshots directory
-    results_path = Path(yara_results_dir)
+    results_path = Path(clipper_results_dir)
     snapshots_dir = results_path / "snapshots"
     if not snapshots_dir.exists():
         snapshots_dir = results_path
@@ -204,7 +204,7 @@ def run_boilerpipe_comparison(yara_results_dir: str) -> Dict:
         ))
     
     return {
-        'yara_scores': yara_scores,
+        'clipper_scores': clipper_scores,
         'boilerpipe_results': boilerpipe_results
     }
 
@@ -243,18 +243,18 @@ def calculate_correlation(x_values: List[float], y_values: List[float]) -> Tuple
 def generate_boilerpipe_report(comparison_data: Dict) -> str:
     """Generate human-readable Boilerpipe comparison report."""
     
-    yara_scores = comparison_data['yara_scores']
+    clipper_scores = comparison_data['clipper_scores']
     boilerpipe_results = comparison_data['boilerpipe_results']
     
-    # Match YARA and Boilerpipe results by URL
+    # Match Clipper and Boilerpipe results by URL
     matched_data = []
-    for yara in yara_scores:
-        boilerpipe = next((bp for bp in boilerpipe_results if bp.url == yara.url), None)
+    for clipper in clipper_scores:
+        boilerpipe = next((bp for bp in boilerpipe_results if bp.url == clipper.url), None)
         if boilerpipe:
-            matched_data.append((yara, boilerpipe))
+            matched_data.append((clipper, boilerpipe))
     
     report = [
-        "# YARA vs Boilerpipe Content Extraction Comparison",
+        "# Clipper vs Boilerpipe Content Extraction Comparison",
         f"**Analysis Date:** {Path.cwd()}",
         f"**Sample Size:** {len(matched_data)} URLs",
         ""
@@ -269,24 +269,24 @@ def generate_boilerpipe_report(comparison_data: Dict) -> str:
         return "\n".join(report)
     
     # Calculate correlations
-    yara_content_density = [yara.content_density for yara, _ in matched_data]
-    yara_boilerplate_resistance = [yara.boilerplate_resistance for yara, _ in matched_data]
-    yara_overall = [yara.parseability_score for yara, _ in matched_data]
+    clipper_content_density = [c.content_density for c, _ in matched_data]
+    clipper_boilerplate_resistance = [c.boilerplate_resistance for c, _ in matched_data]
+    clipper_overall = [c.parseability_score for c, _ in matched_data]
     
     boilerpipe_ratios = [bp.extraction_ratio * 100 for _, bp in matched_data]
     boilerpipe_success = [100 if bp.extraction_success else 0 for _, bp in matched_data]
     boilerpipe_word_counts = [bp.word_count for _, bp in matched_data]
     
     # Correlations
-    corr_density_ratio, p_density = calculate_correlation(yara_content_density, boilerpipe_ratios)
-    corr_boilerplate_success, p_boil_success = calculate_correlation(yara_boilerplate_resistance, boilerpipe_success)
-    corr_overall_ratio, p_overall = calculate_correlation(yara_overall, boilerpipe_ratios)
+    corr_density_ratio, p_density = calculate_correlation(clipper_content_density, boilerpipe_ratios)
+    corr_boilerplate_success, p_boil_success = calculate_correlation(clipper_boilerplate_resistance, boilerpipe_success)
+    corr_overall_ratio, p_overall = calculate_correlation(clipper_overall, boilerpipe_ratios)
     
     report.extend([
-        "## 📊 Correlation Analysis",
-        f"- **YARA Content Density ↔ Boilerpipe Extraction Ratio**: r = {corr_density_ratio:.3f} (p = {p_density:.3f})",
-        f"- **YARA Boilerplate Resistance ↔ Boilerpipe Success**: r = {corr_boilerplate_success:.3f} (p = {p_boil_success:.3f})",
-        f"- **YARA Overall Score ↔ Boilerpipe Extraction Ratio**: r = {corr_overall_ratio:.3f} (p = {p_overall:.3f})",
+        "## Correlation Analysis",
+        f"- **Clipper Content Density <-> Boilerpipe Extraction Ratio**: r = {corr_density_ratio:.3f} (p = {p_density:.3f})",
+        f"- **Clipper Boilerplate Resistance <-> Boilerpipe Success**: r = {corr_boilerplate_success:.3f} (p = {p_boil_success:.3f})",
+        f"- **Clipper Overall Score <-> Boilerpipe Extraction Ratio**: r = {corr_overall_ratio:.3f} (p = {p_overall:.3f})",
         ""
     ])
     
@@ -311,14 +311,14 @@ def generate_boilerpipe_report(comparison_data: Dict) -> str:
         ""
     ])
     
-    # Sort by YARA score for comparison
+    # Sort by Clipper score for comparison
     matched_data.sort(key=lambda x: x[0].parseability_score, reverse=True)
     
-    for yara, boilerpipe in matched_data:
-        status = "✅" if boilerpipe.extraction_success else "❌"
+    for clipper, boilerpipe in matched_data:
+        status = "[PASS]" if boilerpipe.extraction_success else "[FAIL]"
         report.extend([
-            f"### {yara.url}",
-            f"{status} **YARA**: {yara.parseability_score:.1f}/100 (density: {yara.content_density:.1f}, boilerplate: {yara.boilerplate_resistance:.1f})",
+            f"### {clipper.url}",
+            f"{status} **Clipper**: {clipper.parseability_score:.1f}/100 (density: {clipper.content_density:.1f}, boilerplate: {clipper.boilerplate_resistance:.1f})",
             f"   **Boilerpipe**: {boilerpipe.extraction_ratio*100:.1f}% extracted ({boilerpipe.word_count} words)",
             ""
         ])
@@ -332,17 +332,17 @@ def generate_boilerpipe_report(comparison_data: Dict) -> str:
     strong_correlations = sum(1 for r in [corr_density_ratio, corr_boilerplate_success, corr_overall_ratio] if abs(r) > 0.6)
     
     if strong_correlations >= 2:
-        report.append("✅ **STRONG VALIDATION**: YARA content analysis correlates well with Boilerpipe extraction quality.")
+        report.append("[PASS] **STRONG VALIDATION**: Clipper content analysis correlates well with Boilerpipe extraction quality.")
     elif strong_correlations >= 1 or max(abs(corr_density_ratio), abs(corr_overall_ratio)) > 0.4:
-        report.append("⚠️ **MODERATE VALIDATION**: YARA shows reasonable correlation with content extraction success.")  
+        report.append("[WARN] **MODERATE VALIDATION**: Clipper shows reasonable correlation with content extraction success.")  
     else:
-        report.append("❌ **WEAK VALIDATION**: YARA content analysis needs improvement compared to Boilerpipe standards.")
+        report.append("[FAIL] **WEAK VALIDATION**: Clipper content analysis needs improvement compared to Boilerpipe standards.")
     
     return "\n".join(report)
 
 def main():
-    parser = argparse.ArgumentParser(description="Compare YARA scores with Boilerpipe content extraction")
-    parser.add_argument("yara_results", help="Directory containing YARA evaluation results") 
+    parser = argparse.ArgumentParser(description="Compare Clipper scores with Boilerpipe content extraction")
+    parser.add_argument("clipper_results", help="Directory containing Clipper evaluation results") 
     parser.add_argument("--output", "-o", help="Save comparison report to file")
     parser.add_argument("--json-output", help="Save raw data as JSON")
     
@@ -350,7 +350,7 @@ def main():
     
     try:
         # Run comparison
-        comparison_data = run_boilerpipe_comparison(args.yara_results)
+        comparison_data = run_boilerpipe_comparison(args.clipper_results)
         
         # Generate report
         report = generate_boilerpipe_report(comparison_data)
@@ -363,7 +363,7 @@ def main():
         if args.json_output:
             # Convert dataclasses to dicts for JSON serialization
             json_data = {
-                'yara_scores': [score.__dict__ for score in comparison_data['yara_scores']],
+                'clipper_scores': [score.__dict__ for score in comparison_data['clipper_scores']],
                 'boilerpipe_results': [result.__dict__ for result in comparison_data['boilerpipe_results']]
             }
             

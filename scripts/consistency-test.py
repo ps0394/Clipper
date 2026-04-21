@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Test YARA consistency by running same URLs multiple times."""
+"""Test Clipper consistency by running same URLs multiple times."""
 
 import json
 import argparse
@@ -9,13 +9,13 @@ from pathlib import Path
 from statistics import mean, stdev
 from typing import Dict, List, Tuple
 
-def run_yara_evaluation(urls_file: str, run_id: int, quiet: bool = True) -> Dict[str, float]:
-    """Run YARA evaluation and return URL -> score mapping."""
+def run_clipper_evaluation(urls_file: str, run_id: int, quiet: bool = True) -> Dict[str, float]:
+    """Run Clipper evaluation and return URL -> score mapping."""
     
     with tempfile.TemporaryDirectory() as temp_dir:
         output_dir = Path(temp_dir) / f"consistency-run-{run_id}"
         
-        # Run YARA express command
+        # Run Clipper express command
         cmd = [
             "python", "-m", "retrievability.cli", "express",
             urls_file,
@@ -93,7 +93,7 @@ def generate_consistency_report(analysis: Dict[str, Dict[str, float]], num_runs:
     """Generate human-readable consistency report."""
     
     report = [
-        "# YARA Consistency Analysis Report",
+        "# Clipper Consistency Analysis Report",
         f"**Runs:** {num_runs}",
         f"**URLs Tested:** {len(analysis)}",
         ""
@@ -164,7 +164,7 @@ def generate_consistency_report(analysis: Dict[str, Dict[str, float]], num_runs:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Test YARA consistency across multiple runs")
+    parser = argparse.ArgumentParser(description="Test Clipper consistency across multiple runs")
     parser.add_argument("urls_file", help="File containing URLs to test")
     parser.add_argument("--runs", "-r", type=int, default=3, 
                        help="Number of evaluation runs (default: 3)")
@@ -188,7 +188,7 @@ def main():
         else:
             print(f"  Run {run_id}/{args.runs}", end="", flush=True)
         
-        result = run_yara_evaluation(args.urls_file, run_id, quiet=not args.verbose)
+        result = run_clipper_evaluation(args.urls_file, run_id, quiet=not args.verbose)
         
         if result:
             results.append(result)

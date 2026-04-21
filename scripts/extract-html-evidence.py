@@ -86,7 +86,7 @@ def extract_html_evidence(results_dir, num_examples=5):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Extract HTML evidence for presentations')
-    parser.add_argument('results_dir', help='YARA results directory')
+    parser.add_argument('results_dir', help='Clipper results directory')
     parser.add_argument('--examples', type=int, default=6, help='Number of examples to show')
     
     args = parser.parse_args()

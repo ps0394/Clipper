@@ -20,7 +20,7 @@ class LighthouseScore:
     pwa: float
 
 @dataclass
-class YaraScore:
+class ClipperScore:
     url: str
     parseability_score: float
     semantic_structure: float
@@ -75,8 +75,8 @@ def get_lighthouse_scores_via_api(url: str, api_key: Optional[str] = None) -> Li
         print(f"  ❌ Exception for {url}: {e}")
         return LighthouseScore(url, 0, 0, 0, 0, 0)
 
-def load_yara_results(results_dir: str) -> List[YaraScore]:
-    """Load YARA results from evaluation directory."""
+def load_clipper_results(results_dir: str) -> List[ClipperScore]:
+    """Load Clipper results from evaluation directory."""
     
     results_path = Path(results_dir)
     scores_file = None
@@ -96,7 +96,7 @@ def load_yara_results(results_dir: str) -> List[YaraScore]:
             break
     
     if not scores_file or not crawl_file:
-        raise FileNotFoundError(f"Cannot find YARA results in {results_dir}")
+        raise FileNotFoundError(f"Cannot find Clipper results in {results_dir}")
     
     # Load URLs
     with open(crawl_file) as f:
@@ -107,11 +107,11 @@ def load_yara_results(results_dir: str) -> List[YaraScore]:
     with open(scores_file) as f:
         scores_data = json.load(f)
     
-    yara_scores = []
+    clipper_scores = []
     for i, score_data in enumerate(scores_data):
         if i < len(urls):
             subscores = score_data.get('subscores', {})
-            yara_scores.append(YaraScore(
+            clipper_scores.append(ClipperScore(
                 url=urls[i],
                 parseability_score=score_data['parseability_score'],
                 semantic_structure=subscores.get('semantic_structure', 0),
@@ -122,7 +122,7 @@ def load_yara_results(results_dir: str) -> List[YaraScore]:
                 failure_mode=score_data['failure_mode']
             ))
     
-    return yara_scores
+    return clipper_scores
 
 def calculate_correlation(x_values: List[float], y_values: List[float]) -> Tuple[float, float]:
     """Calculate Pearson correlation coefficient and p-value estimate."""
@@ -164,75 +164,75 @@ def calculate_correlation(x_values: List[float], y_values: List[float]) -> Tuple
     except (ValueError, ZeroDivisionError):
         return 0.0, 1.0
 
-def run_lighthouse_yara_comparison(yara_results_dir: str, api_key: Optional[str] = None) -> Dict:
-    """Run comprehensive YARA vs Lighthouse comparison."""
+def run_lighthouse_clipper_comparison(clipper_results_dir: str, api_key: Optional[str] = None) -> Dict:
+    """Run comprehensive Clipper vs Lighthouse comparison."""
     
-    print("🔄 Loading YARA results...")
-    yara_scores = load_yara_results(yara_results_dir)
+    print("🔄 Loading Clipper results...")
+    clipper_scores = load_clipper_results(clipper_results_dir)
     
-    print(f"🌐 Running Lighthouse via PageSpeed Insights API on {len(yara_scores)} URLs...")
+    print(f"🌐 Running Lighthouse via PageSpeed Insights API on {len(clipper_scores)} URLs...")
     if not api_key:
         print("⚠️  No API key provided - using free tier (rate limited)")
     
     lighthouse_scores = []
     
-    for i, yara_score in enumerate(yara_scores, 1):
-        print(f"  {i}/{len(yara_scores)}: {yara_score.url}")
-        lighthouse_score = get_lighthouse_scores_via_api(yara_score.url, api_key)
+    for i, clipper_score in enumerate(clipper_scores, 1):
+        print(f"  {i}/{len(clipper_scores)}: {clipper_score.url}")
+        lighthouse_score = get_lighthouse_scores_via_api(clipper_score.url, api_key)
         lighthouse_scores.append(lighthouse_score)
         
         # Rate limiting for free tier
-        if not api_key and i < len(yara_scores):
+        if not api_key and i < len(clipper_scores):
             time.sleep(2)  # Be nice to free API
     
     print("🔍 Calculating correlations...")
     
     # Define correlation tests
     correlation_tests = [
-        ('parseability_score', 'accessibility', 'YARA Overall vs Lighthouse Accessibility'),
-        ('semantic_structure', 'accessibility', 'YARA Semantic vs Lighthouse Accessibility'),  
-        ('semantic_structure', 'seo', 'YARA Semantic vs Lighthouse SEO'),
-        ('heading_hierarchy', 'accessibility', 'YARA Headings vs Lighthouse Accessibility'),
-        ('heading_hierarchy', 'seo', 'YARA Headings vs Lighthouse SEO'),
-        ('content_density', 'seo', 'YARA Content Density vs Lighthouse SEO'),
-        ('boilerplate_resistance', 'accessibility', 'YARA Boilerplate vs Lighthouse Accessibility'),
+        ('parseability_score', 'accessibility', 'Clipper Overall vs Lighthouse Accessibility'),
+        ('semantic_structure', 'accessibility', 'Clipper Semantic vs Lighthouse Accessibility'),  
+        ('semantic_structure', 'seo', 'Clipper Semantic vs Lighthouse SEO'),
+        ('heading_hierarchy', 'accessibility', 'Clipper Headings vs Lighthouse Accessibility'),
+        ('heading_hierarchy', 'seo', 'Clipper Headings vs Lighthouse SEO'),
+        ('content_density', 'seo', 'Clipper Content Density vs Lighthouse SEO'),
+        ('boilerplate_resistance', 'accessibility', 'Clipper Boilerplate vs Lighthouse Accessibility'),
     ]
     
     correlations = []
-    for yara_metric, lighthouse_metric, description in correlation_tests:
-        yara_values = [getattr(score, yara_metric) for score in yara_scores]
+    for clipper_metric, lighthouse_metric, description in correlation_tests:
+        clipper_values = [getattr(score, clipper_metric) for score in clipper_scores]
         lighthouse_values = [getattr(score, lighthouse_metric) for score in lighthouse_scores]
         
-        r, p = calculate_correlation(yara_values, lighthouse_values)
+        r, p = calculate_correlation(clipper_values, lighthouse_values)
         
         correlations.append({
-            'yara_metric': yara_metric,
+            'clipper_metric': clipper_metric,
             'lighthouse_metric': lighthouse_metric, 
             'description': description,
             'correlation': r,
             'p_value': p,
-            'sample_size': len([y for y in yara_values if y > 0])
+            'sample_size': len([y for y in clipper_values if y > 0])
         })
         
         print(f"  {description}: r = {r:.3f} (p = {p:.3f})")
     
     return {
-        'yara_scores': yara_scores,
+        'clipper_scores': clipper_scores,
         'lighthouse_scores': lighthouse_scores,
         'correlations': correlations
     }
 
 def generate_lighthouse_comparison_report(comparison_data: Dict) -> str:
-    """Generate comprehensive Lighthouse vs YARA comparison report."""
+    """Generate comprehensive Lighthouse vs Clipper comparison report."""
     
     correlations = comparison_data['correlations']
-    yara_scores = comparison_data['yara_scores']
+    clipper_scores = comparison_data['clipper_scores']
     lighthouse_scores = comparison_data['lighthouse_scores']
     
     report = [
-        "# YARA vs Lighthouse Validation Report",
+        "# Clipper vs Lighthouse Validation Report",
         f"**Analysis Date:** {time.strftime('%Y-%m-%d %H:%M')}",
-        f"**Sample Size:** {len(yara_scores)} URLs",
+        f"**Sample Size:** {len(clipper_scores)} URLs",
         f"**Data Source:** Google PageSpeed Insights API (Lighthouse)",
         ""
     ]
@@ -258,11 +258,11 @@ def generate_lighthouse_comparison_report(comparison_data: Dict) -> str:
     
     # Overall conclusion
     if validation_percentage >= 70:
-        conclusion = "✅ **STRONG VALIDATION**: YARA methodology shows strong correlation with established Lighthouse metrics."
+        conclusion = "✅ **STRONG VALIDATION**: Clipper methodology shows strong correlation with established Lighthouse metrics."
     elif validation_percentage >= 50:
-        conclusion = "⚠️ **MODERATE VALIDATION**: YARA shows reasonable correlation but needs calibration."
+        conclusion = "⚠️ **MODERATE VALIDATION**: Clipper shows reasonable correlation but needs calibration."
     else:
-        conclusion = "❌ **WEAK VALIDATION**: YARA methodology needs significant revision."
+        conclusion = "❌ **WEAK VALIDATION**: Clipper methodology needs significant revision."
     
     report.extend([
         f"### {conclusion}",
@@ -306,31 +306,31 @@ def generate_lighthouse_comparison_report(comparison_data: Dict) -> str:
         ""
     ])
     
-    # Combine and sort by YARA score
+    # Combine and sort by Clipper score
     combined = []
-    for yara, lighthouse in zip(yara_scores, lighthouse_scores):
+    for clipper, lighthouse in zip(clipper_scores, lighthouse_scores):
         combined.append({
-            'url': yara.url,
-            'yara_overall': yara.parseability_score,
-            'yara_semantic': yara.semantic_structure,
-            'yara_heading': yara.heading_hierarchy,
+            'url': clipper.url,
+            'clipper_overall': clipper.parseability_score,
+            'clipper_semantic': clipper.semantic_structure,
+            'clipper_heading': clipper.heading_hierarchy,
             'lighthouse_accessibility': lighthouse.accessibility,
             'lighthouse_seo': lighthouse.seo,
             'lighthouse_performance': lighthouse.performance,
-            'failure_mode': yara.failure_mode
+            'failure_mode': clipper.failure_mode
         })
     
-    combined.sort(key=lambda x: x['yara_overall'], reverse=True)
+    combined.sort(key=lambda x: x['clipper_overall'], reverse=True)
     
     for site in combined:
-        accessibility_match = "✅" if abs(site['yara_overall'] - site['lighthouse_accessibility']) < 20 else "❌"
-        seo_match = "✅" if abs(site['yara_semantic'] - site['lighthouse_seo']) < 20 else "❌"
+        accessibility_match = "✅" if abs(site['clipper_overall'] - site['lighthouse_accessibility']) < 20 else "❌"
+        seo_match = "✅" if abs(site['clipper_semantic'] - site['lighthouse_seo']) < 20 else "❌"
         
         report.extend([
             f"### {site['url']}",
-            f"- **YARA Overall**: {site['yara_overall']:.1f}/100 ({site['failure_mode']})",
-            f"- **YARA Semantic**: {site['yara_semantic']:.1f}/100 | **Lighthouse Accessibility**: {site['lighthouse_accessibility']:.1f}/100 {accessibility_match}",
-            f"- **YARA Heading**: {site['yara_heading']:.1f}/100 | **Lighthouse SEO**: {site['lighthouse_seo']:.1f}/100 {seo_match}",
+            f"- **Clipper Overall**: {site['clipper_overall']:.1f}/100 ({site['failure_mode']})",
+            f"- **Clipper Semantic**: {site['clipper_semantic']:.1f}/100 | **Lighthouse Accessibility**: {site['lighthouse_accessibility']:.1f}/100 {accessibility_match}",
+            f"- **Clipper Heading**: {site['clipper_heading']:.1f}/100 | **Lighthouse SEO**: {site['lighthouse_seo']:.1f}/100 {seo_match}",
             f"- **Lighthouse Performance**: {site['lighthouse_performance']:.1f}/100",
             ""
         ])
@@ -343,33 +343,33 @@ def generate_lighthouse_comparison_report(comparison_data: Dict) -> str:
     
     if validation_percentage >= 70:
         report.extend([
-            "**Recommendation**: YARA methodology is validated by Lighthouse correlation. Consider:",
-            "- Fine-tuning YARA thresholds based on Lighthouse alignment",
+            "**Recommendation**: Clipper methodology is validated by Lighthouse correlation. Consider:",
+            "- Fine-tuning Clipper thresholds based on Lighthouse alignment",
             "- Using Lighthouse accessibility as validation benchmark",
-            "- Hybrid scoring: YARA structure + Lighthouse accessibility"
+            "- Hybrid scoring: Clipper structure + Lighthouse accessibility"
         ])
     elif validation_percentage >= 50:
         report.extend([
             "**Recommendation**: Mixed validation suggests hybrid approach:",
             "- Use Lighthouse accessibility/SEO as foundation (70% weight)",
-            "- Keep YARA's innovative content negotiation (20% weight)", 
+            "- Keep Clipper's innovative content negotiation (20% weight)", 
             "- Add direct agent performance testing (10% weight)",
             "- Market as 'Agent-Ready Audit' rather than pure structural analysis"
         ])
     else:
         report.extend([
             "**Recommendation**: Weak correlation suggests framework pivot:",
-            "- Replace YARA structural scoring with Lighthouse foundation",
-            "- Preserve YARA's content negotiation detection as differentiator",
+            "- Replace Clipper structural scoring with Lighthouse foundation",
+            "- Preserve Clipper's content negotiation detection as differentiator",
             "- Focus on actual agent performance correlation over HTML analysis",
-            "- Position as evolution: 'YARA 2.0 - Beyond Structure to Agent Performance'"
+            "- Position as evolution: 'Clipper 2.0 - Beyond Structure to Agent Performance'"
         ])
     
     return "\n".join(report)
 
 def main():
-    parser = argparse.ArgumentParser(description="Compare YARA scores with Lighthouse metrics via PageSpeed Insights API")
-    parser.add_argument("yara_results", help="Directory containing YARA evaluation results")
+    parser = argparse.ArgumentParser(description="Compare Clipper scores with Lighthouse metrics via PageSpeed Insights API")
+    parser.add_argument("clipper_results", help="Directory containing Clipper evaluation results")
     parser.add_argument("--api-key", help="Google PageSpeed Insights API key (optional, increases rate limits)")
     parser.add_argument("--output", "-o", help="Save comparison report to file")
     parser.add_argument("--json-output", help="Save raw correlation data as JSON")
@@ -378,7 +378,7 @@ def main():
     
     try:
         # Run comparison
-        comparison_data = run_lighthouse_yara_comparison(args.yara_results, args.api_key)
+        comparison_data = run_lighthouse_clipper_comparison(args.clipper_results, args.api_key)
         
         # Generate report
         report = generate_lighthouse_comparison_report(comparison_data)
@@ -392,7 +392,7 @@ def main():
             # Prepare JSON-serializable data
             json_data = {
                 'correlations': comparison_data['correlations'],
-                'yara_scores': [
+                'clipper_scores': [
                     {
                         'url': score.url,
                         'parseability_score': score.parseability_score,
@@ -403,7 +403,7 @@ def main():
                         'boilerplate_resistance': score.boilerplate_resistance,
                         'failure_mode': score.failure_mode
                     }
-                    for score in comparison_data['yara_scores']
+                    for score in comparison_data['clipper_scores']
                 ],
                 'lighthouse_scores': [
                     {

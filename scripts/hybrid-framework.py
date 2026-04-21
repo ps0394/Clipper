@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Hybrid Agent-Ready Assessment Framework
-Combining Lighthouse foundation + YARA content analysis + direct agent performance validation
+Combining Lighthouse foundation + Clipper content analysis + direct agent performance validation
 """
 
 import json
@@ -448,10 +448,10 @@ class HybridFramework:
             "### Methodology",
             "This hybrid framework combines:",
             "- **Lighthouse metrics (70%)** - Proven accessibility, SEO, and performance standards", 
-            "- **Content analysis (20%)** - YARA-inspired content density and structure evaluation",
+            "- **Content analysis (20%)** - Clipper-inspired content density and structure evaluation",
             "- **Agent performance (10%)** - Direct simulation of AI agent content extraction",
             "",
-            "### Advantages over YARA",
+            "### Advantages over Clipper",
             "- Uses established Lighthouse metrics as foundation",
             "- Directly tests agent extraction capabilities", 
             "- Provides actionable accessibility and SEO recommendations",
@@ -574,8 +574,8 @@ if __name__ == "__main__":
             print(f"    ❌ Agent analysis failed: {e}")
             return {'extraction_success': False, 'content_quality': 0}
 
-class YaraContentAnalyzer:
-    """Lightweight YARA content negotiation analysis."""
+class ContentAnalyzer:
+    """Lightweight content negotiation analysis."""
     
     def analyze(self, url: str) -> Dict[str, float]:
         """Analyze content negotiation and basic structure."""
@@ -626,7 +626,7 @@ class YaraContentAnalyzer:
             }
         
         except Exception as e:
-            print(f"    ❌ YARA analysis failed: {e}")
+            print(f"    ❌ Content analysis failed: {e}")
             return {'content_negotiation': 0, 'structure_quality': 0}
 
 class HybridFramework:
@@ -635,7 +635,7 @@ class HybridFramework:
     def __init__(self, lighthouse_api_key: Optional[str] = None):
         self.lighthouse = LighthouseAnalyzer(lighthouse_api_key)
         self.agent = AgentPerformanceAnalyzer()
-        self.yara = YaraContentAnalyzer()
+        self.content_analyzer = ContentAnalyzer()
     
     def analyze_url(self, url: str) -> HybridScore:
         """Comprehensive hybrid analysis of a URL."""
@@ -645,7 +645,7 @@ class HybridFramework:
         # Run all analyses
         lighthouse_results = self.lighthouse.analyze(url)
         agent_results = self.agent.analyze(url)
-        yara_results = self.yara.analyze(url)
+        clipper_results = self.content_analyzer.analyze(url)
         
         # Calculate component scores
         lighthouse_score = (
@@ -656,21 +656,21 @@ class HybridFramework:
         
         agent_score = agent_results['content_quality']
         
-        yara_score = (
-            yara_results['content_negotiation'] * 0.6 +
-            yara_results['structure_quality'] * 0.4
+        clipper_score = (
+            clipper_results['content_negotiation'] * 0.6 +
+            clipper_results['structure_quality'] * 0.4
         )
         
         # Hybrid score calculation (70% + 20% + 10%)
         overall_score = (
             lighthouse_score * 0.70 +
             agent_score * 0.20 +
-            yara_score * 0.10
+            clipper_score * 0.10
         )
         
         # Determine failure mode and recommendations
         failure_mode, recommendations = self._analyze_failure_mode(
-            lighthouse_results, agent_results, yara_results, overall_score
+            lighthouse_results, agent_results, clipper_results, overall_score
         )
         
         return HybridScore(
@@ -678,19 +678,19 @@ class HybridFramework:
             overall_score=overall_score,
             lighthouse_component=lighthouse_score,
             agent_component=agent_score,
-            yara_component=yara_score,
+            yara_component=clipper_score,
             lighthouse_accessibility=lighthouse_results['accessibility'],
             lighthouse_seo=lighthouse_results['seo'],
             lighthouse_performance=lighthouse_results['performance'],
             agent_extraction_success=agent_results['extraction_success'],
             agent_content_quality=agent_results['content_quality'],
-            yara_content_negotiation=yara_results['content_negotiation'],
-            yara_structure_quality=yara_results['structure_quality'],
+            yara_content_negotiation=clipper_results['content_negotiation'],
+            yara_structure_quality=clipper_results['structure_quality'],
             failure_mode=failure_mode,
             recommendations=recommendations
         )
     
-    def _analyze_failure_mode(self, lighthouse: Dict, agent: Dict, yara: Dict, overall: float) -> Tuple[str, List[str]]:
+    def _analyze_failure_mode(self, lighthouse: Dict, agent: Dict, content: Dict, overall: float) -> Tuple[str, List[str]]:
         """Determine primary failure mode and recommendations."""
         
         recommendations = []
@@ -710,7 +710,7 @@ class HybridFramework:
                 recommendations.append("⚠️ Critical accessibility issues: fix HTML structure")
             if not agent['extraction_success']:
                 recommendations.append("⚠️ Agent extraction failed: improve content organization")
-            if yara['content_negotiation'] < 40:
+            if content['content_negotiation'] < 40:
                 recommendations.append("⚠️ Add code examples, lists, and rich content")
         else:
             failure_mode = "major_issues"
@@ -761,7 +761,7 @@ def generate_hybrid_report(results: List[HybridScore]) -> str:
     
     lighthouse_scores = [r.lighthouse_component for r in results if r.lighthouse_component > 0]
     agent_scores = [r.agent_component for r in results if r.agent_component > 0]
-    yara_scores = [r.yara_component for r in results if r.yara_component > 0]
+    clipper_scores = [r.yara_component for r in results if r.yara_component > 0]
     
     agent_ready_count = len([r for r in results if r.failure_mode == "agent_ready"])
     
@@ -769,7 +769,7 @@ def generate_hybrid_report(results: List[HybridScore]) -> str:
         "# Hybrid Agent-Ready Framework (HARF) Report",
         f"**Analysis Date:** {time.strftime('%Y-%m-%d %H:%M')}",
         f"**Sample Size:** {len(results)} URLs",
-        f"**Framework:** Lighthouse (70%) + Agent Performance (20%) + YARA Content (10%)",
+        f"**Framework:** Lighthouse (70%) + Agent Performance (20%) + Clipper Content (10%)",
         ""
     ]
     
@@ -785,7 +785,7 @@ def generate_hybrid_report(results: List[HybridScore]) -> str:
         report.append(f"**Component Averages:**")
         report.append(f"- Lighthouse Foundation: {statistics.mean(lighthouse_scores):.1f}/100")
         report.append(f"- Agent Performance: {statistics.mean(agent_scores):.1f}/100")  
-        report.append(f"- YARA Content: {statistics.mean(yara_scores):.1f}/100")
+        report.append(f"- Clipper Content: {statistics.mean(clipper_scores):.1f}/100")
         report.append("")
     
     # Classification by readiness
@@ -830,7 +830,7 @@ def generate_hybrid_report(results: List[HybridScore]) -> str:
             f"**Component Breakdown:**",
             f"- Lighthouse: {result.lighthouse_component:.1f}/100 (A11y: {result.lighthouse_accessibility:.1f}, SEO: {result.lighthouse_seo:.1f}, Perf: {result.lighthouse_performance:.1f})",
             f"- Agent Performance: {result.agent_component:.1f}/100 (Success: {'Yes' if result.agent_extraction_success else 'No'})",
-            f"- YARA Content: {result.yara_component:.1f}/100 (Negotiation: {result.yara_content_negotiation:.1f}, Structure: {result.yara_structure_quality:.1f})",
+            f"- Clipper Content: {result.yara_component:.1f}/100 (Negotiation: {result.yara_content_negotiation:.1f}, Structure: {result.yara_structure_quality:.1f})",
             ""
         ])
         

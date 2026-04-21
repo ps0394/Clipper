@@ -506,10 +506,6 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
         # Use parent implementation but with performance tracking
         return self._evaluate_semantic_html(html_content, signals)
     
-    def _evaluate_content_quality_sync(self, html_content: str, signals: Dict, evidence: Dict) -> Tuple[float, Dict]:
-        """Synchronous content quality evaluation."""
-        return self._evaluate_content_quality(html_content, signals, evidence)
-    
     async def _evaluate_structured_data_async(self, html_content: str, url: Optional[str]) -> Tuple[float, Dict]:
         """Async structured data evaluation with HTTP optimization."""
         try:
@@ -539,59 +535,13 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             return result
             
         except Exception as e:
-            # Fallback to basic HTTP compliance
-            return await self._evaluate_http_compliance_async(html_content, url)
-        """Async HTTP compliance evaluation."""
-        audit_trail = {
-            'standard': 'RFC 7231 Content Negotiation (IETF)', 
-            'method': 'Async HTTP standards compliance check'
-        }
-        
-        try:
-            if not url or not self._is_valid_url(url):
-                return 50.0, audit_trail  # Neutral score for no URL
-            
-            # Concurrent HTTP requests for different content types
-            accept_headers = [
-                'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                'application/json',
-                'text/plain',
-                'application/xml'
-            ]
-            
-            async def test_accept_header(header):
-                try:
-                    response = await self.http_client.get(url, headers={'Accept': header}, timeout=5)
-                    return {
-                        'accept': header,
-                        'status': response.status_code,
-                        'content_type': response.headers.get('content-type', ''),
-                        'content_length': response.headers.get('content-length', '0')
-                    }
-                except Exception as e:
-                    return {'accept': header, 'error': str(e)}
-            
-            # Run requests concurrently
-            results = await asyncio.gather(*[
-                test_accept_header(header) for header in accept_headers
-            ], return_exceptions=True)
-            
-            # Calculate score based on content negotiation support
-            successful_negotiations = sum(1 for r in results if isinstance(r, dict) and 'error' not in r)
-            score = (successful_negotiations / len(accept_headers)) * 100
-            
-            audit_trail.update({
-                'negotiation_tests': results,
-                'successful_negotiations': successful_negotiations,
-                'score_calculation': f'{successful_negotiations}/{len(accept_headers)} successful negotiations'
-            })
-            
-            return score, audit_trail
-            
-        except Exception as e:
+            # Fallback: return neutral score on failure
             self.logger.error(f"Async HTTP compliance evaluation failed: {e}")
-            audit_trail['error'] = str(e)
-            return 0.0, audit_trail
+            return 0.0, {
+                'standard': 'RFC 7231 Content Negotiation (IETF)',
+                'method': 'Evaluation failed',
+                'error': str(e)
+            }
     
     def get_performance_stats(self) -> Dict:
         """Get performance statistics for optimization analysis."""

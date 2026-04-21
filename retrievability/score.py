@@ -13,17 +13,17 @@ from .access_gate_evaluator import AccessGateEvaluator
 
 
 def score_parse_results(parse_file: str, output_file: str, api_key: Optional[str] = None) -> None:
-    """Score parse results using YARA 3.0 standards-based methodology.
+    """Score parse results using Clipper standards-based methodology.
     
     Args:
         parse_file: JSON file with parse results
         output_file: JSON file to save score results
-        api_key: Deprecated parameter (YARA 3.0 is API-free)
+        api_key: Deprecated parameter (Clipper is API-free)
     """
-    # YARA 3.0 deprecation notice for API key
+    # Clipper deprecation notice for API key
     if api_key:
-        print("[WARN] API key parameter is deprecated in YARA 3.0")
-        print("   YARA 3.0 uses industry standards and is completely API-free")
+        print("[WARN] API key parameter is deprecated in Clipper")
+        print("   Clipper uses industry standards and is completely API-free")
     
     print("[CLIPPER] Standards-Based Access Gate Evaluator")
     print("|- W3C Semantic HTML Analysis - 25%")

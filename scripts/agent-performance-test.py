@@ -31,7 +31,7 @@ class AgentPerformanceResult:
     response_time: float
 
 def load_html_content(snapshots_dir: str) -> Dict[str, str]:
-    """Load HTML content from YARA snapshots directory."""
+    """Load HTML content from Clipper snapshots directory."""
     
     snapshots_path = Path(snapshots_dir)
     
@@ -417,7 +417,7 @@ def generate_agent_performance_report(results: List[AgentPerformanceResult]) -> 
 
 def main():
     parser = argparse.ArgumentParser(description="Test direct agent performance on documentation sites")
-    parser.add_argument("snapshots_dir", help="Directory containing HTML snapshots from YARA evaluation")
+    parser.add_argument("snapshots_dir", help="Directory containing HTML snapshots from Clipper evaluation")
     parser.add_argument("--output", "-o", help="Save performance report to file")
     parser.add_argument("--json-output", help="Save raw results as JSON")
     
