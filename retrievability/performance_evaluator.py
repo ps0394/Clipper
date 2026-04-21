@@ -28,7 +28,6 @@ from .access_gate_evaluator import AccessGateEvaluator
 from .schemas import ScoreResult
 
 # AsyncIO and performance imports
-import httpx
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
@@ -95,18 +94,25 @@ class WebDriverPool:
         try:
             # Try to get a driver with retry logic for pool exhaustion
             for attempt in range(max_wait_attempts):
+                need_create = False
                 with self.lock:
                     if self.available_drivers:
                         driver = self.available_drivers.pop()
                         break
                     elif len(self.drivers) < self.max_drivers:
-                        try:
-                            driver = self._create_driver()
+                        need_create = True
+                
+                if need_create:
+                    try:
+                        # Create driver outside the lock via executor to avoid blocking event loop
+                        loop = asyncio.get_event_loop()
+                        driver = await loop.run_in_executor(None, self._create_driver)
+                        with self.lock:
                             self.drivers.append(driver)
-                            break
-                        except Exception as e:
-                            self.logger.error(f"Failed to create WebDriver on attempt {attempt + 1}: {e}")
-                            # Continue to next attempt or fallback
+                        break
+                    except Exception as e:
+                        self.logger.error(f"Failed to create WebDriver on attempt {attempt + 1}: {e}")
+                        # Continue to next attempt or fallback
                 
                 # Pool is full, wait briefly for a driver to become available
                 if attempt < max_wait_attempts - 1:
@@ -117,7 +123,8 @@ class WebDriverPool:
                 # Fallback: create temporary driver if pool is consistently full
                 self.logger.warning("WebDriver pool exhausted, creating temporary driver")
                 try:
-                    driver = self._create_driver()
+                    loop = asyncio.get_event_loop()
+                    driver = await loop.run_in_executor(None, self._create_driver)
                     temp_driver = True
                 except Exception as e:
                     self.logger.error(f"Failed to create temporary WebDriver: {e}")
@@ -186,8 +193,9 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
         
         self.max_workers = max_workers
         self.webdriver_pool = WebDriverPool(max_drivers=2, headless=headless)
-        self.http_client = None
-        self.executor = concurrent.futures.ThreadPoolExecutor(max_workers=max_workers)
+        # Size pool for concurrent batch evaluation: each URL needs ~6 executor tasks
+        # (3 sync + 2 async + 1 browser). With batch_size=5, that's 30 tasks.
+        self.executor = concurrent.futures.ThreadPoolExecutor(max_workers=max(max_workers * 6, 24))
         
         # Performance metrics
         self.evaluation_times = []
@@ -208,26 +216,10 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             if not html_content:
                 return self._create_error_result("Failed to load HTML content", html_path)
             
-            # Initialize HTTP client for concurrent requests with timeout
-            timeout_config = httpx.Timeout(
-                connect=10.0,  # Connection timeout
-                read=15.0,     # Read timeout
-                write=10.0,    # Write timeout
-                pool=20.0      # Pool timeout
-            )
-            
-            async with httpx.AsyncClient(timeout=timeout_config) as client:
-                self.http_client = client
-                
-                # Wrap the entire evaluation in a timeout to prevent hanging
-                try:
-                    return await asyncio.wait_for(
-                        self._perform_async_evaluation(signals, evidence, html_content, url, crawl_data, html_path),
-                        timeout=75.0  # Increased to 75-second overall timeout for parallel optimization  
-                    )
-                except asyncio.TimeoutError:
-                    self.logger.error(f"Evaluation timeout for {url or html_path}")
-                    return self._create_error_result("Evaluation timeout", html_path)
+            # Individual component timeouts (20s fast, 60s browser) prevent hanging.
+            # No outer timeout — it was discarding valid partial results when the
+            # thread pool was saturated by concurrent batch evaluations.
+            return await self._perform_async_evaluation(signals, evidence, html_content, url, crawl_data, html_path)
             
         except Exception as e:
             self.logger.error(f"Async evaluation failed: {e}")
@@ -277,7 +269,7 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
         
         # Execute all fast components in parallel
         fast_async_results = await asyncio.gather(*[
-            asyncio.wait_for(task[1], timeout=20.0) for task in fast_tasks  # Extended fast timeout
+            asyncio.wait_for(task[1], timeout=60.0) for task in fast_tasks  # Allow for thread pool queuing in batches
         ], return_exceptions=True)
         
         # Execute fast sync tasks in parallel
@@ -410,7 +402,10 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             if url and self._is_valid_url(url):
                 # Use WebDriver pool for better performance
                 async with self.webdriver_pool.get_driver() as driver:
-                    return await self._run_axe_evaluation_async(driver, url, audit_trail)
+                    # Run entire browser evaluation in executor — all Selenium calls are synchronous
+                    return await asyncio.get_event_loop().run_in_executor(
+                        self.executor, self._run_axe_evaluation_sync, driver, url, audit_trail
+                    )
             else:
                 # Fallback to static analysis
                 return await asyncio.get_event_loop().run_in_executor(
@@ -422,11 +417,11 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             audit_trail['error'] = str(e)
             return 0.0, audit_trail
     
-    async def _run_axe_evaluation_async(self, driver: webdriver.Chrome, url: str, audit_trail: Dict) -> Tuple[float, Dict]:
-        """Async axe evaluation with performance optimizations and robust error handling."""
+    def _run_axe_evaluation_sync(self, driver: webdriver.Chrome, url: str, audit_trail: Dict) -> Tuple[float, Dict]:
+        """Synchronous axe evaluation — runs in thread pool to avoid blocking event loop."""
         try:
             # Navigate to URL with timeout
-            driver.set_page_load_timeout(15)  # Set page load timeout to prevent hanging
+            driver.set_page_load_timeout(15)
             driver.get(url)
             
             # Wait for DOM ready with shorter timeout
@@ -456,7 +451,6 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             except Exception as axe_error:
                 self.logger.warning(f"[WARN] Axe browser evaluation failed, falling back to static analysis: {axe_error}")
                 audit_trail['axe_fallback_reason'] = str(axe_error)
-                # Return fallback static score instead of failing completely
                 return 75.0, audit_trail
             
             # Quick scoring calculation with per-rule caps
@@ -475,7 +469,7 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             audit_trail.update({
                 'violations_count': len(violations),
                 'passes_count': len(results.get('passes', [])),
-                'violations': violations[:5] if violations else [],  # Reduced for performance
+                'violations': violations[:5] if violations else [],
                 'evaluation_method': 'Pooled WebDriver + axe-core'
             })
             
@@ -485,21 +479,8 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             # Fallback to static analysis instead of failing
             self.logger.warning(f"Axe evaluation failed, using static analysis: {e}")
             audit_trail['axe_fallback_reason'] = str(e)
-            
-            # Run static analysis in executor to avoid blocking
-            from bs4 import BeautifulSoup
-            soup = BeautifulSoup(await self._get_page_source_async(driver), 'html.parser')
-            
-            score = 70.0  # Basic fallback score
             audit_trail['evaluation_method'] = 'Static analysis fallback (axe failed)'
-            
-            return score, audit_trail
-    
-    async def _get_page_source_async(self, driver: webdriver.Chrome) -> str:
-        """Get page source asynchronously."""
-        return await asyncio.get_event_loop().run_in_executor(
-            self.executor, lambda: driver.page_source
-        )
+            return 70.0, audit_trail
     
     def _evaluate_semantic_html_sync(self, html_content: str, signals: Dict) -> Tuple[float, Dict]:
         """Synchronous semantic HTML evaluation (optimized for threading)."""
@@ -521,15 +502,11 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
                                                      crawl_data: Optional[Dict]) -> Tuple[float, Dict]:
         """Async version of enhanced HTTP compliance with redirect efficiency."""
         try:
-            # Create a sync evaluator and call the enhanced method
-            from .access_gate_evaluator import AccessGateEvaluator
-            evaluator = AccessGateEvaluator()
-            
-            # Run the enhanced HTTP compliance in executor to avoid blocking
+            # Run the inherited method in executor to avoid blocking
             loop = asyncio.get_event_loop()
             result = await loop.run_in_executor(
                 self.executor, 
-                evaluator._evaluate_http_compliance_enhanced,
+                self._evaluate_http_compliance_enhanced,
                 html_content, url, crawl_data
             )
             return result
