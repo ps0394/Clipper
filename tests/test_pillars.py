@@ -63,6 +63,57 @@ def test_structured_data_ordering(score_fixture):
 
 
 # ---------------------------------------------------------------------------
+# Phase 4.1 — JSON-LD field completeness (per-type)
+# ---------------------------------------------------------------------------
+
+
+def test_faq_incomplete_scores_below_complete(score_fixture):
+    """Exit criterion for Phase 4.1: an incomplete FAQPage (empty
+    mainEntity) scores below a complete one."""
+    complete = score_fixture("structured_data_faq_complete.html").component_scores["structured_data"]
+    incomplete = score_fixture("structured_data_faq_incomplete.html").component_scores["structured_data"]
+    assert complete > incomplete, (
+        f"FAQ completeness signal missing: complete={complete}, incomplete={incomplete}"
+    )
+    # The difference should be meaningful, not a rounding artifact.
+    assert complete - incomplete >= 10, (
+        f"FAQ completeness delta too small: complete={complete}, incomplete={incomplete}"
+    )
+
+
+def test_faq_incomplete_logs_missing_mainentity(score_fixture):
+    """Incomplete FAQPage must surface mainEntity in the audit trail's
+    invalid-fields list so operators can diagnose the gap."""
+    result = score_fixture("structured_data_faq_incomplete.html")
+    detail = result.audit_trail["structured_data"]["field_completeness_detail"]
+    all_missing = [f for m in detail["missing_fields"] for f in m["fields"]]
+    all_invalid = [f for m in detail["invalid_fields"] for f in m["fields"]]
+    assert "mainEntity" in (all_missing + all_invalid), (
+        f"mainEntity not flagged: missing={all_missing}, invalid={all_invalid}"
+    )
+
+
+def test_howto_complete_scores_high(score_fixture):
+    result = score_fixture("structured_data_howto_complete.html")
+    assert result.component_scores["structured_data"] >= 60.0
+
+
+def test_howto_validated_item_in_audit(score_fixture):
+    result = score_fixture("structured_data_howto_complete.html")
+    detail = result.audit_trail["structured_data"]["field_completeness_detail"]
+    types = [item["type"] for item in detail["validated_items"]]
+    assert "HowTo" in types
+
+
+def test_article_validated_item_in_audit(score_fixture):
+    result = score_fixture("structured_data_complete.html")
+    detail = result.audit_trail["structured_data"]["field_completeness_detail"]
+    types = [item["type"] for item in detail["validated_items"]]
+    assert "Article" in types
+    assert "BreadcrumbList" in types
+
+
+# ---------------------------------------------------------------------------
 # Metadata completeness (Dublin Core / OpenGraph / Schema.org)
 # ---------------------------------------------------------------------------
 
@@ -179,6 +230,9 @@ def test_robots_noindex_flagged_in_audit(score_fixture):
         "semantic_html_bad.html",
         "structured_data_complete.html",
         "structured_data_missing.html",
+        "structured_data_faq_complete.html",
+        "structured_data_faq_incomplete.html",
+        "structured_data_howto_complete.html",
         "metadata_full.html",
         "metadata_empty.html",
         "agent_hints_markdown.html",

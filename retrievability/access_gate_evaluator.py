@@ -51,6 +51,69 @@ class PillarEvaluationError(Exception):
         self.reason = reason
 
 
+# Phase 4.1 — per-type field expectations for JSON-LD completeness scoring.
+# Only the four @type values actually observed in current corpora are
+# validated. Other types still count for presence (type_appropriateness /
+# multiple_formats sub-signals) but do not contribute to field completeness.
+_JSON_LD_TYPE_EXPECTATIONS: Dict[str, Dict[str, List[str]]] = {
+    'Article': {
+        'required': ['headline', 'datePublished'],
+        'recommended': ['author', 'dateModified', 'description', 'publisher'],
+    },
+    'FAQPage': {
+        # 'mainEntity' is treated specially: it must be a non-empty list of
+        # Question items with acceptedAnswer. See _validate_jsonld_field.
+        'required': ['mainEntity'],
+        'recommended': [],
+    },
+    'HowTo': {
+        'required': ['name', 'step'],
+        'recommended': ['description', 'totalTime'],
+    },
+    'BreadcrumbList': {
+        # 'itemListElement' must contain >=2 valid items. See
+        # _validate_jsonld_field.
+        'required': ['itemListElement'],
+        'recommended': [],
+    },
+}
+
+
+def _validate_jsonld_field(field: str, value: Any, schema_type: str) -> bool:
+    """Return True if ``value`` is a valid population of ``field`` for
+    ``schema_type``. Handles the structural rules called out in the
+    improvement plan §4.1 (non-empty FAQ mainEntity, BreadcrumbList
+    itemListElement with >=2 items, non-empty HowTo steps).
+    """
+    if value in (None, '', [], {}):
+        return False
+
+    if schema_type == 'FAQPage' and field == 'mainEntity':
+        if not isinstance(value, list) or not value:
+            return False
+        # Each entry should look like a Question with an acceptedAnswer.
+        valid_qa = 0
+        for entry in value:
+            if not isinstance(entry, dict):
+                continue
+            answer = entry.get('acceptedAnswer')
+            if answer:
+                valid_qa += 1
+        return valid_qa > 0
+
+    if schema_type == 'BreadcrumbList' and field == 'itemListElement':
+        if not isinstance(value, list):
+            return False
+        return len(value) >= 2
+
+    if schema_type == 'HowTo' and field == 'step':
+        if isinstance(value, list):
+            return len(value) > 0
+        return bool(value)
+
+    return True
+
+
 class AccessGateEvaluator:
     """Clipper Standards-Based Access Gate Evaluator.
     
@@ -501,7 +564,7 @@ class AccessGateEvaluator:
             'standard': 'Schema.org (Google/Microsoft/Yahoo)',
             'method': 'Structured data quality and completeness validation',
             'formats_found': [],
-            'score_calculation': 'Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)'
+            'score_calculation': 'Type appropriateness (20) + Field completeness per-type (30) + Multiple formats (20) + Schema validation (30)'
         }
         
         try:
@@ -544,20 +607,113 @@ class AccessGateEvaluator:
                 type_score = min((matched / max(len(schema_types), 1)) * 20, 20)
             score_components['type_appropriateness'] = type_score
             
-            # 2. Field completeness (0-30 points)
-            # Does JSON-LD include key fields?
-            key_fields = ['name', 'description', 'dateModified', 'author', 'publisher',
-                         'headline', 'datePublished', 'image', 'url']
-            fields_found = set()
-            for item in json_ld_data:
-                if isinstance(item, dict):
-                    for field in key_fields:
-                        if item.get(field):
-                            fields_found.add(field)
-            
-            if key_fields:
+            # 2. Field completeness (0-30 points) — Phase 4.1
+            # Per-type field expectations for the four validated @type values.
+            # Items of other types fall back to the legacy generic-field check
+            # so pages with exotic schemas aren't over-penalized.
+            field_completeness_audit: Dict = {
+                'method': 'per-type field completeness (Phase 4.1)',
+                'validated_items': [],
+                'unvalidated_items': 0,
+                'missing_fields': [],
+                'invalid_fields': [],
+            }
+
+            validated_ratios: List[float] = []
+            unvalidated_items = 0
+
+            for idx, item in enumerate(json_ld_data):
+                if not isinstance(item, dict):
+                    continue
+                raw_type = item.get('@type', '')
+                if isinstance(raw_type, list):
+                    item_types = [t for t in raw_type if isinstance(t, str)]
+                else:
+                    item_types = [raw_type] if isinstance(raw_type, str) else []
+
+                validated_type = next(
+                    (t for t in item_types if t in _JSON_LD_TYPE_EXPECTATIONS),
+                    None,
+                )
+
+                if validated_type is None:
+                    unvalidated_items += 1
+                    continue
+
+                expectations = _JSON_LD_TYPE_EXPECTATIONS[validated_type]
+                required = expectations['required']
+                recommended = expectations['recommended']
+                expected_total = len(required) + len(recommended)
+
+                present_required = 0
+                present_recommended = 0
+                item_missing: List[str] = []
+                item_invalid: List[str] = []
+
+                for field in required:
+                    value = item.get(field)
+                    if value in (None, '', [], {}):
+                        item_missing.append(field)
+                        continue
+                    if _validate_jsonld_field(field, value, validated_type):
+                        present_required += 1
+                    else:
+                        item_invalid.append(field)
+
+                for field in recommended:
+                    value = item.get(field)
+                    if value in (None, '', [], {}):
+                        item_missing.append(field)
+                        continue
+                    present_recommended += 1
+
+                item_ratio = (
+                    (present_required + present_recommended) / expected_total
+                    if expected_total > 0 else 0.0
+                )
+                validated_ratios.append(item_ratio)
+
+                field_completeness_audit['validated_items'].append({
+                    'index': idx,
+                    'type': validated_type,
+                    'present': present_required + present_recommended,
+                    'expected': expected_total,
+                    'ratio': round(item_ratio, 3),
+                    'missing': item_missing,
+                    'invalid': item_invalid,
+                })
+                if item_missing:
+                    field_completeness_audit['missing_fields'].append({
+                        'type': validated_type,
+                        'fields': item_missing,
+                    })
+                if item_invalid:
+                    field_completeness_audit['invalid_fields'].append({
+                        'type': validated_type,
+                        'fields': item_invalid,
+                    })
+
+            field_completeness_audit['unvalidated_items'] = unvalidated_items
+
+            if validated_ratios:
+                avg_ratio = sum(validated_ratios) / len(validated_ratios)
+                score_components['field_completeness'] = min(30.0, 30.0 * avg_ratio)
+                field_completeness_audit['average_ratio'] = round(avg_ratio, 3)
+            elif json_ld_data:
+                # Fallback for JSON-LD with no validated types: partial credit
+                # based on generic key-field presence (legacy behavior).
+                key_fields = ['name', 'description', 'dateModified', 'author',
+                              'publisher', 'headline', 'datePublished', 'image', 'url']
+                fields_found: set = set()
+                for item in json_ld_data:
+                    if isinstance(item, dict):
+                        for field in key_fields:
+                            if item.get(field):
+                                fields_found.add(field)
                 completeness_ratio = len(fields_found) / len(key_fields)
                 score_components['field_completeness'] = completeness_ratio * 30
+                field_completeness_audit['fallback'] = 'generic key-field check (no validated @type)'
+                field_completeness_audit['fallback_fields_found'] = sorted(fields_found)
             else:
                 score_components['field_completeness'] = 0
             
@@ -622,7 +778,7 @@ class AccessGateEvaluator:
                     'microformat_items': len(microformat)
                 },
                 'schema_types_found': schema_types,
-                'key_fields_found': list(fields_found),
+                'field_completeness_detail': field_completeness_audit,
                 'formats_present': formats_present,
                 'score_breakdown': score_components,
                 'sample_structured_data': self._sample_structured_data(metadata)

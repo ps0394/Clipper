@@ -102,9 +102,36 @@ Evaluates Schema.org structured data quality using the extruct library.
 | Sub-signal | Max Points | What it measures |
 |---|---|---|
 | **Type Appropriateness** | 20 | Does `@type` match recognized content types (Article, WebPage, HowTo, etc.)? |
-| **Field Completeness** | 30 | Does JSON-LD include `name`, `dateModified`, `author`, `description`, etc.? |
+| **Field Completeness** | 30 | Per-type required + recommended fields for the four validated `@type` values (see below). |
 | **Multiple Formats** | 20 | Are JSON-LD, OpenGraph, and microdata all present? (1 format = 5, 2 = 12, 3 = 17, 4 = 20) |
 | **Schema Validation** | 30 | Are required properties present for the declared Schema.org type? |
+
+#### Field Completeness — per-type expectations (Phase 4.1)
+
+Field Completeness is computed per JSON-LD item. For each item whose
+`@type` is one of the four validated values, Clipper counts required +
+recommended fields present and divides by the total expected:
+
+```
+item_ratio        = (present_required + present_recommended) / (required + recommended)
+field_completeness = min(30, 30 × average(item_ratio over validated items))
+```
+
+| `@type` | Required | Recommended |
+|---|---|---|
+| `Article` | `headline`, `datePublished` | `author`, `dateModified`, `description`, `publisher` |
+| `FAQPage` | `mainEntity` (non-empty list of `Question` entries with `acceptedAnswer`) | — |
+| `HowTo` | `name`, `step` (non-empty list) | `description`, `totalTime` |
+| `BreadcrumbList` | `itemListElement` (list with ≥2 items) | — |
+
+Items of other `@type` values still count toward **Type Appropriateness**
+and **Multiple Formats** but fall through to a generic key-field check
+for Field Completeness so exotic schemas are not over-penalized.
+
+Missing and structurally invalid fields (e.g. an empty `mainEntity`) are
+logged in `audit_trail.structured_data.field_completeness_detail` with
+the offending `@type` and field names — an incomplete `FAQPage` now
+scores below a complete one and the audit trail explains why.
 
 ### 4. DOM Navigability (15%)
 

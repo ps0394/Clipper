@@ -240,7 +240,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 4.1 JSON-LD field completeness (original Issue #5, scoped down)
 
-**Status:** Not started.
+**Status:** Completed (commit `<pending>`, 2026-04-22).
 
 **Why:** Today structured_data awards points for presence, not quality. A JSON-LD block with just `@type: Article` scores the same as one with all required Article fields.
 
@@ -363,7 +363,7 @@ Clipper's value is measurement, not discovery. A search-API integration adds mai
 | 1.2 | Extraction preview | #4 | P1 | 1 | Completed |
 | 2.1 | Template consistency | #6 | P0 | 1–2 | Completed |
 | 3.1 | Rendering-mode dimension | #1 + #2 (merged) | P1 | 3–4 | Completed |
-| 4.1 | JSON-LD field completeness | #5 | P2 | 1 | Not started |
+| 4.1 | JSON-LD field completeness | #5 | P2 | 1 | Completed |
 | 4.2 | Storage abstraction | #8 (subsumed) | P2 | 1 | Not started |
 | 5 | Azure migration | see audit | P2 | ~8–12 code sessions + human deployment work | Not started |
 | 6.1 | LLM ground-truth | #9 | P2 (strategic) | 2–3 to scaffold; research time on top | Not started |
