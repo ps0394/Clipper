@@ -11,10 +11,55 @@ from pathlib import Path
 
 
 def dispatch(args: argparse.Namespace) -> int:
-    if getattr(args, "phase5_command", None) in (None, "status"):
+    cmd = getattr(args, "phase5_command", None)
+    if cmd in (None, "status"):
         return _status(check=getattr(args, "check", False))
+    if cmd == "pilot":
+        return _pilot(args)
     print(f"Unknown phase5 subcommand: {args.phase5_command}")
     return 2
+
+
+def _pilot(args: argparse.Namespace) -> int:
+    from .clients import FoundryConfig
+    from .runner import load_pilot_urls, run_pilot
+
+    config = FoundryConfig.from_env()
+    missing = config.check()
+    if missing:
+        print(f"[!] Cannot run pilot — missing env vars: {', '.join(missing)}")
+        print(f"    Copy .env.example to .env and fill in values.")
+        return 1
+
+    urls_path = Path(args.urls_file)
+    if not urls_path.is_file():
+        print(f"URL file not found: {urls_path}")
+        return 1
+    urls = load_pilot_urls(urls_path)
+    if not urls:
+        print(f"No URLs found in {urls_path}")
+        return 1
+    print(f"Pilot: {len(urls)} URL(s) from {urls_path}")
+
+    summaries = run_pilot(
+        urls=urls,
+        out_dir=Path(args.out),
+        config=config,
+        review=bool(args.review),
+        reviewer_id=args.reviewer_id,
+        use_secondary=bool(args.secondary_scorer),
+    )
+
+    print()
+    print("Pilot summary")
+    print("-" * 40)
+    for s in summaries:
+        print(f"  {s.accuracy:>5.0%}  {s.num_pairs} pairs  {s.slug}")
+    if summaries:
+        mean = sum(s.accuracy for s in summaries) / len(summaries)
+        print(f"  mean accuracy: {mean:.0%}")
+    print(f"  results: {args.out}/pilot-summary.json")
+    return 0
 
 
 def _status(*, check: bool = False) -> int:

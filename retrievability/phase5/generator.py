@@ -45,12 +45,20 @@ def build_generator_prompt(
 def parse_generator_output(raw: str) -> List[QAPair]:
     """Parse the JSON-array response from the generator into QAPair objects.
 
-    Tolerates leading/trailing whitespace. Does not tolerate code-block
-    wrappers — the prompt explicitly instructs the model not to use them,
-    and if the model ignores that, we want the parse to fail loudly so
-    the reviewer sees it.
+    Tolerates leading/trailing whitespace and a surrounding ```json ... ```
+    fence. Mistral Large 3 wraps its output in a code block despite the
+    prompt instruction to the contrary; stripping is cheaper than
+    failing and re-prompting.
     """
-    data = json.loads(raw.strip())
+    s = raw.strip()
+    if s.startswith("```"):
+        # drop opening fence (``` or ```json) and closing fence
+        first_newline = s.find("\n")
+        if first_newline != -1:
+            s = s[first_newline + 1 :]
+        if s.rstrip().endswith("```"):
+            s = s.rstrip()[: -3].rstrip()
+    data = json.loads(s)
     if not isinstance(data, list):
         raise ValueError("Generator output is not a JSON array")
     pairs: List[QAPair] = []

@@ -230,6 +230,34 @@ def main():
         action='store_true',
         help='Ping each configured Foundry deployment to verify credentials + connectivity',
     )
+    phase5_pilot_parser = phase5_sub.add_parser(
+        'pilot',
+        help='Run the N=5 pilot: fetch -> generate -> review -> score -> grade',
+    )
+    phase5_pilot_parser.add_argument(
+        'urls_file',
+        help='Text file of URLs to pilot (one per line; optional tab-separated profile)',
+    )
+    phase5_pilot_parser.add_argument(
+        '--out',
+        required=True,
+        help='Output directory for pilot results',
+    )
+    phase5_pilot_parser.add_argument(
+        '--review',
+        action='store_true',
+        help='Interactively review generated Q/A pairs (default: auto-accept)',
+    )
+    phase5_pilot_parser.add_argument(
+        '--reviewer-id',
+        default='auto',
+        help='Reviewer identifier recorded in review.json',
+    )
+    phase5_pilot_parser.add_argument(
+        '--secondary-scorer',
+        action='store_true',
+        help='Also run the secondary scorer (Llama) for cross-LLM agreement check',
+    )
 
     args = parser.parse_args()
     

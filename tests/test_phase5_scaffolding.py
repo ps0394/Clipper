@@ -138,6 +138,16 @@ def test_parse_generator_output_not_array_raises():
         generator.parse_generator_output(json.dumps({"question": "q"}))
 
 
+def test_parse_generator_output_strips_code_fence():
+    # Mistral Large 3 wraps JSON in a ```json fence despite the prompt.
+    payload = json.dumps(
+        [{"question": "q", "answer": "a", "supporting_sentences": []}]
+    )
+    raw = f"```json\n{payload}\n```"
+    pairs = generator.parse_generator_output(raw)
+    assert len(pairs) == 1 and pairs[0].answer == "a"
+
+
 def test_build_generator_prompt_substitutes():
     p = generator.build_generator_prompt(
         title="T", url="https://example.com", profile="reference", document_text="DOC"

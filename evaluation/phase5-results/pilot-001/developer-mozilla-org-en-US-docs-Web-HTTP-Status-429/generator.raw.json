@@ -1,0 +1,39 @@
+```json
+[
+    {
+        "question": "What does the HTTP 429 status code indicate?",
+        "answer": "The HTTP 429 Too Many Requests client error response status code indicates the client has sent too many requests in a given amount of time.",
+        "supporting_sentences": [
+            "The HTTP 429 Too Many Requests client error response status code indicates the client has sent too many requests in a given amount of time."
+        ]
+    },
+    {
+        "question": "What is the common term for the mechanism that asks a client to slow down the rate of requests?",
+        "answer": "The common term for this mechanism is 'rate limiting'.",
+        "supporting_sentences": [
+            "This mechanism of asking the client to slow down the rate of requests is commonly called \"rate limiting\"."
+        ]
+    },
+    {
+        "question": "What header might be included in a 429 response to suggest how long a client should wait before retrying?",
+        "answer": "A Retry-After header may be included in a 429 response.",
+        "supporting_sentences": [
+            "A Retry-After header may be included to this response to indicate how long a client should wait before making the request again."
+        ]
+    },
+    {
+        "question": "What are some factors that can influence how rate-limiting restrictions are applied?",
+        "answer": "Rate-limiting restrictions may be based on a client's IP, specific to users, or authorized applications if requests are authenticated or contain a cookie.",
+        "supporting_sentences": [
+            "Typically, rate-limiting restrictions are based on a client's IP but can be specific to users or authorized applications if requests are authenticated or contain a cookie."
+        ]
+    },
+    {
+        "question": "Do rate-limiting implementations apply uniformly across an entire server or can they vary by resource?",
+        "answer": "Implementations of rate limiting vary; restrictions may be server-wide or per resource.",
+        "supporting_sentences": [
+            "Implementations of rate limiting vary; restrictions may be server-wide or per resource."
+        ]
+    }
+]
+```
