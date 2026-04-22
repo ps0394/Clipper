@@ -240,7 +240,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 4.1 JSON-LD field completeness (original Issue #5, scoped down)
 
-**Status:** Completed (commit `<pending>`, 2026-04-22).
+**Status:** Completed (commit `c366d60`, 2026-04-22).
 
 **Why:** Today structured_data awards points for presence, not quality. A JSON-LD block with just `@type: Article` scores the same as one with all required Article fields.
 
