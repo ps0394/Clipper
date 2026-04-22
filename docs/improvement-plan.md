@@ -18,8 +18,10 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 2. **Model correctness before model tuning.** Content-type profiles (#3) fix a category error; extractability previews (#4) refine a number. The category error comes first.
 3. **Usability with scale.** Template consistency (#6) transforms the report from unreadable to useful, which matters as the corpus grows.
 4. **Agent-model alignment.** The no-JS dimension (#1+#2 merged) fixes the biggest real-world accuracy gap, but only after the model itself is sensible.
-5. **Refinement and future-proofing.** JSON-LD validation, Azure migration stubs, LLM ground-truth.
-6. **Rejected.** Competitive auto-discovery (#7) is not scoped in.
+5. **Refinement.** JSON-LD field completeness (#5), storage abstraction (#8), and classifier lockdown close remaining integrity gaps before anything empirical.
+6. **Empirical validation.** LLM ground-truth (#9) is the only direct measurement in the plan — gated behind classifier lockdown so correlations are interpretable.
+7. **Deployment** is deferred to last. Azure migration has no current consumer and no dependency blocking it from the empirical work.
+8. **Rejected.** Competitive auto-discovery (#7) is not scoped in.
 
 ---
 
@@ -289,58 +291,149 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 **Exit criterion:** `clipper history <url>` works against local JSON result files. The storage abstraction is in place for Phase 5 to drop in Azure implementations.
 
-**Docs updates:** `README.md` and `USER-INSTRUCTIONS.md` document the new `history` command with examples. `docs/` gets a short `storage.md` describing the `StorageBackend` protocol so Phase 5 has a clear extension point.
+**Docs updates:** `README.md` and `USER-INSTRUCTIONS.md` document the new `history` command with examples. `docs/` gets a short `storage.md` describing the `StorageBackend` protocol so the Azure migration phase has a clear extension point.
 
 **Est. effort:** 1 session.
 
 ---
 
-## Phase 5 — Azure migration
+### 4.3 Content-type detector lockdown test
 
 **Status:** Not started.
 
-See [`docs/engineering-audit.md`](engineering-audit.md) Section 5.4 for the full migration plan. At this point in the sequence, the prerequisites from that plan are already done:
+**Why:** The content-type classifier in `retrievability/profiles.py` silently shapes every headline score via `PROFILE_WEIGHTS`. A classification shift (article → landing, tutorial → reference) changes weights and therefore `parseability_score`. Today the classifier has zero test coverage against real corpora. That is the single largest hidden dependency in the scoring system and the most likely source of unexplained score drift between runs.
+
+Phase 3.1's Profile Impact report surfaces the *effect* of a classification, but nothing asserts the *classification itself* is stable. This phase converts that silent dependency into an asserted contract.
+
+**Scope:**
+
+1. Build a golden classifications file from the existing multi-URL corpora:
+   - Start with the `evaluation/learn-analysis-v3/` and `evaluation/competitive-analysis-v3/` snapshot directories (these have real captured HTML).
+   - Script generates `tests/fixtures/classifier_corpus_golden.json` mapping each URL → detected `(profile, detection_source, matched_value)` tuple.
+   - The golden file is hand-reviewed and committed. Mis-classifications discovered during review are fixed in `profiles.py` before the lock lands.
+
+2. New test `tests/test_classifier_lockdown.py`:
+   - For each URL in the golden file, parse the snapshot, run `detect_content_type`, assert the result matches the recorded `(profile, source)` pair.
+   - Test is offline — reads from committed snapshots, no network calls.
+   - Failures point at the exact URL + which signal (`ms_topic` / `schema_type` / `url` / `dom` / `default`) changed.
+
+3. No classifier behavior changes in this phase unless review of the golden file reveals clear bugs. The purpose is to lock current behavior, not tune it.
+
+**Exit criterion:** Running the classifier against the captured corpora produces the same profile assignments on every CI run. A behavior change in `profiles.py` causes a test failure that names the affected URL and signal.
+
+**Docs updates:** `docs/scoring.md` content-type section gains a short note that detector behavior is locked by a corpus test, with a pointer to `tests/test_classifier_lockdown.py`. `docs/testing.md` documents the golden-file regeneration workflow (`pytest --update-classifier-golden` or equivalent) so corpus refreshes are deliberate and reviewed.
+
+**Dependencies:** Phase 1.1 (the classifier and profile table must exist).
+
+**Prerequisite for:** Phase 5 (LLM validation). Correlation analysis across structural pillars and LLM behavior is meaningless if the pillar weights themselves are moving under you. Lock the classifier first, then correlate.
+
+**Est. effort:** 1 session — small amount of golden-file generation code, hand review, one test file.
+
+---
+
+## Phase 5 — LLM ground-truth validation
+
+**Reordered note (2026-04-22):** This was previously Phase 6. Swapped with the Azure migration phase because (a) it has a real consumer — empirical weight calibration — while the migration does not yet, and (b) LLM validation only requires an inference endpoint, not a deployed service. The old "6 depends on 5" coupling was false.
+
+### 5.1 LLM retrievability evaluator (original Issue #9)
+
+**Status:** Not started.
+
+**Why:** Every other item in this plan is proxy measurement — structural signals that *should* correlate with agent retrievability. This is the only item that measures it directly. If the structural-to-LLM correlation turns out to be weak, the whole pillar-weight debate changes. Correlation analysis, not composite scoring, is the deliverable; the LLM score is an instrument, not a verdict.
+
+**Design principles (learned from the external proposal review):**
+
+- LLM-as-judge is **not ground truth** — it's another heuristic wearing LLM clothing. Self-preference bias, verbosity bias, and run-to-run instability are all real. Mitigations are mandatory, not optional.
+- Report **three axes separately** (grounding, completeness, unsupported-claim rate). Do not collapse them into a hand-picked weighted composite. Let correlation analysis decide whether a composite is justified.
+- **Extractability and retrievability are different measurements.** Running the LLM on the full extracted text measures *can the model answer when given everything*. Running it on top-k lexical chunks measures *can the model answer like a RAG agent does*. The gap between them is the RAG tax. Report both.
+- **Determinism is a gate, not a nice-to-have.** `temperature=0`, pinned model versions, `seed` parameter where supported. A 5-run variance check must land before any correlation conclusion is drawn.
+
+**Scope:**
+
+1. Schema:
+   - `ScoreResult` gains `llm_retrievability: Optional[LLMRetrievabilityResult]` field, default `None` until this phase ships.
+   - New `LLMRetrievabilityResult` dataclass with per-prompt rows (grounding, completeness, unsupported-claim rate, answer text, judge reasoning) plus aggregate means and a `run_variance` field from the stability check.
+
+2. New module `retrievability/llm_retrievability_evaluator.py`:
+   - Generates prompts from templated, content-type-specific sets (FAQ → "What is X?", tutorial → "How do I do X?", reference → "What does parameter X do?"). **No LLM-generated prompts** at this phase — templates only, to keep the prompt distribution constant across runs.
+   - Runs two measurements per URL:
+     - **Extractability path:** full extracted text → answer LLM → judge LLM.
+     - **Retrievability path:** chunk the extracted text (fixed size, configurable overlap), lexical top-k retrieval against prompt, retrieved chunks → answer LLM → judge LLM.
+   - Graders return JSON with the three axes, parsed strictly. Malformed judge output is logged and the prompt is retried once, then skipped with an explicit marker.
+
+3. LLM client abstraction:
+   - Single `LLMClient` class that wraps an OpenAI-compatible interface.
+   - Config via env vars. Supports two backends day-one:
+     - **GitHub Models** (`OPENAI_BASE_URL=https://models.github.ai/inference`, auth via GitHub PAT). Default for prototyping — zero infra setup, free at Copilot Enterprise tier.
+     - **Azure OpenAI** (endpoint + key + deployment name). Recommended for reproducible/customer-facing runs.
+   - **Recommended models:** `gpt-4o-mini` for answer generation, `gpt-4o` (or `gpt-4.1`) for the judge. Judge must be at least as strong as the generator to reduce self-preference bias. Mini-on-mini is cheaper but produces weaker grading signal; document the tradeoff.
+   - `temperature=0`, fixed `seed`, max-tokens ceilings for both roles.
+
+4. CLI:
+   - New flag `--llm-validate` on `express` and `score`. Disabled by default.
+   - Additional flags: `--llm-model-answer`, `--llm-model-judge`, `--llm-cost-ceiling <dollars>`. Abort with clear error if projected cost exceeds ceiling (unless `--confirm-cost` is passed).
+   - Results caching keyed on `(url, content_hash, answer_model, judge_model, prompt_version)`. A rerun on unchanged content with unchanged models is free.
+
+5. Human calibration checkpoint (**mandatory gate**):
+   - Hand-grade 20–30 URLs spanning all six content-type profiles.
+   - Judge LLM must achieve ≥80% agreement with human grading on each axis.
+   - If agreement is below threshold: stop, adjust prompts or switch judge model, re-measure. No correlation claims may be published until this gate passes.
+   - Calibration fixtures committed to `tests/fixtures/llm_calibration/` so the gate is re-runnable.
+
+6. Variance / stability check:
+   - Same URL, same config, 5 runs. Report standard deviation on each axis.
+   - If `σ > 5 points` on any axis, the system is too noisy to calibrate structural weights against. Phase blocks on reducing variance (stricter prompts, lower max-tokens, smaller chunks) before correlation analysis begins.
+
+7. Correlation analysis:
+   - Specified up front: **Spearman rank correlation** per structural pillar against each LLM axis, per content-type profile.
+   - Minimum sample size: **N ≥ 50 per content-type profile** before any correlation is reported in a published artifact. Below threshold, the script outputs the numbers with a clear `PROVISIONAL — N too small` banner.
+   - Output: `docs/scoring-calibration.md` with the correlation tables. If findings contradict current pillar weights, the document also lists proposed weight changes; actual weight changes are deferred to a follow-up phase.
+
+8. Report:
+   - New "LLM Validation" section in markdown report when `--llm-validate` was used.
+   - Per-URL: three axes for extractability path, three axes for retrievability path, the gap (extractability - retrievability = RAG tax).
+   - Per-prompt diagnostics: question, answer, judge reasoning, score per axis.
+
+**Constraints:**
+
+- Cost-conscious by default. Projected cost per URL at default models: ~$0.01–0.02 with `gpt-4o-mini` answer + `gpt-4o` judge.
+- 3 prompts per URL (content-type dependent templates).
+- 2 LLM calls per prompt (answer + judge) × 2 paths (extractability + retrievability) = 4 calls per prompt = 12 calls per URL.
+- Caching makes reruns free. First run of a 100-URL corpus is ~1200 calls.
+
+**Exit criteria (all must pass):**
+
+1. `clipper express <url> --llm-validate` produces an LLM result on any URL.
+2. Human calibration gate passes (≥80% agreement on 20–30 hand-graded URLs).
+3. Variance check passes (σ ≤ 5 on each axis across 5-run repeats).
+4. Correlation report generated on a corpus with N ≥ 50 per content-type profile, published as `docs/scoring-calibration.md`.
+
+**Docs updates:** `docs/scoring.md` gains an "LLM ground-truth validation" section covering the two-path methodology, the three axes, the calibration gate, and cost expectations. `README.md` documents `--llm-validate` + the credential requirement (GitHub PAT for GitHub Models OR Azure OpenAI credentials) and is explicit that structural scoring remains zero-API — LLM validation is an opt-in layer. `USER-INSTRUCTIONS.md` gets a "When to use `--llm-validate`" section.
+
+**Dependencies:** Phase 1.2 (extracted text is the input), Phase 4.3 (classifier lockdown — correlations against moving weights are worthless).
+
+**Est. effort:** 3–4 sessions to scaffold the evaluator, client abstraction, CLI flags, caching, and variance check. Calibration gate (hand-grading + iteration) is additional real-world time outside the session model. Correlation analysis itself is a research activity sized against available data, not sessions.
+
+---
+
+## Phase 6 — Azure migration
+
+**Reordered note (2026-04-22):** This was previously Phase 5. Demoted to Phase 6 because it has no current consumer — no operator, no SLA, no customer asking to run Clipper as a service. It stays in the plan as a future deliverable, not a next-up.
+
+**Status:** Not started.
+
+See [`docs/engineering-audit.md`](engineering-audit.md) Section 5.4 for the full migration plan. At this point in the sequence, the prerequisites from that plan are:
 
 - Test suite ✓ (Phase 0.1)
 - Failure modes handled ✓ (Phase 0.2)
 - Reproducibility captured ✓ (Phase 0.3)
-- Storage abstraction ✓ (Phase 4.2)
+- Storage abstraction — **not yet done** (Phase 4.2 remains Not started). Must land before this phase begins.
 
-The migration can proceed through Phases 1–6 of the audit plan without scoring-code changes.
+The migration can proceed through Phases 1–6 of the audit plan without scoring-code changes once 4.2 is complete.
 
 **Docs updates:** A new `docs/deployment.md` covers the Azure architecture, service responsibilities (Container Apps, Cosmos DB, Blob Storage, Key Vault), environment variables, and operational runbook. `README.md` gains a "Running Clipper as a service" section pointing at the deployment doc. The `StorageBackend` documentation from Phase 4.2 is extended with the Cosmos implementation contract.
 
 **Est. effort:** Not feasible through Copilot-assisted sessions alone. Requires an Azure subscription, infrastructure decisions, deployment pipelines, and live-system troubleshooting that sit outside this workflow. The code changes (Playwright swap, Cosmos/Blob backends, FastAPI wrapper, Dockerfile, OpenTelemetry instrumentation) can be authored here — call it ~8–12 sessions of code work — but the deployment, scaling tune, and hardening are human-driven.
-
----
-
-## Phase 6 — Ground-truth validation
-
-### 6.1 LLM extraction quality test (original Issue #9)
-
-**Status:** Not started.
-
-**Why:** Every other item in this plan is proxy measurement — structural signals that *should* correlate with agent retrievability. This is the only item that measures it directly. If the structural-to-LLM correlation turns out to be weak, the whole pillar-weight debate changes.
-
-**Deliberately deferred to Phase 6** because:
-- Requires an Azure OpenAI (or equivalent) deployment, cheapest after Phase 5.
-- Requires at least one full scoring run with historical data to correlate against.
-- Depends on Phase 0.1 tests to be confident scoring changes don't invalidate the LLM benchmark.
-
-**Scope:**
-
-1. `ScoreResult` gains an optional `llm_retrievability_score: Optional[float]` field. Default `None` until this phase ships.
-2. New worker class `LLMRetrievabilityEvaluator`:
-   - Sends the extracted text (from Phase 1.2) to a configured LLM with 2–3 standardized prompts per content type.
-   - Grades responses automatically: ROUGE-L against the page, fact-overlap against extracted entities, hallucination rate (claims in response with no substring match in source).
-3. Gated behind `--llm-validate` flag. Cost-conscious by default.
-4. Correlation study: once enough data exists, report per-pillar correlation coefficients against the LLM score. This is the only way to empirically tune pillar weights.
-
-**Exit criterion:** An LLM score is producible for any evaluated URL. A small correlation report validates (or doesn't) that the structural score predicts LLM performance.
-
-**Docs updates:** `docs/scoring.md` gains a "LLM ground-truth validation" section covering the prompt set, grading metrics (ROUGE-L, fact-overlap, hallucination rate), and cost expectations. `README.md` documents the `--llm-validate` flag with a caveat that it requires LLM credentials. If the correlation study changes pillar weights, publish the findings as `docs/scoring-calibration.md` and link it from the scoring doc.
-
-**Est. effort:** 2–3 sessions to scaffold the evaluator, prompts, and scoring metrics. The correlation study itself is a research activity, not a coding task — size it against available data, not sessions.
 
 ---
 
@@ -365,11 +458,12 @@ Clipper's value is measurement, not discovery. A search-API integration adds mai
 | 3.1 | Rendering-mode dimension | #1 + #2 (merged) | P1 | 3–4 | Completed |
 | 4.1 | JSON-LD field completeness | #5 | P2 | 1 | Completed |
 | 4.2 | Storage abstraction | #8 (subsumed) | P2 | 1 | Not started |
-| 5 | Azure migration | see audit | P2 | ~8–12 code sessions + human deployment work | Not started |
-| 6.1 | LLM ground-truth | #9 | P2 (strategic) | 2–3 to scaffold; research time on top | Not started |
+| 4.3 | Content-type detector lockdown | — (review) | P1 | 1 | Not started |
+| 5.1 | LLM ground-truth validation | #9 | P1 (strategic) | 3–4 to scaffold; calibration + research time on top | Not started |
+| 6 | Azure migration | see audit | P2 | ~8–12 code sessions + human deployment work | Not started |
 | — | Auto-discovery | #7 | Won't do | — | Rejected |
 
-**Phases 0–4 total: roughly 13–18 sessions.** That's the executable portion through this workflow. Phases 5 and 6 have code components I can author but cannot fully complete without infrastructure access and research time outside the session model.
+**Phases 0–4 total: roughly 14–19 sessions** (includes the new 4.3 lockdown test). That's the executable portion through this workflow. Phase 5 has code components I can author but depends on a human calibration gate that cannot be automated. Phase 6 has code I can author but cannot fully complete without infrastructure access.
 
 ---
 
@@ -377,5 +471,7 @@ Clipper's value is measurement, not discovery. A search-API integration adds mai
 
 - **Never ship a scoring change without a fixture test that exercises it.** This is the single rule that prevents this plan from producing another generation of drift.
 - **Preserve the `universal_score`** through Phase 1 onward so existing consumers and historical comparisons don't break.
-- **Azure migration (Phase 5) is a natural gate.** Everything before it should be doable in the CLI; everything from Phase 6 onward benefits from cloud resources. Don't attempt Phase 6 before Phase 5.
+- **Lock the classifier before correlating against it.** Phase 4.3 is a hard prerequisite for Phase 5 — correlations against weights that silently shift between runs are not evidence.
+- **LLM validation is an instrument, not a verdict.** The LLM score does not replace structural scoring; it calibrates it. Report the three axes separately, gate correlation claims on a human calibration set and a variance check, and never ship a pillar-weight change without a published `docs/scoring-calibration.md` that justifies it.
+- **Azure migration is a future deliverable, not a gate.** Nothing in Phases 1–5 depends on deploying Clipper as a service.
 - **Each phase should land as a PR with a CHANGELOG entry.** The repo doesn't have a CHANGELOG today; Phase 0 or Phase 1 is a good moment to start one.
