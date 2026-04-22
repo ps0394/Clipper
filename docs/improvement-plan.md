@@ -274,7 +274,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 4.2 Historical storage (original Issue #8, subsumed into Azure migration)
 
-**Status:** Completed (commit `<pending>`, 2026-04-22) — scoped down from the original plan. See "Scope" below.
+**Status:** Completed (commit `10645b5`, 2026-04-22) — scoped down from the original plan. See "Scope" below.
 
 **Why:** Trend analysis has real value, but the original plan — a `StorageBackend` protocol, a `LocalJSONStorage` wrapper, a `CosmosStorage` stub that raises `NotImplementedError`, and a new `docs/storage.md` — builds scaffolding for a second backend (Cosmos) that may never land. YAGNI.
 
