@@ -201,23 +201,29 @@ hand-grading cost bounded.
 
 ### Size
 
-**Minimum N = 30 pages** for the primary QA task, stratified by:
+**N = 60 pages** for the primary QA task (6 profiles × 10 pages),
+stratified by:
 
-- Content type (6 profiles × 5 pages = 30): one landing, one reference,
-  one sample, one FAQ, one tutorial, one article per vendor bucket.
+- Content type: 10 pages per profile across landing, reference, sample,
+  FAQ, tutorial, article. 10 pages per profile is the minimum for
+  per-profile Spearman ρ to have meaningful 95% CI width.
 - Vendor (Microsoft Learn, AWS Docs, Google Cloud Docs, Wikipedia, MDN,
-  Stripe): vendor diversity is important so findings don't reflect Learn
+  Stripe, and additional vendors as needed to fill profile × vendor
+  cells): vendor diversity matters so findings don't reflect Learn
   alone.
 
-**Ideal N = 60** (6 profiles × 10 pages). At N=30, per-profile power is
-thin (5 pages per profile) and we should report per-profile findings as
-"directional" rather than "significant."
+N=60 is chosen over N=30 because the honest-null framing in §2
+includes H0-profile ("per-profile LLM delta is not significant"). At
+N=30 (5 pages per profile) we cannot reject H0-profile with any power,
+so shipping N=30 would force us either to drop H0-profile from the
+null list or to publish a finding we can't falsify. N=60 keeps the
+hypothesis reachable. Cost implications are modest (see §8).
 
 ### Source
 
 The 22-URL `tests/fixtures/classifier_corpus_golden.json` is the base.
-Extend to 30–60 with additional hand-selected URLs that hit the profile
-× vendor cells that are currently empty. Commit a
+Extend to 60 with hand-selected URLs that fill the profile × vendor
+cells not yet covered. Commit a
 `evaluation/phase5-corpus/` directory with: URLs, captured HTML
 snapshots (for reproducibility), generator prompts and raw generator
 output, reviewer-approved questions and ground-truth answers, review
@@ -302,26 +308,30 @@ structural scoring model tracks what an LLM can actually do with a page.
 
 ## 8. Cost and timeline
 
-- **Question generation (LLM):** 30 pages through a cross-family
-  generator (Claude or equivalent). ~30 k input tokens × 30 pages ≈
-  under $5.
-- **Human review of generated Q/A:** ~2 min/page × 30 pages ≈ 1 hour
-  (2 hours at N=60). Reviewer edits, accepts, or rejects each pair;
-  regeneration handles rejections.
-- **Secondary review:** 20% × 30 = 6 pages re-reviewed by a second
+At the committed N=60 corpus size:
+
+- **Question generation (LLM):** 60 pages through Anthropic Claude.
+  ~30 k input tokens × 60 pages ≈ under $10.
+- **Human review of generated Q/A:** ~2 min/page × 60 pages ≈ 2 hours.
+  Reviewer edits, accepts, or rejects each pair; regeneration handles
+  rejections.
+- **Secondary review:** 20% × 60 = 12 pages re-reviewed by a second
   person for inter-rater κ on the accept/reject decision.
-- **Scoring-LLM costs (estimate):** 30 pages × 5 questions × 3 runs ×
-  2 LLMs = 900 inferences. At ~2 k tokens per inference (page text +
-  Q + A), that's ~1.8 M input tokens. GPT-4o input is currently <$0.01
-  per 1 k input tokens → under $20 for the primary run.
+- **Scoring-LLM costs (estimate):** 60 pages × 5 questions × 3 runs ×
+  2 LLMs = 1 800 inferences. At ~2 k tokens per inference (page text +
+  Q + A), that's ~3.6 M input tokens. GPT-4o input is currently <$0.01
+  per 1 k input tokens → under $40 for scoring. Open-weight secondary
+  adds infrastructure cost but no per-token cost if self-hosted.
+- **URL curation:** hand-selecting ~38 additional URLs (beyond the
+  22-URL golden corpus) to fill profile × vendor cells. ~1–2 hours.
 - **Code scaffolding:** generator prompt + runner, review UI (CLI is
   fine), scoring runner, grader harness, correlation analyzer, report
   generator. ~3–4 sessions.
-- **Calibration loop:** one pilot run on 5 pages — generate, review,
-  score, grade — to shake out the rubric before scaling to 30.
+- **Calibration loop:** pilot run on N=5 pages — generate, review,
+  score, grade — to shake out the rubric before scaling to N=60.
 
-Total: ~4–5 sessions of Copilot-assisted code + roughly 1–2 hours of
-human review. The critical path shifts from hand-authoring to reviewer
+Total: ~4–5 sessions of Copilot-assisted code + roughly 3–4 hours of
+human review and URL curation. The critical path shifts from hand-authoring to reviewer
 capacity, which is much cheaper but still gates the phase.
 
 ---
@@ -351,9 +361,9 @@ capacity, which is much cheaper but still gates the phase.
    Spearman ρ across the two to claim a result is about the pages
    rather than the primary model. Specific Llama variant chosen at
    pilot time based on infrastructure availability.
-2. **Corpus size:** N=30 or N=60? Marginal cost of 30 more pages is
-   ~1 more hour of review plus ~$20 additional LLM spend; roughly
-   doubles per-profile power.
+2. **Corpus size:** ~~N=30 or N=60?~~ **Resolved: N=60** (6 profiles
+   × 10 pages). Required to keep H0-profile reachable; see §5. Pilot
+   at N=5 before scaling to N=60.
 3. **Question generator:** ~~which non-OpenAI, non-Meta model is the
    generator?~~ **Resolved: Anthropic Claude.** Specific Claude model
    (Sonnet vs. Opus) and API access path still TBD at pilot time, but
@@ -377,7 +387,7 @@ questions in §10 are resolved. A `phase-5-design-approved` marker is
 added to `docs/improvement-plan.md` referencing the decisions made.
 
 **During implementation:** pilot run on N=5 pages, single LLM, one
-question per page. Review the output before scaling to N=30. If the
+question per page. Review the output before scaling to N=60. If the
 pilot reveals the rubric or prompt structure isn't working, revise the
 design doc rather than pushing through.
 
