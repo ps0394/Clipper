@@ -195,7 +195,15 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 3.1 Rendering-mode dimension (merged Issues #1 + #2)
 
-**Status:** Not started.
+**Status:** Completed (commit `<pending>`, 2026-04-22).
+
+**Implementation notes:**
+
+- `ScoreResult` gained a `render_mode: 'raw' | 'rendered'` field (default `'rendered'`). Evaluator signatures (`AccessGateEvaluator.evaluate_access_gate`, `PerformanceEvaluator.evaluate_access_gate_async`, `score_parse_results_fast`) accept `render_mode`; invalid values raise `ValueError`.
+- CLI gained `--render-mode raw|rendered|both` on both `express` and `score`. `both` produces two `ScoreResult` entries per URL.
+- `raw` mode forces the DOM Navigability pillar through static analysis (no browser, no axe). All other pillars run unchanged — they already operate on the raw server HTML snapshot.
+- Report gains a "Rendering-Mode Deltas" section (only when `render_mode='both'`) with a per-URL table, `[FLAG]` suffix when `|delta| >= 15`, and a per-page "Rendering Delta" line in the individual findings.
+- **Scoping decision documented in `docs/scoring.md`:** today's "rendered" mode is a hybrid — dom_navigability runs in a live browser (axe-core), text pillars score the server HTML. True JS-rendered text-pillar scoring is a follow-up. Static pages therefore show a small delta even when JS doesn't materially change text content; a large delta (≥15) is still a strong signal of JS-dependence.
 
 **Why:** Majority of agents (RAG crawlers, search indexers, API-based agents) don't render JavaScript. Clipper systematically overstates these pages' quality today. This is the biggest real-world accuracy gap.
 
@@ -354,7 +362,7 @@ Clipper's value is measurement, not discovery. A search-API integration adds mai
 | 1.1 | Content-type-aware profiles | #3 | P0 | 2–3 | Completed (`7faf198`) |
 | 1.2 | Extraction preview | #4 | P1 | 1 | Completed |
 | 2.1 | Template consistency | #6 | P0 | 1–2 | Completed |
-| 3.1 | Rendering-mode dimension | #1 + #2 (merged) | P1 | 3–4 | Not started |
+| 3.1 | Rendering-mode dimension | #1 + #2 (merged) | P1 | 3–4 | Completed |
 | 4.1 | JSON-LD field completeness | #5 | P2 | 1 | Not started |
 | 4.2 | Storage abstraction | #8 (subsumed) | P2 | 1 | Not started |
 | 5 | Azure migration | see audit | P2 | ~8–12 code sessions + human deployment work | Not started |

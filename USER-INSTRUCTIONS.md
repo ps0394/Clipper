@@ -74,6 +74,29 @@ python main.py express samples/urls.txt --out results/ --standard
 python main.py express samples/urls.txt --out results/ --benchmark
 ```
 
+**Rendering Mode (Phase 3.1):**
+```bash
+# Default: rendered (models JS-executing agents; current hybrid behavior)
+python main.py express samples/urls.txt --out results/
+
+# Raw: models non-JS agents (RAG crawlers, search indexers, API clients)
+python main.py express samples/urls.txt --out results/ --render-mode raw
+
+# Both: produces two ScoreResults per URL and a "Rendering-Mode Deltas"
+# section in the report. Pages with |rendered - raw| >= 15 are flagged
+# as JS-dependent.
+python main.py express samples/urls.txt --out results/ --render-mode both
+```
+
+Recommended defaults:
+- RAG crawlers / search indexers: `--render-mode raw`
+- Browser-based agents: `--render-mode rendered` (default)
+- Authoring audits / compliance reviews: `--render-mode both`
+
+When both modes are evaluated, treat `min(rendered, raw)` as the score
+of record (pessimistic default). See [docs/scoring.md](docs/scoring.md#rendering-modes)
+for the full explanation.
+
 **What Express Mode Does (2.2x Faster by Default):**
 1. 📄 Crawls URLs and captures HTML content (concurrent operations)
 2. 🔍 Parses content for structural signals (optimized parsing)

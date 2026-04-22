@@ -259,6 +259,53 @@ are populated only when the DOM navigability pillar actually ran
 axe-core against a live URL. They are omitted for runs that took the
 static-HTML fallback path.
 
+## Rendering Modes
+
+Clipper can evaluate each URL under two distinct rendering assumptions:
+
+- **`rendered`** (default) — models agents that execute JavaScript. DOM
+  navigability runs in a live headless Chrome via axe-core. Text pillars
+  read the server's initial HTML snapshot.
+- **`raw`** — models agents that do not execute JavaScript (RAG crawlers,
+  search indexers, most API-based agents). DOM navigability falls back to
+  static analysis with zero browser calls. Text pillars are unchanged.
+
+Select a mode via `--render-mode raw|rendered|both` on `express` and
+`score`. With `both`, Clipper produces two `ScoreResult` entries per URL
+and the report gains a "Rendering-Mode Deltas" section:
+
+```
+parseability_delta = rendered_score - raw_score
+```
+
+Pages whose `|delta|` meets or exceeds **15 points** are flagged as
+**JS-dependent**. A large positive delta means the rendered version is
+materially more accessible/structured than the raw HTML — i.e. the page
+relies on JavaScript to deliver signal that non-JS agents cannot reach.
+
+**Pessimistic default.** When consuming both modes, treat
+`min(rendered_score, raw_score)` as the score of record. This reflects
+the worst case across the agent population and prevents a well-rendered
+page from hiding a raw-HTML failure.
+
+**When a non-zero delta is expected vs. a red flag.** Today's `rendered`
+mode is a hybrid: only the DOM navigability pillar actually runs in a
+browser. Text pillars score the server HTML in both modes, so a small
+delta (typically under 10 points) reflects only the DOM-navigability
+difference and is expected even for static pages. A delta at or above
+the 15-point threshold indicates the page has materially different
+accessibility structure under a real browser — the canonical red flag
+for JS-dependent content. True JS-rendered text-pillar scoring is a
+planned follow-up within this phase.
+
+**Recommended defaults:**
+
+| Agent class | Mode |
+|---|---|
+| RAG crawlers, search indexers | `raw` |
+| Browser-based agents | `rendered` |
+| Authoring audits, compliance reviews | `both` |
+
 ## Architecture
 
 - **Entry points**: `score.py` (standard mode), `performance_score.py` (async/parallel mode)

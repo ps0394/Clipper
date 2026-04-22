@@ -106,17 +106,26 @@ class AccessGateEvaluator:
         self.chrome_options.add_argument('--disable-web-security')
     
     def evaluate_access_gate(self, parse_data: Dict, url: Optional[str] = None, 
-                             crawl_data: Optional[Dict] = None) -> ScoreResult:
+                             crawl_data: Optional[Dict] = None,
+                             render_mode: str = 'rendered') -> ScoreResult:
         """Evaluate Access Gate score using industry standards.
         
         Args:
             parse_data: Dictionary containing parse result data
             url: URL for live standards evaluation (optional)
             crawl_data: Dictionary containing crawl result data with redirect chain (optional)
+            render_mode: ``'rendered'`` (default) runs the full browser-axe
+                pass for DOM navigability when a URL is available;
+                ``'raw'`` forces the static-analysis fallback for DOM
+                navigability and makes no browser call at all. Raw mode
+                models agents that do not execute JavaScript.
             
         Returns:
             ScoreResult with standards-based scores and audit trail
         """
+        if render_mode not in ('raw', 'rendered'):
+            raise ValueError(f"render_mode must be 'raw' or 'rendered', got {render_mode!r}")
+
         signals = parse_data['signals']
         evidence = parse_data['evidence']
         html_path = parse_data.get('html_path', '')
@@ -127,16 +136,19 @@ class AccessGateEvaluator:
             return self._create_error_result("Failed to load HTML content", html_path)
         
         # Component evaluations (all API-free, standards-based).
-        # Each pillar may succeed (numeric score), fall back (numeric score +
-        # fallback marker in audit trail), or raise PillarEvaluationError. The
-        # orchestrator drops raising pillars from the final weighted average
-        # rather than zeroing them, so a transient network failure no longer
-        # contaminates the score of the surviving pillars.
+        # In 'raw' mode DOM navigability is forced through its static
+        # fallback so no browser/axe call occurs; this models a non-JS
+        # agent's view of the page.
+        if render_mode == 'raw':
+            dom_nav_fn = lambda: self._evaluate_wcag_accessibility(html_content, None)
+        else:
+            dom_nav_fn = lambda: self._evaluate_wcag_accessibility(html_content, url)
+
         pillar_callables = [
             ('semantic_html',          lambda: self._evaluate_semantic_html(html_content, signals)),
             ('content_extractability', lambda: self._evaluate_content_extractability(html_content, signals)),
             ('structured_data',        lambda: self._evaluate_structured_data(html_content, url)),
-            ('dom_navigability',       lambda: self._evaluate_wcag_accessibility(html_content, url)),
+            ('dom_navigability',       dom_nav_fn),
             ('metadata_completeness',  lambda: self._evaluate_metadata_completeness(html_content, url)),
             ('http_compliance',        lambda: self._evaluate_http_compliance_enhanced(html_content, url, crawl_data)),
         ]
@@ -198,6 +210,7 @@ class AccessGateEvaluator:
             failed_pillars=failed_pillars,
             content_type=content_type,
             universal_score=universal_score,
+            render_mode=render_mode,
         )
     
     def _load_html_content(self, html_path: str) -> Optional[str]:

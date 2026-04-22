@@ -160,6 +160,12 @@ def main():
     score_parser.add_argument('--performance', action='store_true', help='Enable performance optimization mode (2-3x faster, default: enabled)')
     score_parser.add_argument('--standard', action='store_true', help='Use standard evaluation mode (for comparison/debugging)')
     score_parser.add_argument('--benchmark', action='store_true', help='Run performance comparison benchmark')
+    score_parser.add_argument(
+        '--render-mode',
+        choices=['raw', 'rendered', 'both'],
+        default='rendered',
+        help="Rendering mode — see 'express --help' for details.",
+    )
     
     # Report command
     report_parser = subparsers.add_parser('report', help='Generate human-readable markdown report')
@@ -179,6 +185,18 @@ def main():
     express_parser.add_argument('--performance', action='store_true', help='Enable performance optimization mode (2-3x faster, DEFAULT)')
     express_parser.add_argument('--standard', action='store_true', help='Use standard evaluation mode (slower, for debugging)')
     express_parser.add_argument('--benchmark', action='store_true', help='Run performance comparison after evaluation')
+    express_parser.add_argument(
+        '--render-mode',
+        choices=['raw', 'rendered', 'both'],
+        default='rendered',
+        help=(
+            "Which rendering mode(s) to evaluate. 'rendered' (default) uses "
+            "the full browser/axe pass for DOM navigability; 'raw' forces "
+            "static-only analysis with no browser call at all, modeling "
+            "agents that do not execute JavaScript; 'both' emits two "
+            "ScoreResults per URL plus a parseability delta in the report."
+        ),
+    )
     
     args = parser.parse_args()
     
@@ -224,7 +242,11 @@ def main():
                 # Use performance-optimized scoring
                 from .performance_score import score_parse_results_fast
                 api_key = getattr(args, 'api_key', None)
-                score_parse_results_fast(args.parse_file, args.out, api_key=api_key, use_performance_mode=True)
+                score_parse_results_fast(
+                    args.parse_file, args.out, api_key=api_key,
+                    use_performance_mode=True,
+                    render_mode=getattr(args, 'render_mode', 'rendered'),
+                )
             else:
                 # Use standard scoring for comparison/debugging
                 from .score import score_parse_results
@@ -286,7 +308,11 @@ def main():
                 api_key = getattr(args, 'api_key', None)
                 
                 if use_performance:
-                    score_parse_results_fast(str(parse_file), str(score_file), api_key=api_key, use_performance_mode=True)
+                    score_parse_results_fast(
+                        str(parse_file), str(score_file), api_key=api_key,
+                        use_performance_mode=True,
+                        render_mode=getattr(args, 'render_mode', 'rendered'),
+                    )
                 else:
                     score_parse_results(str(parse_file), str(score_file), api_key=api_key)
                 

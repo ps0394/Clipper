@@ -99,6 +99,9 @@ class ScoreResult:
     content_type: str = 'article'          # Detected profile (article/landing/reference/sample/faq/tutorial)
     universal_score: Optional[float] = None  # Same component scores under default (article) weights
 
+    # Rendering-mode dimension (Phase 3.1)
+    render_mode: str = 'rendered'          # 'raw' | 'rendered' — which fetch path produced the HTML evaluated
+
     # Backward compatibility
     subscores: Optional[Dict[str, float]] = None
     evidence_references: Optional[List[str]] = None

@@ -32,6 +32,9 @@ _CLUSTER_MIN_MEMBERS = 3
 _TEMPLATE_UPLIFT_TARGET = 70.0  # Score a weak pillar is assumed to reach once fixed.
 _TEMPLATE_WEAK_PILLAR_THRESHOLD = 70.0  # Pillar avg below this is flagged in a cluster.
 
+# Phase 3.1 rendering-mode delta thresholds.
+_RENDER_DELTA_FLAG_THRESHOLD = 15.0   # |rendered - raw| >= this is flagged as JS-dependent.
+
 
 def _page_identifier(result: Dict, fallback_index: int) -> str:
     """Prefer URL if available, otherwise html_path, otherwise a stable index."""
@@ -167,6 +170,81 @@ def _format_template_section(clusters: List[Dict]) -> List[str]:
     return lines
 
 
+def _detect_render_deltas(score_results: List[Dict]) -> List[Dict]:
+    """Match raw/rendered ScoreResult pairs by URL and compute deltas.
+
+    Returns a list of dicts ordered by absolute delta (descending), each
+    with ``url``, ``raw_score``, ``rendered_score``, ``delta`` (rendered -
+    raw), and ``flagged`` (``abs(delta) >= _RENDER_DELTA_FLAG_THRESHOLD``).
+
+    Returns an empty list when the evaluation produced only one mode
+    (``render_mode == 'raw'`` or ``'rendered'`` alone), which is the common
+    single-mode case.
+    """
+    by_url: Dict[str, Dict[str, float]] = {}
+    for r in score_results:
+        url = r.get('url') or r.get('html_path') or ''
+        mode = r.get('render_mode', 'rendered')
+        if not url:
+            continue
+        by_url.setdefault(url, {})[mode] = float(r.get('parseability_score', 0.0))
+
+    deltas: List[Dict] = []
+    for url, by_mode in by_url.items():
+        if 'raw' not in by_mode or 'rendered' not in by_mode:
+            continue
+        raw = by_mode['raw']
+        rendered = by_mode['rendered']
+        delta = rendered - raw
+        deltas.append({
+            'url': url,
+            'raw_score': raw,
+            'rendered_score': rendered,
+            'delta': delta,
+            'flagged': abs(delta) >= _RENDER_DELTA_FLAG_THRESHOLD,
+        })
+
+    deltas.sort(key=lambda d: -abs(d['delta']))
+    return deltas
+
+
+def _format_render_delta_section(deltas: List[Dict]) -> List[str]:
+    """Produce the 'Rendering-Mode Deltas' section markdown lines."""
+    if not deltas:
+        return []
+
+    flagged = [d for d in deltas if d['flagged']]
+    lines: List[str] = [
+        "## Rendering-Mode Deltas",
+        "",
+        (
+            f"Evaluated {len(deltas)} URL"
+            f"{'s' if len(deltas) != 1 else ''} in both `raw` and `rendered` "
+            "modes. Raw mode models agents that do not execute JavaScript "
+            "(RAG crawlers, search indexers, API clients); rendered mode "
+            "models agents that see the post-JS DOM. A large delta means "
+            "the page relies on JavaScript for content that non-JS agents "
+            "cannot reach."
+        ),
+        "",
+        f"**JS-dependent pages** (|delta| >= {_RENDER_DELTA_FLAG_THRESHOLD:.0f}): "
+        f"{len(flagged)}",
+        "",
+        "| URL | Raw | Rendered | Delta |",
+        "|-----|-----|----------|-------|",
+    ]
+    for d in deltas:
+        flag = " [FLAG]" if d['flagged'] else ""
+        lines.append(
+            f"| {d['url']} "
+            f"| {d['raw_score']:.1f} "
+            f"| {d['rendered_score']:.1f} "
+            f"| {d['delta']:+.1f}{flag} |"
+        )
+    lines.append("")
+    return lines
+
+
 def generate_report(score_file: str, output_md: str) -> None:
     """Generate human-readable markdown report from score results.
     
@@ -204,14 +282,39 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
         Markdown report content
     """
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    
-    # Calculate summary statistics
-    total_pages = len(score_results)
-    clean_pages = sum(1 for result in score_results if result['failure_mode'] == 'clean')
-    structure_missing = sum(1 for result in score_results if result['failure_mode'] == 'structure-missing')
-    extraction_noisy = sum(1 for result in score_results if result['failure_mode'] == 'extraction-noisy')
-    
-    avg_score = sum(result['parseability_score'] for result in score_results) / total_pages if total_pages > 0 else 0
+
+    # If render_mode='both' was used, the input list contains two entries
+    # per URL. Compute deltas up front; summary stats below use the
+    # rendered-mode entries (plus single-mode entries) so counts reflect
+    # pages rather than (page, mode) pairs.
+    render_deltas = _detect_render_deltas(score_results)
+    has_both_modes = bool(render_deltas)
+    if has_both_modes:
+        # Canonical list for summary: prefer 'rendered' entries, fall back
+        # to whatever is present for single-mode pages.
+        by_url_mode: Dict[Tuple[str, str], Dict] = {}
+        for r in score_results:
+            key = (r.get('url') or r.get('html_path') or '', r.get('render_mode', 'rendered'))
+            by_url_mode[key] = r
+        summary_results: List[Dict] = []
+        seen_urls: Set[str] = set()
+        for r in score_results:
+            url = r.get('url') or r.get('html_path') or ''
+            if url in seen_urls:
+                continue
+            seen_urls.add(url)
+            rendered_entry = by_url_mode.get((url, 'rendered'), r)
+            summary_results.append(rendered_entry)
+    else:
+        summary_results = score_results
+
+    # Calculate summary statistics (one row per URL, not per mode)
+    total_pages = len(summary_results)
+    clean_pages = sum(1 for result in summary_results if result['failure_mode'] == 'clean')
+    structure_missing = sum(1 for result in summary_results if result['failure_mode'] == 'structure-missing')
+    extraction_noisy = sum(1 for result in summary_results if result['failure_mode'] == 'extraction-noisy')
+
+    avg_score = sum(result['parseability_score'] for result in summary_results) / total_pages if total_pages > 0 else 0
     
     # Build report sections
     report_lines = []
@@ -246,9 +349,13 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
         ""
     ])
 
+    # Rendering-mode deltas (Phase 3.1): shown only when render_mode='both'
+    # was used and the input actually contains paired results.
+    report_lines.extend(_format_render_delta_section(render_deltas))
+
     # Template findings (Phase 2.1): group URLs sharing low scores on the
     # same pillar. Only meaningful for multi-URL evaluations.
-    clusters = _detect_template_clusters(score_results) if total_pages >= _CLUSTER_MIN_MEMBERS else []
+    clusters = _detect_template_clusters(summary_results) if total_pages >= _CLUSTER_MIN_MEMBERS else []
     # Map index -> set of pillars flagged at the template level for that page.
     page_template_pillars: Dict[int, Set[str]] = {}
     for cluster in clusters:
@@ -275,7 +382,7 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
         ])
 
     # Sort by score (lowest first - most problematic)
-    indexed_results = list(enumerate(score_results))
+    indexed_results = list(enumerate(summary_results))
     sorted_results = sorted(indexed_results, key=lambda x: x[1]['parseability_score'])
 
     for display_index, (original_idx, result) in enumerate(sorted_results, 1):
@@ -330,6 +437,22 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
                 f"**Template-covered pillars:** {pillar_list} — see **Template Findings** above.",
                 "",
             ])
+
+        # Phase 3.1: if this URL has both raw and rendered scores, note the
+        # delta next to the headline score so readers see the JS impact.
+        if has_both_modes:
+            page_url = result.get('url') or result.get('html_path') or ''
+            delta_entry = next((d for d in render_deltas if d['url'] == page_url), None)
+            if delta_entry:
+                flag_text = " — **JS-dependent**" if delta_entry['flagged'] else ""
+                report_lines.extend([
+                    (
+                        f"**Rendering Delta:** raw {delta_entry['raw_score']:.1f} -> "
+                        f"rendered {delta_entry['rendered_score']:.1f} "
+                        f"({delta_entry['delta']:+.1f}){flag_text}"
+                    ),
+                    "",
+                ])
 
         # Extracted preview (Phase 1.2): surface what Mozilla Readability pulled
         # out so a low extractability score has a visible cause.

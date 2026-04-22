@@ -142,6 +142,12 @@ python main.py express urls.txt --out results/ --standard
 
 # Performance benchmarking
 python main.py express urls.txt --out results/ --benchmark
+
+# Rendering-mode dimension (Phase 3.1)
+# raw:      models non-JS agents (RAG crawlers, indexers)
+# rendered: models JS-executing agents (default)
+# both:     produces a per-URL delta and flags JS-dependent pages
+python main.py express urls.txt --out results/ --render-mode both
 ```
 
 ### **Step-by-Step Pipeline**

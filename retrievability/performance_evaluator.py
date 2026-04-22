@@ -203,10 +203,26 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
         self.start_time = None
     
     async def evaluate_access_gate_async(self, parse_data: Dict, url: Optional[str] = None, 
-                                       crawl_data: Optional[Dict] = None) -> ScoreResult:
-        """Async version of evaluate_access_gate with performance optimizations and redirect analysis."""
+                                       crawl_data: Optional[Dict] = None,
+                                       render_mode: str = 'rendered') -> ScoreResult:
+        """Async version of evaluate_access_gate with performance optimizations and redirect analysis.
+
+        Args:
+            parse_data: Parsed HTML signals from the snapshot.
+            url: Original URL (enables axe-in-browser for DOM navigability).
+            crawl_data: Crawl metadata (enables HTTP compliance redirect analysis).
+            render_mode: ``'rendered'`` (default) runs the full browser-axe pass
+                for DOM navigability when a URL is available; ``'raw'`` forces
+                the static-analysis fallback for DOM navigability and makes no
+                browser call at all. Raw mode models agents that do not
+                execute JavaScript (RAG crawlers, search indexers, API-based
+                agents).
+        """
         start_time = time.time()
-        
+
+        if render_mode not in ('raw', 'rendered'):
+            raise ValueError(f"render_mode must be 'raw' or 'rendered', got {render_mode!r}")
+
         try:
             signals = parse_data['signals']
             evidence = parse_data['evidence']
@@ -220,14 +236,17 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             # Individual component timeouts (20s fast, 60s browser) prevent hanging.
             # No outer timeout — it was discarding valid partial results when the
             # thread pool was saturated by concurrent batch evaluations.
-            return await self._perform_async_evaluation(signals, evidence, html_content, url, crawl_data, html_path)
+            return await self._perform_async_evaluation(
+                signals, evidence, html_content, url, crawl_data, html_path, render_mode
+            )
             
         except Exception as e:
             self.logger.error(f"Async evaluation failed: {e}")
             return self._create_error_result(f"Evaluation failed: {e}", html_path)
-    
-    async def _perform_async_evaluation(self, signals: Dict, evidence: Dict, html_content: str, 
-                                      url: Optional[str], crawl_data: Optional[Dict], html_path: str) -> ScoreResult:
+
+    async def _perform_async_evaluation(self, signals: Dict, evidence: Dict, html_content: str,
+                                      url: Optional[str], crawl_data: Optional[Dict], html_path: str,
+                                      render_mode: str = 'rendered') -> ScoreResult:
         """Perform the actual async evaluation with optimized parallel execution.
         
         Performance Enhancement: Separates browser-dependent (WCAG) from browser-independent 
@@ -251,8 +270,12 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             ('metadata_completeness', lambda: self._evaluate_metadata_completeness(html_content, url))
         ]
         
-        # Browser-dependent component (slowest, runs separately)
-        if url and self._is_valid_url(url):
+        # Browser-dependent component (slowest, runs separately).
+        # In 'raw' mode we never invoke the browser/axe pass — the whole point
+        # of raw mode is to model agents that do not execute JavaScript.
+        if render_mode == 'raw':
+            browser_task = ('dom_navigability', self._evaluate_wcag_fallback_async(html_content))
+        elif url and self._is_valid_url(url):
             browser_task = ('dom_navigability', self._evaluate_wcag_accessibility_async(html_content, url))
         else:
             browser_task = ('dom_navigability', self._evaluate_wcag_fallback_async(html_content))
@@ -388,6 +411,7 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             failed_pillars=failed_pillars,
             content_type=content_type,
             universal_score=universal_score,
+            render_mode=render_mode,
         )
     
     async def _evaluate_wcag_fallback_async(self, html_content: str) -> Tuple[float, Dict]:

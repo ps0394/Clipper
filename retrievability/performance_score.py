@@ -18,7 +18,8 @@ from .score import _load_crawl_data_for_scoring
 
 
 def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optional[str] = None, 
-                            use_performance_mode: bool = True) -> None:
+                            use_performance_mode: bool = True,
+                            render_mode: str = 'rendered') -> None:
     """Performance-optimized version of score_parse_results.
     
     Provides 2-3x speed improvement over standard scoring while maintaining accuracy.
@@ -28,10 +29,20 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
         output_file: JSON file to save score results
         api_key: Deprecated parameter (Clipper is API-free)
         use_performance_mode: Enable performance optimizations (default: True)
+        render_mode: 'rendered' | 'raw' | 'both'. When 'both', each URL
+            produces two ScoreResults — one with raw-HTML scoring (no
+            browser/axe) and one with the browser-axe pass — so consumers
+            can compute a parseability delta between what JS-rendering
+            agents see vs. what raw-HTML agents see.
     """
     if api_key:
         print("[WARN] API key parameter is deprecated in Clipper")
         print("   Clipper uses industry standards and is completely API-free")
+
+    if render_mode not in ('raw', 'rendered', 'both'):
+        raise ValueError(
+            f"render_mode must be 'raw', 'rendered', or 'both', got {render_mode!r}"
+        )
     
     print("[CLIPPER] Performance-Optimized Access Gate Evaluator")
     print("|- W3C Semantic HTML Analysis - 25%")
@@ -61,10 +72,10 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
     
     if use_performance_mode:
         # Use async performance evaluator
-        score_results = asyncio.run(_evaluate_with_performance_mode(parse_results_data, urls, crawl_results))
+        score_results = asyncio.run(_evaluate_with_performance_mode(parse_results_data, urls, crawl_results, render_mode))
     else:
         # Use standard evaluator for comparison
-        score_results = _evaluate_with_standard_mode(parse_results_data, urls, crawl_results)
+        score_results = _evaluate_with_standard_mode(parse_results_data, urls, crawl_results, render_mode)
     
     # Save results
     output_path = Path(output_file)
@@ -113,17 +124,25 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
 
 
 async def _evaluate_with_performance_mode(parse_results_data: List[Dict], urls: List[str], 
-                                         crawl_results: List[Dict]) -> List:
-    """Evaluate using performance-optimized async evaluator with redirect analysis."""
+                                         crawl_results: List[Dict], render_mode: str = 'rendered') -> List:
+    """Evaluate using performance-optimized async evaluator with redirect analysis.
+
+    When ``render_mode == 'both'`` each URL is scored twice — once in 'raw'
+    mode (no browser) and once in 'rendered' mode — and both ScoreResults
+    are emitted. The report layer matches the pair by URL and computes the
+    parseability delta.
+    """
     evaluator = get_performance_evaluator()
-    
-    # Create tasks for all evaluations
+
+    modes: List[str] = ['raw', 'rendered'] if render_mode == 'both' else [render_mode]
+
+    # Create tasks for all (parse_data, mode) pairs
     tasks = []
-    for i, parse_data in enumerate(parse_results_data):
-        url = urls[i] if i < len(urls) else None
-        crawl_data = crawl_results[i] if i < len(crawl_results) else None
-        task = evaluator.evaluate_access_gate_async(parse_data, url, crawl_data)
-        tasks.append(task)
+    for mode in modes:
+        for i, parse_data in enumerate(parse_results_data):
+            url = urls[i] if i < len(urls) else None
+            crawl_data = crawl_results[i] if i < len(crawl_results) else None
+            tasks.append(evaluator.evaluate_access_gate_async(parse_data, url, crawl_data, render_mode=mode))
     
     # Process in batches to avoid overwhelming the system
     batch_size = 5  # Process 5 URLs concurrently maximum
@@ -156,34 +175,38 @@ async def _evaluate_with_performance_mode(parse_results_data: List[Dict], urls: 
 
 
 def _evaluate_with_standard_mode(parse_results_data: List[Dict], urls: List[str], 
-                                crawl_results: List[Dict]) -> List:
+                                crawl_results: List[Dict], render_mode: str = 'rendered') -> List:
     """Evaluate using standard synchronous evaluator for comparison with redirect analysis."""
     evaluator = AccessGateEvaluator()
     results = []
-    
-    for i, parse_data in enumerate(parse_results_data):
-        url = urls[i] if i < len(urls) else None
-        crawl_data = crawl_results[i] if i < len(crawl_results) else None
-        print(f"  Standards evaluation: {parse_data.get('html_path', f'item_{i+1}')}")
-        
-        try:
-            result = evaluator.evaluate_access_gate(parse_data, url, crawl_data)
-            results.append(result)
-        except Exception as e:
-            print(f"  [WARN] Evaluation failed for item {i+1}: {e}")
-            from .schemas import ScoreResult
-            error_result = ScoreResult(
-                parseability_score=0.0,
-                failure_mode="evaluation_error", 
-                html_path=parse_data.get('html_path', 'unknown'),
-                url=url or 'unknown',
-                component_scores={},
-                audit_trail={"error": str(e)},
-                standards_authority={},
-                evaluation_methodology="Clipper Standards-Based Access Gate"
-            )
-            results.append(error_result)
-    
+
+    modes: List[str] = ['raw', 'rendered'] if render_mode == 'both' else [render_mode]
+
+    for mode in modes:
+        for i, parse_data in enumerate(parse_results_data):
+            url = urls[i] if i < len(urls) else None
+            crawl_data = crawl_results[i] if i < len(crawl_results) else None
+            print(f"  Standards evaluation ({mode}): {parse_data.get('html_path', f'item_{i+1}')}")
+
+            try:
+                result = evaluator.evaluate_access_gate(parse_data, url, crawl_data, render_mode=mode)
+                results.append(result)
+            except Exception as e:
+                print(f"  [WARN] Evaluation failed for item {i+1}: {e}")
+                from .schemas import ScoreResult
+                error_result = ScoreResult(
+                    parseability_score=0.0,
+                    failure_mode="evaluation_error",
+                    html_path=parse_data.get('html_path', 'unknown'),
+                    url=url or 'unknown',
+                    component_scores={},
+                    audit_trail={"error": str(e)},
+                    standards_authority={},
+                    evaluation_methodology="Clipper Standards-Based Access Gate",
+                    render_mode=mode,
+                )
+                results.append(error_result)
+
     return results
 
 
