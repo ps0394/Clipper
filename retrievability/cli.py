@@ -221,9 +221,14 @@ def main():
         help='Phase 5 LLM ground-truth validation (see docs/phase-5-design.md)',
     )
     phase5_sub = phase5_parser.add_subparsers(dest='phase5_command')
-    phase5_sub.add_parser(
+    phase5_status_parser = phase5_sub.add_parser(
         'status',
         help='Show Phase 5 scaffolding status and what still needs wiring',
+    )
+    phase5_status_parser.add_argument(
+        '--check',
+        action='store_true',
+        help='Ping each configured Foundry deployment to verify credentials + connectivity',
     )
 
     args = parser.parse_args()

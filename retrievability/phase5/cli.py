@@ -1,10 +1,8 @@
 """Phase 5 CLI dispatcher.
 
-Current state: scaffolding only. The only implemented subcommand is
-`status`, which reports which pieces are wired and which still need
-credentials or additional code. The pilot runner itself is not wired
-yet — it needs an Anthropic client and an Azure OpenAI client, which
-require credentials.
+Current state: scaffolding + Foundry client adapters in place. The
+pilot runner (corpus -> generator -> reviewer -> scorer -> grader ->
+analyzer) is not yet wired end-to-end; `status` reports what is ready.
 """
 from __future__ import annotations
 
@@ -14,12 +12,12 @@ from pathlib import Path
 
 def dispatch(args: argparse.Namespace) -> int:
     if getattr(args, "phase5_command", None) in (None, "status"):
-        return _status()
+        return _status(check=getattr(args, "check", False))
     print(f"Unknown phase5 subcommand: {args.phase5_command}")
     return 2
 
 
-def _status() -> int:
+def _status(*, check: bool = False) -> int:
     repo_root = Path(__file__).resolve().parents[2]
     corpus_dir = repo_root / "evaluation" / "phase5-corpus"
     results_dir = repo_root / "evaluation" / "phase5-results"
@@ -35,19 +33,51 @@ def _status() -> int:
     print("Modules:")
     print("  schemas    OK")
     print("  templates  OK (generator + scorer prompts on disk)")
-    print("  generator  OK (prompt builder + output parser; needs Claude client)")
-    print("  reviewer   OK (CLI loop; no pilot runner yet)")
-    print("  scorer     OK (prompt builder + driver; needs Azure OpenAI client)")
+    print("  generator  OK (prompt builder + output parser)")
+    print("  reviewer   OK (CLI loop)")
+    print("  scorer     OK (prompt builder + driver)")
     print("  grader     OK (pilot-grade heuristic, calibrate before full run)")
     print("  analyzer   OK (Spearman rho + bootstrap CI, pure Python)")
+    print("  clients    OK (Foundry GPT-4.1 / Mistral / Llama adapters)")
     print()
-    print("Still to wire:")
-    print("  - Anthropic client adapter (generator)")
-    print("  - Azure OpenAI client adapter (scorer primary)")
-    print("  - Local Llama client adapter (scorer secondary)")
-    print("  - Pilot runner that stitches corpus -> generator -> reviewer -> scorer -> grader -> analyzer")
-    print("  - Credentials discovery (env vars)")
-    return 0
+
+    from .clients import FoundryConfig
+    config = FoundryConfig.from_env()
+    missing = config.check()
+    print("Foundry config (.env):")
+    print(f"  endpoint:            {'SET' if config.endpoint else 'MISSING'}")
+    print(f"  api_key:             {'SET' if config.api_key else 'MISSING'}")
+    print(f"  generator:           {config.generator_deployment or 'MISSING'}")
+    print(f"  scorer_primary:      {config.scorer_primary_deployment or 'MISSING'}")
+    print(f"  scorer_secondary:    {config.scorer_secondary_deployment or 'MISSING'}")
+    if missing:
+        print(f"  [!] missing required env vars: {', '.join(missing)}")
+        print(f"  Copy .env.example to .env and fill in values.")
+        return 0 if not check else 1
+
+    if not check:
+        print()
+        print("Pass --check to ping each deployment.")
+        return 0
+
+    print()
+    print("Pinging deployments (temperature=0 'Reply OK')...")
+    from .clients import smoke_test
+    results = smoke_test(config)
+    all_ok = True
+    for role, info in results.items():
+        info_dict = info  # type: ignore[assignment]
+        ok = info_dict.get("ok")
+        deployment = info_dict.get("deployment")
+        if ok:
+            reply = info_dict.get("reply") or ""
+            print(f"  [OK]   {role:<18} {deployment}  -> {reply!r}")
+        else:
+            err = info_dict.get("error") or "not configured"
+            print(f"  [FAIL] {role:<18} {deployment}  -> {err}")
+            if role != "scorer_secondary":
+                all_ok = False
+    return 0 if all_ok else 1
 
 
 def _state(p: Path) -> str:

@@ -397,9 +397,9 @@ This phase is an audit-and-prune pass across every pillar evaluator, looking for
 
 **Design status (2026-04-22): `phase-5-design-approved`.** All six open questions in [docs/phase-5-design.md](phase-5-design.md) §10 are resolved:
 
-1. Scoring LLMs: Azure OpenAI GPT-4o primary + open-weight (Llama 3.x) secondary. Findings require per-pillar Spearman ρ to agree within ±0.1 across the two scorers.
+1. Scoring LLMs: Azure OpenAI **GPT-4.1** primary + **Llama 3.3 70B Instruct** secondary, both deployed in the `AI-model-for-Clipper` Azure AI Foundry resource (East US). Findings require per-pillar Spearman ρ to agree within ±0.1 across the two scorers.
 2. Corpus size: N=60 (6 profiles × 10 pages), pilot at N=5 first.
-3. Question generator: Anthropic Claude (Sonnet vs. Opus TBD at pilot).
+3. Question generator: **Mistral Large 3** (substitute for Claude Sonnet, which had no Foundry quota in any region at pilot time; Mistral preserves the cross-family guardrail — not OpenAI, not Meta).
 4. Secondary reviewer for κ: required, ~40 minutes for 12 pages / 60 Q&A pairs, blocking for publication (see dependency note below).
 5. Artifact storage: committed directly to git under `evaluation/phase5-corpus/` (permanent) and `evaluation/phase5-results/<run-id>/` (per published run); scratch under `evaluation/phase5-scratch/` gitignored.
 6. Audience: internal research, shared with a small product team. No external publication without re-opening the design doc.

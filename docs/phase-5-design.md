@@ -66,24 +66,45 @@ incomplete.
 
 ## 3. LLM selection
 
-Decision required before build.
+**Resolved at pilot time (2026-04-22):** all three LLMs deployed in a
+single Azure AI Foundry resource (`AI-model-for-Clipper` in the
+`AI-demos` resource group, East US). Model choices forced by regional
+quota availability — see below.
 
-### Candidates
+### Deployed models
 
-| Candidate | Reproducibility | Access | Cost (rough) | Notes |
-|---|---|---|---|---|
-| Azure OpenAI GPT-4o | High (fixed model + seed) | GitHub Enterprise provides access | $ per-token, bounded | Matches Learn's primary agent surface. Preferred. |
-| Azure OpenAI GPT-5 | Unknown stability at draft time | Same | $$ | Worth testing if available, but output drift may confound Phase 5's reproducibility story. |
-| Anthropic Claude (via API) | High | Requires separate billing | $$ | Diversifies the instrument. Useful as a second-LLM check but not the primary. |
-| Open-weight (Llama 3.x via Azure AI Studio / local) | Highest (deterministic) | Requires inference infrastructure | Infra cost | Cheapest marginal; no API quota limits. |
+| Role | Model | Deployment name | Why |
+|---|---|---|---|
+| Generator | Mistral Large 3 | `Mistral-Large-3` | Cross-family to both scorers (not OpenAI, not Meta). Substituted for Claude Sonnet 4.x after all Foundry regions returned zero quota for Anthropic Direct Models at pilot time. |
+| Primary scorer | GPT-4.1 | `gpt-4.1` | Azure OpenAI; strongest available scorer. Upgraded from GPT-4o once Foundry showed the newer deployment available. |
+| Secondary scorer | Llama 3.3 70B Instruct | `Llama-3.3-70B-Instruct` | Open-weight, different family than the primary scorer. Required for the ±0.1 Spearman ρ cross-LLM agreement check. |
 
-### Recommendation
+All three hit the same Foundry project endpoint
+(`https://ai-model-for-clipper.services.ai.azure.com/...`); only the
+deployment name varies per call.
 
-**Primary:** Azure OpenAI GPT-4o via GitHub Enterprise access.
-**Secondary (robustness check):** one open-weight model (Llama 3.x or
-similar) run on the same corpus. If correlations agree within ±0.1
-Spearman ρ across the two instruments, we can claim the finding is about
-the pages rather than about the primary LLM.
+### Cross-family guardrail
+
+The Phase 5 guardrail (§4.1.1) requires the generator to be in a
+different model family than either scorer. Confirmed:
+
+- Mistral (generator) ≠ OpenAI (primary scorer) ✓
+- Mistral (generator) ≠ Meta (secondary scorer) ✓
+
+Claude Sonnet 4.x was the original first choice for the generator. All
+Foundry regions returned zero quota for the Anthropic Direct Models at
+pilot time (2026-04-22). Mistral Large 3 is the replacement. The
+guardrail property — "the scoring LLM cannot recognize its own style
+of question" — holds as long as the generator is not in the
+OpenAI or Meta families, which Mistral satisfies.
+
+### Agreement rule
+
+Findings must be reproduced across GPT-4.1 and Llama 3.3. If per-pillar
+Spearman ρ agrees within ±0.1 across the two scorers, the finding is
+attributable to page structure. If the two disagree beyond that
+threshold, the finding is reported as LLM-dependent and is not used
+for pillar-weight interpretation.
 
 **Explicitly not:** no ensembling, no "average the LLMs." Each model
 produces its own correlation table. Agreement between them is evidence;
@@ -127,11 +148,12 @@ Fully hand-authoring 5 questions × 30 pages is ~12 hours and is the
 dominant cost of Phase 5. Fully automating it collapses the measurement
 into LLM-LLM agreement. We adopt a middle path:
 
-- **Generator**: **Anthropic Claude** (specific model — Sonnet or
-  Opus — chosen at pilot time based on API access). Cross-family
-  separation from the scoring LLMs (OpenAI GPT-4o primary, Meta Llama
-  3.x secondary) breaks the shared-training-data loop that would
-  otherwise let the scoring LLM "recognize" its own style of question.
+- **Generator**: **Mistral Large 3** (was: Anthropic Claude Sonnet 4.x;
+  swapped at pilot time after every Foundry region returned zero
+  Anthropic quota — see §3). Cross-family separation from the scoring
+  LLMs (OpenAI GPT-4.1 primary, Meta Llama 3.3 secondary) breaks the
+  shared-training-data loop that would otherwise let the scoring LLM
+  "recognize" its own style of question.
 - **Generator prompt**: *"From the document below, write 5 fact-based
   questions whose answers are unambiguously stated in the document.
   For each question, provide the exact answer (quoted or paraphrased
@@ -153,7 +175,7 @@ into LLM-LLM agreement. We adopt a middle path:
 scoring LLM answer; it only chooses *which* facts the scoring LLM is
 tested on. A weakly-structured page will still produce questions whose
 answers the scoring LLM fails to locate. What the guardrail prevents
-is a stylistic handshake ("GPT-4o writes questions GPT-4o finds easy")
+is a stylistic handshake ("GPT-4.1 writes questions GPT-4.1 finds easy")
 that would otherwise inflate scores uniformly.
 
 **Weakness:** the generator may systematically skip content the
@@ -246,8 +268,8 @@ storage would add more friction than they save. A `.gitattributes`
 entry `evaluation/phase5-results/**/*.json text eol=lf` keeps diffs
 readable across platforms.
 
-**Licensing note.** Outputs from Anthropic Claude (generator) and
-OpenAI GPT-4o and Meta Llama (scorers) are currently permitted by
+**Licensing note.** Outputs from Mistral (generator) and
+OpenAI GPT-4.1 and Meta Llama (scorers) are currently permitted by
 their respective terms for use and redistribution. If Clipper ever
 publishes this repo outside the current hosting, verify the model
 providers' current TOS at publication time and include a one-line
@@ -333,7 +355,7 @@ structural scoring model tracks what an LLM can actually do with a page.
 
 At the committed N=60 corpus size:
 
-- **Question generation (LLM):** 60 pages through Anthropic Claude.
+- **Question generation (LLM):** 60 pages through Mistral Large 3.
   ~30 k input tokens × 60 pages ≈ under $10.
 - **Human review of generated Q/A:** ~2 min/page × 60 pages ≈ 2 hours.
   Reviewer edits, accepts, or rejects each pair; regeneration handles
@@ -342,7 +364,7 @@ At the committed N=60 corpus size:
   person for inter-rater κ on the accept/reject decision.
 - **Scoring-LLM costs (estimate):** 60 pages × 5 questions × 3 runs ×
   2 LLMs = 1 800 inferences. At ~2 k tokens per inference (page text +
-  Q + A), that's ~3.6 M input tokens. GPT-4o input is currently <$0.01
+  Q + A), that's ~3.6 M input tokens. GPT-4.1 input is currently <$0.01
   per 1 k input tokens → under $40 for scoring. Open-weight secondary
   adds infrastructure cost but no per-token cost if self-hosted.
 - **URL curation:** hand-selecting ~38 additional URLs (beyond the
@@ -379,18 +401,19 @@ capacity, which is much cheaper but still gates the phase.
 
 1. **LLM choice:** ~~is Azure OpenAI GPT-4o the right primary? Is any
    open-weight secondary worth the infrastructure cost?~~ **Resolved:
-   GPT-4o primary + open-weight secondary (Llama 3.x family).** Both
-   LLMs score; findings require correlations to agree within ±0.1
-   Spearman ρ across the two to claim a result is about the pages
-   rather than the primary model. Specific Llama variant chosen at
-   pilot time based on infrastructure availability.
+   GPT-4.1 primary + Llama 3.3 70B secondary**, both deployed in the
+   `AI-model-for-Clipper` Azure AI Foundry resource. Findings require
+   per-pillar Spearman ρ to agree within ±0.1 across the two scorers.
 2. **Corpus size:** ~~N=30 or N=60?~~ **Resolved: N=60** (6 profiles
    × 10 pages). Required to keep H0-profile reachable; see §5. Pilot
    at N=5 before scaling to N=60.
 3. **Question generator:** ~~which non-OpenAI, non-Meta model is the
-   generator?~~ **Resolved: Anthropic Claude.** Specific Claude model
-   (Sonnet vs. Opus) and API access path still TBD at pilot time, but
-   the family is locked.
+   generator?~~ **Resolved: Mistral Large 3** (originally planned
+   Claude Sonnet 4.x; Foundry regions all returned zero Anthropic
+   quota at pilot time). Mistral preserves the cross-family guardrail
+   — not OpenAI, not Meta. If Claude quota opens later, the design
+   permits swapping back provided the cross-family property is
+   maintained and the change is disclosed in the findings doc.
 4. **Secondary reviewer:** ~~do we have a second person to re-run
    accept/reject on 20% of pages for κ?~~ **Resolved: yes, required.**
    A second reviewer must run accept/reject independently on 12 of the

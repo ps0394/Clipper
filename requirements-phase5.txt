@@ -1,0 +1,10 @@
+# Phase 5 LLM ground-truth validation dependencies.
+#
+# Install with:  pip install -r requirements-phase5.txt
+#
+# These are not pulled in by the base Clipper install. The structural
+# scoring pipeline remains zero-LLM; these dependencies are only for
+# the research pipeline in retrievability/phase5/.
+
+azure-ai-inference>=1.0.0b10   # unified Azure AI Foundry inference client
+python-dotenv>=1.0.0           # loads .env at client-init time
