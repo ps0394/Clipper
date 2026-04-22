@@ -13,17 +13,17 @@ from .access_gate_evaluator import AccessGateEvaluator
 
 
 def score_parse_results(parse_file: str, output_file: str, api_key: Optional[str] = None) -> None:
-    """Score parse results using YARA 3.0 standards-based methodology.
+    """Score parse results using Clipper standards-based methodology.
     
     Args:
         parse_file: JSON file with parse results
         output_file: JSON file to save score results
-        api_key: Deprecated parameter (YARA 3.0 is API-free)
+        api_key: Deprecated parameter (Clipper is API-free)
     """
-    # YARA 3.0 deprecation notice for API key
+    # Clipper deprecation notice for API key
     if api_key:
-        print("[WARN] API key parameter is deprecated in YARA 3.0")
-        print("   YARA 3.0 uses industry standards and is completely API-free")
+        print("[WARN] API key parameter is deprecated in Clipper")
+        print("   Clipper uses industry standards and is completely API-free")
     
     print("[CLIPPER] Standards-Based Access Gate Evaluator")
     print("|- W3C Semantic HTML Analysis - 25%")
@@ -47,7 +47,7 @@ def score_parse_results(parse_file: str, output_file: str, api_key: Optional[str
     # Load URLs and crawl data for enhanced evaluation
     urls, crawl_results = _load_crawl_data_for_scoring(parse_path)
     
-    print(f"\n📊 Evaluating {len(parse_results_data)} documents using industry standards...")
+    print(f"\n[EVAL] Evaluating {len(parse_results_data)} documents using industry standards...")
     if crawl_results:
         print(f"   Enhanced with redirect chain analysis for HTTP compliance")
     
@@ -70,7 +70,7 @@ def score_parse_results(parse_file: str, output_file: str, api_key: Optional[str
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump([result.to_dict() for result in score_results], f, indent=2, ensure_ascii=False)
     
-    print(f"✅ Standards-based evaluation completed!")
+    print(f"[DONE] Standards-based evaluation completed!")
     print(f"   Results saved: {output_file}")
     print(f"   Methodology: Industry standards (API-free)")
 

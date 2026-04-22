@@ -143,19 +143,6 @@ runs:
         else:
             print('✅ All quality gates passed')
         "
-            f.write(f'total_pages={total_pages}\\n')
-            f.write(f'structure_missing={structure_missing}\\n')
-            f.write(f'extraction_noisy={extraction_noisy}\\n')
-            f.write(f'quality_passed={str(quality_passed).lower()}\\n')
-        
-        # Print summary
-        print(f'📊 Evaluation Results:')
-        print(f'   Average Score: {avg_score:.1f}/100')
-        print(f'   Clean Pages: {clean_count}/{total_pages} ({clean_percentage:.1f}%)')
-        print(f'   Structure Issues: {structure_missing}')
-        print(f'   Extraction Issues: {extraction_noisy}')
-        print(f'   Quality Gates: {\"✅ PASSED\" if quality_passed else \"❌ FAILED\"}')
-        "
         
     - name: Check quality gates
       shell: bash

@@ -93,7 +93,7 @@ def _print_summary(score_file: str, quiet: bool = False):
         clean = sum(1 for s in scores if s['failure_mode'] in ['clean', 'success'])
         
         if not quiet:
-            print(f"\n📊 Clipper Evaluation Results:")
+            print(f"\n[RESULTS] Clipper Evaluation Results:")
             print(f"|- Total URLs: {total}")
             print(f"|- Average Score: {avg_score:.1f}/100")
             print(f"+- Agent-Ready: {clean}/{total} ({clean/total*100:.1f}%)")
@@ -108,8 +108,13 @@ def _print_summary(score_file: str, quiet: bool = False):
                 
                 score_val = score['parseability_score']
                 mode = score['failure_mode']
-                emoji = '[PASS]' if mode == 'clean' else '[WARN]' if score_val >= 60 else '[FAIL]'
-                print(f"  {emoji} {score_val:3.0f}/100 - {url}")
+                if score.get('partial_evaluation'):
+                    emoji = '[PARTIAL]'
+                else:
+                    emoji = '[PASS]' if mode == 'clean' else '[WARN]' if score_val >= 60 else '[FAIL]'
+                failed = score.get('failed_pillars') or []
+                suffix = f"  (failed: {', '.join(failed)})" if failed else ''
+                print(f"  {emoji} {score_val:3.0f}/100 - {url}{suffix}")
         else:
             print(f"{avg_score:.1f}/100 average, {clean}/{total} clean")
             
@@ -155,6 +160,12 @@ def main():
     score_parser.add_argument('--performance', action='store_true', help='Enable performance optimization mode (2-3x faster, default: enabled)')
     score_parser.add_argument('--standard', action='store_true', help='Use standard evaluation mode (for comparison/debugging)')
     score_parser.add_argument('--benchmark', action='store_true', help='Run performance comparison benchmark')
+    score_parser.add_argument(
+        '--render-mode',
+        choices=['raw', 'rendered', 'both'],
+        default='rendered',
+        help="Rendering mode — see 'express --help' for details.",
+    )
     
     # Report command
     report_parser = subparsers.add_parser('report', help='Generate human-readable markdown report')
@@ -174,7 +185,47 @@ def main():
     express_parser.add_argument('--performance', action='store_true', help='Enable performance optimization mode (2-3x faster, DEFAULT)')
     express_parser.add_argument('--standard', action='store_true', help='Use standard evaluation mode (slower, for debugging)')
     express_parser.add_argument('--benchmark', action='store_true', help='Run performance comparison after evaluation')
-    
+    express_parser.add_argument(
+        '--render-mode',
+        choices=['raw', 'rendered', 'both'],
+        default='rendered',
+        help=(
+            "Which rendering mode(s) to evaluate. 'rendered' (default) uses "
+            "the full browser/axe pass for DOM navigability; 'raw' forces "
+            "static-only analysis with no browser call at all, modeling "
+            "agents that do not execute JavaScript; 'both' emits two "
+            "ScoreResults per URL plus a parseability delta in the report."
+        ),
+    )
+
+    # History command - trend view across prior evaluations (Phase 4.2)
+    history_parser = subparsers.add_parser(
+        'history',
+        help='Show how a URL has scored across prior evaluations',
+    )
+    history_parser.add_argument('url', help='URL to look up')
+    history_parser.add_argument(
+        '--root',
+        default='evaluation',
+        help='Directory to walk for *_scores.json files (default: evaluation)',
+    )
+    history_parser.add_argument(
+        '--json',
+        action='store_true',
+        help='Emit JSON rather than the table view',
+    )
+
+    # Phase 5 command group - LLM ground-truth validation (scaffolding)
+    phase5_parser = subparsers.add_parser(
+        'phase5',
+        help='Phase 5 LLM ground-truth validation (see docs/phase-5-design.md)',
+    )
+    phase5_sub = phase5_parser.add_subparsers(dest='phase5_command')
+    phase5_sub.add_parser(
+        'status',
+        help='Show Phase 5 scaffolding status and what still needs wiring',
+    )
+
     args = parser.parse_args()
     
     if args.command is None:
@@ -219,7 +270,11 @@ def main():
                 # Use performance-optimized scoring
                 from .performance_score import score_parse_results_fast
                 api_key = getattr(args, 'api_key', None)
-                score_parse_results_fast(args.parse_file, args.out, api_key=api_key, use_performance_mode=True)
+                score_parse_results_fast(
+                    args.parse_file, args.out, api_key=api_key,
+                    use_performance_mode=True,
+                    render_mode=getattr(args, 'render_mode', 'rendered'),
+                )
             else:
                 # Use standard scoring for comparison/debugging
                 from .score import score_parse_results
@@ -230,7 +285,15 @@ def main():
             # Lazy import - load only when needed
             from .report import generate_report
             generate_report(args.score_file, args.md)
-            
+
+        elif args.command == 'history':
+            from .history import run_history
+            sys.exit(run_history(args.url, root=args.root, as_json=args.json))
+
+        elif args.command == 'phase5':
+            from .phase5 import cli as phase5_cli
+            sys.exit(phase5_cli.dispatch(args))
+
         elif args.command == 'express':
             # Determine scoring mode
             use_performance = not args.standard  # Default to performance mode
@@ -281,7 +344,11 @@ def main():
                 api_key = getattr(args, 'api_key', None)
                 
                 if use_performance:
-                    score_parse_results_fast(str(parse_file), str(score_file), api_key=api_key, use_performance_mode=True)
+                    score_parse_results_fast(
+                        str(parse_file), str(score_file), api_key=api_key,
+                        use_performance_mode=True,
+                        render_mode=getattr(args, 'render_mode', 'rendered'),
+                    )
                 else:
                     score_parse_results(str(parse_file), str(score_file), api_key=api_key)
                 

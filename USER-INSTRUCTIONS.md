@@ -4,7 +4,7 @@ This guide walks you through using **Clipper** (Command-Line Interface Progressi
 
 ## What is Clipper
 
-**Standards-Based Evaluation Engine**: Combines WCAG 2.1 (25%) + W3C Semantic HTML (25%) + Schema.org (20%) + HTTP Standards + Redirects (15%) + Content Quality (15%)
+**Standards-Based Evaluation Engine**: Combines W3C Semantic HTML (25%) + Content Extractability (20%) + Schema.org (20%) + DOM Navigability (15%) + Metadata Completeness (10%) + HTTP Compliance (10%)
 **Enterprise Defensible**: Built on established industry standards with complete audit trails
 **API-Free Operation**: No external API dependencies - completely local evaluation
 
@@ -33,7 +33,7 @@ pip install -r requirements.txt
 python main.py express --help
 ```
 
-You should see **Clipper** in the help output with commands: `crawl`, `parse`, `score`, `report`, `negotiate`, and `express`.
+You should see **Clipper** in the help output with commands: `crawl`, `parse`, `score`, `report`, `negotiate`, `express`, and `history`.
 
 ## Optional Configuration
 
@@ -74,6 +74,49 @@ python main.py express samples/urls.txt --out results/ --standard
 python main.py express samples/urls.txt --out results/ --benchmark
 ```
 
+**Rendering Mode (Phase 3.1):**
+```bash
+# Default: rendered (models JS-executing agents; current hybrid behavior)
+python main.py express samples/urls.txt --out results/
+
+# Raw: models non-JS agents (RAG crawlers, search indexers, API clients)
+python main.py express samples/urls.txt --out results/ --render-mode raw
+
+# Both: produces two ScoreResults per URL and a "Rendering-Mode Deltas"
+# section in the report. Pages with |rendered - raw| >= 15 are flagged
+# as JS-dependent.
+python main.py express samples/urls.txt --out results/ --render-mode both
+```
+
+Recommended defaults:
+- RAG crawlers / search indexers: `--render-mode raw`
+- Browser-based agents: `--render-mode rendered` (default)
+- Authoring audits / compliance reviews: `--render-mode both`
+
+When both modes are evaluated, treat `min(rendered, raw)` as the score
+of record (pessimistic default). See [docs/scoring.md](docs/scoring.md#rendering-modes)
+for the full explanation.
+
+### History: trend view for a single URL
+
+To confirm that a URL has actually improved between evaluations rather
+than just oscillating, use the `history` subcommand:
+
+```bash
+# Default: walks ./evaluation/**/*_scores.json
+python main.py history https://learn.microsoft.com/en-us/azure/aks/faq
+
+# Point at a different output root
+python main.py history https://example.com/page --root ./results
+
+# JSON for automation
+python main.py history https://example.com/page --json
+```
+
+The table is sorted oldest-first by score-file mtime and shows the
+corpus name, content-type profile, render mode, `parseability_score`,
+`universal_score`, and the parseability delta vs. the previous row.
+
 **What Express Mode Does (2.2x Faster by Default):**
 1. 📄 Crawls URLs and captures HTML content (concurrent operations)
 2. 🔍 Parses content for structural signals (optimized parsing)
@@ -90,6 +133,37 @@ python main.py express samples/urls.txt --out results/ --benchmark
 - `results/report.md`: Human-readable report with recommendations
 - `results/report_scores.json`: Clipper scores with component breakdown
 - `results/report_parse.json`: Raw parsing results and structured data
+
+### How the score is chosen for a page
+
+Every evaluated page reports two 0–100 numbers:
+
+- **`parseability_score`** — the *primary* number. Clipper detects the page's content type (article, landing, reference, sample, faq, or tutorial) and weighs the six pillars accordingly. Use this when asking "is this page good *for what it is*?"
+- **`universal_score`** — the same pillar scores with the default *article* weights. Use this to compare pages of different types side by side, or to track a single page over time without profile changes biasing the trend.
+
+Content type detection consults, in order:
+1. `ms.topic` meta tag (authoritative on Microsoft Learn)
+2. JSON-LD `@type`
+3. URL path (`/samples/`, `/api/`, `/reference/`, `/quickstart/`, ...)
+4. DOM heuristics
+5. Default: `article`
+
+The winning signal and matched value are recorded in `audit_trail._content_type.detection`. You can see them in `report_scores.json`:
+
+```json
+"content_type": "sample",
+"parseability_score": 53.6,
+"universal_score": 48.7,
+"audit_trail": {
+  "_content_type": {
+    "profile": "sample",
+    "detection": { "source": "url", "matched_value": "/samples/" },
+    "weights": { "structured_data": 0.30, "content_extractability": 0.10, ... }
+  }
+}
+```
+
+See [docs/scoring.md#content-type-profiles](docs/scoring.md#content-type-profiles) for the complete weight table.
 
 ### Step-by-Step Pipeline
 
@@ -118,11 +192,12 @@ python main.py score parse-results.json --out scores.json --detailed
 ```
 
 **What Clipper Standards Scoring Does:**
-- **WCAG 2.1 Accessibility** (25%): Automated accessibility analysis using axe-core
 - **W3C Semantic HTML** (25%): HTML5 semantic elements and ARIA compliance
-- **Schema.org Structured Data** (20%): JSON-LD, microdata analysis
-- **HTTP Standards + Redirects** (15%): Content negotiation and redirect efficiency analysis
-- **Content Quality** (15%): Agent-optimized content metrics
+- **Content Extractability** (20%): Mozilla Readability signal-to-noise analysis
+- **Schema.org Structured Data** (20%): JSON-LD quality, type validation, field completeness
+- **DOM Navigability** (15%): WCAG 2.1 / Deque axe-core DOM evaluation
+- **Metadata Completeness** (10%): Dublin Core, Schema.org, OpenGraph field coverage
+- **HTTP Compliance** (10%): Reachability, redirects, robots.txt, cache headers, agent content hints
 
 #### 4. Generate Reports
 ```bash
@@ -132,6 +207,33 @@ python main.py report scores.json --md executive-summary.md
 - Creates executive summary with Clipper scoring statistics
 - Includes component-level recommendations
 - Provides standards authority references
+
+### Reading a report
+
+Multi-URL evaluations (3+ pages) split findings into two sections:
+
+- **Template Findings** — groups of URLs that score identically (within 1 point) on the *same* weak pillar. When three or more pages share the same low score on, say, `structured_data`, the weakness almost always lives in the shared CMS template rather than in individual authoring. Each cluster lists the affected URLs and an estimated per-page uplift if the template were fixed.
+- **Page-Specific Findings** — the original per-URL breakdown. Pages that belong to template clusters are annotated with a `Template-covered pillars:` line that points back to the top section, so readers can focus on variation that is *not* template-driven.
+
+Example (abbreviated):
+
+```markdown
+## Template Findings
+
+| # | Pillar | Shared Score | Pages | Est. Uplift per Page |
+|---|--------|--------------|-------|----------------------|
+| 1 | `structured_data` | 12/100 | 14 | +11.6 pts |
+| 2 | `dom_navigability` | 35/100 | 9  | +5.2 pts |
+
+### Cluster 1: `structured_data` = 12/100 (14 pages)
+- Finding: every page below scores exactly 12/100 on structured_data.
+- Estimated uplift: lifting this pillar to 70/100 adds ~11.6 points per page.
+- Affected pages:
+  - https://learn.microsoft.com/...
+  ...
+```
+
+Single-URL evaluations show the traditional **Individual Page Results** section unchanged — template clustering is only meaningful with three or more pages.
 
 ### Content Negotiation Testing
 ```bash
@@ -155,61 +257,64 @@ results/
 ### Clipper Score Format
 ```json
 {
-  "overall_score": 75.2,
+  "parseability_score": 60.7,
+  "failure_mode": "moderate_issues",
   "component_scores": {
-    "wcag_accessibility": 85.0,
-    "semantic_html": 72.5,
-    "structured_data": 68.0,
-    "http_compliance": 90.0,
-    "content_quality": 80.5
+    "semantic_html": 72.7,
+    "content_extractability": 74.5,
+    "structured_data": 12.0,
+    "dom_navigability": 35.0,
+    "metadata_completeness": 100.0,
+    "http_compliance": 71.5
   },
   "audit_trail": {
     "http_compliance": {
-      "content_negotiation": {...},
-      "redirect_efficiency": {
-        "redirect_analysis": {
-          "redirect_count": 1,
-          "efficiency_classification": "good (standard redirects)",
-          "performance_ratio": 0.15
-        }
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 12.5,
+        "crawl_permissions": 20,
+        "cache_headers": 20,
+        "agent_content_hints": 4
       }
     }
   },
   "standards_authority": {
-    "accessibility": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
-    "semantics": "HTML5 Semantic Elements (W3C)"
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
   }
 }
 ```
 
-## Enhanced HTTP Compliance Scoring
+## HTTP Compliance Scoring
 
-Clipper now includes **redirect efficiency analysis** as part of HTTP compliance evaluation:
+Clipper evaluates HTTP compliance across **five sub-signals** (10% of total score):
 
-### **HTTP Standards + Redirects Component (15% of total score)**
-- **Content Negotiation (60%)** - Server's ability to provide different content formats
-- **Redirect Efficiency (40%)** - Quality and performance of redirect chains **[NEW]**
+### **Sub-Signal Breakdown**
+| Sub-signal | Max Points | What it measures |
+|---|---|---|
+| **HTML Reachability** | 15 | Does the URL serve a 200 response to `Accept: text/html`? |
+| **Redirect Efficiency** | 25 | Chain length, proper status codes, performance impact |
+| **Crawl Permissions** | 20 | `robots.txt` allows access + no `noindex` meta |
+| **Cache Headers** | 20 | Presence of `ETag`, `Last-Modified`, `Cache-Control` |
+| **Agent Content Hints** | 20 | Machine-readable alternate formats and LLM-specific endpoints |
 
-### **What Redirect Efficiency Evaluates:**
-1. **Chain Length** - Fewer redirects = better score
-   - 0 redirects: 25/25 points (optimal)
-   - 1-2 redirects: 20/25 points (good)  
-   - 3-4 redirects: 10/25 points (moderate)
-   - 5+ redirects: 0/25 points (poor)
+### **Agent Content Hints (New)**
+Detects whether pages declare machine-readable content formats:
+- `<link rel="alternate" type="text/markdown">` (6 pts)
+- `<meta name="markdown_url">` (4 pts) — e.g. Microsoft Learn
+- `data-llm-hint` attributes (4 pts)
+- `llms.txt` references (3 pts)
+- Non-HTML `<link rel="alternate">` (3 pts)
 
-2. **Redirect Types** - Proper HTTP status codes
-   - 301, 302, 303, 307, 308: Good
-   - Invalid or missing status codes: Penalty
-
-3. **Performance Impact** - Redirect overhead analysis
-   - Low redirect-to-content time ratio: Better score
-   - High redirect overhead: Lower score
-
-### **Real-World Impact:**
-- **Direct URLs (no redirects)**: Get full HTTP compliance bonus
-- **Standard redirects (http→https)**: Minor score impact
-- **Excessive redirect chains**: Meaningful score penalty
-- **Redirect loops**: Early detection prevents evaluation failures
+### **Redirect Efficiency**
+- 0 redirects: Full points (optimal)
+- 1-2 redirects: Minor deduction
+- 3-4 redirects: Moderate penalty
+- 5+ redirects: Significant penalty
 
 ## Quick Command Reference
 

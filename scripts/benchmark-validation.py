@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Benchmark validation suite for YARA evaluations."""
+"""Benchmark validation suite for Clipper evaluations."""
 
 import json
 import argparse
@@ -76,8 +76,8 @@ BENCHMARK_DATA = [
 ]
 
 
-def load_yara_results(results_file: str) -> Dict[str, float]:
-    """Load YARA evaluation results from JSON file."""
+def load_clipper_results(results_file: str) -> Dict[str, float]:
+    """Load Clipper evaluation results from JSON file."""
     
     # Try to load scores.json format first
     scores_file = Path(results_file)
@@ -117,7 +117,7 @@ def load_yara_results(results_file: str) -> Dict[str, float]:
 
 
 def validate_benchmark(results: Dict[str, float]) -> List[ValidationResult]:
-    """Validate YARA results against benchmark expectations."""
+    """Validate Clipper results against benchmark expectations."""
     
     validation_results = []
     
@@ -156,7 +156,7 @@ def generate_validation_report(validation_results: List[ValidationResult]) -> st
     failed = total - passed
     
     report = [
-        "# YARA Benchmark Validation Report",
+        "# Clipper Benchmark Validation Report",
         f"**Date:** {Path.cwd()}",
         f"**Results:** {passed}/{total} passed ({passed/total*100:.1f}%)",
         ""
@@ -215,8 +215,8 @@ def generate_validation_report(validation_results: List[ValidationResult]) -> st
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Validate YARA results against benchmark expectations")
-    parser.add_argument("results_file", help="JSON file with YARA evaluation results")
+    parser = argparse.ArgumentParser(description="Validate Clipper results against benchmark expectations")
+    parser.add_argument("results_file", help="JSON file with Clipper evaluation results")
     parser.add_argument("--fail-threshold", type=float, default=20.0, 
                        help="Fail if any deviation exceeds this threshold (default: 20.0)")
     parser.add_argument("--accuracy-threshold", type=float, default=0.7,
@@ -227,10 +227,10 @@ def main():
     args = parser.parse_args()
     
     try:
-        # Load YARA results
-        results = load_yara_results(args.results_file)
+        # Load Clipper results
+        results = load_clipper_results(args.results_file)
         if not args.quiet:
-            print(f"Loaded {len(results)} YARA results")
+            print(f"Loaded {len(results)} Clipper results")
         
         # Validate against benchmark
         validation_results = validate_benchmark(results)

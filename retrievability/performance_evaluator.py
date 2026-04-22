@@ -26,9 +26,9 @@ from urllib.parse import urljoin, urlparse
 # Keep existing imports for compatibility
 from .access_gate_evaluator import AccessGateEvaluator
 from .schemas import ScoreResult
+from .profiles import PROFILE_ARTICLE, PROFILE_WEIGHTS
 
 # AsyncIO and performance imports
-import httpx
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
@@ -95,18 +95,25 @@ class WebDriverPool:
         try:
             # Try to get a driver with retry logic for pool exhaustion
             for attempt in range(max_wait_attempts):
+                need_create = False
                 with self.lock:
                     if self.available_drivers:
                         driver = self.available_drivers.pop()
                         break
                     elif len(self.drivers) < self.max_drivers:
-                        try:
-                            driver = self._create_driver()
+                        need_create = True
+                
+                if need_create:
+                    try:
+                        # Create driver outside the lock via executor to avoid blocking event loop
+                        loop = asyncio.get_event_loop()
+                        driver = await loop.run_in_executor(None, self._create_driver)
+                        with self.lock:
                             self.drivers.append(driver)
-                            break
-                        except Exception as e:
-                            self.logger.error(f"Failed to create WebDriver on attempt {attempt + 1}: {e}")
-                            # Continue to next attempt or fallback
+                        break
+                    except Exception as e:
+                        self.logger.error(f"Failed to create WebDriver on attempt {attempt + 1}: {e}")
+                        # Continue to next attempt or fallback
                 
                 # Pool is full, wait briefly for a driver to become available
                 if attempt < max_wait_attempts - 1:
@@ -117,7 +124,8 @@ class WebDriverPool:
                 # Fallback: create temporary driver if pool is consistently full
                 self.logger.warning("WebDriver pool exhausted, creating temporary driver")
                 try:
-                    driver = self._create_driver()
+                    loop = asyncio.get_event_loop()
+                    driver = await loop.run_in_executor(None, self._create_driver)
                     temp_driver = True
                 except Exception as e:
                     self.logger.error(f"Failed to create temporary WebDriver: {e}")
@@ -186,18 +194,35 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
         
         self.max_workers = max_workers
         self.webdriver_pool = WebDriverPool(max_drivers=2, headless=headless)
-        self.http_client = None
-        self.executor = concurrent.futures.ThreadPoolExecutor(max_workers=max_workers)
+        # Size pool for concurrent batch evaluation: each URL needs ~6 executor tasks
+        # (3 sync + 2 async + 1 browser). With batch_size=5, that's 30 tasks.
+        self.executor = concurrent.futures.ThreadPoolExecutor(max_workers=max(max_workers * 6, 24))
         
         # Performance metrics
         self.evaluation_times = []
         self.start_time = None
     
     async def evaluate_access_gate_async(self, parse_data: Dict, url: Optional[str] = None, 
-                                       crawl_data: Optional[Dict] = None) -> ScoreResult:
-        """Async version of evaluate_access_gate with performance optimizations and redirect analysis."""
+                                       crawl_data: Optional[Dict] = None,
+                                       render_mode: str = 'rendered') -> ScoreResult:
+        """Async version of evaluate_access_gate with performance optimizations and redirect analysis.
+
+        Args:
+            parse_data: Parsed HTML signals from the snapshot.
+            url: Original URL (enables axe-in-browser for DOM navigability).
+            crawl_data: Crawl metadata (enables HTTP compliance redirect analysis).
+            render_mode: ``'rendered'`` (default) runs the full browser-axe pass
+                for DOM navigability when a URL is available; ``'raw'`` forces
+                the static-analysis fallback for DOM navigability and makes no
+                browser call at all. Raw mode models agents that do not
+                execute JavaScript (RAG crawlers, search indexers, API-based
+                agents).
+        """
         start_time = time.time()
-        
+
+        if render_mode not in ('raw', 'rendered'):
+            raise ValueError(f"render_mode must be 'raw' or 'rendered', got {render_mode!r}")
+
         try:
             signals = parse_data['signals']
             evidence = parse_data['evidence']
@@ -208,33 +233,20 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             if not html_content:
                 return self._create_error_result("Failed to load HTML content", html_path)
             
-            # Initialize HTTP client for concurrent requests with timeout
-            timeout_config = httpx.Timeout(
-                connect=10.0,  # Connection timeout
-                read=15.0,     # Read timeout
-                write=10.0,    # Write timeout
-                pool=20.0      # Pool timeout
+            # Individual component timeouts (20s fast, 60s browser) prevent hanging.
+            # No outer timeout — it was discarding valid partial results when the
+            # thread pool was saturated by concurrent batch evaluations.
+            return await self._perform_async_evaluation(
+                signals, evidence, html_content, url, crawl_data, html_path, render_mode
             )
-            
-            async with httpx.AsyncClient(timeout=timeout_config) as client:
-                self.http_client = client
-                
-                # Wrap the entire evaluation in a timeout to prevent hanging
-                try:
-                    return await asyncio.wait_for(
-                        self._perform_async_evaluation(signals, evidence, html_content, url, crawl_data, html_path),
-                        timeout=75.0  # Increased to 75-second overall timeout for parallel optimization  
-                    )
-                except asyncio.TimeoutError:
-                    self.logger.error(f"Evaluation timeout for {url or html_path}")
-                    return self._create_error_result("Evaluation timeout", html_path)
             
         except Exception as e:
             self.logger.error(f"Async evaluation failed: {e}")
             return self._create_error_result(f"Evaluation failed: {e}", html_path)
-    
-    async def _perform_async_evaluation(self, signals: Dict, evidence: Dict, html_content: str, 
-                                      url: Optional[str], crawl_data: Optional[Dict], html_path: str) -> ScoreResult:
+
+    async def _perform_async_evaluation(self, signals: Dict, evidence: Dict, html_content: str,
+                                      url: Optional[str], crawl_data: Optional[Dict], html_path: str,
+                                      render_mode: str = 'rendered') -> ScoreResult:
         """Perform the actual async evaluation with optimized parallel execution.
         
         Performance Enhancement: Separates browser-dependent (WCAG) from browser-independent 
@@ -258,8 +270,12 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             ('metadata_completeness', lambda: self._evaluate_metadata_completeness(html_content, url))
         ]
         
-        # Browser-dependent component (slowest, runs separately)
-        if url and self._is_valid_url(url):
+        # Browser-dependent component (slowest, runs separately).
+        # In 'raw' mode we never invoke the browser/axe pass — the whole point
+        # of raw mode is to model agents that do not execute JavaScript.
+        if render_mode == 'raw':
+            browser_task = ('dom_navigability', self._evaluate_wcag_fallback_async(html_content))
+        elif url and self._is_valid_url(url):
             browser_task = ('dom_navigability', self._evaluate_wcag_accessibility_async(html_content, url))
         else:
             browser_task = ('dom_navigability', self._evaluate_wcag_fallback_async(html_content))
@@ -277,7 +293,7 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
         
         # Execute all fast components in parallel
         fast_async_results = await asyncio.gather(*[
-            asyncio.wait_for(task[1], timeout=20.0) for task in fast_tasks  # Extended fast timeout
+            asyncio.wait_for(task[1], timeout=60.0) for task in fast_tasks  # Allow for thread pool queuing in batches
         ], return_exceptions=True)
         
         # Execute fast sync tasks in parallel
@@ -303,54 +319,62 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             browser_execution_time = time.time() - browser_start_time
         
         # === RESULT AGGREGATION ===
-        
-        scores = {}
-        audit_trail = {}
-        
-        # Process fast async results
-        for i, (component_name, _) in enumerate(fast_tasks):
-            result = fast_async_results[i]
+        # Mirrors the synchronous path in AccessGateEvaluator.evaluate_access_gate:
+        # exceptions turn into entries in failed_pillars (dropped from the
+        # weighted average) rather than zeros that contaminate the score.
+
+        scores: Dict[str, float] = {}
+        audit_trail: Dict[str, Any] = {}
+        failed_pillars: List[str] = []
+
+        def _accept(component_name: str, result, optimization: str) -> None:
             if isinstance(result, Exception):
-                self.logger.error(f"Fast async component {component_name} failed: {result}")
-                scores[component_name] = 0.0
-                audit_trail[component_name] = {'error': str(result), 'optimization': 'parallel_fast_group'}
-            else:
-                score, trail = result
-                scores[component_name] = score
-                audit_trail[component_name] = trail
-                audit_trail[component_name]['optimization'] = 'parallel_fast_group'
-        
-        # Process fast sync results
-        for i, (component_name, _) in enumerate(fast_sync_tasks):
-            result = fast_sync_results[i]
-            if isinstance(result, Exception):
-                self.logger.error(f"Fast sync component {component_name} failed: {result}")
-                scores[component_name] = 0.0
-                audit_trail[component_name] = {'error': str(result), 'optimization': 'parallel_fast_group'}
-            else:
-                score, trail = result
-                scores[component_name] = score
-                audit_trail[component_name] = trail
-                audit_trail[component_name]['optimization'] = 'parallel_fast_group'
-        
-        # Process browser result
-        component_name = browser_task[0]
-        if isinstance(browser_result, Exception):
-            self.logger.error(f"Browser component {component_name} failed: {browser_result}")
-            scores[component_name] = 0.0
-            audit_trail[component_name] = {'error': str(browser_result), 'optimization': 'browser_separate'}
-        else:
-            score, trail = browser_result
+                self.logger.error(f"Pillar '{component_name}' could not be evaluated: {result}")
+                failed_pillars.append(component_name)
+                audit_trail[component_name] = {
+                    'status': 'could_not_evaluate',
+                    'reason': str(result),
+                    'optimization': optimization,
+                }
+                return
+            score, trail = result
             scores[component_name] = score
             audit_trail[component_name] = trail
-            audit_trail[component_name]['optimization'] = 'browser_separate'
-        
-        # Calculate weighted final score
-        final_score = sum(scores[component] * self.WEIGHTS[component] 
-                         for component in scores)
-        
+            audit_trail[component_name]['optimization'] = optimization
+
+        # Process fast async results
+        for i, (component_name, _) in enumerate(fast_tasks):
+            _accept(component_name, fast_async_results[i], 'parallel_fast_group')
+
+        # Process fast sync results
+        for i, (component_name, _) in enumerate(fast_sync_tasks):
+            _accept(component_name, fast_sync_results[i], 'parallel_fast_group')
+
+        # Process browser result
+        _accept(browser_task[0], browser_result, 'browser_separate')
+
+        # Record evaluator environment for reproducibility (Phase 0.3).
+        audit_trail['_environment'] = self._capture_environment(audit_trail)
+
+        partial_evaluation = bool(failed_pillars)
+
+        # Detect content type and pick the weight profile (Phase 1.1).
+        content_type, detection_trace = self._detect_content_type(html_content, url)
+        profile_weights = PROFILE_WEIGHTS[content_type]
+        audit_trail['_content_type'] = {
+            'profile': content_type,
+            'detection': detection_trace,
+            'weights': profile_weights,
+        }
+
+        # Renormalize the weighted average over surviving pillars.
+        final_score = self._weighted_score(scores, profile_weights)
+        universal_score = self._weighted_score(scores, PROFILE_WEIGHTS[PROFILE_ARTICLE])
+
         # Determine failure mode based on standards compliance
-        failure_mode = self._determine_failure_mode_standards(scores, final_score)
+        failure_mode = self._determine_failure_mode_standards(
+            scores, final_score, partial_evaluation=partial_evaluation
+        )
         
         # Record performance metrics with optimization details
         total_execution_time = max(fast_execution_time, browser_execution_time)
@@ -382,7 +406,12 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             component_scores=scores,
             audit_trail=audit_trail,
             standards_authority=self.STANDARDS_AUTHORITY,
-            evaluation_methodology="Clipper Performance-Parallel-Optimized Access Gate"
+            evaluation_methodology="Clipper Performance-Parallel-Optimized Access Gate",
+            partial_evaluation=partial_evaluation,
+            failed_pillars=failed_pillars,
+            content_type=content_type,
+            universal_score=universal_score,
+            render_mode=render_mode,
         )
     
     async def _evaluate_wcag_fallback_async(self, html_content: str) -> Tuple[float, Dict]:
@@ -410,7 +439,10 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             if url and self._is_valid_url(url):
                 # Use WebDriver pool for better performance
                 async with self.webdriver_pool.get_driver() as driver:
-                    return await self._run_axe_evaluation_async(driver, url, audit_trail)
+                    # Run entire browser evaluation in executor — all Selenium calls are synchronous
+                    return await asyncio.get_event_loop().run_in_executor(
+                        self.executor, self._run_axe_evaluation_sync, driver, url, audit_trail
+                    )
             else:
                 # Fallback to static analysis
                 return await asyncio.get_event_loop().run_in_executor(
@@ -422,11 +454,11 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             audit_trail['error'] = str(e)
             return 0.0, audit_trail
     
-    async def _run_axe_evaluation_async(self, driver: webdriver.Chrome, url: str, audit_trail: Dict) -> Tuple[float, Dict]:
-        """Async axe evaluation with performance optimizations and robust error handling."""
+    def _run_axe_evaluation_sync(self, driver: webdriver.Chrome, url: str, audit_trail: Dict) -> Tuple[float, Dict]:
+        """Synchronous axe evaluation — runs in thread pool to avoid blocking event loop."""
         try:
             # Navigate to URL with timeout
-            driver.set_page_load_timeout(15)  # Set page load timeout to prevent hanging
+            driver.set_page_load_timeout(15)
             driver.get(url)
             
             # Wait for DOM ready with shorter timeout
@@ -456,7 +488,6 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             except Exception as axe_error:
                 self.logger.warning(f"[WARN] Axe browser evaluation failed, falling back to static analysis: {axe_error}")
                 audit_trail['axe_fallback_reason'] = str(axe_error)
-                # Return fallback static score instead of failing completely
                 return 75.0, audit_trail
             
             # Quick scoring calculation with per-rule caps
@@ -475,7 +506,7 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             audit_trail.update({
                 'violations_count': len(violations),
                 'passes_count': len(results.get('passes', [])),
-                'violations': violations[:5] if violations else [],  # Reduced for performance
+                'violations': violations[:5] if violations else [],
                 'evaluation_method': 'Pooled WebDriver + axe-core'
             })
             
@@ -485,30 +516,13 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             # Fallback to static analysis instead of failing
             self.logger.warning(f"Axe evaluation failed, using static analysis: {e}")
             audit_trail['axe_fallback_reason'] = str(e)
-            
-            # Run static analysis in executor to avoid blocking
-            from bs4 import BeautifulSoup
-            soup = BeautifulSoup(await self._get_page_source_async(driver), 'html.parser')
-            
-            score = 70.0  # Basic fallback score
             audit_trail['evaluation_method'] = 'Static analysis fallback (axe failed)'
-            
-            return score, audit_trail
-    
-    async def _get_page_source_async(self, driver: webdriver.Chrome) -> str:
-        """Get page source asynchronously."""
-        return await asyncio.get_event_loop().run_in_executor(
-            self.executor, lambda: driver.page_source
-        )
+            return 70.0, audit_trail
     
     def _evaluate_semantic_html_sync(self, html_content: str, signals: Dict) -> Tuple[float, Dict]:
         """Synchronous semantic HTML evaluation (optimized for threading)."""
         # Use parent implementation but with performance tracking
         return self._evaluate_semantic_html(html_content, signals)
-    
-    def _evaluate_content_quality_sync(self, html_content: str, signals: Dict, evidence: Dict) -> Tuple[float, Dict]:
-        """Synchronous content quality evaluation."""
-        return self._evaluate_content_quality(html_content, signals, evidence)
     
     async def _evaluate_structured_data_async(self, html_content: str, url: Optional[str]) -> Tuple[float, Dict]:
         """Async structured data evaluation with HTTP optimization."""
@@ -525,73 +539,23 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
                                                      crawl_data: Optional[Dict]) -> Tuple[float, Dict]:
         """Async version of enhanced HTTP compliance with redirect efficiency."""
         try:
-            # Create a sync evaluator and call the enhanced method
-            from .access_gate_evaluator import AccessGateEvaluator
-            evaluator = AccessGateEvaluator()
-            
-            # Run the enhanced HTTP compliance in executor to avoid blocking
+            # Run the inherited method in executor to avoid blocking
             loop = asyncio.get_event_loop()
             result = await loop.run_in_executor(
                 self.executor, 
-                evaluator._evaluate_http_compliance_enhanced,
+                self._evaluate_http_compliance_enhanced,
                 html_content, url, crawl_data
             )
             return result
             
         except Exception as e:
-            # Fallback to basic HTTP compliance
-            return await self._evaluate_http_compliance_async(html_content, url)
-        """Async HTTP compliance evaluation."""
-        audit_trail = {
-            'standard': 'RFC 7231 Content Negotiation (IETF)', 
-            'method': 'Async HTTP standards compliance check'
-        }
-        
-        try:
-            if not url or not self._is_valid_url(url):
-                return 50.0, audit_trail  # Neutral score for no URL
-            
-            # Concurrent HTTP requests for different content types
-            accept_headers = [
-                'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                'application/json',
-                'text/plain',
-                'application/xml'
-            ]
-            
-            async def test_accept_header(header):
-                try:
-                    response = await self.http_client.get(url, headers={'Accept': header}, timeout=5)
-                    return {
-                        'accept': header,
-                        'status': response.status_code,
-                        'content_type': response.headers.get('content-type', ''),
-                        'content_length': response.headers.get('content-length', '0')
-                    }
-                except Exception as e:
-                    return {'accept': header, 'error': str(e)}
-            
-            # Run requests concurrently
-            results = await asyncio.gather(*[
-                test_accept_header(header) for header in accept_headers
-            ], return_exceptions=True)
-            
-            # Calculate score based on content negotiation support
-            successful_negotiations = sum(1 for r in results if isinstance(r, dict) and 'error' not in r)
-            score = (successful_negotiations / len(accept_headers)) * 100
-            
-            audit_trail.update({
-                'negotiation_tests': results,
-                'successful_negotiations': successful_negotiations,
-                'score_calculation': f'{successful_negotiations}/{len(accept_headers)} successful negotiations'
-            })
-            
-            return score, audit_trail
-            
-        except Exception as e:
+            # Fallback: return neutral score on failure
             self.logger.error(f"Async HTTP compliance evaluation failed: {e}")
-            audit_trail['error'] = str(e)
-            return 0.0, audit_trail
+            return 0.0, {
+                'standard': 'RFC 7231 Content Negotiation (IETF)',
+                'method': 'Evaluation failed',
+                'error': str(e)
+            }
     
     def get_performance_stats(self) -> Dict:
         """Get performance statistics for optimization analysis."""

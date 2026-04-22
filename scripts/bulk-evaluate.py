@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Large-scale YARA evaluation with progress tracking and summary reporting
+Large-scale Clipper evaluation with progress tracking and summary reporting
 Usage: python bulk-evaluate.py large-urls.txt --batch-size 50 --out bulk-results/
 """
 
@@ -43,7 +43,7 @@ def run_bulk_evaluation(url_file, output_dir, batch_size=50):
             for url in url_batch:
                 f.write(f"{url}\n")
         
-        # Run YARA on batch  
+        # Run Clipper on batch  
         batch_output = output_path / f"batch_{batch_num}_results"
         cmd = [
             sys.executable, "-m", "retrievability.cli", "express", 
@@ -130,7 +130,7 @@ def generate_bulk_summary(all_results, output_path, total_urls, elapsed):
     print(f"\n📄 Full summary: {output_path}/bulk_summary.json")
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Large-scale YARA evaluation')
+    parser = argparse.ArgumentParser(description='Large-scale Clipper evaluation')
     parser.add_argument('url_file', help='File containing URLs to evaluate')
     parser.add_argument('--out', default='bulk-evaluation', help='Output directory')
     parser.add_argument('--batch-size', type=int, default=50, help='URLs per batch')

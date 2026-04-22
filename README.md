@@ -10,7 +10,7 @@ Clipper measures that foundational layer. It evaluates live URLs against six ind
 
 - [Overview](#overview)
 - [Clipper Standards Framework](#clipper-standards-framework)
-- [Quick Demo Results](#quick-demo-results)
+- [Quick Start](#quick-start)
 - [Installation](#installation) 
 - [CLI Usage](#cli-usage)
 - [Enterprise Features](#enterprise-features)
@@ -54,7 +54,7 @@ beautifulsoup4        # HTML parsing standard
 3. **📊 Schema.org Structured Data (20%)** - JSON-LD quality, type validation, field completeness
 4. **🛡️ DOM Navigability (15%)** - WCAG 2.1 / Deque axe-core DOM evaluation
 5. **🏷️ Metadata Completeness (10%)** - Dublin Core, Schema.org, OpenGraph field coverage
-6. **🌐 HTTP Compliance (10%)** - Reachability, redirects, robots.txt, cache headers
+6. **🌐 HTTP Compliance (10%)** - Reachability, redirects, robots.txt, cache headers, agent content hints
 
 ### **Standards Authority Mapping**
 ```python
@@ -74,16 +74,7 @@ STANDARDS_AUTHORITY = {
 - **✅ Standards Compliance** - Built on recognized industry authorities
 - **✅ Reproducible Results** - Same evaluation across different environments
 
-## Quick Demo Results
-
-**Clipper standards-based evaluation** of major documentation sites:
-
-| Site | Clipper Score | Primary Strengths | Improvement Areas |
-|------|---------------|-------------------|-------------------|
-| **Microsoft Learn** | **50-60 Range** | **Full metadata, good extractability, strong HTML** | **Structured data quality, DOM navigability** |
-| **Wikipedia** | **62.2/100** | **Rich structured data (85), good extraction** | **DOM navigability, metadata gaps** |
-| **GitHub Docs** | **54.9/100** | **Strong DOM navigability (85), good HTML** | **Structured data, metadata** |
-| **MDN Web Docs** | **55.3/100** | **Excellent semantic HTML (84), good HTTP** | **Structured data quality** |
+## Quick Start
 
 **Try Clipper immediately: No API keys, no setup required.**
 
@@ -118,7 +109,7 @@ Clipper is designed for immediate use from GitHub Copilot conversations:
 
 ```bash
 # Just run it - no configuration needed
-python main.py express clipper-test-urls.txt --out evaluation-results
+python main.py express urls/clipper-demo-urls.txt --out evaluation-results
 ```
 
 ## CLI Usage
@@ -142,6 +133,27 @@ python main.py express urls.txt --out results/ --standard
 
 # Performance benchmarking
 python main.py express urls.txt --out results/ --benchmark
+
+# Rendering-mode dimension (Phase 3.1)
+# raw:      models non-JS agents (RAG crawlers, indexers)
+# rendered: models JS-executing agents (default)
+# both:     produces a per-URL delta and flags JS-dependent pages
+python main.py express urls.txt --out results/ --render-mode both
+```
+
+### **Trend view: how has a URL scored over time?**
+
+`clipper history <url>` walks every `*_scores.json` file under `--root`
+(default `evaluation/`) and prints one row per prior evaluation of that
+URL, sorted by score-file mtime, with the parseability delta vs. the
+previous row. Use it to confirm a page has actually improved rather than
+just regressed and recovered:
+
+```bash
+python main.py history https://learn.microsoft.com/en-us/azure/aks/faq
+
+# Machine-readable
+python main.py history https://learn.microsoft.com/en-us/azure/aks/faq --json
 ```
 
 ### **Step-by-Step Pipeline**
@@ -314,12 +326,21 @@ Clipper generates comprehensive audit documentation:
 
 ## Scoring System
 
+Clipper reports two 0–100 numbers for every page:
+
+- **`parseability_score`** *(primary)* — the type-adjusted score. Clipper detects whether the page is an article, landing page, tutorial, FAQ, reference, or code sample, and reweights the six pillars accordingly. Compare this number against peers of the same content type.
+- **`universal_score`** — the same pillar scores under the default article weights, useful for cross-type comparisons and for tracking a single page over time without profile changes biasing the series.
+
+The content type, detection signal, and full weight table used for each page are recorded under `audit_trail._content_type`. See [docs/scoring.md#content-type-profiles](docs/scoring.md#content-type-profiles) for the profile table and detection precedence.
+
 ### **Access Gate Classification**
 - **90-100**: `clean` - Fully agent-ready
 - **75-89**: `minor_issues` - Nearly agent-ready  
 - **60-74**: `moderate_issues` - Improvements needed
 - **40-59**: `significant_issues` - Major optimization required
 - **0-39**: `severe_issues` - Substantial restructuring needed
+- **`partial_evaluation`** - One or more pillars could not be evaluated (e.g., network timeout). The final score is a weighted average over the surviving pillars and the dropped pillars are listed in `failed_pillars`. See [docs/scoring.md](docs/scoring.md#partial-evaluations) for the full contract.
+- **`evaluation_error`** - Every pillar failed; no usable score.
 
 ### **Pillar Weight Distribution**
 Based on agent retrievability impact:
@@ -328,7 +349,16 @@ Based on agent retrievability impact:
 - **Structured Data (20%)** - Machine-readable metadata for agent understanding
 - **DOM Navigability (15%)** - Accessible DOM structure for crawlers
 - **Metadata Completeness (10%)** - Identity, authorship, and currency signals
-- **HTTP Compliance (10%)** - Reachability, crawl permissions, cacheability
+- **HTTP Compliance (10%)** - Reachability, crawl permissions, cacheability, agent content hints
+
+### **Rendering Modes**
+Clipper can evaluate each URL under two assumptions via `--render-mode raw|rendered|both`:
+
+- **`rendered`** (default) — models agents that execute JavaScript. DOM navigability runs in headless Chrome via axe-core.
+- **`raw`** — models non-JS agents (RAG crawlers, search indexers, API clients). DOM navigability falls back to static analysis.
+- **`both`** — produces two `ScoreResult` entries per URL and a "Rendering-Mode Deltas" section. Pages with `|rendered - raw| >= 15` are flagged as **JS-dependent**. Treat `min(rendered, raw)` as the pessimistic score of record.
+
+See [docs/scoring.md#rendering-modes](docs/scoring.md#rendering-modes) for the full explanation.
 
 ### **Content Extractability Sub-Signals**
 The Content Extractability score (20% of overall) uses Mozilla Readability to measure extraction quality:
@@ -345,19 +375,38 @@ The Structured Data score (20% of overall) evaluates schema quality, not just pr
 | Sub-signal | Max Points | What it measures |
 |---|---|---|
 | **Type Appropriateness** | 20 | Does the `@type` match recognized content types (Article, WebPage, HowTo, etc.)? |
-| **Field Completeness** | 30 | Does JSON-LD include key fields: `name`, `dateModified`, `author`, `description`, etc.? |
+| **Field Completeness** | 30 | Per-type required + recommended fields for the four validated `@type` values. See below. |
 | **Multiple Formats** | 20 | Are JSON-LD, OpenGraph, and microdata all present? |
 | **Schema Validation** | 30 | Are required properties present for the declared Schema.org type? |
 
+**Per-type field expectations** (Field Completeness is computed per JSON-LD item, averaged across validated items):
+
+| `@type` | Required | Recommended |
+|---|---|---|
+| `Article` | `headline`, `datePublished` | `author`, `dateModified`, `description`, `publisher` |
+| `FAQPage` | `mainEntity` (non-empty list of `Question` entries with `acceptedAnswer`) | — |
+| `HowTo` | `name`, `step` (non-empty list) | `description`, `totalTime` |
+| `BreadcrumbList` | `itemListElement` (list with ≥2 items) | — |
+
+Items of other `@type` values fall back to a generic key-field check. Missing and structurally invalid fields are logged in `audit_trail.structured_data.field_completeness_detail`. See [docs/scoring.md](docs/scoring.md#field-completeness--per-type-expectations-phase-41) for the full specification.
+
 ### **HTTP Compliance Sub-Signals**
-The HTTP Compliance score (10% of overall) is split into four sub-signals:
+The HTTP Compliance score (10% of overall) is split into five sub-signals:
 
 | Sub-signal | Max Points | What it measures |
 |---|---|---|
-| **HTML Reachability** | 20 | Does the URL serve a 200 response to `Accept: text/html`? |
-| **Redirect Efficiency** | 30 | Chain length (0 hops optimal, >4 penalized), proper status codes, performance impact. |
-| **Crawl Permissions** | 25 | `robots.txt` allows access + no `<meta name="robots" content="noindex">` blocking. |
-| **Cache Headers** | 25 | Presence of `ETag`, `Last-Modified`, and `Cache-Control` headers. |
+| **HTML Reachability** | 15 | Does the URL serve a 200 response to `Accept: text/html`? |
+| **Redirect Efficiency** | 25 | Chain length (0 hops optimal, >4 penalized), proper status codes, performance impact. |
+| **Crawl Permissions** | 20 | `robots.txt` allows access + no `<meta name="robots" content="noindex">` blocking. |
+| **Cache Headers** | 20 | Presence of `ETag`, `Last-Modified`, and `Cache-Control` headers. |
+| **Agent Content Hints** | 20 | Signals that the page offers machine-readable alternate formats or LLM-specific endpoints. |
+
+**Agent Content Hints** detects:
+- `<link rel="alternate" type="text/markdown">` (6 pts) — markdown alternate link
+- `<meta name="markdown_url">` (4 pts) — markdown URL metadata (e.g. Microsoft Learn)
+- `data-llm-hint` attributes (4 pts) — explicit LLM guidance in HTML
+- `llms.txt` references (3 pts) — site-level LLM endpoint declaration
+- Non-HTML `<link rel="alternate">` (3 pts) — any non-HTML alternate format (JSON, XML, etc.)
 
 ### **Metadata Completeness Fields**
 The Metadata Completeness score (10% of overall) checks for 7 key fields across Dublin Core, Schema.org, and OpenGraph:
@@ -399,22 +448,22 @@ jobs:
 ```
 clipper/
 ├─ README.md                           # This comprehensive guide
-├─ main.py                            # CLI entry point
-├─ requirements.txt                   # Standards-based dependencies
+├─ USER-INSTRUCTIONS.md                # End-user walkthrough
+├─ main.py                             # CLI entry point
+├─ requirements.txt                    # Standards-based dependencies
 ├─ retrievability/
-│  ├─ cli.py                         # Clipper CLI interface
-│  ├─ access_gate_evaluator.py       # Standards-based evaluation engine
-│  ├─ score.py                       # Clipper scoring orchestration
-│  ├─ crawl.py                       # URL acquisition
-│  ├─ parse.py                       # Content signal extraction
-│  ├─ report.py                      # Audit trail generation
-│  └─ schemas.py                     # Clipper data structures
-├─ samples/
-│  ├─ urls.txt                       # Sample Microsoft Learn URLs
-│  └─ snapshots/                     # HTML snapshot storage
-├─ clipper-test-results/              # Validation test outputs
-├─ scripts/                         # Automation utilities
-└─ docs/                           # Technical documentation
+│  ├─ cli.py                           # Clipper CLI interface
+│  ├─ access_gate_evaluator.py         # Standards-based evaluation engine
+│  ├─ performance_evaluator.py         # Async/parallel evaluator
+│  ├─ score.py / performance_score.py  # Scoring orchestration
+│  ├─ crawl.py                         # URL acquisition + redirect tracking
+│  ├─ parse.py                         # Content signal extraction
+│  ├─ report.py                        # Audit trail + markdown report
+│  └─ schemas.py                       # Clipper data structures
+├─ urls/                               # Curated URL lists for evaluation
+├─ samples/                            # Sample URLs and snapshots
+├─ scripts/                            # Automation utilities
+└─ docs/                               # Technical documentation
 ```
 
 ## Real-World Use Cases
@@ -473,12 +522,23 @@ Clipper welcomes contributions that enhance standards-based evaluation:
 3. **Enterprise Features** - Expand audit trail and compliance documentation
 4. **Agent Optimization** - Enhance agent-focused content quality metrics
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines and standards compliance requirements.
+### Running tests
+
+Pillar behavior is locked in by a small offline fixture suite. Install dev
+dependencies and run pytest:
+
+```bash
+pip install -r requirements-dev.txt
+pytest -q
+```
+
+The suite completes in under a second, requires no network or browser, and
+runs automatically in CI on every pull request. See [docs/testing.md](docs/testing.md)
+for the fixture layout and guidance on adding new fixtures.
 
 ## License
 
-Clipper - Standards-Based Access Gate Evaluator
-Licensed under MIT License - see [LICENSE](LICENSE) for details.
+Clipper - Standards-Based Access Gate Evaluator. Licensed under the MIT License.
 
 ---
 

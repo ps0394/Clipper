@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create curated benchmark URL sets for YARA validation."""
+"""Create curated benchmark URL sets for Clipper validation."""
 
 import argparse
 from pathlib import Path
@@ -139,7 +139,7 @@ def validate_urls():
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Create curated benchmark URL sets for YARA validation")
+    parser = argparse.ArgumentParser(description="Create curated benchmark URL sets for Clipper validation")
     subparsers = parser.add_subparsers(dest="command", help="Commands")
     
     # Create benchmark set

@@ -18,7 +18,8 @@ from .score import _load_crawl_data_for_scoring
 
 
 def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optional[str] = None, 
-                            use_performance_mode: bool = True) -> None:
+                            use_performance_mode: bool = True,
+                            render_mode: str = 'rendered') -> None:
     """Performance-optimized version of score_parse_results.
     
     Provides 2-3x speed improvement over standard scoring while maintaining accuracy.
@@ -28,10 +29,20 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
         output_file: JSON file to save score results
         api_key: Deprecated parameter (Clipper is API-free)
         use_performance_mode: Enable performance optimizations (default: True)
+        render_mode: 'rendered' | 'raw' | 'both'. When 'both', each URL
+            produces two ScoreResults — one with raw-HTML scoring (no
+            browser/axe) and one with the browser-axe pass — so consumers
+            can compute a parseability delta between what JS-rendering
+            agents see vs. what raw-HTML agents see.
     """
     if api_key:
         print("[WARN] API key parameter is deprecated in Clipper")
         print("   Clipper uses industry standards and is completely API-free")
+
+    if render_mode not in ('raw', 'rendered', 'both'):
+        raise ValueError(
+            f"render_mode must be 'raw', 'rendered', or 'both', got {render_mode!r}"
+        )
     
     print("[CLIPPER] Performance-Optimized Access Gate Evaluator")
     print("|- W3C Semantic HTML Analysis - 25%")
@@ -40,7 +51,7 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
     print("|- DOM Navigability (WCAG 2.1 / axe-core) - 15%")
     print("|- Metadata Completeness (Dublin Core / OpenGraph) - 10%")
     print("+- HTTP Compliance (RFC 7231 / robots / cache) - 10%")
-    print(f"🚀 Performance Mode: {'ENABLED' if use_performance_mode else 'DISABLED'}")
+    print(f"[PERF] Performance Mode: {'ENABLED' if use_performance_mode else 'DISABLED'}")
     
     start_time = time.time()
     
@@ -55,16 +66,16 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
     # Load URLs and crawl data for enhanced evaluation
     urls, crawl_results = _load_crawl_data_for_scoring(parse_path)
     
-    print(f"📊 Evaluating {len(parse_results_data)} documents using performance-optimized standards...")
+    print(f"[EVAL] Evaluating {len(parse_results_data)} documents using performance-optimized standards...")
     if crawl_results:
         print(f"   Enhanced with redirect chain analysis for HTTP compliance")
     
     if use_performance_mode:
         # Use async performance evaluator
-        score_results = asyncio.run(_evaluate_with_performance_mode(parse_results_data, urls, crawl_results))
+        score_results = asyncio.run(_evaluate_with_performance_mode(parse_results_data, urls, crawl_results, render_mode))
     else:
         # Use standard evaluator for comparison
-        score_results = _evaluate_with_standard_mode(parse_results_data, urls, crawl_results)
+        score_results = _evaluate_with_standard_mode(parse_results_data, urls, crawl_results, render_mode)
     
     # Save results
     output_path = Path(output_file)
@@ -74,7 +85,7 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
         json.dump([result.to_dict() for result in score_results], f, indent=2)
     
     evaluation_time = time.time() - start_time
-    print(f"✅ Performance-optimized evaluation completed in {evaluation_time:.1f}s!")
+    print(f"[DONE] Performance-optimized evaluation completed in {evaluation_time:.1f}s!")
     print(f"   Results saved: {output_file}")
     print(f"   Methodology: Industry standards ({'Performance Mode' if use_performance_mode else 'Standard Mode'})")
     
@@ -86,7 +97,7 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
             avg_per_url = stats['average_time_seconds']
             estimated_standard_time = avg_per_url * 2.5  # Estimated standard mode time
             improvement = ((estimated_standard_time - avg_per_url) / estimated_standard_time) * 100
-            print(f"🏃 Performance: {avg_per_url:.1f}s/URL avg (est. {improvement:.0f}% faster than standard mode)")
+            print(f"[PERF] Performance: {avg_per_url:.1f}s/URL avg (est. {improvement:.0f}% faster than standard mode)")
         
         # Try to get parallel execution metrics from the results
         try:
@@ -104,7 +115,7 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
                         total_time = timing.get('total_parallel_time_seconds', 0)
                         improvement_pct = timing.get('performance_improvement_percent', 0)
                         
-                        print(f"⚡ Parallel Execution:")
+                        print(f"[PERF] Parallel Execution:")
                         print(f"   Fast components (HTML, Schema, Extractability, Metadata, HTTP): {fast_time}s")
                         print(f"   Browser component (DOM Navigability): {browser_time}s")
                         print(f"   Total parallel time: {total_time}s (~{improvement_pct:.1f}% faster)")
@@ -113,17 +124,25 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
 
 
 async def _evaluate_with_performance_mode(parse_results_data: List[Dict], urls: List[str], 
-                                         crawl_results: List[Dict]) -> List:
-    """Evaluate using performance-optimized async evaluator with redirect analysis."""
+                                         crawl_results: List[Dict], render_mode: str = 'rendered') -> List:
+    """Evaluate using performance-optimized async evaluator with redirect analysis.
+
+    When ``render_mode == 'both'`` each URL is scored twice — once in 'raw'
+    mode (no browser) and once in 'rendered' mode — and both ScoreResults
+    are emitted. The report layer matches the pair by URL and computes the
+    parseability delta.
+    """
     evaluator = get_performance_evaluator()
-    
-    # Create tasks for all evaluations
+
+    modes: List[str] = ['raw', 'rendered'] if render_mode == 'both' else [render_mode]
+
+    # Create tasks for all (parse_data, mode) pairs
     tasks = []
-    for i, parse_data in enumerate(parse_results_data):
-        url = urls[i] if i < len(urls) else None
-        crawl_data = crawl_results[i] if i < len(crawl_results) else None
-        task = evaluator.evaluate_access_gate_async(parse_data, url, crawl_data)
-        tasks.append(task)
+    for mode in modes:
+        for i, parse_data in enumerate(parse_results_data):
+            url = urls[i] if i < len(urls) else None
+            crawl_data = crawl_results[i] if i < len(crawl_results) else None
+            tasks.append(evaluator.evaluate_access_gate_async(parse_data, url, crawl_data, render_mode=mode))
     
     # Process in batches to avoid overwhelming the system
     batch_size = 5  # Process 5 URLs concurrently maximum
@@ -156,34 +175,38 @@ async def _evaluate_with_performance_mode(parse_results_data: List[Dict], urls: 
 
 
 def _evaluate_with_standard_mode(parse_results_data: List[Dict], urls: List[str], 
-                                crawl_results: List[Dict]) -> List:
+                                crawl_results: List[Dict], render_mode: str = 'rendered') -> List:
     """Evaluate using standard synchronous evaluator for comparison with redirect analysis."""
     evaluator = AccessGateEvaluator()
     results = []
-    
-    for i, parse_data in enumerate(parse_results_data):
-        url = urls[i] if i < len(urls) else None
-        crawl_data = crawl_results[i] if i < len(crawl_results) else None
-        print(f"  Standards evaluation: {parse_data.get('html_path', f'item_{i+1}')}")
-        
-        try:
-            result = evaluator.evaluate_access_gate(parse_data, url, crawl_data)
-            results.append(result)
-        except Exception as e:
-            print(f"  [WARN] Evaluation failed for item {i+1}: {e}")
-            from .schemas import ScoreResult
-            error_result = ScoreResult(
-                parseability_score=0.0,
-                failure_mode="evaluation_error", 
-                html_path=parse_data.get('html_path', 'unknown'),
-                url=url or 'unknown',
-                component_scores={},
-                audit_trail={"error": str(e)},
-                standards_authority={},
-                evaluation_methodology="Clipper Standards-Based Access Gate"
-            )
-            results.append(error_result)
-    
+
+    modes: List[str] = ['raw', 'rendered'] if render_mode == 'both' else [render_mode]
+
+    for mode in modes:
+        for i, parse_data in enumerate(parse_results_data):
+            url = urls[i] if i < len(urls) else None
+            crawl_data = crawl_results[i] if i < len(crawl_results) else None
+            print(f"  Standards evaluation ({mode}): {parse_data.get('html_path', f'item_{i+1}')}")
+
+            try:
+                result = evaluator.evaluate_access_gate(parse_data, url, crawl_data, render_mode=mode)
+                results.append(result)
+            except Exception as e:
+                print(f"  [WARN] Evaluation failed for item {i+1}: {e}")
+                from .schemas import ScoreResult
+                error_result = ScoreResult(
+                    parseability_score=0.0,
+                    failure_mode="evaluation_error",
+                    html_path=parse_data.get('html_path', 'unknown'),
+                    url=url or 'unknown',
+                    component_scores={},
+                    audit_trail={"error": str(e)},
+                    standards_authority={},
+                    evaluation_methodology="Clipper Standards-Based Access Gate",
+                    render_mode=mode,
+                )
+                results.append(error_result)
+
     return results
 
 
@@ -280,7 +303,7 @@ def benchmark_performance_modes(parse_file: str, iterations: int = 3) -> Dict:
         'raw_results': results
     }
     
-    print(f"\n📊 Benchmark Results:")
+    print(f"\n[RESULTS] Benchmark Results:")
     print(f"  Performance Mode: {avg_performance:.2f}s avg")
     print(f"  Standard Mode: {avg_standard:.2f}s avg")
     print(f"  Speed Improvement: {improvement:.1f}% ({summary['speed_improvement_factor']}x faster)")

@@ -1,14 +1,17 @@
-"""YARA 2.0 - Hybrid Agent-Ready Assessment Framework
+"""Clipper - Standards-Based Access Gate Evaluation for Agent-Ready Content.
 
 This package provides CLI tools to evaluate whether documentation pages are:
-- Agent-ready with proven Lighthouse accessibility/SEO foundation  
-- Structurally ready for AI agent content extraction
-- Optimized for retrieval systems with hybrid scoring methodology
+- Accessible and extractable by AI agents
+- Structurally ready for AI agent content retrieval
+- Optimized for retrieval systems using industry standards
 
-YARA 2.0 combines:
-- Lighthouse Foundation (70%) - Proven accessibility, SEO, performance metrics
-- Content Analysis (20%) - Enhanced YARA content structure evaluation  
-- Agent Performance (10%) - Direct AI agent extraction simulation
+Clipper evaluates 6 pillars (API-free):
+- W3C Semantic HTML (25%)
+- Content Extractability via Mozilla Readability (20%)
+- Schema.org Structured Data (20%)
+- DOM Navigability via WCAG 2.1 / axe-core (15%)
+- Metadata Completeness via Dublin Core / OpenGraph (10%)
+- HTTP Compliance via RFC 7231 (10%)
 """
 
-__version__ = "2.0.0"
+__version__ = "3.0.0"

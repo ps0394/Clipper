@@ -1,7 +1,7 @@
 """Clipper - Standards-Based Access Gate Evaluator.
 
 Industry-standard, API-free evaluation for agent-ready content optimization.
-Replaces API-dependent Lighthouse scoring with defensible standards-based methodology.
+Uses established standards (W3C, Schema.org, WCAG, Mozilla Readability, RFC 7231).
 """
 
 import json
@@ -29,6 +29,89 @@ import charset_normalizer
 from readability import Document as ReadabilityDocument
 
 from .schemas import ScoreResult
+from . import __version__ as CLIPPER_VERSION
+from .profiles import (
+    PROFILE_ARTICLE,
+    PROFILE_WEIGHTS,
+    detect_content_type,
+)
+
+
+class PillarEvaluationError(Exception):
+    """Raised when a pillar cannot be evaluated at all.
+
+    The orchestrator catches this, records the pillar in ``failed_pillars``,
+    and renormalizes the final score over the surviving pillars rather than
+    treating the failure as a score of zero.
+    """
+
+    def __init__(self, pillar: str, reason: str):
+        super().__init__(f"{pillar}: {reason}")
+        self.pillar = pillar
+        self.reason = reason
+
+
+# Phase 4.1 — per-type field expectations for JSON-LD completeness scoring.
+# Only the four @type values actually observed in current corpora are
+# validated. Other types still count for presence (type_appropriateness /
+# multiple_formats sub-signals) but do not contribute to field completeness.
+_JSON_LD_TYPE_EXPECTATIONS: Dict[str, Dict[str, List[str]]] = {
+    'Article': {
+        'required': ['headline', 'datePublished'],
+        'recommended': ['author', 'dateModified', 'description', 'publisher'],
+    },
+    'FAQPage': {
+        # 'mainEntity' is treated specially: it must be a non-empty list of
+        # Question items with acceptedAnswer. See _validate_jsonld_field.
+        'required': ['mainEntity'],
+        'recommended': [],
+    },
+    'HowTo': {
+        'required': ['name', 'step'],
+        'recommended': ['description', 'totalTime'],
+    },
+    'BreadcrumbList': {
+        # 'itemListElement' must contain >=2 valid items. See
+        # _validate_jsonld_field.
+        'required': ['itemListElement'],
+        'recommended': [],
+    },
+}
+
+
+def _validate_jsonld_field(field: str, value: Any, schema_type: str) -> bool:
+    """Return True if ``value`` is a valid population of ``field`` for
+    ``schema_type``. Handles the structural rules called out in the
+    improvement plan §4.1 (non-empty FAQ mainEntity, BreadcrumbList
+    itemListElement with >=2 items, non-empty HowTo steps).
+    """
+    if value in (None, '', [], {}):
+        return False
+
+    if schema_type == 'FAQPage' and field == 'mainEntity':
+        if not isinstance(value, list) or not value:
+            return False
+        # Each entry should look like a Question with an acceptedAnswer.
+        valid_qa = 0
+        for entry in value:
+            if not isinstance(entry, dict):
+                continue
+            answer = entry.get('acceptedAnswer')
+            if answer:
+                valid_qa += 1
+        return valid_qa > 0
+
+    if schema_type == 'BreadcrumbList' and field == 'itemListElement':
+        if not isinstance(value, list):
+            return False
+        return len(value) >= 2
+
+    if schema_type == 'HowTo' and field == 'step':
+        if isinstance(value, list):
+            return len(value) > 0
+        return bool(value)
+
+    return True
 
 
 class AccessGateEvaluator:
@@ -86,17 +169,26 @@ class AccessGateEvaluator:
         self.chrome_options.add_argument('--disable-web-security')
     
     def evaluate_access_gate(self, parse_data: Dict, url: Optional[str] = None, 
-                             crawl_data: Optional[Dict] = None) -> ScoreResult:
+                             crawl_data: Optional[Dict] = None,
+                             render_mode: str = 'rendered') -> ScoreResult:
         """Evaluate Access Gate score using industry standards.
         
         Args:
             parse_data: Dictionary containing parse result data
             url: URL for live standards evaluation (optional)
             crawl_data: Dictionary containing crawl result data with redirect chain (optional)
+            render_mode: ``'rendered'`` (default) runs the full browser-axe
+                pass for DOM navigability when a URL is available;
+                ``'raw'`` forces the static-analysis fallback for DOM
+                navigability and makes no browser call at all. Raw mode
+                models agents that do not execute JavaScript.
             
         Returns:
             ScoreResult with standards-based scores and audit trail
         """
+        if render_mode not in ('raw', 'rendered'):
+            raise ValueError(f"render_mode must be 'raw' or 'rendered', got {render_mode!r}")
+
         signals = parse_data['signals']
         evidence = parse_data['evidence']
         html_path = parse_data.get('html_path', '')
@@ -106,41 +198,68 @@ class AccessGateEvaluator:
         if not html_content:
             return self._create_error_result("Failed to load HTML content", html_path)
         
-        # Component evaluations (all API-free, standards-based)
-        scores = {}
-        audit_trail = {}
-        
-        # 1. W3C Semantic HTML (25%) - HTML5 semantic elements  
-        scores['semantic_html'], audit_trail['semantic_html'] = \
-            self._evaluate_semantic_html(html_content, signals)
-        
-        # 2. Content Extractability (20%) - Mozilla Readability
-        scores['content_extractability'], audit_trail['content_extractability'] = \
-            self._evaluate_content_extractability(html_content, signals)
-        
-        # 3. Schema.org Structured Data (20%) - extruct analysis
-        scores['structured_data'], audit_trail['structured_data'] = \
-            self._evaluate_structured_data(html_content, url)
-        
-        # 4. DOM Navigability (15%) - WCAG 2.1 / axe-core
-        scores['dom_navigability'], audit_trail['dom_navigability'] = \
-            self._evaluate_wcag_accessibility(html_content, url)
-        
-        # 5. Metadata Completeness (10%) - Dublin Core / Schema.org / OpenGraph
-        scores['metadata_completeness'], audit_trail['metadata_completeness'] = \
-            self._evaluate_metadata_completeness(html_content, url)
-        
-        # 6. HTTP Compliance (10%) - Agent-focused HTTP compliance
-        scores['http_compliance'], audit_trail['http_compliance'] = \
-            self._evaluate_http_compliance_enhanced(html_content, url, crawl_data)
-        
-        # Calculate weighted final score
-        final_score = sum(scores[component] * self.WEIGHTS[component] 
-                         for component in scores)
-        
+        # Component evaluations (all API-free, standards-based).
+        # In 'raw' mode DOM navigability is forced through its static
+        # fallback so no browser/axe call occurs; this models a non-JS
+        # agent's view of the page.
+        if render_mode == 'raw':
+            dom_nav_fn = lambda: self._evaluate_wcag_accessibility(html_content, None)
+        else:
+            dom_nav_fn = lambda: self._evaluate_wcag_accessibility(html_content, url)
+
+        pillar_callables = [
+            ('semantic_html',          lambda: self._evaluate_semantic_html(html_content, signals)),
+            ('content_extractability', lambda: self._evaluate_content_extractability(html_content, signals)),
+            ('structured_data',        lambda: self._evaluate_structured_data(html_content, url)),
+            ('dom_navigability',       dom_nav_fn),
+            ('metadata_completeness',  lambda: self._evaluate_metadata_completeness(html_content, url)),
+            ('http_compliance',        lambda: self._evaluate_http_compliance_enhanced(html_content, url, crawl_data)),
+        ]
+
+        scores: Dict[str, float] = {}
+        audit_trail: Dict[str, Any] = {}
+        failed_pillars: List[str] = []
+
+        for pillar_name, pillar_fn in pillar_callables:
+            try:
+                score_value, pillar_audit = pillar_fn()
+                scores[pillar_name] = score_value
+                audit_trail[pillar_name] = pillar_audit
+            except PillarEvaluationError as e:
+                failed_pillars.append(pillar_name)
+                audit_trail[pillar_name] = {
+                    'status': 'could_not_evaluate',
+                    'reason': e.reason,
+                }
+                self.logger.error(f"Pillar '{pillar_name}' could not be evaluated: {e.reason}")
+
+        # Record evaluator environment for reproducibility (Phase 0.3).
+        audit_trail['_environment'] = self._capture_environment(audit_trail)
+
+        partial_evaluation = bool(failed_pillars)
+
+        # Detect content type and pick the weight profile (Phase 1.1). The
+        # default ``article`` weights match the pre-1.1 behavior exactly, so
+        # pages that fall through to the default keep producing the same
+        # score as before.
+        content_type, detection_trace = self._detect_content_type(html_content, url)
+        profile_weights = PROFILE_WEIGHTS[content_type]
+        audit_trail['_content_type'] = {
+            'profile': content_type,
+            'detection': detection_trace,
+            'weights': profile_weights,
+        }
+
+        # Final score renormalizes over surviving pillar weights. If every
+        # pillar failed the score is 0 and the failure mode reflects that.
+        final_score = self._weighted_score(scores, profile_weights)
+        universal_score = self._weighted_score(scores, PROFILE_WEIGHTS[PROFILE_ARTICLE])
+
         # Determine failure mode based on standards compliance
-        failure_mode = self._determine_failure_mode_standards(scores, final_score)
-        
+        failure_mode = self._determine_failure_mode_standards(
+            scores, final_score, partial_evaluation=partial_evaluation
+        )
+
         return ScoreResult(
             parseability_score=final_score,
             failure_mode=failure_mode,
@@ -149,7 +268,12 @@ class AccessGateEvaluator:
             component_scores=scores,
             audit_trail=audit_trail,
             standards_authority=self.STANDARDS_AUTHORITY,
-            evaluation_methodology="Clipper Standards-Based Access Gate"
+            evaluation_methodology="Clipper Standards-Based Access Gate",
+            partial_evaluation=partial_evaluation,
+            failed_pillars=failed_pillars,
+            content_type=content_type,
+            universal_score=universal_score,
+            render_mode=render_mode,
         )
     
     def _load_html_content(self, html_path: str) -> Optional[str]:
@@ -245,8 +369,8 @@ class AccessGateEvaluator:
         except Exception as e:
             self.logger.error(f"WCAG evaluation failed: {e}")
             audit_trail['error'] = str(e)
-            return 0.0, audit_trail
-    
+            raise PillarEvaluationError('dom_navigability', str(e)) from e
+
     def _run_axe_evaluation(self, url: str) -> Tuple[float, Dict]:
         """Run axe-core accessibility evaluation on live URL."""
         driver = None
@@ -310,13 +434,25 @@ class AccessGateEvaluator:
                 penalty += capped_penalty
             
             score = max(0, 100 - penalty)
-            
+
+            # Capture tool versions so Phase 0.3 reproducibility metadata
+            # has something to report for the live-browser path.
+            browser_version = driver.capabilities.get('browserVersion') \
+                or driver.capabilities.get('version', 'unknown')
+            chromedriver_version = (
+                driver.capabilities.get('chrome', {}).get('chromedriverVersion', 'unknown')
+            )
+            axe_version = results.get('testEngine', {}).get('version', 'unknown')
+
             return score, {
                 'violations_count': len(violations),
                 'passes_count': len(passes),
                 'violations': violations[:10],  # Keep first 10 for audit trail
                 'total_penalty': penalty,
-                'penalty_per_rule': penalty_per_rule
+                'penalty_per_rule': penalty_per_rule,
+                'browser_version': browser_version,
+                'chromedriver_version': chromedriver_version,
+                'axe_version': axe_version,
             }
             
         except Exception as e:
@@ -416,7 +552,7 @@ class AccessGateEvaluator:
         except Exception as e:
             self.logger.error(f"Semantic HTML evaluation failed: {e}")
             audit_trail['error'] = str(e)
-            return 0.0, audit_trail
+            raise PillarEvaluationError('semantic_html', str(e)) from e
     
     def _evaluate_structured_data(self, html_content: str, url: Optional[str]) -> Tuple[float, Dict]:
         """Evaluate Schema.org structured data quality and completeness.
@@ -471,20 +607,113 @@ class AccessGateEvaluator:
                 type_score = min((matched / max(len(schema_types), 1)) * 20, 20)
             score_components['type_appropriateness'] = type_score
             
-            # 2. Field completeness (0-30 points)
-            # Does JSON-LD include key fields?
-            key_fields = ['name', 'description', 'dateModified', 'author', 'publisher',
-                         'headline', 'datePublished', 'image', 'url']
-            fields_found = set()
-            for item in json_ld_data:
-                if isinstance(item, dict):
-                    for field in key_fields:
-                        if item.get(field):
-                            fields_found.add(field)
-            
-            if key_fields:
+            # 2. Field completeness (0-30 points) — Phase 4.1
+            # Per-type field expectations for the four validated @type values.
+            # Items of other types fall back to the legacy generic-field check
+            # so pages with exotic schemas aren't over-penalized.
+            field_completeness_audit: Dict = {
+                'method': 'per-type field completeness (Phase 4.1)',
+                'validated_items': [],
+                'unvalidated_items': 0,
+                'missing_fields': [],
+                'invalid_fields': [],
+            }
+
+            validated_ratios: List[float] = []
+            unvalidated_items = 0
+            fields_found: set = set()
+
+            for idx, item in enumerate(json_ld_data):
+                if not isinstance(item, dict):
+                    continue
+                raw_type = item.get('@type', '')
+                if isinstance(raw_type, list):
+                    item_types = [t for t in raw_type if isinstance(t, str)]
+                else:
+                    item_types = [raw_type] if isinstance(raw_type, str) else []
+
+                validated_type = next(
+                    (t for t in item_types if t in _JSON_LD_TYPE_EXPECTATIONS),
+                    None,
+                )
+
+                if validated_type is None:
+                    unvalidated_items += 1
+                    continue
+
+                expectations = _JSON_LD_TYPE_EXPECTATIONS[validated_type]
+                required = expectations['required']
+                recommended = expectations['recommended']
+                expected_total = len(required) + len(recommended)
+
+                present_required = 0
+                present_recommended = 0
+                item_missing: List[str] = []
+                item_invalid: List[str] = []
+
+                for field in required:
+                    value = item.get(field)
+                    if value in (None, '', [], {}):
+                        item_missing.append(field)
+                        continue
+                    if _validate_jsonld_field(field, value, validated_type):
+                        present_required += 1
+                    else:
+                        item_invalid.append(field)
+
+                for field in recommended:
+                    value = item.get(field)
+                    if value in (None, '', [], {}):
+                        item_missing.append(field)
+                        continue
+                    present_recommended += 1
+
+                item_ratio = (
+                    (present_required + present_recommended) / expected_total
+                    if expected_total > 0 else 0.0
+                )
+                validated_ratios.append(item_ratio)
+
+                field_completeness_audit['validated_items'].append({
+                    'index': idx,
+                    'type': validated_type,
+                    'present': present_required + present_recommended,
+                    'expected': expected_total,
+                    'ratio': round(item_ratio, 3),
+                    'missing': item_missing,
+                    'invalid': item_invalid,
+                })
+                if item_missing:
+                    field_completeness_audit['missing_fields'].append({
+                        'type': validated_type,
+                        'fields': item_missing,
+                    })
+                if item_invalid:
+                    field_completeness_audit['invalid_fields'].append({
+                        'type': validated_type,
+                        'fields': item_invalid,
+                    })
+
+            field_completeness_audit['unvalidated_items'] = unvalidated_items
+
+            if validated_ratios:
+                avg_ratio = sum(validated_ratios) / len(validated_ratios)
+                score_components['field_completeness'] = min(30.0, 30.0 * avg_ratio)
+                field_completeness_audit['average_ratio'] = round(avg_ratio, 3)
+            elif json_ld_data:
+                # Fallback for JSON-LD with no validated types: partial credit
+                # based on generic key-field presence (legacy behavior).
+                key_fields = ['name', 'description', 'dateModified', 'author',
+                              'publisher', 'headline', 'datePublished', 'image', 'url']
+                for item in json_ld_data:
+                    if isinstance(item, dict):
+                        for field in key_fields:
+                            if item.get(field):
+                                fields_found.add(field)
                 completeness_ratio = len(fields_found) / len(key_fields)
                 score_components['field_completeness'] = completeness_ratio * 30
+                field_completeness_audit['fallback'] = 'generic key-field check (no validated @type)'
+                field_completeness_audit['fallback_fields_found'] = sorted(fields_found)
             else:
                 score_components['field_completeness'] = 0
             
@@ -552,6 +781,7 @@ class AccessGateEvaluator:
                 'key_fields_found': list(fields_found),
                 'formats_present': formats_present,
                 'score_breakdown': score_components,
+                'field_completeness_detail': field_completeness_audit,
                 'sample_structured_data': self._sample_structured_data(metadata)
             })
             
@@ -560,7 +790,7 @@ class AccessGateEvaluator:
         except Exception as e:
             self.logger.error(f"Structured data evaluation failed: {e}")
             audit_trail['error'] = str(e)
-            return 0.0, audit_trail
+            raise PillarEvaluationError('structured_data', str(e)) from e
     
     def _evaluate_http_compliance_enhanced(self, html_content: str, url: Optional[str], 
                                          crawl_data: Optional[Dict]) -> Tuple[float, Dict]:
@@ -578,13 +808,13 @@ class AccessGateEvaluator:
         audit_trail = {
             'standard': 'RFC 7231 + robots.txt + Cache headers',
             'method': 'Agent-focused HTTP compliance evaluation',
-            'score_calculation': 'HTML reachability (20) + Redirect efficiency (30) + Robots/crawl permissions (25) + Cache headers (25)'
+            'score_calculation': 'HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)'
         }
         
         try:
             score_components = {}
             
-            # 1. HTML reachability (0-20 points) — does the URL serve text/html?
+            # 1. HTML reachability (0-15 points) — does the URL serve text/html?
             html_reach_score = 0
             html_reach_audit = {}
             if url and self._is_valid_url(url):
@@ -598,34 +828,32 @@ class AccessGateEvaluator:
                     html_reach_audit['status_code'] = response.status_code
                     html_reach_audit['content_type'] = response.headers.get('content-type', '')
                     if response.status_code == 200:
-                        html_reach_score = 20
+                        html_reach_score = 15
                     elif response.status_code in (301, 302, 307, 308):
-                        html_reach_score = 15  # Redirects but reachable
+                        html_reach_score = 11
                     elif response.status_code < 400:
-                        html_reach_score = 10
+                        html_reach_score = 8
                     else:
                         html_reach_score = 0
                 except Exception as e:
                     html_reach_audit['error'] = str(e)
                     html_reach_score = 0
             else:
-                # Static analysis fallback — assume reachable if we have HTML
-                html_reach_score = 15
+                html_reach_score = 11
                 html_reach_audit['method'] = 'Static fallback (no live URL)'
             score_components['html_reachability'] = html_reach_score
             audit_trail['html_reachability'] = html_reach_audit
             
-            # 2. Redirect efficiency (0-30 points)
+            # 2. Redirect efficiency (0-25 points)
             if crawl_data and 'redirect_chain' in crawl_data:
                 redirect_score, redirect_audit = self._evaluate_redirect_efficiency(crawl_data)
-                # Scale from 0-40 to 0-30
-                score_components['redirect_efficiency'] = (redirect_score / 40) * 30
+                score_components['redirect_efficiency'] = (redirect_score / 40) * 25
             else:
-                score_components['redirect_efficiency'] = 30.0  # Assume optimal
+                score_components['redirect_efficiency'] = 25.0
                 redirect_audit = {'method': 'No redirect data (assuming direct access)'}
             audit_trail['redirect_efficiency'] = redirect_audit
             
-            # 3. Robots / crawl permissions (0-25 points)
+            # 3. Robots / crawl permissions (0-20 points)
             robots_score = 0
             robots_audit = {}
             
@@ -638,14 +866,14 @@ class AccessGateEvaluator:
                 has_noindex = 'noindex' in robots_content
                 has_nofollow = 'nofollow' in robots_content
                 if has_noindex:
-                    robots_score = 0  # Page explicitly blocks indexing
+                    robots_score = 0
                     robots_audit['blocked'] = True
                 elif has_nofollow:
-                    robots_score = 15  # Can index but not follow links
+                    robots_score = 10
                 else:
-                    robots_score = 15  # Meta robots present and permissive
+                    robots_score = 12
             else:
-                robots_score = 15  # No meta robots = permissive by default
+                robots_score = 12
                 robots_audit['meta_robots'] = 'none (permissive by default)'
             
             # Check robots.txt (if live URL available)
@@ -657,40 +885,31 @@ class AccessGateEvaluator:
                     robots_audit['robots_txt_status'] = robots_response.status_code
                     if robots_response.status_code == 200:
                         robots_text = robots_response.text
-                        # Simple check: look for Disallow on the URL path
                         path = parsed.path or '/'
-                        is_blocked = False
-                        for line in robots_text.splitlines():
-                            line = line.strip()
-                            if line.lower().startswith('disallow:'):
-                                disallowed = line.split(':', 1)[1].strip()
-                                if disallowed and path.startswith(disallowed):
-                                    is_blocked = True
-                                    break
+                        is_blocked = self._check_robots_txt_blocked(robots_text, path)
                         if is_blocked:
-                            robots_score = max(robots_score - 15, 0)
+                            robots_score = max(robots_score - 12, 0)
                             robots_audit['robots_txt_blocked'] = True
                         else:
-                            robots_score += 10
+                            robots_score += 8
                             robots_audit['robots_txt_blocked'] = False
                     else:
-                        robots_score += 10  # No robots.txt = permissive
+                        robots_score += 8  # No robots.txt = permissive
                         robots_audit['robots_txt_blocked'] = False
                 except Exception as e:
-                    robots_score += 5  # Can't check, partial credit
+                    robots_score += 4  # Can't check, partial credit
                     robots_audit['robots_txt_error'] = str(e)
             else:
-                robots_score += 5  # No URL to check
+                robots_score += 4  # No URL to check
             
-            score_components['crawl_permissions'] = min(robots_score, 25)
+            score_components['crawl_permissions'] = min(robots_score, 20)
             audit_trail['crawl_permissions'] = robots_audit
             
-            # 4. Cache headers (0-25 points)
+            # 4. Cache headers (0-20 points)
             cache_score = 0
             cache_audit = {}
             if url and self._is_valid_url(url):
                 try:
-                    # Use HEAD request to check cache headers
                     head_response = httpx.head(url, timeout=10, follow_redirects=True)
                     headers = head_response.headers
                     
@@ -703,23 +922,47 @@ class AccessGateEvaluator:
                     cache_audit['cache_control'] = headers.get('cache-control', 'absent')
                     
                     if has_etag:
-                        cache_score += 10
+                        cache_score += 8
                     if has_last_modified:
-                        cache_score += 10
+                        cache_score += 8
                     if has_cache_control:
                         cc = headers.get('cache-control', '').lower()
                         if 'no-store' in cc:
-                            cache_score += 2  # Has header but blocks caching
+                            cache_score += 1
                         else:
-                            cache_score += 5
+                            cache_score += 4
                 except Exception as e:
                     cache_audit['error'] = str(e)
             else:
-                cache_score = 12  # Neutral without live URL
+                cache_score = 10
                 cache_audit['method'] = 'Static fallback (no live URL)'
             
-            score_components['cache_headers'] = min(cache_score, 25)
+            score_components['cache_headers'] = min(cache_score, 20)
             audit_trail['cache_headers'] = cache_audit
+            
+            # 5. Agent content hints (0-20 points) — does the HTML declare
+            #    machine-readable alternate formats or LLM-specific endpoints?
+            agent_hints_score = 0
+            agent_hints_audit = {}
+            
+            # Re-use the soup already created for robots check
+            from .parse import _detect_agent_content_hints
+            hints = _detect_agent_content_hints(soup)
+            agent_hints_audit['signals_found'] = hints
+            
+            if hints.get('has_markdown_alternate'):
+                agent_hints_score += 6   # <link rel="alternate" type="text/markdown">
+            if hints.get('has_markdown_url_meta'):
+                agent_hints_score += 4   # <meta name="markdown_url">
+            if hints.get('has_llm_hints'):
+                agent_hints_score += 4   # data-llm-hint attributes
+            if hints.get('has_llms_txt_ref'):
+                agent_hints_score += 3   # llms.txt reference
+            if hints.get('has_non_html_alternate'):
+                agent_hints_score += 3   # any non-HTML <link rel="alternate">
+            
+            score_components['agent_content_hints'] = min(agent_hints_score, 20)
+            audit_trail['agent_content_hints'] = agent_hints_audit
             
             final_score = min(sum(score_components.values()), 100)
             audit_trail['score_breakdown'] = score_components
@@ -729,7 +972,7 @@ class AccessGateEvaluator:
         except Exception as e:
             self.logger.error(f"HTTP compliance evaluation failed: {e}")
             audit_trail['error'] = str(e)
-            return 0.0, audit_trail
+            raise PillarEvaluationError('http_compliance', str(e)) from e
     
     def _evaluate_redirect_efficiency(self, crawl_data: Dict) -> Tuple[float, Dict]:
         """Evaluate redirect chain efficiency for HTTP compliance.
@@ -827,123 +1070,6 @@ class AccessGateEvaluator:
         else:
             return 'critical (redirect chain too long)'
 
-    def _evaluate_http_compliance(self, html_content: str, url: Optional[str]) -> Tuple[float, Dict]:
-        """Evaluate HTTP standards compliance (RFC 7231).
-        
-        Returns:
-            Tuple of (score 0-100, audit_trail_dict)
-        """
-        audit_trail = {
-            'standard': 'RFC 7231 Content Negotiation (IETF)',
-            'method': 'HTTP headers and content negotiation analysis',
-            'score_calculation': 'Based on content negotiation support and header compliance'
-        }
-        
-        try:
-            score = 50.0  # Base score for static analysis
-            
-            if url and self._is_valid_url(url):
-                # Test content negotiation with live URL
-                score, details = self._test_content_negotiation(url)
-                audit_trail.update(details)
-            else:
-                # Static HTML analysis for HTTP compliance indicators
-                soup = BeautifulSoup(html_content, 'html.parser')
-                
-                # Check for content negotiation indicators
-                meta_content_type = soup.find('meta', attrs={'http-equiv': 'Content-Type'})
-                canonical_link = soup.find('link', rel='canonical')
-                alternate_links = soup.find_all('link', rel='alternate')
-                
-                score_factors = {
-                    'content_type_declared': bool(meta_content_type),
-                    'canonical_url': bool(canonical_link),
-                    'alternate_formats': len(alternate_links) > 0,
-                    'proper_encoding_declaration': self._check_encoding_declaration(soup)
-                }
-                
-                # Calculate score
-                passed = sum(1 for passed in score_factors.values() if passed)
-                score = (passed / len(score_factors)) * 100
-                
-                audit_trail.update({
-                    'method': 'Static HTML compliance analysis (fallback)',
-                    'compliance_factors': score_factors,
-                    'alternate_formats_count': len(alternate_links)
-                })
-            
-            return score, audit_trail
-            
-        except Exception as e:
-            self.logger.error(f"HTTP compliance evaluation failed: {e}")
-            audit_trail['error'] = str(e)
-            return 0.0, audit_trail
-    
-    def _evaluate_content_quality(self, html_content: str, signals: Dict, evidence: Dict) -> Tuple[float, Dict]:
-        """Evaluate agent-focused content quality metrics.
-        
-        Returns:
-            Tuple of (score 0-100, audit_trail_dict)
-        """
-        audit_trail = {
-            'standard': 'Established content analysis metrics',
-            'method': 'Agent-focused content quality evaluation',
-            'score_calculation': 'Based on content structure, readability, and agent accessibility'
-        }
-        
-        try:
-            soup = BeautifulSoup(html_content, 'html.parser')
-            
-            # Extract text content
-            text_content = soup.get_text()
-            
-            # Content quality metrics
-            quality_metrics = {}
-            
-            # 1. Text-to-HTML ratio (from signals, fallback to calculation)
-            text_html_ratio = signals.get('text_html_ratio', len(text_content) / len(html_content))
-            quality_metrics['text_html_ratio'] = min(text_html_ratio * 100, 25)  # Up to 25 points
-            
-            # 2. Content structure (headings, paragraphs)
-            headings = soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
-            paragraphs = soup.find_all('p')
-            quality_metrics['content_structure'] = min((len(headings) * 3 + len(paragraphs) * 0.5), 25)
-            
-            # 3. Link quality and navigation
-            links = soup.find_all('a', href=True)
-            internal_links = [link for link in links if not self._is_external_link(link.get('href', ''))]
-            quality_metrics['navigation_quality'] = min(len(internal_links) * 2, 25)
-            
-            # 4. Content readability (basic metrics)
-            words = len(text_content.split())
-            sentences = text_content.count('.') + text_content.count('!') + text_content.count('?')
-            avg_sentence_length = words / max(sentences, 1)
-            readability_score = 100 - min(abs(avg_sentence_length - 15) * 2, 25)  # Optimal ~15 words/sentence
-            quality_metrics['readability'] = min(max(readability_score, 0), 25)  # Cap at 25 points
-            
-            final_score = min(sum(quality_metrics.values()), 100)  # Cap total at 100
-            
-            audit_trail.update({
-                'content_metrics': {
-                    'total_text_length': len(text_content),
-                    'total_html_length': len(html_content),
-                    'text_html_ratio': text_html_ratio,
-                    'headings_count': len(headings),
-                    'paragraphs_count': len(paragraphs),
-                    'links_count': len(links),
-                    'internal_links_count': len(internal_links),
-                    'avg_sentence_length': avg_sentence_length
-                },
-                'quality_breakdown': quality_metrics
-            })
-            
-            return final_score, audit_trail
-            
-        except Exception as e:
-            self.logger.error(f"Content quality evaluation failed: {e}")
-            audit_trail['error'] = str(e)
-            return 0.0, audit_trail
-    
     def _evaluate_content_extractability(self, html_content: str, signals: Dict) -> Tuple[float, Dict]:
         """Evaluate content extractability using Mozilla Readability algorithm.
         
@@ -1076,8 +1202,10 @@ class AccessGateEvaluator:
                 'extraction_metrics': {
                     'raw_text_length': raw_text_length,
                     'extracted_text_length': extracted_text_length,
+                    'extracted_chars': extracted_text_length,
                     'extraction_ratio': round(extracted_text_length / raw_text_length, 3) if raw_text_length > 0 else 0,
                     'extracted_title': extracted_title,
+                    'extracted_preview': (extracted_text[:300] + '...') if extracted_text_length > 300 else extracted_text,
                     'original_headings': original_headings,
                     'extracted_headings': extracted_headings,
                     'original_lists': original_lists,
@@ -1095,7 +1223,7 @@ class AccessGateEvaluator:
         except Exception as e:
             self.logger.error(f"Content extractability evaluation failed: {e}")
             audit_trail['error'] = str(e)
-            return 0.0, audit_trail
+            raise PillarEvaluationError('content_extractability', str(e)) from e
     
     def _evaluate_metadata_completeness(self, html_content: str, url: Optional[str]) -> Tuple[float, Dict]:
         """Evaluate metadata completeness across Dublin Core, Schema.org, and OpenGraph.
@@ -1203,7 +1331,15 @@ class AccessGateEvaluator:
             ]
             
             # 5. Topic/Category (15 points)
-            meta_topic = soup.find('meta', attrs={'name': lambda n: n and n.lower() in ('ms.topic', 'topic', 'category', 'keywords')}) if soup.find('meta', attrs={'name': True}) else None
+            # Phase 4.4: ms.topic is a Microsoft Learn page-role/CMS-template
+            # signal (tutorial/quickstart/overview/reference as a template
+            # switch), not a semantic topic declaration. It's consumed by the
+            # classifier in retrievability/profiles.py where that meaning is
+            # appropriate. Accepting it here as equivalent to Dublin-Core /
+            # Schema.org topic signals gave Learn pages a vendor-specific
+            # 15-point credit no other doc system could earn, so it's excluded
+            # from this pillar.
+            meta_topic = soup.find('meta', attrs={'name': lambda n: n and n.lower() in ('topic', 'category')}) if soup.find('meta', attrs={'name': True}) else None
             schema_section = json_ld_data.get('articleSection')
             meta_keywords = soup.find('meta', attrs={'name': 'keywords'})
             has_topic = bool(
@@ -1260,10 +1396,25 @@ class AccessGateEvaluator:
         except Exception as e:
             self.logger.error(f"Metadata completeness evaluation failed: {e}")
             audit_trail['error'] = str(e)
-            return 0.0, audit_trail
+            raise PillarEvaluationError('metadata_completeness', str(e)) from e
     
-    def _determine_failure_mode_standards(self, scores: Dict[str, float], final_score: float) -> str:
-        """Determine failure mode based on standards compliance."""
+    def _determine_failure_mode_standards(
+        self,
+        scores: Dict[str, float],
+        final_score: float,
+        partial_evaluation: bool = False,
+    ) -> str:
+        """Determine failure mode based on standards compliance.
+
+        When a run could not evaluate every pillar, the final score is a
+        weighted average over the survivors — possibly inflated or deflated
+        relative to a full run. Flag those cases so downstream tooling can
+        treat the score with appropriate caution.
+        """
+        if not scores:
+            return 'evaluation_error'
+        if partial_evaluation:
+            return 'partial_evaluation'
         if final_score >= 90:
             return 'clean'
         elif final_score >= 75:
@@ -1274,6 +1425,69 @@ class AccessGateEvaluator:
             return 'significant_issues'
         else:
             return 'severe_issues'
+
+    def _weighted_score(
+        self,
+        scores: Dict[str, float],
+        weights: Dict[str, float],
+    ) -> float:
+        """Weighted average over only the pillars present in ``scores``.
+
+        When some pillars failed evaluation, this renormalizes the remaining
+        weights so the final number still sits on the 0-100 scale.
+        """
+        if not scores:
+            return 0.0
+        surviving_weight = sum(weights[p] for p in scores if p in weights)
+        if surviving_weight <= 0:
+            return 0.0
+        return sum(
+            scores[p] * weights[p] for p in scores if p in weights
+        ) / surviving_weight
+
+    def _detect_content_type(
+        self,
+        html_content: str,
+        url: Optional[str],
+    ) -> Tuple[str, Dict[str, str]]:
+        """Thin wrapper around :func:`detect_content_type` for DI / testing."""
+        soup = BeautifulSoup(html_content, 'html.parser')
+        return detect_content_type(soup, url)
+
+    def _capture_environment(self, audit_trail: Dict[str, Any]) -> Dict[str, Any]:
+        """Capture evaluator environment metadata for reproducibility.
+
+        Records Clipper version, Python version, platform, and known
+        library versions. Browser and axe-core versions are populated only
+        when the WCAG pillar successfully ran against a live URL (that path
+        writes them into its own audit block); the helper copies them up
+        here so consumers have a single place to look.
+        """
+        import platform
+        import sys
+
+        env: Dict[str, Any] = {
+            'clipper_version': CLIPPER_VERSION,
+            'python_version': sys.version.split()[0],
+            'platform': platform.platform(),
+        }
+
+        # Library versions we care about for scoring reproducibility.
+        for pkg in ('beautifulsoup4', 'readability-lxml', 'extruct',
+                    'httpx', 'axe-selenium-python', 'selenium'):
+            try:
+                import importlib.metadata as importlib_metadata
+                env[pkg] = importlib_metadata.version(pkg)
+            except Exception:
+                env[pkg] = 'unknown'
+
+        # Surface browser/axe versions if WCAG pillar captured them.
+        wcag_audit = audit_trail.get('dom_navigability', {}) or {}
+        for key in ('browser_version', 'chromedriver_version', 'axe_version'):
+            if key in wcag_audit:
+                env[key] = wcag_audit[key]
+
+        return env
     
     def _create_error_result(self, error_message: str, html_path: str) -> ScoreResult:
         """Create error result for failed evaluations."""
@@ -1347,62 +1561,49 @@ class AccessGateEvaluator:
                 sample[format_name] = data_list[:2]  # First 2 items only
         return sample
     
-    def _test_content_negotiation(self, url: str) -> Tuple[float, Dict]:
-        """Test HTTP content negotiation capabilities."""
-        try:
-            score = 0.0
-            details = {}
+    def _check_robots_txt_blocked(self, robots_text: str, path: str) -> bool:
+        """Parse robots.txt and check if the path is blocked for generic agents.
+        
+        Respects User-agent directives: only considers rules under User-agent: *
+        (the wildcard block that applies to unnamed/generic crawlers).
+        
+        Args:
+            robots_text: Raw robots.txt content
+            path: URL path to check (e.g. '/docs/overview')
             
-            # Test different Accept headers
-            accept_headers = [
-                'text/html',
-                'application/json',
-                'text/markdown',
-                'text/plain',
-                'application/xml'
-            ]
+        Returns:
+            True if the path is disallowed for generic agents
+        """
+        in_wildcard_block = False
+        wildcard_rules = []  # List of (allow: bool, path_pattern: str)
+        
+        for line in robots_text.splitlines():
+            line = line.split('#', 1)[0].strip()  # Strip comments
+            if not line:
+                continue
             
-            responses = {}
-            for accept in accept_headers:
-                try:
-                    response = httpx.get(
-                        url,
-                        headers={'Accept': accept},
-                        timeout=self.timeout,
-                        follow_redirects=True
-                    )
-                    responses[accept] = {
-                        'status_code': response.status_code,
-                        'content_type': response.headers.get('content-type', ''),
-                        'content_length': len(response.content)
-                    }
-                except Exception as e:
-                    responses[accept] = {'error': str(e)}
+            lower_line = line.lower()
             
-            # Score based on content negotiation support
-            successful_negotiations = sum(1 for r in responses.values() 
-                                        if 'status_code' in r and r['status_code'] == 200)
-            score = (successful_negotiations / len(accept_headers)) * 100
-            
-            details.update({
-                'content_negotiation_tests': responses,
-                'successful_negotiations': successful_negotiations,
-                'total_tests': len(accept_headers)
-            })
-            
-            return score, details
-            
-        except Exception as e:
-            return 0.0, {'error': str(e)}
-    
-    def _check_encoding_declaration(self, soup: BeautifulSoup) -> bool:
-        """Check for proper character encoding declaration."""
-        charset_meta = soup.find('meta', charset=True)
-        content_type_meta = soup.find('meta', attrs={'http-equiv': 'Content-Type'})
-        return bool(charset_meta or content_type_meta)
-    
-    def _is_external_link(self, href: str) -> bool:
-        """Check if link is external."""
-        if not href:
-            return False
-        return href.startswith('http://') or href.startswith('https://')
+            if lower_line.startswith('user-agent:'):
+                agent = line.split(':', 1)[1].strip()
+                in_wildcard_block = agent == '*'
+            elif in_wildcard_block:
+                if lower_line.startswith('disallow:'):
+                    rule_path = line.split(':', 1)[1].strip()
+                    if rule_path:  # Empty Disallow means allow all
+                        wildcard_rules.append((False, rule_path))
+                elif lower_line.startswith('allow:'):
+                    rule_path = line.split(':', 1)[1].strip()
+                    if rule_path:
+                        wildcard_rules.append((True, rule_path))
+        
+        # Match rules: longest matching path wins (standard robots.txt precedence)
+        best_match_len = -1
+        is_allowed = True  # Default: allowed if no rules match
+        
+        for allowed, rule_path in wildcard_rules:
+            if path.startswith(rule_path) and len(rule_path) > best_match_len:
+                best_match_len = len(rule_path)
+                is_allowed = allowed
+        
+        return not is_allowed

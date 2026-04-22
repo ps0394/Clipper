@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate PowerPoint/PDF-ready data from YARA evaluation results
+Generate PowerPoint/PDF-ready data from Clipper evaluation results
 Usage: python generate-presentation-data.py demo-live-results/ --format powerpoint
 """
 
@@ -241,8 +241,8 @@ Generated: 2026-04-08
     print(f"📋 Executive summary: {output_path}/executive_summary.md")
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Generate presentation-ready data from YARA results')
-    parser.add_argument('results_dir', help='YARA results directory')
+    parser = argparse.ArgumentParser(description='Generate presentation-ready data from Clipper results')
+    parser.add_argument('results_dir', help='Clipper results directory')
     parser.add_argument('--format', choices=['powerpoint', 'csv', 'summary'], 
                        default='powerpoint', help='Output format')
     

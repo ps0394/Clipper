@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Structured Data Complete</title>
+    <meta name="description" content="A page with complete Schema.org Article JSON-LD.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Structured Data Complete",
+        "description": "A page with complete Schema.org Article JSON-LD.",
+        "author": {
+            "@type": "Person",
+            "name": "Jane Doe"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Example Publishing"
+        },
+        "datePublished": "2026-01-15",
+        "dateModified": "2026-02-01",
+        "articleSection": "Documentation"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://example.com/"},
+            {"@type": "ListItem", "position": 2, "name": "Docs", "item": "https://example.com/docs/"}
+        ]
+    }
+    </script>
+</head>
+<body>
+    <main>
+        <article>
+            <h1>Structured Data Complete</h1>
+            <p>Body content.</p>
+        </article>
+    </main>
+</body>
+</html>
