@@ -30,6 +30,11 @@ from readability import Document as ReadabilityDocument
 
 from .schemas import ScoreResult
 from . import __version__ as CLIPPER_VERSION
+from .profiles import (
+    PROFILE_ARTICLE,
+    PROFILE_WEIGHTS,
+    detect_content_type,
+)
 
 
 class PillarEvaluationError(Exception):
@@ -158,15 +163,22 @@ class AccessGateEvaluator:
 
         partial_evaluation = bool(failed_pillars)
 
+        # Detect content type and pick the weight profile (Phase 1.1). The
+        # default ``article`` weights match the pre-1.1 behavior exactly, so
+        # pages that fall through to the default keep producing the same
+        # score as before.
+        content_type, detection_trace = self._detect_content_type(html_content, url)
+        profile_weights = PROFILE_WEIGHTS[content_type]
+        audit_trail['_content_type'] = {
+            'profile': content_type,
+            'detection': detection_trace,
+            'weights': profile_weights,
+        }
+
         # Final score renormalizes over surviving pillar weights. If every
         # pillar failed the score is 0 and the failure mode reflects that.
-        if scores:
-            surviving_weight = sum(self.WEIGHTS[p] for p in scores)
-            final_score = sum(
-                scores[p] * self.WEIGHTS[p] for p in scores
-            ) / surviving_weight if surviving_weight > 0 else 0.0
-        else:
-            final_score = 0.0
+        final_score = self._weighted_score(scores, profile_weights)
+        universal_score = self._weighted_score(scores, PROFILE_WEIGHTS[PROFILE_ARTICLE])
 
         # Determine failure mode based on standards compliance
         failure_mode = self._determine_failure_mode_standards(
@@ -184,6 +196,8 @@ class AccessGateEvaluator:
             evaluation_methodology="Clipper Standards-Based Access Gate",
             partial_evaluation=partial_evaluation,
             failed_pillars=failed_pillars,
+            content_type=content_type,
+            universal_score=universal_score,
         )
     
     def _load_html_content(self, html_path: str) -> Optional[str]:
@@ -1231,6 +1245,34 @@ class AccessGateEvaluator:
             return 'significant_issues'
         else:
             return 'severe_issues'
+
+    def _weighted_score(
+        self,
+        scores: Dict[str, float],
+        weights: Dict[str, float],
+    ) -> float:
+        """Weighted average over only the pillars present in ``scores``.
+
+        When some pillars failed evaluation, this renormalizes the remaining
+        weights so the final number still sits on the 0-100 scale.
+        """
+        if not scores:
+            return 0.0
+        surviving_weight = sum(weights[p] for p in scores if p in weights)
+        if surviving_weight <= 0:
+            return 0.0
+        return sum(
+            scores[p] * weights[p] for p in scores if p in weights
+        ) / surviving_weight
+
+    def _detect_content_type(
+        self,
+        html_content: str,
+        url: Optional[str],
+    ) -> Tuple[str, Dict[str, str]]:
+        """Thin wrapper around :func:`detect_content_type` for DI / testing."""
+        soup = BeautifulSoup(html_content, 'html.parser')
+        return detect_content_type(soup, url)
 
     def _capture_environment(self, audit_trail: Dict[str, Any]) -> Dict[str, Any]:
         """Capture evaluator environment metadata for reproducibility.

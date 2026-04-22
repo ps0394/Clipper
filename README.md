@@ -314,6 +314,13 @@ Clipper generates comprehensive audit documentation:
 
 ## Scoring System
 
+Clipper reports two 0–100 numbers for every page:
+
+- **`parseability_score`** *(primary)* — the type-adjusted score. Clipper detects whether the page is an article, landing page, tutorial, FAQ, reference, or code sample, and reweights the six pillars accordingly. Compare this number against peers of the same content type.
+- **`universal_score`** — the same pillar scores under the default article weights, useful for cross-type comparisons and for tracking a single page over time without profile changes biasing the series.
+
+The content type, detection signal, and full weight table used for each page are recorded under `audit_trail._content_type`. See [docs/scoring.md#content-type-profiles](docs/scoring.md#content-type-profiles) for the profile table and detection precedence.
+
 ### **Access Gate Classification**
 - **90-100**: `clean` - Fully agent-ready
 - **75-89**: `minor_issues` - Nearly agent-ready  

@@ -13,7 +13,47 @@ Clipper evaluates whether agents can reliably access, extract, and use web page 
 | **Metadata Completeness** | 10% | Dublin Core / Schema.org / OpenGraph | BeautifulSoup |
 | **HTTP Compliance** | 10% | RFC 7231 + robots.txt | httpx |
 
-The final score is a weighted sum: each pillar produces a 0–100 score, multiplied by its weight.
+The final score is a weighted sum: each pillar produces a 0–100 score, multiplied by its weight. The weights shown above are the **article** profile (default). Clipper also reports a **type-adjusted** score that applies different weights depending on what kind of page is being evaluated — see [Content-Type Profiles](#content-type-profiles).
+
+## Content-Type Profiles
+
+Not every page is an article. A samples landing page lives or dies on its structured-data index, not on prose extractability. A FAQ page's value is its `FAQPage` JSON-LD. A reference page is mostly navigation. Clipper detects the content type of each page and reweights the six pillars accordingly.
+
+Two numbers are always reported side-by-side:
+
+- `parseability_score` — the **primary** score, computed with the profile that matches the detected content type.
+- `universal_score` — the same pillar scores under the default **article** weights. Kept for backward compatibility and cross-type comparison.
+
+### Profiles
+
+| Profile | Semantic HTML | Content Extract. | Structured Data | DOM Nav. | Metadata | HTTP |
+|---|---|---|---|---|---|---|
+| **article** *(default)* | 25% | 20% | 20% | 15% | 10% | 10% |
+| **landing** | 20% | 10% | 30% | 20% | 10% | 10% |
+| **reference** | 20% | 10% | 25% | 25% | 10% | 10% |
+| **sample** | 15% | 10% | 30% | 20% | 15% | 10% |
+| **faq** | 20% | 15% | 30% | 15% | 10% | 10% |
+| **tutorial** | 25% | 25% | 15% | 15% | 10% | 10% |
+
+Each row sums to 1.0. Profiles differ mainly in how much weight goes to structured-data vs. content-extractability: pages that *are* their structure get more weight there; pages that *are* prose get more weight on extractability.
+
+### Detection precedence
+
+`detect_content_type()` consults signals in this order and stops at the first hit:
+
+1. **`ms.topic` meta tag** — authoritative on Microsoft Learn (`overview` → landing, `quickstart`/`tutorial` → tutorial, `reference`/`api-reference` → reference, etc.).
+2. **JSON-LD `@type`** — e.g., `FAQPage` → faq, `HowTo` → tutorial, `SoftwareSourceCode` → sample.
+3. **URL path heuristics** — `/samples/`, `/api/`, `/reference/`, `/quickstart/`, etc.
+4. **DOM heuristics** — large `<dl>` lists and detail-oriented headings map to reference; dense `<Question>`/`<Answer>` pairs map to faq.
+5. **Default** — `article`.
+
+The full detection trace (which signal won, and the matched value) is recorded in `audit_trail._content_type.detection` so users can audit why a page was typed the way it was.
+
+### Using the two scores
+
+- Compare `parseability_score` against peers **of the same content type**.
+- Use `universal_score` to track a page over time without profile changes biasing the series, or to compare pages across content types on a level playing field.
+- If `parseability_score > universal_score`, the page plays to the strengths its profile expects (e.g., a landing page with strong JSON-LD). If it's lower, the page is weaker than its type would require.
 
 ## Score Classification
 

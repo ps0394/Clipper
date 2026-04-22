@@ -91,6 +91,37 @@ python main.py express samples/urls.txt --out results/ --benchmark
 - `results/report_scores.json`: Clipper scores with component breakdown
 - `results/report_parse.json`: Raw parsing results and structured data
 
+### How the score is chosen for a page
+
+Every evaluated page reports two 0–100 numbers:
+
+- **`parseability_score`** — the *primary* number. Clipper detects the page's content type (article, landing, reference, sample, faq, or tutorial) and weighs the six pillars accordingly. Use this when asking "is this page good *for what it is*?"
+- **`universal_score`** — the same pillar scores with the default *article* weights. Use this to compare pages of different types side by side, or to track a single page over time without profile changes biasing the trend.
+
+Content type detection consults, in order:
+1. `ms.topic` meta tag (authoritative on Microsoft Learn)
+2. JSON-LD `@type`
+3. URL path (`/samples/`, `/api/`, `/reference/`, `/quickstart/`, ...)
+4. DOM heuristics
+5. Default: `article`
+
+The winning signal and matched value are recorded in `audit_trail._content_type.detection`. You can see them in `report_scores.json`:
+
+```json
+"content_type": "sample",
+"parseability_score": 53.6,
+"universal_score": 48.7,
+"audit_trail": {
+  "_content_type": {
+    "profile": "sample",
+    "detection": { "source": "url", "matched_value": "/samples/" },
+    "weights": { "structured_data": 0.30, "content_extractability": 0.10, ... }
+  }
+}
+```
+
+See [docs/scoring.md#content-type-profiles](docs/scoring.md#content-type-profiles) for the complete weight table.
+
 ### Step-by-Step Pipeline
 
 For detailed analysis, run individual components:

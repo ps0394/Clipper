@@ -95,6 +95,10 @@ class ScoreResult:
     partial_evaluation: bool = False       # True when one or more pillars could not be evaluated
     failed_pillars: List[str] = field(default_factory=list)  # Pillars excluded from the final score
 
+    # Content-type-aware scoring (Phase 1.1)
+    content_type: str = 'article'          # Detected profile (article/landing/reference/sample/faq/tutorial)
+    universal_score: Optional[float] = None  # Same component scores under default (article) weights
+
     # Backward compatibility
     subscores: Optional[Dict[str, float]] = None
     evidence_references: Optional[List[str]] = None

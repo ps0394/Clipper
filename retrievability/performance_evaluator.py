@@ -26,6 +26,7 @@ from urllib.parse import urljoin, urlparse
 # Keep existing imports for compatibility
 from .access_gate_evaluator import AccessGateEvaluator
 from .schemas import ScoreResult
+from .profiles import PROFILE_ARTICLE, PROFILE_WEIGHTS
 
 # AsyncIO and performance imports
 from selenium import webdriver
@@ -334,14 +335,18 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
 
         partial_evaluation = bool(failed_pillars)
 
+        # Detect content type and pick the weight profile (Phase 1.1).
+        content_type, detection_trace = self._detect_content_type(html_content, url)
+        profile_weights = PROFILE_WEIGHTS[content_type]
+        audit_trail['_content_type'] = {
+            'profile': content_type,
+            'detection': detection_trace,
+            'weights': profile_weights,
+        }
+
         # Renormalize the weighted average over surviving pillars.
-        if scores:
-            surviving_weight = sum(self.WEIGHTS[p] for p in scores)
-            final_score = sum(
-                scores[p] * self.WEIGHTS[p] for p in scores
-            ) / surviving_weight if surviving_weight > 0 else 0.0
-        else:
-            final_score = 0.0
+        final_score = self._weighted_score(scores, profile_weights)
+        universal_score = self._weighted_score(scores, PROFILE_WEIGHTS[PROFILE_ARTICLE])
 
         # Determine failure mode based on standards compliance
         failure_mode = self._determine_failure_mode_standards(
@@ -381,6 +386,8 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             evaluation_methodology="Clipper Performance-Parallel-Optimized Access Gate",
             partial_evaluation=partial_evaluation,
             failed_pillars=failed_pillars,
+            content_type=content_type,
+            universal_score=universal_score,
         )
     
     async def _evaluate_wcag_fallback_async(self, html_content: str) -> Tuple[float, Dict]:
