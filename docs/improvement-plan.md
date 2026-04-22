@@ -331,6 +331,63 @@ Phase 3.1's Profile Impact report surfaces the *effect* of a classification, but
 
 ---
 
+### 4.4 Metadata pillar vendor-neutrality audit
+
+**Status:** Not started.
+
+**Why:** During the Phase 4.3 review a reviewer question surfaced a narrower but real bias: `ms.topic` — a Microsoft-Learn-internal authoring signal used to drive the Learn CMS (template selection, breadcrumb, TOC grouping) — is currently accepted by the metadata pillar's "topic/category" field as equivalent evidence to `meta:keywords`, `meta:category`, `meta:topic`, and `schema:articleSection`. See [access_gate_evaluator.py:1334](../retrievability/access_gate_evaluator.py#L1334).
+
+`ms.topic` is legitimately used inside the classifier (Phase 1.1) as an authoritative content-type declaration — that's what it is for. Using it a second time inside the metadata **scoring** pillar, on the claim that the page "declares a topic," is a category error: it's a page-role tag, not a semantic topic declaration. It's also asymmetric — no other doc system's equivalent frontmatter is recognized, so Learn pages can pick up the 15-point topic-field credit from a signal competitors don't have.
+
+This phase is an audit-and-prune pass across every pillar evaluator, looking for any vendor-specific signal accepted alongside generic ones where the vendor signal isn't semantically equivalent to the generic signals in the same check.
+
+**Scope:**
+
+1. Audit every pillar evaluator for vendor-specific signals accepted alongside generic ones:
+   - `retrievability/access_gate_evaluator.py` — all six pillar methods.
+   - `retrievability/parse.py` — signal extraction (llms.txt is a proposed open standard, not vendor-specific; left in scope as a check).
+   - `retrievability/score.py` — any additional signal consumption.
+
+2. For each vendor signal found, classify it:
+   - **Semantically equivalent to the generic check it's grouped with** → keep, document the equivalence claim.
+   - **Not semantically equivalent** (different meaning, different role) → remove from that pillar's check.
+   - **Legitimate use in a different pillar** (e.g., classification) → not in scope for this phase; already handled.
+
+3. Confirmed targets (from the Phase 4.3 review):
+   - Remove `ms.topic` from the metadata pillar's "topic/category" field check. Leave `meta:topic`, `meta:category`, `meta:keywords`, `schema:articleSection` — all generic semantic topic signals.
+
+4. Probable additional targets (confirm during audit):
+   - Any acceptance of `ms.date` / `ms.author` / Microsoft-specific meta tags alongside Dublin Core / Schema.org equivalents.
+   - Any URL-path heuristic that treats a Microsoft-owned host specially.
+
+5. New test(s) in `tests/test_pillars.py`:
+   - A fixture with **only** `ms.topic` set (no `meta:keywords`, no `articleSection`, no `meta:category`) should score **zero** on the topic/category field after the change.
+   - A fixture with `ms.topic` + `meta:keywords` should score the same as a fixture with only `meta:keywords` (no double-credit, no penalty).
+
+6. Impact measurement:
+   - Re-run `evaluation/learn-analysis-v3` and `evaluation/competitive-analysis-v3` before and after. Report the score delta on the headline metric per page.
+   - Expected outcome: Learn scores move by ≤ ~2 points on the affected field (15 points × its pillar weight × its profile weight). If the delta is larger, that's itself evidence the signal was carrying too much weight.
+
+**Exit criterion:** No vendor-specific signal is accepted as evidence inside a pillar scoring check unless the audit documents why it is semantically equivalent to the generic signals in the same check. The metadata pillar's topic/category field no longer references `ms.topic`. Re-running the evaluation corpora produces score deltas consistent with the expected impact (small, bounded).
+
+**Docs updates:**
+- `docs/scoring.md` metadata-pillar subsection gains a "Vendor-neutrality principle" note: signals used inside pillars must be semantically equivalent across vendors; vendor-specific overrides belong in the classifier (Phase 1.1), not in scoring pillars.
+- `docs/testing.md` gains the new fixture's purpose in the adjacent pillar section.
+- `docs/improvement-plan.md` row flipped to Completed.
+
+**Dependencies:** Phase 4.3 (classifier locked — so that when a signal moves out of the metadata pillar and into the classifier's territory, we can verify the classifier didn't shift as a side effect).
+
+**Prerequisite for:** Phase 5 — vendor-neutral pillar scoring is required before any LLM-correlation claim can be made across Learn vs. non-Learn corpora. Correlations computed on a pillar that silently favors one vendor are not interpretable.
+
+**Non-goals:**
+- Not removing `ms.topic` from the classifier. That use is legitimate.
+- Not adding symmetric vendor recognition for Docusaurus / GitBook / Mintlify. That's a separate, larger piece of work and belongs in a future classifier-extension phase, not here.
+- Not a full vendor-neutrality overhaul of every signal Clipper consumes. Scope is limited to vendor-specific signals accepted as evidence inside a pillar scoring check.
+
+**Est. effort:** 1 session — small audit, one or two localized removals, two new fixture tests, corpora re-run for impact report.
+
+---
+
 ## Phase 5 — LLM ground-truth validation
 
 **Reordered note (2026-04-22):** This was previously Phase 6. Swapped with the Azure migration phase because (a) it has a real consumer — empirical weight calibration — while the migration does not yet, and (b) LLM validation only requires an inference endpoint, not a deployed service. The old "6 depends on 5" coupling was false.
@@ -459,11 +516,12 @@ Clipper's value is measurement, not discovery. A search-API integration adds mai
 | 4.1 | JSON-LD field completeness | #5 | P2 | 1 | Completed |
 | 4.2 | Storage abstraction | #8 (subsumed) | P2 | 1 | Not started |
 | 4.3 | Content-type detector lockdown | — (review) | P1 | 1 | Completed |
+| 4.4 | Metadata pillar vendor-neutrality | — (review) | P1 | 1 | Not started |
 | 5.1 | LLM ground-truth validation | #9 | P1 (strategic) | 3–4 to scaffold; calibration + research time on top | Not started |
 | 6 | Azure migration | see audit | P2 | ~8–12 code sessions + human deployment work | Not started |
 | — | Auto-discovery | #7 | Won't do | — | Rejected |
 
-**Phases 0–4 total: roughly 14–19 sessions** (includes the new 4.3 lockdown test). That's the executable portion through this workflow. Phase 5 has code components I can author but depends on a human calibration gate that cannot be automated. Phase 6 has code I can author but cannot fully complete without infrastructure access.
+**Phases 0–4 total: roughly 15–20 sessions** (includes Phase 4.3 lockdown test and Phase 4.4 vendor-neutrality audit). That's the executable portion through this workflow. Phase 5 has code components I can author but depends on a human calibration gate that cannot be automated. Phase 6 has code I can author but cannot fully complete without infrastructure access.
 
 ---
 
@@ -472,6 +530,7 @@ Clipper's value is measurement, not discovery. A search-API integration adds mai
 - **Never ship a scoring change without a fixture test that exercises it.** This is the single rule that prevents this plan from producing another generation of drift.
 - **Preserve the `universal_score`** through Phase 1 onward so existing consumers and historical comparisons don't break.
 - **Lock the classifier before correlating against it.** Phase 4.3 is a hard prerequisite for Phase 5 — correlations against weights that silently shift between runs are not evidence.
+- **Keep pillar scoring vendor-neutral.** Phase 4.4 enforces this: vendor-specific signals belong in the classifier (where "authoritative declaration beats inference" is a defensible principle), not inside pillar scoring checks (where they create asymmetric scoring across corpora). LLM-correlation claims in Phase 5 are only interpretable on vendor-neutral pillars.
 - **LLM validation is an instrument, not a verdict.** The LLM score does not replace structural scoring; it calibrates it. Report the three axes separately, gate correlation claims on a human calibration set and a variance check, and never ship a pillar-weight change without a published `docs/scoring-calibration.md` that justifies it.
 - **Azure migration is a future deliverable, not a gate.** Nothing in Phases 1–5 depends on deploying Clipper as a service.
 - **Each phase should land as a PR with a CHANGELOG entry.** The repo doesn't have a CHANGELOG today; Phase 0 or Phase 1 is a good moment to start one.
