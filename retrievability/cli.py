@@ -215,6 +215,17 @@ def main():
         help='Emit JSON rather than the table view',
     )
 
+    # Phase 5 command group - LLM ground-truth validation (scaffolding)
+    phase5_parser = subparsers.add_parser(
+        'phase5',
+        help='Phase 5 LLM ground-truth validation (see docs/phase-5-design.md)',
+    )
+    phase5_sub = phase5_parser.add_subparsers(dest='phase5_command')
+    phase5_sub.add_parser(
+        'status',
+        help='Show Phase 5 scaffolding status and what still needs wiring',
+    )
+
     args = parser.parse_args()
     
     if args.command is None:
@@ -278,6 +289,10 @@ def main():
         elif args.command == 'history':
             from .history import run_history
             sys.exit(run_history(args.url, root=args.root, as_json=args.json))
+
+        elif args.command == 'phase5':
+            from .phase5 import cli as phase5_cli
+            sys.exit(phase5_cli.dispatch(args))
 
         elif args.command == 'express':
             # Determine scoring mode
