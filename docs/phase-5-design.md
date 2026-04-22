@@ -405,17 +405,33 @@ capacity, which is much cheaper but still gates the phase.
    LFS or external storage. Layout: `evaluation/phase5-corpus/`
    (permanent), `evaluation/phase5-results/<run-id>/` (per published
    run), `evaluation/phase5-scratch/` (gitignored). See §5.
-6. **Does this phase produce a deliverable for a specific audience,
-   or is it internal-only?** Changes the tone and methodology rigor of
-   the findings doc.
+6. **Audience.** ~~Does this phase produce a deliverable for a specific
+   audience, or is it internal-only?~~ **Resolved: internal research,
+   shared with a small product team.** Findings doc is written for
+   engineers and PMs who understand Clipper's architecture. Implications
+   for the methodology:
+   - κ, Spearman ρ, and bootstrap CIs are reported with brief inline
+     explanations, not assumed as reader background.
+   - No blinded replication protocol, no peer review gate beyond the
+     second-person review in §11.
+   - Forbidden framings (§7) still apply — no "Learn leads" headlines,
+     no replacing `parseability_score` — because the audience includes
+     stakeholders who will act on the finding.
+   - If the audience ever expands (external publication, customer
+     deliverable), re-open this doc and harden the methodology section
+     before publishing.
 
 ---
 
 ## 11. Decision gate
 
-**Before any code:** this document is reviewed and the six open
-questions in §10 are resolved. A `phase-5-design-approved` marker is
-added to `docs/improvement-plan.md` referencing the decisions made.
+**Design status (2026-04-22): APPROVED.** All six open questions in §10
+are resolved. See the tracking entry in `docs/improvement-plan.md`
+Phase 5.
+
+**Before any code:** ~~this document is reviewed and the six open
+questions in §10 are resolved.~~ Done. Implementation may begin with
+the pilot.
 
 **During implementation:** pilot run on N=5 pages, single LLM, one
 question per page. Review the output before scaling to N=60. If the

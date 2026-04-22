@@ -395,6 +395,17 @@ This phase is an audit-and-prune pass across every pillar evaluator, looking for
 
 **Reordered note (2026-04-22):** This was previously Phase 6. Swapped with the Azure migration phase because (a) it has a real consumer — empirical weight calibration — while the migration does not yet, and (b) LLM validation only requires an inference endpoint, not a deployed service. The old "6 depends on 5" coupling was false.
 
+**Design status (2026-04-22): `phase-5-design-approved`.** All six open questions in [docs/phase-5-design.md](phase-5-design.md) §10 are resolved:
+
+1. Scoring LLMs: Azure OpenAI GPT-4o primary + open-weight (Llama 3.x) secondary. Findings require per-pillar Spearman ρ to agree within ±0.1 across the two scorers.
+2. Corpus size: N=60 (6 profiles × 10 pages), pilot at N=5 first.
+3. Question generator: Anthropic Claude (Sonnet vs. Opus TBD at pilot).
+4. Secondary reviewer for κ: required, ~40 minutes for 12 pages / 60 Q&A pairs, blocking for publication (see dependency note below).
+5. Artifact storage: committed directly to git under `evaluation/phase5-corpus/` (permanent) and `evaluation/phase5-results/<run-id>/` (per published run); scratch under `evaluation/phase5-scratch/` gitignored.
+6. Audience: internal research, shared with a small product team. No external publication without re-opening the design doc.
+
+Implementation may begin with the pilot at N=5.
+
 ### 5.1 LLM retrievability evaluator (original Issue #9)
 
 **Status:** Not started.
