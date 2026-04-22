@@ -49,6 +49,32 @@ Each row sums to 1.0. Profiles differ mainly in how much weight goes to structur
 
 The full detection trace (which signal won, and the matched value) is recorded in `audit_trail._content_type.detection` so users can audit why a page was typed the way it was.
 
+### Detector stability (Phase 4.3)
+
+The classifier's output is locked against a committed golden file
+(`tests/fixtures/classifier_corpus_golden.json`) built from real
+captured HTML snapshots across the `learn-analysis` and
+`competitive-analysis` corpora. Every URL in that file is re-classified
+on every CI run by `tests/test_classifier_lockdown.py`; any drift in
+`(profile, source, matched_value)` fails the build and names the
+specific URL and signal that changed.
+
+This matters because profile weights feed directly into
+`parseability_score`. A silent classification shift would move the
+headline score without any code change, invalidating historical
+comparisons and — more importantly — any empirical weight tuning done
+in later phases. Locking the classifier first makes correlation
+analysis downstream interpretable.
+
+Regenerate the golden after a deliberate classifier change:
+
+```bash
+python scripts/generate-classifier-golden.py
+```
+
+Then review the diff before committing. See [testing.md](testing.md)
+for the full workflow.
+
 ### Using the two scores
 
 - Compare `parseability_score` against peers **of the same content type**.

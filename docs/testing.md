@@ -66,6 +66,58 @@ Ranges are picked so that:
 4. Keep the fixture minimal: only include the markup that exercises the
    pillar you care about.
 
+## Classifier lockdown (Phase 4.3)
+
+Unlike the per-pillar fixture tests (which lock score **ranges** on
+synthetic HTML), `tests/test_classifier_lockdown.py` locks the exact
+**classification output** of `retrievability.profiles.detect_content_type`
+against real captured HTML from the `evaluation/learn-analysis-v3` and
+`evaluation/competitive-analysis-v3` snapshot directories.
+
+The golden file at `tests/fixtures/classifier_corpus_golden.json` records,
+for every URL in those corpora, the `(profile, source, matched_value)`
+tuple the classifier produces today. CI fails with the offending URL
+and signal named if the classifier drifts.
+
+### When to regenerate
+
+Only when you have **deliberately** changed classifier behavior:
+
+- adjusted `URL_HEURISTICS`, `MS_TOPIC_TO_PROFILE`, `SCHEMA_TYPE_TO_PROFILE`, or the DOM-based fallback in `retrievability/profiles.py`;
+- added new snapshot corpora that should be locked in;
+- fixed a classifier bug and want to lock the fixed behavior.
+
+### How to regenerate
+
+```bash
+# Write a fresh golden from the current classifier + snapshots
+python scripts/generate-classifier-golden.py
+
+# Review the diff, make sure every change is intentional
+git diff tests/fixtures/classifier_corpus_golden.json
+
+# Commit the golden alongside the classifier change in one PR
+```
+
+### How to check without writing
+
+```bash
+python scripts/generate-classifier-golden.py --check
+```
+
+Exits non-zero and prints a per-URL diff if the classifier has drifted
+from the committed golden. Useful in pre-commit hooks and local
+development loops.
+
+### Extending the corpus
+
+Corpora are declared in `scripts/generate-classifier-golden.py` via the
+`CORPORA` list. Add more snapshot directories there when new evaluation
+runs produce HTML worth locking down. The test enforces that every
+canonical profile (`article`, `landing`, `reference`, `sample`, `faq`,
+`tutorial`) is represented in the golden; extend the corpus rather than
+silently shrink coverage.
+
 ## Regression-check sanity test
 
 To confirm the tests actually catch regressions, sabotage a pillar evaluator

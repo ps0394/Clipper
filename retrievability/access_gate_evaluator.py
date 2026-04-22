@@ -564,7 +564,7 @@ class AccessGateEvaluator:
             'standard': 'Schema.org (Google/Microsoft/Yahoo)',
             'method': 'Structured data quality and completeness validation',
             'formats_found': [],
-            'score_calculation': 'Type appropriateness (20) + Field completeness per-type (30) + Multiple formats (20) + Schema validation (30)'
+            'score_calculation': 'Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)'
         }
         
         try:
@@ -621,6 +621,7 @@ class AccessGateEvaluator:
 
             validated_ratios: List[float] = []
             unvalidated_items = 0
+            fields_found: set = set()
 
             for idx, item in enumerate(json_ld_data):
                 if not isinstance(item, dict):
@@ -704,7 +705,6 @@ class AccessGateEvaluator:
                 # based on generic key-field presence (legacy behavior).
                 key_fields = ['name', 'description', 'dateModified', 'author',
                               'publisher', 'headline', 'datePublished', 'image', 'url']
-                fields_found: set = set()
                 for item in json_ld_data:
                     if isinstance(item, dict):
                         for field in key_fields:
@@ -778,9 +778,10 @@ class AccessGateEvaluator:
                     'microformat_items': len(microformat)
                 },
                 'schema_types_found': schema_types,
-                'field_completeness_detail': field_completeness_audit,
+                'key_fields_found': list(fields_found),
                 'formats_present': formats_present,
                 'score_breakdown': score_components,
+                'field_completeness_detail': field_completeness_audit,
                 'sample_structured_data': self._sample_structured_data(metadata)
             })
             

@@ -299,7 +299,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 4.3 Content-type detector lockdown test
 
-**Status:** Not started.
+**Status:** Completed (commit `<pending>`, 2026-04-22).
 
 **Why:** The content-type classifier in `retrievability/profiles.py` silently shapes every headline score via `PROFILE_WEIGHTS`. A classification shift (article → landing, tutorial → reference) changes weights and therefore `parseability_score`. Today the classifier has zero test coverage against real corpora. That is the single largest hidden dependency in the scoring system and the most likely source of unexplained score drift between runs.
 
@@ -458,7 +458,7 @@ Clipper's value is measurement, not discovery. A search-API integration adds mai
 | 3.1 | Rendering-mode dimension | #1 + #2 (merged) | P1 | 3–4 | Completed |
 | 4.1 | JSON-LD field completeness | #5 | P2 | 1 | Completed |
 | 4.2 | Storage abstraction | #8 (subsumed) | P2 | 1 | Not started |
-| 4.3 | Content-type detector lockdown | — (review) | P1 | 1 | Not started |
+| 4.3 | Content-type detector lockdown | — (review) | P1 | 1 | Completed |
 | 5.1 | LLM ground-truth validation | #9 | P1 (strategic) | 3–4 to scaffold; calibration + research time on top | Not started |
 | 6 | Azure migration | see audit | P2 | ~8–12 code sessions + human deployment work | Not started |
 | — | Auto-discovery | #7 | Won't do | — | Rejected |
