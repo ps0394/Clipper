@@ -165,7 +165,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 2.1 Template consistency analysis (original Issue #6)
 
-**Status:** Completed (commit pending, 2026-04-22).
+**Status:** Completed (commit `b1a7f89`, 2026-04-22).
 
 **Why:** On Learn-scale evaluations (15+ URLs), per-page findings drown the report. Clustering identical sub-scores turns 96 findings into ~6 template issues plus 10 content issues. This is a report-level change, not a scoring change.
 
