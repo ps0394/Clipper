@@ -136,7 +136,30 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
             f"**Failure Mode**: `{failure_mode}`",
             ""
         ])
-        
+
+        # Extracted preview (Phase 1.2): surface what Mozilla Readability pulled
+        # out so a low extractability score has a visible cause.
+        extractability_audit = audit_trail.get('content_extractability', {})
+        extraction_metrics = extractability_audit.get('extraction_metrics', {}) if isinstance(extractability_audit, dict) else {}
+        extracted_preview = extraction_metrics.get('extracted_preview')
+        extracted_chars = extraction_metrics.get('extracted_chars')
+        if extracted_preview is not None:
+            extract_score = component_scores.get('content_extractability')
+            header = "**Extracted Preview**"
+            if extract_score is not None:
+                header += f" (extractability {extract_score:.1f}/100"
+                if extracted_chars is not None:
+                    header += f", {extracted_chars:,} chars extracted"
+                header += "):"
+            else:
+                header += ":"
+            report_lines.extend([
+                header,
+                "",
+                "> " + (extracted_preview.replace("\n", " ").strip() or "_(empty extraction)_"),
+                "",
+            ])
+
         # What failed?
         issues = _identify_issues(failure_mode, component_scores)
         if issues:

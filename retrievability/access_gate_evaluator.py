@@ -1032,8 +1032,10 @@ class AccessGateEvaluator:
                 'extraction_metrics': {
                     'raw_text_length': raw_text_length,
                     'extracted_text_length': extracted_text_length,
+                    'extracted_chars': extracted_text_length,
                     'extraction_ratio': round(extracted_text_length / raw_text_length, 3) if raw_text_length > 0 else 0,
                     'extracted_title': extracted_title,
+                    'extracted_preview': (extracted_text[:300] + '...') if extracted_text_length > 300 else extracted_text,
                     'original_headings': original_headings,
                     'extracted_headings': extracted_headings,
                     'original_lists': original_lists,

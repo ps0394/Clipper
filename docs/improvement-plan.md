@@ -142,7 +142,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 1.2 Extraction preview (original Issue #4)
 
-**Status:** Not started.
+**Status:** Completed (commit pending, 2026-04-22).
 
 **Why:** Extractability scores are opaque in isolation. A 33/100 makes instant sense when you see the three sentences that were extracted.
 
@@ -352,7 +352,7 @@ Clipper's value is measurement, not discovery. A search-API integration adds mai
 | 0.2 | Failure-mode transparency | — (audit) | P0 prerequisite | 1–2 | Completed (`5aaab14`) |
 | 0.3 | Evaluator reproducibility | — (audit) | P0 prerequisite | folded into 0.2 | Completed (`5aaab14`) |
 | 1.1 | Content-type-aware profiles | #3 | P0 | 2–3 | Completed (`7faf198`) |
-| 1.2 | Extraction preview | #4 | P1 | 1 | Not started |
+| 1.2 | Extraction preview | #4 | P1 | 1 | Completed |
 | 2.1 | Template consistency | #6 | P0 | 1–2 | Not started |
 | 3.1 | Rendering-mode dimension | #1 + #2 (merged) | P1 | 3–4 | Not started |
 | 4.1 | JSON-LD field completeness | #5 | P2 | 1 | Not started |

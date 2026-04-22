@@ -88,6 +88,13 @@ Uses the Mozilla Readability algorithm (same as Firefox Reader View) to measure 
 | **Structure Preservation** | 30 | Do headings, lists, and code blocks survive extraction? (10 pts each) |
 | **Boundary Detection** | 30 | Did Readability find a clear article boundary? Checks title extraction, content length, and `<main>`/`<article>` overlap. |
 
+**Extracted preview.** A low extractability score is hard to interpret from a number alone, so Clipper persists what Readability actually pulled out:
+
+- `audit_trail.content_extractability.extraction_metrics.extracted_preview` — the first ~300 characters of extracted text.
+- `audit_trail.content_extractability.extraction_metrics.extracted_chars` — total extracted character count.
+
+The markdown report surfaces the preview as an **Extracted Preview** block under each URL's score, so a reader can see at a glance whether Readability captured the intended article or got confused by chrome.
+
 ### 3. Structured Data (20%)
 
 Evaluates Schema.org structured data quality using the extruct library.

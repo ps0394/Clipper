@@ -106,6 +106,22 @@ def test_readability_ordering(score_fixture):
     )
 
 
+def test_extraction_preview_is_persisted(score_fixture):
+    """Phase 1.2: audit_trail must expose a text preview + char count so
+    consumers (and the markdown report) can see *what* was extracted."""
+    result = score_fixture("readability_clean.html")
+    metrics = (
+        result.audit_trail
+        .get("content_extractability", {})
+        .get("extraction_metrics", {})
+    )
+    preview = metrics.get("extracted_preview")
+    chars = metrics.get("extracted_chars")
+    assert isinstance(preview, str) and len(preview) > 0, "preview must be a non-empty string"
+    assert len(preview) <= 303, f"preview capped at ~300 chars, got {len(preview)}"
+    assert isinstance(chars, int) and chars > 0, f"extracted_chars must be a positive int, got {chars!r}"
+
+
 # ---------------------------------------------------------------------------
 # Agent content hints (hints raise HTTP compliance, not a dedicated pillar)
 # ---------------------------------------------------------------------------
