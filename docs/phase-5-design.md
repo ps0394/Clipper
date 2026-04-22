@@ -100,13 +100,17 @@ ordered by how directly they model agent retrievability:
 
 For each page:
 
-1. Hand-author 5 fact-based questions whose answers are unambiguously
-   present in the page content (not inferred, not "general knowledge").
+1. **Generate 5 fact-based question/answer pairs** whose answers are
+   unambiguously present in the page content (not inferred, not
+   "general knowledge"). Generation uses a **different model family**
+   than the scoring LLMs (see §4.1.1). A human reviewer edits/accepts
+   /rejects each pair (~2 min/page); rejected pairs are regenerated
+   until 5 per page pass review.
 2. Feed the page's **raw extracted text** (not HTML, not rendered) to
-   the LLM with a prompt of the form: *"Using only the document below,
-   answer the following questions. If the answer is not in the
-   document, say 'not in document.' Answer: <Q>."*
-3. Grade each answer against the hand-authored ground-truth answer.
+   the scoring LLM with a prompt of the form: *"Using only the
+   document below, answer the following questions. If the answer is
+   not in the document, say 'not in document.' Answer: <Q>."*
+3. Grade each answer against the reviewer-approved ground-truth answer.
    Binary correct/incorrect, plus a "not in document" false-negative
    category.
 
@@ -116,8 +120,47 @@ For each page:
 content is comprehensible and complete. It's also the closest proxy to
 what a RAG agent does — fetch content, answer the user's question.
 
-**Weakness:** 5 questions × N pages is a lot of hand authoring. Scaling
-is the main cost.
+### 4.1.1 Question generation: cross-family guardrail
+
+Fully hand-authoring 5 questions × 30 pages is ~12 hours and is the
+dominant cost of Phase 5. Fully automating it collapses the measurement
+into LLM-LLM agreement. We adopt a middle path:
+
+- **Generator**: a model in a *different family* than either scoring
+  LLM. If scoring uses Azure OpenAI GPT-4o (primary) and Llama 3.x
+  (secondary), generation uses **Anthropic Claude** (or the equivalent
+  non-OpenAI, non-Meta alternative available at run time). Cross-family
+  separation breaks the shared-training-data loop that would otherwise
+  let the scoring LLM "recognize" its own style of question.
+- **Generator prompt**: *"From the document below, write 5 fact-based
+  questions whose answers are unambiguously stated in the document.
+  For each question, provide the exact answer (quoted or paraphrased
+  from the document) and the sentence(s) that support it. Questions
+  must not require outside knowledge."*
+- **Human review**: a single reviewer spends ~2 min/page editing,
+  accepting, or rejecting each Q/A pair. Rejected pairs are regenerated.
+  The reviewer's job is **not** to author questions — it is to enforce
+  the "unambiguously in the document" rule and to catch leakage of
+  outside knowledge. Review cost: ~1 hour at N=30, ~2 hours at N=60.
+- **Disclosure**: the final Phase 5 report must state that questions
+  were LLM-generated and human-reviewed, name the generator model, and
+  report the reject rate from review. A high reject rate (say, >30%)
+  is itself a finding about the page — pages where the generator
+  cannot produce clean questions may be pages where structural quality
+  is genuinely low.
+
+**Why this is still valid measurement:** the generator cannot help the
+scoring LLM answer; it only chooses *which* facts the scoring LLM is
+tested on. A weakly-structured page will still produce questions whose
+answers the scoring LLM fails to locate. What the guardrail prevents
+is a stylistic handshake ("GPT-4o writes questions GPT-4o finds easy")
+that would otherwise inflate scores uniformly.
+
+**Weakness:** the generator may systematically skip content the
+scoring LLM *can't* find (selection bias toward findable facts). We
+partly mitigate this by requiring the generator to cite supporting
+sentences; the reviewer checks that the 5 questions span different
+sections of the page rather than clustering in one easy region.
 
 ### 4.2 Summarization faithfulness (SECONDARY)
 
@@ -176,15 +219,24 @@ The 22-URL `tests/fixtures/classifier_corpus_golden.json` is the base.
 Extend to 30–60 with additional hand-selected URLs that hit the profile
 × vendor cells that are currently empty. Commit a
 `evaluation/phase5-corpus/` directory with: URLs, captured HTML
-snapshots (for reproducibility), hand-authored questions, ground-truth
-answers, and (eventually) LLM outputs.
+snapshots (for reproducibility), generator prompts and raw generator
+output, reviewer-approved questions and ground-truth answers, review
+audit trail (accept/edit/reject per pair), and (eventually) LLM
+outputs from the scoring runs.
 
 ### Ground-truth grading
 
-Hand-authored by a single annotator for consistency; spot-checked by a
-second annotator on 20% of pages to measure inter-rater agreement
-(Cohen's κ). Report κ with the final results; if κ < 0.7 the grading
-rubric is too loose and must be tightened.
+Ground truth is produced by the generator-plus-review pipeline in
+§4.1.1. A single reviewer enforces the "unambiguously in the document"
+rule across all pages for consistency. On 20% of pages a second
+reviewer independently re-runs the accept/edit/reject pass on the same
+generator output; we report the inter-reviewer agreement (Cohen's κ)
+on the accept/reject decision. If κ < 0.7 the review rubric is too
+loose and must be tightened before the findings are published.
+
+Answer grading (scoring-LLM output vs. reviewer-approved ground truth)
+is binary and largely mechanical; the reviewer spot-checks 20% of
+graded answers for correctness.
 
 ### Variance control
 
@@ -250,22 +302,27 @@ structural scoring model tracks what an LLM can actually do with a page.
 
 ## 8. Cost and timeline
 
-- **Hand authoring:** 5 questions × 30 pages = 150 questions. Single
-  annotator at ~5 minutes per question = ~12 hours.
-- **Secondary grading:** 20% × 30 = 6 pages × 5 questions × 2 runs = 60
-  graded answers from a second annotator.
-- **LLM costs (estimate):** 30 pages × 5 questions × 3 runs × 2 LLMs =
-  900 inferences. At ~2k tokens per inference (page text + Q + A),
-  that's ~1.8 M input tokens. GPT-4o input is currently <$0.01 per 1 k
-  input tokens → under $20 for the primary run.
-- **Code scaffolding:** prompt template, runner, grader harness,
-  correlation analyzer, report generator. ~3 sessions.
-- **Calibration loop:** one pilot run on 5 pages to shake out the
-  rubric before scaling to 30.
+- **Question generation (LLM):** 30 pages through a cross-family
+  generator (Claude or equivalent). ~30 k input tokens × 30 pages ≈
+  under $5.
+- **Human review of generated Q/A:** ~2 min/page × 30 pages ≈ 1 hour
+  (2 hours at N=60). Reviewer edits, accepts, or rejects each pair;
+  regeneration handles rejections.
+- **Secondary review:** 20% × 30 = 6 pages re-reviewed by a second
+  person for inter-rater κ on the accept/reject decision.
+- **Scoring-LLM costs (estimate):** 30 pages × 5 questions × 3 runs ×
+  2 LLMs = 900 inferences. At ~2 k tokens per inference (page text +
+  Q + A), that's ~1.8 M input tokens. GPT-4o input is currently <$0.01
+  per 1 k input tokens → under $20 for the primary run.
+- **Code scaffolding:** generator prompt + runner, review UI (CLI is
+  fine), scoring runner, grader harness, correlation analyzer, report
+  generator. ~3–4 sessions.
+- **Calibration loop:** one pilot run on 5 pages — generate, review,
+  score, grade — to shake out the rubric before scaling to 30.
 
-Total: 4–5 sessions of Copilot-assisted code + roughly 2 working days
-of human hand-authoring and grading. The hand-authoring is the critical
-path, not the code.
+Total: ~4–5 sessions of Copilot-assisted code + roughly 1–2 hours of
+human review. The critical path shifts from hand-authoring to reviewer
+capacity, which is much cheaper but still gates the phase.
 
 ---
 
@@ -290,14 +347,20 @@ path, not the code.
 1. **LLM choice:** is Azure OpenAI GPT-4o the right primary? Is any
    open-weight secondary worth the infrastructure cost, or do we accept
    a single-LLM finding with that limitation disclosed?
-2. **Corpus size:** N=30 or N=60? The marginal cost of 30 more pages
-   is ~12 more hours of hand-authoring but roughly doubles per-profile
-   power.
-3. **Secondary annotator:** do we have one? Inter-rater agreement is
-   hard to report if the answer is "the same person graded everything."
-4. **Commit LLM outputs to git?** They're large but they're the data
-   of record. Consider a separate artifact branch or LFS.
-5. **Does this phase produce a deliverable for a specific audience,
+2. **Corpus size:** N=30 or N=60? Marginal cost of 30 more pages is
+   ~1 more hour of review plus ~$20 additional LLM spend; roughly
+   doubles per-profile power.
+3. **Question generator:** which non-OpenAI, non-Meta model is the
+   generator? Anthropic Claude is the default assumption; if it's
+   unavailable we need a fallback that's still cross-family relative
+   to the scoring LLMs.
+4. **Secondary reviewer:** do we have a second person to re-run
+   accept/reject on 20% of pages for κ? Without one, we cannot report
+   inter-rater agreement; we'd fall back to single-reviewer disclosure.
+5. **Commit LLM outputs to git?** Generator output, review audit trail,
+   and scoring-LLM outputs are large but they're the data of record.
+   Consider a separate artifact branch or LFS.
+6. **Does this phase produce a deliverable for a specific audience,
    or is it internal-only?** Changes the tone and methodology rigor of
    the findings doc.
 
@@ -305,7 +368,7 @@ path, not the code.
 
 ## 11. Decision gate
 
-**Before any code:** this document is reviewed and the five open
+**Before any code:** this document is reviewed and the six open
 questions in §10 are resolved. A `phase-5-design-approved` marker is
 added to `docs/improvement-plan.md` referencing the decisions made.
 
