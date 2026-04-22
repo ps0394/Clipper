@@ -113,6 +113,80 @@ def _detect_template_clusters(score_results: List[Dict]) -> List[Dict]:
     return clusters
 
 
+def _profile_of(result: Dict) -> str:
+    """Extract the detected content-type profile from a ScoreResult dict.
+
+    Falls back to ``'article'`` (the default profile) when content-type
+    detection metadata is missing, which matches the evaluator's own
+    fallback when no signal is present.
+    """
+    ct = result.get('audit_trail', {}).get('_content_type', {})
+    return ct.get('profile', 'article') if isinstance(ct, dict) else 'article'
+
+
+def _format_profile_impact_section(results: List[Dict]) -> List[str]:
+    """Produce the 'Profile Impact' section showing universal vs
+    profile-adjusted scores per URL.
+
+    The section is emitted only when at least one page was scored under a
+    non-default profile AND at least one page has a universal_score
+    recorded. This keeps single-profile runs from printing a redundant
+    table where every row reads "delta 0.0".
+    """
+    rows: List[Dict] = []
+    non_default_seen = False
+    for r in results:
+        universal = r.get('universal_score')
+        if universal is None:
+            continue
+        profile = _profile_of(r)
+        if profile != 'article':
+            non_default_seen = True
+        parseability = float(r.get('parseability_score', 0.0))
+        universal = float(universal)
+        rows.append({
+            'url': r.get('url') or r.get('html_path') or '',
+            'profile': profile,
+            'parseability': parseability,
+            'universal': universal,
+            'delta': parseability - universal,
+        })
+
+    if not rows or not non_default_seen:
+        return []
+
+    # Sort by absolute delta descending so the most profile-sensitive pages
+    # surface first.
+    rows.sort(key=lambda r: -abs(r['delta']))
+
+    lines: List[str] = [
+        "## Profile Impact",
+        "",
+        (
+            "Each page is scored twice: **Profile** uses the weights for the "
+            "detected content type (the headline `parseability_score`), and "
+            "**Universal** uses the default article weights (the "
+            "`universal_score`). The delta reveals how much the content-type "
+            "profile is moving each page's headline number. Large deltas "
+            "mean the classifier's call is doing real work — good for "
+            "legibility, and a risk if the classification is wrong."
+        ),
+        "",
+        "| URL | Profile | Profile Score | Universal Score | Delta |",
+        "|-----|---------|---------------|-----------------|-------|",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['url']} "
+            f"| `{row['profile']}` "
+            f"| {row['parseability']:.1f} "
+            f"| {row['universal']:.1f} "
+            f"| {row['delta']:+.1f} |"
+        )
+    lines.append("")
+    return lines
+
+
 def _format_template_section(clusters: List[Dict]) -> List[str]:
     """Produce the top 'Template Findings' section markdown lines."""
     if not clusters:
@@ -353,6 +427,12 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
     # was used and the input actually contains paired results.
     report_lines.extend(_format_render_delta_section(render_deltas))
 
+    # Profile impact: surface universal vs profile-adjusted scores so the
+    # content-type classifier's contribution to the headline number is
+    # legible. Only emitted when at least one page was scored under a
+    # non-default profile.
+    report_lines.extend(_format_profile_impact_section(summary_results))
+
     # Template findings (Phase 2.1): group URLs sharing low scores on the
     # same pillar. Only meaningful for multi-URL evaluations.
     clusters = _detect_template_clusters(summary_results) if total_pages >= _CLUSTER_MIN_MEMBERS else []
@@ -421,10 +501,32 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
         report_lines.extend([
             f"### {status_emoji} {page_id}",
             "",
-            f"**Overall Score**: {score:.1f}/100",
-            f"**Failure Mode**: `{failure_mode}`",
-            ""
         ])
+
+        # Headline score line: when the page was scored under a non-default
+        # profile, show both the profile-adjusted score (the headline
+        # parseability_score) and the universal/article-default score.
+        # Otherwise keep the historical single-number line so article-only
+        # runs stay compact.
+        profile = _profile_of(result)
+        universal = result.get('universal_score')
+        if profile != 'article' and universal is not None:
+            delta = score - float(universal)
+            report_lines.extend([
+                (
+                    f"**Overall Score**: {score:.1f}/100 "
+                    f"(profile `{profile}`) — universal {float(universal):.1f}/100 "
+                    f"({delta:+.1f})"
+                ),
+                f"**Failure Mode**: `{failure_mode}`",
+                "",
+            ])
+        else:
+            report_lines.extend([
+                f"**Overall Score**: {score:.1f}/100",
+                f"**Failure Mode**: `{failure_mode}`",
+                "",
+            ])
 
         # Phase 2.1: note which pillars on this page are already flagged at
         # the template level, so readers don't re-diagnose them per page.
