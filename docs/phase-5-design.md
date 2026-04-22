@@ -100,6 +100,7 @@ ordered by how directly they model agent retrievability:
 
 For each page:
 
+
 1. **Generate 5 fact-based question/answer pairs** whose answers are
    unambiguously present in the page content (not inferred, not
    "general knowledge"). Generation uses a **different model family**
@@ -126,12 +127,11 @@ Fully hand-authoring 5 questions × 30 pages is ~12 hours and is the
 dominant cost of Phase 5. Fully automating it collapses the measurement
 into LLM-LLM agreement. We adopt a middle path:
 
-- **Generator**: a model in a *different family* than either scoring
-  LLM. If scoring uses Azure OpenAI GPT-4o (primary) and Llama 3.x
-  (secondary), generation uses **Anthropic Claude** (or the equivalent
-  non-OpenAI, non-Meta alternative available at run time). Cross-family
-  separation breaks the shared-training-data loop that would otherwise
-  let the scoring LLM "recognize" its own style of question.
+- **Generator**: **Anthropic Claude** (specific model — Sonnet or
+  Opus — chosen at pilot time based on API access). Cross-family
+  separation from the scoring LLMs (OpenAI GPT-4o primary, Meta Llama
+  3.x secondary) breaks the shared-training-data loop that would
+  otherwise let the scoring LLM "recognize" its own style of question.
 - **Generator prompt**: *"From the document below, write 5 fact-based
   questions whose answers are unambiguously stated in the document.
   For each question, provide the exact answer (quoted or paraphrased
@@ -350,10 +350,10 @@ capacity, which is much cheaper but still gates the phase.
 2. **Corpus size:** N=30 or N=60? Marginal cost of 30 more pages is
    ~1 more hour of review plus ~$20 additional LLM spend; roughly
    doubles per-profile power.
-3. **Question generator:** which non-OpenAI, non-Meta model is the
-   generator? Anthropic Claude is the default assumption; if it's
-   unavailable we need a fallback that's still cross-family relative
-   to the scoring LLMs.
+3. **Question generator:** ~~which non-OpenAI, non-Meta model is the
+   generator?~~ **Resolved: Anthropic Claude.** Specific Claude model
+   (Sonnet vs. Opus) and API access path still TBD at pilot time, but
+   the family is locked.
 4. **Secondary reviewer:** do we have a second person to re-run
    accept/reject on 20% of pages for κ? Without one, we cannot report
    inter-rater agreement; we'd fall back to single-reviewer disclosure.
