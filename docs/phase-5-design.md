@@ -344,9 +344,13 @@ capacity, which is much cheaper but still gates the phase.
 
 ## 10. Open questions for review
 
-1. **LLM choice:** is Azure OpenAI GPT-4o the right primary? Is any
-   open-weight secondary worth the infrastructure cost, or do we accept
-   a single-LLM finding with that limitation disclosed?
+1. **LLM choice:** ~~is Azure OpenAI GPT-4o the right primary? Is any
+   open-weight secondary worth the infrastructure cost?~~ **Resolved:
+   GPT-4o primary + open-weight secondary (Llama 3.x family).** Both
+   LLMs score; findings require correlations to agree within ±0.1
+   Spearman ρ across the two to claim a result is about the pages
+   rather than the primary model. Specific Llama variant chosen at
+   pilot time based on infrastructure availability.
 2. **Corpus size:** N=30 or N=60? Marginal cost of 30 more pages is
    ~1 more hour of review plus ~$20 additional LLM spend; roughly
    doubles per-profile power.
