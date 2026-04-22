@@ -333,7 +333,7 @@ Phase 3.1's Profile Impact report surfaces the *effect* of a classification, but
 
 ### 4.4 Metadata pillar vendor-neutrality audit
 
-**Status:** Completed (commit `<pending>`, 2026-04-22).
+**Status:** Completed (commit `3c71ce2`, 2026-04-22).
 
 **Why:** During the Phase 4.3 review a reviewer question surfaced a narrower but real bias: `ms.topic` — a Microsoft-Learn-internal authoring signal used to drive the Learn CMS (template selection, breadcrumb, TOC grouping) — is currently accepted by the metadata pillar's "topic/category" field as equivalent evidence to `meta:keywords`, `meta:category`, `meta:topic`, and `schema:articleSection`. See [access_gate_evaluator.py:1334](../retrievability/access_gate_evaluator.py#L1334).
 
