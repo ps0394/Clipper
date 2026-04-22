@@ -345,6 +345,15 @@ Based on agent retrievability impact:
 - **Metadata Completeness (10%)** - Identity, authorship, and currency signals
 - **HTTP Compliance (10%)** - Reachability, crawl permissions, cacheability, agent content hints
 
+### **Rendering Modes**
+Clipper can evaluate each URL under two assumptions via `--render-mode raw|rendered|both`:
+
+- **`rendered`** (default) — models agents that execute JavaScript. DOM navigability runs in headless Chrome via axe-core.
+- **`raw`** — models non-JS agents (RAG crawlers, search indexers, API clients). DOM navigability falls back to static analysis.
+- **`both`** — produces two `ScoreResult` entries per URL and a "Rendering-Mode Deltas" section. Pages with `|rendered - raw| >= 15` are flagged as **JS-dependent**. Treat `min(rendered, raw)` as the pessimistic score of record.
+
+See [docs/scoring.md#rendering-modes](docs/scoring.md#rendering-modes) for the full explanation.
+
 ### **Content Extractability Sub-Signals**
 The Content Extractability score (20% of overall) uses Mozilla Readability to measure extraction quality:
 
@@ -360,9 +369,20 @@ The Structured Data score (20% of overall) evaluates schema quality, not just pr
 | Sub-signal | Max Points | What it measures |
 |---|---|---|
 | **Type Appropriateness** | 20 | Does the `@type` match recognized content types (Article, WebPage, HowTo, etc.)? |
-| **Field Completeness** | 30 | Does JSON-LD include key fields: `name`, `dateModified`, `author`, `description`, etc.? |
+| **Field Completeness** | 30 | Per-type required + recommended fields for the four validated `@type` values. See below. |
 | **Multiple Formats** | 20 | Are JSON-LD, OpenGraph, and microdata all present? |
 | **Schema Validation** | 30 | Are required properties present for the declared Schema.org type? |
+
+**Per-type field expectations** (Field Completeness is computed per JSON-LD item, averaged across validated items):
+
+| `@type` | Required | Recommended |
+|---|---|---|
+| `Article` | `headline`, `datePublished` | `author`, `dateModified`, `description`, `publisher` |
+| `FAQPage` | `mainEntity` (non-empty list of `Question` entries with `acceptedAnswer`) | — |
+| `HowTo` | `name`, `step` (non-empty list) | `description`, `totalTime` |
+| `BreadcrumbList` | `itemListElement` (list with ≥2 items) | — |
+
+Items of other `@type` values fall back to a generic key-field check. Missing and structurally invalid fields are logged in `audit_trail.structured_data.field_completeness_detail`. See [docs/scoring.md](docs/scoring.md#field-completeness--per-type-expectations-phase-41) for the full specification.
 
 ### **HTTP Compliance Sub-Signals**
 The HTTP Compliance score (10% of overall) is split into five sub-signals:
@@ -496,8 +516,6 @@ Clipper welcomes contributions that enhance standards-based evaluation:
 3. **Enterprise Features** - Expand audit trail and compliance documentation
 4. **Agent Optimization** - Enhance agent-focused content quality metrics
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines and standards compliance requirements.
-
 ### Running tests
 
 Pillar behavior is locked in by a small offline fixture suite. Install dev
@@ -514,8 +532,7 @@ for the fixture layout and guidance on adding new fixtures.
 
 ## License
 
-Clipper - Standards-Based Access Gate Evaluator
-Licensed under MIT License - see [LICENSE](LICENSE) for details.
+Clipper - Standards-Based Access Gate Evaluator. Licensed under the MIT License.
 
 ---
 
