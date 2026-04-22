@@ -219,16 +219,39 @@ so shipping N=30 would force us either to drop H0-profile from the
 null list or to publish a finding we can't falsify. N=60 keeps the
 hypothesis reachable. Cost implications are modest (see §8).
 
-### Source
+### Source and artifact layout
 
 The 22-URL `tests/fixtures/classifier_corpus_golden.json` is the base.
 Extend to 60 with hand-selected URLs that fill the profile × vendor
-cells not yet covered. Commit a
-`evaluation/phase5-corpus/` directory with: URLs, captured HTML
-snapshots (for reproducibility), generator prompts and raw generator
-output, reviewer-approved questions and ground-truth answers, review
-audit trail (accept/edit/reject per pair), and (eventually) LLM
-outputs from the scoring runs.
+cells not yet covered.
+
+Phase 5 artifacts live in two committed directories plus one ignored:
+
+- **`evaluation/phase5-corpus/`** (committed, permanent) — the inputs
+  and ground truth: URLs, captured HTML snapshots (for
+  reproducibility), generator prompts and raw generator output,
+  reviewer-approved questions and ground-truth answers, and the review
+  audit trail (accept/edit/reject per pair).
+- **`evaluation/phase5-results/`** (committed, per published run) —
+  scoring-LLM outputs and graded results, one subdirectory per run
+  tagged by date and LLM version, e.g.
+  `results-2026-05-01-gpt4o/` and `results-2026-05-01-llama3/`. Only
+  runs that back a published finding are committed.
+- **`evaluation/phase5-scratch/`** (gitignored) — pilot runs, prompt
+  iterations, and scratch experiments that do not back a finding.
+
+Total estimated footprint at N=60: ~3 MB across corpus + one published
+results pair. Small enough that Git LFS, separate branches, or external
+storage would add more friction than they save. A `.gitattributes`
+entry `evaluation/phase5-results/**/*.json text eol=lf` keeps diffs
+readable across platforms.
+
+**Licensing note.** Outputs from Anthropic Claude (generator) and
+OpenAI GPT-4o and Meta Llama (scorers) are currently permitted by
+their respective terms for use and redistribution. If Clipper ever
+publishes this repo outside the current hosting, verify the model
+providers' current TOS at publication time and include a one-line
+model/date attribution in the findings doc.
 
 ### Ground-truth grading
 
@@ -375,9 +398,13 @@ capacity, which is much cheaper but still gates the phase.
    computed on the accept/reject decision and reported in the findings
    doc. This is a blocking dependency for publication; see the tracking
    entry in `docs/improvement-plan.md` so it doesn't get forgotten.
-5. **Commit LLM outputs to git?** Generator output, review audit trail,
-   and scoring-LLM outputs are large but they're the data of record.
-   Consider a separate artifact branch or LFS.
+5. **Commit LLM outputs to git?** ~~Generator output, review audit
+   trail, and scoring-LLM outputs are large but they're the data of
+   record. Consider a separate artifact branch or LFS.~~ **Resolved:
+   yes, committed directly to git.** ~3 MB at N=60 doesn't justify
+   LFS or external storage. Layout: `evaluation/phase5-corpus/`
+   (permanent), `evaluation/phase5-results/<run-id>/` (per published
+   run), `evaluation/phase5-scratch/` (gitignored). See §5.
 6. **Does this phase produce a deliverable for a specific audience,
    or is it internal-only?** Changes the tone and methodology rigor of
    the findings doc.
