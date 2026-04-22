@@ -195,7 +195,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 3.1 Rendering-mode dimension (merged Issues #1 + #2)
 
-**Status:** Completed (commit `<pending>`, 2026-04-22).
+**Status:** Completed (commit `f80b749`, 2026-04-22).
 
 **Implementation notes:**
 
