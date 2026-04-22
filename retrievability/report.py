@@ -2,10 +2,169 @@
 
 import json
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional, Set, Tuple
 from datetime import datetime
 
 from .schemas import ScoreResult
+
+
+# Canonical pillar order and default (article-profile) weights used for
+# rough template-cluster uplift estimates. Matching the evaluator's article
+# profile keeps cross-report numbers consistent without introducing a
+# profile-aware report layer.
+_PILLAR_ORDER: Tuple[str, ...] = (
+    'semantic_html',
+    'content_extractability',
+    'structured_data',
+    'dom_navigability',
+    'metadata_completeness',
+    'http_compliance',
+)
+_PILLAR_WEIGHTS: Dict[str, float] = {
+    'semantic_html': 0.25,
+    'content_extractability': 0.20,
+    'structured_data': 0.20,
+    'dom_navigability': 0.15,
+    'metadata_completeness': 0.10,
+    'http_compliance': 0.10,
+}
+_CLUSTER_MIN_MEMBERS = 3
+_TEMPLATE_UPLIFT_TARGET = 70.0  # Score a weak pillar is assumed to reach once fixed.
+_TEMPLATE_WEAK_PILLAR_THRESHOLD = 70.0  # Pillar avg below this is flagged in a cluster.
+
+
+def _page_identifier(result: Dict, fallback_index: int) -> str:
+    """Prefer URL if available, otherwise html_path, otherwise a stable index."""
+    return result.get('url') or result.get('html_path') or f'Page {fallback_index}'
+
+
+def _cluster_signature(component_scores: Dict) -> Optional[Tuple[int, ...]]:
+    """Round each pillar to the nearest integer to form a cluster key.
+
+    Returns None if any pillar in the canonical order is missing (which
+    happens in partial evaluations — those pages should not be clustered
+    against fully-scored ones).
+    """
+    signature = []
+    for pillar in _PILLAR_ORDER:
+        value = component_scores.get(pillar)
+        if value is None:
+            return None
+        signature.append(int(round(float(value))))
+    return tuple(signature)
+
+
+def _detect_template_clusters(score_results: List[Dict]) -> List[Dict]:
+    """Find per-pillar score clusters that indicate CMS template issues.
+
+    Full-tuple matches (all six pillars identical within 1pt) are rare on
+    heterogeneous corpora. The real template signal is *per-pillar*: when
+    N pages score exactly the same on one pillar, the shared weakness
+    almost certainly lives in the shared template rather than in page
+    authoring. A cluster here is therefore a (pillar, rounded_score, pages)
+    tuple with at least ``_CLUSTER_MIN_MEMBERS`` members.
+
+    We only surface clusters where the shared score is below
+    ``_TEMPLATE_WEAK_PILLAR_THRESHOLD`` — a shared *good* score is not a
+    finding to act on.
+
+    Returns a list of cluster dicts sorted by (members desc, uplift desc),
+    each with:
+
+    - ``pillar``: the pillar name whose score is shared.
+    - ``shared_score``: the rounded 0-100 score shared across members.
+    - ``members``: list of original indices into ``score_results``.
+    - ``pages``: list of human-readable identifiers.
+    - ``estimated_uplift``: rough per-page gain if this one pillar were
+      lifted from ``shared_score`` to ``_TEMPLATE_UPLIFT_TARGET``,
+      weighted by the default article profile.
+    """
+    # buckets[pillar][rounded_score] -> list of (index, raw_score)
+    buckets: Dict[str, Dict[int, List[int]]] = {p: {} for p in _PILLAR_ORDER}
+    for idx, result in enumerate(score_results):
+        scores = result.get('component_scores', result.get('subscores', {})) or {}
+        for pillar in _PILLAR_ORDER:
+            value = scores.get(pillar)
+            if value is None:
+                continue  # partial evaluations skipped for this pillar
+            key = int(round(float(value)))
+            buckets[pillar].setdefault(key, []).append(idx)
+
+    clusters: List[Dict] = []
+    for pillar, by_score in buckets.items():
+        for shared_score, members in by_score.items():
+            if len(members) < _CLUSTER_MIN_MEMBERS:
+                continue
+            if shared_score >= _TEMPLATE_WEAK_PILLAR_THRESHOLD:
+                continue  # shared *good* score is not a finding to act on
+            uplift = (_TEMPLATE_UPLIFT_TARGET - shared_score) * _PILLAR_WEIGHTS[pillar]
+            clusters.append({
+                'pillar': pillar,
+                'shared_score': shared_score,
+                'members': members,
+                'pages': [_page_identifier(score_results[m], m + 1) for m in members],
+                'estimated_uplift': uplift,
+            })
+
+    clusters.sort(key=lambda c: (-len(c['members']), -c['estimated_uplift']))
+    return clusters
+
+
+def _format_template_section(clusters: List[Dict]) -> List[str]:
+    """Produce the top 'Template Findings' section markdown lines."""
+    if not clusters:
+        return []
+
+    total_affected = sum(len(c['members']) for c in clusters)
+    lines: List[str] = [
+        "## Template Findings",
+        "",
+        (
+            f"Detected {len(clusters)} template-level cluster"
+            f"{'s' if len(clusters) != 1 else ''} covering "
+            f"{total_affected} page-pillar pair"
+            f"{'s' if total_affected != 1 else ''}. "
+            "Each cluster is a group of pages sharing exactly the same low "
+            "score on one pillar (within 1 point), which almost always "
+            "means the shared weakness lives in the CMS template rather "
+            "than in page authoring. Fixing the template lifts every page "
+            "in the cluster simultaneously."
+        ),
+        "",
+        "| # | Pillar | Shared Score | Pages | Est. Uplift per Page |",
+        "|---|--------|--------------|-------|----------------------|",
+    ]
+    for i, cluster in enumerate(clusters, 1):
+        lines.append(
+            f"| {i} | `{cluster['pillar']}` "
+            f"| {cluster['shared_score']}/100 "
+            f"| {len(cluster['members'])} "
+            f"| +{cluster['estimated_uplift']:.1f} pts |"
+        )
+    lines.append("")
+
+    for i, cluster in enumerate(clusters, 1):
+        lines.extend([
+            f"### Cluster {i}: `{cluster['pillar']}` = {cluster['shared_score']}/100 "
+            f"({len(cluster['members'])} pages)",
+            "",
+            (
+                f"- **Finding:** every page below scores exactly "
+                f"{cluster['shared_score']}/100 on `{cluster['pillar']}`. "
+                "This is a template-level signal."
+            ),
+            (
+                f"- **Estimated uplift:** lifting this pillar to "
+                f"{_TEMPLATE_UPLIFT_TARGET:.0f}/100 adds "
+                f"~{cluster['estimated_uplift']:.1f} points to each affected page."
+            ),
+            "- **Affected pages:**",
+        ])
+        for page in cluster['pages']:
+            lines.append(f"  - {page}")
+        lines.append("")
+
+    return lines
 
 
 def generate_report(score_file: str, output_md: str) -> None:
@@ -86,17 +245,40 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
         f"| extraction-noisy | {extraction_noisy} | {extraction_noisy/total_pages*100:.1f}% | Has structure but content extraction issues |",
         ""
     ])
-    
+
+    # Template findings (Phase 2.1): group URLs sharing low scores on the
+    # same pillar. Only meaningful for multi-URL evaluations.
+    clusters = _detect_template_clusters(score_results) if total_pages >= _CLUSTER_MIN_MEMBERS else []
+    # Map index -> set of pillars flagged at the template level for that page.
+    page_template_pillars: Dict[int, Set[str]] = {}
+    for cluster in clusters:
+        for m in cluster['members']:
+            page_template_pillars.setdefault(m, set()).add(cluster['pillar'])
+    report_lines.extend(_format_template_section(clusters))
+
     # Individual page results
-    report_lines.extend([
-        "## Individual Page Results",
-        ""
-    ])
-    
+    if clusters:
+        report_lines.extend([
+            "## Page-Specific Findings",
+            "",
+            (
+                "Pillars already flagged in **Template Findings** above are "
+                "noted per page rather than re-explained. Focus this section "
+                "on variation that is *not* template-driven."
+            ),
+            "",
+        ])
+    else:
+        report_lines.extend([
+            "## Individual Page Results",
+            ""
+        ])
+
     # Sort by score (lowest first - most problematic)
-    sorted_results = sorted(score_results, key=lambda x: x['parseability_score'])
-    
-    for i, result in enumerate(sorted_results, 1):
+    indexed_results = list(enumerate(score_results))
+    sorted_results = sorted(indexed_results, key=lambda x: x[1]['parseability_score'])
+
+    for display_index, (original_idx, result) in enumerate(sorted_results, 1):
         score = result['parseability_score']
         failure_mode = result['failure_mode']
         # Use correct field names from Clipper format
@@ -119,7 +301,7 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
             evidence = result['evidence_references']
         
         # Determine page identifier (use html_path as proxy for URL)
-        page_id = result.get('html_path', f'Page {i}')
+        page_id = _page_identifier(result, display_index)
         
         # Status emoji
         if failure_mode == 'clean':
@@ -136,6 +318,18 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
             f"**Failure Mode**: `{failure_mode}`",
             ""
         ])
+
+        # Phase 2.1: note which pillars on this page are already flagged at
+        # the template level, so readers don't re-diagnose them per page.
+        template_pillars_for_page = page_template_pillars.get(original_idx, set())
+        if template_pillars_for_page:
+            pillar_list = ", ".join(
+                f"`{p}`" for p in _PILLAR_ORDER if p in template_pillars_for_page
+            )
+            report_lines.extend([
+                f"**Template-covered pillars:** {pillar_list} — see **Template Findings** above.",
+                "",
+            ])
 
         # Extracted preview (Phase 1.2): surface what Mozilla Readability pulled
         # out so a low extractability score has a visible cause.

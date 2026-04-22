@@ -165,7 +165,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 2.1 Template consistency analysis (original Issue #6)
 
-**Status:** Not started.
+**Status:** Completed (commit pending, 2026-04-22).
 
 **Why:** On Learn-scale evaluations (15+ URLs), per-page findings drown the report. Clustering identical sub-scores turns 96 findings into ~6 template issues plus 10 content issues. This is a report-level change, not a scoring change.
 
@@ -353,7 +353,7 @@ Clipper's value is measurement, not discovery. A search-API integration adds mai
 | 0.3 | Evaluator reproducibility | — (audit) | P0 prerequisite | folded into 0.2 | Completed (`5aaab14`) |
 | 1.1 | Content-type-aware profiles | #3 | P0 | 2–3 | Completed (`7faf198`) |
 | 1.2 | Extraction preview | #4 | P1 | 1 | Completed |
-| 2.1 | Template consistency | #6 | P0 | 1–2 | Not started |
+| 2.1 | Template consistency | #6 | P0 | 1–2 | Completed |
 | 3.1 | Rendering-mode dimension | #1 + #2 (merged) | P1 | 3–4 | Not started |
 | 4.1 | JSON-LD field completeness | #5 | P2 | 1 | Not started |
 | 4.2 | Storage abstraction | #8 (subsumed) | P2 | 1 | Not started |

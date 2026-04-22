@@ -165,6 +165,33 @@ python main.py report scores.json --md executive-summary.md
 - Includes component-level recommendations
 - Provides standards authority references
 
+### Reading a report
+
+Multi-URL evaluations (3+ pages) split findings into two sections:
+
+- **Template Findings** — groups of URLs that score identically (within 1 point) on the *same* weak pillar. When three or more pages share the same low score on, say, `structured_data`, the weakness almost always lives in the shared CMS template rather than in individual authoring. Each cluster lists the affected URLs and an estimated per-page uplift if the template were fixed.
+- **Page-Specific Findings** — the original per-URL breakdown. Pages that belong to template clusters are annotated with a `Template-covered pillars:` line that points back to the top section, so readers can focus on variation that is *not* template-driven.
+
+Example (abbreviated):
+
+```markdown
+## Template Findings
+
+| # | Pillar | Shared Score | Pages | Est. Uplift per Page |
+|---|--------|--------------|-------|----------------------|
+| 1 | `structured_data` | 12/100 | 14 | +11.6 pts |
+| 2 | `dom_navigability` | 35/100 | 9  | +5.2 pts |
+
+### Cluster 1: `structured_data` = 12/100 (14 pages)
+- Finding: every page below scores exactly 12/100 on structured_data.
+- Estimated uplift: lifting this pillar to 70/100 adds ~11.6 points per page.
+- Affected pages:
+  - https://learn.microsoft.com/...
+  ...
+```
+
+Single-URL evaluations show the traditional **Individual Page Results** section unchanged — template clustering is only meaningful with three or more pages.
+
 ### Content Negotiation Testing
 ```bash
 # Test HTTP content negotiation for agent compatibility
