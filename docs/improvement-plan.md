@@ -299,7 +299,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 4.3 Content-type detector lockdown test
 
-**Status:** Completed (commit `<pending>`, 2026-04-22).
+**Status:** Completed (commit `8868753`, 2026-04-22).
 
 **Why:** The content-type classifier in `retrievability/profiles.py` silently shapes every headline score via `PROFILE_WEIGHTS`. A classification shift (article → landing, tutorial → reference) changes weights and therefore `parseability_score`. Today the classifier has zero test coverage against real corpora. That is the single largest hidden dependency in the scoring system and the most likely source of unexplained score drift between runs.
 
