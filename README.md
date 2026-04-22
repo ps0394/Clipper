@@ -141,6 +141,21 @@ python main.py express urls.txt --out results/ --benchmark
 python main.py express urls.txt --out results/ --render-mode both
 ```
 
+### **Trend view: how has a URL scored over time?**
+
+`clipper history <url>` walks every `*_scores.json` file under `--root`
+(default `evaluation/`) and prints one row per prior evaluation of that
+URL, sorted by score-file mtime, with the parseability delta vs. the
+previous row. Use it to confirm a page has actually improved rather than
+just regressed and recovered:
+
+```bash
+python main.py history https://learn.microsoft.com/en-us/azure/aks/faq
+
+# Machine-readable
+python main.py history https://learn.microsoft.com/en-us/azure/aks/faq --json
+```
+
 ### **Step-by-Step Pipeline**
 For detailed analysis, run individual components:
 

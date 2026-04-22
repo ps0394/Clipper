@@ -274,26 +274,29 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 4.2 Historical storage (original Issue #8, subsumed into Azure migration)
 
-**Status:** Not started.
+**Status:** Completed (commit `<pending>`, 2026-04-22) — scoped down from the original plan. See "Scope" below.
 
-**Why:** Trend analysis has real value, but the proposed local SQLite store duplicates what Cosmos DB will provide and wastes migration effort.
+**Why:** Trend analysis has real value, but the original plan — a `StorageBackend` protocol, a `LocalJSONStorage` wrapper, a `CosmosStorage` stub that raises `NotImplementedError`, and a new `docs/storage.md` — builds scaffolding for a second backend (Cosmos) that may never land. YAGNI.
 
-**Scope:**
+**Scope (delivered):**
 
-1. **Define the result contract now**, even before Azure exists:
-   - Add `StorageBackend` protocol in a new `retrievability/storage.py`.
-   - Default implementation: `LocalJSONStorage` (current behavior).
-   - Stub implementation: `CosmosStorage` (raises `NotImplementedError` until Phase 5).
+1. A plain `retrievability/history.py` module with a `collect_history(url, root)` function that walks `<root>/**/*_scores.json`, filters entries by URL (with light normalization: trailing slash and fragment stripped), and returns rows sorted by score-file mtime.
+2. A new `clipper history <url> [--root evaluation] [--json]` subcommand that prints a trend table (timestamp, corpus, profile, render mode, `parseability_score`, `universal_score`, delta vs. previous row) or JSON.
+3. Seven hermetic unit tests in `tests/test_history.py` using `tmp_path` corpora — no dependency on the committed `evaluation/` output.
 
-2. **Add `clipper history <url>` command** that reads from whichever backend is configured. If backend is JSON, walks `evaluation/*/` directories for historical score files matching the URL. If backend is Cosmos, queries by URL + time range.
+**Explicitly not delivered (deferred until a real second backend is needed):**
 
-3. **Do not build local SQLite.** The `LocalJSONStorage` + directory-walk path is enough for single-developer trend checking; real trending lives in Cosmos.
+- No `StorageBackend` protocol / abstract class.
+- No `CosmosStorage` stub.
+- No `docs/storage.md`.
 
-**Exit criterion:** `clipper history <url>` works against local JSON result files. The storage abstraction is in place for Phase 5 to drop in Azure implementations.
+If/when Phase 6 (Azure migration) actually starts, the `history.collect_history()` function can be given a pluggable backend parameter at that time — when there's a second implementation to justify the abstraction.
 
-**Docs updates:** `README.md` and `USER-INSTRUCTIONS.md` document the new `history` command with examples. `docs/` gets a short `storage.md` describing the `StorageBackend` protocol so the Azure migration phase has a clear extension point.
+**Exit criterion:** `clipper history <url>` returns a chronological trend table across all local `*_scores.json` files. Verified manually against the committed `evaluation/` corpus (6 evaluations of `learn-microsoft.com/en-us/azure/aks/faq` spanning 2026-04-16 to 2026-04-22).
 
-**Est. effort:** 1 session.
+**Docs updates:** `README.md` and `USER-INSTRUCTIONS.md` gain one-line examples of the history command. No separate `storage.md` — there is no abstraction to document.
+
+**Est. effort:** 1 session (delivered in ~30 minutes, which is itself useful evidence that the original phase spec was over-scoped).
 
 ---
 
@@ -484,11 +487,11 @@ See [`docs/engineering-audit.md`](engineering-audit.md) Section 5.4 for the full
 - Test suite ✓ (Phase 0.1)
 - Failure modes handled ✓ (Phase 0.2)
 - Reproducibility captured ✓ (Phase 0.3)
-- Storage abstraction — **not yet done** (Phase 4.2 remains Not started). Must land before this phase begins.
+- Storage abstraction — **scoped-down trend command delivered in Phase 4.2**; the `StorageBackend` protocol and `CosmosStorage` stub were deliberately *not* built. When this phase actually begins, introduce the protocol by generalizing `retrievability/history.collect_history()` and adding a Cosmos-backed implementation alongside the existing file-walk path.
 
-The migration can proceed through Phases 1–6 of the audit plan without scoring-code changes once 4.2 is complete.
+The migration can proceed through Phases 1–6 of the audit plan without scoring-code changes.
 
-**Docs updates:** A new `docs/deployment.md` covers the Azure architecture, service responsibilities (Container Apps, Cosmos DB, Blob Storage, Key Vault), environment variables, and operational runbook. `README.md` gains a "Running Clipper as a service" section pointing at the deployment doc. The `StorageBackend` documentation from Phase 4.2 is extended with the Cosmos implementation contract.
+**Docs updates:** A new `docs/deployment.md` covers the Azure architecture, service responsibilities (Container Apps, Cosmos DB, Blob Storage, Key Vault), environment variables, and operational runbook. `README.md` gains a "Running Clipper as a service" section pointing at the deployment doc. Storage contract is documented at that time alongside the Cosmos implementation.
 
 **Est. effort:** Not feasible through Copilot-assisted sessions alone. Requires an Azure subscription, infrastructure decisions, deployment pipelines, and live-system troubleshooting that sit outside this workflow. The code changes (Playwright swap, Cosmos/Blob backends, FastAPI wrapper, Dockerfile, OpenTelemetry instrumentation) can be authored here — call it ~8–12 sessions of code work — but the deployment, scaling tune, and hardening are human-driven.
 
@@ -514,7 +517,7 @@ Clipper's value is measurement, not discovery. A search-API integration adds mai
 | 2.1 | Template consistency | #6 | P0 | 1–2 | Completed |
 | 3.1 | Rendering-mode dimension | #1 + #2 (merged) | P1 | 3–4 | Completed |
 | 4.1 | JSON-LD field completeness | #5 | P2 | 1 | Completed |
-| 4.2 | Storage abstraction | #8 (subsumed) | P2 | 1 | Not started |
+| 4.2 | Storage abstraction | #8 (subsumed) | P2 | 1 | Completed (scoped down) |
 | 4.3 | Content-type detector lockdown | — (review) | P1 | 1 | Completed |
 | 4.4 | Metadata pillar vendor-neutrality | — (review) | P1 | 1 | Completed |
 | 5.1 | LLM ground-truth validation | #9 | P1 (strategic) | 3–4 to scaffold; calibration + research time on top | Not started |

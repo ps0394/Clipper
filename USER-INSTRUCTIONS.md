@@ -33,7 +33,7 @@ pip install -r requirements.txt
 python main.py express --help
 ```
 
-You should see **Clipper** in the help output with commands: `crawl`, `parse`, `score`, `report`, `negotiate`, and `express`.
+You should see **Clipper** in the help output with commands: `crawl`, `parse`, `score`, `report`, `negotiate`, `express`, and `history`.
 
 ## Optional Configuration
 
@@ -96,6 +96,26 @@ Recommended defaults:
 When both modes are evaluated, treat `min(rendered, raw)` as the score
 of record (pessimistic default). See [docs/scoring.md](docs/scoring.md#rendering-modes)
 for the full explanation.
+
+### History: trend view for a single URL
+
+To confirm that a URL has actually improved between evaluations rather
+than just oscillating, use the `history` subcommand:
+
+```bash
+# Default: walks ./evaluation/**/*_scores.json
+python main.py history https://learn.microsoft.com/en-us/azure/aks/faq
+
+# Point at a different output root
+python main.py history https://example.com/page --root ./results
+
+# JSON for automation
+python main.py history https://example.com/page --json
+```
+
+The table is sorted oldest-first by score-file mtime and shows the
+corpus name, content-type profile, render mode, `parseability_score`,
+`universal_score`, and the parseability delta vs. the previous row.
 
 **What Express Mode Does (2.2x Faster by Default):**
 1. 📄 Crawls URLs and captures HTML content (concurrent operations)

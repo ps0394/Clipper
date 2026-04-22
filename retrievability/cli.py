@@ -197,7 +197,24 @@ def main():
             "ScoreResults per URL plus a parseability delta in the report."
         ),
     )
-    
+
+    # History command - trend view across prior evaluations (Phase 4.2)
+    history_parser = subparsers.add_parser(
+        'history',
+        help='Show how a URL has scored across prior evaluations',
+    )
+    history_parser.add_argument('url', help='URL to look up')
+    history_parser.add_argument(
+        '--root',
+        default='evaluation',
+        help='Directory to walk for *_scores.json files (default: evaluation)',
+    )
+    history_parser.add_argument(
+        '--json',
+        action='store_true',
+        help='Emit JSON rather than the table view',
+    )
+
     args = parser.parse_args()
     
     if args.command is None:
@@ -257,7 +274,11 @@ def main():
             # Lazy import - load only when needed
             from .report import generate_report
             generate_report(args.score_file, args.md)
-            
+
+        elif args.command == 'history':
+            from .history import run_history
+            sys.exit(run_history(args.url, root=args.root, as_json=args.json))
+
         elif args.command == 'express':
             # Determine scoring mode
             use_performance = not args.standard  # Default to performance mode
