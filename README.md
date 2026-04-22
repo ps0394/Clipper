@@ -10,7 +10,7 @@ Clipper measures that foundational layer. It evaluates live URLs against six ind
 
 - [Overview](#overview)
 - [Clipper Standards Framework](#clipper-standards-framework)
-- [Quick Demo Results](#quick-demo-results)
+- [Quick Start](#quick-start)
 - [Installation](#installation) 
 - [CLI Usage](#cli-usage)
 - [Enterprise Features](#enterprise-features)
@@ -74,16 +74,7 @@ STANDARDS_AUTHORITY = {
 - **✅ Standards Compliance** - Built on recognized industry authorities
 - **✅ Reproducible Results** - Same evaluation across different environments
 
-## Quick Demo Results
-
-**Clipper standards-based evaluation** of major documentation sites:
-
-| Site | Clipper Score | Primary Strengths | Improvement Areas |
-|------|---------------|-------------------|-------------------|
-| **Microsoft Learn** | **50-60 Range** | **Full metadata, good extractability, strong HTML** | **Structured data quality, DOM navigability** |
-| **Wikipedia** | **62.2/100** | **Rich structured data (85), good extraction** | **DOM navigability, metadata gaps** |
-| **GitHub Docs** | **54.9/100** | **Strong DOM navigability (85), good HTML** | **Structured data, metadata** |
-| **MDN Web Docs** | **55.3/100** | **Excellent semantic HTML (84), good HTTP** | **Structured data quality** |
+## Quick Start
 
 **Try Clipper immediately: No API keys, no setup required.**
 
