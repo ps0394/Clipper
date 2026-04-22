@@ -472,6 +472,9 @@ This phase is an audit-and-prune pass across every pillar evaluator, looking for
 
 **Dependencies:** Phase 1.2 (extracted text is the input), Phase 4.3 (classifier lockdown — correlations against moving weights are worthless).
 
+**Blocking dependency for publication — secondary reviewer for inter-rater κ:**
+Per the Phase 5 design doc ([docs/phase-5-design.md](phase-5-design.md) §4.1.1, §5), ground truth is produced by a reviewer running accept/reject on LLM-generated Q/A pairs. A **second reviewer must independently re-run accept/reject on 12 of the 60 pages (60 Q/A pairs)** so we can report Cohen's κ on the accept/reject decision. Without κ, we cannot claim the ground-truth rubric is reproducible, which undermines every downstream correlation claim. Estimated effort: ~40 minutes for the second reviewer once the rubric and generator output are in hand. **Do not publish findings until κ is computed and reported.** If κ < 0.7 the rubric must be tightened and the primary review re-run.
+
 **Est. effort:** 3–4 sessions to scaffold the evaluator, client abstraction, CLI flags, caching, and variance check. Calibration gate (hand-grading + iteration) is additional real-world time outside the session model. Correlation analysis itself is a research activity sized against available data, not sessions.
 
 ---

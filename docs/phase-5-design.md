@@ -368,9 +368,13 @@ capacity, which is much cheaper but still gates the phase.
    generator?~~ **Resolved: Anthropic Claude.** Specific Claude model
    (Sonnet vs. Opus) and API access path still TBD at pilot time, but
    the family is locked.
-4. **Secondary reviewer:** do we have a second person to re-run
-   accept/reject on 20% of pages for κ? Without one, we cannot report
-   inter-rater agreement; we'd fall back to single-reviewer disclosure.
+4. **Secondary reviewer:** ~~do we have a second person to re-run
+   accept/reject on 20% of pages for κ?~~ **Resolved: yes, required.**
+   A second reviewer must run accept/reject independently on 12 of the
+   60 pages (60 Q/A pairs) before findings are published. Cohen's κ is
+   computed on the accept/reject decision and reported in the findings
+   doc. This is a blocking dependency for publication; see the tracking
+   entry in `docs/improvement-plan.md` so it doesn't get forgotten.
 5. **Commit LLM outputs to git?** Generator output, review audit trail,
    and scoring-LLM outputs are large but they're the data of record.
    Consider a separate artifact branch or LFS.
