@@ -135,6 +135,53 @@ def test_metadata_ordering(score_fixture):
 
 
 # ---------------------------------------------------------------------------
+# Phase 4.4: vendor-neutrality of the metadata pillar.
+#
+# ms.topic is a Microsoft Learn authoring signal that declares the page's
+# CMS template / role (tutorial/quickstart/overview/reference). It is
+# consumed by the content-type classifier (retrievability/profiles.py) where
+# that meaning is appropriate. Accepting it inside the metadata pillar's
+# topic-field check as equivalent to generic semantic topic signals
+# (meta:topic, meta:category, meta:keywords, schema:articleSection) gave
+# Learn pages a vendor-specific 15-point credit no other doc system could
+# earn from a comparable internal signal. These tests lock the fix.
+# ---------------------------------------------------------------------------
+
+
+def _topic_field_score(score_fixture, fixture_name: str) -> float:
+    result = score_fixture(fixture_name)
+    return float(
+        result.audit_trail["metadata_completeness"]["field_scores"]["topic"]
+    )
+
+
+def test_ms_topic_alone_scores_zero_on_topic_field(score_fixture):
+    """ms.topic without any generic topic/category/keywords/articleSection
+    must earn zero topic-field credit. If this ever passes a non-zero
+    value, ms.topic has leaked back into the metadata pillar.
+    """
+    assert _topic_field_score(score_fixture, "metadata_ms_topic_only.html") == 0.0
+
+
+def test_ms_topic_does_not_double_credit_on_topic_field(score_fixture):
+    """A page that ships ms.topic + meta:keywords must score the same on
+    the topic field as a page that ships meta:keywords alone. ms.topic is
+    not additive evidence; the generic keywords tag is the only signal
+    doing scoring work.
+    """
+    with_ms_topic = _topic_field_score(
+        score_fixture, "metadata_ms_topic_plus_keywords.html"
+    )
+    without_ms_topic = _topic_field_score(
+        score_fixture, "metadata_keywords_only.html"
+    )
+    assert with_ms_topic == without_ms_topic, (
+        f"ms.topic leaked back into topic-field scoring: "
+        f"with_ms_topic={with_ms_topic}, without_ms_topic={without_ms_topic}"
+    )
+
+
+# ---------------------------------------------------------------------------
 # Content extractability (Mozilla Readability)
 # ---------------------------------------------------------------------------
 

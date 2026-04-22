@@ -183,11 +183,23 @@ Checks for 7 key metadata fields across Dublin Core, Schema.org, and OpenGraph s
 | **Description** | 15 | `<meta name="description">`, `og:description`, Schema.org `description` |
 | **Author/Publisher** | 15 | `<meta name="author">`, Schema.org `author`/`publisher` |
 | **Date** | 15 | `<meta>` date tags, Schema.org `dateModified`/`datePublished`, `<time>` elements |
-| **Topic/Category** | 15 | `<meta name="ms.topic">`, Schema.org `articleSection`, `<meta name="keywords">` |
+| **Topic/Category** | 15 | `<meta name="topic">`, `<meta name="category">`, Schema.org `articleSection`, `<meta name="keywords">` |
 | **Language** | 10 | `<html lang="">`, `<meta http-equiv="content-language">` |
 | **Canonical URL** | 15 | `<link rel="canonical">` |
 
 Each field scores 0 (absent) or full points (present and non-empty).
+
+**Vendor-neutrality principle (Phase 4.4).** Signals used inside a pillar
+scoring check must be semantically equivalent across vendors.
+Vendor-specific authoring signals (e.g., Microsoft Learn's `ms.topic`)
+belong in the classifier — [profiles.py](../retrievability/profiles.py) —
+where "authoritative declaration beats inference" is a defensible rule
+that applies to any doc system that provides an equivalent signal. They
+do **not** belong inside a pillar's scoring check, where accepting them
+alongside generic signals (Dublin Core / Schema.org / OpenGraph) would
+give pages from that vendor credit no other doc system could earn from a
+comparable internal signal. The topic-field check above was cleaned up in
+this pass; `ms.topic` previously appeared here and was removed.
 
 ### 6. HTTP Compliance (10%)
 

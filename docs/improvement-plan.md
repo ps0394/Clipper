@@ -333,7 +333,7 @@ Phase 3.1's Profile Impact report surfaces the *effect* of a classification, but
 
 ### 4.4 Metadata pillar vendor-neutrality audit
 
-**Status:** Not started.
+**Status:** Completed (commit `<pending>`, 2026-04-22).
 
 **Why:** During the Phase 4.3 review a reviewer question surfaced a narrower but real bias: `ms.topic` — a Microsoft-Learn-internal authoring signal used to drive the Learn CMS (template selection, breadcrumb, TOC grouping) — is currently accepted by the metadata pillar's "topic/category" field as equivalent evidence to `meta:keywords`, `meta:category`, `meta:topic`, and `schema:articleSection`. See [access_gate_evaluator.py:1334](../retrievability/access_gate_evaluator.py#L1334).
 
@@ -516,7 +516,7 @@ Clipper's value is measurement, not discovery. A search-API integration adds mai
 | 4.1 | JSON-LD field completeness | #5 | P2 | 1 | Completed |
 | 4.2 | Storage abstraction | #8 (subsumed) | P2 | 1 | Not started |
 | 4.3 | Content-type detector lockdown | — (review) | P1 | 1 | Completed |
-| 4.4 | Metadata pillar vendor-neutrality | — (review) | P1 | 1 | Not started |
+| 4.4 | Metadata pillar vendor-neutrality | — (review) | P1 | 1 | Completed |
 | 5.1 | LLM ground-truth validation | #9 | P1 (strategic) | 3–4 to scaffold; calibration + research time on top | Not started |
 | 6 | Azure migration | see audit | P2 | ~8–12 code sessions + human deployment work | Not started |
 | — | Auto-discovery | #7 | Won't do | — | Rejected |

@@ -1331,7 +1331,15 @@ class AccessGateEvaluator:
             ]
             
             # 5. Topic/Category (15 points)
-            meta_topic = soup.find('meta', attrs={'name': lambda n: n and n.lower() in ('ms.topic', 'topic', 'category', 'keywords')}) if soup.find('meta', attrs={'name': True}) else None
+            # Phase 4.4: ms.topic is a Microsoft Learn page-role/CMS-template
+            # signal (tutorial/quickstart/overview/reference as a template
+            # switch), not a semantic topic declaration. It's consumed by the
+            # classifier in retrievability/profiles.py where that meaning is
+            # appropriate. Accepting it here as equivalent to Dublin-Core /
+            # Schema.org topic signals gave Learn pages a vendor-specific
+            # 15-point credit no other doc system could earn, so it's excluded
+            # from this pillar.
+            meta_topic = soup.find('meta', attrs={'name': lambda n: n and n.lower() in ('topic', 'category')}) if soup.find('meta', attrs={'name': True}) else None
             schema_section = json_ld_data.get('articleSection')
             meta_keywords = soup.find('meta', attrs={'name': 'keywords'})
             has_topic = bool(
