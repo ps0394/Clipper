@@ -142,7 +142,7 @@ The original issues list is good but mis-sequenced. The ordering here reflects t
 
 ### 1.2 Extraction preview (original Issue #4)
 
-**Status:** Completed (commit pending, 2026-04-22).
+**Status:** Completed (commit `a408f51`, 2026-04-22).
 
 **Why:** Extractability scores are opaque in isolation. A 33/100 makes instant sense when you see the three sentences that were extracted.
 
