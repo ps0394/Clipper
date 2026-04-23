@@ -258,6 +258,31 @@ def main():
         action='store_true',
         help='Also run the secondary scorer (Llama) for cross-LLM agreement check',
     )
+    phase5_pilot_parser.add_argument(
+        '--grader',
+        choices=['substring', 'llm'],
+        default='substring',
+        help='Grader: substring heuristic (fast, false-negatives on paraphrase) '
+             'or llm (Llama 3.3 as judge, slower, semantically-tolerant)',
+    )
+
+    phase5_rejudge_parser = phase5_sub.add_parser(
+        'rejudge',
+        help='Re-grade an existing pilot dir with the LLM judge (no re-fetch, no re-score)',
+    )
+    phase5_rejudge_parser.add_argument(
+        'pilot_dir',
+        help='Path to an existing pilot output directory (e.g. evaluation/phase5-results/pilot-001)',
+    )
+
+    phase5_kappa_parser = phase5_sub.add_parser(
+        'kappa',
+        help='Compute Cohen\'s kappa between hand-labels and judge-labels for the calibration gate',
+    )
+    phase5_kappa_parser.add_argument(
+        'pilot_dir',
+        help='Path to an existing pilot output directory',
+    )
 
     args = parser.parse_args()
     

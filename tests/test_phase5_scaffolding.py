@@ -277,3 +277,98 @@ def test_correlate_shapes_output():
         assert c.n == 5
         assert -1.0 <= c.rho <= 1.0
         assert c.ci_low <= c.rho <= c.ci_high
+
+
+# --- judge -----------------------------------------------------------------
+
+from retrievability.phase5 import judge as _judge
+
+
+def test_parse_judge_output_correct():
+    label, rationale = _judge.parse_judge_output("CORRECT\nThe candidate matches the ground truth.")
+    assert label == "correct"
+    assert "matches" in rationale
+
+
+def test_parse_judge_output_incorrect():
+    label, _ = _judge.parse_judge_output("INCORRECT\nWrong currency.")
+    assert label == "incorrect"
+
+
+def test_parse_judge_output_not_in_document():
+    label, _ = _judge.parse_judge_output("NOT_IN_DOCUMENT\nCandidate admitted absence.")
+    assert label == "not_in_document"
+
+
+def test_parse_judge_output_tolerates_prefix_and_trailing_punct():
+    label, _ = _judge.parse_judge_output("Verdict: CORRECT.\nFacts agree.")
+    assert label == "correct"
+
+
+def test_parse_judge_output_fallback_on_garbage():
+    label, rationale = _judge.parse_judge_output("maybe?\nsomething")
+    assert label == "incorrect"
+    assert "unparseable" in rationale
+
+
+def test_parse_judge_output_empty():
+    label, _ = _judge.parse_judge_output("")
+    assert label == "incorrect"
+
+
+def test_build_judge_prompt_substitutes():
+    p = _judge.build_judge_prompt(question="Q", ground_truth="GT", candidate="C")
+    assert "Q" in p and "GT" in p and "C" in p
+
+
+class _FakeJudge:
+    model_id = "fake-judge"
+
+    def __init__(self, reply: str):
+        self._reply = reply
+
+    def answer(self, prompt: str):
+        return self._reply, len(prompt), len(self._reply)
+
+
+def test_judge_answer_end_to_end():
+    gt = QAPair(question="Q1", answer="1099 in USD", supporting_sentences=[])
+    ans = ScoringAnswer(pair_index=0, answer="1099, usd", run_index=0, tokens_in=0, tokens_out=0)
+    client = _FakeJudge("CORRECT\nSame fact, different format.")
+    graded = _judge.judge_answer(
+        client=client, pair_index=0, run_index=0, ground_truth=gt, candidate=ans
+    )
+    assert graded.label == "correct"
+    assert graded.judge_model == "fake-judge"
+    assert graded.tokens_in > 0
+
+
+def test_judged_page_accuracy():
+    gs = [
+        _judge.JudgedGrade(pair_index=0, run_index=0, label="correct", rationale="", judge_model="x", tokens_in=0, tokens_out=0),
+        _judge.JudgedGrade(pair_index=1, run_index=0, label="incorrect", rationale="", judge_model="x", tokens_in=0, tokens_out=0),
+        _judge.JudgedGrade(pair_index=2, run_index=0, label="correct", rationale="", judge_model="x", tokens_in=0, tokens_out=0),
+    ]
+    assert abs(_judge.judged_page_accuracy(gs) - 2 / 3) < 1e-9
+
+
+def test_cohens_kappa_perfect_agreement():
+    # kappa is undefined when everything is one class; we return 0.0 by contract
+    assert _judge.cohens_kappa(["correct"] * 5, ["correct"] * 5) == 0.0
+
+
+def test_cohens_kappa_partial_agreement():
+    a = ["correct", "correct", "incorrect", "incorrect", "correct"]
+    b = ["correct", "incorrect", "incorrect", "incorrect", "correct"]
+    # 4/5 agree, p_e = 0.6*0.4 + 0.4*0.6 = 0.48; kappa = (0.8 - 0.48)/0.52 ≈ 0.615
+    k = _judge.cohens_kappa(a, b)
+    assert 0.6 < k < 0.7
+
+
+def test_cohens_kappa_no_agreement():
+    a = ["correct", "correct", "correct"]
+    b = ["incorrect", "incorrect", "incorrect"]
+    # complete disagreement with equal class frequencies
+    k = _judge.cohens_kappa(a, b)
+    assert k < 0.0 or k == 0.0  # implementation may return 0 for single-class sequences
+

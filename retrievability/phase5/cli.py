@@ -16,6 +16,10 @@ def dispatch(args: argparse.Namespace) -> int:
         return _status(check=getattr(args, "check", False))
     if cmd == "pilot":
         return _pilot(args)
+    if cmd == "rejudge":
+        return _rejudge(args)
+    if cmd == "kappa":
+        return _kappa(args)
     print(f"Unknown phase5 subcommand: {args.phase5_command}")
     return 2
 
@@ -48,6 +52,7 @@ def _pilot(args: argparse.Namespace) -> int:
         review=bool(args.review),
         reviewer_id=args.reviewer_id,
         use_secondary=bool(args.secondary_scorer),
+        grader_mode=args.grader,
     )
 
     print()
@@ -127,3 +132,98 @@ def _status(*, check: bool = False) -> int:
 
 def _state(p: Path) -> str:
     return "present" if p.is_dir() else "MISSING"
+
+
+def _rejudge(args: argparse.Namespace) -> int:
+    from .clients import FoundryConfig
+    from .runner import rejudge_pilot
+
+    config = FoundryConfig.from_env()
+    missing = config.check()
+    if missing:
+        print(f"[!] Cannot rejudge — missing env vars: {', '.join(missing)}")
+        return 1
+    pilot_dir = Path(args.pilot_dir)
+    if not pilot_dir.is_dir():
+        print(f"Pilot dir not found: {pilot_dir}")
+        return 1
+    print(f"Rejudging {pilot_dir} with LLM judge ({config.scorer_secondary_deployment})")
+    result = rejudge_pilot(pilot_dir=pilot_dir, config=config)
+    print()
+    print("Rejudge summary")
+    print("-" * 40)
+    for p in result["pages"]:
+        print(f"  {p['judged_accuracy']:>5.0%}  {p['num_pairs']} pairs  {p['slug']}")
+    print(f"  mean judged accuracy: {result['mean_judged_accuracy']:.0%}")
+    print(f"  results: {pilot_dir / 'rejudge-summary.json'}")
+    return 0
+
+
+def _kappa(args: argparse.Namespace) -> int:
+    """Compute Cohen's kappa between hand-labels and judge-labels.
+
+    Expects:
+      <pilot_dir>/_calibration/hand-labels.json   — array of {slug, pair_index, label}
+      <pilot_dir>/<slug>/grades.primary.judged.json  — from rejudge or pilot --grader llm
+    """
+    import json as _json
+    from .judge import cohens_kappa
+
+    pilot_dir = Path(args.pilot_dir)
+    hand_path = pilot_dir / "_calibration" / "hand-labels.json"
+    if not hand_path.is_file():
+        print(f"Hand-labels file not found: {hand_path}")
+        print(f"Create it with entries: [{{\"slug\": \"...\", \"pair_index\": 0, \"label\": \"correct\"}}, ...]")
+        return 1
+
+    hand = _json.loads(hand_path.read_text(encoding="utf-8"))
+    if not isinstance(hand, list) or not hand:
+        print(f"Hand-labels file is empty or malformed: {hand_path}")
+        return 1
+
+    hand_labels = []
+    judge_labels = []
+    missing = 0
+    for entry in hand:
+        slug = entry["slug"]
+        idx = entry["pair_index"]
+        hand_label = entry["label"]
+        judged_path = pilot_dir / slug / "grades.primary.judged.json"
+        if not judged_path.is_file():
+            missing += 1
+            continue
+        judged = _json.loads(judged_path.read_text(encoding="utf-8"))
+        match = next((g for g in judged if g["pair_index"] == idx and g["run_index"] == 0), None)
+        if match is None:
+            missing += 1
+            continue
+        hand_labels.append(hand_label)
+        judge_labels.append(match["label"])
+
+    if missing:
+        print(f"[!] {missing} hand-labeled entries had no matching judged grade; skipped.")
+    if not hand_labels:
+        print("No overlapping labels to compare.")
+        return 1
+
+    exact_agree = sum(1 for a, b in zip(hand_labels, judge_labels) if a == b)
+    k = cohens_kappa(hand_labels, judge_labels)
+    print("Calibration — hand vs judge")
+    print("-" * 40)
+    print(f"  n overlapping:   {len(hand_labels)}")
+    print(f"  exact agreement: {exact_agree}/{len(hand_labels)} ({exact_agree/len(hand_labels):.0%})")
+    print(f"  Cohen's kappa:   {k:.3f}")
+    print()
+    gate = 0.80
+    if k >= gate:
+        print(f"  [PASS] kappa >= {gate:.2f}. Judge is calibrated.")
+        return 0
+    print(f"  [FAIL] kappa < {gate:.2f}. Revise judge prompt or escalate to two-judge agreement.")
+
+    # breakdown of disagreements
+    print()
+    print("Disagreements:")
+    for entry, h, j in zip(hand, hand_labels, judge_labels):
+        if h != j:
+            print(f"  {entry['slug']} pair {entry['pair_index']}: hand={h}  judge={j}")
+    return 2

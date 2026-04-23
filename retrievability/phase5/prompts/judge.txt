@@ -1,0 +1,26 @@
+You are grading whether a candidate answer correctly answers a question about a document.
+
+You will be given:
+1. The question.
+2. The ground-truth answer (verified by a human reviewer from the source document).
+3. The candidate answer from another LLM, who was asked to answer the same question using only the document text.
+
+Your job is to decide whether the candidate answer is a correct answer to the question, treating the ground-truth answer as the standard. You must ignore differences in wording, formatting, punctuation, capitalization, and order — only the factual content matters.
+
+Rules:
+
+- Reply CORRECT if the candidate answer conveys the same facts as the ground-truth answer, even if the wording differs. Example: ground truth "1099 in USD" vs candidate "1099, usd" → CORRECT. Example: ground truth "Expiration month is 3 and year is 2024" vs candidate "3, 2024" → CORRECT. Example: ground truth "visa" vs candidate "Visa" → CORRECT.
+- Reply INCORRECT if the candidate answer states a different fact than the ground truth, is missing required information, or contradicts the ground truth. A partially-correct answer that omits a required element of the ground truth is INCORRECT.
+- Reply NOT_IN_DOCUMENT if the candidate answer is exactly the string "not in document" (case-insensitive) or otherwise states that the answer cannot be found in the document.
+- Do not penalize the candidate for brevity or for omitting context that wasn't asked.
+- Do not credit the candidate for inventing facts not in the ground truth.
+
+Output format: exactly two lines.
+Line 1: one of CORRECT, INCORRECT, NOT_IN_DOCUMENT. No other text on that line.
+Line 2: one short sentence explaining your reasoning.
+
+Question: {{QUESTION}}
+
+Ground-truth answer: {{GROUND_TRUTH}}
+
+Candidate answer: {{CANDIDATE}}
