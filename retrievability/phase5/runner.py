@@ -176,11 +176,20 @@ def _auto_accept_all(pairs: List[QAPair], reviewer_id: str) -> List[ReviewRecord
 
 
 def _parse_pilot_line(line: str) -> Optional[tuple[str, str]]:
-    """One line → (url, profile). Format: `url[\\tprofile]`. # comments allowed."""
+    """One line → (url, profile). Format: `url[\\tprofile[\\tvendor]][  # comment]`.
+
+    Whole-line `#` comments and inline ` # ...` trailing comments are stripped.
+    Any columns beyond profile are ignored (e.g. vendor, tier markers).
+    """
     line = line.strip()
     if not line or line.startswith("#"):
         return None
-    parts = re.split(r"[\t,]", line, maxsplit=1)
+    # Strip inline trailing "  # comment" without breaking '#' inside URLs.
+    # Anchor on whitespace-then-hash to avoid URL fragment collisions.
+    line = re.split(r"\s+#", line, maxsplit=1)[0].strip()
+    if not line:
+        return None
+    parts = re.split(r"[\t,]", line)
     url = parts[0].strip()
     profile = parts[1].strip() if len(parts) > 1 else "article"
     return url, profile
