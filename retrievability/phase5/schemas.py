@@ -27,10 +27,33 @@ class QAPair:
     @classmethod
     def from_dict(cls, d: Dict[str, Any]) -> "QAPair":
         return cls(
-            question=d["question"],
-            answer=d["answer"],
-            supporting_sentences=list(d.get("supporting_sentences", [])),
+            question=_coerce_str(d["question"]),
+            answer=_coerce_str(d["answer"]),
+            supporting_sentences=[
+                _coerce_str(s) for s in d.get("supporting_sentences", [])
+            ],
         )
+
+
+def _coerce_str(v: Any) -> str:
+    """Normalize a generator output field to a plain string.
+
+    Mistral Large 3 sometimes emits list-shaped answers (e.g. a
+    multi-step answer rendered as ``["step 1", "step 2", ...]``) instead
+    of the prose the prompt asks for. Downstream grader / judge code
+    assumes strings, so coerce here. Lists are joined with "; " so
+    substring-grader fallback still has a chance.
+    """
+    if v is None:
+        return ""
+    if isinstance(v, str):
+        return v
+    if isinstance(v, list):
+        return "; ".join(_coerce_str(item) for item in v)
+    if isinstance(v, dict):
+        # Unlikely but possible — flatten values.
+        return "; ".join(_coerce_str(x) for x in v.values())
+    return str(v)
 
 
 @dataclass(frozen=True)

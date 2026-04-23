@@ -431,7 +431,9 @@ def main():
                 _cleanup_temp_file(urls_file, getattr(args, 'urls_file', None))
             
     except Exception as e:
+        import traceback
         print(f"Error: {e}", file=sys.stderr)
+        traceback.print_exc(file=sys.stderr)
         sys.exit(1)
 
 
