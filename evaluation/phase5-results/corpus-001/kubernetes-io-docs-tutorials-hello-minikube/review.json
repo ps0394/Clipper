@@ -1,0 +1,110 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of the 'hello-node' Deployment in the Hello Minikube tutorial?",
+      "answer": "The 'hello-node' Deployment checks on the health of your Pod and restarts the Pod's Container if it terminates. Deployments are the recommended way to manage the creation and scaling of Pods.",
+      "supporting_sentences": [
+        "A Kubernetes Deployment checks on the health of your Pod and restarts the Pod's Container if it terminates. Deployments are the recommended way to manage the creation and scaling of Pods.",
+        "Use the kubectl create command to create a Deployment that manages a Pod. The Pod runs a Container based on the provided Docker image."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of the 'hello-node' Deployment in the Hello Minikube tutorial?",
+      "answer": "The 'hello-node' Deployment checks on the health of your Pod and restarts the Pod's Container if it terminates. Deployments are the recommended way to manage the creation and scaling of Pods.",
+      "supporting_sentences": [
+        "A Kubernetes Deployment checks on the health of your Pod and restarts the Pod's Container if it terminates. Deployments are the recommended way to manage the creation and scaling of Pods.",
+        "Use the kubectl create command to create a Deployment that manages a Pod. The Pod runs a Container based on the provided Docker image."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What command is used to expose the 'hello-node' Pod as a Kubernetes Service in the tutorial?",
+      "answer": "The command used is `kubectl expose deployment hello-node --type=LoadBalancer --port=8080`.",
+      "supporting_sentences": [
+        "Expose the Pod to the public internet using the kubectl expose command:",
+        "kubectl expose deployment hello-node --type=LoadBalancer --port=8080"
+      ]
+    },
+    "edited_pair": {
+      "question": "What command is used to expose the 'hello-node' Pod as a Kubernetes Service in the tutorial?",
+      "answer": "The command used is `kubectl expose deployment hello-node --type=LoadBalancer --port=8080`.",
+      "supporting_sentences": [
+        "Expose the Pod to the public internet using the kubectl expose command:",
+        "kubectl expose deployment hello-node --type=LoadBalancer --port=8080"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How can you access the Kubernetes dashboard without letting minikube open a web browser for you?",
+      "answer": "You can run the `dashboard` subcommand with the `--url` flag, which outputs a URL that you can open in your preferred browser.",
+      "supporting_sentences": [
+        "If you don't want minikube to open a web browser for you, run the dashboard subcommand with the --url flag.",
+        "minikube outputs a URL that you can open in the browser you prefer."
+      ]
+    },
+    "edited_pair": {
+      "question": "How can you access the Kubernetes dashboard without letting minikube open a web browser for you?",
+      "answer": "You can run the `dashboard` subcommand with the `--url` flag, which outputs a URL that you can open in your preferred browser.",
+      "supporting_sentences": [
+        "If you don't want minikube to open a web browser for you, run the dashboard subcommand with the --url flag.",
+        "minikube outputs a URL that you can open in the browser you prefer."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the default accessibility of the Kubernetes dashboard in minikube?",
+      "answer": "By default, the dashboard is only accessible from within the internal Kubernetes virtual network.",
+      "supporting_sentences": [
+        "By default, the dashboard is only accessible from within the internal Kubernetes virtual network."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the default accessibility of the Kubernetes dashboard in minikube?",
+      "answer": "By default, the dashboard is only accessible from within the internal Kubernetes virtual network.",
+      "supporting_sentences": [
+        "By default, the dashboard is only accessible from within the internal Kubernetes virtual network."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which command enables the 'metrics-server' addon in minikube?",
+      "answer": "The command to enable the 'metrics-server' addon is `minikube addons enable metrics-server`.",
+      "supporting_sentences": [
+        "Enable an addon, for example, metrics-server:",
+        "minikube addons enable metrics-server"
+      ]
+    },
+    "edited_pair": {
+      "question": "Which command enables the 'metrics-server' addon in minikube?",
+      "answer": "The command to enable the 'metrics-server' addon is `minikube addons enable metrics-server`.",
+      "supporting_sentences": [
+        "Enable an addon, for example, metrics-server:",
+        "minikube addons enable metrics-server"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

@@ -1,0 +1,328 @@
+{
+  "parseability_score": 75.48898388476998,
+  "failure_mode": "minor_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-001\\en-wikipedia-org-wiki-Large-language-model\\page.rendered.html",
+  "url": "https://en.wikipedia.org/wiki/Large_language_model",
+  "component_scores": {
+    "semantic_html": 72.72727272727272,
+    "content_extractability": 65.53582851475899,
+    "structured_data": 87.0,
+    "dom_navigability": 100.0,
+    "metadata_completeness": 70,
+    "http_compliance": 48.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 12,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "figure",
+          "count": 8,
+          "proper_usage": true
+        },
+        {
+          "element": "figcaption",
+          "count": 8,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 35,
+      "heading_elements_count": 62,
+      "scoring_breakdown": {
+        "semantic_coverage": 32.72727272727273,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 114114,
+        "extracted_text_length": 98572,
+        "extracted_chars": 98572,
+        "extraction_ratio": 0.864,
+        "extracted_title": "Large language model",
+        "extracted_preview": "Type of machine learning model A large language model ( LLM ) is a neural network trained on a vast amount of text for natural language processing tasks, especially language generation . LLMs can generate, summarize, translate and parse text in many contexts, and are a foundational technology behind...",
+        "original_headings": 62,
+        "extracted_headings": 14,
+        "original_lists": 169,
+        "extracted_lists": 8,
+        "original_code_blocks": 6,
+        "extracted_code_blocks": 4,
+        "has_main_element": true,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 35,
+        "structure_preservation": 9.398103963860788,
+        "boundary_detection": 21.137724550898202
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 1,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [
+        "Article"
+      ],
+      "key_fields_found": [],
+      "formats_present": 2,
+      "score_breakdown": {
+        "type_appropriateness": 20.0,
+        "field_completeness": 25.0,
+        "multiple_formats": 12,
+        "schema_validation": 30.0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [
+          {
+            "index": 0,
+            "type": "Article",
+            "present": 5,
+            "expected": 6,
+            "ratio": 0.833,
+            "missing": [
+              "description"
+            ],
+            "invalid": []
+          }
+        ],
+        "unvalidated_items": 0,
+        "missing_fields": [
+          {
+            "type": "Article",
+            "fields": [
+              "description"
+            ]
+          }
+        ],
+        "invalid_fields": [],
+        "average_ratio": 0.833
+      },
+      "sample_structured_data": {
+        "json-ld": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "name": "Large language model",
+            "url": "https://en.wikipedia.org/wiki/Large_language_model",
+            "sameAs": "http://www.wikidata.org/entity/Q115305900",
+            "mainEntity": "http://www.wikidata.org/entity/Q115305900",
+            "author": {
+              "@type": "Organization",
+              "name": "Contributors to Wikimedia projects"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Wikimedia Foundation, Inc.",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.wikimedia.org/static/images/wmf-hor-googpub.png"
+              }
+            },
+            "datePublished": "2023-03-09T15:43:17Z",
+            "dateModified": "2026-04-23T13:01:40Z",
+            "headline": "language model built with very large amounts of texts"
+          }
+        ],
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:title",
+                "Large language model - Wikipedia"
+              ],
+              [
+                "og:type",
+                "website"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Static HTML accessibility analysis (fallback)",
+      "violations": [],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "axe_fallback_reason": "Browser accessibility evaluation failed: Message: script timeout\n  (Session info: chrome=147.0.7727.102)\nStacktrace:\n\tchromedriver!GetHandleVerifier [0x7ff6c3dda8e5+14e45]\n\tchromedriver!GetHandleVerifier [0x7ff6c3dda950+14eb0]\n\tchromedriver!(No symbol) [0x7ff6c3b4d4d6]\n\tchromedriver!(No symbol) [0x7ff6c3bf63e1]\n\tchromedriver!(No symbol) [0x7ff6c3bd002a]\n\tchromedriver!(No symbol) [0x7ff6c3bf483b]\n\tchromedriver!(No symbol) [0x7ff6c3b990e8]\n\tchromedriver!(No symbol) [0x7ff6c3b99fc3]\n\tchromedriver!GetHandleVerifier [0x7ff6c40f0149+32a6a9]\n\tchromedriver!GetHandleVerifier [0x7ff6c40ea715+324c75]\n\tchromedriver!GetHandleVerifier [0x7ff6c410c012+346572]\n\tchromedriver!GetHandleVerifier [0x7ff6c3df7cb5+32215]\n\tchromedriver!GetHandleVerifier [0x7ff6c3e0087c+3addc]\n\tchromedriver!GetHandleVerifier [0x7ff6c3de40e4+1e644]\n\tchromedriver!GetHandleVerifier [0x7ff6c3de4296+1e7f6]\n\tchromedriver!GetHandleVerifier [0x7ff6c3dc8737+2c97]\n\tKERNEL32!BaseThreadInitThunk [0x7ffea548e957+17]\n\tntdll!RtlUserThreadStart [0x7ffea754427c+2c]\n",
+      "evaluation_method": "Static HTML analysis (axe-core unavailable)",
+      "checks_performed": {
+        "has_lang_attribute": true,
+        "has_title": true,
+        "images_have_alt": true,
+        "headings_structured": true,
+        "links_descriptive": true
+      },
+      "passed_checks": "5/5"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 0,
+        "author": 15,
+        "date": 15,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title",
+          "schema:name"
+        ],
+        "description": [],
+        "author": [
+          "schema:author",
+          "schema:publisher"
+        ],
+        "date": [
+          "schema:date"
+        ],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 5,
+      "fields_total": 7,
+      "json_ld_type": "Article"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 403,
+        "content_type": "text/plain"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "max-image-preview:standard",
+        "robots_txt_status": 403,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "absent",
+        "last_modified": "absent",
+        "cache_control": "absent"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": true,
+          "details": [
+            "link rel=alternate type=application/x-wiki href=/w/index.php?title=Large_language_model&action=edit"
+          ]
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 0,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 0,
+        "agent_content_hints": 3
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0"
+    },
+    "_content_type": {
+      "profile": "article",
+      "detection": {
+        "schema_type_raw": "Article",
+        "source": "schema_type",
+        "matched_value": "Article"
+      },
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.2,
+        "structured_data": 0.2,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "article",
+  "universal_score": 75.48898388476998,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 72.72727272727272,
+    "content_extractability": 65.53582851475899,
+    "structured_data": 87.0,
+    "dom_navigability": 100.0,
+    "metadata_completeness": 70,
+    "http_compliance": 48.0
+  },
+  "evidence_references": null
+}

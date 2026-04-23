@@ -1,0 +1,1499 @@
+{
+  "parseability_score": 62.196610301627025,
+  "failure_mode": "moderate_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-001\\en-wikipedia-org-wiki-Cloud-computing\\page.rendered.html",
+  "url": "https://en.wikipedia.org/wiki/Cloud_computing",
+  "component_scores": {
+    "semantic_html": 72.72727272727272,
+    "content_extractability": 75.57396059904421,
+    "structured_data": 87.0,
+    "dom_navigability": 0,
+    "metadata_completeness": 70,
+    "http_compliance": 45.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 12,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "figure",
+          "count": 5,
+          "proper_usage": true
+        },
+        {
+          "element": "figcaption",
+          "count": 5,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 29,
+      "heading_elements_count": 33,
+      "scoring_breakdown": {
+        "semantic_coverage": 32.72727272727273,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 63135,
+        "extracted_text_length": 53380,
+        "extracted_chars": 53380,
+        "extraction_ratio": 0.845,
+        "extracted_title": "Cloud computing - Wikipedia",
+        "extracted_preview": "Form of shared internet-based computing Cloud computing metaphor: the group of networked elements providing services does not need to be addressed or managed individually by users; instead, the entire provider-managed suite of hardware and software can be thought of as an amorphous cloud. Cloud comp...",
+        "original_headings": 33,
+        "extracted_headings": 29,
+        "original_lists": 92,
+        "extracted_lists": 5,
+        "original_code_blocks": 0,
+        "extracted_code_blocks": 0,
+        "has_main_element": true,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 40.0,
+        "structure_preservation": 14.331357048748352,
+        "boundary_detection": 21.242603550295858
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 1,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [
+        "Article"
+      ],
+      "key_fields_found": [],
+      "formats_present": 2,
+      "score_breakdown": {
+        "type_appropriateness": 20.0,
+        "field_completeness": 25.0,
+        "multiple_formats": 12,
+        "schema_validation": 30.0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [
+          {
+            "index": 0,
+            "type": "Article",
+            "present": 5,
+            "expected": 6,
+            "ratio": 0.833,
+            "missing": [
+              "description"
+            ],
+            "invalid": []
+          }
+        ],
+        "unvalidated_items": 0,
+        "missing_fields": [
+          {
+            "type": "Article",
+            "fields": [
+              "description"
+            ]
+          }
+        ],
+        "invalid_fields": [],
+        "average_ratio": 0.833
+      },
+      "sample_structured_data": {
+        "json-ld": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "name": "Cloud computing",
+            "url": "https://en.wikipedia.org/wiki/Cloud_computing",
+            "sameAs": "http://www.wikidata.org/entity/Q483639",
+            "mainEntity": "http://www.wikidata.org/entity/Q483639",
+            "author": {
+              "@type": "Organization",
+              "name": "Contributors to Wikimedia projects"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Wikimedia Foundation, Inc.",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.wikimedia.org/static/images/wmf-hor-googpub.png"
+              }
+            },
+            "datePublished": "2007-03-03T11:08:54Z",
+            "dateModified": "2026-04-21T14:10:41Z",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Cloud_computing.svg",
+            "headline": "form of Internet-based computing, whereby shared resources, software and information are provided to computers and other devices"
+          }
+        ],
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:image",
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Cloud_computing.svg/1280px-Cloud_computing.svg.png"
+              ],
+              [
+                "og:image:width",
+                "1200"
+              ],
+              [
+                "og:image:height",
+                "1087"
+              ],
+              [
+                "og:title",
+                "Cloud computing - Wikipedia"
+              ],
+              [
+                "og:type",
+                "website"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures role attribute has an appropriate value for the element",
+          "help": "ARIA role must be appropriate for the element",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+          "id": "aria-allowed-role",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<input type=\"checkbox\" id=\"vector-main-menu-dropdown-checkbox\" role=\"button\" aria-haspopup=\"true\" data-event-name=\"ui.dropdown-vector-main-menu-dropdown\" class=\"vector-dropdown-checkbox \" aria-label=\"Main menu\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#vector-main-menu-dropdown-checkbox"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<input type=\"checkbox\" id=\"vector-appearance-dropdown-checkbox\" role=\"button\" aria-haspopup=\"true\" data-event-name=\"ui.dropdown-vector-appearance-dropdown\" class=\"vector-dropdown-checkbox \" aria-label=\"Appearance\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#vector-appearance-dropdown-checkbox"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<input type=\"checkbox\" id=\"vector-user-links-dropdown-checkbox\" role=\"button\" aria-haspopup=\"true\" data-event-name=\"ui.dropdown-vector-user-links-dropdown\" class=\"vector-dropdown-checkbox \" aria-label=\"Personal tools\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#vector-user-links-dropdown-checkbox"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<input type=\"checkbox\" id=\"vector-page-titlebar-toc-checkbox\" role=\"button\" aria-haspopup=\"true\" data-event-name=\"ui.dropdown-vector-page-titlebar-toc\" class=\"vector-dropdown-checkbox \" aria-label=\"Toggle the table of contents\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#vector-page-titlebar-toc-checkbox"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<input type=\"checkbox\" id=\"p-lang-btn-checkbox\" role=\"button\" aria-haspopup=\"true\" data-event-name=\"ui.dropdown-p-lang-btn\" class=\"vector-dropdown-checkbox mw-interlanguage-selector\" aria-label=\"Go to an article in another language. Available in 79 languages\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#p-lang-btn-checkbox"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<input type=\"checkbox\" id=\"vector-variants-dropdown-checkbox\" role=\"button\" aria-haspopup=\"true\" data-event-name=\"ui.dropdown-vector-variants-dropdown\" class=\"vector-dropdown-checkbox \" aria-label=\"Change language variant\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#vector-variants-dropdown-checkbox"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<input type=\"checkbox\" id=\"vector-page-tools-dropdown-checkbox\" role=\"button\" aria-haspopup=\"true\" data-event-name=\"ui.dropdown-vector-page-tools-dropdown\" class=\"vector-dropdown-checkbox \" aria-label=\"Tools\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#vector-page-tools-dropdown-checkbox"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<input type=\"checkbox\" id=\"vector-sticky-header-toc-checkbox\" role=\"button\" aria-haspopup=\"true\" data-event-name=\"ui.dropdown-vector-sticky-header-toc\" class=\"vector-dropdown-checkbox \" aria-label=\"Toggle the table of contents\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#vector-sticky-header-toc-checkbox"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensure the autocomplete attribute is correct and suitable for the form field",
+          "help": "autocomplete attribute must be used correctly",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/autocomplete-valid?application=axeAPI",
+          "id": "autocomplete-valid",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": null,
+                  "id": "autocomplete-appropriate",
+                  "impact": "serious",
+                  "message": "the autocomplete value is inappropriate for this type of input",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  the autocomplete value is inappropriate for this type of input",
+              "html": "<input class=\"cdx-text-input__input mw-searchInput\" autocomplete=\"off\" type=\"search\" name=\"search\" placeholder=\"Search Wikipedia\" aria-label=\"Search Wikipedia\" autocapitalize=\"none\" spellcheck=\"false\" title=\"Search Wikipedia [alt-f]\" accesskey=\"f\" id=\"searchInput\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "#searchInput"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.forms",
+            "wcag21aa",
+            "wcag135"
+          ]
+        },
+        {
+          "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+          "help": "Elements must have sufficient color contrast",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ccccff",
+                    "contrastRatio": 3.48,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<th scope=\"col\" class=\"navbox-title\" colspan=\"2\">",
+                      "target": [
+                        "div[aria-labelledby=\"Cloud_computing3132\"] > .nowraplinks.mw-collapsible.autocollapse > tbody > tr:nth-child(1) > .navbox-title[scope=\"col\"][colspan=\"\\32 \"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div[aria-labelledby=\"Cloud_computing3132\"] > .nowraplinks.mw-collapsible.autocollapse > tbody > tr:nth-child(1) > .navbox-title[scope=\"col\"][colspan=\"\\32 \"] > .mw-collapsible-toggle.mw-collapsible-toggle-default.mw-collapsible-toggle-collapsed > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ccccff",
+                    "contrastRatio": 3.48,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<th scope=\"col\" class=\"navbox-title\" colspan=\"2\">",
+                      "target": [
+                        "div[aria-labelledby=\"Parallel_computing4134\"] > .nowraplinks.mw-collapsible.autocollapse > tbody > tr:nth-child(1) > .navbox-title[scope=\"col\"][colspan=\"\\32 \"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div[aria-labelledby=\"Parallel_computing4134\"] > .nowraplinks.mw-collapsible.autocollapse > tbody > tr:nth-child(1) > .navbox-title[scope=\"col\"][colspan=\"\\32 \"] > .mw-collapsible-toggle.mw-collapsible-toggle-default.mw-collapsible-toggle-collapsed > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ccccff",
+                    "contrastRatio": 3.48,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 12.0pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<th scope=\"col\" class=\"navbox-title\" colspan=\"2\">",
+                      "target": [
+                        "div[aria-labelledby=\"Parallel_computing4134\"] > .nowraplinks.mw-collapsible.autocollapse > tbody > tr:nth-child(1) > .navbox-title[scope=\"col\"][colspan=\"\\32 \"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 12.0pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"/wiki/Parallel_computing\" title=\"Parallel computing\">Parallel computing</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "#Parallel_computing4134 > a[href$=\"Parallel_computing\"][title=\"Parallel\\ computing\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ccccff",
+                    "contrastRatio": 3.48,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<th scope=\"col\" class=\"navbox-title\" colspan=\"2\">",
+                      "target": [
+                        ".authority-control > .nowraplinks.mw-collapsible.autocollapse > tbody > tr:nth-child(1) > .navbox-title[scope=\"col\"][colspan=\"\\32 \"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".authority-control > .nowraplinks.mw-collapsible.autocollapse > tbody > tr:nth-child(1) > .navbox-title[scope=\"col\"][colspan=\"\\32 \"] > .mw-collapsible-toggle.mw-collapsible-toggle-default.mw-collapsible-toggle-collapsed > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ccccff",
+                    "contrastRatio": 3.48,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 12.0pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<th scope=\"col\" class=\"navbox-title\" colspan=\"2\">",
+                      "target": [
+                        ".authority-control > .nowraplinks.mw-collapsible.autocollapse > tbody > tr:nth-child(1) > .navbox-title[scope=\"col\"][colspan=\"\\32 \"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 12.0pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"/wiki/Help:Authority_control\" title=\"Help:Authority control\">Authority control databases</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"Help:Authority_control\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+          ]
+        },
+        {
+          "description": "Ensures <img> elements have alternate text or a role of none or presentation",
+          "help": "Images must have alternate text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/image-alt?application=axeAPI",
+          "id": "image-alt",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-alt",
+                  "impact": "critical",
+                  "message": "Element does not have an alt attribute",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<img src=\"//upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Cloud_computing.svg/250px-Cloud_computing.svg.png\" decoding=\"async\" width=\"250\" height=\"226\" class=\"mw-file-element\" srcset=\"//upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Cloud_computing.svg/500px-Cloud_computing.svg.png 2x\" data-file-width=\"1175\" data-file-height=\"1064\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "img[width=\"\\32 50\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-alt",
+                  "impact": "critical",
+                  "message": "Element does not have an alt attribute",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<img src=\"//upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Supply_and_demand-stacked5-law.png/330px-Supply_and_demand-stacked5-law.png\" decoding=\"async\" width=\"325\" height=\"173\" class=\"mw-file-element\" srcset=\"//upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Supply_and_demand-stacked5-law.png/960px-Supply_and_demand-stacked5-law.png 2x\" data-file-width=\"1435\" data-file-height=\"765\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "img[width=\"\\33 25\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-alt",
+                  "impact": "critical",
+                  "message": "Element does not have an alt attribute",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<img src=\"//upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Comparison_of_on-premise%2C_IaaS%2C_PaaS%2C_and_SaaS.png/960px-Comparison_of_on-premise%2C_IaaS%2C_PaaS%2C_and_SaaS.png\" decoding=\"async\" width=\"600\" height=\"325\" style=\"--mw-file-upright: 2.4\" class=\"mw-file-element mw-file-upright\" srcset=\"//upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Comparison_of_on-premise%2C_IaaS%2C_PaaS%2C_and_SaaS.png/1280px-Comparison_of_on-premise%2C_IaaS%2C_PaaS%2C_and_SaaS.png 2x\" data-file-width=\"1300\" data-file-height=\"704\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                ".mw-file-upright"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-alt",
+                  "impact": "critical",
+                  "message": "Element does not have an alt attribute",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<img src=\"//upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Cloud_computing_service_models_%281%29.png/330px-Cloud_computing_service_models_%281%29.png\" decoding=\"async\" width=\"300\" height=\"371\" class=\"mw-file-element\" srcset=\"//upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Cloud_computing_service_models_%281%29.png/960px-Cloud_computing_service_models_%281%29.png 2x\" data-file-width=\"1356\" data-file-height=\"1677\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "img[width=\"\\33 00\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-alt",
+                  "impact": "critical",
+                  "message": "Element does not have an alt attribute",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<img src=\"//upload.wikimedia.org/wikipedia/commons/thumb/8/87/Cloud_computing_types.svg/500px-Cloud_computing_types.svg.png\" decoding=\"async\" width=\"395\" height=\"234\" class=\"mw-file-element\" srcset=\"//upload.wikimedia.org/wikipedia/commons/thumb/8/87/Cloud_computing_types.svg/960px-Cloud_computing_types.svg.png 2x\" data-file-width=\"818\" data-file-height=\"484\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "img[width=\"\\33 95\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.text-alternatives",
+            "wcag2a",
+            "wcag111",
+            "section508",
+            "section508.22.a"
+          ]
+        },
+        {
+          "description": "Ensures links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/link-name?application=axeAPI",
+          "id": "link-name",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<a href=\"/wiki/File:Cloud_computing.svg\" class=\"mw-file-description\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "a[href$=\"File:Cloud_computing.svg\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<a href=\"/wiki/File:Supply_and_demand-stacked5-law.png\" class=\"mw-file-description\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                ".mw-halign-right:nth-child(54) > .mw-file-description"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<a href=\"/wiki/File:Comparison_of_on-premise,_IaaS,_PaaS,_and_SaaS.png\" class=\"mw-file-description\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                ".mw-halign-center > .mw-file-description"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<a href=\"/wiki/File:Cloud_computing_service_models_(1).png\" class=\"mw-file-description\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "figure:nth-child(70) > .mw-file-description"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<a href=\"/wiki/File:Cloud_computing_types.svg\" class=\"mw-file-description\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                ".mw-halign-right:nth-child(101) > .mw-file-description"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "wcag244",
+            "section508",
+            "section508.22.a"
+          ]
+        },
+        {
+          "description": "Ensures related <input type=\"radio\"> elements have a group and that the group designation is consistent",
+          "help": "Radio inputs with the same name attribute value must be part of a group",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/radiogroup?application=axeAPI",
+          "id": "radiogroup",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "name": "skin-client-pref-vector-feature-custom-font-size-group",
+                    "type": "radio"
+                  },
+                  "id": "group-labelledby",
+                  "impact": "critical",
+                  "message": "All elements with the name \"skin-client-pref-vector-feature-custom-font-size-group\" do not reference the same element with aria-labelledby",
+                  "relatedNodes": []
+                },
+                {
+                  "data": {
+                    "failureCode": "no-group",
+                    "name": "skin-client-pref-vector-feature-custom-font-size-group",
+                    "type": "radio"
+                  },
+                  "id": "fieldset",
+                  "impact": "critical",
+                  "message": "Element does not have a containing fieldset or ARIA group",
+                  "relatedNodes": [
+                    {
+                      "html": "<input name=\"skin-client-pref-vector-feature-custom-font-size-group\" id=\"skin-client-pref-vector-feature-custom-font-size-value-1\" type=\"radio\" value=\"1\" data-event-name=\"skin-client-pref-vector-feature-custom-font-size-value-1\" class=\"cdx-radio__input\">",
+                      "target": [
+                        "#skin-client-pref-vector-feature-custom-font-size-value-1"
+                      ]
+                    },
+                    {
+                      "html": "<input name=\"skin-client-pref-vector-feature-custom-font-size-group\" id=\"skin-client-pref-vector-feature-custom-font-size-value-2\" type=\"radio\" value=\"2\" data-event-name=\"skin-client-pref-vector-feature-custom-font-size-value-2\" class=\"cdx-radio__input\">",
+                      "target": [
+                        "#skin-client-pref-vector-feature-custom-font-size-value-2"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  All elements with the name \"skin-client-pref-vector-feature-custom-font-size-group\" do not reference the same element with aria-labelledby\n  Element does not have a containing fieldset or ARIA group",
+              "html": "<input name=\"skin-client-pref-vector-feature-custom-font-size-group\" id=\"skin-client-pref-vector-feature-custom-font-size-value-0\" type=\"radio\" value=\"0\" data-event-name=\"skin-client-pref-vector-feature-custom-font-size-value-0\" class=\"cdx-radio__input\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "#skin-client-pref-vector-feature-custom-font-size-value-0"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "name": "skin-client-pref-vector-feature-limited-width-group",
+                    "type": "radio"
+                  },
+                  "id": "group-labelledby",
+                  "impact": "critical",
+                  "message": "All elements with the name \"skin-client-pref-vector-feature-limited-width-group\" do not reference the same element with aria-labelledby",
+                  "relatedNodes": []
+                },
+                {
+                  "data": {
+                    "failureCode": "no-group",
+                    "name": "skin-client-pref-vector-feature-limited-width-group",
+                    "type": "radio"
+                  },
+                  "id": "fieldset",
+                  "impact": "critical",
+                  "message": "Element does not have a containing fieldset or ARIA group",
+                  "relatedNodes": [
+                    {
+                      "html": "<input name=\"skin-client-pref-vector-feature-limited-width-group\" id=\"skin-client-pref-vector-feature-limited-width-value-0\" type=\"radio\" value=\"0\" data-event-name=\"skin-client-pref-vector-feature-limited-width-value-0\" class=\"cdx-radio__input\">",
+                      "target": [
+                        "#skin-client-pref-vector-feature-limited-width-value-0"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  All elements with the name \"skin-client-pref-vector-feature-limited-width-group\" do not reference the same element with aria-labelledby\n  Element does not have a containing fieldset or ARIA group",
+              "html": "<input name=\"skin-client-pref-vector-feature-limited-width-group\" id=\"skin-client-pref-vector-feature-limited-width-value-1\" type=\"radio\" value=\"1\" data-event-name=\"skin-client-pref-vector-feature-limited-width-value-1\" class=\"cdx-radio__input\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "#skin-client-pref-vector-feature-limited-width-value-1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "name": "skin-client-pref-skin-theme-group",
+                    "type": "radio"
+                  },
+                  "id": "group-labelledby",
+                  "impact": "critical",
+                  "message": "All elements with the name \"skin-client-pref-skin-theme-group\" do not reference the same element with aria-labelledby",
+                  "relatedNodes": []
+                },
+                {
+                  "data": {
+                    "failureCode": "no-group",
+                    "name": "skin-client-pref-skin-theme-group",
+                    "type": "radio"
+                  },
+                  "id": "fieldset",
+                  "impact": "critical",
+                  "message": "Element does not have a containing fieldset or ARIA group",
+                  "relatedNodes": [
+                    {
+                      "html": "<input name=\"skin-client-pref-skin-theme-group\" id=\"skin-client-pref-skin-theme-value-day\" type=\"radio\" value=\"day\" data-event-name=\"skin-client-pref-skin-theme-value-day\" class=\"cdx-radio__input\">",
+                      "target": [
+                        "#skin-client-pref-skin-theme-value-day"
+                      ]
+                    },
+                    {
+                      "html": "<input name=\"skin-client-pref-skin-theme-group\" id=\"skin-client-pref-skin-theme-value-night\" type=\"radio\" value=\"night\" data-event-name=\"skin-client-pref-skin-theme-value-night\" class=\"cdx-radio__input\">",
+                      "target": [
+                        "#skin-client-pref-skin-theme-value-night"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  All elements with the name \"skin-client-pref-skin-theme-group\" do not reference the same element with aria-labelledby\n  Element does not have a containing fieldset or ARIA group",
+              "html": "<input name=\"skin-client-pref-skin-theme-group\" id=\"skin-client-pref-skin-theme-value-os\" type=\"radio\" value=\"os\" data-event-name=\"skin-client-pref-skin-theme-value-os\" class=\"cdx-radio__input\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "#skin-client-pref-skin-theme-value-os"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.forms",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 6,
+      "passes_count": 45,
+      "total_penalty": 130,
+      "penalty_per_rule": {
+        "aria-allowed-role": {
+          "impact": "minor",
+          "node_count": 8,
+          "raw_penalty": 40,
+          "capped_penalty": 15
+        },
+        "autocomplete-valid": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "color-contrast": {
+          "impact": "serious",
+          "node_count": 5,
+          "raw_penalty": 75,
+          "capped_penalty": 25
+        },
+        "image-alt": {
+          "impact": "critical",
+          "node_count": 5,
+          "raw_penalty": 125,
+          "capped_penalty": 25
+        },
+        "link-name": {
+          "impact": "serious",
+          "node_count": 5,
+          "raw_penalty": 75,
+          "capped_penalty": 25
+        },
+        "radiogroup": {
+          "impact": "critical",
+          "node_count": 3,
+          "raw_penalty": 75,
+          "capped_penalty": 25
+        }
+      },
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 0,
+        "author": 15,
+        "date": 15,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title",
+          "schema:name"
+        ],
+        "description": [],
+        "author": [
+          "schema:author",
+          "schema:publisher"
+        ],
+        "date": [
+          "schema:date"
+        ],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 5,
+      "fields_total": 7,
+      "json_ld_type": "Article"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 403,
+        "content_type": "text/plain"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "max-image-preview:standard",
+        "robots_txt_status": 403,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "absent",
+        "last_modified": "absent",
+        "cache_control": "absent"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 0,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 0,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "article",
+      "detection": {
+        "schema_type_raw": "Article",
+        "source": "schema_type",
+        "matched_value": "Article"
+      },
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.2,
+        "structured_data": 0.2,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "article",
+  "universal_score": 62.196610301627025,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 72.72727272727272,
+    "content_extractability": 75.57396059904421,
+    "structured_data": 87.0,
+    "dom_navigability": 0,
+    "metadata_completeness": 70,
+    "http_compliance": 45.0
+  },
+  "evidence_references": null
+}

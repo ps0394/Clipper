@@ -1,0 +1,3051 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: os - Miscellaneous operating system interfaces - Python 3.14.4 documentation
+Document URL: https://docs.python.org/3/library/os.html
+Document profile: reference
+
+Document text:
+---
+os
+ — Miscellaneous operating system interfaces
+
+Source code:
+
+Lib/os.py
+
+This module provides a portable way of using operating system dependent
+functionality.  If you just want to read or write a file see 
+open()
+, if
+you want to manipulate paths, see the 
+os.path
+ module, and if you want to
+read all the lines in all the files on the command line see the 
+fileinput
+
+module.  For creating temporary files and directories see the 
+tempfile
+
+module, and for high-level file and directory handling see the 
+shutil
+
+module.
+
+Notes on the availability of these functions:
+
+The design of all built-in operating system dependent modules of Python is
+such that as long as the same functionality is available, it uses the same
+interface; for example, the function 
+os.stat(path)
+ returns stat
+information about 
+path
+ in the same format (which happens to have originated
+with the POSIX interface).
+
+Extensions peculiar to a particular operating system are also available
+through the 
+os
+ module, but using them is of course a threat to
+portability.
+
+All functions accepting path or file names accept both bytes and string
+objects, and result in an object of the same type, if a path or file name is
+returned.
+
+On VxWorks, os.popen, os.fork, os.execv and os.spawn*p* are not supported.
+
+On WebAssembly platforms, Android and iOS, large parts of the 
+os
+ module are
+not available or behave differently. APIs related to processes (e.g.
+
+fork()
+, 
+execve()
+) and resources (e.g. 
+nice()
+)
+are not available. Others like 
+getuid()
+ and 
+getpid()
+ are
+emulated or stubs. WebAssembly platforms also lack support for signals (e.g.
+
+kill()
+, 
+wait()
+).
+
+Note
+
+All functions in this module raise 
+OSError
+ (or subclasses thereof) in
+the case of invalid or inaccessible file names and paths, or other arguments
+that have the correct type, but are not accepted by the operating system.
+
+exception
+
+os.
+error
+
+An alias for the built-in 
+OSError
+ exception.
+
+os.
+name
+
+The name of the operating system dependent module imported.  The following
+names have currently been registered: 
+'posix'
+, 
+'nt'
+,
+
+'java'
+.
+
+See also
+
+sys.platform
+ has a finer granularity.  
+os.uname()
+ gives
+system-dependent version information.
+
+The 
+platform
+ module provides detailed checks for the
+system’s identity.
+
+File Names, Command Line Arguments, and Environment Variables
+
+In Python, file names, command line arguments, and environment variables are
+represented using the string type. On some systems, decoding these strings to
+and from bytes is necessary before passing them to the operating system. Python
+uses the 
+filesystem encoding and error handler
+ to perform this
+conversion (see 
+sys.getfilesystemencoding()
+).
+
+The 
+filesystem encoding and error handler
+ are configured at Python
+startup by the 
+PyConfig_Read()
+ function: see
+
+filesystem_encoding
+ and
+
+filesystem_errors
+ members of 
+PyConfig
+.
+
+Changed in version 3.1: 
+On some systems, conversion using the file system encoding may fail. In this
+case, Python uses the 
+surrogateescape encoding error handler
+, which means that undecodable bytes are replaced by a
+Unicode character U+DC
+xx
+ on decoding, and these are again
+translated to the original byte on encoding.
+
+The 
+file system encoding
+ must
+guarantee to successfully decode all bytes below 128. If the file system
+encoding fails to provide this guarantee, API functions can raise
+
+UnicodeError
+.
+
+See also the 
+locale encoding
+.
+
+Python UTF-8 Mode
+
+Added in version 3.7: 
+See 
+PEP 540
+ for more details.
+
+The Python UTF-8 Mode ignores the 
+locale encoding
+ and forces the usage
+of the UTF-8 encoding:
+
+Note that the standard stream settings in UTF-8 mode can be overridden by
+
+PYTHONIOENCODING
+ (just as they can be in the default locale-aware
+mode).
+
+As a consequence of the changes in those lower level APIs, other higher
+level APIs also exhibit different default behaviours:
+
+Command line arguments, environment variables and filenames are decoded
+to text using the UTF-8 encoding.
+
+os.fsdecode()
+ and 
+os.fsencode()
+ use the UTF-8 encoding.
+
+open()
+, 
+io.open()
+, and 
+codecs.open()
+ use the UTF-8
+encoding by default. However, they still use the strict error handler by
+default so that attempting to open a binary file in text mode is likely
+to raise an exception rather than producing nonsense data.
+
+The 
+Python UTF-8 Mode
+ is enabled if the LC_CTYPE locale is
+
+C
+ or 
+POSIX
+ at Python startup (see the 
+PyConfig_Read()
+
+function).
+
+It can be enabled or disabled using the 
+-X
+
+utf8
+ command line
+option and the 
+PYTHONUTF8
+ environment variable.
+
+If the 
+PYTHONUTF8
+ environment variable is not set at all, then the
+interpreter defaults to using the current locale settings, 
+unless
+ the current
+locale is identified as a legacy ASCII-based locale (as described for
+
+PYTHONCOERCECLOCALE
+), and locale coercion is either disabled or
+fails. In such legacy locales, the interpreter will default to enabling UTF-8
+mode unless explicitly instructed not to do so.
+
+The Python UTF-8 Mode can only be enabled at the Python startup. Its value
+can be read from 
+sys.flags.utf8_mode
+.
+
+See also the 
+UTF-8 mode on Windows
+
+and the 
+filesystem encoding and error handler
+.
+
+Process Parameters
+
+These functions and data items provide information and operate on the current
+process and user.
+
+os.
+ctermid
+(
+)
+
+Return the filename corresponding to the controlling terminal of the process.
+
+os.
+environ
+
+A 
+mapping
+ object where keys and values are strings that represent
+the process environment.  For example, 
+environ['HOME']
+ is the pathname
+of your home directory (on some platforms), and is equivalent to
+
+getenv("HOME")
+ in C.
+
+This mapping is captured the first time the 
+os
+ module is imported,
+typically during Python startup as part of processing 
+site.py
+.  Changes
+to the environment made after this time are not reflected in 
+os.environ
+,
+except for changes made by modifying 
+os.environ
+ directly.
+
+This mapping may be used to modify the environment as well as query the
+environment.  
+putenv()
+ will be called automatically when the mapping
+is modified.
+
+On Unix, keys and values use 
+sys.getfilesystemencoding()
+ and
+
+'surrogateescape'
+ error handler. Use 
+environb
+ if you would like
+to use a different encoding.
+
+On Windows, the keys are converted to uppercase. This also applies when
+getting, setting, or deleting an item. For example,
+
+environ['monty']
+
+=
+
+'python'
+ maps the key 
+'MONTY'
+ to the value
+
+'python'
+.
+
+Note
+
+Calling 
+putenv()
+ directly does not change 
+os.environ
+, so it’s better
+to modify 
+os.environ
+.
+
+Note
+
+On some platforms, including FreeBSD and macOS, setting 
+environ
+ may
+cause memory leaks.  Refer to the system documentation for
+
+putenv()
+.
+
+You can delete items in this mapping to unset environment variables.
+
+unsetenv()
+ will be called automatically when an item is deleted from
+
+os.environ
+, and when one of the 
+pop()
+ or 
+clear()
+ methods is
+called.
+
+Changed in version 3.9: 
+Updated to support 
+PEP 584
+’s merge (
+|
+) and update (
+|=
+) operators.
+
+os.
+environb
+
+Bytes version of 
+environ
+: a 
+mapping
+ object where both keys
+and values are 
+bytes
+ objects representing the process environment.
+
+environ
+ and 
+environb
+ are synchronized (modifying
+
+environb
+ updates 
+environ
+, and vice versa).
+
+environb
+ is only available if 
+supports_bytes_environ
+ is
+
+True
+.
+
+Changed in version 3.9: 
+Updated to support 
+PEP 584
+’s merge (
+|
+) and update (
+|=
+) operators.
+
+os.
+reload_environ
+(
+)
+
+The 
+os.environ
+ and 
+os.environb
+ mappings are a cache of
+environment variables at the time that Python started.
+As such, changes to the current process environment are not reflected
+if made outside Python, or by 
+os.putenv()
+ or 
+os.unsetenv()
+.
+Use 
+os.reload_environ()
+ to update 
+os.environ
+ and 
+os.environb
+
+with any such changes to the current process environment.
+
+Warning
+
+This function is not thread-safe. Calling it while the environment is
+being modified in another thread is an undefined behavior. Reading from
+
+os.environ
+ or 
+os.environb
+, or calling 
+os.getenv()
+
+while reloading, may return an empty result.
+
+os.
+chdir
+(
+path
+)
+
+os.
+fchdir
+(
+fd
+)
+
+os.
+getcwd
+(
+)
+
+These functions are described in 
+Files and Directories
+.
+
+os.
+fsencode
+(
+filename
+)
+
+Encode 
+path-like
+
+filename
+ to the
+
+filesystem encoding and error handler
+; return 
+bytes
+
+unchanged.
+
+fsdecode()
+ is the reverse function.
+
+Changed in version 3.6: 
+Support added to accept objects implementing the 
+os.PathLike
+
+interface.
+
+os.
+fsdecode
+(
+filename
+)
+
+Decode the 
+path-like
+
+filename
+ from the
+
+filesystem encoding and error handler
+; return 
+str
+
+unchanged.
+
+fsencode()
+ is the reverse function.
+
+Changed in version 3.6: 
+Support added to accept objects implementing the 
+os.PathLike
+
+interface.
+
+os.
+fspath
+(
+path
+)
+
+Return the file system representation of the path.
+
+If 
+str
+ or 
+bytes
+ is passed in, it is returned unchanged.
+Otherwise 
+__fspath__()
+ is called and its value is
+returned as long as it is a 
+str
+ or 
+bytes
+ object.
+In all other cases, 
+TypeError
+ is raised.
+
+class
+
+os.
+PathLike
+
+An 
+abstract base class
+ for objects representing a file system path,
+e.g. 
+pathlib.PurePath
+.
+
+abstractmethod
+
+__fspath__
+(
+)
+
+Return the file system path representation of the object.
+
+The method should only return a 
+str
+ or 
+bytes
+ object,
+with the preference being for 
+str
+.
+
+os.
+getenv
+(
+key
+, 
+default
+=
+None
+)
+
+Return the value of the environment variable 
+key
+ as a string if it exists, or
+
+default
+ if it doesn’t. 
+key
+ is a string. Note that
+since 
+getenv()
+ uses 
+os.environ
+, the mapping of 
+getenv()
+ is
+similarly also captured on import, and the function may not reflect
+future environment changes.
+
+On Unix, keys and values are decoded with 
+sys.getfilesystemencoding()
+
+and 
+'surrogateescape'
+ error handler. Use 
+os.getenvb()
+ if you
+would like to use a different encoding.
+
+os.
+getenvb
+(
+key
+, 
+default
+=
+None
+)
+
+Return the value of the environment variable 
+key
+ as bytes if it exists, or
+
+default
+ if it doesn’t. 
+key
+ must be bytes. Note that
+since 
+getenvb()
+ uses 
+os.environb
+, the mapping of 
+getenvb()
+ is
+similarly also captured on import, and the function may not reflect
+future environment changes.
+
+getenvb()
+ is only available if 
+supports_bytes_environ
+
+is 
+True
+.
+
+os.
+get_exec_path
+(
+env
+=
+None
+)
+
+Returns the list of directories that will be searched for a named
+executable, similar to a shell, when launching a process.
+
+env
+, when specified, should be an environment variable dictionary
+to lookup the PATH in.
+By default, when 
+env
+ is 
+None
+, 
+environ
+ is used.
+
+os.
+getegid
+(
+)
+
+Return the effective group id of the current process.  This corresponds to the
+“set id” bit on the file being executed in the current process.
+
+os.
+geteuid
+(
+)
+
+Return the current process’s effective user id.
+
+os.
+getgid
+(
+)
+
+Return the real group id of the current process.
+
+os.
+getgrouplist
+(
+user
+, 
+group
+, 
+/
+)
+
+Return list of group ids that 
+user
+ belongs to. If 
+group
+ is not in the
+list, it is included; typically, 
+group
+ is specified as the group ID
+field from the password record for 
+user
+, because that group ID will
+otherwise be potentially omitted.
+
+os.
+getgroups
+(
+)
+
+Return list of supplemental group ids associated with the current process.
+
+Note
+
+On macOS, 
+getgroups()
+ behavior differs somewhat from
+other Unix platforms. If the Python interpreter was built with a
+deployment target of 
+10.5
+ or earlier, 
+getgroups()
+ returns
+the list of effective group ids associated with the current user process;
+this list is limited to a system-defined number of entries, typically 16,
+and may be modified by calls to 
+setgroups()
+ if suitably privileged.
+If built with a deployment target greater than 
+10.5
+,
+
+getgroups()
+ returns the current group access list for the user
+associated with the effective user id of the process; the group access
+list may change over the lifetime of the process, it is not affected by
+calls to 
+setgroups()
+, and its length is not limited to 16.  The
+deployment target value, 
+MACOSX_DEPLOYMENT_TARGET
+, can be
+obtained with 
+sysconfig.get_config_var()
+.
+
+os.
+getlogin
+(
+)
+
+Return the name of the user logged in on the controlling terminal of the
+process.  For most purposes, it is more useful to use
+
+getpass.getuser()
+ since the latter checks the environment variables
+
+LOGNAME
+ or 
+USERNAME
+ to find out who the user is, and
+falls back to 
+pwd.getpwuid(os.getuid())[0]
+ to get the login name of the
+current real user id.
+
+os.
+getpgid
+(
+pid
+)
+
+Return the process group id of the process with process id 
+pid
+. If 
+pid
+ is 0,
+the process group id of the current process is returned.
+
+os.
+getpgrp
+(
+)
+
+Return the id of the current process group.
+
+os.
+getpid
+(
+)
+
+Return the current process id.
+
+The function is a stub on WASI, see 
+WebAssembly platforms
+ for more
+information.
+
+os.
+getppid
+(
+)
+
+Return the parent’s process id.  When the parent process has exited, on Unix
+the id returned is the one of the init process (1), on Windows it is still
+the same id, which may be already reused by another process.
+
+Changed in version 3.2: 
+Added support for Windows.
+
+os.
+getpriority
+(
+which
+, 
+who
+)
+
+Get program scheduling priority.  The value 
+which
+ is one of
+
+PRIO_PROCESS
+, 
+PRIO_PGRP
+, or 
+PRIO_USER
+, and 
+who
+
+is interpreted relative to 
+which
+ (a process identifier for
+
+PRIO_PROCESS
+, process group identifier for 
+PRIO_PGRP
+, and a
+user ID for 
+PRIO_USER
+).  A zero value for 
+who
+ denotes
+(respectively) the calling process, the process group of the calling process,
+or the real user ID of the calling process.
+
+os.
+PRIO_PROCESS
+
+os.
+PRIO_PGRP
+
+os.
+PRIO_USER
+
+Parameters for the 
+getpriority()
+ and 
+setpriority()
+ functions.
+
+os.
+PRIO_DARWIN_THREAD
+
+os.
+PRIO_DARWIN_PROCESS
+
+os.
+PRIO_DARWIN_BG
+
+os.
+PRIO_DARWIN_NONUI
+
+Parameters for the 
+getpriority()
+ and 
+setpriority()
+ functions.
+
+os.
+getresuid
+(
+)
+
+Return a tuple (ruid, euid, suid) denoting the current process’s
+real, effective, and saved user ids.
+
+os.
+getresgid
+(
+)
+
+Return a tuple (rgid, egid, sgid) denoting the current process’s
+real, effective, and saved group ids.
+
+os.
+getuid
+(
+)
+
+Return the current process’s real user id.
+
+os.
+initgroups
+(
+username
+, 
+gid
+, 
+/
+)
+
+Call the system 
+initgroups()
+ to initialize the group access list with all of
+the groups of which the specified username is a member, plus the specified
+group id.
+
+os.
+putenv
+(
+key
+, 
+value
+, 
+/
+)
+
+Set the environment variable named 
+key
+ to the string 
+value
+.  Such
+changes to the environment affect subprocesses started with 
+os.system()
+,
+
+popen()
+ or 
+fork()
+ and 
+execv()
+.
+
+Assignments to items in 
+os.environ
+ are automatically translated into
+corresponding calls to 
+putenv()
+; however, calls to 
+putenv()
+
+don’t update 
+os.environ
+, so it is actually preferable to assign to items
+of 
+os.environ
+. This also applies to 
+getenv()
+ and 
+getenvb()
+, which
+respectively use 
+os.environ
+ and 
+os.environb
+ in their implementations.
+
+See also the 
+os.reload_environ()
+ function.
+
+Note
+
+On some platforms, including FreeBSD and macOS, setting 
+environ
+ may
+cause memory leaks. Refer to the system documentation for 
+putenv()
+.
+
+Raises an 
+auditing event
+
+os.putenv
+ with arguments 
+key
+, 
+value
+.
+
+Changed in version 3.9: 
+The function is now always available.
+
+os.
+setegid
+(
+egid
+, 
+/
+)
+
+Set the current process’s effective group id.
+
+os.
+seteuid
+(
+euid
+, 
+/
+)
+
+Set the current process’s effective user id.
+
+os.
+setgid
+(
+gid
+, 
+/
+)
+
+Set the current process’ group id.
+
+os.
+setgroups
+(
+groups
+, 
+/
+)
+
+Set the list of supplemental group ids associated with the current process to
+
+groups
+. 
+groups
+ must be a sequence, and each element must be an integer
+identifying a group. This operation is typically available only to the superuser.
+
+Note
+
+On macOS, the length of 
+groups
+ may not exceed the
+system-defined maximum number of effective group ids, typically 16.
+See the documentation for 
+getgroups()
+ for cases where it may not
+return the same group list set by calling setgroups().
+
+os.
+setns
+(
+fd
+, 
+nstype
+=
+0
+)
+
+Reassociate the current thread with a Linux namespace.
+See the 
+setns(2)
+ and 
+namespaces(7)
+ man pages for more
+details.
+
+If 
+fd
+ refers to a 
+/proc/
+pid
+/ns/
+ link, 
+setns()
+ reassociates the
+calling thread with the namespace associated with that link,
+and 
+nstype
+ may be set to one of the
+
+CLONE_NEW* constants
+
+to impose constraints on the operation
+(
+0
+ means no constraints).
+
+Since Linux 5.8, 
+fd
+ may refer to a PID file descriptor obtained from
+
+pidfd_open()
+. In this case, 
+setns()
+ reassociates the calling thread
+into one or more of the same namespaces as the thread referred to by 
+fd
+.
+This is subject to any constraints imposed by 
+nstype
+,
+which is a bit mask combining one or more of the
+
+CLONE_NEW* constants
+,
+e.g. 
+setns(fd,
+
+os.CLONE_NEWUTS
+
+|
+
+os.CLONE_NEWPID)
+.
+The caller’s memberships in unspecified namespaces are left unchanged.
+
+fd
+ can be any object with a 
+fileno()
+ method, or a raw file descriptor.
+
+This example reassociates the thread with the 
+init
+ process’s network namespace:
+
+Copy
+fd
+
+=
+
+os
+.
+open
+(
+"/proc/1/ns/net"
+,
+
+os
+.
+O_RDONLY
+)
+
+os
+.
+setns
+(
+fd
+,
+
+os
+.
+CLONE_NEWNET
+)
+
+os
+.
+close
+(
+fd
+)
+
+os.
+setpgrp
+(
+)
+
+Call the system call 
+setpgrp()
+ or 
+setpgrp(0,
+
+0)
+ depending on
+which version is implemented (if any).  See the Unix manual for the semantics.
+
+os.
+setpgid
+(
+pid
+, 
+pgrp
+, 
+/
+)
+
+Call the system call 
+setpgid()
+ to set the process group id of the
+process with id 
+pid
+ to the process group with id 
+pgrp
+.  See the Unix manual
+for the semantics.
+
+os.
+setpriority
+(
+which
+, 
+who
+, 
+priority
+)
+
+Set program scheduling priority. The value 
+which
+ is one of
+
+PRIO_PROCESS
+, 
+PRIO_PGRP
+, or 
+PRIO_USER
+, and 
+who
+
+is interpreted relative to 
+which
+ (a process identifier for
+
+PRIO_PROCESS
+, process group identifier for 
+PRIO_PGRP
+, and a
+user ID for 
+PRIO_USER
+). A zero value for 
+who
+ denotes
+(respectively) the calling process, the process group of the calling process,
+or the real user ID of the calling process.
+
+priority
+ is a value in the range -20 to 19. The default priority is 0;
+lower priorities cause more favorable scheduling.
+
+os.
+setregid
+(
+rgid
+, 
+egid
+, 
+/
+)
+
+Set the current process’s real and effective group ids.
+
+os.
+setresgid
+(
+rgid
+, 
+egid
+, 
+sgid
+, 
+/
+)
+
+Set the current process’s real, effective, and saved group ids.
+
+os.
+setresuid
+(
+ruid
+, 
+euid
+, 
+suid
+, 
+/
+)
+
+Set the current process’s real, effective, and saved user ids.
+
+os.
+setreuid
+(
+ruid
+, 
+euid
+, 
+/
+)
+
+Set the current process’s real and effective user ids.
+
+os.
+getsid
+(
+pid
+, 
+/
+)
+
+Call the system call 
+getsid()
+.  See the Unix manual for the semantics.
+
+os.
+setsid
+(
+)
+
+Call the system call 
+setsid()
+.  See the Unix manual for the semantics.
+
+os.
+setuid
+(
+uid
+, 
+/
+)
+
+Set the current process’s user id.
+
+os.
+strerror
+(
+code
+, 
+/
+)
+
+Return the error message corresponding to the error code in 
+code
+.
+On platforms where 
+strerror()
+ returns 
+NULL
+ when given an unknown
+error number, 
+ValueError
+ is raised.
+
+os.
+supports_bytes_environ
+
+True
+ if the native OS type of the environment is bytes (eg. 
+False
+ on
+Windows).
+
+os.
+umask
+(
+mask
+, 
+/
+)
+
+Set the current numeric umask and return the previous umask.
+
+The function is a stub on WASI, see 
+WebAssembly platforms
+ for more
+information.
+
+os.
+uname
+(
+)
+
+Returns information identifying the current operating system.
+The return value is an object with five attributes:
+
+sysname
+ - operating system name
+
+nodename
+ - name of machine on network (implementation-defined)
+
+release
+ - operating system release
+
+version
+ - operating system version
+
+machine
+ - hardware identifier
+
+For backwards compatibility, this object is also iterable, behaving
+like a five-tuple containing 
+sysname
+, 
+nodename
+,
+
+release
+, 
+version
+, and 
+machine
+
+in that order.
+
+Some systems truncate 
+nodename
+ to 8 characters or to the
+leading component; a better way to get the hostname is
+
+socket.gethostname()
+  or even
+
+socket.gethostbyaddr(socket.gethostname())
+.
+
+On macOS, iOS and Android, this returns the 
+kernel
+ name and version (i.e.,
+
+'Darwin'
+ on macOS and iOS; 
+'Linux'
+ on Android). 
+platform.uname()
+
+can be used to get the user-facing operating system name and version on iOS and
+Android.
+
+Changed in version 3.3: 
+Return type changed from a tuple to a tuple-like object
+with named attributes.
+
+os.
+unsetenv
+(
+key
+, 
+/
+)
+
+Unset (delete) the environment variable named 
+key
+. Such changes to the
+environment affect subprocesses started with 
+os.system()
+, 
+popen()
+ or
+
+fork()
+ and 
+execv()
+.
+
+Deletion of items in 
+os.environ
+ is automatically translated into a
+corresponding call to 
+unsetenv()
+; however, calls to 
+unsetenv()
+
+don’t update 
+os.environ
+, so it is actually preferable to delete items of
+
+os.environ
+.
+
+See also the 
+os.reload_environ()
+ function.
+
+Raises an 
+auditing event
+
+os.unsetenv
+ with argument 
+key
+.
+
+Changed in version 3.9: 
+The function is now always available and is also available on Windows.
+
+os.
+unshare
+(
+flags
+)
+
+Disassociate parts of the process execution context, and move them into a
+newly created namespace.
+See the 
+unshare(2)
+
+man page for more details.
+The 
+flags
+ argument is a bit mask, combining zero or more of the
+
+CLONE_* constants
+,
+that specifies which parts of the execution context should be
+unshared from their existing associations and moved to a new namespace.
+If the 
+flags
+ argument is 
+0
+, no changes are made to the calling process’s
+execution context.
+
+Flags to the 
+unshare()
+ function, if the implementation supports them.
+See 
+unshare(2)
+ in the Linux manual
+for their exact effect and availability.
+
+os.
+CLONE_FILES
+
+os.
+CLONE_FS
+
+os.
+CLONE_NEWCGROUP
+
+os.
+CLONE_NEWIPC
+
+os.
+CLONE_NEWNET
+
+os.
+CLONE_NEWNS
+
+os.
+CLONE_NEWPID
+
+os.
+CLONE_NEWTIME
+
+os.
+CLONE_NEWUSER
+
+os.
+CLONE_NEWUTS
+
+os.
+CLONE_SIGHAND
+
+os.
+CLONE_SYSVSEM
+
+os.
+CLONE_THREAD
+
+os.
+CLONE_VM
+
+File Object Creation
+
+These functions create new 
+file objects
+.  (See also
+
+open()
+ for opening file descriptors.)
+
+os.
+fdopen
+(
+fd
+, 
+*
+args
+, 
+**
+kwargs
+)
+
+Return an open file object connected to the file descriptor 
+fd
+.  This is an
+alias of the 
+open()
+ built-in function and accepts the same arguments.
+The only difference is that the first argument of 
+fdopen()
+ must always
+be an integer.
+
+File Descriptor Operations
+
+These functions operate on I/O streams referenced using file descriptors.
+
+File descriptors are small integers corresponding to a file that has been opened
+by the current process.  For example, standard input is usually file descriptor
+0, standard output is 1, and standard error is 2.  Further files opened by a
+process will then be assigned 3, 4, 5, and so forth.  The name “file descriptor”
+is slightly deceptive; on Unix platforms, sockets and pipes are also referenced
+by file descriptors.
+
+The 
+fileno()
+ method can be used to obtain the file descriptor
+associated with a 
+file object
+ when required.  Note that using the file
+descriptor directly will bypass the file object methods, ignoring aspects such
+as internal buffering of data.
+
+os.
+close
+(
+fd
+)
+
+Close file descriptor 
+fd
+.
+
+Note
+
+This function is intended for low-level I/O and must be applied to a file
+descriptor as returned by 
+os.open()
+ or 
+pipe()
+.  To close a “file
+object” returned by the built-in function 
+open()
+ or by 
+popen()
+ or
+
+fdopen()
+, use its 
+close()
+ method.
+
+os.
+closerange
+(
+fd_low
+, 
+fd_high
+, 
+/
+)
+
+Close all file descriptors from 
+fd_low
+ (inclusive) to 
+fd_high
+ (exclusive),
+ignoring errors. Equivalent to (but much faster than):
+
+Copy
+for
+
+fd
+
+in
+
+range
+(
+fd_low
+,
+
+fd_high
+):
+
+try
+:
+
+os
+.
+close
+(
+fd
+)
+
+except
+
+OSError
+:
+
+pass
+
+os.
+copy_file_range
+(
+src
+, 
+dst
+, 
+count
+, 
+offset_src
+=
+None
+, 
+offset_dst
+=
+None
+)
+
+Copy 
+count
+ bytes from file descriptor 
+src
+, starting from offset
+
+offset_src
+, to file descriptor 
+dst
+, starting from offset 
+offset_dst
+.
+If 
+offset_src
+ is 
+None
+, then 
+src
+ is read from the current position;
+respectively for 
+offset_dst
+.
+
+In Linux kernel older than 5.3, the files pointed to by 
+src
+ and 
+dst
+
+must reside in the same filesystem, otherwise an 
+OSError
+ is
+raised with 
+errno
+ set to 
+errno.EXDEV
+.
+
+This copy is done without the additional cost of transferring data
+from the kernel to user space and then back into the kernel. Additionally,
+some filesystems could implement extra optimizations, such as the use of
+reflinks (i.e., two or more inodes that share pointers to the same
+copy-on-write disk blocks; supported file systems include btrfs and XFS)
+and server-side copy (in the case of NFS).
+
+The function copies bytes between two file descriptors. Text options, like
+the encoding and the line ending, are ignored.
+
+The return value is the amount of bytes copied. This could be less than the
+amount requested.
+
+Note
+
+On Linux, 
+os.copy_file_range()
+ should not be used for copying a
+range of a pseudo file from a special filesystem like procfs and sysfs.
+It will always copy no bytes and return 0 as if the file was empty
+because of a known Linux kernel issue.
+
+os.
+device_encoding
+(
+fd
+)
+
+Return a string describing the encoding of the device associated with 
+fd
+
+if it is connected to a terminal; else return 
+None
+.
+
+On Unix, if the 
+Python UTF-8 Mode
+ is enabled, return
+
+'UTF-8'
+ rather than the device encoding.
+
+Changed in version 3.10: 
+On Unix, the function now implements the Python UTF-8 Mode.
+
+os.
+dup
+(
+fd
+, 
+/
+)
+
+Return a duplicate of file descriptor 
+fd
+. The new file descriptor is
+
+non-inheritable
+.
+
+On Windows, when duplicating a standard stream (0: stdin, 1: stdout,
+2: stderr), the new file descriptor is 
+inheritable
+.
+
+Changed in version 3.4: 
+The new file descriptor is now non-inheritable.
+
+os.
+dup2
+(
+fd
+, 
+fd2
+, 
+inheritable
+=
+True
+)
+
+Duplicate file descriptor 
+fd
+ to 
+fd2
+, closing the latter first if
+necessary. Return 
+fd2
+. The new file descriptor is 
+inheritable
+ by default or non-inheritable if 
+inheritable
+
+is 
+False
+.
+
+Changed in version 3.4: 
+Add the optional 
+inheritable
+ parameter.
+
+Changed in version 3.7: 
+Return 
+fd2
+ on success. Previously, 
+None
+ was always returned.
+
+os.
+fchmod
+(
+fd
+, 
+mode
+)
+
+Change the mode of the file given by 
+fd
+ to the numeric 
+mode
+.  See the
+docs for 
+chmod()
+ for possible values of 
+mode
+.  As of Python 3.3, this
+is equivalent to 
+os.chmod(fd,
+
+mode)
+.
+
+Raises an 
+auditing event
+
+os.chmod
+ with arguments 
+path
+, 
+mode
+, 
+dir_fd
+.
+
+Changed in version 3.13: 
+Added support on Windows.
+
+os.
+fchown
+(
+fd
+, 
+uid
+, 
+gid
+)
+
+Change the owner and group id of the file given by 
+fd
+ to the numeric 
+uid
+
+and 
+gid
+.  To leave one of the ids unchanged, set it to -1.  See
+
+chown()
+.  As of Python 3.3, this is equivalent to 
+os.chown(fd,
+
+uid,
+
+gid)
+.
+
+Raises an 
+auditing event
+
+os.chown
+ with arguments 
+path
+, 
+uid
+, 
+gid
+, 
+dir_fd
+.
+
+os.
+fdatasync
+(
+fd
+)
+
+Force write of file with filedescriptor 
+fd
+ to disk. Does not force update of
+metadata.
+
+Note
+
+This function is not available on MacOS.
+
+os.
+fpathconf
+(
+fd
+, 
+name
+, 
+/
+)
+
+Return system configuration information relevant to an open file. 
+name
+
+specifies the configuration value to retrieve; it may be a string which is the
+name of a defined system value; these names are specified in a number of
+standards (POSIX.1, Unix 95, Unix 98, and others).  Some platforms define
+additional names as well.  The names known to the host operating system are
+given in the 
+pathconf_names
+ dictionary.  For configuration variables not
+included in that mapping, passing an integer for 
+name
+ is also accepted.
+
+If 
+name
+ is a string and is not known, 
+ValueError
+ is raised.  If a
+specific value for 
+name
+ is not supported by the host system, even if it is
+included in 
+pathconf_names
+, an 
+OSError
+ is raised with
+
+errno.EINVAL
+ for the error number.
+
+As of Python 3.3, this is equivalent to 
+os.pathconf(fd,
+
+name)
+.
+
+os.
+fstat
+(
+fd
+)
+
+Get the status of the file descriptor 
+fd
+. Return a 
+stat_result
+
+object.
+
+As of Python 3.3, this is equivalent to 
+os.stat(fd)
+.
+
+os.
+fstatvfs
+(
+fd
+, 
+/
+)
+
+Return information about the filesystem containing the file associated with
+file descriptor 
+fd
+, like 
+statvfs()
+.  As of Python 3.3, this is
+equivalent to 
+os.statvfs(fd)
+.
+
+os.
+fsync
+(
+fd
+)
+
+Force write of file with filedescriptor 
+fd
+ to disk.  On Unix, this calls the
+native 
+fsync()
+ function; on Windows, the MS 
+_commit()
+ function.
+
+If you’re starting with a buffered Python 
+file object
+
+f
+, first do
+
+f.flush()
+, and then do 
+os.fsync(f.fileno())
+, to ensure that all internal
+buffers associated with 
+f
+ are written to disk.
+
+os.
+ftruncate
+(
+fd
+, 
+length
+, 
+/
+)
+
+Truncate the file corresponding to file descriptor 
+fd
+, so that it is at
+most 
+length
+ bytes in size.  As of Python 3.3, this is equivalent to
+
+os.truncate(fd,
+
+length)
+.
+
+Raises an 
+auditing event
+
+os.truncate
+ with arguments 
+fd
+, 
+length
+.
+
+Changed in version 3.5: 
+Added support for Windows
+
+os.
+get_blocking
+(
+fd
+, 
+/
+)
+
+Get the blocking mode of the file descriptor: 
+False
+ if the
+
+O_NONBLOCK
+ flag is set, 
+True
+ if the flag is cleared.
+
+See also 
+set_blocking()
+ and 
+socket.socket.setblocking()
+.
+
+Changed in version 3.12: 
+Added support for pipes on Windows.
+
+os.
+grantpt
+(
+fd
+, 
+/
+)
+
+Grant access to the slave pseudo-terminal device associated with the
+master pseudo-terminal device to which the file descriptor 
+fd
+ refers.
+The file descriptor 
+fd
+ is not closed upon failure.
+
+Calls the C standard library function 
+grantpt()
+.
+
+os.
+isatty
+(
+fd
+, 
+/
+)
+
+Return 
+True
+ if the file descriptor 
+fd
+ is open and connected to a
+tty(-like) device, else 
+False
+.
+
+os.
+lockf
+(
+fd
+, 
+cmd
+, 
+len
+, 
+/
+)
+
+Apply, test or remove a POSIX lock on an open file descriptor.
+
+fd
+ is an open file descriptor.
+
+cmd
+ specifies the command to use - one of 
+F_LOCK
+, 
+F_TLOCK
+,
+
+F_ULOCK
+ or 
+F_TEST
+.
+
+len
+ specifies the section of the file to lock.
+
+Raises an 
+auditing event
+
+os.lockf
+ with arguments 
+fd
+, 
+cmd
+, 
+len
+.
+
+os.
+F_LOCK
+
+os.
+F_TLOCK
+
+os.
+F_ULOCK
+
+os.
+F_TEST
+
+Flags that specify what action 
+lockf()
+ will take.
+
+os.
+login_tty
+(
+fd
+, 
+/
+)
+
+Prepare the tty of which fd is a file descriptor for a new login session.
+Make the calling process a session leader; make the tty the controlling tty,
+the stdin, the stdout, and the stderr of the calling process; close fd.
+
+os.
+lseek
+(
+fd
+, 
+pos
+, 
+whence
+, 
+/
+)
+
+Set the current position of file descriptor 
+fd
+ to position 
+pos
+, modified
+by 
+whence
+, and return the new position in bytes relative to
+the start of the file.
+Valid values for 
+whence
+ are:
+
+SEEK_SET
+ or 
+0
+ – set 
+pos
+ relative to the beginning of the file
+
+SEEK_CUR
+ or 
+1
+ – set 
+pos
+ relative to the current file position
+
+SEEK_END
+ or 
+2
+ – set 
+pos
+ relative to the end of the file
+
+SEEK_HOLE
+ – set 
+pos
+ to the next data location, relative to 
+pos
+
+SEEK_DATA
+ – set 
+pos
+ to the next data hole, relative to 
+pos
+
+Changed in version 3.3: 
+Add support for 
+SEEK_HOLE
+ and 
+SEEK_DATA
+.
+
+os.
+SEEK_SET
+
+os.
+SEEK_CUR
+
+os.
+SEEK_END
+
+Parameters to the 
+lseek()
+ function and the 
+seek()
+
+method on 
+file-like objects
+,
+for whence to adjust the file position indicator.
+
+SEEK_SET
+Adjust the file position relative to the beginning of the file.
+
+SEEK_CUR
+Adjust the file position relative to the current file position.
+
+SEEK_END
+Adjust the file position relative to the end of the file.
+
+Their values are 0, 1, and 2, respectively.
+
+os.
+SEEK_HOLE
+
+os.
+SEEK_DATA
+
+Parameters to the 
+lseek()
+ function and the 
+seek()
+
+method on 
+file-like objects
+,
+for seeking file data and holes on sparsely allocated files.
+
+SEEK_DATA
+Adjust the file offset to the next location containing data,
+relative to the seek position.
+
+SEEK_HOLE
+Adjust the file offset to the next location containing a hole,
+relative to the seek position.
+A hole is defined as a sequence of zeros.
+
+Note
+
+These operations only make sense for filesystems that support them.
+
+os.
+open
+(
+path
+, 
+flags
+, 
+mode
+=
+0o777
+, 
+*
+, 
+dir_fd
+=
+None
+)
+
+Open the file 
+path
+ and set various flags according to 
+flags
+ and possibly
+its mode according to 
+mode
+.  When computing 
+mode
+, the current umask value
+is first masked out.  Return the file descriptor for the newly opened file.
+The new file descriptor is 
+non-inheritable
+.
+
+For a description of the flag and mode values, see the C run-time documentation;
+flag constants (like 
+O_RDONLY
+ and 
+O_WRONLY
+) are defined in
+the 
+os
+ module.  In particular, on Windows adding
+
+O_BINARY
+ is needed to open files in binary mode.
+
+This function can support 
+paths relative to directory descriptors
+ with the 
+dir_fd
+ parameter.
+
+Raises an 
+auditing event
+
+open
+ with arguments 
+path
+, 
+mode
+, 
+flags
+.
+
+Changed in version 3.4: 
+The new file descriptor is now non-inheritable.
+
+Note
+
+This function is intended for low-level I/O.  For normal usage, use the
+built-in function 
+open()
+, which returns a 
+file object
+ with
+
+read()
+ and 
+write()
+ methods.
+To wrap a file descriptor in a file object, use 
+fdopen()
+.
+
+Changed in version 3.3: 
+Added the 
+dir_fd
+ parameter.
+
+Changed in version 3.5: 
+If the system call is interrupted and the signal handler does not raise an
+exception, the function now retries the system call instead of raising an
+
+InterruptedError
+ exception (see 
+PEP 475
+ for the rationale).
+
+The following constants are options for the 
+flags
+ parameter to the
+
+open()
+ function.  They can be combined using the bitwise OR operator
+
+|
+.  Some of them are not available on all platforms.  For descriptions of
+their availability and use, consult the 
+open(2)
+ manual page on Unix
+or 
+the MSDN
+ on Windows.
+
+os.
+O_RDONLY
+
+os.
+O_WRONLY
+
+os.
+O_RDWR
+
+os.
+O_APPEND
+
+os.
+O_CREAT
+
+os.
+O_EXCL
+
+os.
+O_TRUNC
+
+The above constants are available on Unix and Windows.
+
+os.
+O_DSYNC
+
+os.
+O_RSYNC
+
+os.
+O_SYNC
+
+os.
+O_NDELAY
+
+os.
+O_NONBLOCK
+
+os.
+O_NOCTTY
+
+os.
+O_CLOEXEC
+
+The above constants are only available on Unix.
+
+Changed in version 3.3: 
+Add 
+O_CLOEXEC
+ constant.
+
+os.
+O_BINARY
+
+os.
+O_NOINHERIT
+
+os.
+O_SHORT_LIVED
+
+os.
+O_TEMPORARY
+
+os.
+O_RANDOM
+
+os.
+O_SEQUENTIAL
+
+os.
+O_TEXT
+
+The above constants are only available on Windows.
+
+os.
+O_EVTONLY
+
+os.
+O_FSYNC
+
+os.
+O_SYMLINK
+
+os.
+O_NOFOLLOW_ANY
+
+The above constants are only available on macOS.
+
+Changed in version 3.10: 
+Add 
+O_EVTONLY
+, 
+O_FSYNC
+, 
+O_SYMLINK
+
+and 
+O_NOFOLLOW_ANY
+ constants.
+
+os.
+O_ASYNC
+
+os.
+O_DIRECT
+
+os.
+O_DIRECTORY
+
+os.
+O_NOFOLLOW
+
+os.
+O_NOATIME
+
+os.
+O_PATH
+
+os.
+O_TMPFILE
+
+os.
+O_SHLOCK
+
+os.
+O_EXLOCK
+
+The above constants are extensions and not present if they are not defined by
+the C library.
+
+Changed in version 3.4: 
+Add 
+O_PATH
+ on systems that support it.
+Add 
+O_TMPFILE
+, only available on Linux Kernel 3.11
+  or newer.
+
+os.
+openpty
+(
+)
+
+Open a new pseudo-terminal pair. Return a pair of file descriptors
+
+(master,
+
+slave)
+ for the pty and the tty, respectively. The new file
+descriptors are 
+non-inheritable
+. For a (slightly) more
+portable approach, use the 
+pty
+ module.
+
+Changed in version 3.4: 
+The new file descriptors are now non-inheritable.
+
+os.
+pipe
+(
+)
+
+Create a pipe.  Return a pair of file descriptors 
+(r,
+
+w)
+ usable for
+reading and writing, respectively. The new file descriptor is
+
+non-inheritable
+.
+
+Changed in version 3.4: 
+The new file descriptors are now non-inheritable.
+
+os.
+pipe2
+(
+flags
+, 
+/
+)
+
+Create a pipe with 
+flags
+ set atomically.
+
+flags
+ can be constructed by ORing together one or more of these values:
+
+O_NONBLOCK
+, 
+O_CLOEXEC
+.
+Return a pair of file descriptors 
+(r,
+
+w)
+ usable for reading and writing,
+respectively.
+
+os.
+posix_fallocate
+(
+fd
+, 
+offset
+, 
+len
+, 
+/
+)
+
+Ensures that enough disk space is allocated for the file specified by 
+fd
+
+starting from 
+offset
+ and continuing for 
+len
+ bytes.
+
+os.
+posix_fadvise
+(
+fd
+, 
+offset
+, 
+len
+, 
+advice
+, 
+/
+)
+
+Announces an intention to access data in a specific pattern thus allowing
+the kernel to make optimizations.
+The advice applies to the region of the file specified by 
+fd
+ starting at
+
+offset
+ and continuing for 
+len
+ bytes.
+
+advice
+ is one of 
+POSIX_FADV_NORMAL
+, 
+POSIX_FADV_SEQUENTIAL
+,
+
+POSIX_FADV_RANDOM
+, 
+POSIX_FADV_NOREUSE
+,
+
+POSIX_FADV_WILLNEED
+ or 
+POSIX_FADV_DONTNEED
+.
+
+os.
+POSIX_FADV_NORMAL
+
+os.
+POSIX_FADV_SEQUENTIAL
+
+os.
+POSIX_FADV_RANDOM
+
+os.
+POSIX_FADV_NOREUSE
+
+os.
+POSIX_FADV_WILLNEED
+
+os.
+POSIX_FADV_DONTNEED
+
+Flags that can be used in 
+advice
+ in 
+posix_fadvise()
+ that specify
+the access pattern that is likely to be used.
+
+os.
+pread
+(
+fd
+, 
+n
+, 
+offset
+, 
+/
+)
+
+Read at most 
+n
+ bytes from file descriptor 
+fd
+ at a position of 
+offset
+,
+leaving the file offset unchanged.
+
+Return a bytestring containing the bytes read. If the end of the file
+referred to by 
+fd
+ has been reached, an empty bytes object is returned.
+
+os.
+posix_openpt
+(
+oflag
+, 
+/
+)
+
+Open and return a file descriptor for a master pseudo-terminal device.
+
+Calls the C standard library function 
+posix_openpt()
+. The 
+oflag
+
+argument is used to set file status flags and file access modes as
+specified in the manual page of 
+posix_openpt()
+ of your system.
+
+The returned file descriptor is 
+non-inheritable
+.
+If the value 
+O_CLOEXEC
+ is available on the system, it is added to
+
+oflag
+.
+
+os.
+preadv
+(
+fd
+, 
+buffers
+, 
+offset
+, 
+flags
+=
+0
+, 
+/
+)
+
+Read from a file descriptor 
+fd
+ at a position of 
+offset
+ into mutable
+
+bytes-like objects
+
+buffers
+, leaving the file
+offset unchanged.  Transfer data into each buffer until it is full and then
+move on to the next buffer in the sequence to hold the rest of the data.
+
+The flags argument contains a bitwise OR of zero or more of the following
+flags:
+
+Return the total number of bytes actually read which can be less than the
+total capacity of all the objects.
+
+The operating system may set a limit (
+sysconf()
+ value
+
+'SC_IOV_MAX'
+) on the number of buffers that can be used.
+
+Combine the functionality of 
+os.readv()
+ and 
+os.pread()
+.
+
+Availability
+: Linux >= 2.6.30, FreeBSD >= 6.0, OpenBSD >= 2.7, AIX >= 7.1.
+
+Using flags requires Linux >= 4.6.
+
+os.
+RWF_NOWAIT
+
+Do not wait for data which is not immediately available. If this flag is
+specified, the system call will return instantly if it would have to read
+data from the backing storage or wait for a lock.
+
+If some data was successfully read, it will return the number of bytes read.
+If no bytes were read, it will return 
+-1
+ and set errno to
+
+errno.EAGAIN
+.
+
+os.
+RWF_HIPRI
+
+High priority read/write. Allows block-based filesystems to use polling
+of the device, which provides lower latency, but may use additional
+resources.
+
+Currently, on Linux, this feature is usable only on a file descriptor opened
+using the 
+O_DIRECT
+ flag.
+
+os.
+ptsname
+(
+fd
+, 
+/
+)
+
+Return the name of the slave pseudo-terminal device associated with the
+master pseudo-terminal device to which the file descriptor 
+fd
+ refers.
+The file descriptor 
+fd
+ is not closed upon failure.
+
+Calls the reentrant C standard library function 
+ptsname_r()
+ if
+it is available; otherwise, the C standard library function
+
+ptsname()
+, which is not guaranteed to be thread-safe, is called.
+
+os.
+pwrite
+(
+fd
+, 
+str
+, 
+offset
+, 
+/
+)
+
+Write the bytestring in 
+str
+ to file descriptor 
+fd
+ at position of
+
+offset
+, leaving the file offset unchanged.
+
+Return the number of bytes actually written.
+
+os.
+pwritev
+(
+fd
+, 
+buffers
+, 
+offset
+, 
+flags
+=
+0
+, 
+/
+)
+
+Write the 
+buffers
+ contents to file descriptor 
+fd
+ at an offset 
+offset
+,
+leaving the file offset unchanged.  
+buffers
+ must be a sequence of
+
+bytes-like objects
+. Buffers are processed in
+array order. Entire contents of the first buffer is written before
+proceeding to the second, and so on.
+
+The flags argument contains a bitwise OR of zero or more of the following
+flags:
+
+Return the total number of bytes actually written.
+
+The operating system may set a limit (
+sysconf()
+ value
+
+'SC_IOV_MAX'
+) on the number of buffers that can be used.
+
+Combine the functionality of 
+os.writev()
+ and 
+os.pwrite()
+.
+
+Availability
+: Linux >= 2.6.30, FreeBSD >= 6.0, OpenBSD >= 2.7, AIX >= 7.1.
+
+Using flags requires Linux >= 4.6.
+
+os.
+RWF_DSYNC
+
+Provide a per-write equivalent of the 
+O_DSYNC
+
+os.open()
+ flag.
+This flag effect applies only to the data range written by the system call.
+
+os.
+RWF_SYNC
+
+Provide a per-write equivalent of the 
+O_SYNC
+
+os.open()
+ flag.
+This flag effect applies only to the data range written by the system call.
+
+os.
+RWF_APPEN
+
+[document truncated for prompt size]
+---

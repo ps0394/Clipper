@@ -1,0 +1,44 @@
+```json
+[
+    {
+        "question": "What is the first step to start using the OpenAI API?",
+        "answer": "Create an API key in the dashboard.",
+        "supporting_sentences": [
+            "Before you begin, create an API key in the dashboard, which you’ll use to securely access the API."
+        ]
+    },
+    {
+        "question": "Where should you store your OpenAI API key for secure access?",
+        "answer": "In a safe location, like a `.zshrc` file or another text file on your computer.",
+        "supporting_sentences": [
+            "Store the key in a safe location, like a .zshrc file or another text file on your computer."
+        ]
+    },
+    {
+        "question": "Which programming languages have officially supported OpenAI SDKs mentioned in the document?",
+        "answer": "JavaScript, Python, .NET, Java, and Go.",
+        "supporting_sentences": [
+            "OpenAI SDKs are configured to automatically read your API key from the system environment.",
+            "JavaScript: To use the OpenAI API in server-side JavaScript environments like Node.js, Deno, or Bun, you can use the official OpenAI SDK for TypeScript and JavaScript.",
+            "Python: To use the OpenAI API in Python, you can use the official OpenAI SDK for Python.",
+            ".NET: In collaboration with Microsoft, OpenAI provides an officially supported API client for C#.",
+            "Java: OpenAI provides an API helper for the Java programming language, currently in beta.",
+            "Go: OpenAI provides an API helper for the Go programming language, currently in beta."
+        ]
+    },
+    {
+        "question": "What is the name of the model used in the JavaScript example for generating a bedtime story?",
+        "answer": "gpt-5.4",
+        "supporting_sentences": [
+            "const response = await client.responses.create({ model: \"gpt-5.4\", input: \"Write a one-sentence bedtime story about a unicorn.\" });"
+        ]
+    },
+    {
+        "question": "What types of inputs can the OpenAI model process besides text?",
+        "answer": "Image URLs, uploaded files, or PDF documents.",
+        "supporting_sentences": [
+            "Send image URLs, uploaded files, or PDF documents directly to the model to extract text, classify content, or detect visual elements."
+        ]
+    }
+]
+```

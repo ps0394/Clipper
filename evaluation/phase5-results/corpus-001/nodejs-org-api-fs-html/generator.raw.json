@@ -1,0 +1,41 @@
+```json
+[
+    {
+        "question": "What is the first argument reserved for in the callback form of Node.js file system operations?",
+        "answer": "The first argument is always reserved for an exception. If the operation is completed successfully, then the first argument is null or undefined.",
+        "supporting_sentences": [
+            "The callback form takes a completion callback function as its last argument and invokes the operation asynchronously. The arguments passed to the completion callback depend on the method, but the first argument is always reserved for an exception. If the operation is completed successfully, then the first argument is null or undefined."
+        ]
+    },
+    {
+        "question": "Which API is preferable when maximal performance (both in terms of execution time and memory allocation) is required in Node.js file system operations?",
+        "answer": "The callback-based versions of the node:fs module APIs are preferable over the use of the promise APIs.",
+        "supporting_sentences": [
+            "The callback-based versions of the node:fs module APIs are preferable over the use of the promise APIs when maximal performance (both in terms of execution time and memory allocation) is required."
+        ]
+    },
+    {
+        "question": "What happens if a FileHandle is not closed using the filehandle.close() method?",
+        "answer": "It will try to automatically close the file descriptor and emit a process warning, helping to prevent memory leaks. However, this behavior is unreliable and the file may not be closed.",
+        "supporting_sentences": [
+            "If a <FileHandle> is not closed using the filehandle.close() method, it will try to automatically close the file descriptor and emit a process warning, helping to prevent memory leaks. Please do not rely on this behavior because it can be unreliable and the file may not be closed."
+        ]
+    },
+    {
+        "question": "What is the default chunk size for read operations in the filehandle.pull() method?",
+        "answer": "The default chunk size is 131072 bytes (128 KB).",
+        "supporting_sentences": [
+            "Reads are performed in chunkSize-byte chunks (default 128 KB).",
+            "chunkSize <number> Size in bytes of the buffer allocated for each read operation. Default: 131072 (128 KB)."
+        ]
+    },
+    {
+        "question": "What flag must be enabled to use the filehandle.pull() and filehandle.pullSync() methods?",
+        "answer": "The --experimental-stream-iter flag must be enabled.",
+        "supporting_sentences": [
+            "This function is only available when the --experimental-stream-iter flag is enabled.",
+            "This function is only available when the --experimental-stream-iter flag is enabled."
+        ]
+    }
+]
+```

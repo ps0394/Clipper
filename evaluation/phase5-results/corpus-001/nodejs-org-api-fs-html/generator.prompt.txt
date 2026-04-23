@@ -1,0 +1,3692 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: File system | Node.js v25.9.0 Documentation
+Document URL: https://nodejs.org/api/fs.html
+Document profile: reference
+
+Document text:
+---
+Callback example
+#
+The callback form takes a completion callback function as its last
+argument and invokes the operation asynchronously. The arguments passed to
+the completion callback depend on the method, but the first argument is always
+reserved for an exception. If the operation is completed successfully, then
+the first argument is 
+null
+ or 
+undefined
+.
+import
+ {
+ unlink 
+}
+ from
+ 'node:fs'
+;
+
+unlink
+(
+'/tmp/hello'
+,
+ (
+err
+)
+ =>
+ {
+
+  if
+ (err) 
+throw
+ err
+;
+
+  console
+.
+log
+(
+'successfully deleted /tmp/hello'
+)
+;
+
+}
+)
+;
+
+const
+ {
+ unlink 
+}
+ =
+ require
+(
+'node:fs'
+)
+;
+
+unlink
+(
+'/tmp/hello'
+,
+ (
+err
+)
+ =>
+ {
+
+  if
+ (err) 
+throw
+ err
+;
+
+  console
+.
+log
+(
+'successfully deleted /tmp/hello'
+)
+;
+
+}
+)
+;
+
+copy
+The callback-based versions of the 
+node:fs
+ module APIs are preferable over
+the use of the promise APIs when maximal performance (both in terms of
+execution time and memory allocation) is required.
+
+Promises API
+#
+The 
+fs/promises
+ API provides asynchronous file system methods that return
+promises.
+The promise APIs use the underlying Node.js threadpool to perform file
+system operations off the event loop thread. These operations are not
+synchronized or threadsafe. Care must be taken when performing multiple
+concurrent modifications on the same file or data corruption may occur.
+
+Class: 
+FileHandle
+#
+Added in: v10.0.0
+A 
+<FileHandle>
+ object is an object wrapper for a numeric file descriptor.
+Instances of the 
+<FileHandle>
+ object are created by the 
+fsPromises.open()
+
+method.
+All 
+<FileHandle>
+ objects are 
+<EventEmitter>
+s.
+If a 
+<FileHandle>
+ is not closed using the 
+filehandle.close()
+ method, it will
+try to automatically close the file descriptor and emit a process warning,
+helping to prevent memory leaks. Please do not rely on this behavior because
+it can be unreliable and the file may not be closed. Instead, always explicitly
+close 
+<FileHandle>
+s. Node.js may change this behavior in the future.
+
+Event: 
+'close'
+#
+Added in: v15.4.0
+The 
+'close'
+ event is emitted when the 
+<FileHandle>
+ has been closed and can no
+longer be used.
+
+filehandle.chmod(mode)
+#
+Added in: v10.0.0
+
+mode
+
+<integer>
+ the file mode bit mask.
+
+Returns: 
+<Promise>
+ Fulfills with 
+undefined
+ upon success.
+
+Modifies the permissions on the file. See 
+chmod(2)
+.
+
+filehandle.chown(uid, gid)
+#
+Added in: v10.0.0
+
+uid
+
+<integer>
+ The file's new owner's user id.
+
+gid
+
+<integer>
+ The file's new group's group id.
+
+Returns: 
+<Promise>
+ Fulfills with 
+undefined
+ upon success.
+
+Changes the ownership of the file. A wrapper for 
+chown(2)
+.
+
+filehandle.close()
+#
+Added in: v10.0.0
+
+Returns: 
+<Promise>
+ Fulfills with 
+undefined
+ upon success.
+
+Closes the file handle after waiting for any pending operation on the handle to
+complete.
+import
+ {
+ open 
+}
+ from
+ 'node:fs/promises'
+;
+
+let
+ filehandle
+;
+
+try
+ {
+
+  filehandle 
+=
+ await
+ open
+(
+'thefile.txt'
+,
+ 'r'
+)
+;
+
+}
+ finally
+ {
+
+  await
+ filehandle
+?.
+close
+()
+;
+
+}
+
+copy
+
+filehandle.createReadStream([options])
+#
+Added in: v16.11.0
+options
+ can include 
+start
+ and 
+end
+ values to read a range of bytes from
+the file instead of the entire file. Both 
+start
+ and 
+end
+ are inclusive and
+start counting at 0, allowed values are in the
+[0, 
+Number.MAX_SAFE_INTEGER
+] range. If 
+start
+ is
+omitted or 
+undefined
+, 
+filehandle.createReadStream()
+ reads sequentially from
+the current file position. The 
+encoding
+ can be any one of those accepted by
+
+<Buffer>
+.
+If the 
+FileHandle
+ points to a character device that only supports blocking
+reads (such as keyboard or sound card), read operations do not finish until data
+is available. This can prevent the process from exiting and the stream from
+closing naturally.
+By default, the stream will emit a 
+'close'
+ event after it has been
+destroyed.  Set the 
+emitClose
+ option to 
+false
+ to change this behavior.
+import
+ {
+ open 
+}
+ from
+ 'node:fs/promises'
+;
+
+const
+ fd 
+=
+ await
+ open
+(
+'/dev/input/event0'
+)
+;
+
+// Create a stream from some character device.
+
+const
+ stream 
+=
+ fd
+.
+createReadStream
+()
+;
+
+setTimeout
+(
+()
+ =>
+ {
+
+  stream
+.
+close
+()
+;
+ // This may not close the stream.
+
+  // Artificially marking end-of-stream, as if the underlying resource had
+
+  // indicated end-of-file by itself, allows the stream to close.
+
+  // This does not cancel pending read operations, and if there is such an
+
+  // operation, the process may still not be able to exit successfully
+
+  // until it finishes.
+
+  stream
+.
+push
+(
+null
+)
+;
+
+  stream
+.
+read
+(
+0
+)
+;
+
+},
+ 100
+)
+;
+
+copy
+If 
+autoClose
+ is false, then the file descriptor won't be closed, even if
+there's an error. It is the application's responsibility to close it and make
+sure there's no file descriptor leak. If 
+autoClose
+ is set to true (default
+behavior), on 
+'error'
+ or 
+'end'
+ the file descriptor will be closed
+automatically.
+An example to read the last 10 bytes of a file which is 100 bytes long:
+import
+ {
+ open 
+}
+ from
+ 'node:fs/promises'
+;
+
+const
+ fd 
+=
+ await
+ open
+(
+'sample.txt'
+)
+;
+
+fd
+.
+createReadStream
+(
+{
+ start
+:
+ 90
+,
+ end
+:
+ 99
+ }
+)
+;
+
+copy
+
+filehandle.createWriteStream([options])
+#
+options
+ may also include a 
+start
+ option to allow writing data at some
+position past the beginning of the file, allowed values are in the
+[0, 
+Number.MAX_SAFE_INTEGER
+] range. Modifying a file rather than
+replacing it may require the 
+flags
+
+open
+ option to be set to 
+r+
+ rather than
+the default 
+r
+. The 
+encoding
+ can be any one of those accepted by 
+<Buffer>
+.
+If 
+autoClose
+ is set to true (default behavior) on 
+'error'
+ or 
+'finish'
+
+the file descriptor will be closed automatically. If 
+autoClose
+ is false,
+then the file descriptor won't be closed, even if there's an error.
+It is the application's responsibility to close it and make sure there's no
+file descriptor leak.
+By default, the stream will emit a 
+'close'
+ event after it has been
+destroyed.  Set the 
+emitClose
+ option to 
+false
+ to change this behavior.
+
+filehandle.datasync()
+#
+Added in: v10.0.0
+
+Returns: 
+<Promise>
+ Fulfills with 
+undefined
+ upon success.
+
+Forces all currently queued I/O operations associated with the file to the
+operating system's synchronized I/O completion state. Refer to the POSIX
+
+fdatasync(2)
+ documentation for details.
+Unlike 
+filehandle.sync
+ this method does not flush modified metadata.
+
+filehandle.fd
+#
+Added in: v10.0.0
+
+filehandle.pull([...transforms][, options])
+#
+Added in: v25.9.0
+Stability: 1 - Experimental
+
+...transforms
+
+<Function>
+ | 
+<Object>
+ Optional transforms to apply via 
+stream/iter pull()
+.
+
+options
+
+<Object>
+
+signal
+
+<AbortSignal>
+
+autoClose
+
+<boolean>
+ Close the file handle when the stream ends. 
+Default:
+
+false
+.
+
+start
+
+<number>
+ Byte offset to begin reading from. When specified,
+reads use explicit positioning (
+pread
+ semantics). 
+Default:
+ current
+file position.
+
+limit
+
+<number>
+ Maximum number of bytes to read before ending the
+iterator. Reads stop when 
+limit
+ bytes have been delivered or EOF is
+reached, whichever comes first. 
+Default:
+ read until EOF.
+
+chunkSize
+
+<number>
+ Size in bytes of the buffer allocated for each
+read operation. 
+Default:
+
+131072
+ (128 KB).
+
+Returns: {AsyncIterable<Uint8Array[]>}
+
+Return the file contents as an async iterable using the
+
+node:stream/iter
+ pull model. Reads are performed in 
+chunkSize
+-byte
+chunks (default 128 KB). If transforms are provided, they are applied
+via 
+stream/iter pull()
+.
+The file handle is locked while the iterable is being consumed and unlocked
+when iteration completes, an error occurs, or the consumer breaks.
+This function is only available when the 
+--experimental-stream-iter
+ flag is
+enabled.
+import
+ {
+ open 
+}
+ from
+ 'node:fs/promises'
+;
+
+import
+ {
+ text 
+}
+ from
+ 'node:stream/iter'
+;
+
+import
+ {
+ compressGzip 
+}
+ from
+ 'node:zlib/iter'
+;
+
+const
+ fh 
+=
+ await
+ open
+(
+'input.txt'
+,
+ 'r'
+)
+;
+
+// Read as text
+
+console
+.
+log
+(
+await
+ text
+(fh
+.
+pull
+(
+{
+ autoClose
+:
+ true
+ }
+)))
+;
+
+// Read 1 KB starting at byte 100
+
+const
+ fh2 
+=
+ await
+ open
+(
+'input.txt'
+,
+ 'r'
+)
+;
+
+console
+.
+log
+(
+await
+ text
+(fh2
+.
+pull
+(
+{
+ start
+:
+ 100
+,
+ limit
+:
+ 1024
+,
+ autoClose
+:
+ true
+ }
+)))
+;
+
+// Read with compression
+
+const
+ fh3 
+=
+ await
+ open
+(
+'input.txt'
+,
+ 'r'
+)
+;
+
+const
+ compressed 
+=
+ fh3
+.
+pull
+(
+compressGzip
+()
+,
+ {
+ autoClose
+:
+ true
+ }
+)
+;
+
+const
+ {
+ open 
+}
+ =
+ require
+(
+'node:fs/promises'
+)
+;
+
+const
+ {
+ text 
+}
+ =
+ require
+(
+'node:stream/iter'
+)
+;
+
+const
+ {
+ compressGzip 
+}
+ =
+ require
+(
+'node:zlib/iter'
+)
+;
+
+async
+ function
+ run
+()
+ {
+
+  const
+ fh 
+=
+ await
+ open
+(
+'input.txt'
+,
+ 'r'
+)
+;
+
+  // Read as text
+
+  console
+.
+log
+(
+await
+ text
+(fh
+.
+pull
+(
+{
+ autoClose
+:
+ true
+ }
+)))
+;
+
+  // Read 1 KB starting at byte 100
+
+  const
+ fh2 
+=
+ await
+ open
+(
+'input.txt'
+,
+ 'r'
+)
+;
+
+  console
+.
+log
+(
+await
+ text
+(fh2
+.
+pull
+(
+{
+ start
+:
+ 100
+,
+ limit
+:
+ 1024
+,
+ autoClose
+:
+ true
+ }
+)))
+;
+
+  // Read with compression
+
+  const
+ fh3 
+=
+ await
+ open
+(
+'input.txt'
+,
+ 'r'
+)
+;
+
+  const
+ compressed 
+=
+ fh3
+.
+pull
+(
+compressGzip
+()
+,
+ {
+ autoClose
+:
+ true
+ }
+)
+;
+
+}
+
+run
+()
+.
+catch
+(console
+.
+error)
+;
+
+copy
+
+filehandle.pullSync([...transforms][, options])
+#
+Added in: v25.9.0
+Stability: 1 - Experimental
+
+...transforms
+
+<Function>
+ | 
+<Object>
+ Optional transforms to apply via 
+stream/iter pullSync()
+.
+
+options
+
+<Object>
+
+autoClose
+
+<boolean>
+ Close the file handle when the stream ends. 
+Default:
+
+false
+.
+
+start
+
+<number>
+ Byte offset to begin reading from. When specified,
+reads use explicit positioning. 
+Default:
+ current file position.
+
+limit
+
+<number>
+ Maximum number of bytes to read before ending the
+iterator. 
+Default:
+ read until EOF.
+
+chunkSize
+
+<number>
+ Size in bytes of the buffer allocated for each
+read operation. 
+Default:
+
+131072
+ (128 KB).
+
+Returns: {Iterable<Uint8Array[]>}
+
+Synchronous counterpart of 
+filehandle.pull()
+. Returns a sync iterable
+that reads the file using synchronous I/O on the main thread. Reads are
+performed in 
+chunkSize
+-byte chunks (default 128 KB).
+The file handle is locked while the iterable is being consumed. Unlike the
+async 
+pull()
+, this method does not support 
+AbortSignal
+ since all
+operations are synchronous.
+This function is only available when the 
+--experimental-stream-iter
+ flag is
+enabled.
+import
+ {
+ open 
+}
+ from
+ 'node:fs/promises'
+;
+
+import
+ {
+ textSync
+,
+ pipeToSync 
+}
+ from
+ 'node:stream/iter'
+;
+
+import
+ {
+ compressGzipSync
+,
+ decompressGzipSync 
+}
+ from
+ 'node:zlib/iter'
+;
+
+const
+ fh 
+=
+ await
+ open
+(
+'input.txt'
+,
+ 'r'
+)
+;
+
+// Read as text (sync)
+
+console
+.
+log
+(
+textSync
+(fh
+.
+pullSync
+(
+{
+ autoClose
+:
+ true
+ }
+)))
+;
+
+// Sync compress pipeline: file -> gzip -> file
+
+const
+ src 
+=
+ await
+ open
+(
+'input.txt'
+,
+ 'r'
+)
+;
+
+const
+ dst 
+=
+ await
+ open
+(
+'output.gz'
+,
+ 'w'
+)
+;
+
+pipeToSync
+(src
+.
+pullSync
+(
+compressGzipSync
+()
+,
+ {
+ autoClose
+:
+ true
+ }
+)
+,
+ dst
+.
+writer
+(
+{
+ autoClose
+:
+ true
+ }
+))
+;
+
+const
+ {
+ open 
+}
+ =
+ require
+(
+'node:fs/promises'
+)
+;
+
+const
+ {
+ textSync
+,
+ pipeToSync 
+}
+ =
+ require
+(
+'node:stream/iter'
+)
+;
+
+const
+ {
+ compressGzipSync
+,
+ decompressGzipSync 
+}
+ =
+ require
+(
+'node:zlib/iter'
+)
+;
+
+async
+ function
+ run
+()
+ {
+
+  const
+ fh 
+=
+ await
+ open
+(
+'input.txt'
+,
+ 'r'
+)
+;
+
+  // Read as text (sync)
+
+  console
+.
+log
+(
+textSync
+(fh
+.
+pullSync
+(
+{
+ autoClose
+:
+ true
+ }
+)))
+;
+
+  // Sync compress pipeline: file -> gzip -> file
+
+  const
+ src 
+=
+ await
+ open
+(
+'input.txt'
+,
+ 'r'
+)
+;
+
+  const
+ dst 
+=
+ await
+ open
+(
+'output.gz'
+,
+ 'w'
+)
+;
+
+  pipeToSync
+(
+
+    src
+.
+pullSync
+(
+compressGzipSync
+()
+,
+ {
+ autoClose
+:
+ true
+ }
+)
+,
+
+    dst
+.
+writer
+(
+{
+ autoClose
+:
+ true
+ }
+)
+,
+
+  )
+;
+
+}
+
+run
+()
+.
+catch
+(console
+.
+error)
+;
+
+copy
+
+filehandle.read(buffer, offset, length, position)
+#
+
+buffer
+
+<Buffer>
+ | 
+<TypedArray>
+ | 
+<DataView>
+ A buffer that will be filled with the
+file data read.
+
+offset
+
+<integer>
+ The location in the buffer at which to start filling. 
+Default:
+
+0
+
+length
+
+<integer>
+ The number of bytes to read. 
+Default:
+
+buffer.byteLength - offset
+
+position
+
+<integer>
+ | 
+<bigint>
+ | 
+<null>
+ The location where to begin reading data
+from the file. If 
+null
+ or 
+-1
+, data will be read from the current file
+position, and the position will be updated. If 
+position
+ is a non-negative
+integer, the current file position will remain unchanged.
+
+Default:
+
+null
+
+Returns: 
+<Promise>
+ Fulfills upon success with an object with two properties:
+
+Reads data from the file and stores that in the given buffer.
+If the file is not modified concurrently, the end-of-file is reached when the
+number of bytes read is zero.
+
+filehandle.read([options])
+#
+
+options
+
+<Object>
+
+buffer
+
+<Buffer>
+ | 
+<TypedArray>
+ | 
+<DataView>
+ A buffer that will be filled with the
+file data read. 
+Default:
+
+Buffer.alloc(16384)
+
+offset
+
+<integer>
+ The location in the buffer at which to start filling. 
+Default:
+
+0
+
+length
+
+<integer>
+ The number of bytes to read. 
+Default:
+
+buffer.byteLength - offset
+
+position
+
+<integer>
+ | 
+<bigint>
+ | 
+<null>
+ The location where to begin reading data
+from the file. If 
+null
+ or 
+-1
+, data will be read from the current file
+position, and the position will be updated. If 
+position
+ is a non-negative
+integer, the current file position will remain unchanged.
+
+Default:
+: 
+null
+
+Returns: 
+<Promise>
+ Fulfills upon success with an object with two properties:
+
+Reads data from the file and stores that in the given buffer.
+If the file is not modified concurrently, the end-of-file is reached when the
+number of bytes read is zero.
+
+filehandle.read(buffer[, options])
+#
+
+buffer
+
+<Buffer>
+ | 
+<TypedArray>
+ | 
+<DataView>
+ A buffer that will be filled with the
+file data read.
+
+options
+
+<Object>
+
+offset
+
+<integer>
+ The location in the buffer at which to start filling. 
+Default:
+
+0
+
+length
+
+<integer>
+ The number of bytes to read. 
+Default:
+
+buffer.byteLength - offset
+
+position
+
+<integer>
+ | 
+<bigint>
+ | 
+<null>
+ The location where to begin reading data
+from the file. If 
+null
+ or 
+-1
+, data will be read from the current file
+position, and the position will be updated. If 
+position
+ is a non-negative
+integer, the current file position will remain unchanged.
+
+Default:
+: 
+null
+
+Returns: 
+<Promise>
+ Fulfills upon success with an object with two properties:
+
+Reads data from the file and stores that in the given buffer.
+If the file is not modified concurrently, the end-of-file is reached when the
+number of bytes read is zero.
+
+filehandle.readableWebStream([options])
+#
+Returns a byte-oriented 
+ReadableStream
+ that may be used to read the file's
+contents.
+An error will be thrown if this method is called more than once or is called
+after the 
+FileHandle
+ is closed or closing.
+import
+ {
+
+  open
+,
+
+}
+ from
+ 'node:fs/promises'
+;
+
+const
+ file 
+=
+ await
+ open
+(
+'./some/file/to/read'
+)
+;
+
+for
+ await
+ (
+const
+ chunk 
+of
+ file
+.
+readableWebStream
+())
+
+  console
+.
+log
+(chunk)
+;
+
+await
+ file
+.
+close
+()
+;
+
+const
+ {
+
+  open
+,
+
+}
+ =
+ require
+(
+'node:fs/promises'
+)
+;
+
+(
+async
+ ()
+ =>
+ {
+
+  const
+ file 
+=
+ await
+ open
+(
+'./some/file/to/read'
+)
+;
+
+  for
+ await
+ (
+const
+ chunk 
+of
+ file
+.
+readableWebStream
+())
+
+    console
+.
+log
+(chunk)
+;
+
+  await
+ file
+.
+close
+()
+;
+
+}
+)()
+;
+
+copy
+While the 
+ReadableStream
+ will read the file to completion, it will not
+close the 
+FileHandle
+ automatically. User code must still call the
+
+fileHandle.close()
+ method unless the 
+autoClose
+ option is set to 
+true
+.
+
+filehandle.readFile(options)
+#
+Added in: v10.0.0
+
+options
+
+<Object>
+ | 
+<string>
+
+Returns: 
+<Promise>
+ Fulfills upon a successful read with the contents of the
+file. If no encoding is specified (using 
+options.encoding
+), the data is
+returned as a 
+<Buffer>
+ object. Otherwise, the data will be a string.
+
+Asynchronously reads the entire contents of a file.
+If 
+options
+ is a string, then it specifies the 
+encoding
+.
+The 
+<FileHandle>
+ has to support reading.
+If one or more 
+filehandle.read()
+ calls are made on a file handle and then a
+
+filehandle.readFile()
+ call is made, the data will be read from the current
+position till the end of the file. It doesn't always read from the beginning
+of the file.
+
+filehandle.readv(buffers[, position])
+#
+Added in: v13.13.0, v12.17.0
+
+buffers
+
+<Buffer[]>
+ | 
+<TypedArray[]>
+ | 
+<DataView[]>
+
+position
+
+<integer>
+ | 
+<null>
+ The offset from the beginning of the file where
+the data should be read from. If 
+position
+ is not a 
+number
+, the data will
+be read from the current position. 
+Default:
+
+null
+
+Returns: 
+<Promise>
+ Fulfills upon success an object containing two properties:
+
+Read from a file and write to an array of 
+<ArrayBufferView>
+s
+
+filehandle.stat([options])
+#
+
+filehandle.sync()
+#
+Added in: v10.0.0
+
+Returns: 
+<Promise>
+ Fulfills with 
+undefined
+ upon success.
+
+Request that all data for the open file descriptor is flushed to the storage
+device. The specific implementation is operating system and device specific.
+Refer to the POSIX 
+fsync(2)
+ documentation for more detail.
+
+filehandle.truncate(len)
+#
+Added in: v10.0.0
+Truncates the file.
+If the file was larger than 
+len
+ bytes, only the first 
+len
+ bytes will be
+retained in the file.
+The following example retains only the first four bytes of the file:
+import
+ {
+ open 
+}
+ from
+ 'node:fs/promises'
+;
+
+let
+ filehandle 
+=
+ null
+;
+
+try
+ {
+
+  filehandle 
+=
+ await
+ open
+(
+'temp.txt'
+,
+ 'r+'
+)
+;
+
+  await
+ filehandle
+.
+truncate
+(
+4
+)
+;
+
+}
+ finally
+ {
+
+  await
+ filehandle
+?.
+close
+()
+;
+
+}
+
+copy
+If the file previously was shorter than 
+len
+ bytes, it is extended, and the
+extended part is filled with null bytes (
+'\0'
+):
+If 
+len
+ is negative then 
+0
+ will be used.
+
+filehandle.utimes(atime, mtime)
+#
+Added in: v10.0.0
+Change the file system timestamps of the object referenced by the 
+<FileHandle>
+
+then fulfills the promise with no arguments upon success.
+
+filehandle.write(buffer, offset[, length[, position]])
+#
+
+buffer
+
+<Buffer>
+ | 
+<TypedArray>
+ | 
+<DataView>
+
+offset
+
+<integer>
+ The start position from within 
+buffer
+ where the data
+to write begins.
+
+length
+
+<integer>
+ The number of bytes from 
+buffer
+ to write. 
+Default:
+
+buffer.byteLength - offset
+
+position
+
+<integer>
+ | 
+<null>
+ The offset from the beginning of the file where the
+data from 
+buffer
+ should be written. If 
+position
+ is not a 
+number
+,
+the data will be written at the current position. See the POSIX 
+pwrite(2)
+
+documentation for more detail. 
+Default:
+
+null
+
+Returns: 
+<Promise>
+
+Write 
+buffer
+ to the file.
+The promise is fulfilled with an object containing two properties:
+It is unsafe to use 
+filehandle.write()
+ multiple times on the same file
+without waiting for the promise to be fulfilled (or rejected). For this
+scenario, use 
+filehandle.createWriteStream()
+.
+On Linux, positional writes do not work when the file is opened in append mode.
+The kernel ignores the position argument and always appends the data to
+the end of the file.
+
+filehandle.write(buffer[, options])
+#
+Added in: v18.3.0, v16.17.0
+Write 
+buffer
+ to the file.
+Similar to the above 
+filehandle.write
+ function, this version takes an
+optional 
+options
+ object. If no 
+options
+ object is specified, it will
+default with the above values.
+
+filehandle.write(string[, position[, encoding]])
+#
+
+string
+
+<string>
+
+position
+
+<integer>
+ | 
+<null>
+ The offset from the beginning of the file where the
+data from 
+string
+ should be written. If 
+position
+ is not a 
+number
+ the
+data will be written at the current position. See the POSIX 
+pwrite(2)
+
+documentation for more detail. 
+Default:
+
+null
+
+encoding
+
+<string>
+ The expected string encoding. 
+Default:
+
+'utf8'
+
+Returns: 
+<Promise>
+
+Write 
+string
+ to the file. If 
+string
+ is not a string, the promise is
+rejected with an error.
+The promise is fulfilled with an object containing two properties:
+
+bytesWritten
+
+<integer>
+ the number of bytes written
+
+buffer
+
+<string>
+ a reference to the 
+string
+ written.
+
+It is unsafe to use 
+filehandle.write()
+ multiple times on the same file
+without waiting for the promise to be fulfilled (or rejected). For this
+scenario, use 
+filehandle.createWriteStream()
+.
+On Linux, positional writes do not work when the file is opened in append mode.
+The kernel ignores the position argument and always appends the data to
+the end of the file.
+
+filehandle.writeFile(data, options)
+#
+Asynchronously writes data to a file, replacing the file if it already exists.
+
+data
+ can be a string, a buffer, an 
+<AsyncIterable>
+, or an 
+<Iterable>
+ object.
+The promise is fulfilled with no arguments upon success.
+If 
+options
+ is a string, then it specifies the 
+encoding
+.
+The 
+<FileHandle>
+ has to support writing.
+It is unsafe to use 
+filehandle.writeFile()
+ multiple times on the same file
+without waiting for the promise to be fulfilled (or rejected).
+If one or more 
+filehandle.write()
+ calls are made on a file handle and then a
+
+filehandle.writeFile()
+ call is made, the data will be written from the
+current position till the end of the file. It doesn't always write from the
+beginning of the file.
+
+filehandle.writev(buffers[, position])
+#
+Added in: v12.9.0
+Write an array of 
+<ArrayBufferView>
+s to the file.
+The promise is fulfilled with an object containing a two properties:
+It is unsafe to call 
+writev()
+ multiple times on the same file without waiting
+for the promise to be fulfilled (or rejected).
+On Linux, positional writes don't work when the file is opened in append mode.
+The kernel ignores the position argument and always appends the data to
+the end of the file.
+
+filehandle.writer([options])
+#
+Added in: v25.9.0
+Stability: 1 - Experimental
+
+options
+
+<Object>
+
+autoClose
+
+<boolean>
+ Close the file handle when the writer ends or
+fails. 
+Default:
+
+false
+.
+
+start
+
+<number>
+ Byte offset to start writing at. When specified,
+writes use explicit positioning. 
+Default:
+ current file position.
+
+limit
+
+<number>
+ Maximum number of bytes the writer will accept.
+Async writes (
+write()
+, 
+writev()
+) that would exceed the limit reject
+with 
+ERR_OUT_OF_RANGE
+. Sync writes (
+writeSync()
+, 
+writevSync()
+)
+return 
+false
+. 
+Default:
+ no limit.
+
+chunkSize
+
+<number>
+ Maximum chunk size in bytes for synchronous write
+operations. Writes larger than this threshold fall back to async I/O.
+Set this to match the reader's 
+chunkSize
+ for optimal 
+pipeTo()
+
+performance. 
+Default:
+
+131072
+ (128 KB).
+
+Returns: 
+<Object>
+
+write(chunk[, options])
+
+<Function>
+ Returns {Promise
+}.
+Accepts 
+Uint8Array
+, 
+Buffer
+, or string (UTF-8 encoded).
+
+writev(chunks[, options])
+
+<Function>
+ Returns {Promise
+}. Uses
+scatter/gather I/O via a single 
+writev()
+ syscall. Accepts mixed
+
+Uint8Array
+/string arrays.
+
+chunks
+ {Array<Buffer|TypedArray|DataView|string>}
+
+options
+
+<Object>
+
+signal
+
+<AbortSignal>
+ If the signal is already aborted, the write
+rejects with 
+AbortError
+ without performing I/O.
+
+writeSync(chunk)
+
+<Function>
+ Returns 
+<boolean>
+. Attempts a synchronous
+write. Returns 
+true
+ if the write succeeded, 
+false
+ if the caller
+should fall back to async 
+write()
+. Returns 
+false
+ when: the writer
+is closed/errored, an async operation is in flight, the chunk exceeds
+
+chunkSize
+, or the write would exceed 
+limit
+.
+
+writevSync(chunks)
+
+<Function>
+ Returns 
+<boolean>
+. Synchronous batch
+write. Same fallback semantics as 
+writeSync()
+.
+
+chunks
+ {Array<Buffer|TypedArray|DataView|string>}
+
+end([options])
+
+<Function>
+ Returns {Promise
+} total bytes
+written. Idempotent: returns 
+totalBytesWritten
+ if already closed,
+returns the pending promise if already closing. Rejects if the writer
+is in an errored state.
+
+options
+
+<Object>
+
+signal
+
+<AbortSignal>
+ If the signal is already aborted, 
+end()
+
+rejects with 
+AbortError
+ and the writer remains open.
+
+endSync()
+
+<Function>
+ Returns 
+<number>
+ | 
+<number>
+ total bytes written on
+success, 
+-1
+ if the writer is errored or an async operation is in
+flight. Idempotent when already closed.
+
+fail(reason)
+
+<Function>
+ Puts the writer into a terminal error state.
+Synchronous. If the writer is already closed or errored, this is a
+no-op. If 
+autoClose
+ is true, closes the file handle synchronously.
+
+Return a 
+node:stream/iter
+ writer backed by this file handle.
+The writer supports both 
+Symbol.asyncDispose
+ and 
+Symbol.dispose
+:
+
+await using w = fh.writer()
+ — if the writer is still open (no 
+end()
+
+called), 
+asyncDispose
+ calls 
+fail()
+. If 
+end()
+ is pending, it waits
+for it to complete.
+
+using w = fh.writer()
+ — calls 
+fail()
+ unconditionally.
+
+The 
+writeSync()
+ and 
+writevSync()
+ methods enable the try-sync fast path
+used by 
+stream/iter pipeTo()
+. When the reader's chunk size matches the
+writer's 
+chunkSize
+, all writes in a 
+pipeTo()
+ pipeline complete
+synchronously with zero promise overhead.
+This function is only available when the 
+--experimental-stream-iter
+ flag is
+enabled.
+import
+ {
+ open 
+}
+ from
+ 'node:fs/promises'
+;
+
+import
+ {
+ from
+,
+ pipeTo 
+}
+ from
+ 'node:stream/iter'
+;
+
+import
+ {
+ compressGzip 
+}
+ from
+ 'node:zlib/iter'
+;
+
+// Async pipeline
+
+const
+ fh 
+=
+ await
+ open
+(
+'output.gz'
+,
+ 'w'
+)
+;
+
+await
+ pipeTo
+(
+from
+(
+'Hello!'
+)
+,
+ compressGzip
+()
+,
+ fh
+.
+writer
+(
+{
+ autoClose
+:
+ true
+ }
+))
+;
+
+// Sync pipeline with limit
+
+const
+ src 
+=
+ await
+ open
+(
+'input.txt'
+,
+ 'r'
+)
+;
+
+const
+ dst 
+=
+ await
+ open
+(
+'output.txt'
+,
+ 'w'
+)
+;
+
+const
+ w 
+=
+ dst
+.
+writer
+(
+{
+ limit
+:
+ 1024
+ *
+ 1024
+ }
+)
+;
+ // Max 1 MB
+
+await
+ pipeTo
+(src
+.
+pull
+(
+{
+ autoClose
+:
+ true
+ }
+)
+,
+ w)
+;
+
+await
+ w
+.
+end
+()
+;
+
+await
+ dst
+.
+close
+()
+;
+
+const
+ {
+ open 
+}
+ =
+ require
+(
+'node:fs/promises'
+)
+;
+
+const
+ {
+ from
+,
+ pipeTo 
+}
+ =
+ require
+(
+'node:stream/iter'
+)
+;
+
+const
+ {
+ compressGzip 
+}
+ =
+ require
+(
+'node:zlib/iter'
+)
+;
+
+async
+ function
+ run
+()
+ {
+
+  // Async pipeline
+
+  const
+ fh 
+=
+ await
+ open
+(
+'output.gz'
+,
+ 'w'
+)
+;
+
+  await
+ pipeTo
+(
+from
+(
+'Hello!'
+)
+,
+ compressGzip
+()
+,
+ fh
+.
+writer
+(
+{
+ autoClose
+:
+ true
+ }
+))
+;
+
+  // Sync pipeline with limit
+
+  const
+ src 
+=
+ await
+ open
+(
+'input.txt'
+,
+ 'r'
+)
+;
+
+  const
+ dst 
+=
+ await
+ open
+(
+'output.txt'
+,
+ 'w'
+)
+;
+
+  const
+ w 
+=
+ dst
+.
+writer
+(
+{
+ limit
+:
+ 1024
+ *
+ 1024
+ }
+)
+;
+ // Max 1 MB
+
+  await
+ pipeTo
+(src
+.
+pull
+(
+{
+ autoClose
+:
+ true
+ }
+)
+,
+ w)
+;
+
+  await
+ w
+.
+end
+()
+;
+
+  await
+ dst
+.
+close
+()
+;
+
+}
+
+run
+()
+.
+catch
+(console
+.
+error)
+;
+
+copy
+
+filehandle[Symbol.asyncDispose]()
+#
+Calls 
+filehandle.close()
+ and returns a promise that fulfills when the
+filehandle is closed.
+
+fsPromises.access(path[, mode])
+#
+Added in: v10.0.0
+Tests a user's permissions for the file or directory specified by 
+path
+.
+The 
+mode
+ argument is an optional integer that specifies the accessibility
+checks to be performed. 
+mode
+ should be either the value 
+fs.constants.F_OK
+
+or a mask consisting of the bitwise OR of any of 
+fs.constants.R_OK
+,
+
+fs.constants.W_OK
+, and 
+fs.constants.X_OK
+ (e.g.
+
+fs.constants.W_OK | fs.constants.R_OK
+). Check 
+File access constants
+ for
+possible values of 
+mode
+.
+If the accessibility check is successful, the promise is fulfilled with no
+value. If any of the accessibility checks fail, the promise is rejected
+with an 
+<Error>
+ object. The following example checks if the file 
+/etc/passwd
+ can be read and written by the current process.
+import
+ {
+ access
+,
+ constants 
+}
+ from
+ 'node:fs/promises'
+;
+
+try
+ {
+
+  await
+ access
+(
+'/etc/passwd'
+,
+ constants
+.
+R_OK
+ |
+ constants
+.
+W_OK
+)
+;
+
+  console
+.
+log
+(
+'can access'
+)
+;
+
+}
+ catch
+ {
+
+  console
+.
+error
+(
+'cannot access'
+)
+;
+
+}
+
+copy
+Using 
+fsPromises.access()
+ to check for the accessibility of a file before
+calling 
+fsPromises.open()
+ is not recommended. Doing so introduces a race
+condition, since other processes may change the file's state between the two
+calls. Instead, user code should open/read/write the file directly and handle
+the error raised if the file is not accessible.
+
+fsPromises.appendFile(path, data[, options])
+#
+Asynchronously append data to a file, creating the file if it does not yet
+exist. 
+data
+ can be a string or a 
+<Buffer>
+.
+If 
+options
+ is a string, then it specifies the 
+encoding
+.
+The 
+mode
+ option only affects the newly created file. See 
+fs.open()
+
+for more details.
+The 
+path
+ may be specified as a 
+<FileHandle>
+ that has been opened
+for appending (using 
+fsPromises.open()
+).
+
+fsPromises.chmod(path, mode)
+#
+Added in: v10.0.0
+Changes the permissions of a file.
+
+fsPromises.chown(path, uid, gid)
+#
+Added in: v10.0.0
+Changes the ownership of a file.
+
+fsPromises.copyFile(src, dest[, mode])
+#
+
+src
+
+<string>
+ | 
+<Buffer>
+ | 
+<URL>
+ source filename to copy
+
+dest
+
+<string>
+ | 
+<Buffer>
+ | 
+<URL>
+ destination filename of the copy operation
+
+mode
+
+<integer>
+ Optional modifiers that specify the behavior of the copy
+operation. It is possible to create a mask consisting of the bitwise OR of
+two or more values (e.g. 
+fs.constants.COPYFILE_EXCL | fs.constants.COPYFILE_FICLONE
+)
+
+Default:
+
+0
+.
+
+fs.constants.COPYFILE_EXCL
+: The copy operation will fail if 
+dest
+
+already exists.
+
+fs.constants.COPYFILE_FICLONE
+: The copy operation will attempt to create
+a copy-on-write reflink. If the platform does not support copy-on-write,
+then a fallback copy mechanism is used.
+
+fs.constants.COPYFILE_FICLONE_FORCE
+: The copy operation will attempt to
+create a copy-on-write reflink. If the platform does not support
+copy-on-write, then the operation will fail.
+
+Returns: 
+<Promise>
+ Fulfills with 
+undefined
+ upon success.
+
+Asynchronously copies 
+src
+ to 
+dest
+. By default, 
+dest
+ is overwritten if it
+already exists.
+No guarantees are made about the atomicity of the copy operation. If an
+error occurs after the destination file has been opened for writing, an attempt
+will be made to remove the destination.
+import
+ {
+ copyFile
+,
+ constants 
+}
+ from
+ 'node:fs/promises'
+;
+
+try
+ {
+
+  await
+ copyFile
+(
+'source.txt'
+,
+ 'destination.txt'
+)
+;
+
+  console
+.
+log
+(
+'source.txt was copied to destination.txt'
+)
+;
+
+}
+ catch
+ {
+
+  console
+.
+error
+(
+'The file could not be copied'
+)
+;
+
+}
+
+// By using COPYFILE_EXCL, the operation will fail if destination.txt exists.
+
+try
+ {
+
+  await
+ copyFile
+(
+'source.txt'
+,
+ 'destination.txt'
+,
+ constants
+.
+COPYFILE_EXCL
+)
+;
+
+  console
+.
+log
+(
+'source.txt was copied to destination.txt'
+)
+;
+
+}
+ catch
+ {
+
+  console
+.
+error
+(
+'The file could not be copied'
+)
+;
+
+}
+
+copy
+
+fsPromises.cp(src, dest[, options])
+#
+
+src
+
+<string>
+ | 
+<URL>
+ source path to copy.
+
+dest
+
+<string>
+ | 
+<URL>
+ destination path to copy to.
+
+options
+
+<Object>
+
+dereference
+
+<boolean>
+ dereference symlinks. 
+Default:
+
+false
+.
+
+errorOnExist
+
+<boolean>
+ when 
+force
+ is 
+false
+, and the destination
+exists, throw an error. 
+Default:
+
+false
+.
+
+filter
+
+<Function>
+ Function to filter copied files/directories. Return 
+true
+ to copy the item, 
+false
+ to ignore it. When ignoring a directory,
+all of its contents will be skipped as well. Can also return a 
+Promise
+
+that resolves to 
+true
+ or 
+false
+
+Default:
+
+undefined
+.
+
+src
+
+<string>
+ source path to copy.
+
+dest
+
+<string>
+ destination path to copy to.
+
+Returns: 
+<boolean>
+ | 
+<Promise>
+ A value that is coercible to 
+boolean
+ or
+a 
+Promise
+ that fulfils with such value.
+
+force
+
+<boolean>
+ overwrite existing file or directory. The copy
+operation will ignore errors if you set this to false and the destination
+exists. Use the 
+errorOnExist
+ option to change this behavior.
+
+Default:
+
+true
+.
+
+mode
+
+<integer>
+ modifiers for copy operation. 
+Default:
+
+0
+.
+See 
+mode
+ flag of 
+fsPromises.copyFile()
+.
+
+preserveTimestamps
+
+<boolean>
+ When 
+true
+ timestamps from 
+src
+ will
+be preserved. 
+Default:
+
+false
+.
+
+recursive
+
+<boolean>
+ copy directories recursively 
+Default:
+
+false
+
+verbatimSymlinks
+
+<boolean>
+ When 
+true
+, path resolution for symlinks will
+be skipped. 
+Default:
+
+false
+
+Returns: 
+<Promise>
+ Fulfills with 
+undefined
+ upon success.
+
+Asynchronously copies the entire directory structure from 
+src
+ to 
+dest
+,
+including subdirectories and files.
+When copying a directory to another directory, globs are not supported and
+behavior is similar to 
+cp dir1/ dir2/
+.
+
+fsPromises.lchmod(path, mode)
+#
+Deprecated in: v10.0.0
+Stability: 0 - Deprecated
+Changes the permissions on a symbolic link.
+This method is only implemented on macOS.
+
+fsPromises.lchown(path, uid, gid)
+#
+Changes the ownership on a symbolic link.
+
+fsPromises.lutimes(path, atime, mtime)
+#
+Added in: v14.5.0, v12.19.0
+Changes the access and modification times of a file in the same way as
+
+fsPromises.utimes()
+, with the difference that if the path refers to a
+symbolic link, then the link is not dereferenced: instead, the timestamps of
+the symbolic link itself are changed.
+
+fsPromises.link(existingPath, newPath)
+#
+Added in: v10.0.0
+Creates a new link from the 
+existingPath
+ to the 
+newPath
+. See the POSIX
+
+link(2)
+ documentation for more detail.
+
+fsPromises.lstat(path[, options])
+#
+Equivalent to 
+fsPromises.stat()
+ unless 
+path
+ refers to a symbolic link,
+in which case the link itself is stat-ed, not the file that it refers to.
+Refer to the POSIX 
+lstat(2)
+ document for more detail.
+
+fsPromises.mkdir(path[, options])
+#
+Added in: v10.0.0
+Asynchronously creates a directory.
+The optional 
+options
+ argument can be an integer specifying 
+mode
+ (permission
+and sticky bits), or an object with a 
+mode
+ property and a 
+recursive
+
+property indicating whether parent directories should be created. Calling
+
+fsPromises.mkdir()
+ when 
+path
+ is a directory that exists results in a
+rejection only when 
+recursive
+ is false.
+import
+ {
+ mkdir 
+}
+ from
+ 'node:fs/promises'
+;
+
+try
+ {
+
+  const
+ projectFolder 
+=
+ new
+ URL
+(
+'./test/project/'
+,
+ import
+.
+meta
+.
+url)
+;
+
+  const
+ createDir 
+=
+ await
+ mkdir
+(projectFolder
+,
+ {
+ recursive
+:
+ true
+ }
+)
+;
+
+  console
+.
+log
+(
+`created 
+${
+createDir
+}
+`
+)
+;
+
+}
+ catch
+ (err) 
+{
+
+  console
+.
+error
+(err
+.
+message)
+;
+
+}
+
+const
+ {
+ mkdir 
+}
+ =
+ require
+(
+'node:fs/promises'
+)
+;
+
+const
+ {
+ join 
+}
+ =
+ require
+(
+'node:path'
+)
+;
+
+async
+ function
+ makeDirectory
+()
+ {
+
+  const
+ projectFolder 
+=
+ join
+(__dirname
+,
+ 'test'
+,
+ 'project'
+)
+;
+
+  const
+ dirCreation 
+=
+ await
+ mkdir
+(projectFolder
+,
+ {
+ recursive
+:
+ true
+ }
+)
+;
+
+  console
+.
+log
+(dirCreation)
+;
+
+  return
+ dirCreation
+;
+
+}
+
+makeDirectory
+()
+.
+catch
+(console
+.
+error)
+;
+
+copy
+
+fsPromises.mkdtemp(prefix[, options])
+#
+Creates a unique temporary directory. A unique directory name is generated by
+appending six random characters to the end of the provided 
+prefix
+. Due to
+platform inconsistencies, avoid trailing 
+X
+ characters in 
+prefix
+. Some
+platforms, notably the BSDs, can return more than six random characters, and
+replace trailing 
+X
+ characters in 
+prefix
+ with random characters.
+The optional 
+options
+ argument can be a string specifying an encoding, or an
+object with an 
+encoding
+ property specifying the character encoding to use.
+import
+ {
+ mkdtemp 
+}
+ from
+ 'node:fs/promises'
+;
+
+import
+ {
+ join 
+}
+ from
+ 'node:path'
+;
+
+import
+ {
+ tmpdir 
+}
+ from
+ 'node:os'
+;
+
+try
+ {
+
+  await
+ mkdtemp
+(
+join
+(
+tmpdir
+()
+,
+ 'foo-'
+))
+;
+
+}
+ catch
+ (err) 
+{
+
+  console
+.
+error
+(err)
+;
+
+}
+
+copy
+The 
+fsPromises.mkdtemp()
+ method will append the six randomly selected
+characters directly to the 
+prefix
+ string. For instance, given a directory
+
+/tmp
+, if the intention is to create a temporary directory 
+within
+
+/tmp
+, the
+
+prefix
+ must end with a trailing platform-specific path separator
+(
+require('node:path').sep
+).
+
+fsPromises.mkdtempDisposable(prefix[, options])
+#
+Added in: v24.4.0
+The resulting Promise holds an async-disposable object whose 
+path
+ property
+holds the created directory path. When the object is disposed, the directory
+and its contents will be removed asynchronously if it still exists. If the
+directory cannot be deleted, disposal will throw an error. The object has an
+async 
+remove()
+ method which will perform the same task.
+Both this function and the disposal function on the resulting object are
+async, so it should be used with 
+await
+ + 
+await using
+ as in
+
+await using dir = await fsPromises.mkdtempDisposable('prefix')
+.
+For detailed information, see the documentation of 
+fsPromises.mkdtemp()
+.
+The optional 
+options
+ argument can be a string specifying an encoding, or an
+object with an 
+encoding
+ property specifying the character encoding to use.
+
+fsPromises.open(path, flags[, mode])
+#
+Opens a 
+<FileHandle>
+.
+Refer to the POSIX 
+open(2)
+ documentation for more detail.
+Some characters (
+< > : " / \ | ? *
+) are reserved under Windows as documented
+by 
+Naming Files, Paths, and Namespaces
+. Under NTFS, if the filename contains
+a colon, Node.js will open a file system stream, as described by
+
+this MSDN page
+.
+
+fsPromises.opendir(path[, options])
+#
+Asynchronously open a directory for iterative scanning. See the POSIX
+
+opendir(3)
+ documentation for more detail.
+Creates an 
+<fs.Dir>
+, which contains all further functions for reading from
+and cleaning up the directory.
+The 
+encoding
+ option sets the encoding for the 
+path
+ while opening the
+directory and subsequent read operations.
+Example using async iteration:
+import
+ {
+ opendir 
+}
+ from
+ 'node:fs/promises'
+;
+
+try
+ {
+
+  const
+ dir 
+=
+ await
+ opendir
+(
+'./'
+)
+;
+
+  for
+ await
+ (
+const
+ dirent 
+of
+ dir)
+
+    console
+.
+log
+(dirent
+.
+name)
+;
+
+}
+ catch
+ (err) 
+{
+
+  console
+.
+error
+(err)
+;
+
+}
+
+copy
+When using the async iterator, the 
+<fs.Dir>
+ object will be automatically
+closed after the iterator exits.
+
+fsPromises.readdir(path[, options])
+#
+
+path
+
+<string>
+ | 
+<Buffer>
+ | 
+<URL>
+
+options
+
+<string>
+ | 
+<Object>
+
+encoding
+
+<string>
+
+Default:
+
+'utf8'
+
+withFileTypes
+
+<boolean>
+
+Default:
+
+false
+
+recursive
+
+<boolean>
+ If 
+true
+, reads the contents of a directory
+recursively. In recursive mode, it will list all files, sub files, and
+directories. 
+Default:
+
+false
+.
+
+Returns: 
+<Promise>
+  Fulfills with an array of the names of the files in
+the directory excluding 
+'.'
+ and 
+'..'
+.
+
+Reads the contents of a directory.
+The optional 
+options
+ argument can be a string specifying an encoding, or an
+object with an 
+encoding
+ property specifying the character encoding to use for
+the filenames. If the 
+encoding
+ is set to 
+'buffer'
+, the filenames returned
+will be passed as 
+<Buffer>
+ objects.
+If 
+options.withFileTypes
+ is set to 
+true
+, the returned array will contain
+
+<fs.Dirent>
+ objects.
+import
+ {
+ readdir 
+}
+ from
+ 'node:fs/promises'
+;
+
+try
+ {
+
+  const
+ files 
+=
+ await
+ readdir
+(path)
+;
+
+  for
+ (
+const
+ file 
+of
+ files)
+
+    console
+.
+log
+(file)
+;
+
+}
+ catch
+ (err) 
+{
+
+  console
+.
+error
+(err)
+;
+
+}
+
+copy
+
+fsPromises.readFile(path[, options])
+#
+Asynchronously reads the entire contents of a file.
+If no encoding is specified (using 
+options.encoding
+), the data is returned
+as a 
+<Buffer>
+ object. Otherwise, the data will be a string.
+If 
+options
+ is a string, then it specifies the encoding.
+When the 
+path
+ is a directory, the behavior of 
+fsPromises.readFile()
+ is
+platform-specific. On macOS, Linux, and Windows, the promise will be rejected
+with an error. On FreeBSD, a representation of the directory's contents will be
+returned.
+An example of reading a 
+package.json
+ file located in the same directory of the
+running code:
+import
+ {
+ readFile 
+}
+ from
+ 'node:fs/promises'
+;
+
+try
+ {
+
+  const
+ filePath 
+=
+ new
+ URL
+(
+'./package.json'
+,
+ import
+.
+meta
+.
+url)
+;
+
+  const
+ contents 
+=
+ await
+ readFile
+(filePath
+,
+ {
+ encoding
+:
+ 'utf8'
+ }
+)
+;
+
+  console
+.
+log
+(contents)
+;
+
+}
+ catch
+ (err) 
+{
+
+  console
+.
+error
+(err
+.
+message)
+;
+
+}
+
+const
+ {
+ readFile 
+}
+ =
+ require
+(
+'node:fs/promises'
+)
+;
+
+const
+ {
+ resolve 
+}
+ =
+ require
+(
+'node:path'
+)
+;
+
+async
+ function
+ logFile
+()
+ {
+
+  try
+ {
+
+    const
+ filePath 
+=
+ resolve
+(
+'./package.json'
+)
+;
+
+    const
+ contents 
+=
+ await
+ readFile
+(filePath
+,
+ {
+ encoding
+:
+ 'utf8'
+ }
+)
+;
+
+    console
+.
+log
+(contents)
+;
+
+  }
+ catch
+ (err) 
+{
+
+    console
+.
+error
+(err
+.
+message)
+;
+
+  }
+
+}
+
+logFile
+()
+;
+
+copy
+It is possible to abort an ongoing 
+readFile
+ using an 
+<AbortSignal>
+. If a
+request is aborted the promise returned is rejected with an 
+AbortError
+:
+import
+ {
+ readFile 
+}
+ from
+ 'node:fs/promises'
+;
+
+try
+ {
+
+  const
+ controller 
+=
+ new
+ AbortController
+()
+;
+
+  const
+ {
+ signal 
+}
+ =
+ controller
+;
+
+  const
+ promise 
+=
+ readFile
+(fileName
+,
+ {
+ signal 
+}
+)
+;
+
+  // Abort the request before the promise settles.
+
+  controller
+.
+abort
+()
+;
+
+  await
+ promise
+;
+
+}
+ catch
+ (err) 
+{
+
+  // When a request is aborted - err is an AbortError
+
+  console
+.
+error
+(err)
+;
+
+}
+
+copy
+Aborting an ongoing request does not abort individual operating
+system requests but rather the internal buffering 
+fs.read
+
+[document truncated for prompt size]
+---

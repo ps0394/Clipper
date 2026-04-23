@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "UnboundLocalError",
+    "run_index": 0,
+    "tokens_in": 11228,
+    "tokens_out": 5
+  },
+  {
+    "pair_index": 1,
+    "answer": "You need to save the values in variables local to the lambdas, so that they don\u2019t rely on the value of the global x. For example, use lambda n=x: n**2 inside the loop.",
+    "run_index": 0,
+    "tokens_in": 11224,
+    "tokens_out": 44
+  },
+  {
+    "pair_index": 2,
+    "answer": "The canonical way to share information across modules within a single program is to create a special module (often called config or cfg). Just import the config module in all modules of your application; the module then becomes available as a global name. Because there is only one instance of each module, any changes made to the module object get reflected everywhere.",
+    "run_index": 0,
+    "tokens_in": 11217,
+    "tokens_out": 69
+  },
+  {
+    "pair_index": 3,
+    "answer": "Default values are created exactly once, when the function is defined. If that object is changed, like the dictionary in this example, subsequent calls to the function will refer to this changed object.",
+    "run_index": 0,
+    "tokens_in": 11220,
+    "tokens_out": 39
+  },
+  {
+    "pair_index": 4,
+    "answer": "A slash in the argument list of a function denotes that the parameters prior to it are positional-only. Positional-only parameters are the ones without an externally usable name. Upon calling a function that accepts positional-only parameters, arguments are mapped to parameters based solely on their position.",
+    "run_index": 0,
+    "tokens_in": 11220,
+    "tokens_out": 55
+  }
+]

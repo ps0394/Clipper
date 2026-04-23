@@ -1,0 +1,2840 @@
+{
+  "parseability_score": 46.80437062937063,
+  "failure_mode": "significant_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-001\\docs-perplexity-ai-guides-search-domain-filter-guide\\page.raw.html",
+  "url": "https://docs.perplexity.ai/guides/search-domain-filter-guide",
+  "component_scores": {
+    "semantic_html": 56.36363636363636,
+    "content_extractability": 79.63461538461539,
+    "structured_data": 47.833333333333336,
+    "dom_navigability": 0,
+    "metadata_completeness": 40,
+    "http_compliance": 64.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 1,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 47,
+      "heading_elements_count": 24,
+      "scoring_breakdown": {
+        "semantic_coverage": 16.363636363636363,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 12643,
+        "extracted_text_length": 10873,
+        "extracted_chars": 10873,
+        "extraction_ratio": 0.86,
+        "extracted_title": "Search Domain Filter",
+        "extracted_preview": "The search_domain_filter parameter allows you to limit search results to specific domains or exclude certain domains from search results. This supports domain-level filtering for precise content control. You can add a maximum of 20 domains to the search_domain_filter list. The filter works in either...",
+        "original_headings": 24,
+        "extracted_headings": 15,
+        "original_lists": 26,
+        "extracted_lists": 14,
+        "original_code_blocks": 70,
+        "extracted_code_blocks": 70,
+        "has_main_element": false,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 35,
+        "structure_preservation": 21.634615384615383,
+        "boundary_detection": 23
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 1,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 33
+      },
+      "schema_types_found": [
+        "WebSite"
+      ],
+      "key_fields_found": [
+        "name"
+      ],
+      "formats_present": 3,
+      "score_breakdown": {
+        "type_appropriateness": 20.0,
+        "field_completeness": 3.333333333333333,
+        "multiple_formats": 17,
+        "schema_validation": 7.5
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 1,
+        "missing_fields": [],
+        "invalid_fields": [],
+        "fallback": "generic key-field check (no validated @type)",
+        "fallback_fields_found": [
+          "name"
+        ]
+      },
+      "sample_structured_data": {
+        "json-ld": [
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Perplexity",
+            "creator": {
+              "@type": "Organization",
+              "name": "Mintlify",
+              "url": "https://mintlify.com"
+            }
+          }
+        ],
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:title",
+                "Search Domain Filter - Perplexity"
+              ],
+              [
+                "og:url",
+                "https://docs.perplexity.ai/docs/search/filters/domain-filter"
+              ],
+              [
+                "og:image",
+                "https://perplexity.mintlify.app/mintlify-assets/_next/image?url=%2F_mintlify%2Fapi%2Fog%3Fdivision%3DFilters%26title%3DSearch%2BDomain%2BFilter%26logoLight%3Dhttps%253A%252F%252Fmintcdn.com%252Fperplexity%252FgHf_T6roVjp3yaJv%252Flogo%252FPerplexity_API_Platform.svg%253Ffit%253Dmax%2526auto%253Dformat%2526n%253DgHf_T6roVjp3yaJv%2526q%253D85%2526s%253D07cab879ca2ce031bbc3da8b20f7ab90%26logoDark%3Dhttps%253A%252F%252Fmintcdn.com%252Fperplexity%252FgHf_T6roVjp3yaJv%252Flogo%252FPerplexity_API_Platform_Light.svg%253Ffit%253Dmax%2526auto%253Dformat%2526n%253DgHf_T6roVjp3yaJv%2526q%253D85%2526s%253D416d5342d11094201b851dcf3eabdc9d%26primaryColor%3D%2523121516%26lightColor%3D%2523F7F7F8%26darkColor%3D%2523121516%26backgroundLight%3D%2523F7F7F8%26backgroundDark%3D%2523121516&w=1200&q=100"
+              ],
+              [
+                "og:image:width",
+                "1200"
+              ],
+              [
+                "og:image:height",
+                "630"
+              ],
+              [
+                "og:type",
+                "website"
+              ]
+            ]
+          }
+        ],
+        "microformat": [
+          {
+            "type": [
+              "h-full"
+            ],
+            "properties": {
+              "name": [
+                ""
+              ]
+            },
+            "lang": "en"
+          },
+          {
+            "type": [
+              "h-full"
+            ],
+            "properties": {},
+            "children": [
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {},
+                "children": [
+                  {
+                    "type": [
+                      "h-full"
+                    ],
+                    "properties": {
+                      "name": [
+                        "Docs"
+                      ],
+                      "url": [
+                        "https://docs.perplexity.ai/docs/getting-started/overview"
+                      ]
+                    },
+                    "lang": "en"
+                  },
+                  {
+                    "type": [
+                      "h-full"
+                    ],
+                    "properties": {
+                      "name": [
+                        "Cookbook"
+                      ],
+                      "url": [
+                        "https://docs.perplexity.ai/docs/cookbook"
+                      ]
+                    },
+                    "lang": "en"
+                  },
+                  {
+                    "type": [
+                      "h-full"
+                    ],
+                    "properties": {
+                      "name": [
+                        "API Reference"
+                      ],
+                      "url": [
+                        "https://docs.perplexity.ai/api-reference/agent-post"
+                      ]
+                    },
+                    "lang": "en"
+                  }
+                ],
+                "lang": "en"
+              }
+            ],
+            "lang": "en"
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures buttons have discernible text",
+          "help": "Buttons must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/button-name?application=axeAPI",
+          "id": "button-name",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button class=\"text-gray-700 dark:text-gray-300 font-medium flex items-center space-x-2 hover:text-gray-900 dark:hover:text-gray-100 transition-colors cursor-pointer\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                ".space-x-2"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a"
+          ]
+        },
+        {
+          "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+          "help": "Elements must have sufficient color contrast",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f8",
+                    "contrastRatio": 3.41,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#858687",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"flex-1 px-8 pt-8 lg:pt-12 lg:ml-[16.5rem] lg:px-16 overflow-y-auto stable-scrollbar-gutter rounded-2xl bg-background-light dark:bg-background-dark border border-gray-200/70 dark:border-white/[0.07]\" id=\"content-container\">",
+                      "target": [
+                        "#content-container"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a style=\"padding-left:1rem\" href=\"#root-domain-filtering\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Root Domain Filtering</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".py-1.whitespace-pre-wrap[href$=\"#root-domain-filtering\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f8",
+                    "contrastRatio": 3.41,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#858687",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"flex-1 px-8 pt-8 lg:pt-12 lg:ml-[16.5rem] lg:px-16 overflow-y-auto stable-scrollbar-gutter rounded-2xl bg-background-light dark:bg-background-dark border border-gray-200/70 dark:border-white/[0.07]\" id=\"content-container\">",
+                      "target": [
+                        "#content-container"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a style=\"padding-left:1rem\" href=\"#top-level-domain-tld-filtering\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Top-Level Domain (TLD) Filtering</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".border-gray-950\\/5.hover\\:border-gray-950\\/20[data-depth=\"\\31 \"]:nth-child(4) > .py-1.whitespace-pre-wrap.text-gray-500"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f8",
+                    "contrastRatio": 3.41,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#858687",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"flex-1 px-8 pt-8 lg:pt-12 lg:ml-[16.5rem] lg:px-16 overflow-y-auto stable-scrollbar-gutter rounded-2xl bg-background-light dark:bg-background-dark border border-gray-200/70 dark:border-white/[0.07]\" id=\"content-container\">",
+                      "target": [
+                        "#content-container"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a style=\"padding-left:1rem\" href=\"#domain-part-filtering\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Domain Part Filtering</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".py-1.whitespace-pre-wrap[href$=\"#domain-part-filtering\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f8",
+                    "contrastRatio": 3.41,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#858687",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"flex-1 px-8 pt-8 lg:pt-12 lg:ml-[16.5rem] lg:px-16 overflow-y-auto stable-scrollbar-gutter rounded-2xl bg-background-light dark:bg-background-dark border border-gray-200/70 dark:border-white/[0.07]\" id=\"content-container\">",
+                      "target": [
+                        "#content-container"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a style=\"padding-left:1rem\" href=\"#search_domain_filter\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">search_domain_filter</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".py-1.whitespace-pre-wrap[href$=\"#search_domain_filter\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f8",
+                    "contrastRatio": 3.41,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#858687",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"flex-1 px-8 pt-8 lg:pt-12 lg:ml-[16.5rem] lg:px-16 overflow-y-auto stable-scrollbar-gutter rounded-2xl bg-background-light dark:bg-background-dark border border-gray-200/70 dark:border-white/[0.07]\" id=\"content-container\">",
+                      "target": [
+                        "#content-container"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a style=\"padding-left:1rem\" href=\"#domain-selection-strategy\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Domain Selection Strategy</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".py-1.whitespace-pre-wrap[href=\"#domain-selection-strategy\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f8",
+                    "contrastRatio": 3.41,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#858687",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"flex-1 px-8 pt-8 lg:pt-12 lg:ml-[16.5rem] lg:px-16 overflow-y-auto stable-scrollbar-gutter rounded-2xl bg-background-light dark:bg-background-dark border border-gray-200/70 dark:border-white/[0.07]\" id=\"content-container\">",
+                      "target": [
+                        "#content-container"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a style=\"padding-left:1rem\" href=\"#locale-and-regional-targeting\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Locale and Regional Targeting</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".py-1.whitespace-pre-wrap[href=\"#locale-and-regional-targeting\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f8",
+                    "contrastRatio": 3.41,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#858687",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"flex-1 px-8 pt-8 lg:pt-12 lg:ml-[16.5rem] lg:px-16 overflow-y-auto stable-scrollbar-gutter rounded-2xl bg-background-light dark:bg-background-dark border border-gray-200/70 dark:border-white/[0.07]\" id=\"content-container\">",
+                      "target": [
+                        "#content-container"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a style=\"padding-left:1rem\" href=\"#domain-selection\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Domain Selection</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".py-1.whitespace-pre-wrap[href$=\"#domain-selection\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f8",
+                    "contrastRatio": 3.41,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#858687",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"flex-1 px-8 pt-8 lg:pt-12 lg:ml-[16.5rem] lg:px-16 overflow-y-auto stable-scrollbar-gutter rounded-2xl bg-background-light dark:bg-background-dark border border-gray-200/70 dark:border-white/[0.07]\" id=\"content-container\">",
+                      "target": [
+                        "#content-container"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a style=\"padding-left:1rem\" href=\"#client-side-validation\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Client-Side Validation</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".py-1.whitespace-pre-wrap[href$=\"#client-side-validation\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f8",
+                    "contrastRatio": 3.41,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#858687",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"flex-1 px-8 pt-8 lg:pt-12 lg:ml-[16.5rem] lg:px-16 overflow-y-auto stable-scrollbar-gutter rounded-2xl bg-background-light dark:bg-background-dark border border-gray-200/70 dark:border-white/[0.07]\" id=\"content-container\">",
+                      "target": [
+                        "#content-container"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.41 (foreground color: #858687, background color: #f7f7f8, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a style=\"padding-left:1rem\" href=\"#performance-considerations\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Performance Considerations</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".py-1.whitespace-pre-wrap[href=\"#performance-considerations\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value of active elements is unique",
+          "help": "IDs of active elements must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id-active?application=axeAPI",
+          "id": "duplicate-id-active",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "page-context-menu-button",
+                  "id": "duplicate-id-active",
+                  "impact": "serious",
+                  "message": "Document has active elements with the same id attribute: page-context-menu-button",
+                  "relatedNodes": [
+                    {
+                      "html": "<button id=\"page-context-menu-button\" class=\"rounded-l-xl px-3 text-gray-700 dark:text-gray-300 py-1.5 border border-gray-200 dark:border-white/[0.07] bg-background-light dark:bg-background-dark hover:bg-gray-600/5 dark:hover:bg-gray-200/5 border-r-0\" aria-label=\"Copy page\">",
+                      "target": [
+                        ".mt-3 > .rounded-l-xl.border-r-0[aria-label=\"Copy\\ page\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has active elements with the same id attribute: page-context-menu-button",
+              "html": "<button id=\"page-context-menu-button\" class=\"rounded-l-xl px-3 text-gray-700 dark:text-gray-300 py-1.5 border border-gray-200 dark:border-white/[0.07] bg-background-light dark:bg-background-dark hover:bg-gray-600/5 dark:hover:bg-gray-200/5 border-r-0\" aria-label=\"Copy page\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".min-w-\\[156px\\].ml-auto.sm\\:flex > .rounded-l-xl.border-r-0[aria-label=\"Copy\\ page\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "ask-ai-code-block-button",
+                  "id": "duplicate-id-active",
+                  "impact": "serious",
+                  "message": "Document has active elements with the same id attribute: ask-ai-code-block-button",
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-shellscript-code-_search_domain_filte\">",
+                      "target": [
+                        ".code-block.print\\:print-color-exact.dark\\:twoslash-dark:nth-child(14) > .top-3.right-4[data-floating-buttons=\"true\"] > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-shellscript-code-_search_domain_filte\">",
+                      "target": [
+                        ".code-block.print\\:print-color-exact.dark\\:twoslash-dark:nth-child(19) > .top-3.right-4[data-floating-buttons=\"true\"] > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-python-code-from_perplexity_impo\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(29) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-python-code-from_perplexity_impo\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(32) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-python-code-from_perplexity_impo\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(35) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-python-code-from_perplexity_impo\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(38) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-python-code-from_perplexity_impo\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(41) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-python-code-from_perplexity_impo\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(44) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-python-code-import_re__def_valid\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(64) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has active elements with the same id attribute: ask-ai-code-block-button",
+              "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-shellscript-code-__Allowlist__Only_se\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".code-block.print\\:print-color-exact[numberoflines=\"\\35 \"] > .top-3.right-4[data-floating-buttons=\"true\"] > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "chat-assistant-textarea",
+                  "id": "duplicate-id-active",
+                  "impact": "serious",
+                  "message": "Document has active elements with the same id attribute: chat-assistant-textarea",
+                  "relatedNodes": [
+                    {
+                      "html": "<textarea id=\"chat-assistant-textarea\" aria-label=\"Ask a question...\" autocomplete=\"off\" placeholder=\"Ask a question...\" class=\"chat-assistant-input w-full bg-transparent border-0 peer/input text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 !outline-none focus:!outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 font-bodyWeight text-sm !pb-0\" style=\"resize: none; height: 210px !important;\">",
+                      "target": [
+                        ".\\!pb-0"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has active elements with the same id attribute: chat-assistant-textarea",
+              "html": "<textarea id=\"chat-assistant-textarea\" aria-label=\"Ask a question...\" autocomplete=\"off\" placeholder=\"Ask a question...\" class=\"chat-assistant-input w-full bg-transparent border-0 peer/input text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 !outline-none focus:!outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 font-bodyWeight text-sm\" style=\"resize: none; height: 60px !important;\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".sm\\:pb-6 > .bg-background-light\\/90.dark\\:bg-background-dark\\/90.backdrop-blur-xl > .items-end.relative.flex > .chat-assistant-input.peer\\/input.placeholder-gray-500"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value is unique",
+          "help": "id attribute value must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id?application=axeAPI",
+          "id": "duplicate-id",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "sidebar-title",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<h5 id=\"sidebar-title\" class=\"\">Perplexity SDK</h5>",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(4) > .sidebar-group-header.mb-3\\.5.lg\\:mb-2\\.5 > h5"
+                      ]
+                    },
+                    {
+                      "html": "<h5 id=\"sidebar-title\" class=\"\">Agent API</h5>",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(5) > .sidebar-group-header.mb-3\\.5.lg\\:mb-2\\.5 > h5"
+                      ]
+                    },
+                    {
+                      "html": "<h5 id=\"sidebar-title\" class=\"\">Search API</h5>",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(6) > .sidebar-group-header.mb-3\\.5.lg\\:mb-2\\.5 > h5"
+                      ]
+                    },
+                    {
+                      "html": "<h5 id=\"sidebar-title\" class=\"\">Sonar API</h5>",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(7) > .sidebar-group-header.mb-3\\.5.lg\\:mb-2\\.5 > h5"
+                      ]
+                    },
+                    {
+                      "html": "<h5 id=\"sidebar-title\" class=\"\">Embeddings API</h5>",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(8) > .sidebar-group-header.mb-3\\.5.lg\\:mb-2\\.5 > h5"
+                      ]
+                    },
+                    {
+                      "html": "<h5 id=\"sidebar-title\" class=\"\">Admin &amp; Management</h5>",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(9) > .sidebar-group-header.mb-3\\.5.lg\\:mb-2\\.5 > h5"
+                      ]
+                    },
+                    {
+                      "html": "<h5 id=\"sidebar-title\" class=\"\">Resources</h5>",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(10) > .sidebar-group-header.mb-3\\.5.lg\\:mb-2\\.5 > h5"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<h5 id=\"sidebar-title\" class=\"\">Getting Started</h5>",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".mt-6.lg\\:mt-8:nth-child(3) > .sidebar-group-header.mb-3\\.5.lg\\:mb-2\\.5 > h5"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "sidebar-group",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<ul id=\"sidebar-group\" class=\"sidebar-group space-y-px\">",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(4) > .sidebar-group.space-y-px"
+                      ]
+                    },
+                    {
+                      "html": "<ul id=\"sidebar-group\" class=\"sidebar-group space-y-px\">",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(5) > .sidebar-group.space-y-px"
+                      ]
+                    },
+                    {
+                      "html": "<ul id=\"sidebar-group\" class=\"sidebar-group space-y-px\">",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(6) > .sidebar-group.space-y-px"
+                      ]
+                    },
+                    {
+                      "html": "<ul id=\"sidebar-group\" class=\"sidebar-group space-y-px\">",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(7) > .sidebar-group.space-y-px"
+                      ]
+                    },
+                    {
+                      "html": "<ul id=\"sidebar-group\" class=\"sidebar-group space-y-px\">",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(8) > .sidebar-group.space-y-px"
+                      ]
+                    },
+                    {
+                      "html": "<ul id=\"sidebar-group\" class=\"sidebar-group space-y-px\">",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(9) > .sidebar-group.space-y-px"
+                      ]
+                    },
+                    {
+                      "html": "<ul id=\"sidebar-group\" class=\"sidebar-group space-y-px\">",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(10) > .sidebar-group.space-y-px"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<ul id=\"sidebar-group\" class=\"sidebar-group space-y-px\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".mt-6.lg\\:mt-8:nth-child(3) > .sidebar-group.space-y-px"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "page-context-menu",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<div id=\"page-context-menu\" class=\"flex items-center shrink-0 min-w-[156px] mt-3 sm:hidden\">",
+                      "target": [
+                        ".mt-3"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<div id=\"page-context-menu\" class=\"items-center shrink-0 min-w-[156px] justify-end ml-auto sm:flex hidden\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".min-w-\\[156px\\].ml-auto.sm\\:flex"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures the page has only one main landmark and each iframe in the page has at most one main landmark",
+          "help": "Page must have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/landmark-one-main?application=axeAPI",
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": null,
+                  "id": "page-has-main",
+                  "impact": "moderate",
+                  "message": "Page does not have a main landmark",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Page does not have a main landmark",
+              "html": "<html lang=\"en\" class=\"__variable_47c970 __variable_3bbdad [--scroll-mt:2.5rem] light\" data-banner-state=\"hidden\" data-assistant-state=\"closed\" data-page-mode=\"none\" data-current-path=\"/docs/search/filters/domain-filter\" style=\"color-scheme: light; --assistant-sheet-width: 0px; --banner-height: 0px;\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures all page content is contained by landmarks",
+          "help": "All page content must be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/region?application=axeAPI",
+          "id": "region",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "region",
+                  "impact": "moderate",
+                  "message": "Some page content is not contained by landmarks",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"sr-only\">Perplexity<!-- --> home page</span>",
+                      "target": [
+                        "a[data-slot=\"context-menu-trigger\"] > .sr-only"
+                      ]
+                    },
+                    {
+                      "html": "<img class=\"nav-logo w-auto relative object-contain shrink-0 block dark:hidden h-6\" src=\"https://mintcdn.com/perplexity/gHf_T6roVjp3yaJv/logo/Perplexity_API_Platform.svg?fit=max&amp;auto=format&amp;n=gHf_T6roVjp3yaJv&amp;q=85&amp;s=07cab879ca2ce031bbc3da8b20f7ab90\" alt=\"light logo\">",
+                      "target": [
+                        "img[alt=\"light\\ logo\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a class=\"link nav-tabs-item group relative h-full gap-2 flex items-center font-medium hover:text-gray-800 dark:hover:text-gray-300 text-gray-800 dark:text-gray-200 [text-shadow:-0.2px_0_0_currentColor,0.2px_0_0_currentColor]\" data-active=\"true\" href=\"/docs/getting-started/overview\">",
+                      "target": [
+                        ".text-gray-800"
+                      ]
+                    },
+                    {
+                      "html": "<a class=\"link nav-tabs-item group relative h-full gap-2 flex items-center font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300\" href=\"/docs/cookbook\">",
+                      "target": [
+                        "a[href$=\"cookbook\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a class=\"link nav-tabs-item group relative h-full gap-2 flex items-center font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300\" href=\"/api-reference/agent-post\">",
+                      "target": [
+                        "a[href$=\"agent-post\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button type=\"button\" class=\"group/search flex pointer-events-auto rounded-xl w-full items-center text-sm leading-6 h-9 pl-3.5 pr-3 text-gray-500 dark:text-white/50 bg-background-light dark:bg-background-dark dark:brightness-[1.1] dark:ring-1 dark:hover:brightness-[1.25] ring-1 ring-gray-400/30 hover:ring-gray-600/30 dark:ring-gray-600/30 dark:hover:ring-gray-500/30 justify-between truncate gap-2\" id=\"search-bar-entry\" aria-label=\"Open search\">",
+                      "target": [
+                        "#search-bar-entry"
+                      ]
+                    },
+                    {
+                      "html": "<button type=\"button\" class=\"group/ai flex-none hidden lg:flex items-center justify-center gap-1.5 h-9 rounded-xl shadow-sm bg-background-light dark:bg-background-dark dark:brightness-[1.1] dark:ring-1 dark:hover:brightness-[1.25] ring-1 ring-gray-400/30 hover:ring-gray-600/30 dark:ring-gray-600/30 dark:hover:ring-gray-500/30 w-9 p-0\" id=\"assistant-entry\" aria-label=\"Toggle assistant panel\" data-state=\"closed\">",
+                      "target": [
+                        "#assistant-entry"
+                      ]
+                    },
+                    {
+                      "html": "<svg class=\"h-4 w-4 secondary-opacity group-hover:fill-primary-dark group-hover:bg-gray-900 dark:group-hover:bg-gray-300 bg-gray-400 dark:bg-gray-500\" style=\"-webkit-mask-image:url(https://d3gk2c5xim1je2.cloudfront.net/tabler/v3.36.1/outline/message-circle.svg);-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;mask-image:url(https://d3gk2c5xim1je2.cloudfront.net/tabler/v3.36.1/outline/message-circle.svg);mask-repeat:no-repeat;mask-position:center;mask-size:100%\">",
+                      "target": [
+                        ".list-none:nth-child(1) > .nav-anchor.lg\\:text-sm.lg\\:leading-6 > .secondary-opacity.group-hover\\:fill-primary-dark.group-hover\\:bg-gray-900"
+                      ]
+                    },
+                    {
+                      "html": "<span>Community</span>",
+                      "target": [
+                        ".list-none:nth-child(1) > .nav-anchor.lg\\:text-sm.lg\\:leading-6 > span"
+                      ]
+                    },
+                    {
+                      "html": "<svg class=\"h-4 w-4 secondary-opacity group-hover:fill-primary-dark group-hover:bg-gray-900 dark:group-hover:bg-gray-300 bg-gray-400 dark:bg-gray-500\" style=\"-webkit-mask-image:url(https://d3gk2c5xim1je2.cloudfront.net/tabler/v3.36.1/outline/pencil.svg);-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;mask-image:url(https://d3gk2c5xim1je2.cloudfront.net/tabler/v3.36.1/outline/pencil.svg);mask-repeat:no-repeat;mask-position:center;mask-size:100%\">",
+                      "target": [
+                        ".list-none:nth-child(2) > .nav-anchor.lg\\:text-sm.lg\\:leading-6 > .secondary-opacity.group-hover\\:fill-primary-dark.group-hover\\:bg-gray-900"
+                      ]
+                    },
+                    {
+                      "html": "<span>Blog</span>",
+                      "target": [
+                        ".list-none:nth-child(2) > .nav-anchor.lg\\:text-sm.lg\\:leading-6 > span"
+                      ]
+                    },
+                    {
+                      "html": "<svg class=\"h-4 w-4 secondary-opacity group-hover:fill-primary-dark group-hover:bg-gray-900 dark:group-hover:bg-gray-300 bg-gray-400 dark:bg-gray-500\" style=\"-webkit-mask-image:url(https://d3gk2c5xim1je2.cloudfront.net/tabler/v3.36.1/outline/clock.svg);-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;mask-image:url(https://d3gk2c5xim1je2.cloudfront.net/tabler/v3.36.1/outline/clock.svg);mask-repeat:no-repeat;mask-position:center;mask-size:100%\">",
+                      "target": [
+                        ".nav-anchor.lg\\:text-sm[href$=\"changelog\"] > .secondary-opacity.group-hover\\:fill-primary-dark.group-hover\\:bg-gray-900"
+                      ]
+                    },
+                    {
+                      "html": "<span>Changelog</span>",
+                      "target": [
+                        ".nav-anchor.lg\\:text-sm[href$=\"changelog\"] > span"
+                      ]
+                    },
+                    {
+                      "html": "<h5 id=\"sidebar-title\" class=\"\">Getting Started</h5>",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(3) > .sidebar-group-header.mb-3\\.5.lg\\:mb-2\\.5 > h5"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Overview</span>",
+                      "target": [
+                        "#\\/docs\\/getting-started\\/overview > .gap-x-3.outline-offset-\\[-1px\\][href$=\"overview\"] > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Quickstart</span>",
+                      "target": [
+                        "#\\/docs\\/getting-started\\/quickstart > .gap-x-3.outline-offset-\\[-1px\\].pr-3 > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Pricing</span>",
+                      "target": [
+                        "a[href$=\"pricing\"] > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"group flex items-start pr-3 py-1.5 cursor-pointer gap-x-3 text-left rounded-xl w-full outline-offset-[-1px] hover:bg-gray-600/5 dark:hover:bg-gray-200/5 text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\" style=\"padding-left:1rem\" aria-label=\"Toggle Tools &amp; Integrations section\" aria-expanded=\"false\">",
+                      "target": [
+                        "li[data-title=\"Tools\\ \\&\\ Integrations\"] > .gap-x-3.outline-offset-\\[-1px\\].pr-3"
+                      ]
+                    },
+                    {
+                      "html": "<h5 id=\"sidebar-title\" class=\"\">Perplexity SDK</h5>",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(4) > .sidebar-group-header.mb-3\\.5.lg\\:mb-2\\.5 > h5"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Quickstart</span>",
+                      "target": [
+                        "#\\/docs\\/sdk\\/overview > .gap-x-3.outline-offset-\\[-1px\\][href$=\"overview\"] > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"group flex items-start pr-3 py-1.5 cursor-pointer gap-x-3 text-left break-words hyphens-auto rounded-xl w-full outline-offset-[-1px] hover:bg-gray-600/5 dark:hover:bg-gray-200/5 text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\" style=\"padding-left:1rem\" aria-label=\"Toggle Guides section\" aria-expanded=\"false\">",
+                      "target": [
+                        "button[aria-label=\"Toggle\\ Guides\\ section\"]"
+                      ]
+                    },
+                    {
+                      "html": "<h5 id=\"sidebar-title\" class=\"\">Agent API</h5>",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(5) > .sidebar-group-header.mb-3\\.5.lg\\:mb-2\\.5 > h5"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Quickstart</span>",
+                      "target": [
+                        "#\\/docs\\/agent-api\\/quickstart > .gap-x-3.outline-offset-\\[-1px\\][href$=\"quickstart\"] > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"group flex items-start pr-3 py-1.5 cursor-pointer gap-x-3 text-left rounded-xl w-full outline-offset-[-1px] hover:bg-gray-600/5 dark:hover:bg-gray-200/5 text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\" style=\"padding-left:1rem\" aria-label=\"Toggle Models &amp; Configuration section\" aria-expanded=\"false\">",
+                      "target": [
+                        "li[data-title=\"Models\\ \\&\\ Configuration\"] > .gap-x-3.outline-offset-\\[-1px\\].pr-3"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"group flex items-start pr-3 py-1.5 cursor-pointer gap-x-3 text-left break-words hyphens-auto rounded-xl w-full outline-offset-[-1px] hover:bg-gray-600/5 dark:hover:bg-gray-200/5 text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\" style=\"padding-left:1rem\" aria-label=\"Toggle Features section\" aria-expanded=\"false\">",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(5) > .sidebar-group.space-y-px > .space-y-px[data-title=\"Features\"][data-group-tag=\"\"] > .gap-x-3.outline-offset-\\[-1px\\][aria-label=\"Toggle\\ Features\\ section\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">OpenAI Compatibility</span>",
+                      "target": [
+                        "#\\/docs\\/agent-api\\/openai-compatibility > .gap-x-3.outline-offset-\\[-1px\\].pr-3 > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<h5 id=\"sidebar-title\" class=\"\">Search API</h5>",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(6) > .sidebar-group-header.mb-3\\.5.lg\\:mb-2\\.5 > h5"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Quickstart</span>",
+                      "target": [
+                        "#\\/docs\\/search\\/quickstart > .gap-x-3.outline-offset-\\[-1px\\][href$=\"quickstart\"] > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"group flex items-start pr-3 py-1.5 cursor-pointer gap-x-3 text-left break-words hyphens-auto rounded-xl w-full outline-offset-[-1px] hover:bg-gray-600/5 dark:hover:bg-gray-200/5 text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\" style=\"padding-left:1rem\" aria-label=\"Toggle Filters section\" aria-expanded=\"true\">",
+                      "target": [
+                        "button[aria-label=\"Toggle\\ Filters\\ section\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Search Date and Time Filters</span>",
+                      "target": [
+                        "#\\/docs\\/search\\/filters\\/date-time-filters > .gap-x-3.outline-offset-\\[-1px\\].pr-3 > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Search Language Filter</span>",
+                      "target": [
+                        "#\\/docs\\/search\\/filters\\/language-filter > .gap-x-3.outline-offset-\\[-1px\\].pr-3 > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Search Domain Filter</span>",
+                      "target": [
+                        ".bg-primary\\/10 > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Best Practices</span>",
+                      "target": [
+                        "#\\/docs\\/search\\/best-practices > .gap-x-3.outline-offset-\\[-1px\\][href$=\"best-practices\"] > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<h5 id=\"sidebar-title\" class=\"\">Sonar API</h5>",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(7) > .sidebar-group-header.mb-3\\.5.lg\\:mb-2\\.5 > h5"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Quickstart</span>",
+                      "target": [
+                        "#\\/docs\\/sonar\\/quickstart > .gap-x-3.outline-offset-\\[-1px\\][href$=\"quickstart\"] > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Models</span>",
+                      "target": [
+                        "a[href$=\"models\"] > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"group flex items-start pr-3 py-1.5 cursor-pointer gap-x-3 text-left break-words hyphens-auto rounded-xl w-full outline-offset-[-1px] hover:bg-gray-600/5 dark:hover:bg-gray-200/5 text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\" style=\"padding-left:1rem\" aria-label=\"Toggle Features section\" aria-expanded=\"false\">",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(7) > .sidebar-group.space-y-px > .space-y-px[data-title=\"Features\"][data-group-tag=\"\"] > .gap-x-3.outline-offset-\\[-1px\\][aria-label=\"Toggle\\ Features\\ section\"]"
+                      ]
+                    },
+                    {
+                      "html": "<h5 id=\"sidebar-title\" class=\"\">Embeddings API</h5>",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(8) > .sidebar-group-header.mb-3\\.5.lg\\:mb-2\\.5 > h5"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Quickstart</span>",
+                      "target": [
+                        "#\\/docs\\/embeddings\\/quickstart > .gap-x-3.outline-offset-\\[-1px\\][href$=\"quickstart\"] > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Standard Embeddings</span>",
+                      "target": [
+                        "#\\/docs\\/embeddings\\/standard-embeddings > .gap-x-3.outline-offset-\\[-1px\\].pr-3 > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Contextualized Embeddings</span>",
+                      "target": [
+                        "#\\/docs\\/embeddings\\/contextualized-embeddings > .gap-x-3.outline-offset-\\[-1px\\].pr-3 > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Best Practices</span>",
+                      "target": [
+                        "#\\/docs\\/embeddings\\/best-practices > .gap-x-3.outline-offset-\\[-1px\\].pr-3 > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<h5 id=\"sidebar-title\" class=\"\">Admin &amp; Management</h5>",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(9) > .sidebar-group-header.mb-3\\.5.lg\\:mb-2\\.5 > h5"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">API Groups &amp; Billing</span>",
+                      "target": [
+                        "#\\/docs\\/getting-started\\/api-groups > .gap-x-3.outline-offset-\\[-1px\\].pr-3 > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">API Key Management</span>",
+                      "target": [
+                        "a[href$=\"api-key-management\"] > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Rate Limits &amp; Usage Tiers</span>",
+                      "target": [
+                        "#\\/docs\\/admin\\/rate-limits-usage-tiers > .gap-x-3.outline-offset-\\[-1px\\].pr-3 > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">AWS Marketplace</span>",
+                      "target": [
+                        "#\\/docs\\/resources\\/aws-marketplace > .gap-x-3.outline-offset-\\[-1px\\].pr-3 > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<h5 id=\"sidebar-title\" class=\"\">Resources</h5>",
+                      "target": [
+                        ".mt-6.lg\\:mt-8:nth-child(10) > .sidebar-group-header.mb-3\\.5.lg\\:mb-2\\.5 > h5"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">API Roadmap</span>",
+                      "target": [
+                        "#\\/docs\\/resources\\/feature-roadmap > .gap-x-3.outline-offset-\\[-1px\\].pr-3 > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Privacy &amp; Security</span>",
+                      "target": [
+                        "#\\/docs\\/resources\\/privacy-security > .gap-x-3.outline-offset-\\[-1px\\].pr-3 > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Frequently Asked Questions</span>",
+                      "target": [
+                        "a[href$=\"faq\"] > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">System Status</span>",
+                      "target": [
+                        "a[href$=\"status\"] > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Changelog</span>",
+                      "target": [
+                        ".gap-x-3.outline-offset-\\[-1px\\][href$=\"changelog\"] > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Get in Touch</span>",
+                      "target": [
+                        "a[href$=\"discussions\"] > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"min-w-0 max-w-full break-words hyphens-auto\">Perplexity Crawlers</span>",
+                      "target": [
+                        "#\\/docs\\/resources\\/perplexity-crawlers > .gap-x-3.outline-offset-\\[-1px\\].pr-3 > .gap-x-2\\.5.items-start.flex-1 > .\\[word-break\\:break-word\\].flex-wrap.gap-1\\.5 > .hyphens-auto.break-words.max-w-full"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"relative flex lg:h-7 h-[2.375rem] justify-between lg:w-[3.25rem] w-[4.5rem] items-center p-1 rounded-full border border-gray-200/70 dark:border-white/[0.07] hover:border-gray-200 dark:hover:border-white/10\" aria-label=\"Toggle dark mode\">",
+                      "target": [
+                        ".lg\\:h-7"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"text-gray-700 dark:text-gray-300 font-medium flex items-center space-x-2 hover:text-gray-900 dark:hover:text-gray-100 transition-colors cursor-pointer\">",
+                      "target": [
+                        ".space-x-2"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#overview\" class=\"break-words py-1 block border-l pl-4 font-medium text-primary dark:text-primary-light border-primary dark:border-primary-light hover:border-primary dark:hover:border-primary-light\">Overview</a>",
+                      "target": [
+                        ".border-primary"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#filtering-capabilities\" class=\"break-words py-1 block font-medium border-l pl-4 border-gray-950/5 dark:border-white/10 hover:border-gray-950/20 dark:hover:border-white/20 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Filtering Capabilities</a>",
+                      "target": [
+                        ".block.border-gray-950\\/5[href$=\"#filtering-capabilities\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a style=\"padding-left:1rem\" href=\"#root-domain-filtering\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Root Domain Filtering</a>",
+                      "target": [
+                        ".py-1.whitespace-pre-wrap[href$=\"#root-domain-filtering\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a style=\"padding-left:1rem\" href=\"#top-level-domain-tld-filtering\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Top-Level Domain (TLD) Filtering</a>",
+                      "target": [
+                        ".border-gray-950\\/5.hover\\:border-gray-950\\/20[data-depth=\"\\31 \"]:nth-child(4) > .py-1.whitespace-pre-wrap.text-gray-500"
+                      ]
+                    },
+                    {
+                      "html": "<a style=\"padding-left:1rem\" href=\"#domain-part-filtering\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Domain Part Filtering</a>",
+                      "target": [
+                        ".py-1.whitespace-pre-wrap[href$=\"#domain-part-filtering\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#examples\" class=\"break-words py-1 block font-medium border-l pl-4 border-gray-950/5 dark:border-white/10 hover:border-gray-950/20 dark:hover:border-white/20 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Examples</a>",
+                      "target": [
+                        ".block.border-gray-950\\/5[href$=\"#examples\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#parameter-reference\" class=\"break-words py-1 block font-medium border-l pl-4 border-gray-950/5 dark:border-white/10 hover:border-gray-950/20 dark:hover:border-white/20 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Parameter Reference</a>",
+                      "target": [
+                        ".block.border-gray-950\\/5[href$=\"#parameter-reference\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a style=\"padding-left:1rem\" href=\"#search_domain_filter\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">search_domain_filter</a>",
+                      "target": [
+                        ".py-1.whitespace-pre-wrap[href$=\"#search_domain_filter\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#domain-format-guidelines\" class=\"break-words py-1 block font-medium border-l pl-4 border-gray-950/5 dark:border-white/10 hover:border-gray-950/20 dark:hover:border-white/20 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Domain Format Guidelines</a>",
+                      "target": [
+                        ".block.border-gray-950\\/5[href$=\"#domain-format-guidelines\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#best-practices\" class=\"break-words py-1 block font-medium border-l pl-4 border-gray-950/5 dark:border-white/10 hover:border-gray-950/20 dark:hover:border-white/20 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Best Practices</a>",
+                      "target": [
+                        ".block.border-gray-950\\/5[href$=\"#best-practices\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a style=\"padding-left:1rem\" href=\"#domain-selection-strategy\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Domain Selection Strategy</a>",
+                      "target": [
+                        ".py-1.whitespace-pre-wrap[href=\"#domain-selection-strategy\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a style=\"padding-left:1rem\" href=\"#locale-and-regional-targeting\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Locale and Regional Targeting</a>",
+                      "target": [
+                        ".py-1.whitespace-pre-wrap[href=\"#locale-and-regional-targeting\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a style=\"padding-left:1rem\" href=\"#domain-selection\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Domain Selection</a>",
+                      "target": [
+                        ".py-1.whitespace-pre-wrap[href$=\"#domain-selection\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a style=\"padding-left:1rem\" href=\"#client-side-validation\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Client-Side Validation</a>",
+                      "target": [
+                        ".py-1.whitespace-pre-wrap[href$=\"#client-side-validation\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a style=\"padding-left:1rem\" href=\"#performance-considerations\" class=\"group flex items-start break-words py-1 whitespace-pre-wrap text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300\">Performance Considerations</a>",
+                      "target": [
+                        ".py-1.whitespace-pre-wrap[href=\"#performance-considerations\"]"
+                      ]
+                    },
+                    {
+                      "html": "<svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\" class=\"size-4 text-blue-800 dark:text-blue-300\" aria-label=\"Note\">",
+                      "target": [
+                        "svg[width=\"\\31 4\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">The <code>search_domain_filter</code> parameter allows you to limit search results to specific domains or exclude certain domains from search results. This supports domain-level filtering for precise content control.</span>",
+                      "target": [
+                        ".text-blue-800.dark\\:text-blue-300.\\[\\&_kbd\\]\\:bg-background-light > span[data-as=\"p\"]"
+                      ]
+                    },
+                    {
+                      "html": "<svg class=\"flex-none size-5 text-yellow-800 dark:text-yellow-300\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\" aria-label=\"Warning\">",
+                      "target": [
+                        "svg[aria-label=\"Warning\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">You can add a maximum of 20 domains to the <code>search_domain_filter</code> list. The filter works in either allowlist mode (include only) or denylist mode (exclude), but not both simultaneously.</span>",
+                      "target": [
+                        ".text-yellow-800.dark\\:text-yellow-300.\\[\\&_kbd\\]\\:bg-background-light > span[data-as=\"p\"]"
+                      ]
+                    },
+                    {
+                      "html": "<svg viewBox=\"0 0 20 20\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\" class=\"flex-none size-5 text-neutral-800 dark:text-neutral-300\" aria-label=\"Info\">",
+                      "target": [
+                        "svg[viewBox=\"\\30 \\ 0\\ 20\\ 20\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">",
+                      "target": [
+                        ".text-neutral-800.dark\\:text-neutral-300.\\[\\&_kbd\\]\\:bg-background-light > span[data-as=\"p\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#overview\" class=\"-ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100 focus:opacity-100 focus:outline-0 group/link\" aria-label=\"Navigate to header\">",
+                      "target": [
+                        ".-ml-10.opacity-0[href$=\"#overview\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"cursor-pointer\">Overview</span>",
+                      "target": [
+                        "#overview > .cursor-pointer"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">The domain filter for the Search API allows you to control which sources appear in your search results by limiting them to specific domains or excluding certain domains. This is particularly useful when you need to:</span>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<li>Focus research on authoritative or trusted sources</li>",
+                      "target": [
+                        "ul:nth-child(6) > li:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<li>Filter out specific domains from search results</li>",
+                      "target": [
+                        "ul:nth-child(6) > li:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<li>Search within specific publication networks or organizations</li>",
+                      "target": [
+                        "ul:nth-child(6) > li:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<li>Build domain-specific search applications</li>",
+                      "target": [
+                        "ul:nth-child(6) > li:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<li>Conduct competitive research within specific industry domains</li>",
+                      "target": [
+                        "ul:nth-child(6) > li:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">The <code>search_domain_filter</code> parameter accepts an array of domain strings. The filter operates in two modes:</span>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Allowlist mode</strong>: Include only the specified domains (no <code>-</code> prefix)</li>",
+                      "target": [
+                        "ul:nth-child(8) > li:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Denylist mode</strong>: Exclude the specified domains (use <code>-</code> prefix)</li>",
+                      "target": [
+                        "ul:nth-child(8) > li:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/copy-button\" data-testid=\"copy-code-button\" aria-label=\"Copy the contents from the code block\">",
+                      "target": [
+                        ".code-block.print\\:print-color-exact[numberoflines=\"\\35 \"] > .top-3.right-4[data-floating-buttons=\"true\"] > .select-none.z-10[data-state=\"closed\"]:nth-child(1) > .group\\/copy-button.h-\\[26px\\][data-testid=\"copy-code-button\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-shellscript-code-__Allowlist__Only_se\">",
+                      "target": [
+                        ".code-block.print\\:print-color-exact[numberoflines=\"\\35 \"] > .top-3.right-4[data-floating-buttons=\"true\"] > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(110, 119, 129); --shiki-dark: #6A9955;\"># Allowlist: Only search these domains</span>",
+                      "target": [
+                        "code[numberoflines=\"\\35 \"][language=\"shellscript\"] > .line:nth-child(1) > span"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(149, 56, 0); --shiki-dark: #DCDCAA;\">\"search_domain_filter\"</span>",
+                      "target": [
+                        ".line:nth-child(2) > span:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(5, 80, 174); --shiki-dark: #DCDCAA;\">:</span>",
+                      "target": [
+                        ".line:nth-child(2) > span:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(31, 35, 40); --shiki-dark: #D4D4D4;\"> [</span>",
+                      "target": [
+                        ".line:nth-child(2) > span:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(10, 48, 105); --shiki-dark: #CE9178;\">\"nature.com\"</span>",
+                      "target": [
+                        ".line:nth-child(2) > span:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(31, 35, 40); --shiki-dark: #D4D4D4;\">, </span>",
+                      "target": [
+                        ".line:nth-child(2) > span:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(10, 48, 105); --shiki-dark: #CE9178;\">\"science.org\",</span>",
+                      "target": [
+                        ".line:nth-child(2) > span:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(10, 48, 105); --shiki-dark: #CE9178;\"> \"cell.com\"]</span>",
+                      "target": [
+                        ".line:nth-child(2) > span:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(110, 119, 129); --shiki-dark: #6A9955;\"># Denylist: Exclude these domains</span>",
+                      "target": [
+                        "code[numberoflines=\"\\35 \"][language=\"shellscript\"] > .line:nth-child(4) > span"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(149, 56, 0); --shiki-dark: #DCDCAA;\">\"search_domain_filter\"</span>",
+                      "target": [
+                        "code[numberoflines=\"\\35 \"][language=\"shellscript\"] > .line:nth-child(5) > span:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(5, 80, 174); --shiki-dark: #DCDCAA;\">:</span>",
+                      "target": [
+                        "code[numberoflines=\"\\35 \"][language=\"shellscript\"] > .line:nth-child(5) > span:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(31, 35, 40); --shiki-dark: #D4D4D4;\"> [</span>",
+                      "target": [
+                        "code[numberoflines=\"\\35 \"][language=\"shellscript\"] > .line:nth-child(5) > span:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(10, 48, 105); --shiki-dark: #CE9178;\">\"-reddit.com\"</span>",
+                      "target": [
+                        ".line:nth-child(5) > span:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(31, 35, 40); --shiki-dark: #D4D4D4;\">, </span>",
+                      "target": [
+                        ".line:nth-child(5) > span:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(10, 48, 105); --shiki-dark: #CE9178;\">\"-pinterest.com\",</span>",
+                      "target": [
+                        ".line:nth-child(5) > span:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(10, 48, 105); --shiki-dark: #CE9178;\"> \"-quora.com\"]</span>",
+                      "target": [
+                        ".line:nth-child(5) > span:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#filtering-capabilities\" class=\"-ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100 focus:opacity-100 focus:outline-0 group/link\" aria-label=\"Navigate to header\">",
+                      "target": [
+                        ".-ml-10.opacity-0[href$=\"#filtering-capabilities\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"cursor-pointer\">Filtering Capabilities</span>",
+                      "target": [
+                        "#filtering-capabilities > .cursor-pointer"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">Domain filters support flexible matching across different domain components:</span>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(11)"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#root-domain-filtering\" class=\"-ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100 focus:opacity-100 focus:outline-0 group/link\" aria-label=\"Navigate to header\">",
+                      "target": [
+                        ".-ml-10.opacity-0[href$=\"#root-domain-filtering\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"cursor-pointer\">Root Domain Filtering</span>",
+                      "target": [
+                        "#root-domain-filtering > .cursor-pointer"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">Specify a root domain to match all content from that domain and its subdomains:</span>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(13)"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/copy-button\" data-testid=\"copy-code-button\" aria-label=\"Copy the contents from the code block\">",
+                      "target": [
+                        ".code-block.print\\:print-color-exact.dark\\:twoslash-dark:nth-child(14) > .top-3.right-4[data-floating-buttons=\"true\"] > .select-none.z-10[data-state=\"closed\"]:nth-child(1) > .group\\/copy-button.h-\\[26px\\][data-testid=\"copy-code-button\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-shellscript-code-_search_domain_filte\">",
+                      "target": [
+                        ".code-block.print\\:print-color-exact.dark\\:twoslash-dark:nth-child(14) > .top-3.right-4[data-floating-buttons=\"true\"] > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(149, 56, 0); --shiki-dark: #DCDCAA;\">\"search_domain_filter\"</span>",
+                      "target": [
+                        ".code-block.print\\:print-color-exact.dark\\:twoslash-dark:nth-child(14) > .py-3\\.5.dark\\:bg-codeblock.children\\:\\!my-0 > .font-mono.whitespace-pre.leading-6 > pre[language=\"shellscript\"] > code[numberoflines=\"\\31 \"][language=\"shellscript\"] > .line > span:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(5, 80, 174); --shiki-dark: #DCDCAA;\">:</span>",
+                      "target": [
+                        ".code-block.print\\:print-color-exact.dark\\:twoslash-dark:nth-child(14) > .py-3\\.5.dark\\:bg-codeblock.children\\:\\!my-0 > .font-mono.whitespace-pre.leading-6 > pre[language=\"shellscript\"] > code[numberoflines=\"\\31 \"][language=\"shellscript\"] > .line > span:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(31, 35, 40); --shiki-dark: #D4D4D4;\"> [</span>",
+                      "target": [
+                        ".code-block.print\\:print-color-exact.dark\\:twoslash-dark:nth-child(14) > .py-3\\.5.dark\\:bg-codeblock.children\\:\\!my-0 > .font-mono.whitespace-pre.leading-6 > pre[language=\"shellscript\"] > code[numberoflines=\"\\31 \"][language=\"shellscript\"] > .line > span:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(10, 48, 105); --shiki-dark: #CE9178;\">\"wikipedia.org\"</span>",
+                      "target": [
+                        ".code-block.print\\:print-color-exact.dark\\:twoslash-dark:nth-child(14) > .py-3\\.5.dark\\:bg-codeblock.children\\:\\!my-0 > .font-mono.whitespace-pre.leading-6 > pre[language=\"shellscript\"] > code[numberoflines=\"\\31 \"][language=\"shellscript\"] > .line > span:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(31, 35, 40); --shiki-dark: #D4D4D4;\">]</span>",
+                      "target": [
+                        ".code-block.print\\:print-color-exact.dark\\:twoslash-dark:nth-child(14) > .py-3\\.5.dark\\:bg-codeblock.children\\:\\!my-0 > .font-mono.whitespace-pre.leading-6 > pre[language=\"shellscript\"] > code[numberoflines=\"\\31 \"][language=\"shellscript\"] > .line > span:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">This will match:</span>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(15)"
+                      ]
+                    },
+                    {
+                      "html": "<code>en.wikipedia.org</code>",
+                      "target": [
+                        "ul:nth-child(16) > li:nth-child(1) > code"
+                      ]
+                    },
+                    {
+                      "html": "<code>fr.wikipedia.org</code>",
+                      "target": [
+                        "ul:nth-child(16) > li:nth-child(2) > code"
+                      ]
+                    },
+                    {
+                      "html": "<code>de.wikipedia.org</code>",
+                      "target": [
+                        "ul:nth-child(16) > li:nth-child(3) > code"
+                      ]
+                    },
+                    {
+                      "html": "<li>Any other Wikipedia language subdomain</li>",
+                      "target": [
+                        "ul:nth-child(16) > li:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#top-level-domain-tld-filtering\" class=\"-ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100 focus:opacity-100 focus:outline-0 group/link\" aria-label=\"Navigate to header\">",
+                      "target": [
+                        "#top-level-domain-tld-filtering > .absolute > .-ml-10.opacity-0.group-hover\\:opacity-100"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"cursor-pointer\">Top-Level Domain (TLD) Filtering</span>",
+                      "target": [
+                        "#top-level-domain-tld-filtering > .cursor-pointer"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">Filter by top-level domain to target specific categories of sites:</span>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(18)"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/copy-button\" data-testid=\"copy-code-button\" aria-label=\"Copy the contents from the code block\">",
+                      "target": [
+                        ".code-block.print\\:print-color-exact.dark\\:twoslash-dark:nth-child(19) > .top-3.right-4[data-floating-buttons=\"true\"] > .select-none.z-10[data-state=\"closed\"]:nth-child(1) > .group\\/copy-button.h-\\[26px\\][data-testid=\"copy-code-button\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-shellscript-code-_search_domain_filte\">",
+                      "target": [
+                        ".code-block.print\\:print-color-exact.dark\\:twoslash-dark:nth-child(19) > .top-3.right-4[data-floating-buttons=\"true\"] > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(149, 56, 0); --shiki-dark: #DCDCAA;\">\"search_domain_filter\"</span>",
+                      "target": [
+                        ".code-block.print\\:print-color-exact.dark\\:twoslash-dark:nth-child(19) > .py-3\\.5.dark\\:bg-codeblock.children\\:\\!my-0 > .font-mono.whitespace-pre.leading-6 > pre[language=\"shellscript\"] > code[numberoflines=\"\\31 \"][language=\"shellscript\"] > .line > span:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(5, 80, 174); --shiki-dark: #DCDCAA;\">:</span>",
+                      "target": [
+                        ".code-block.print\\:print-color-exact.dark\\:twoslash-dark:nth-child(19) > .py-3\\.5.dark\\:bg-codeblock.children\\:\\!my-0 > .font-mono.whitespace-pre.leading-6 > pre[language=\"shellscript\"] > code[numberoflines=\"\\31 \"][language=\"shellscript\"] > .line > span:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(31, 35, 40); --shiki-dark: #D4D4D4;\"> [</span>",
+                      "target": [
+                        ".code-block.print\\:print-color-exact.dark\\:twoslash-dark:nth-child(19) > .py-3\\.5.dark\\:bg-codeblock.children\\:\\!my-0 > .font-mono.whitespace-pre.leading-6 > pre[language=\"shellscript\"] > code[numberoflines=\"\\31 \"][language=\"shellscript\"] > .line > span:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(10, 48, 105); --shiki-dark: #CE9178;\">\".gov\"</span>",
+                      "target": [
+                        ".code-block.print\\:print-color-exact.dark\\:twoslash-dark:nth-child(19) > .py-3\\.5.dark\\:bg-codeblock.children\\:\\!my-0 > .font-mono.whitespace-pre.leading-6 > pre[language=\"shellscript\"] > code[numberoflines=\"\\31 \"][language=\"shellscript\"] > .line > span:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<span style=\"color: rgb(31, 35, 40); --shiki-dark: #D4D4D4;\">]</span>",
+                      "target": [
+                        ".code-block.print\\:print-color-exact.dark\\:twoslash-dark:nth-child(19) > .py-3\\.5.dark\\:bg-codeblock.children\\:\\!my-0 > .font-mono.whitespace-pre.leading-6 > pre[language=\"shellscript\"] > code[numberoflines=\"\\31 \"][language=\"shellscript\"] > .line > span:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">This will match all government domains:</span>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(20)"
+                      ]
+                    },
+                    {
+                      "html": "<code>nasa.gov</code>",
+                      "target": [
+                        "ul:nth-child(21) > li:nth-child(1) > code"
+                      ]
+                    },
+                    {
+                      "html": "<code>cdc.gov</code>",
+                      "target": [
+                        "ul:nth-child(21) > li:nth-child(2) > code"
+                      ]
+                    },
+                    {
+                      "html": "<code>irs.gov</code>",
+                      "target": [
+                        "ul:nth-child(21) > li:nth-child(3) > code"
+                      ]
+                    },
+                    {
+                      "html": "<li>Any other <code>.gov</code> domain</li>",
+                      "target": [
+                        "ul:nth-child(21) > li:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<svg width=\"11\" height=\"14\" viewBox=\"0 0 11 14\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\" class=\"text-green-800 dark:text-green-300 w-3.5 h-auto\" aria-label=\"Tip\">",
+                      "target": [
+                        ".border-green-200.bg-green-50.dark\\:border-green-900:nth-child(22) > .mt-0\\.5.w-4[data-component-part=\"callout-icon\"] > .w-3\\.5.h-auto[width=\"\\31 1\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">TLD filtering is particularly useful for targeting specific types of organizations, such as <code>.gov</code> for government sites, <code>.edu</code> for educational institutions, or country-specific TLDs like <code>.uk</code> or <code>.ca</code>.</span>",
+                      "target": [
+                        ".border-green-200.bg-green-50.dark\\:border-green-900:nth-child(22) > .\\[\\&_kbd\\]\\:bg-background-light.dark\\:\\[\\&_kbd\\]\\:bg-background-dark.\\[\\&_code\\]\\:\\!text-current > span[data-as=\"p\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#domain-part-filtering\" class=\"-ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100 focus:opacity-100 focus:outline-0 group/link\" aria-label=\"Navigate to header\">",
+                      "target": [
+                        ".-ml-10.opacity-0[href$=\"#domain-part-filtering\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"cursor-pointer\">Domain Part Filtering</span>",
+                      "target": [
+                        "#domain-part-filtering > .cursor-pointer"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">Any part of a domain can be used as a filter. The system will match domains containing that component.</span>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(24)"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#examples\" class=\"-ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100 focus:opacity-100 focus:outline-0 group/link\" aria-label=\"Navigate to header\">",
+                      "target": [
+                        ".-ml-10.opacity-0[href$=\"#examples\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"cursor-pointer\">Examples</span>",
+                      "target": [
+                        "#examples > .cursor-pointer"
+                      ]
+                    },
+                    {
+                      "html": "<strong>1. Allowlist Specific Domains</strong>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(26) > strong"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">This example limits search results to authoritative academic publishers:</span>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(27)"
+                      ]
+                    },
+                    {
+                      "html": "<strong>Request Example</strong>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(28) > strong"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">Python</div>",
+                      "target": [
+                        "#radix-_r_1l_-trigger-0 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">Typescript</div>",
+                      "target": [
+                        "#radix-_r_1l_-trigger-1 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">cURL</div>",
+                      "target": [
+                        "#radix-_r_1l_-trigger-2 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/copy-button\" data-testid=\"copy-code-button\" aria-label=\"Copy the contents from the code block\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(29) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(1) > .group\\/copy-button.h-\\[26px\\][data-testid=\"copy-code-button\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-python-code-from_perplexity_impo\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(29) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<div data-state=\"active\" data-orientation=\"horizontal\" role=\"tabpanel\" aria-labelledby=\"radix-_r_1l_-trigger-0\" id=\"radix-_r_1l_-content-0\" tabindex=\"-1\" class=\"w-full min-w-full max-w-full h-full max-h-full relative [&amp;_[data-component-part=code-block-root]]:!rounded-xt\" style=\"animation-duration: 0s;\">",
+                      "target": [
+                        "#radix-_r_1l_-content-0"
+                      ]
+                    },
+                    {
+                      "html": "<strong>2. Tech News Sources</strong>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(30) > strong"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">Search across major technology news websites:</span>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(31)"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">Python</div>",
+                      "target": [
+                        "#radix-_r_1r_-trigger-0 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">Typescript</div>",
+                      "target": [
+                        "#radix-_r_1r_-trigger-1 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">cURL</div>",
+                      "target": [
+                        "#radix-_r_1r_-trigger-2 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/copy-button\" data-testid=\"copy-code-button\" aria-label=\"Copy the contents from the code block\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(32) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(1) > .group\\/copy-button.h-\\[26px\\][data-testid=\"copy-code-button\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-python-code-from_perplexity_impo\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(32) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<div data-state=\"active\" data-orientation=\"horizontal\" role=\"tabpanel\" aria-labelledby=\"radix-_r_1r_-trigger-0\" id=\"radix-_r_1r_-content-0\" tabindex=\"-1\" class=\"w-full min-w-full max-w-full h-full max-h-full relative [&amp;_[data-component-part=code-block-root]]:!rounded-xt\" style=\"animation-duration: 0s;\">",
+                      "target": [
+                        "#radix-_r_1r_-content-0"
+                      ]
+                    },
+                    {
+                      "html": "<strong>3. Government and Educational Sources (TLD Filtering)</strong>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(33) > strong"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">Use top-level domain filtering to search across all government or educational institutions:</span>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(34)"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">Python</div>",
+                      "target": [
+                        "#radix-_r_21_-trigger-0 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">Typescript</div>",
+                      "target": [
+                        "#radix-_r_21_-trigger-1 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">cURL</div>",
+                      "target": [
+                        "#radix-_r_21_-trigger-2 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/copy-button\" data-testid=\"copy-code-button\" aria-label=\"Copy the contents from the code block\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(35) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(1) > .group\\/copy-button.h-\\[26px\\][data-testid=\"copy-code-button\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-python-code-from_perplexity_impo\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(35) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<div data-state=\"active\" data-orientation=\"horizontal\" role=\"tabpanel\" aria-labelledby=\"radix-_r_21_-trigger-0\" id=\"radix-_r_21_-content-0\" tabindex=\"-1\" class=\"w-full min-w-full max-w-full h-full max-h-full relative [&amp;_[data-component-part=code-block-root]]:!rounded-xt\" style=\"animation-duration: 0s;\">",
+                      "target": [
+                        "#radix-_r_21_-content-0"
+                      ]
+                    },
+                    {
+                      "html": "<strong>4. Wikipedia Across Languages (Subdomain Matching)</strong>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(36) > strong"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">Search across all Wikipedia language editions by specifying the root domain:</span>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(37)"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">Python</div>",
+                      "target": [
+                        "#radix-_r_27_-trigger-0 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">Typescript</div>",
+                      "target": [
+                        "#radix-_r_27_-trigger-1 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">cURL</div>",
+                      "target": [
+                        "#radix-_r_27_-trigger-2 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/copy-button\" data-testid=\"copy-code-button\" aria-label=\"Copy the contents from the code block\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(38) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(1) > .group\\/copy-button.h-\\[26px\\][data-testid=\"copy-code-button\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-python-code-from_perplexity_impo\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(38) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<div data-state=\"active\" data-orientation=\"horizontal\" role=\"tabpanel\" aria-labelledby=\"radix-_r_27_-trigger-0\" id=\"radix-_r_27_-content-0\" tabindex=\"-1\" class=\"w-full min-w-full max-w-full h-full max-h-full relative [&amp;_[data-component-part=code-block-root]]:!rounded-xt\" style=\"animation-duration: 0s;\">",
+                      "target": [
+                        "#radix-_r_27_-content-0"
+                      ]
+                    },
+                    {
+                      "html": "<strong>5. Denylist Specific Domains</strong>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(39) > strong"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">This example shows how to exclude specific domains from search results by prefixing the domain name with a minus sign (<code>-</code>):</span>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(40)"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">Python</div>",
+                      "target": [
+                        "#radix-_r_2d_-trigger-0 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">Typescript</div>",
+                      "target": [
+                        "#radix-_r_2d_-trigger-1 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">cURL</div>",
+                      "target": [
+                        "#radix-_r_2d_-trigger-2 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/copy-button\" data-testid=\"copy-code-button\" aria-label=\"Copy the contents from the code block\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(41) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(1) > .group\\/copy-button.h-\\[26px\\][data-testid=\"copy-code-button\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-python-code-from_perplexity_impo\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(41) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<div data-state=\"active\" data-orientation=\"horizontal\" role=\"tabpanel\" aria-labelledby=\"radix-_r_2d_-trigger-0\" id=\"radix-_r_2d_-content-0\" tabindex=\"-1\" class=\"w-full min-w-full max-w-full h-full max-h-full relative [&amp;_[data-component-part=code-block-root]]:!rounded-xt\" style=\"animation-duration: 0s;\">",
+                      "target": [
+                        "#radix-_r_2d_-content-0"
+                      ]
+                    },
+                    {
+                      "html": "<strong>6. Combining Domain Filter with Other Filters</strong>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(42) > strong"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">Domain filters work seamlessly with other search parameters for precise control:</span>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(43)"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">Python</div>",
+                      "target": [
+                        "#radix-_r_2j_-trigger-0 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">Typescript</div>",
+                      "target": [
+                        "#radix-_r_2j_-trigger-1 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">cURL</div>",
+                      "target": [
+                        "#radix-_r_2j_-trigger-2 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/copy-button\" data-testid=\"copy-code-button\" aria-label=\"Copy the contents from the code block\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(44) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(1) > .group\\/copy-button.h-\\[26px\\][data-testid=\"copy-code-button\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-python-code-from_perplexity_impo\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(44) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<div data-state=\"active\" data-orientation=\"horizontal\" role=\"tabpanel\" aria-labelledby=\"radix-_r_2j_-trigger-0\" id=\"radix-_r_2j_-content-0\" tabindex=\"-1\" class=\"w-full min-w-full max-w-full h-full max-h-full relative [&amp;_[data-component-part=code-block-root]]:!rounded-xt\" style=\"animation-duration: 0s;\">",
+                      "target": [
+                        "#radix-_r_2j_-content-0"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#parameter-reference\" class=\"-ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100 focus:opacity-100 focus:outline-0 group/link\" aria-label=\"Navigate to header\">",
+                      "target": [
+                        ".-ml-10.opacity-0[href$=\"#parameter-reference\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"cursor-pointer\">Parameter Reference</span>",
+                      "target": [
+                        "#parameter-reference > .cursor-pointer"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#search_domain_filter\" class=\"-ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100 focus:opacity-100 focus:outline-0 group/link\" aria-label=\"Navigate to header\">",
+                      "target": [
+                        ".-ml-10.opacity-0[href$=\"#search_domain_filter\"]"
+                      ]
+                    },
+                    {
+                      "html": "<code>search_domain_filter</code>",
+                      "target": [
+                        ".cursor-pointer > code"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Type</strong>: Array of strings</li>",
+                      "target": [
+                        "ul:nth-child(47) > li:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Format</strong>:\n<ul>\n<li>Domain names without protocol (e.g., “example.com”)</li>\n<li>Prefix with <code>-</code> for denylisting (e.g., “-reddit.com”)</li>\n</ul>\n</li>",
+                      "target": [
+                        "ul:nth-child(47) > li:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Description</strong>: Filters search results to include or exclude content from specified domains</li>",
+                      "target": [
+                        "ul:nth-child(47) > li:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Optional</strong>: Yes</li>",
+                      "target": [
+                        "ul:nth-child(47) > li:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Maximum</strong>: 20 domains per request</li>",
+                      "target": [
+                        "ul:nth-child(47) > li:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Modes</strong>:\n<ul>\n<li>Allowlist mode: Include only specified domains (no <code>-</code> prefix)</li>\n<li>Denylist mode: Exclude specified domains (use <code>-</code> prefix)</li>\n</ul>\n</li>",
+                      "target": [
+                        "ul:nth-child(47) > li:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Example</strong>:\n<ul>\n<li>Allowlist: <code>\"search_domain_filter\": [\"nature.com\", \"science.org\"]</code></li>\n<li>Denylist: <code>\"search_domain_filter\": [\"-reddit.com\", \"-pinterest.com\"]</code></li>\n</ul>\n</li>",
+                      "target": [
+                        "ul:nth-child(47) > li:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#domain-format-guidelines\" class=\"-ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100 focus:opacity-100 focus:outline-0 group/link\" aria-label=\"Navigate to header\">",
+                      "target": [
+                        ".-ml-10.opacity-0[href$=\"#domain-format-guidelines\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"cursor-pointer\">Domain Format Guidelines</span>",
+                      "target": [
+                        "#domain-format-guidelines > .cursor-pointer"
+                      ]
+                    },
+                    {
+                      "html": "<strong>Correct Domain Formats:</strong>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(49) > strong"
+                      ]
+                    },
+                    {
+                      "html": "<li><code>\"nature.com\"</code> - Root domain (matches nature.com and all subdomains)</li>",
+                      "target": [
+                        "ul:nth-child(50) > li:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<li><code>\"blog.example.com\"</code> - Specific subdomain</li>",
+                      "target": [
+                        "ul:nth-child(50) > li:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<li><code>\"arxiv.org\"</code> - Root domain (matches all subdomains)</li>",
+                      "target": [
+                        "ul:nth-child(50) > li:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<li><code>\".gov\"</code> - Top-level domain (matches all .gov sites)</li>",
+                      "target": [
+                        "ul:nth-child(50) > li:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<li><code>\".edu\"</code> - Top-level domain (matches all .edu sites)</li>",
+                      "target": [
+                        "ul:nth-child(50) > li:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<li><code>\".uk\"</code> - Country-code TLD (matches all .uk sites)</li>",
+                      "target": [
+                        "ul:nth-child(50) > li:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<li><code>\"wikipedia.org\"</code> - Matches en.wikipedia.org, fr.wikipedia.org, etc.</li>",
+                      "target": [
+                        "ul:nth-child(50) > li:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<li><code>\"-reddit.com\"</code> - Exclude entire domain and all subdomains</li>",
+                      "target": [
+                        "ul:nth-child(50) > li:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<li><code>\"-pinterest.com\"</code> - Exclude domain</li>",
+                      "target": [
+                        "ul:nth-child(50) > li:nth-child(9)"
+                      ]
+                    },
+                    {
+                      "html": "<li><code>\"-.gov\"</code> - Exclude all .gov domains</li>",
+                      "target": [
+                        "ul:nth-child(50) > li:nth-child(10)"
+                      ]
+                    },
+                    {
+                      "html": "<strong>Incorrect Domain Formats:</strong>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(51) > strong"
+                      ]
+                    },
+                    {
+                      "html": "<li>❌ <code>\"https://nature.com\"</code> - Don’t include protocol</li>",
+                      "target": [
+                        "ul:nth-child(52) > li:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<li>❌ <code>\"nature.com/\"</code> - Don’t include trailing slash</li>",
+                      "target": [
+                        "ul:nth-child(52) > li:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<li>❌ <code>\"nature.com/articles\"</code> - Don’t include path (path filtering coming soon)</li>",
+                      "target": [
+                        "ul:nth-child(52) > li:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<li>❌ <code>\"www.nature.com\"</code> - Avoid www prefix (use root domain)</li>",
+                      "target": [
+                        "ul:nth-child(52) > li:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#best-practices\" class=\"-ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100 focus:opacity-100 focus:outline-0 group/link\" aria-label=\"Navigate to header\">",
+                      "target": [
+                        ".-ml-10.opacity-0[href$=\"#best-practices\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"cursor-pointer\">Best Practices</span>",
+                      "target": [
+                        "#best-practices > .cursor-pointer"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#domain-selection-strategy\" class=\"-ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100 focus:opacity-100 focus:outline-0 group/link\" aria-label=\"Navigate to header\">",
+                      "target": [
+                        ".-ml-10.opacity-0[href=\"#domain-selection-strategy\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"cursor-pointer\">Domain Selection Strategy</span>",
+                      "target": [
+                        "#domain-selection-strategy > .cursor-pointer"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Use Root Domains for Broad Coverage</strong>: Specify root domains (e.g., “wikipedia.org”) to match all subdomains automatically, including different language versions and regional sites.</li>",
+                      "target": [
+                        "ul:nth-child(55) > li:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Use TLDs for Categorical Filtering</strong>: Target specific organization types with TLD filters like <code>.gov</code> for government, <code>.edu</code> for education, or <code>.org</code> for non-profits.</li>",
+                      "target": [
+                        "ul:nth-child(55) > li:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Be Specific When Needed</strong>: Choose specific domains that are directly relevant to your search query to ensure high-quality results.</li>",
+                      "target": [
+                        "ul:nth-child(55) > li:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Quality Over Quantity</strong>: Using fewer, highly relevant domains often produces better results than maximizing the 20-domain limit.</li>",
+                      "target": [
+                        "ul:nth-child(55) > li:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Consider Domain Authority</strong>: Prioritize authoritative sources in your field for more reliable information.</li>",
+                      "target": [
+                        "ul:nth-child(55) > li:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Choose Your Mode</strong>: Use either allowlist mode (include only) OR denylist mode (exclude), but not both in the same request. Denylisting is useful when you want broad search coverage but need to exclude specific low-quality or irrelevant sources.</li>",
+                      "target": [
+                        "ul:nth-child(55) > li:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#locale-and-regional-targeting\" class=\"-ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100 focus:opacity-100 focus:outline-0 group/link\" aria-label=\"Navigate to header\">",
+                      "target": [
+                        ".-ml-10.opacity-0[href=\"#locale-and-regional-targeting\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"cursor-pointer\">Locale and Regional Targeting</span>",
+                      "target": [
+                        "#locale-and-regional-targeting > .cursor-pointer"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">While domain filters don’t directly filter by user location, you can target specific locales using:</span>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(57)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Country-code TLDs</strong>: Use filters like <code>.uk</code>, <code>.ca</code>, <code>.de</code>, <code>.jp</code> to target country-specific domains</li>",
+                      "target": [
+                        "ul:nth-child(58) > li:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Subdomain matching</strong>: Specify regional subdomains when available (e.g., “uk.domain.com”)</li>",
+                      "target": [
+                        "ul:nth-child(58) > li:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Combined approach</strong>: Mix country TLDs with specific trusted domains for precise regional filtering</li>",
+                      "target": [
+                        "ul:nth-child(58) > li:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<svg width=\"11\" height=\"14\" viewBox=\"0 0 11 14\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\" class=\"text-green-800 dark:text-green-300 w-3.5 h-auto\" aria-label=\"Tip\">",
+                      "target": [
+                        ".border-green-200.bg-green-50.dark\\:border-green-900:nth-child(59) > .mt-0\\.5.w-4[data-component-part=\"callout-icon\"] > .w-3\\.5.h-auto[width=\"\\31 1\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">For international research, combine TLD filtering with the <code>search_language_filter</code> parameter to refine results by both location and language.</span>",
+                      "target": [
+                        ".border-green-200.bg-green-50.dark\\:border-green-900:nth-child(59) > .\\[\\&_kbd\\]\\:bg-background-light.dark\\:\\[\\&_kbd\\]\\:bg-background-dark.\\[\\&_code\\]\\:\\!text-current > span[data-as=\"p\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#domain-selection\" class=\"-ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100 focus:opacity-100 focus:outline-0 group/link\" aria-label=\"Navigate to header\">",
+                      "target": [
+                        ".-ml-10.opacity-0[href$=\"#domain-selection\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"cursor-pointer\">Domain Selection</span>",
+                      "target": [
+                        "#domain-selection > .cursor-pointer"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Use Trusted Sources</strong>: Select a specific set of trusted sources you want to search within (e.g., academic research, official documentation).</li>",
+                      "target": [
+                        "ul:nth-child(61) > li:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Leverage TLD Filtering</strong>: When researching topics that span many sites of the same type, use TLD filters to cast a wider net (e.g., <code>.gov</code> for policy research).</li>",
+                      "target": [
+                        "ul:nth-child(61) > li:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Focus on Quality</strong>: Choose authoritative domains that consistently provide reliable information relevant to your queries.</li>",
+                      "target": [
+                        "ul:nth-child(61) > li:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#client-side-validation\" class=\"-ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100 focus:opacity-100 focus:outline-0 group/link\" aria-label=\"Navigate to header\">",
+                      "target": [
+                        ".-ml-10.opacity-0[href$=\"#client-side-validation\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"cursor-pointer\">Client-Side Validation</span>",
+                      "target": [
+                        "#client-side-validation > .cursor-pointer"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">Validate domain formats on the client side before sending requests:</span>",
+                      "target": [
+                        "span[data-as=\"p\"]:nth-child(63)"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">Python</div>",
+                      "target": [
+                        "#radix-_r_2p_-trigger-0 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"peer/title flex items-center gap-1.5 px-1.5 rounded-lg z-10 group-hover:bg-gray-200/50 dark:group-hover:bg-gray-700/70 group-hover:text-primary dark:group-hover:text-primary-light\">Typescript</div>",
+                      "target": [
+                        "#radix-_r_2p_-trigger-1 > .peer\\/title.px-1\\.5.group-hover\\:bg-gray-200\\/50"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/copy-button\" data-testid=\"copy-code-button\" aria-label=\"Copy the contents from the code block\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(64) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(1) > .group\\/copy-button.h-\\[26px\\][data-testid=\"copy-code-button\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"h-[26px] w-[26px] flex items-center justify-center rounded-md backdrop-blur group/ask-ai-button\" id=\"ask-ai-code-block-button\" aria-label=\"Ask AI\" data-chat-payload-element-id=\"lang-python-code-import_re__def_valid\">",
+                      "target": [
+                        ".code-group.p-0\\.5.bg-gray-50:nth-child(64) > .pr-2\\.5.\\*\\:first\\:\\*\\:ml-2\\.5[data-component-part=\"code-group-tab-bar\"] > .justify-end.shrink-0.gap-1\\.5 > .select-none.z-10[data-state=\"closed\"]:nth-child(2) > .group\\/ask-ai-button.h-\\[26px\\][aria-label=\"Ask\\ AI\"]"
+                      ]
+                    },
+                    {
+                      "html": "<div data-state=\"active\" data-orientation=\"horizontal\" role=\"tabpanel\" aria-labelledby=\"radix-_r_2p_-trigger-0\" id=\"radix-_r_2p_-content-0\" tabindex=\"-1\" class=\"w-full min-w-full max-w-full h-full max-h-full relative [&amp;_[data-component-part=code-block-root]]:!rounded-xt\" style=\"animation-duration: 0s;\">",
+                      "target": [
+                        "#radix-_r_2p_-content-0"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"#performance-considerations\" class=\"-ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100 focus:opacity-100 focus:outline-0 group/link\" aria-label=\"Navigate to header\">",
+                      "target": [
+                        ".-ml-10.opacity-0[href=\"#performance-considerations\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"cursor-pointer\">Performance Considerations</span>",
+                      "target": [
+                        "#performance-considerations > .cursor-pointer"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Result Availability</strong>: Narrowing to specific domains may reduce the number of available results. Be prepared to handle cases where fewer results are returned than requested.</li>",
+                      "target": [
+                        "ul:nth-child(66) > li:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Domain Coverage</strong>: Ensure the domains you specify actually contain content relevant to your query. Overly restrictive filters may return zero results.</li>",
+                      "target": [
+                        "ul:nth-child(66) > li:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<li><strong>Combination Effects</strong>: Domain filters combined with other restrictive filters (date, language) can significantly reduce result counts.</li>",
+                      "target": [
+                        "ul:nth-child(66) > li:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<svg width=\"11\" height=\"14\" viewBox=\"0 0 11 14\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\" class=\"text-green-800 dark:text-green-300 w-3.5 h-auto\" aria-label=\"Tip\">",
+                      "target": [
+                        ".border-green-200.bg-green-50.dark\\:border-green-900:nth-child(67) > .mt-0\\.5.w-4[data-component-part=\"callout-icon\"] > .w-3\\.5.h-auto[width=\"\\31 1\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span data-as=\"p\">",
+                      "target": [
+                        ".border-green-200.bg-green-50.dark\\:border-green-900:nth-child(67) > .\\[\\&_kbd\\]\\:bg-background-light.dark\\:\\[\\&_kbd\\]\\:bg-background-dark.\\[\\&_code\\]\\:\\!text-current > span[data-as=\"p\"]"
+                      ]
+                    },
+                    {
+                      "html": "<p class=\"inline-block text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap\">Was this page helpful?</p>",
+                      "target": [
+                        ".inline-block"
+                      ]
+                    },
+                    {
+                      "html": "<button id=\"feedback-thumbs-up\" class=\"px-3.5 py-2 flex flex-row gap-3 items-center border-standard rounded-xl text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 bg-white/50 dark:bg-codeblock/50 hover:border-gray-500 hover:dark:border-gray-500\">",
+                      "target": [
+                        "#feedback-thumbs-up"
+                      ]
+                    },
+                    {
+                      "html": "<button id=\"feedback-thumbs-down\" class=\"px-3.5 py-2 flex flex-row gap-3 items-center border-standard rounded-xl text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 bg-white/50 dark:bg-codeblock/50 hover:border-gray-500 hover:dark:border-gray-500\">",
+                      "target": [
+                        "#feedback-thumbs-down"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"pagination-title font-medium text-gray-900 dark:text-gray-200\">Search Language Filter</div>",
+                      "target": [
+                        ".pagination-prev > .space-y-1 > .pagination-title.dark\\:text-gray-200.text-gray-900"
+                      ]
+                    },
+                    {
+                      "html": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-chevron-left size-3.5 text-gray-400 dark:text-gray-600 group-hover:text-gray-500 dark:group-hover:text-gray-500\">",
+                      "target": [
+                        ".lucide-chevron-left"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"font-medium\">Previous</span>",
+                      "target": [
+                        ".pagination-prev > .space-y-1 > .gap-x-1.dark\\:text-gray-500.group-hover\\:text-gray-600 > .font-medium"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"pagination-title font-medium text-gray-900 dark:text-gray-200 text-right\">Best Practices</div>",
+                      "target": [
+                        ".text-right"
+                      ]
+                    },
+                    {
+                      "html": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-chevron-right size-3.5 text-gray-400 dark:text-gray-600 group-hover:text-gray-500 dark:group-hover:text-gray-500\">",
+                      "target": [
+                        ".lucide-chevron-right"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"font-medium\">Next</span>",
+                      "target": [
+                        ".gap-x-1.flex-row-reverse.dark\\:text-gray-500 > .font-medium"
+                      ]
+                    },
+                    {
+                      "html": "<textarea id=\"chat-assistant-textarea\" aria-label=\"Ask a question...\" autocomplete=\"off\" placeholder=\"Ask a question...\" class=\"chat-assistant-input w-full bg-transparent border-0 peer/input text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 !outline-none focus:!outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 font-bodyWeight text-sm\" style=\"resize: none; height: 60px !important;\">",
+                      "target": [
+                        ".sm\\:pb-6 > .bg-background-light\\/90.dark\\:bg-background-dark\\/90.backdrop-blur-xl > .items-end.relative.flex > .chat-assistant-input.peer\\/input.placeholder-gray-500"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"absolute right-11 bottom-3 text-xs font-medium text-gray-400 dark:text-gray-500 select-none pointer-events-none peer-focus/input:hidden hidden sm:inline\">Ctrl<!-- -->+I</span>",
+                      "target": [
+                        ".right-11"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"chat-assistant-send-button flex justify-center items-center rounded-full p-1 size-6 bg-primary/30 dark:bg-primary-dark/30 absolute right-2.5 bottom-2\" aria-label=\"Send message\" disabled=\"\">",
+                      "target": [
+                        ".right-2\\.5"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks",
+              "html": "<html lang=\"en\" class=\"__variable_47c970 __variable_3bbdad [--scroll-mt:2.5rem] light\" data-banner-state=\"hidden\" data-assistant-state=\"closed\" data-page-mode=\"none\" data-current-path=\"/docs/search/filters/domain-filter\" style=\"color-scheme: light; --assistant-sheet-width: 0px; --banner-height: 0px;\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.keyboard",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 6,
+      "passes_count": 37,
+      "total_penalty": 110,
+      "penalty_per_rule": {
+        "button-name": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "color-contrast": {
+          "impact": "serious",
+          "node_count": 9,
+          "raw_penalty": 135,
+          "capped_penalty": 25
+        },
+        "duplicate-id-active": {
+          "impact": "serious",
+          "node_count": 3,
+          "raw_penalty": 45,
+          "capped_penalty": 25
+        },
+        "duplicate-id": {
+          "impact": "minor",
+          "node_count": 3,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "landmark-one-main": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        },
+        "region": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        }
+      },
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 0,
+        "author": 0,
+        "date": 0,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title",
+          "schema:name"
+        ],
+        "description": [],
+        "author": [],
+        "date": [],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 3,
+      "fields_total": 7,
+      "json_ld_type": "WebSite"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "absent",
+        "last_modified": "absent",
+        "cache_control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": true,
+          "details": [
+            "link rel=alternate type=application/xml href=/sitemap.xml"
+          ]
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 1,
+        "agent_content_hints": 3
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "landing",
+      "detection": {
+        "schema_type_raw": "WebSite",
+        "source": "dom",
+        "matched_value": "landing"
+      },
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.1,
+        "structured_data": 0.3,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "landing",
+  "universal_score": 49.98449883449884,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 56.36363636363636,
+    "content_extractability": 79.63461538461539,
+    "structured_data": 47.833333333333336,
+    "dom_navigability": 0,
+    "metadata_completeness": 40,
+    "http_compliance": 64.0
+  },
+  "evidence_references": null
+}

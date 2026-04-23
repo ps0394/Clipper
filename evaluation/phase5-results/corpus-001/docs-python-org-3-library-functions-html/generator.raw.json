@@ -1,0 +1,40 @@
+```json
+[
+    {
+        "question": "What happens if a file cannot be opened using the `open()` function in Python?",
+        "answer": "An `OSError` is raised.",
+        "supporting_sentences": [
+            "If the file cannot be opened, an `OSError` is raised."
+        ]
+    },
+    {
+        "question": "What is the default mode for the `open()` function in Python?",
+        "answer": "The default mode is `'r'` (open for reading text, a synonym of `'rt'`).",
+        "supporting_sentences": [
+            "mode is an optional string that specifies the mode in which the file is opened. It defaults to `'r'` which means open for reading in text mode.",
+            "The default mode is `'r'` (open for reading text, a synonym of `'rt'`)."
+        ]
+    },
+    {
+        "question": "What type of object is returned when opening a file in binary mode with buffering using the `open()` function?",
+        "answer": "A subclass of `io.BufferedIOBase` is returned.",
+        "supporting_sentences": [
+            "When used to open a file in a binary mode with buffering, the returned class is a subclass of `io.BufferedIOBase`."
+        ]
+    },
+    {
+        "question": "What error handler replaces malformed data with Python’s backslashed escape sequences?",
+        "answer": "The `'backslashreplace'` error handler.",
+        "supporting_sentences": [
+            "'backslashreplace' replaces malformed data by Python’s backslashed escape sequences."
+        ]
+    },
+    {
+        "question": "What happens to the underlying file descriptor if `closefd` is set to `False` in the `open()` function?",
+        "answer": "The underlying file descriptor will be kept open when the file is closed.",
+        "supporting_sentences": [
+            "If `closefd` is `False` and a file descriptor rather than a filename was given, the underlying file descriptor will be kept open when the file is closed."
+        ]
+    }
+]
+```

@@ -1,0 +1,4198 @@
+{
+  "parseability_score": 69.44842424598875,
+  "failure_mode": "moderate_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-001\\docs-docker-com-get-started-02-our-app\\page.rendered.html",
+  "url": "https://docs.docker.com/get-started/02_our_app/",
+  "component_scores": {
+    "semantic_html": 76.18181818181819,
+    "content_extractability": 72.514848502671,
+    "structured_data": 87.0,
+    "dom_navigability": 0,
+    "metadata_completeness": 100,
+    "http_compliance": 85.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 5,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "article",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "aside",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "figure",
+          "count": 2,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 7,
+      "heading_elements_count": 9,
+      "scoring_breakdown": {
+        "semantic_coverage": 38.18181818181818,
+        "aria_bonus": 20,
+        "heading_bonus": 18
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 7394,
+        "extracted_text_length": 4326,
+        "extracted_chars": 4326,
+        "extraction_ratio": 0.585,
+        "extracted_title": "Containerize an application",
+        "extracted_preview": "Home / Get started / Docker workshop / Part 1: Containerize an application Containerize an application Open Markdown Ask Docs AI Claude Open in Claude For the rest of this guide, you'll be working with a simple todo\r\nlist manager that runs on Node.js. If you're not familiar with Node.js,\r\ndon't worr...",
+        "original_headings": 9,
+        "extracted_headings": 1,
+        "original_lists": 18,
+        "extracted_lists": 4,
+        "original_code_blocks": 47,
+        "extracted_code_blocks": 31,
+        "has_main_element": true,
+        "has_article_element": true
+      },
+      "score_breakdown": {
+        "signal_to_noise": 38.35812821206384,
+        "structure_preservation": 9.929078014184396,
+        "boundary_detection": 24.227642276422763
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 2,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 3
+      },
+      "schema_types_found": [
+        "TechArticle",
+        "BreadcrumbList"
+      ],
+      "key_fields_found": [],
+      "formats_present": 3,
+      "score_breakdown": {
+        "type_appropriateness": 20.0,
+        "field_completeness": 30.0,
+        "multiple_formats": 17,
+        "schema_validation": 20.0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [
+          {
+            "index": 1,
+            "type": "BreadcrumbList",
+            "present": 1,
+            "expected": 1,
+            "ratio": 1.0,
+            "missing": [],
+            "invalid": []
+          }
+        ],
+        "unvalidated_items": 1,
+        "missing_fields": [],
+        "invalid_fields": [],
+        "average_ratio": 1.0
+      },
+      "sample_structured_data": {
+        "json-ld": [
+          {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "articleSection": "get-started",
+            "author": {
+              "@type": "Organization",
+              "name": "Docker Inc",
+              "url": "https://www.docker.com"
+            },
+            "dateModified": "2026-01-28T21:28:31+05:30",
+            "description": "Follow this step-by-step guide to learn how to create and run a containerized application using Docker ",
+            "headline": "Part 1: Containerize an application",
+            "inLanguage": "en",
+            "isPartOf": {
+              "@id": "https://docs.docker.com/get-started/workshop/",
+              "@type": "WebPage",
+              "name": "Docker workshop"
+            },
+            "keywords": [
+              "dockerfile",
+              "example",
+              "Containerize",
+              "an",
+              "application",
+              "run",
+              "docker",
+              "file",
+              "running",
+              "docker",
+              "file",
+              "how",
+              "to",
+              "run",
+              "dockerfile",
+              "example",
+              "dockerfile",
+              "how",
+              "to",
+              "create",
+              "a",
+              "docker",
+              "container",
+              "create",
+              "dockerfile",
+              "simple",
+              "dockerfile",
+              "creating",
+              "containers"
+            ],
+            "mainEntityOfPage": {
+              "@id": "https://docs.docker.com/get-started/workshop/02_our_app/",
+              "@type": "WebPage"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://docs.docker.com/assets/images/docker-logo.png"
+              },
+              "name": "Docker Inc",
+              "url": "https://www.docker.com"
+            },
+            "url": "https://docs.docker.com/get-started/workshop/02_our_app/"
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "item": {
+                  "@id": "https://docs.docker.com/get-started/",
+                  "name": "Get started"
+                },
+                "position": 1
+              },
+              {
+                "@type": "ListItem",
+                "item": {
+                  "@id": "https://docs.docker.com/get-started/workshop/",
+                  "name": "Docker workshop"
+                },
+                "position": 2
+              },
+              {
+                "@type": "ListItem",
+                "item": {
+                  "@id": "https://docs.docker.com/get-started/workshop/02_our_app/",
+                  "name": "Part 1: Containerize an application"
+                },
+                "position": 3
+              }
+            ]
+          }
+        ],
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#",
+              "article": "http://ogp.me/ns/article#"
+            },
+            "properties": [
+              [
+                "og:description",
+                "Follow this step-by-step guide to learn how to create and run a containerized application using Docker "
+              ],
+              [
+                "og:title",
+                "Part 1: Containerize an application"
+              ],
+              [
+                "og:description",
+                "Follow this step-by-step guide to learn how to create and run a containerized application using Docker "
+              ],
+              [
+                "og:type",
+                "website"
+              ],
+              [
+                "og:updated_time",
+                "2026-01-28 21:28:31 +0530 +0530"
+              ],
+              [
+                "og:image",
+                "https://docs.docker.com/images/thumbnail.webp"
+              ],
+              [
+                "og:locale",
+                "en_US"
+              ],
+              [
+                "og:url",
+                "https://docs.docker.com/get-started/workshop/02_our_app/"
+              ],
+              [
+                "og:site_name",
+                "Docker Documentation"
+              ],
+              [
+                "article:published_time",
+                "2026-01-28 21:28:31 +0530 +0530"
+              ]
+            ]
+          }
+        ],
+        "microformat": [
+          {
+            "type": [
+              "h-full"
+            ],
+            "properties": {},
+            "children": [
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {},
+                "children": [
+                  {
+                    "type": [
+                      "h-full"
+                    ],
+                    "properties": {
+                      "name": [
+                        ""
+                      ]
+                    },
+                    "lang": "en"
+                  }
+                ],
+                "lang": "en"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Search"
+                  ]
+                },
+                "id": "search-bar",
+                "lang": "en"
+              }
+            ],
+            "lang": "en"
+          },
+          {
+            "type": [
+              "h-screen"
+            ],
+            "properties": {},
+            "children": [
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "What can I help you with?\nI'm Gordon, your AI assistant for Docker and documentation questions.\n\nTry asking\n\nGet started with Docker\n\nDocker Hardened Images\n\nMCP Toolkit\n\nCreate an org"
+                  ]
+                },
+                "lang": "en"
+              }
+            ],
+            "id": "gordon-chat",
+            "lang": "en"
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures attributes that begin with aria- are valid ARIA attributes",
+          "help": "ARIA attributes must conform to valid names",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-valid-attr?application=axeAPI",
+          "id": "aria-valid-attr",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "aria-role"
+                  ],
+                  "id": "aria-valid-attr",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute name: aria-role",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Invalid ARIA attribute name: aria-role",
+              "html": "<div class=\"tabs\" x-data=\"{ selected: 'CLI' }\" aria-role=\"tabpanel\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                ".tabs"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "aria-role"
+                  ],
+                  "id": "aria-valid-attr",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute name: aria-role",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Invalid ARIA attribute name: aria-role",
+              "html": "<div aria-role=\"tablist\" class=\"tablist\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                ".tablist"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "aria-role"
+                  ],
+                  "id": "aria-valid-attr",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute name: aria-role",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Invalid ARIA attribute name: aria-role",
+              "html": "<div aria-role=\"tab\" :class=\"selected !== 'CLI' &amp;&amp; 'hidden'\" class=\"\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "div[aria-role=\"tab\"]:nth-child(1)"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+          ]
+        },
+        {
+          "description": "Ensures buttons have discernible text",
+          "help": "Buttons must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/button-name?application=axeAPI",
+          "id": "button-name",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button @click=\"expanded = !expanded\" class=\"rounded-sm hover:bg-gray-200 hover:dark:bg-gray-800\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                ".navbar-font > ul > li[x-data=\"\\{\\ expanded\\:\\ false\\ \\}\"]:nth-child(3) > .justify-between.items-center.rounded-sm > .hover\\:bg-gray-200.hover\\:dark\\:bg-gray-800[\\@click=\"expanded\\ \\=\\ \\!expanded\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button @click=\"expanded = !expanded\" class=\"rounded-sm hover:bg-gray-200 hover:dark:bg-gray-800\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "li[x-data=\"\\{\\ expanded\\:\\ false\\ \\}\"]:nth-child(4) > .justify-between.items-center.rounded-sm > .hover\\:bg-gray-200.hover\\:dark\\:bg-gray-800[\\@click=\"expanded\\ \\=\\ \\!expanded\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button @click=\"expanded = !expanded\" class=\"rounded-sm hover:bg-gray-200 hover:dark:bg-gray-800\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "li[x-data=\"\\{\\ expanded\\:\\ true\\ \\}\"] > .justify-between.items-center.rounded-sm > .hover\\:bg-gray-200.hover\\:dark\\:bg-gray-800[\\@click=\"expanded\\ \\=\\ \\!expanded\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a"
+          ]
+        },
+        {
+          "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+          "help": "Elements must have sufficient color contrast",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.61,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4b83f1",
+                    "fontSize": "10.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"https://docs.docker.com/\" class=\"link truncate\">Home</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".link.truncate[href$=\"docs.docker.com/\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.61,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4b83f1",
+                    "fontSize": "10.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"https://docs.docker.com/get-started/\" class=\"link truncate\">Get started</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".link.truncate:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.61,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4b83f1",
+                    "fontSize": "10.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"https://docs.docker.com/get-started/workshop/\" class=\"link truncate\">Docker workshop</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".link.truncate:nth-child(5)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 2.87,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#8b99b2",
+                    "fontSize": "10.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.87 (foreground color: #8b99b2, background color: #ffffff, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.87 (foreground color: #8b99b2, background color: #ffffff, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"truncate\">Part 1: Containerize an application</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".truncate:nth-child(7)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "3:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "21.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 21.6pt, font weight: normal). Expected contrast ratio of 3:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 21.6pt, font weight: normal). Expected contrast ratio of 3:1",
+              "html": "<h1 data-pagefind-weight=\"10\">Containerize an application</h1>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "h1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>For the rest of this guide, you'll be working with a simple todo\nlist manager that runs on Node.js. If you're not familiar with Node.js,\ndon't worry. This guide doesn't require any prior experience with JavaScript.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "article > p:nth-child(4)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<li>You have installed the latest version of\n<a class=\"link\" href=\"https://docs.docker.com/get-started/get-docker/\">Docker Desktop</a>.</li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ul:nth-child(6) > li:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.61,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4b83f1",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"link\" href=\"https://docs.docker.com/get-started/get-docker/\">Docker Desktop</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ul:nth-child(6) > li:nth-child(1) > .link"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<li>You have installed a <a class=\"link\" href=\"https://git-scm.com/downloads\" rel=\"noopener\">Git client</a>.</li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ul:nth-child(6) > li:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.61,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4b83f1",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"link\" href=\"https://git-scm.com/downloads\" rel=\"noopener\">Git client</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"downloads\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<li>You have an IDE or a text editor to edit files. Docker recommends using <a class=\"link\" href=\"https://code.visualstudio.com/\" rel=\"noopener\">Visual Studio Code</a>.</li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ul:nth-child(6) > li:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.61,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4b83f1",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"link\" href=\"https://code.visualstudio.com/\" rel=\"noopener\">Visual Studio Code</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"code.visualstudio.com/\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>Before you can run the application, you need to get the application source code onto your machine.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "article > p:nth-child(8)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>Clone the <a class=\"link\" href=\"https://github.com/docker/getting-started-app/tree/main\" rel=\"noopener\">getting-started-app repository</a> using the following command:</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ol:nth-child(9) > li:nth-child(1) > p"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.61,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4b83f1",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"link\" href=\"https://github.com/docker/getting-started-app/tree/main\" rel=\"noopener\">getting-started-app repository</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "li:nth-child(1) > p > .link[rel=\"noopener\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>View the contents of the cloned repository. You should see the following files and sub-directories.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ol:nth-child(9) > li:nth-child(2) > p"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>To build the image, you'll need to use a Dockerfile. A Dockerfile is simply a text-based file with no file extension that contains a script of instructions. Docker uses this script to build a container image.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(11)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>In the <code>getting-started-app</code> directory, the same location as the\n<code>package.json</code> file, create a file named <code>Dockerfile</code> with the following contents:</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ol:nth-child(12) > li:nth-child(1) > p:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>getting-started-app</code>",
+                      "target": [
+                        "ol:nth-child(12) > li:nth-child(1) > p:nth-child(1) > code:nth-child(1)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>getting-started-app</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ol:nth-child(12) > li:nth-child(1) > p:nth-child(1) > code:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>package.json</code>",
+                      "target": [
+                        "p:nth-child(1) > code:nth-child(2)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>package.json</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(1) > code:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>Dockerfile</code>",
+                      "target": [
+                        "p:nth-child(1) > code:nth-child(3)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>Dockerfile</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(1) > code:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9fafb",
+                    "contrastRatio": 2.75,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#8b99b2",
+                    "fontSize": "10.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.75 (foreground color: #8b99b2, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-ignore=\"\" x-data=\"\" x-ref=\"root\" class=\"group mt-2 mb-4 flex w-full scroll-mt-2 flex-col items-start gap-4 rounded bg-gray-50 p-2 outline outline-1 outline-offset-[-1px] outline-gray-200 dark:bg-gray-900 dark:outline-gray-800\">",
+                      "target": [
+                        "ol:nth-child(12) > li:nth-child(1) > .mt-2.scroll-mt-2.bg-gray-50"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.75 (foreground color: #8b99b2, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"c\"># syntax=docker/dockerfile:1</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".c"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9fafb",
+                    "contrastRatio": 2.16,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#eb9c00",
+                    "fontSize": "10.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.16 (foreground color: #eb9c00, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-ignore=\"\" x-data=\"\" x-ref=\"root\" class=\"group mt-2 mb-4 flex w-full scroll-mt-2 flex-col items-start gap-4 rounded bg-gray-50 p-2 outline outline-1 outline-offset-[-1px] outline-gray-200 dark:bg-gray-900 dark:outline-gray-800\">",
+                      "target": [
+                        "ol:nth-child(12) > li:nth-child(1) > .mt-2.scroll-mt-2.bg-gray-50"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.16 (foreground color: #eb9c00, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"k\">FROM</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"dockerfile/#from\"] > .k"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9fafb",
+                    "contrastRatio": 2.16,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#eb9c00",
+                    "fontSize": "10.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.16 (foreground color: #eb9c00, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-ignore=\"\" x-data=\"\" x-ref=\"root\" class=\"group mt-2 mb-4 flex w-full scroll-mt-2 flex-col items-start gap-4 rounded bg-gray-50 p-2 outline outline-1 outline-offset-[-1px] outline-gray-200 dark:bg-gray-900 dark:outline-gray-800\">",
+                      "target": [
+                        "ol:nth-child(12) > li:nth-child(1) > .mt-2.scroll-mt-2.bg-gray-50"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.16 (foreground color: #eb9c00, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"k\">WORKDIR</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"dockerfile/#workdir\"] > .k"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9fafb",
+                    "contrastRatio": 2.16,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#eb9c00",
+                    "fontSize": "10.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.16 (foreground color: #eb9c00, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-ignore=\"\" x-data=\"\" x-ref=\"root\" class=\"group mt-2 mb-4 flex w-full scroll-mt-2 flex-col items-start gap-4 rounded bg-gray-50 p-2 outline outline-1 outline-offset-[-1px] outline-gray-200 dark:bg-gray-900 dark:outline-gray-800\">",
+                      "target": [
+                        "ol:nth-child(12) > li:nth-child(1) > .mt-2.scroll-mt-2.bg-gray-50"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.16 (foreground color: #eb9c00, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"k\">COPY</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"dockerfile/#copy\"] > .k"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9fafb",
+                    "contrastRatio": 2.16,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#eb9c00",
+                    "fontSize": "10.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.16 (foreground color: #eb9c00, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-ignore=\"\" x-data=\"\" x-ref=\"root\" class=\"group mt-2 mb-4 flex w-full scroll-mt-2 flex-col items-start gap-4 rounded bg-gray-50 p-2 outline outline-1 outline-offset-[-1px] outline-gray-200 dark:bg-gray-900 dark:outline-gray-800\">",
+                      "target": [
+                        "ol:nth-child(12) > li:nth-child(1) > .mt-2.scroll-mt-2.bg-gray-50"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.16 (foreground color: #eb9c00, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"k\">RUN</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"dockerfile/#run\"] > .k"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9fafb",
+                    "contrastRatio": 2.16,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#eb9c00",
+                    "fontSize": "10.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.16 (foreground color: #eb9c00, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-ignore=\"\" x-data=\"\" x-ref=\"root\" class=\"group mt-2 mb-4 flex w-full scroll-mt-2 flex-col items-start gap-4 rounded bg-gray-50 p-2 outline outline-1 outline-offset-[-1px] outline-gray-200 dark:bg-gray-900 dark:outline-gray-800\">",
+                      "target": [
+                        "ol:nth-child(12) > li:nth-child(1) > .mt-2.scroll-mt-2.bg-gray-50"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.16 (foreground color: #eb9c00, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"k\">CMD</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"dockerfile/#cmd\"] > .k"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9fafb",
+                    "contrastRatio": 3.58,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#2d9568",
+                    "fontSize": "10.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.58 (foreground color: #2d9568, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-ignore=\"\" x-data=\"\" x-ref=\"root\" class=\"group mt-2 mb-4 flex w-full scroll-mt-2 flex-col items-start gap-4 rounded bg-gray-50 p-2 outline outline-1 outline-offset-[-1px] outline-gray-200 dark:bg-gray-900 dark:outline-gray-800\">",
+                      "target": [
+                        "ol:nth-child(12) > li:nth-child(1) > .mt-2.scroll-mt-2.bg-gray-50"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.58 (foreground color: #2d9568, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"s2\">\"node\"</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".s2:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9fafb",
+                    "contrastRatio": 3.58,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#2d9568",
+                    "fontSize": "10.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.58 (foreground color: #2d9568, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-ignore=\"\" x-data=\"\" x-ref=\"root\" class=\"group mt-2 mb-4 flex w-full scroll-mt-2 flex-col items-start gap-4 rounded bg-gray-50 p-2 outline outline-1 outline-offset-[-1px] outline-gray-200 dark:bg-gray-900 dark:outline-gray-800\">",
+                      "target": [
+                        "ol:nth-child(12) > li:nth-child(1) > .mt-2.scroll-mt-2.bg-gray-50"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.58 (foreground color: #2d9568, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"s2\">\"src/index.js\"</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".s2:nth-child(5)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9fafb",
+                    "contrastRatio": 2.16,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#eb9c00",
+                    "fontSize": "10.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.16 (foreground color: #eb9c00, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-ignore=\"\" x-data=\"\" x-ref=\"root\" class=\"group mt-2 mb-4 flex w-full scroll-mt-2 flex-col items-start gap-4 rounded bg-gray-50 p-2 outline outline-1 outline-offset-[-1px] outline-gray-200 dark:bg-gray-900 dark:outline-gray-800\">",
+                      "target": [
+                        "ol:nth-child(12) > li:nth-child(1) > .mt-2.scroll-mt-2.bg-gray-50"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.16 (foreground color: #eb9c00, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"k\">EXPOSE</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"dockerfile/#expose\"] > .k"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>This Dockerfile does the following:</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ol:nth-child(12) > li:nth-child(1) > p:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<li>Uses <code>node:24-alpine</code> as the base image, a lightweight Linux image with Node.js pre-installed</li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ol:nth-child(12) > li:nth-child(1) > ul > li:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>node:24-alpine</code>",
+                      "target": [
+                        "li:nth-child(1) > code"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>node:24-alpine</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "li:nth-child(1) > code"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<li>Sets <code>/app</code> as the working directory</li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ol:nth-child(12) > li:nth-child(1) > ul > li:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>/app</code>",
+                      "target": [
+                        "li:nth-child(2) > code"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>/app</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "li:nth-child(2) > code"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<li>Copies source code into the image</li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ol:nth-child(12) > li:nth-child(1) > ul > li:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<li>Installs the necessary dependencies</li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ol:nth-child(12) > li:nth-child(1) > ul > li:nth-child(4)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<li>Specifies the command to start the application</li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "li:nth-child(1) > ul > li:nth-child(5)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<li>Documents that the app listens on port 3000</li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "li:nth-child(1) > ul > li:nth-child(6)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>Build the image using the following commands:</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ol:nth-child(12) > li:nth-child(2) > p:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>In the terminal, make sure you're in the <code>getting-started-app</code> directory. Replace <code>/path/to/getting-started-app</code> with the path to your <code>getting-started-app</code> directory.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "li:nth-child(2) > p:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>getting-started-app</code>",
+                      "target": [
+                        "p:nth-child(2) > code:nth-child(1)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>getting-started-app</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(2) > code:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>/path/to/getting-started-app</code>",
+                      "target": [
+                        "p:nth-child(2) > code:nth-child(2)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>/path/to/getting-started-app</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(2) > code:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>getting-started-app</code>",
+                      "target": [
+                        "p:nth-child(2) > code:nth-child(3)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>getting-started-app</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(2) > code:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9fafb",
+                    "contrastRatio": 3.81,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#b86e00",
+                    "fontSize": "10.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.81 (foreground color: #b86e00, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-ignore=\"\" x-data=\"\" x-ref=\"root\" class=\"group mt-2 mb-4 flex w-full scroll-mt-2 flex-col items-start gap-4 rounded bg-gray-50 p-2 outline outline-1 outline-offset-[-1px] outline-gray-200 dark:bg-gray-900 dark:outline-gray-800\">",
+                      "target": [
+                        ".mt-2.scroll-mt-2.bg-gray-50:nth-child(3)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.81 (foreground color: #b86e00, background color: #f9fafb, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"nb\">cd</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".nb"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>Build the image.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "li:nth-child(2) > p:nth-child(4)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(6)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>docker build</code>",
+                      "target": [
+                        "p:nth-child(6) > code:nth-child(1)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>docker build</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(6) > code:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>node:24-alpine</code>",
+                      "target": [
+                        "p:nth-child(6) > code:nth-child(2)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>node:24-alpine</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(6) > code:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>After Docker downloaded the image, the instructions from the Dockerfile copied in your application and used <code>npm</code> to install your application's dependencies.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(7)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>npm</code>",
+                      "target": [
+                        "p:nth-child(7) > code"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>npm</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(7) > code"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>Finally, the <code>-t</code> flag tags your image. Think of this as a human-readable name for the final image. Since you named the image <code>getting-started</code>, you can refer to that image when you run a container.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "li:nth-child(2) > p:nth-child(8)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>-t</code>",
+                      "target": [
+                        "p:nth-child(8) > code:nth-child(1)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>-t</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(8) > code:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>getting-started</code>",
+                      "target": [
+                        "p:nth-child(8) > code:nth-child(2)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>getting-started</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(8) > code:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>The <code>.</code> at the end of the <code>docker build</code> command tells Docker that it should look for the <code>Dockerfile</code> in the current directory.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(9)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>docker build</code>",
+                      "target": [
+                        "p:nth-child(9) > code:nth-child(2)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>docker build</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(9) > code:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>Dockerfile</code>",
+                      "target": [
+                        "p:nth-child(9) > code:nth-child(3)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>Dockerfile</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(9) > code:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>Now that you have an image, you can run the application in a container using the <code>docker run</code> command.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(14)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>docker run</code>",
+                      "target": [
+                        "p:nth-child(14) > code"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>docker run</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(14) > code"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>Run your container using the <code>docker run</code> command and specify the name of the image you just created:</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ol:nth-child(15) > li:nth-child(1) > p:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>docker run</code>",
+                      "target": [
+                        "ol:nth-child(15) > li:nth-child(1) > p:nth-child(1) > code"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>docker run</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ol:nth-child(15) > li:nth-child(1) > p:nth-child(1) > code"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>The <code>-d</code> flag (short for <code>--detach</code>) runs the container in the background.\nThis means that Docker starts your container and returns you to the terminal\nprompt. Also, it does not display logs in the terminal.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ol:nth-child(15) > li:nth-child(1) > p:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>-d</code>",
+                      "target": [
+                        "p:nth-child(3) > code:nth-child(1)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>-d</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(3) > code:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>--detach</code>",
+                      "target": [
+                        "p:nth-child(3) > code:nth-child(2)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>--detach</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(3) > code:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "li:nth-child(1) > p:nth-child(4)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>-p</code>",
+                      "target": [
+                        "p:nth-child(4) > code:nth-child(1)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>-p</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(4) > code:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>--publish</code>",
+                      "target": [
+                        "p:nth-child(4) > code:nth-child(2)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>--publish</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(4) > code:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>-p</code>",
+                      "target": [
+                        "p:nth-child(4) > code:nth-child(3)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>-p</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(4) > code:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>HOST:CONTAINER</code>",
+                      "target": [
+                        "code:nth-child(4)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>HOST:CONTAINER</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "code:nth-child(4)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>HOST</code>",
+                      "target": [
+                        "code:nth-child(5)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>HOST</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "code:nth-child(5)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>CONTAINER</code>",
+                      "target": [
+                        "code:nth-child(6)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>CONTAINER</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "code:nth-child(6)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>127.0.0.1:3000</code>",
+                      "target": [
+                        "code:nth-child(7)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>127.0.0.1:3000</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "code:nth-child(7)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>localhost:3000</code>",
+                      "target": [
+                        "code:nth-child(8)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>localhost:3000</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "code:nth-child(8)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>After a few seconds, open your web browser to <a class=\"link\" href=\"http://localhost:3000\" rel=\"noopener\">http://localhost:3000</a>.\nYou should see your app.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ol:nth-child(15) > li:nth-child(2) > p"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.61,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4b83f1",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"link\" href=\"http://localhost:3000\" rel=\"noopener\">http://localhost:3000</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"localhost:3000\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>Add an item or two and see that it works as you expect. You can mark items as complete and remove them. Your frontend is successfully storing items in the backend.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "li:nth-child(3) > p"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>At this point, you have a running todo list manager with a few items.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(16)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>If you take a quick look at your containers, you should see at least one container running that's using the <code>getting-started</code> image and on port <code>3000</code>. To see your containers, you can use the CLI or Docker Desktop's graphical interface.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(17)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>getting-started</code>",
+                      "target": [
+                        "p:nth-child(17) > code:nth-child(1)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>getting-started</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(17) > code:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>3000</code>",
+                      "target": [
+                        "p:nth-child(17) > code:nth-child(2)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>3000</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(17) > code:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #0NaN0NaN0NaN, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"tabs\" x-data=\"{ selected: 'CLI' }\" aria-role=\"tabpanel\">",
+                      "target": [
+                        ".tabs"
+                      ]
+                    },
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #0NaN0NaN0NaN, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<button class=\"tab-item border-blue border-b-4 dark:border-b-blue-600\" :class=\"selected === 'CLI' &amp;&amp;\n          'border-blue border-b-4 dark:border-b-blue-600'\" @click=\"selected = 'CLI'\">\nCLI\n</button>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".border-blue"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #0NaN0NaN0NaN, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"tabs\" x-data=\"{ selected: 'CLI' }\" aria-role=\"tabpanel\">",
+                      "target": [
+                        ".tabs"
+                      ]
+                    },
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #0NaN0NaN0NaN, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<button class=\"tab-item\" :class=\"selected === 'Docker-Desktop' &amp;&amp;\n          'border-blue border-b-4 dark:border-b-blue-600'\" @click=\"selected = 'Docker-Desktop'\">\nDocker Desktop</button>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "button[\\@click=\"selected\\ \\=\\ \\'Docker-Desktop\\'\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #0NaN0NaN0NaN, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"tabs\" x-data=\"{ selected: 'CLI' }\" aria-role=\"tabpanel\">",
+                      "target": [
+                        ".tabs"
+                      ]
+                    },
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #0NaN0NaN0NaN, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>Run the <code>docker ps</code> command in a terminal to list your containers.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div[aria-role=\"tab\"]:nth-child(1) > p:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code>docker ps</code>",
+                      "target": [
+                        "div[aria-role=\"tab\"]:nth-child(1) > p:nth-child(1) > code"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #e7eaef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code>docker ps</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div[aria-role=\"tab\"]:nth-child(1) > p:nth-child(1) > code"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #0NaN0NaN0NaN, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"tabs\" x-data=\"{ selected: 'CLI' }\" aria-role=\"tabpanel\">",
+                      "target": [
+                        ".tabs"
+                      ]
+                    },
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #0NaN0NaN0NaN, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>Output similar to the following should appear.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div[aria-role=\"tab\"]:nth-child(1) > p:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>In this section, you learned the basics about creating a Dockerfile to build an image. Once you built an image, you started a container and saw the running app.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(20)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>Related information:</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(21)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.61,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4b83f1",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"link\" href=\"/reference/dockerfile/\">Dockerfile reference</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "li:nth-child(1) > a[href$=\"dockerfile/\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.61,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4b83f1",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"link\" href=\"/reference/cli/docker/\">docker CLI reference</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "li:nth-child(2) > .link[href$=\"docker/\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>Next, you're going to make a modification to your app and learn how to update your running application with a new image. Along the way, you'll learn a few other useful commands.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(24)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.61,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4b83f1",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"link\" rel=\"noopener\" href=\"https://github.com/docker/docs/edit/main/content/get-started/workshop/02_our_app.md\">Edit this page</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".gap-1:nth-child(1) > .link[rel=\"noopener\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.61,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4b83f1",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"link\" rel=\"noopener\" href=\"https://github.com/docker/docs/issues/new?template=doc_issue.yml&amp;location=https%3a%2f%2fdocs.docker.com%2fget-started%2fworkshop%2f02_our_app%2f&amp;labels=status%2Ftriage\">Request changes</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".gap-1:nth-child(2) > .link[rel=\"noopener\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": 2.38,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#8b99b2",
+                    "fontSize": "10.2pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.38 (foreground color: #8b99b2, background color: #e7eaef, font size: 10.2pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"border-t border-gray-200 bg-gray-100 px-4 py-4 text-sm text-gray-400 md:border-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-600\"><span>Copyright © 2013-2026 Docker Inc. All rights\nreserved.</span></div>",
+                      "target": [
+                        ".md\\:border-none"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.38 (foreground color: #8b99b2, background color: #e7eaef, font size: 10.2pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Copyright © 2013-2026 Docker Inc. All rights\nreserved.</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".md\\:border-none > span"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value used in ARIA and in labels is unique",
+          "help": "IDs used in ARIA and labels must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id-aria?application=axeAPI",
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "gordon-tooltip",
+                  "id": "duplicate-id-aria",
+                  "impact": "critical",
+                  "message": "Document has multiple elements referenced with ARIA with the same id attribute: gordon-tooltip",
+                  "relatedNodes": [
+                    {
+                      "html": "<div id=\"gordon-tooltip\" data-tooltip-body=\"\" class=\"absolute top-0 left-0 hidden rounded-sm bg-gray-900 p-2 text-sm whitespace-nowrap text-white\" role=\"tooltip\" x-show=\"messages.length &gt; 0\" style=\"display: none;\">",
+                      "target": [
+                        "div[data-tooltip-body=\"\"][role=\"tooltip\"][x-show=\"messages\\.length\\ \\>\\ 0\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: gordon-tooltip",
+              "html": "<div id=\"gordon-tooltip\" data-tooltip-body=\"\" class=\"absolute top-0 left-0 hidden rounded-sm bg-gray-900 p-2 text-sm whitespace-nowrap text-white\" role=\"tooltip\">Gordon, your AI assistant for Docker docs<div data-tooltip-arrow=\"\" class=\"absolute h-2 w-2 rotate-45 bg-gray-900\"></div></div>",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "#buttons > .gap-2.items-center.flex > .relative[data-tooltip-wrapper=\"\"] > .left-0[data-tooltip-body=\"\"][role=\"tooltip\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value is unique",
+          "help": "id attribute value must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id?application=axeAPI",
+          "id": "duplicate-id",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "search-modal",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<dialog class=\"pf-modal\" id=\"search-modal\" aria-label=\"search\">",
+                      "target": [
+                        "dialog"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<pagefind-modal id=\"search-modal\" reset-on-close=\"\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "pagefind-modal"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures all page content is contained by landmarks",
+          "help": "All page content must be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/region?application=axeAPI",
+          "id": "region",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "region",
+                  "impact": "moderate",
+                  "message": "Some page content is not contained by landmarks",
+                  "relatedNodes": [
+                    {
+                      "html": "<img decoding=\"async\" style=\"height:18px; margin-top:9px;\" src=\"https://www.docker.com/app/uploads/2024/01/icon-new.svg\" alt=\"\">",
+                      "target": [
+                        "img[decoding=\"async\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a id=\"dkr_global_banner_agent_ai_01\" href=\"https://www.docker.com/resources/the-state-of-agentic-ai-white-paper/\" style=\"font-size: clamp(14px, 2vw, 16px);font-weight: 600;color:hsla(0,0%,100%,.8)!important;\">",
+                      "target": [
+                        "#dkr_global_banner_agent_ai_01"
+                      ]
+                    },
+                    {
+                      "html": "<div style=\"color: white; cursor: pointer; position: absolute; top: 10px; right: 14px; font-size: 16px;\">✕</div>",
+                      "target": [
+                        "#docker-announcement-bar > div:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<iframe id=\"li_sync_frame\" title=\"data\" src=\"https://api.vector.co/pixel/phoenix/sync-container?duid=9f5c813829c1--01kpy4bbkxmc7xy0rdsrpp38j6&amp;ds=did-006l&amp;euns=1&amp;s=&amp;version=v3.14.0&amp;cd=.docker.com&amp;pv=46b8fbe9-429b-44be-9b0f-bdfaa25f9313\" style=\"opacity: 0; width: 0px; height: 0px; border: 0px; position: absolute; top: 0px; left: 0px; z-index: -1000;\">",
+                      "target": [
+                        "#li_sync_frame"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks",
+              "html": "<html lang=\"en\" class=\"light\" data-theme-preference=\"auto\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.keyboard",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 6,
+      "passes_count": 38,
+      "total_penalty": 115,
+      "penalty_per_rule": {
+        "aria-valid-attr": {
+          "impact": "critical",
+          "node_count": 3,
+          "raw_penalty": 75,
+          "capped_penalty": 25
+        },
+        "button-name": {
+          "impact": "critical",
+          "node_count": 3,
+          "raw_penalty": 75,
+          "capped_penalty": 25
+        },
+        "color-contrast": {
+          "impact": "serious",
+          "node_count": 93,
+          "raw_penalty": 1395,
+          "capped_penalty": 25
+        },
+        "duplicate-id-aria": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "duplicate-id": {
+          "impact": "minor",
+          "node_count": 1,
+          "raw_penalty": 5,
+          "capped_penalty": 5
+        },
+        "region": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        }
+      },
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 15,
+        "date": 15,
+        "topic": 15,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title",
+          "schema:name"
+        ],
+        "description": [
+          "meta:description",
+          "og:description",
+          "schema:description"
+        ],
+        "author": [
+          "schema:author",
+          "schema:publisher"
+        ],
+        "date": [
+          "schema:date"
+        ],
+        "topic": [
+          "schema:articleSection",
+          "meta:keywords"
+        ],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 7,
+      "fields_total": 7,
+      "json_ld_type": "BreadcrumbList"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "W/\"21055d99f45d3e4a918d1c82a3c2fd2d\"",
+        "last_modified": "Thu, 23 Apr 2026 20:56:52 GMT",
+        "cache_control": "absent"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": true,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": true,
+          "has_non_html_alternate": false,
+          "details": [
+            "link rel=alternate type=text/markdown href=https://docs.docker.com/get-started/workshop/02_our_app/index.md",
+            "llms.txt link: /llms.txt"
+          ]
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 16,
+        "agent_content_hints": 9
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "article",
+      "detection": {
+        "schema_type_raw": "TechArticle",
+        "source": "schema_type",
+        "matched_value": "TechArticle"
+      },
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.2,
+        "structured_data": 0.2,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "article",
+  "universal_score": 69.44842424598875,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 76.18181818181819,
+    "content_extractability": 72.514848502671,
+    "structured_data": 87.0,
+    "dom_navigability": 0,
+    "metadata_completeness": 100,
+    "http_compliance": 85.0
+  },
+  "evidence_references": null
+}

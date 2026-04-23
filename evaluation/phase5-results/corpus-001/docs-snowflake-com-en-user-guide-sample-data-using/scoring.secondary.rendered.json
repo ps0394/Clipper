@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "SNOWFLAKE_SAMPLE_DATA",
+    "run_index": 0,
+    "tokens_in": 968,
+    "tokens_out": 7
+  },
+  {
+    "pair_index": 1,
+    "answer": "No DDL can be performed on the data set schemas, no DML can be performed on the tables in the schemas, and no cloning or Time Travel can be performed on the database or any schemas/tables in the database.",
+    "run_index": 0,
+    "tokens_in": 970,
+    "tokens_out": 47
+  },
+  {
+    "pair_index": 2,
+    "answer": "CREATE DATABASE SNOWFLAKE_SAMPLE_DATA FROM SHARE SFC_SAMPLES.SAMPLE_DATA; GRANT IMPORTED PRIVILEGES ON DATABASE SNOWFLAKE_SAMPLE_DATA TO ROLE PUBLIC;",
+    "run_index": 0,
+    "tokens_in": 976,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 3,
+    "answer": "SFC_SAMPLES.SAMPLE_DATA",
+    "run_index": 0,
+    "tokens_in": 981,
+    "tokens_out": 7
+  },
+  {
+    "pair_index": 4,
+    "answer": "Reference the fully-qualified name of the table in your query or specify the sample database (and schema) for your session using the USE DATABASE and/or USE SCHEMA commands.",
+    "run_index": 0,
+    "tokens_in": 976,
+    "tokens_out": 36
+  }
+]

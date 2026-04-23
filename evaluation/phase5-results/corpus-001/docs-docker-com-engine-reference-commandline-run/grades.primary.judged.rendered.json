@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, describing the default behavior of pulling the image when it's not in the cache.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 621,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer lists the same three possible values for the `--pull` flag as the ground-truth answer.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 591,
+    "tokens_out": 27
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, omitting only the mention of the `--rm` flag and the `docker container run` command, which are not required to understand the effect of using the flag.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 600,
+    "tokens_out": 53
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, listing the valid values for the `--cgroupns` flag as \"host\", \"private\", and an empty string.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 596,
+    "tokens_out": 44
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer covers every capability granted by the `--privileged` flag as listed in the ground-truth answer.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 670,
+    "tokens_out": 27
+  }
+]

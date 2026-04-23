@@ -1,0 +1,370 @@
+{
+  "parseability_score": 56.775612158739094,
+  "failure_mode": "significant_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-001\\help-github-com-en-github-site-policy-github-terms-of-service\\page.rendered.html",
+  "url": "https://help.github.com/en/github/site-policy/github-terms-of-service",
+  "component_scores": {
+    "semantic_html": 67.27272727272728,
+    "content_extractability": 71.03715170278637,
+    "structured_data": 5,
+    "dom_navigability": 85,
+    "metadata_completeness": 40,
+    "http_compliance": 80.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 5,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "section",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 1,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 6,
+      "heading_elements_count": 67,
+      "scoring_breakdown": {
+        "semantic_coverage": 27.272727272727273,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 44157,
+        "extracted_text_length": 39357,
+        "extracted_chars": 39357,
+        "extraction_ratio": 0.891,
+        "extracted_title": "GitHub Terms of Service",
+        "extracted_preview": "Thank you for using GitHub! We're happy you're here. Please read this Terms of Service agreement carefully before accessing or using GitHub. Because it is such an important contract between us and our users, we have tried to make it as clear as possible. For your convenience, we have presented these...",
+        "original_headings": 67,
+        "extracted_headings": 0,
+        "original_lists": 19,
+        "extracted_lists": 7,
+        "original_code_blocks": 0,
+        "extracted_code_blocks": 0,
+        "has_main_element": true,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 35,
+        "structure_preservation": 8.68421052631579,
+        "boundary_detection": 27.352941176470587
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 0,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [],
+      "key_fields_found": [],
+      "formats_present": 1,
+      "score_breakdown": {
+        "type_appropriateness": 0,
+        "field_completeness": 0,
+        "multiple_formats": 5,
+        "schema_validation": 0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": []
+      },
+      "sample_structured_data": {
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:site_name",
+                "GitHub Docs"
+              ],
+              [
+                "og:title",
+                "GitHub Terms of Service - GitHub Docs"
+              ],
+              [
+                "og:type",
+                "article"
+              ],
+              [
+                "og:url",
+                "https://docs-internal.github.com/en/site-policy/github-terms/github-terms-of-service"
+              ],
+              [
+                "og:image",
+                "https://docs.github.com/assets/cb-345/images/social-cards/site-policy.png"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures role attribute has an appropriate value for the element",
+          "help": "ARIA role must be appropriate for the element",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+          "id": "aria-allowed-role",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "banner"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role banner  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role banner  is not allowed for given element",
+              "html": "<header class=\"color-bg-default p-2 position-sticky top-0 z-2 border-bottom\" role=\"banner\" aria-label=\"Main\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "header"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "navigation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role navigation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role navigation  is not allowed for given element",
+              "html": "<nav aria-labelledby=\"allproducts-menu\" role=\"navigation\" aria-label=\"Documentation navigation\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "nav[aria-labelledby=\"allproducts-menu\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "navigation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role navigation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role navigation  is not allowed for given element",
+              "html": "<nav aria-label=\"Product sidebar\" role=\"navigation\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "nav[aria-label=\"Product\\ sidebar\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 1,
+      "passes_count": 40,
+      "total_penalty": 15,
+      "penalty_per_rule": {
+        "aria-allowed-role": {
+          "impact": "minor",
+          "node_count": 3,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        }
+      },
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 0,
+        "date": 0,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 0
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [
+          "meta:description"
+        ],
+        "author": [],
+        "date": [],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": []
+      },
+      "fields_present": 3,
+      "fields_total": 7,
+      "json_ld_type": "none"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "absent",
+        "last_modified": "absent",
+        "cache_control": "public, max-age=60"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": true,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": true,
+          "has_llms_txt_ref": true,
+          "has_non_html_alternate": true,
+          "details": [
+            "link rel=alternate type=text/markdown href=https://docs.github.com/api/article/body?pathname=/en/site-policy/github-terms/g",
+            "data-llm-hint: Hey agent! You are burning tokens scraping HTML like it is 2005. Use this instead.",
+            "link rel=alternate type=application/json href=https://docs.github.com/api/article?pathname=/en/site-policy/github-terms/github",
+            "data-llm-hint: Same content, now with metadata. Your context window called, it says thanks.",
+            "llms.txt ref: https://docs.github.com/llms.txt",
+            "data-llm-hint: The directory of everything. We even followed the llmstxt.org spec because we are nice like that."
+          ]
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 4,
+        "agent_content_hints": 16
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "article",
+      "detection": {
+        "source": "default"
+      },
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.2,
+        "structured_data": 0.2,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "article",
+  "universal_score": 56.775612158739094,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 67.27272727272728,
+    "content_extractability": 71.03715170278637,
+    "structured_data": 5,
+    "dom_navigability": 85,
+    "metadata_completeness": 40,
+    "http_compliance": 80.0
+  },
+  "evidence_references": null
+}

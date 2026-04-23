@@ -1,0 +1,77 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Intro to Claude - Claude API Docs
+Document URL: https://docs.anthropic.com/en/docs/welcome
+Document profile: landing
+
+Document text:
+---
+First steps
+Claude is a highly performant, trustworthy, and intelligent AI platform built by Anthropic. Claude excels at tasks involving language, reasoning, analysis, coding, and more.
+The latest generation of Claude models:
+Claude Opus 4.7
+ - Our most capable model for complex reasoning and agentic coding, with a step-change jump over Claude Opus 4.6. 
+Learn more
+.
+Claude Sonnet 4.6
+ - Frontier intelligence at scale—built for coding, agents, and enterprise workflows. 
+Learn more
+.
+Claude Haiku 4.5
+ - Fastest model with near-frontier intelligence. 
+Learn more
+.
+
+Looking to chat with Claude? Visit 
+claude.ai
+.
+
+Anthropic offers two ways to build with Claude, each suited to different use cases:
+
+Messages API
+Claude Managed Agents
+What it is
+Direct model prompting access
+Pre-built, configurable agent harness that runs in managed infrastructure
+Best for
+Custom agent loops and fine-grained control
+Long-running tasks and asynchronous work
+Learn more
+Messages API docs
+Claude Managed Agents docs
+
+Recommended path for new developers
+
+Follow these steps to go from zero to a working Claude integration.
+
+1
+Make your first API call
+Set up your environment, install an SDK, and send your first message to Claude.
+Go to the quickstart
+2
+Understand the Messages API
+Learn the core request and response structure, including multi-turn conversations, system prompts, and stop reasons.
+Read the Messages API guide
+Compare Claude models by capability and cost to pick the best fit for your use case.
+See the models overview
+4
+Explore features and tools
+Discover what Claude can do: extended thinking, web search, file handling, structured outputs, and more.
+Browse the features overview
+
+Anthropic provides developer tools to help you build and scale applications with Claude.
+
+Claude can assist with many tasks that involve text, code, and images.
+---

@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, differing only in wording and omitting the word \"demonstration\" which is implied by \"testing\".",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 612,
+    "tokens_out": 40
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, which is the port number the server is configured to run on.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 571,
+    "tokens_out": 32
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, despite minor wording differences.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 606,
+    "tokens_out": 24
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer matches the URL in the ground-truth answer.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 588,
+    "tokens_out": 17
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer only mentions two payment statuses and introduces an incorrect third status, whereas the ground truth lists 'succeeded', 'processing', and 'requires_payment_method'.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 597,
+    "tokens_out": 38
+  }
+]

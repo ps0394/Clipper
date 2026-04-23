@@ -1,0 +1,1346 @@
+{
+  "parseability_score": 40.95241509213042,
+  "failure_mode": "significant_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-001\\docs-anthropic-com-en-docs-about-claude-models-overview\\page.raw.html",
+  "url": "https://docs.anthropic.com/en/docs/about-claude/models/overview",
+  "component_scores": {
+    "semantic_html": 72.72727272727272,
+    "content_extractability": 75.70596910312241,
+    "structured_data": 12,
+    "dom_navigability": 0,
+    "metadata_completeness": 55,
+    "http_compliance": 61.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 3,
+          "proper_usage": false
+        },
+        {
+          "element": "nav",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "article",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "aside",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 1,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 4,
+      "heading_elements_count": 14,
+      "scoring_breakdown": {
+        "semantic_coverage": 32.72727272727273,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 6692,
+        "extracted_text_length": 4562,
+        "extracted_chars": 4562,
+        "extraction_ratio": 0.682,
+        "extracted_title": "Models overview - Claude API Docs",
+        "extracted_preview": "If you're unsure which model to use, consider starting with Claude Opus 4.7 for the most complex tasks. It is our most capable generally available model, with a step-change improvement in agentic coding over Claude Opus 4.6. All current Claude models support text and image input, text output, multil...",
+        "original_headings": 14,
+        "extracted_headings": 5,
+        "original_lists": 12,
+        "extracted_lists": 1,
+        "original_code_blocks": 4,
+        "extracted_code_blocks": 4,
+        "has_main_element": true,
+        "has_article_element": true
+      },
+      "score_breakdown": {
+        "signal_to_noise": 39.738707198360515,
+        "structure_preservation": 14.404761904761905,
+        "boundary_detection": 21.5625
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 0,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 1
+      },
+      "schema_types_found": [],
+      "key_fields_found": [],
+      "formats_present": 2,
+      "score_breakdown": {
+        "type_appropriateness": 0,
+        "field_completeness": 0,
+        "multiple_formats": 12,
+        "schema_validation": 0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": []
+      },
+      "sample_structured_data": {
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:title",
+                "Models overview"
+              ],
+              [
+                "og:description",
+                "Claude is a family of state-of-the-art large language models developed by Anthropic. This guide introduces the available models and compares their performance."
+              ],
+              [
+                "og:url",
+                "https://platform.claude.com/docs/en/about-claude/models/overview"
+              ],
+              [
+                "og:site_name",
+                "Claude API Docs"
+              ],
+              [
+                "og:locale",
+                "en"
+              ],
+              [
+                "og:image",
+                "https://platform.claude.com/docs/og?locale=en&path=about-claude/models/overview"
+              ],
+              [
+                "og:image:width",
+                "1200"
+              ],
+              [
+                "og:image:height",
+                "630"
+              ],
+              [
+                "og:image:alt",
+                "Models overview"
+              ],
+              [
+                "og:image:type",
+                "image/png"
+              ],
+              [
+                "og:type",
+                "article"
+              ]
+            ]
+          }
+        ],
+        "microformat": [
+          {
+            "type": [
+              "h-screen"
+            ],
+            "properties": {},
+            "children": [
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {},
+                "children": [
+                  {
+                    "type": [
+                      "h-full"
+                    ],
+                    "properties": {
+                      "name": [
+                        "BuildAdminModels & pricingClient SDKsAPI Reference"
+                      ]
+                    },
+                    "lang": "en-US"
+                  }
+                ],
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Models overview"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Choosing a model"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "What's new in Claude Opus 4.7"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Migration guide"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Model deprecations"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Model cards"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "System prompts"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Pricing"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Copy page"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Copy page"
+                  ]
+                },
+                "lang": "en-US"
+              }
+            ],
+            "lang": "en-US"
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures buttons have discernible text",
+          "help": "Buttons must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/button-name?application=axeAPI",
+          "id": "button-name",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button class=\"inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 w-8 rounded-md rounded py-1 px-2 max-w-full whitespace-nowrap text-ellipsis overflow-hidden Button_fill__JiIcX Button_ghost__BUAoh\" type=\"button\" id=\"radix-_r_7_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "#radix-_r_7_"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button class=\"bg-bg-000 flex items-center justify-center px-1 hover:bg-bg-200 rounded-r-lg border-0.5 border-border-200\" type=\"button\" id=\"radix-_R_kclfiuqkntiuuljb_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "#radix-_R_kclfiuqkntiuuljb_"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button class=\"inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 w-8 rounded-md mb-1 ml-1 p-0 Button_fill__JiIcX Button_ghost__BUAoh\" type=\"button\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                ".ml-1"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a"
+          ]
+        },
+        {
+          "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+          "help": "Elements must have sufficient color contrast",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#faf9f5",
+                    "contrastRatio": 1.05,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#ffffff",
+                    "fontSize": "9.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 1.05 (foreground color: #ffffff, background color: #faf9f5, font size: 9.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<header class=\"fixed top-0 left-0 gap-1 right-0 z-30 h-14 flex-none border-b-0.5 border-border-300 bg-bg-100 flex items-center justify-between px-2 md:px-4\">",
+                      "target": [
+                        ".z-30"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.05 (foreground color: #ffffff, background color: #faf9f5, font size: 9.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<button class=\"inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none font-base-bold\n        overflow-hidden\n        transition-transform\n        will-change-transform\n        ease-[cubic-bezier(0.165,0.85,0.45,1)]\n        duration-150\n        hover:scale-y-[1.015]\n        hover:scale-x-[1.005]\n        backface-hidden\n        after:absolute\n        after:inset-0\n        after:bg-[radial-gradient(at_bottom,hsla(var(--bg-000)/20%),hsla(var(--bg-000)/0%))]\n        after:opacity-0\n        after:transition\n        after:duration-200\n        after:translate-y-2\n        hover:after:opacity-100\n        hover:after:translate-y-0 h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs Button_fill__JiIcX Button_primary__0oSjX\" type=\"button\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".will-change-transform"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f4ed",
+                    "contrastRatio": 4.37,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#73726c",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+                      "target": [
+                        "tr:nth-child(2) > td:nth-child(2) > .inline-block.hover\\:border-border-200.px-1"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(2) > td:nth-child(2) > .inline-block.hover\\:border-border-200.px-1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f4ed",
+                    "contrastRatio": 4.37,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#73726c",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+                      "target": [
+                        "tr:nth-child(2) > td:nth-child(3) > .inline-block.hover\\:border-border-200.px-1"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(2) > td:nth-child(3) > .inline-block.hover\\:border-border-200.px-1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f4ed",
+                    "contrastRatio": 4.37,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#73726c",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+                      "target": [
+                        "tr:nth-child(2) > td:nth-child(4) > .inline-block.hover\\:border-border-200.px-1"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(2) > td:nth-child(4) > .inline-block.hover\\:border-border-200.px-1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f4ed",
+                    "contrastRatio": 4.37,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#73726c",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+                      "target": [
+                        "tr:nth-child(3) > td:nth-child(2) > .inline-block.hover\\:border-border-200.px-1"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(3) > td:nth-child(2) > .inline-block.hover\\:border-border-200.px-1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f4ed",
+                    "contrastRatio": 4.37,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#73726c",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+                      "target": [
+                        "tr:nth-child(3) > td:nth-child(3) > .inline-block.hover\\:border-border-200.px-1"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(3) > td:nth-child(3) > .inline-block.hover\\:border-border-200.px-1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f4ed",
+                    "contrastRatio": 4.37,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#73726c",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+                      "target": [
+                        "tr:nth-child(3) > td:nth-child(4) > .inline-block.hover\\:border-border-200.px-1"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(3) > td:nth-child(4) > .inline-block.hover\\:border-border-200.px-1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f4ed",
+                    "contrastRatio": 4.37,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#73726c",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+                      "target": [
+                        "tr:nth-child(4) > td:nth-child(2) > .inline-block.hover\\:border-border-200.px-1"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(4) > td:nth-child(2) > .inline-block.hover\\:border-border-200.px-1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f4ed",
+                    "contrastRatio": 4.37,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#73726c",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+                      "target": [
+                        "tr:nth-child(4) > td:nth-child(3) > .inline-block.hover\\:border-border-200.px-1"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(4) > td:nth-child(3) > .inline-block.hover\\:border-border-200.px-1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f4ed",
+                    "contrastRatio": 4.37,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#73726c",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+                      "target": [
+                        "tr:nth-child(4) > td:nth-child(4) > .inline-block.hover\\:border-border-200.px-1"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(4) > td:nth-child(4) > .inline-block.hover\\:border-border-200.px-1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f4ed",
+                    "contrastRatio": 4.37,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#73726c",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+                      "target": [
+                        "tr:nth-child(5) > td:nth-child(2) > .inline-block.hover\\:border-border-200.px-1"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(5) > td:nth-child(2) > .inline-block.hover\\:border-border-200.px-1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f4ed",
+                    "contrastRatio": 4.37,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#73726c",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+                      "target": [
+                        "tr:nth-child(5) > td:nth-child(3) > .inline-block.hover\\:border-border-200.px-1"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(5) > td:nth-child(3) > .inline-block.hover\\:border-border-200.px-1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f4ed",
+                    "contrastRatio": 4.37,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#73726c",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+                      "target": [
+                        "tr:nth-child(5) > td:nth-child(4) > .inline-block.hover\\:border-border-200.px-1"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.37 (foreground color: #73726c, background color: #f5f4ed, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"\n          inline-block cursor-pointer select-none\n          px-1 py-0.5 font-mono\n          transition-colors duration-200\n          text-text-400 hover:text-text-000\n          text-sm rounded\n          bg-bg-200 border border-transparent\n          hover:bg-bg-300 hover:border-border-200\n          max-w-full break-words\n          \" style=\"word-break:break-word;overflow-wrap:anywhere\" data-state=\"closed\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(5) > td:nth-child(4) > .inline-block.hover\\:border-border-200.px-1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#d3e2ef",
+                    "contrastRatio": 4.38,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#1b67b2",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.38 (foreground color: #1b67b2, background color: #d3e2ef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"relative inline bg-bg-300 px-2 py-0.5 rounded text-sm font-mono break-words box-decoration-clone\">output-300k-2026-03-24</code>",
+                      "target": [
+                        ".text-accent-000.\\[\\&_li\\]\\:before\\:text-accent-000\\/60.\\[\\&_blockquote\\]\\:border-l-accent-000\\/60 > p > code"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"flex w-full rounded-lg px-4 py-3 gap-1 items-start text-sm border-0.5 my-6 border-accent-100 bg-accent-100/10 callout\">",
+                      "target": [
+                        ".border-accent-100.bg-accent-100\\/10.callout:nth-child(16)"
+                      ]
+                    },
+                    {
+                      "html": "<main id=\"docs-scroll-container\" class=\"flex-1 bg-bg-100 pt-10 lg:pt-0\">",
+                      "target": [
+                        "#docs-scroll-container"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.38 (foreground color: #1b67b2, background color: #d3e2ef, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<code class=\"relative inline bg-bg-300 px-2 py-0.5 rounded text-sm font-mono break-words box-decoration-clone\">output-300k-2026-03-24</code>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".text-accent-000.\\[\\&_li\\]\\:before\\:text-accent-000\\/60.\\[\\&_blockquote\\]\\:border-l-accent-000\\/60 > p > code"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+          ]
+        },
+        {
+          "description": "Ensures that lists are structured correctly",
+          "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/list?application=axeAPI",
+          "id": "list",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed inside <li> elements",
+              "html": "<ul class=\"relative space-y-1 text-sm overflow-hidden\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "only-listitems",
+                  "impact": "serious",
+                  "message": "List element has direct children that are not allowed inside <li> elements",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"absolute left-0 w-0.5 bg-text-000 rounded-full\" style=\"top: 0px; height: 28px;\"></div>",
+                      "target": [
+                        ".w-0\\.5"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                ".overflow-y-auto > .space-y-1"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.structure",
+            "wcag2a",
+            "wcag131"
+          ]
+        },
+        {
+          "description": "Ensures <meta name=\"viewport\"> does not disable text scaling and zooming",
+          "help": "Zooming and scaling must not be disabled",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/meta-viewport?application=axeAPI",
+          "id": "meta-viewport",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "maximum-scale",
+                  "id": "meta-viewport",
+                  "impact": "critical",
+                  "message": "maximum-scale on <meta> tag disables zooming on mobile devices",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  maximum-scale on <meta> tag disables zooming on mobile devices",
+              "html": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "meta[name=\"viewport\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.sensory-and-visual-cues",
+            "wcag2aa",
+            "wcag144"
+          ]
+        },
+        {
+          "description": "Ensures all page content is contained by landmarks",
+          "help": "All page content must be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/region?application=axeAPI",
+          "id": "region",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "region",
+                  "impact": "moderate",
+                  "message": "Some page content is not contained by landmarks",
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"bg-inkeep-primary-text-bold dark:bg-gray-dark-600 rounded-full px-[18px] py-3 text-white font-medium flex items-center space-x-2 shadow-2xl dark:shadow-none transition-transform ease-in-out hover:scale-110 ikp-chat-button__button\" data-part=\"chat-button__button\">",
+                      "target": [
+                        [
+                          "#inkeep-shadowradix-_R_6iuuljb_",
+                          ".bg-inkeep-primary-text-bold"
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks",
+              "html": "<html class=\"h-screen antialiased bg-bg-100 __variable_8d1da5 __variable_2d8cf6 __variable_5581e8\" lang=\"en-US\" data-theme=\"claude\" data-mode=\"light\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.keyboard",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 5,
+      "passes_count": 37,
+      "total_penalty": 100,
+      "penalty_per_rule": {
+        "button-name": {
+          "impact": "critical",
+          "node_count": 3,
+          "raw_penalty": 75,
+          "capped_penalty": 25
+        },
+        "color-contrast": {
+          "impact": "serious",
+          "node_count": 14,
+          "raw_penalty": 210,
+          "capped_penalty": 25
+        },
+        "list": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "meta-viewport": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "region": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        }
+      },
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 0,
+        "date": 0,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [
+          "meta:description",
+          "og:description"
+        ],
+        "author": [],
+        "date": [],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 4,
+      "fields_total": 7,
+      "json_ld_type": "none"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "absent",
+        "last_modified": "absent",
+        "cache_control": "private, no-cache, no-store, max-age=0, must-revalidate"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 1,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "landing",
+      "detection": {
+        "source": "url",
+        "matched_value": "/overview"
+      },
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.1,
+        "structured_data": 0.3,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "landing",
+  "universal_score": 47.32301200244267,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 72.72727272727272,
+    "content_extractability": 75.70596910312241,
+    "structured_data": 12,
+    "dom_navigability": 0,
+    "metadata_completeness": 55,
+    "http_compliance": 61.0
+  },
+  "evidence_references": null
+}

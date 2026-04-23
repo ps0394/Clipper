@@ -1,0 +1,130 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the name of the GitHub repository used in this tutorial for the sample application?",
+      "answer": "aks-store-demo",
+      "supporting_sentences": [
+        "Use git to clone the sample application to your development environment.",
+        "git clone https://github.com/Azure-Samples/aks-store-demo.git"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the name of the GitHub repository used in this tutorial for the sample application?",
+      "answer": "aks-store-demo",
+      "supporting_sentences": [
+        "Use git to clone the sample application to your development environment.",
+        "git clone https://github.com/Azure-Samples/aks-store-demo.git"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which Docker Compose YAML file is used to create the sample application in this tutorial?",
+      "answer": "docker-compose-quickstart",
+      "supporting_sentences": [
+        "The sample application you create in this tutorial uses the docker-compose-quickstart YAML file from the repository you cloned."
+      ]
+    },
+    "edited_pair": {
+      "question": "Which Docker Compose YAML file is used to create the sample application in this tutorial?",
+      "answer": "docker-compose-quickstart",
+      "supporting_sentences": [
+        "The sample application you create in this tutorial uses the docker-compose-quickstart YAML file from the repository you cloned."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the four Kubernetes deployments and services included in the sample application?",
+      "answer": "Store front, Product service, Order service, and RabbitMQ",
+      "supporting_sentences": [
+        "The sample application used in this tutorial is a basic store front app including the following Kubernetes deployments and services:",
+        "Store front: Web application for customers to view products and place orders.",
+        "Product service: Shows product information.",
+        "Order service: Places orders.",
+        "Rabbit MQ: Message queue for an order queue."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the four Kubernetes deployments and services included in the sample application?",
+      "answer": "Store front, Product service, Order service, and RabbitMQ",
+      "supporting_sentences": [
+        "The sample application used in this tutorial is a basic store front app including the following Kubernetes deployments and services:",
+        "Store front: Web application for customers to view products and place orders.",
+        "Product service: Shows product information.",
+        "Order service: Places orders.",
+        "Rabbit MQ: Message queue for an order queue."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What command is used to stop and remove the container instances and resources after validating the application's functionality?",
+      "answer": "docker compose down",
+      "supporting_sentences": [
+        "Stop and remove the container instances and resources using the docker-compose down command.",
+        "docker compose down"
+      ]
+    },
+    "edited_pair": {
+      "question": "What command is used to stop and remove the container instances and resources after validating the application's functionality?",
+      "answer": "docker compose down",
+      "supporting_sentences": [
+        "Stop and remove the container instances and resources using the docker-compose down command.",
+        "docker compose down"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which two infrastructure providers can be specified in the `azure.yaml` file for deploying the cluster, and which one is used by default?",
+      "answer": "Terraform and Bicep; Terraform is used by default",
+      "supporting_sentences": [
+        "You can customize the preparation steps to use either Terraform or Bicep before deploying the cluster within the infra section of your azure.yaml.",
+        "By default, this project uses Terraform:",
+        "infra:",
+        "  provider: terraform",
+        "  path: infra/terraform",
+        "If you want to change the provider to Bicep, update the azure.yaml file as follows:",
+        "infra:",
+        "  provider: bicep",
+        "  path: infra/bicep"
+      ]
+    },
+    "edited_pair": {
+      "question": "Which two infrastructure providers can be specified in the `azure.yaml` file for deploying the cluster, and which one is used by default?",
+      "answer": "Terraform and Bicep; Terraform is used by default",
+      "supporting_sentences": [
+        "You can customize the preparation steps to use either Terraform or Bicep before deploying the cluster within the infra section of your azure.yaml.",
+        "By default, this project uses Terraform:",
+        "infra:",
+        "  provider: terraform",
+        "  path: infra/terraform",
+        "If you want to change the provider to Bicep, update the azure.yaml file as follows:",
+        "infra:",
+        "  provider: bicep",
+        "  path: infra/bicep"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

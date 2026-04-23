@@ -1,0 +1,5129 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Function calling
+Document URL: https://platform.openai.com/docs/guides/function-calling
+Document profile: article
+
+Document text:
+---
+Function calling
+ (also known as 
+tool calling
+) provides a powerful and flexible way for OpenAI models to interface with external systems and access data outside their training data. This guide shows how you can connect a model to data and actions provided by your application. We’ll show how to use function tools (defined by a JSON schema) and custom tools which work with free form text inputs and outputs.
+
+If your application has many functions or large schemas, you can pair function calling with 
+tool search
+ to defer rarely used tools and load them only when the model needs them. Only 
+gpt-5.4
+ and later models support 
+tool_search
+.
+
+Let’s begin by understanding a few key terms about tool calling. After we have a shared vocabulary for tool calling, we’ll show you how it’s done with some practical examples.
+
+Tools - functionality we give the model
+A 
+function
+ or 
+tool
+ refers in the abstract to a piece of functionality that we tell the model it has access to. As a model generates a response to a prompt, it may decide that it needs data or functionality provided by a tool to follow the prompt’s instructions.
+You could give the model access to tools that:
+
+Get today’s weather for a location
+
+Access account details for a given user ID
+
+Issue refunds for a lost order
+
+Or anything else you’d like the model to be able to know or do as it responds to a prompt.
+When we make an API request to the model with a prompt, we can include a list of tools the model could consider using. For example, if we wanted the model to be able to answer questions about the current weather somewhere in the world, we might give it access to a 
+get_weather
+ tool that takes 
+location
+ as an argument.
+
+Tool calls - requests from the model to use tools
+A 
+function call
+ or 
+tool call
+ refers to a special kind of response we can get from the model if it examines a prompt, and then determines that in order to follow the instructions in the prompt, it needs to call one of the tools we made available to it.
+If the model receives a prompt like “what is the weather in Paris?” in an API request, it could respond to that prompt with a tool call for the 
+get_weather
+ tool, with 
+Paris
+ as the 
+location
+ argument.
+
+Tool call outputs - output we generate for the model
+A 
+function call output
+ or 
+tool call output
+ refers to the response a tool generates using the input from a model’s tool call. The tool call output can either be structured JSON or plain text, and it should contain a reference to a specific model tool call (referenced by 
+call_id
+ in the examples to come).
+To complete our weather example:
+
+The model has access to a 
+get_weather
+
+tool
+ that takes 
+location
+ as an argument.
+
+In response to a prompt like “what’s the weather in Paris?” the model returns a 
+tool call
+ that contains a 
+location
+ argument with a value of 
+Paris
+
+The 
+tool call output
+ might return a JSON object (e.g., 
+{"temperature": "25", "unit": "C"}
+, indicating a current temperature of 25 degrees), 
+Image contents
+, or 
+File contents
+.
+
+We then send all of the tool definition, the original prompt, the model’s tool call, and the tool call output back to the model to finally receive a text response like:
+The weather in Paris today is 25C.
+
+A function is a specific kind of tool, defined by a JSON schema. A function definition allows the model to pass data to your application, where your code can access data or take actions suggested by the model.
+
+In addition to function tools, there are custom tools (described in this guide) that work with free text inputs and outputs.
+
+There are also 
+built-in tools
+ that are part of the OpenAI platform. These tools enable the model to 
+search the web
+, 
+execute code
+, access the functionality of an 
+MCP server
+, and more.
+
+Tool calling is a multi-step conversation between your application and a model via the OpenAI API. The tool calling flow has five high level steps:
+
+Make a request to the model with tools it could call
+
+Receive a tool call from the model
+
+Execute code on the application side with input from the tool call
+
+Make a second request to the model with the tool output
+
+Receive a final response from the model (or more tool calls)
+
+Let’s look at an end-to-end tool calling flow for a 
+get_horoscope
+ function that gets a daily horoscope for an astrological sign.
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+30
+
+31
+
+32
+
+33
+
+34
+
+35
+
+36
+
+37
+
+38
+
+39
+
+40
+
+41
+
+42
+
+43
+
+44
+
+45
+
+46
+
+47
+
+48
+
+49
+
+50
+
+51
+
+52
+
+53
+
+54
+
+55
+
+56
+
+57
+
+58
+
+59
+
+60
+
+61
+
+62
+
+63
+
+64
+
+65
+
+66
+
+67
+
+from
+ openai 
+import
+ OpenAI
+
+import
+ json
+
+client = OpenAI()
+
+tools = [
+
+    {
+
+"type"
+: 
+"function"
+,
+
+"function"
+: {
+
+"name"
+: 
+"get_horoscope"
+,
+
+"description"
+: 
+"Get today's horoscope for an astrological sign."
+,
+
+"parameters"
+: {
+
+"type"
+: 
+"object"
+,
+
+"properties"
+: {
+
+"sign"
+: {
+
+"type"
+: 
+"string"
+,
+
+"description"
+: 
+"An astrological sign like Taurus or Aquarius"
+,
+
+                    },
+
+                },
+
+"required"
+: [
+"sign"
+],
+
+"additionalProperties"
+: 
+False
+,
+
+            },
+
+"strict"
+: 
+True
+,
+
+        },
+
+    },
+
+]
+
+def
+
+get_horoscope
+(
+sign
+):
+
+return
+
+f"
+{sign}
+: Next Tuesday you will befriend a baby otter."
+
+messages = [
+
+    {
+"role"
+: 
+"user"
+, 
+"content"
+: 
+"What is my horoscope? I am an Aquarius."
+}
+
+]
+
+response = client.chat.completions.create(
+
+    model=
+"gpt-4.1"
+,
+
+    messages=messages,
+
+    tools=tools,
+
+)
+
+messages.append(response.choices[
+0
+].message)
+
+for
+ tool_call 
+in
+ response.choices[
+0
+].message.tool_calls 
+or
+ []:
+
+if
+ tool_call.function.name == 
+"get_horoscope"
+:
+
+        args = json.loads(tool_call.function.arguments)
+
+        horoscope = get_horoscope(args[
+"sign"
+])
+
+        messages.append(
+
+            {
+
+"role"
+: 
+"tool"
+,
+
+"tool_call_id"
+: tool_call.
+id
+,
+
+"content"
+: json.dumps({
+"horoscope"
+: horoscope}),
+
+            }
+
+        )
+
+response = client.chat.completions.create(
+
+    model=
+"gpt-4.1"
+,
+
+    messages=messages,
+
+    tools=tools,
+
+)
+
+print
+(response.choices[
+0
+].message.content)
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+30
+
+31
+
+32
+
+33
+
+34
+
+35
+
+36
+
+37
+
+38
+
+39
+
+40
+
+41
+
+42
+
+43
+
+44
+
+45
+
+46
+
+47
+
+48
+
+49
+
+50
+
+51
+
+52
+
+53
+
+54
+
+55
+
+56
+
+57
+
+58
+
+59
+
+60
+
+61
+
+62
+
+63
+
+64
+
+65
+
+66
+
+67
+
+import
+ OpenAI 
+from
+
+"openai"
+;
+
+const
+ openai = 
+new
+ OpenAI();
+
+const
+ tools = [
+
+  {
+
+type
+: 
+"function"
+,
+
+function
+: {
+
+name
+: 
+"get_horoscope"
+,
+
+description
+: 
+"Get today's horoscope for an astrological sign."
+,
+
+parameters
+: {
+
+type
+: 
+"object"
+,
+
+properties
+: {
+
+sign
+: {
+
+type
+: 
+"string"
+,
+
+description
+: 
+"An astrological sign like Taurus or Aquarius"
+,
+
+          },
+
+        },
+
+required
+: [
+"sign"
+],
+
+additionalProperties
+: 
+false
+,
+
+      },
+
+strict
+: 
+true
+,
+
+    },
+
+  },
+
+];
+
+function
+
+getHoroscope
+(
+sign
+) 
+{
+
+return
+
+`
+${sign}
+: Next Tuesday you will befriend a baby otter.`
+;
+
+}
+
+const
+ messages = [
+
+  { 
+role
+: 
+"user"
+, 
+content
+: 
+"What is my horoscope? I am an Aquarius."
+ },
+
+];
+
+let
+ response = 
+await
+ openai.chat.completions.create({
+
+model
+: 
+"gpt-4.1"
+,
+
+  messages,
+
+  tools,
+
+});
+
+messages.push(response.choices[
+0
+].message);
+
+for
+ (
+const
+ toolCall 
+of
+ response.choices[
+0
+].message.tool_calls ?? []) {
+
+if
+ (toolCall.function.name === 
+"get_horoscope"
+) {
+
+const
+ args = 
+JSON
+.parse(toolCall.function.arguments);
+
+const
+ horoscope = getHoroscope(args.sign);
+
+    messages.push({
+
+role
+: 
+"tool"
+,
+
+tool_call_id
+: toolCall.id,
+
+content
+: 
+JSON
+.stringify({ horoscope }),
+
+    });
+
+  }
+
+}
+
+response = 
+await
+ openai.chat.completions.create({
+
+model
+: 
+"gpt-4.1"
+,
+
+  messages,
+
+  tools,
+
+});
+
+console
+.log(response.choices[
+0
+].message.content);
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+30
+
+31
+
+32
+
+33
+
+34
+
+35
+
+36
+
+37
+
+38
+
+39
+
+40
+
+41
+
+42
+
+43
+
+44
+
+45
+
+46
+
+47
+
+48
+
+49
+
+50
+
+51
+
+52
+
+53
+
+54
+
+55
+
+56
+
+57
+
+58
+
+59
+
+60
+
+61
+
+62
+
+63
+
+64
+
+65
+
+66
+
+67
+
+68
+
+69
+
+70
+
+from
+ openai 
+import
+ OpenAI
+
+import
+ json
+
+client = OpenAI()
+
+tools = [
+
+    {
+
+"type"
+: 
+"function"
+,
+
+"name"
+: 
+"get_horoscope"
+,
+
+"description"
+: 
+"Get today's horoscope for an astrological sign."
+,
+
+"parameters"
+: {
+
+"type"
+: 
+"object"
+,
+
+"properties"
+: {
+
+"sign"
+: {
+
+"type"
+: 
+"string"
+,
+
+"description"
+: 
+"An astrological sign like Taurus or Aquarius"
+,
+
+                },
+
+            },
+
+"required"
+: [
+"sign"
+],
+
+        },
+
+    },
+
+]
+
+def
+
+get_horoscope
+(
+sign
+):
+
+return
+
+f"
+{sign}
+: Next Tuesday you will befriend a baby otter."
+
+input_list = [
+
+    {
+"role"
+: 
+"user"
+, 
+"content"
+: 
+"What is my horoscope? I am an Aquarius."
+}
+
+]
+
+response = client.responses.create(
+
+    model=
+"gpt-5"
+,
+
+    tools=tools,
+
+input
+=input_list,
+
+)
+
+input_list += response.output
+
+for
+ item 
+in
+ response.output:
+
+if
+ item.
+type
+ == 
+"function_call"
+:
+
+if
+ item.name == 
+"get_horoscope"
+:
+
+            sign = json.loads(item.arguments)[
+"sign"
+]
+
+            horoscope = get_horoscope(sign)
+
+            input_list.append({
+
+"type"
+: 
+"function_call_output"
+,
+
+"call_id"
+: item.call_id,
+
+"output"
+: horoscope,
+
+            })
+
+print
+(
+"Final input:"
+)
+
+print
+(input_list)
+
+response = client.responses.create(
+
+    model=
+"gpt-5"
+,
+
+    instructions=
+"Respond only with a horoscope generated by a tool."
+,
+
+    tools=tools,
+
+input
+=input_list,
+
+)
+
+print
+(
+"Final output:"
+)
+
+print
+(response.model_dump_json(indent=
+2
+))
+
+print
+(
+"\n"
+ + response.output_text)
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+30
+
+31
+
+32
+
+33
+
+34
+
+35
+
+36
+
+37
+
+38
+
+39
+
+40
+
+41
+
+42
+
+43
+
+44
+
+45
+
+46
+
+47
+
+48
+
+49
+
+50
+
+51
+
+52
+
+53
+
+54
+
+55
+
+56
+
+57
+
+58
+
+59
+
+60
+
+61
+
+62
+
+63
+
+64
+
+65
+
+66
+
+67
+
+68
+
+69
+
+70
+
+71
+
+72
+
+73
+
+74
+
+import
+ OpenAI 
+from
+
+"openai"
+;
+
+const
+ openai = 
+new
+ OpenAI();
+
+const
+ tools = [
+
+  {
+
+type
+: 
+"function"
+,
+
+name
+: 
+"get_horoscope"
+,
+
+description
+: 
+"Get today's horoscope for an astrological sign."
+,
+
+parameters
+: {
+
+type
+: 
+"object"
+,
+
+properties
+: {
+
+sign
+: {
+
+type
+: 
+"string"
+,
+
+description
+: 
+"An astrological sign like Taurus or Aquarius"
+,
+
+        },
+
+      },
+
+required
+: [
+"sign"
+],
+
+additionalProperties
+: 
+false
+,
+
+    },
+
+strict
+: 
+true
+,
+
+  },
+
+];
+
+function
+
+getHoroscope
+(
+sign
+) 
+{
+
+return
+
+`
+${sign}
+: Next Tuesday you will befriend a baby otter.`
+;
+
+}
+
+let
+ input = [
+
+  { 
+role
+: 
+"user"
+, 
+content
+: 
+"What is my horoscope? I am an Aquarius."
+ },
+
+];
+
+let
+ response = 
+await
+ openai.responses.create({
+
+model
+: 
+"gpt-5"
+,
+
+  tools,
+
+  input,
+
+});
+
+input.push(...response.output);
+
+for
+ (
+const
+ item 
+of
+ response.output) {
+
+if
+ (item.type !== 
+"function_call"
+) 
+continue
+;
+
+if
+ (item.name === 
+"get_horoscope"
+) {
+
+const
+ { sign } = 
+JSON
+.parse(item.arguments);
+
+const
+ horoscope = getHoroscope(sign);
+
+    input.push({
+
+type
+: 
+"function_call_output"
+,
+
+call_id
+: item.call_id,
+
+output
+: horoscope,
+
+    });
+
+  }
+
+}
+
+console
+.log(
+"Final input:"
+);
+
+console
+.log(
+JSON
+.stringify(input, 
+null
+, 
+2
+));
+
+response = 
+await
+ openai.responses.create({
+
+model
+: 
+"gpt-5"
+,
+
+instructions
+: 
+"Respond only with a horoscope generated by a tool."
+,
+
+  tools,
+
+  input,
+
+});
+
+console
+.log(
+"Final output:"
+);
+
+console
+.log(response.output_text);
+
+Note that for reasoning models like GPT-5 or o4-mini, any reasoning items
+returned in model responses with tool calls must also be passed back with tool
+call outputs.
+
+Functions are usually declared in the 
+tools
+ parameter of each API request. With 
+tool search
+, your application can also load deferred functions later in the interaction. Either way, each callable function uses the same schema shape. A function definition has the following properties:
+
+Field
+Description
+type
+This should always be 
+function
+name
+The function’s name (e.g. 
+get_weather
+)
+description
+Details on when and how to use the function
+parameters
+JSON schema
+ defining the function’s input arguments
+strict
+Whether to enforce strict mode for the function call
+
+Here is an example function definition for a 
+get_weather
+ function
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+{
+
+"type"
+: 
+"function"
+,
+
+"name"
+: 
+"get_weather"
+,
+
+"description"
+: 
+"Retrieves current weather for the given location."
+,
+
+"parameters"
+: {
+
+"type"
+: 
+"object"
+,
+
+"properties"
+: {
+
+"location"
+: {
+
+"type"
+: 
+"string"
+,
+
+"description"
+: 
+"City and country e.g. Bogotá, Colombia"
+
+      },
+
+"units"
+: {
+
+"type"
+: 
+"string"
+,
+
+"enum"
+: [
+"celsius"
+, 
+"fahrenheit"
+],
+
+"description"
+: 
+"Units the temperature will be returned in."
+
+      }
+
+    },
+
+"required"
+: [
+"location"
+, 
+"units"
+],
+
+"additionalProperties"
+: 
+false
+
+  },
+
+"strict"
+: 
+true
+
+}
+
+Because the 
+parameters
+ are defined by a 
+JSON schema
+, you can leverage many of its rich features like property types, enums, descriptions, nested objects, and, recursive objects.
+
+Use namespaces to group related tools by domain, such as 
+crm
+, 
+billing
+, or 
+shipping
+. Namespaces help organize similar tools and are especially useful when the model must choose between tools that serve different systems or purposes, such as one search tool for your CRM and another for your support ticketing system.
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+30
+
+31
+
+32
+
+33
+
+34
+
+{
+
+"type"
+: 
+"namespace"
+,
+
+"name"
+: 
+"crm"
+,
+
+"description"
+: 
+"CRM tools for customer lookup and order management."
+,
+
+"tools"
+: [
+
+    {
+
+"type"
+: 
+"function"
+,
+
+"name"
+: 
+"get_customer_profile"
+,
+
+"description"
+: 
+"Fetch a customer profile by customer ID."
+,
+
+"parameters"
+: {
+
+"type"
+: 
+"object"
+,
+
+"properties"
+: {
+
+"customer_id"
+: { 
+"type"
+: 
+"string"
+ }
+
+        },
+
+"required"
+: [
+"customer_id"
+],
+
+"additionalProperties"
+: 
+false
+
+      }
+
+    },
+
+    {
+
+"type"
+: 
+"function"
+,
+
+"name"
+: 
+"list_open_orders"
+,
+
+"description"
+: 
+"List open orders for a customer ID."
+,
+
+"defer_loading"
+: 
+true
+,
+
+"parameters"
+: {
+
+"type"
+: 
+"object"
+,
+
+"properties"
+: {
+
+"customer_id"
+: { 
+"type"
+: 
+"string"
+ }
+
+        },
+
+"required"
+: [
+"customer_id"
+],
+
+"additionalProperties"
+: 
+false
+
+      }
+
+    }
+
+  ]
+
+}
+
+If you need to give the model access to a large ecosystem of tools, you can defer loading some or all of those tools with 
+tool_search
+. The 
+tool_search
+ tool lets the model search for relevant tools, add them to the model context, and then use them. Only 
+gpt-5.4
+ and later models support it. Read the 
+tool search guide
+ to learn more.
+
+(Optional) Function calling wth pydantic and zod
+While we encourage you to define your function schemas directly, our SDKs have helpers to convert 
+pydantic
+ and 
+zod
+ objects into schemas. Not all 
+pydantic
+ and 
+zod
+ features are supported.
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+from
+ openai 
+import
+ OpenAI, pydantic_function_tool
+
+from
+ pydantic 
+import
+ BaseModel, Field
+
+client = OpenAI()
+
+class
+
+GetWeather
+(
+BaseModel
+):
+
+    location: 
+str
+ = Field(
+
+        ...,
+
+        description=
+"City and country e.g. Bogotá, Colombia"
+
+    )
+
+tools = [pydantic_function_tool(GetWeather)]
+
+completion = client.chat.completions.create(
+
+    model=
+"gpt-4.1"
+,
+
+    messages=[{
+"role"
+: 
+"user"
+, 
+"content"
+: 
+"What's the weather like in Paris today?"
+}],
+
+    tools=tools
+
+)
+
+print
+(completion.choices[
+0
+].message.tool_calls)
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+import
+ OpenAI 
+from
+
+"openai"
+;
+
+import
+ { z } 
+from
+
+"zod"
+;
+
+import
+ { zodFunction } 
+from
+
+"openai/helpers/zod"
+;
+
+const
+ openai = 
+new
+ OpenAI();
+
+const
+ GetWeatherParameters = z.object({
+
+location
+: z.string().describe(
+"City and country e.g. Bogotá, Colombia"
+),
+
+});
+
+const
+ tools = [
+
+  zodFunction({ 
+name
+: 
+"getWeather"
+, 
+parameters
+: GetWeatherParameters }),
+
+];
+
+const
+ messages = [
+
+  { 
+role
+: 
+"user"
+, 
+content
+: 
+"What's the weather like in Paris today?"
+ },
+
+];
+
+const
+ response = 
+await
+ openai.chat.completions.create({
+
+model
+: 
+"gpt-4.1"
+,
+
+  messages,
+
+  tools,
+
+store
+: 
+true
+,
+
+});
+
+console
+.log(response.choices[
+0
+].message.tool_calls);
+
+Write clear and detailed function names, parameter descriptions, and instructions.
+
+Explicitly describe the purpose of the function and each parameter
+ (and its format), and what the output represents.
+
+Use the system prompt to describe when (and when not) to use each function.
+ Generally, tell the model 
+exactly
+ what to do.
+
+Include examples and edge cases
+, especially to rectify any recurring failures. (
+Note:
+ Adding examples may hurt performance for 
+reasoning models
+.)
+
+For deferred tools, put detailed guidance in the function description and keep the namespace description concise.
+ The namespace helps the model choose what to load; the function description helps it use the loaded tool correctly.
+
+Apply software engineering best practices.
+
+Make the functions obvious and intuitive
+. (
+principle of least surprise
+)
+
+Use enums
+ and object structure to make invalid states unrepresentable. (e.g. 
+toggle_light(on: bool, off: bool)
+ allows for invalid calls)
+
+Pass the intern test.
+ Can an intern/human correctly use the function given nothing but what you gave the model? (If not, what questions do they ask you? Add the answers to the prompt.)
+
+Offload the burden from the model and use code where possible.
+
+Don’t make the model fill arguments you already know.
+ For example, if you already have an 
+order_id
+ based on a previous menu, don’t have an 
+order_id
+ param – instead, have no params 
+submit_refund()
+ and pass the 
+order_id
+ with code.
+
+Combine functions that are always called in sequence.
+ For example, if you always call 
+mark_location()
+ after 
+query_location()
+, just move the marking logic into the query function call.
+
+Keep the number of initially available functions small for higher accuracy.
+
+Evaluate your performance
+ with different numbers of functions.
+
+Aim for fewer than 20 functions available at the start of a turn
+ at any one time, though this is just a soft suggestion.
+
+Use tool search
+ to defer large or infrequently used parts of your tool surface instead of exposing everything up front.
+
+Leverage OpenAI resources.
+
+Generate and iterate on function schemas
+ in the 
+Playground
+.
+
+Consider 
+fine-tuning
+ to increase function calling accuracy
+ for large numbers of functions or difficult tasks. (
+cookbook
+)
+
+Under the hood, functions are injected into the system message in a syntax the model has been trained on. This means callable function definitions count against the model’s context limit and are billed as input tokens. If you run into token limits, we suggest limiting the number of functions loaded up front, shortening descriptions where possible, or using 
+tool search
+ so deferred tools are loaded only when needed.
+
+It is also possible to use 
+fine-tuning
+ to reduce the number of tokens used if you have many functions defined in your tools specification.
+
+When the model calls a function, you must execute it and return the result. Since model responses can include zero, one, or multiple calls, it is best practice to assume there are several.
+
+The response has an array of 
+tool_calls
+, each with an 
+id
+ (used later to submit the function result) and a 
+function
+ containing a 
+name
+ and JSON-encoded 
+arguments
+.
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+[
+
+    {
+
+"id"
+: 
+"call_12345xyz"
+,
+
+"type"
+: 
+"function"
+,
+
+"function"
+: {
+
+"name"
+: 
+"get_weather"
+,
+
+"arguments"
+: 
+"{\"location\":\"Paris, France\"}"
+
+        }
+
+    },
+
+    {
+
+"id"
+: 
+"call_67890abc"
+,
+
+"type"
+: 
+"function"
+,
+
+"function"
+: {
+
+"name"
+: 
+"get_weather"
+,
+
+"arguments"
+: 
+"{\"location\":\"Bogotá, Colombia\"}"
+
+        }
+
+    },
+
+    {
+
+"id"
+: 
+"call_99999def"
+,
+
+"type"
+: 
+"function"
+,
+
+"function"
+: {
+
+"name"
+: 
+"send_email"
+,
+
+"arguments"
+: 
+"{\"to\":\"bob@email.com\",\"body\":\"Hi bob\"}"
+
+        }
+
+    }
+
+]
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+for
+ tool_call 
+in
+ completion.choices[
+0
+].message.tool_calls:
+
+    name = tool_call.function.name
+
+    args = json.loads(tool_call.function.arguments)
+
+    result = call_function(name, args)
+
+    messages.append({
+
+"role"
+: 
+"tool"
+,
+
+"tool_call_id"
+: tool_call.
+id
+,
+
+"content"
+: 
+str
+(result)
+
+    })
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+for
+ (
+const
+ toolCall 
+of
+ completion.choices[
+0
+].message.tool_calls) {
+
+const
+ name = toolCall.function.name;
+
+const
+ args = 
+JSON
+.parse(toolCall.function.arguments);
+
+const
+ result = callFunction(name, args);
+
+    messages.push({
+
+role
+: 
+"tool"
+,
+
+tool_call_id
+: toolCall.id,
+
+content
+: result.toString()
+
+    });
+
+}
+
+The response 
+output
+ array contains an entry with the 
+type
+ having a value of 
+function_call
+. Each entry with a 
+call_id
+ (used later to submit the function result), 
+name
+, and JSON-encoded 
+arguments
+.
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+[
+
+    {
+
+"id"
+: 
+"fc_12345xyz"
+,
+
+"call_id"
+: 
+"call_12345xyz"
+,
+
+"type"
+: 
+"function_call"
+,
+
+"name"
+: 
+"get_weather"
+,
+
+"arguments"
+: 
+"{\"location\":\"Paris, France\"}"
+
+    },
+
+    {
+
+"id"
+: 
+"fc_67890abc"
+,
+
+"call_id"
+: 
+"call_67890abc"
+,
+
+"type"
+: 
+"function_call"
+,
+
+"name"
+: 
+"get_weather"
+,
+
+"arguments"
+: 
+"{\"location\":\"Bogotá, Colombia\"}"
+
+    },
+
+    {
+
+"id"
+: 
+"fc_99999def"
+,
+
+"call_id"
+: 
+"call_99999def"
+,
+
+"type"
+: 
+"function_call"
+,
+
+"name"
+: 
+"send_email"
+,
+
+"arguments"
+: 
+"{\"to\":\"bob@email.com\",\"body\":\"Hi bob\"}"
+
+    }
+
+]
+If you are using 
+tool search
+, you may also see 
+tool_search_call
+ and 
+tool_search_output
+ items before a 
+function_call
+. Once the function is loaded, handle the function call in the same way shown here.
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+for
+ tool_call 
+in
+ response.output:
+
+if
+ tool_call.
+type
+ != 
+"function_call"
+:
+
+continue
+
+    name = tool_call.name
+
+    args = json.loads(tool_call.arguments)
+
+    result = call_function(name, args)
+
+    input_messages.append({
+
+"type"
+: 
+"function_call_output"
+,
+
+"call_id"
+: tool_call.call_id,
+
+"output"
+: 
+str
+(result)
+
+    })
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+for
+ (
+const
+ toolCall 
+of
+ response.output) {
+
+if
+ (toolCall.type !== 
+"function_call"
+) {
+
+continue
+;
+
+    }
+
+const
+ name = toolCall.name;
+
+const
+ args = 
+JSON
+.parse(toolCall.arguments);
+
+const
+ result = callFunction(name, args);
+
+    input.push({
+
+type
+: 
+"function_call_output"
+,
+
+call_id
+: toolCall.call_id,
+
+output
+: result.toString()
+
+    });
+
+}
+
+In the example above, we have a hypothetical 
+call_function
+ to route each call. Here’s a possible implementation:
+
+1
+
+2
+
+3
+
+4
+
+5
+
+def
+
+call_function
+(
+name, args
+):
+
+if
+ name == 
+"get_weather"
+:
+
+return
+ get_weather(**args)
+
+if
+ name == 
+"send_email"
+:
+
+return
+ send_email(**args)
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+const
+ callFunction = 
+async
+ (name, args) => {
+
+if
+ (name === 
+"get_weather"
+) {
+
+return
+ getWeather(args.latitude, args.longitude);
+
+    }
+
+if
+ (name === 
+"send_email"
+) {
+
+return
+ sendEmail(args.to, args.body);
+
+    }
+
+};
+
+The result you pass in the 
+function_call_output
+ message should typically be a string, where the format is up to you (JSON, error codes, plain text, etc.). The model will interpret that string as needed.
+
+For functions that return images or files, you can pass an 
+array of image or file objects
+ instead of a string.
+
+If your function has no return value (e.g. 
+send_email
+), simply return a string that indicates success or failure. (e.g. 
+"success"
+)
+
+After appending the results to your 
+messages
+, you can send them back to the model to get a final response.
+1
+
+2
+
+3
+
+4
+
+5
+
+completion = client.chat.completions.create(
+
+    model=
+"gpt-4.1"
+,
+
+    messages=messages,
+
+    tools=tools,
+
+)
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+const
+ completion = 
+await
+ openai.chat.completions.create({
+
+model
+: 
+"gpt-4.1"
+,
+
+    messages,
+
+    tools,
+
+store
+: 
+true
+,
+
+});
+
+After appending the results to your 
+input
+, you can send them back to the model to get a final response.
+1
+
+2
+
+3
+
+4
+
+5
+
+response = client.responses.create(
+
+    model=
+"gpt-4.1"
+,
+
+input
+=input_messages,
+
+    tools=tools,
+
+)
+1
+
+2
+
+3
+
+4
+
+5
+
+const
+ response = 
+await
+ openai.responses.create({
+
+model
+: 
+"gpt-4.1"
+,
+
+    input,
+
+    tools,
+
+});
+
+"It's about 15°C in Paris, 18°C in Bogotá, and I've sent that email to Bob."
+
+By default the model will determine when and how many tools to use. You can force specific behavior with the 
+tool_choice
+ parameter.
+
+Auto:
+ (
+Default
+) Call zero, one, or multiple functions. 
+tool_choice: "auto"
+
+Required:
+ Call one or more functions.
+
+tool_choice: "required"
+
+Forced Function:
+ Call exactly one specific function.
+
+tool_choice: {"type": "function", "name": "get_weather"}
+
+Allowed tools:
+ Restrict the tool calls the model can make to a subset of
+the tools available to the model.
+
+When to use allowed_tools
+
+You might want to configure an 
+allowed_tools
+ list in case you want to make only
+a subset of tools available across model requests, but not modify the list of tools you pass in, so you can maximize savings from 
+prompt caching
+.
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+"tool_choice"
+: {
+
+"type"
+: 
+"allowed_tools"
+,
+
+"mode"
+: 
+"auto"
+,
+
+"tools"
+: [
+
+        { 
+"type"
+: 
+"function"
+, 
+"name"
+: 
+"get_weather"
+ },
+
+        { 
+"type"
+: 
+"function"
+, 
+"name"
+: 
+"search_docs"
+ }
+
+    ]
+
+  }
+
+}
+
+You can also set 
+tool_choice
+ to 
+"none"
+ to imitate the behavior of passing no functions.
+
+When you use tool search, 
+tool_choice
+ still applies to the tools that are currently callable in the turn. This is most useful after you load a subset of tools and want to constrain the model to that subset.
+
+The model may choose to call multiple functions in a single turn. You can prevent this by setting 
+parallel_tool_calls
+ to 
+false
+, which ensures exactly zero or one tool is called.
+
+Note:
+ Currently, if you are using a fine tuned model and the model calls multiple functions in one turn then 
+strict mode
+ will be disabled for those calls.
+
+Note for 
+gpt-4.1-nano-2025-04-14
+:
+ This snapshot of 
+gpt-4.1-nano
+ can sometimes include multiple tools calls for the same tool if parallel tool calls are enabled. It is recommended to disable this feature when using this nano snapshot.
+
+Setting 
+strict
+ to 
+true
+ will ensure function calls reliably adhere to the function schema, instead of being best effort. We recommend always enabling strict mode.
+
+Under the hood, strict mode works by leveraging our 
+structured outputs
+ feature and therefore introduces a couple requirements:
+
+additionalProperties
+ must be set to 
+false
+ for each object in the 
+parameters
+.
+
+All fields in 
+properties
+ must be marked as 
+required
+.
+
+You can denote optional fields by adding 
+null
+ as a 
+type
+ option (see example below).
+
+If you send 
+strict: true
+ and your schema does not meet the requirements above,
+the request will be rejected with details about the missing constraints. If you
+omit 
+strict
+, the default depends on the API: Responses requests will
+normalize your schema into strict mode (for example, by setting
+
+additionalProperties: false
+ and marking all fields as required), which can
+make previously optional fields mandatory, while Chat Completions requests
+remain non-strict by default. To opt out of strict mode in Responses and keep
+non-strict, best-effort function calling, explicitly set 
+strict: false
+.
+
+Strict mode enabled
+Strict mode disabled
+
+Strict mode enabled
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+{
+
+"type"
+: 
+"function"
+,
+
+"function"
+: {
+
+"name"
+: 
+"get_weather"
+,
+
+"description"
+: 
+"Retrieves current weather for the given location."
+,
+
+"strict"
+: 
+true
+,
+
+"parameters"
+: {
+
+"type"
+: 
+"object"
+,
+
+"properties"
+: {
+
+"location"
+: {
+
+"type"
+: 
+"string"
+,
+
+"description"
+: 
+"City and country e.g. Bogotá, Colombia"
+
+                },
+
+"units"
+: {
+
+"type"
+: [
+"string"
+, 
+"null"
+],
+
+"enum"
+: [
+"celsius"
+, 
+"fahrenheit"
+],
+
+"description"
+: 
+"Units the temperature will be returned in."
+
+                }
+
+            },
+
+"required"
+: [
+"location"
+, 
+"units"
+],
+
+"additionalProperties"
+: 
+false
+
+        }
+
+    }
+
+}
+Strict mode disabled
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+{
+
+"type"
+: 
+"function"
+,
+
+"function"
+: {
+
+"name"
+: 
+"get_weather"
+,
+
+"description"
+: 
+"Retrieves current weather for the given location."
+,
+
+"parameters"
+: {
+
+"type"
+: 
+"object"
+,
+
+"properties"
+: {
+
+"location"
+: {
+
+"type"
+: 
+"string"
+,
+
+"description"
+: 
+"City and country e.g. Bogotá, Colombia"
+
+                },
+
+"units"
+: {
+
+"type"
+: 
+"string"
+,
+
+"enum"
+: [
+"celsius"
+, 
+"fahrenheit"
+],
+
+"description"
+: 
+"Units the temperature will be returned in."
+
+                }
+
+            },
+
+"required"
+: [
+"location"
+],
+
+        }
+
+    }
+
+}
+
+Strict mode enabled
+Strict mode disabled
+
+Strict mode enabled
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+{
+
+"type"
+: 
+"function"
+,
+
+"name"
+: 
+"get_weather"
+,
+
+"description"
+: 
+"Retrieves current weather for the given location."
+,
+
+"strict"
+: 
+true
+,
+
+"parameters"
+: {
+
+"type"
+: 
+"object"
+,
+
+"properties"
+: {
+
+"location"
+: {
+
+"type"
+: 
+"string"
+,
+
+"description"
+: 
+"City and country e.g. Bogotá, Colombia"
+
+            },
+
+"units"
+: {
+
+"type"
+: [
+"string"
+, 
+"null"
+],
+
+"enum"
+: [
+"celsius"
+, 
+"fahrenheit"
+],
+
+"description"
+: 
+"Units the temperature will be returned in."
+
+            }
+
+        },
+
+"required"
+: [
+"location"
+, 
+"units"
+],
+
+"additionalProperties"
+: 
+false
+
+    }
+
+}
+Strict mode disabled
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+{
+
+"type"
+: 
+"function"
+,
+
+"name"
+: 
+"get_weather"
+,
+
+"description"
+: 
+"Retrieves current weather for the given location."
+,
+
+"parameters"
+: {
+
+"type"
+: 
+"object"
+,
+
+"properties"
+: {
+
+"location"
+: {
+
+"type"
+: 
+"string"
+,
+
+"description"
+: 
+"City and country e.g. Bogotá, Colombia"
+
+            },
+
+"units"
+: {
+
+"type"
+: 
+"string"
+,
+
+"enum"
+: [
+"celsius"
+, 
+"fahrenheit"
+],
+
+"description"
+: 
+"Units the temperature will be returned in."
+
+            }
+
+        },
+
+"required"
+: [
+"location"
+],
+
+    }
+
+}
+
+All schemas generated in the
+
+playground
+ have strict mode enabled.
+
+While we recommend you enable strict mode, it has a few limitations:
+
+Some features of JSON schema are not supported. (See 
+supported schemas
+.)
+
+Specifically for fine tuned models:
+
+Schemas undergo additional processing on the first request (and are then cached). If your schemas vary from request to request, this may result in higher latencies.
+
+Schemas are cached for performance, and are not eligible for 
+zero data retention
+.
+
+Streaming can be used to surface progress by showing which function is called as the model fills its arguments, and even displaying the arguments in real time.
+Streaming function calls is very similar to streaming regular responses: you set 
+stream
+ to 
+true
+ and get chunks with 
+delta
+ objects.
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+30
+
+31
+
+32
+
+33
+
+34
+
+from
+ openai 
+import
+ OpenAI
+
+client = OpenAI()
+
+tools = [{
+
+"type"
+: 
+"function"
+,
+
+"function"
+: {
+
+"name"
+: 
+"get_weather"
+,
+
+"description"
+: 
+"Get current temperature for a given location."
+,
+
+"parameters"
+: {
+
+"type"
+: 
+"object"
+,
+
+"properties"
+: {
+
+"location"
+: {
+
+"type"
+: 
+"string"
+,
+
+"description"
+: 
+"City and country e.g. Bogotá, Colombia"
+
+                }
+
+            },
+
+"required"
+: [
+"location"
+],
+
+"additionalProperties"
+: 
+False
+
+        },
+
+"strict"
+: 
+True
+
+    }
+
+}]
+
+stream = client.chat.completions.create(
+
+    model=
+"gpt-4.1"
+,
+
+    messages=[{
+"role"
+: 
+"user"
+, 
+"content"
+: 
+"What's the weather like in Paris today?"
+}],
+
+    tools=tools,
+
+    stream=
+True
+
+)
+
+for
+ chunk 
+in
+ stream:
+
+    delta = chunk.choices[
+0
+].delta
+
+print
+(delta.tool_calls)
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+30
+
+31
+
+32
+
+33
+
+34
+
+35
+
+36
+
+import
+ { OpenAI } 
+from
+
+"openai"
+;
+
+const
+ openai = 
+new
+ OpenAI();
+
+const
+ tools = [{
+
+"type"
+: 
+"function"
+,
+
+"function"
+: {
+
+"name"
+: 
+"get_weather"
+,
+
+"description"
+: 
+"Get current temperature for a given location."
+,
+
+"parameters"
+: {
+
+"type"
+: 
+"object"
+,
+
+"properties"
+: {
+
+"location"
+: {
+
+"type"
+: 
+"string"
+,
+
+"description"
+: 
+"City and country e.g. Bogotá, Colombia"
+
+                }
+
+            },
+
+"required"
+: [
+"location"
+],
+
+"additionalProperties"
+: 
+false
+
+        },
+
+"strict"
+: 
+true
+
+    }
+
+}];
+
+const
+ stream = 
+await
+ openai.chat.completions.create({
+
+model
+: 
+"gpt-4.1"
+,
+
+messages
+: [{ 
+role
+: 
+"user"
+, 
+content
+: 
+"What's the weather like in Paris today?"
+ }],
+
+    tools,
+
+stream
+: 
+true
+,
+
+store
+: 
+true
+,
+
+});
+
+for
+
+await
+ (
+const
+ chunk 
+of
+ stream) {
+
+const
+ delta = chunk.choices[
+0
+].delta;
+
+console
+.log(delta.tool_calls);
+
+}
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+[{
+"index"
+: 
+0
+, 
+"id"
+: 
+"call_DdmO9pD3xa9XTPNJ32zg2hcA"
+, 
+"function"
+: {
+"arguments"
+: 
+""
+, 
+"name"
+: 
+"get_weather"
+}, 
+"type"
+: 
+"function"
+}]
+
+[{
+"index"
+: 
+0
+, 
+"id"
+: 
+null
+, 
+"function"
+: {
+"arguments"
+: 
+"{\""
+, 
+"name"
+: 
+null
+}, 
+"type"
+: 
+null
+}]
+
+[{
+"index"
+: 
+0
+, 
+"id"
+: 
+null
+, 
+"function"
+: {
+"arguments"
+: 
+"location"
+, 
+"name"
+: 
+null
+}, 
+"type"
+: 
+null
+}]
+
+[{
+"index"
+: 
+0
+, 
+"id"
+: 
+null
+, 
+"function"
+: {
+"arguments"
+: 
+"\":\""
+, 
+"name"
+: 
+null
+}, 
+"type"
+: 
+null
+}]
+
+[{
+"index"
+: 
+0
+, 
+"id"
+: 
+null
+, 
+"function"
+: {
+"arguments"
+: 
+"Paris"
+, 
+"name"
+: 
+null
+}, 
+"type"
+: 
+null
+}]
+
+[{
+"index"
+: 
+0
+, 
+"id"
+: 
+null
+, 
+"function"
+: {
+"arguments"
+: 
+","
+, 
+"name"
+: 
+null
+}, 
+"type"
+: 
+null
+}]
+
+[{
+"index"
+: 
+0
+, 
+"id"
+: 
+null
+, 
+"function"
+: {
+"arguments"
+: 
+" France"
+, 
+"name"
+: 
+null
+}, 
+"type"
+: 
+null
+}]
+
+[{
+"index"
+: 
+0
+, 
+"id"
+: 
+null
+, 
+"function"
+: {
+"arguments"
+: 
+"\"}"
+, 
+"name"
+: 
+null
+}, 
+"type"
+: 
+null
+}]
+
+null
+Instead of aggregating chunks into a single 
+content
+ string, however, you’re aggregating chunks into an encoded 
+arguments
+ JSON object.
+When the model calls one or more functions the 
+tool_calls
+ field of each 
+delta
+ will be populated. Each 
+tool_call
+ contains the following fields:
+
+Field
+Description
+index
+Identifies which function call the 
+delta
+ is for
+id
+Tool call id.
+function
+Function call delta (
+name
+ and 
+arguments
+)
+type
+Type of 
+tool_call
+ (always 
+function
+ for function calls)
+Many of these fields are only set for the first 
+delta
+ of each tool call, like 
+id
+, 
+function.name
+, and 
+type
+.
+Below is a code snippet demonstrating how to aggregate the 
+delta
+s into a final 
+tool_calls
+ object.
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+final_tool_calls = {}
+
+for
+ chunk 
+in
+ stream:
+
+for
+ tool_call 
+in
+ chunk.choices[
+0
+].delta.tool_calls 
+or
+ []:
+
+        index = tool_call.index
+
+if
+ index 
+not
+
+in
+ final_tool_calls:
+
+            final_tool_calls[index] = tool_call
+
+        final_tool_calls[index].function.arguments += tool_call.function.arguments
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+const
+ finalToolCalls = {};
+
+for
+
+await
+ (
+const
+ chunk 
+of
+ stream) {
+
+const
+ toolCalls = chunk.choices[
+0
+].delta.tool_calls || [];
+
+for
+ (
+const
+ toolCall 
+of
+ toolCalls) {
+
+const
+ { index } = toolCall;
+
+if
+ (!finalToolCalls[index]) {
+
+            finalToolCalls[index] = toolCall;
+
+        }
+
+        finalToolCalls[index].function.arguments += toolCall.function.arguments;
+
+    }
+
+}
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+{
+
+"index"
+: 
+0
+,
+
+"id"
+: 
+"call_RzfkBpJgzeR0S242qfvjadNe"
+,
+
+"function"
+: {
+
+"name"
+: 
+"get_weather"
+,
+
+"arguments"
+: 
+"{\"location\":\"Paris, France\"}"
+
+    }
+
+}
+
+Streaming can be used to surface progress by showing which function is called as the model fills its arguments, and even displaying the arguments in real time.
+Streaming function calls is very similar to streaming regular responses: you set 
+stream
+ to 
+true
+ and get different 
+event
+ objects.
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+30
+
+31
+
+32
+
+from
+ openai 
+import
+ OpenAI
+
+client = OpenAI()
+
+tools = [{
+
+"type"
+: 
+"function"
+,
+
+"name"
+: 
+"get_weather"
+,
+
+"description"
+: 
+"Get current temperature for a given location."
+,
+
+"parameters"
+: {
+
+"type"
+: 
+"object"
+,
+
+"properties"
+: {
+
+"location"
+: {
+
+"type"
+: 
+"string"
+,
+
+"description"
+: 
+"City and country e.g. Bogotá, Colombia"
+
+            }
+
+        },
+
+"required"
+: [
+
+"location"
+
+        ],
+
+"additionalProperties"
+: 
+False
+
+    }
+
+}]
+
+stream = client.responses.create(
+
+    model=
+"gpt-4.1"
+,
+
+input
+=[{
+"role"
+: 
+"user"
+, 
+"content"
+: 
+"What's the weather like in Paris today?"
+}],
+
+    tools=tools,
+
+    stream=
+True
+
+)
+
+for
+ event 
+in
+ stream:
+
+print
+(event)
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+30
+
+31
+
+import
+ { OpenAI } 
+from
+
+"openai"
+;
+
+const
+ openai = 
+new
+ OpenAI();
+
+const
+ tools = [{
+
+type
+: 
+"function"
+,
+
+name
+: 
+"get_weather"
+,
+
+description
+: 
+"Get current temperature for provided coordinates in celsius."
+,
+
+parameters
+: {
+
+type
+: 
+"object"
+,
+
+properties
+: {
+
+latitude
+: { 
+type
+: 
+"number"
+ },
+
+longitude
+: { 
+type
+: 
+"number"
+ }
+
+        },
+
+required
+: [
+"latitude"
+, 
+"longitude"
+],
+
+additionalProperties
+: 
+false
+
+    },
+
+strict
+: 
+true
+
+}];
+
+const
+ stream = 
+await
+ openai.responses.create({
+
+model
+: 
+"gpt-4.1"
+,
+
+input
+: [{ 
+role
+: 
+"user"
+, 
+content
+: 
+"What's the weather like in Paris today?"
+ }],
+
+    tools,
+
+stream
+: 
+true
+,
+
+store
+: 
+true
+,
+
+});
+
+for
+
+await
+ (
+const
+ event 
+of
+ stream) {
+
+console
+.log(event)
+
+}
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+{
+"type"
+:
+"response.output_item.added"
+,
+"response_id"
+:
+"resp_1234xyz"
+,
+"output_index"
+:
+0
+,
+"item"
+:{
+"type"
+:
+"function_call"
+,
+"id"
+:
+"fc_1234xyz"
+,
+"call_id"
+:
+"call_1234xyz"
+,
+"name"
+:
+"get_weather"
+,
+"arguments"
+:
+""
+}}
+
+{
+"type"
+:
+"response.function_call_arguments.delta"
+,
+"response_id"
+:
+"resp_1234xyz"
+,
+"item_id"
+:
+"fc_1234xyz"
+,
+"output_index"
+:
+0
+,
+"delta"
+:
+"{\""
+}
+
+{
+"type"
+:
+"response.function_call_arguments.delta"
+,
+"response_id"
+:
+"resp_1234xyz"
+,
+"item_id"
+:
+"fc_1234xyz"
+,
+"output_index"
+:
+0
+,
+"delta"
+:
+"location"
+}
+
+{
+"type"
+:
+"response.function_call_arguments.delta"
+,
+"response_id"
+:
+"resp_1234xyz"
+,
+"item_id"
+:
+"fc_1234xyz"
+,
+"output_index"
+:
+0
+,
+"delta"
+:
+"\":\""
+}
+
+{
+"type"
+:
+"response.function_call_arguments.delta"
+,
+"response_id"
+:
+"resp_1234xyz"
+,
+"item_id"
+:
+"fc_1234xyz"
+,
+"output_index"
+:
+0
+,
+"delta"
+:
+"Paris"
+}
+
+{
+"type"
+:
+"response.function_call_arguments.delta"
+,
+"response_id"
+:
+"resp_1234xyz"
+,
+"item_id"
+:
+"fc_1234xyz"
+,
+"output_index"
+:
+0
+,
+"delta"
+:
+","
+}
+
+{
+"type"
+:
+"response.function_call_arguments.delta"
+,
+"response_id"
+:
+"resp_1234xyz"
+,
+"item_id"
+:
+"fc_1234xyz"
+,
+"output_index"
+:
+0
+,
+"delta"
+:
+" France"
+}
+
+{
+"type"
+:
+"response.function_call_arguments.delta"
+,
+"response_id"
+:
+"resp_1234xyz"
+,
+"item_id"
+:
+"fc_1234xyz"
+,
+"output_index"
+:
+0
+,
+"delta"
+:
+"\"}"
+}
+
+{
+"type"
+:
+"response.function_call_arguments.done"
+,
+"response_id"
+:
+"resp_1234xyz"
+,
+"item_id"
+:
+"fc_1234xyz"
+,
+"output_index"
+:
+0
+,
+"arguments"
+:
+"{\"location\":\"Paris, France\"}"
+}
+
+{
+"type"
+:
+"response.output_item.done"
+,
+"response_id"
+:
+"resp_1234xyz"
+,
+"output_index"
+:
+0
+,
+"item"
+:{
+"type"
+:
+"function_call"
+,
+"id"
+:
+"fc_1234xyz"
+,
+"call_id"
+:
+"call_1234xyz"
+,
+"name"
+:
+"get_weather"
+,
+"arguments"
+:
+"{\"location\":\"Paris, France\"}"
+}}
+Instead of aggregating chunks into a single 
+content
+ string, however, you’re aggregating chunks into an encoded 
+arguments
+ JSON object.
+When the model calls one or more functions an event of type 
+response.output_item.added
+ will be emitted for each function call that contains the following fields:
+
+Field
+Description
+response_id
+The id of the response that the function call belongs to
+output_index
+The index of the output item in the response. This represents the individual function calls in the response.
+item
+The in-progress function call item that includes a 
+name
+, 
+arguments
+ and 
+id
+ field
+Afterwards you will receive a series of events of type 
+response.function_call_arguments.delta
+ which will contain the 
+delta
+ of the 
+arguments
+ field. These events contain the following fields:
+
+Field
+Description
+response_id
+The id of the response that the function call belongs to
+item_id
+The id of the function call item that the delta belongs to
+output_index
+The index of the outp
+
+[document truncated for prompt size]
+---

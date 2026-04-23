@@ -1,0 +1,104 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens if you do not specify a subnet ID when using the RunInstances API?",
+      "answer": "If you don't specify a subnet ID, AWS chooses a default subnet from your default VPC for you. If you don't have a default VPC, you must specify a subnet ID in the request.",
+      "supporting_sentences": [
+        "If you don't specify a subnet ID, we choose a default subnet from your default VPC for you. If you don't have a default VPC, you must specify a subnet ID in the request."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens if you do not specify a subnet ID when using the RunInstances API?",
+      "answer": "If you don't specify a subnet ID, AWS chooses a default subnet from your default VPC for you. If you don't have a default VPC, you must specify a subnet ID in the request.",
+      "supporting_sentences": [
+        "If you don't specify a subnet ID, we choose a default subnet from your default VPC for you. If you don't have a default VPC, you must specify a subnet ID in the request."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the default behavior for an instance's shutdown when initiated from the instance itself?",
+      "answer": "The default behavior is that the instance stops when you initiate shutdown from the instance.",
+      "supporting_sentences": [
+        "Indicates whether an instance stops or terminates when you initiate shutdown from the instance (using the operating system command for system shutdown).",
+        "Default: stop"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the default behavior for an instance's shutdown when initiated from the instance itself?",
+      "answer": "The default behavior is that the instance stops when you initiate shutdown from the instance.",
+      "supporting_sentences": [
+        "Indicates whether an instance stops or terminates when you initiate shutdown from the instance (using the operating system command for system shutdown).",
+        "Default: stop"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the valid values for the CreditSpecification parameter when launching a burstable performance instance?",
+      "answer": "The valid values for the CreditSpecification parameter are 'standard' and 'unlimited'.",
+      "supporting_sentences": [
+        "The credit option for CPU usage of the burstable performance instance. Valid values are standard and unlimited."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the valid values for the CreditSpecification parameter when launching a burstable performance instance?",
+      "answer": "The valid values for the CreditSpecification parameter are 'standard' and 'unlimited'.",
+      "supporting_sentences": [
+        "The credit option for CPU usage of the burstable performance instance. Valid values are standard and unlimited."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of the ClientToken parameter in the RunInstances API?",
+      "answer": "The ClientToken parameter is a unique, case-sensitive identifier you provide to ensure the idempotency of the request.",
+      "supporting_sentences": [
+        "Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you do not specify a client token, a randomly generated token is used for the request to ensure idempotency."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of the ClientToken parameter in the RunInstances API?",
+      "answer": "The ClientToken parameter is a unique, case-sensitive identifier you provide to ensure the idempotency of the request.",
+      "supporting_sentences": [
+        "Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you do not specify a client token, a randomly generated token is used for the request to ensure idempotency."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the constraints for the MaxCount parameter when launching instances using the RunInstances API?",
+      "answer": "The MaxCount parameter must be between 1 and the quota for the specified instance type for your account in the Region.",
+      "supporting_sentences": [
+        "Constraints: Between 1 and the quota for the specified instance type for your account for this Region."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the constraints for the MaxCount parameter when launching instances using the RunInstances API?",
+      "answer": "The MaxCount parameter must be between 1 and the quota for the specified instance type for your account in the Region.",
+      "supporting_sentences": [
+        "Constraints: Between 1 and the quota for the specified instance type for your account for this Region."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, which is the maximum number of domains that can be added.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 581,
+    "tokens_out": 31
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, listing both allowlist and denylist modes.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 583,
+    "tokens_out": 28
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same core fact as the ground-truth answer, which is that domains should be provided without the protocol, and provides additional relevant details.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 658,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, that specifying a root domain will match all content from that domain and its subdomains.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 604,
+    "tokens_out": 36
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, which is that using a TLD filter like '.gov' includes all domains with that TLD in the search results.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 671,
+    "tokens_out": 43
+  }
+]

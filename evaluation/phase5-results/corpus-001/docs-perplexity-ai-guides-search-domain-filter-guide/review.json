@@ -1,0 +1,112 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the maximum number of domains that can be added to the `search_domain_filter` list?",
+      "answer": "You can add a maximum of 20 domains to the `search_domain_filter` list.",
+      "supporting_sentences": [
+        "You can add a maximum of 20 domains to the `search_domain_filter` list.",
+        "Maximum: 20 domains per request"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the maximum number of domains that can be added to the `search_domain_filter` list?",
+      "answer": "You can add a maximum of 20 domains to the `search_domain_filter` list.",
+      "supporting_sentences": [
+        "You can add a maximum of 20 domains to the `search_domain_filter` list.",
+        "Maximum: 20 domains per request"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the two modes in which the `search_domain_filter` parameter operates?",
+      "answer": "The filter operates in allowlist mode (include only) and denylist mode (exclude).",
+      "supporting_sentences": [
+        "The filter operates in two modes: Allowlist mode: Include only the specified domains (no - prefix), Denylist mode: Exclude the specified domains (use - prefix).",
+        "Modes: Allowlist mode: Include only specified domains (no - prefix), Denylist mode: Exclude specified domains (use - prefix)"
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the two modes in which the `search_domain_filter` parameter operates?",
+      "answer": "The filter operates in allowlist mode (include only) and denylist mode (exclude).",
+      "supporting_sentences": [
+        "The filter operates in two modes: Allowlist mode: Include only the specified domains (no - prefix), Denylist mode: Exclude the specified domains (use - prefix).",
+        "Modes: Allowlist mode: Include only specified domains (no - prefix), Denylist mode: Exclude specified domains (use - prefix)"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How should domains be formatted when using the `search_domain_filter` parameter?",
+      "answer": "Domains should be provided without the protocol (e.g., 'nature.com' not 'https://nature.com').",
+      "supporting_sentences": [
+        "Domains should be provided without the protocol (e.g., \"nature.com\" not \"https://nature.com\").",
+        "Domain names without protocol (e.g., \"example.com\")"
+      ]
+    },
+    "edited_pair": {
+      "question": "How should domains be formatted when using the `search_domain_filter` parameter?",
+      "answer": "Domains should be provided without the protocol (e.g., 'nature.com' not 'https://nature.com').",
+      "supporting_sentences": [
+        "Domains should be provided without the protocol (e.g., \"nature.com\" not \"https://nature.com\").",
+        "Domain names without protocol (e.g., \"example.com\")"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens when you specify a root domain like 'wikipedia.org' in the `search_domain_filter`?",
+      "answer": "It will match all content from that domain and its subdomains, such as en.wikipedia.org, fr.wikipedia.org, and de.wikipedia.org.",
+      "supporting_sentences": [
+        "Specify a root domain to match all content from that domain and its subdomains: \"search_domain_filter\": [\"wikipedia.org\"]",
+        "This will match: en.wikipedia.org, fr.wikipedia.org, de.wikipedia.org, Any other Wikipedia language subdomain"
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens when you specify a root domain like 'wikipedia.org' in the `search_domain_filter`?",
+      "answer": "It will match all content from that domain and its subdomains, such as en.wikipedia.org, fr.wikipedia.org, and de.wikipedia.org.",
+      "supporting_sentences": [
+        "Specify a root domain to match all content from that domain and its subdomains: \"search_domain_filter\": [\"wikipedia.org\"]",
+        "This will match: en.wikipedia.org, fr.wikipedia.org, de.wikipedia.org, Any other Wikipedia language subdomain"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of using a top-level domain (TLD) filter like '.gov' in the `search_domain_filter`?",
+      "answer": "It filters search results to include all domains with that TLD, such as nasa.gov, cdc.gov, and irs.gov.",
+      "supporting_sentences": [
+        "Filter by top-level domain to target specific categories of sites: \"search_domain_filter\": [\".gov\"]",
+        "This will match all government domains: nasa.gov, cdc.gov, irs.gov, Any other .gov domain"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of using a top-level domain (TLD) filter like '.gov' in the `search_domain_filter`?",
+      "answer": "It filters search results to include all domains with that TLD, such as nasa.gov, cdc.gov, and irs.gov.",
+      "supporting_sentences": [
+        "Filter by top-level domain to target specific categories of sites: \"search_domain_filter\": [\".gov\"]",
+        "This will match all government domains: nasa.gov, cdc.gov, irs.gov, Any other .gov domain"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

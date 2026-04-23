@@ -1,0 +1,993 @@
+{
+  "parseability_score": 65.96904761904761,
+  "failure_mode": "moderate_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-001\\docs-aws-amazon-com-AWSEC2-latest-APIReference-API-RunInstances-html\\page.raw.html",
+  "url": "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html",
+  "component_scores": {
+    "semantic_html": 20.0,
+    "content_extractability": 83.47619047619048,
+    "structured_data": 85.0,
+    "dom_navigability": 50,
+    "metadata_completeness": 70,
+    "http_compliance": 86.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [],
+      "aria_elements_count": 0,
+      "heading_elements_count": 42,
+      "scoring_breakdown": {
+        "semantic_coverage": 0.0,
+        "aria_bonus": 0,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 54111,
+        "extracted_text_length": 53025,
+        "extracted_chars": 53025,
+        "extraction_ratio": 0.98,
+        "extracted_title": "Amazon Elastic Compute Cloud",
+        "extracted_preview": "RunInstances Launches the specified number of instances using an AMI for which you have\r\n            permissions. You can specify a number of options, or leave the default options. The following rules\r\n            apply: If you don't specify a subnet ID, we choose a default subnet from\r\n            ...",
+        "original_headings": 42,
+        "extracted_headings": 37,
+        "original_lists": 3,
+        "extracted_lists": 2,
+        "original_code_blocks": 60,
+        "extracted_code_blocks": 60,
+        "has_main_element": false,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 35,
+        "structure_preservation": 25.476190476190474,
+        "boundary_detection": 23
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 1,
+        "microdata_items": 0,
+        "opengraph_items": 0,
+        "microformat_items": 0
+      },
+      "schema_types_found": [
+        "BreadcrumbList"
+      ],
+      "key_fields_found": [],
+      "formats_present": 1,
+      "score_breakdown": {
+        "type_appropriateness": 20.0,
+        "field_completeness": 30.0,
+        "multiple_formats": 5,
+        "schema_validation": 30.0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [
+          {
+            "index": 0,
+            "type": "BreadcrumbList",
+            "present": 1,
+            "expected": 1,
+            "ratio": 1.0,
+            "missing": [],
+            "invalid": []
+          }
+        ],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": [],
+        "average_ratio": 1.0
+      },
+      "sample_structured_data": {
+        "json-ld": [
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "AWS",
+                "item": "https://aws.amazon.com"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Amazon EC2",
+                "item": "https://docs.aws.amazon.com/ec2/index.html"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "API Reference",
+                "item": "https://docs.aws.amazon.com/AWSEC2/latest/APIReference"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "name": "Actions",
+                "item": "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Operations.html"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "name": "RunInstances",
+                "item": "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Operations.html"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures role attribute has an appropriate value for the element",
+          "help": "ARIA role must be appropriate for the element",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+          "id": "aria-allowed-role",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "banner"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role banner  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role banner  is not allowed for given element",
+              "html": "<header id=\"awsdocs-header\" role=\"banner\" aria-label=\"AWS Documentation site header\" class=\"GtD51MLHuAh4ELo6IcrHVQ== \n      JUw9DEgWVna43y4tIPQXeA==\n      \">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#awsdocs-header"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "combobox"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role combobox  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role combobox  is not allowed for given element",
+              "html": "<input aria-label=\"Search in this guide\" placeholder=\"Search in this guide\" id=\"input:rn:\" class=\"awsui_input_2rhyz_8l51k_149 awsui_input-has-icon-left_2rhyz_8l51k_275\" autocomplete=\"off\" type=\"text\" role=\"combobox\" aria-autocomplete=\"list\" aria-expanded=\"false\" value=\"\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#input\\:rn\\:"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+          "help": "Elements must have sufficient color contrast",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9f9f9",
+                    "contrastRatio": 3.97,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0184bb",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"hljs sql\">",
+                      "target": [
+                        ".sql"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"hljs-literal\">true</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".hljs-literal:nth-child(29)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9f9f9",
+                    "contrastRatio": 3.97,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0184bb",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"hljs sql\">",
+                      "target": [
+                        ".sql"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"hljs-literal\">false</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".hljs-literal:nth-child(42)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9f9f9",
+                    "contrastRatio": 3.97,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0184bb",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"hljs sql\">",
+                      "target": [
+                        ".sql"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"hljs-literal\">false</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".hljs-literal:nth-child(55)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9f9f9",
+                    "contrastRatio": 3.84,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4078f2",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.84 (foreground color: #4078f2, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"hljs ruby\">",
+                      "target": [
+                        "pre:nth-child(44) > .ruby.hljs"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.84 (foreground color: #4078f2, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"hljs-symbol\">https:</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "pre:nth-child(44) > .ruby.hljs > .hljs-symbol"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9f9f9",
+                    "contrastRatio": 3.97,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0184bb",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"hljs ruby\">",
+                      "target": [
+                        "pre:nth-child(44) > .ruby.hljs"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"hljs-literal\">true</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "pre:nth-child(44) > .ruby.hljs > .hljs-literal"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9f9f9",
+                    "contrastRatio": 3.84,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4078f2",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.84 (foreground color: #4078f2, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"hljs ruby\">",
+                      "target": [
+                        "pre:nth-child(91) > .ruby.hljs"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.84 (foreground color: #4078f2, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"hljs-symbol\">https:</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "pre:nth-child(91) > .ruby.hljs > .hljs-symbol:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9f9f9",
+                    "contrastRatio": 3.84,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4078f2",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.84 (foreground color: #4078f2, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"hljs ruby\">",
+                      "target": [
+                        "pre:nth-child(91) > .ruby.hljs"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.84 (foreground color: #4078f2, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"hljs-symbol\">:db8</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".hljs-symbol:nth-child(15)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9f9f9",
+                    "contrastRatio": 3.84,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4078f2",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.84 (foreground color: #4078f2, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"hljs ruby\">",
+                      "target": [
+                        "pre:nth-child(96) > .ruby.hljs"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.84 (foreground color: #4078f2, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"hljs-symbol\">https:</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "pre:nth-child(96) > .ruby.hljs > .hljs-symbol"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9f9f9",
+                    "contrastRatio": 3.97,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0184bb",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"hljs ruby\">",
+                      "target": [
+                        "pre:nth-child(96) > .ruby.hljs"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"hljs-literal\">true</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".hljs-literal:nth-child(17)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9f9f9",
+                    "contrastRatio": 3.97,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0184bb",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"hljs ruby\">",
+                      "target": [
+                        "pre:nth-child(96) > .ruby.hljs"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"hljs-literal\">true</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".hljs-literal:nth-child(27)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9f9f9",
+                    "contrastRatio": 3.97,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0184bb",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"hljs ruby\">",
+                      "target": [
+                        "pre:nth-child(96) > .ruby.hljs"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"hljs-literal\">true</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".hljs-literal:nth-child(37)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9f9f9",
+                    "contrastRatio": 3.97,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0184bb",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"hljs ruby\">",
+                      "target": [
+                        "pre:nth-child(96) > .ruby.hljs"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"hljs-literal\">true</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".hljs-literal:nth-child(47)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9f9f9",
+                    "contrastRatio": 3.97,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0184bb",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"hljs ruby\">",
+                      "target": [
+                        "pre:nth-child(96) > .ruby.hljs"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"hljs-literal\">true</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".hljs-literal:nth-child(57)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9f9f9",
+                    "contrastRatio": 3.97,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0184bb",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"hljs ruby\">",
+                      "target": [
+                        "pre:nth-child(96) > .ruby.hljs"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"hljs-literal\">true</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".hljs-literal:nth-child(67)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9f9f9",
+                    "contrastRatio": 3.97,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0184bb",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"hljs ruby\">",
+                      "target": [
+                        "pre:nth-child(96) > .ruby.hljs"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"hljs-literal\">true</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".hljs-literal:nth-child(77)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f9f9f9",
+                    "contrastRatio": 3.97,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0184bb",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"hljs ruby\">",
+                      "target": [
+                        "pre:nth-child(96) > .ruby.hljs"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.97 (foreground color: #0184bb, background color: #f9f9f9, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"hljs-literal\">true</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".hljs-literal:nth-child(87)"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value is unique",
+          "help": "id attribute value must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id?application=axeAPI",
+          "id": "duplicate-id",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "fblink",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<awsui-button id=\"fblink\" rel=\"noopener noreferrer\" target=\"_blank\" text=\"Feedback\" click=\"linkClick($event)\" href=\"https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=EC2 API&amp;topic_url=https://docs.aws.amazon.com/en_us/AWSEC2/latest/APIReference/API_RunInstances.html\">",
+                      "target": [
+                        "#quick-feedback-no > .content > p:nth-child(3) > awsui-button"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<awsui-button id=\"fblink\" rel=\"noopener noreferrer\" target=\"_blank\" text=\"Feedback\" click=\"linkClick($event)\" href=\"https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=EC2 API&amp;topic_url=https://docs.aws.amazon.com/en_us/AWSEC2/latest/APIReference/API_RunInstances.html\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#quick-feedback-yes > .content > p:nth-child(3) > awsui-button"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/heading-order?application=axeAPI",
+          "id": "heading-order",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": 6,
+                  "id": "heading-order",
+                  "impact": "moderate",
+                  "message": "Heading order invalid",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Heading order invalid",
+              "html": "<h6>Note</h6>",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "dd:nth-child(22) > .awsdocs-note > .awsdocs-note-title > h6"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 4,
+      "passes_count": 42,
+      "total_penalty": 50,
+      "penalty_per_rule": {
+        "aria-allowed-role": {
+          "impact": "minor",
+          "node_count": 2,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        },
+        "color-contrast": {
+          "impact": "serious",
+          "node_count": 16,
+          "raw_penalty": 240,
+          "capped_penalty": 25
+        },
+        "duplicate-id": {
+          "impact": "minor",
+          "node_count": 1,
+          "raw_penalty": 5,
+          "capped_penalty": 5
+        },
+        "heading-order": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        }
+      },
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 0,
+        "date": 0,
+        "topic": 15,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag"
+        ],
+        "description": [
+          "meta:description"
+        ],
+        "author": [],
+        "date": [],
+        "topic": [
+          "meta:keywords"
+        ],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 5,
+      "fields_total": 7,
+      "json_ld_type": "BreadcrumbList"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "\"FnOAAZRhgkfi1AaARY4qU490ono=-gzip\"",
+        "last_modified": "Thu, 23 Apr 2026 09:08:53 GMT",
+        "cache_control": "max-age=300"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": true,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": [
+            "link rel=alternate type=text/markdown href=API_RunInstances.md"
+          ]
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 20,
+        "agent_content_hints": 6
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "sample",
+      "detection": {
+        "schema_type_raw": "BreadcrumbList",
+        "source": "dom",
+        "matched_value": "sample"
+      },
+      "weights": {
+        "semantic_html": 0.2,
+        "content_extractability": 0.25,
+        "structured_data": 0.2,
+        "dom_navigability": 0.1,
+        "metadata_completeness": 0.15,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "sample",
+  "universal_score": 61.7952380952381,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 20.0,
+    "content_extractability": 83.47619047619048,
+    "structured_data": 85.0,
+    "dom_navigability": 50,
+    "metadata_completeness": 70,
+    "http_compliance": 86.0
+  },
+  "evidence_references": null
+}

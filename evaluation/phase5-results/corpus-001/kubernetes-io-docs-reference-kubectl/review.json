@@ -1,0 +1,102 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the name of the Kubernetes command line tool used to communicate with a cluster's control plane?",
+      "answer": "kubectl",
+      "supporting_sentences": [
+        "Kubernetes provides a command line tool for communicating with a Kubernetes cluster's control plane, using the Kubernetes API. This tool is named kubectl."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the name of the Kubernetes command line tool used to communicate with a cluster's control plane?",
+      "answer": "kubectl",
+      "supporting_sentences": [
+        "Kubernetes provides a command line tool for communicating with a Kubernetes cluster's control plane, using the Kubernetes API. This tool is named kubectl."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Where does kubectl look for its configuration file by default?",
+      "answer": "It looks for a file named `config` in the `$HOME/.kube` directory.",
+      "supporting_sentences": [
+        "For configuration, kubectl looks for a file named config in the $HOME/.kube directory."
+      ]
+    },
+    "edited_pair": {
+      "question": "Where does kubectl look for its configuration file by default?",
+      "answer": "It looks for a file named `config` in the `$HOME/.kube` directory.",
+      "supporting_sentences": [
+        "For configuration, kubectl looks for a file named config in the $HOME/.kube directory."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the three environment variables kubectl checks to determine if it is running within a cluster?",
+      "answer": "`KUBERNETES_SERVICE_HOST`, `KUBERNETES_SERVICE_PORT`, and the existence of a service account token file at `/var/run/secrets/kubernetes.io/serviceaccount/token`.",
+      "supporting_sentences": [
+        "By default kubectl will first determine if it is running within a pod, and thus in a cluster. It starts by checking for the KUBERNETES_SERVICE_HOST and KUBERNETES_SERVICE_PORT environment variables and the existence of a service account token file at /var/run/secrets/kubernetes.io/serviceaccount/token."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the three environment variables kubectl checks to determine if it is running within a cluster?",
+      "answer": "`KUBERNETES_SERVICE_HOST`, `KUBERNETES_SERVICE_PORT`, and the existence of a service account token file at `/var/run/secrets/kubernetes.io/serviceaccount/token`.",
+      "supporting_sentences": [
+        "By default kubectl will first determine if it is running within a pod, and thus in a cluster. It starts by checking for the KUBERNETES_SERVICE_HOST and KUBERNETES_SERVICE_PORT environment variables and the existence of a service account token file at /var/run/secrets/kubernetes.io/serviceaccount/token."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What command would you use to list all available API resources in Kubernetes?",
+      "answer": "`kubectl api-resources [flags]`",
+      "supporting_sentences": [
+        "api-resources: kubectl api-resources [flags]. List the API resources that are available."
+      ]
+    },
+    "edited_pair": {
+      "question": "What command would you use to list all available API resources in Kubernetes?",
+      "answer": "`kubectl api-resources [flags]`",
+      "supporting_sentences": [
+        "api-resources: kubectl api-resources [flags]. List the API resources that are available."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What flag can be added to the `kubectl get` command to disable server-side column information?",
+      "answer": "`--server-print=false`",
+      "supporting_sentences": [
+        "This feature is enabled by default. To disable it, add the --server-print=false flag to the kubectl get command."
+      ]
+    },
+    "edited_pair": {
+      "question": "What flag can be added to the `kubectl get` command to disable server-side column information?",
+      "answer": "`--server-print=false`",
+      "supporting_sentences": [
+        "This feature is enabled by default. To disable it, add the --server-print=false flag to the kubectl get command."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

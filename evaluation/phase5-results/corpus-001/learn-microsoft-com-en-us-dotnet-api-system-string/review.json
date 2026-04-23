@@ -1,0 +1,110 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What does the `Aggregate` method do when applied to a sequence in .NET?",
+      "answer": "The `Aggregate` method applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value, and the specified function is used to select the result value.",
+      "supporting_sentences": [
+        "Aggregate<TSource,TAccumulate,TResult>(IEnumerable<TSource>, TAccumulate, Func<TAccumulate,TSource,TAccumulate>, Func<TAccumulate,TResult>): Applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value, and the specified function is used to select the result value."
+      ]
+    },
+    "edited_pair": {
+      "question": "What does the `Aggregate` method do when applied to a sequence in .NET?",
+      "answer": "The `Aggregate` method applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value, and the specified function is used to select the result value.",
+      "supporting_sentences": [
+        "Aggregate<TSource,TAccumulate,TResult>(IEnumerable<TSource>, TAccumulate, Func<TAccumulate,TSource,TAccumulate>, Func<TAccumulate,TResult>): Applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value, and the specified function is used to select the result value."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of the `AsMemory` method when used with a string in .NET?",
+      "answer": "The `AsMemory` method creates a new `ReadOnlyMemory<Char>` over a portion of the target string.",
+      "supporting_sentences": [
+        "AsMemory(String, Index): Creates a new ReadOnlyMemory<Char> over a portion of the target string starting at a specified index.",
+        "AsMemory(String, Int32, Int32): Creates a new ReadOnlyMemory<Char> over a portion of the target string beginning at a specified position with a length.",
+        "AsMemory(String): Creates a new ReadOnlyMemory<Char> over the portion of the target string."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of the `AsMemory` method when used with a string in .NET?",
+      "answer": "The `AsMemory` method creates a new `ReadOnlyMemory<Char>` over a portion of the target string.",
+      "supporting_sentences": [
+        "AsMemory(String, Index): Creates a new ReadOnlyMemory<Char> over a portion of the target string starting at a specified index.",
+        "AsMemory(String, Int32, Int32): Creates a new ReadOnlyMemory<Char> over a portion of the target string beginning at a specified position with a length.",
+        "AsMemory(String): Creates a new ReadOnlyMemory<Char> over the portion of the target string."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What does the `CountBy` method return in .NET?",
+      "answer": "The `CountBy` method returns the count of elements in the source sequence grouped by key.",
+      "supporting_sentences": [
+        "CountBy<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>, IEqualityComparer<TKey>): Returns the count of elements in the source sequence grouped by key."
+      ]
+    },
+    "edited_pair": {
+      "question": "What does the `CountBy` method return in .NET?",
+      "answer": "The `CountBy` method returns the count of elements in the source sequence grouped by key.",
+      "supporting_sentences": [
+        "CountBy<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>, IEqualityComparer<TKey>): Returns the count of elements in the source sequence grouped by key."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does the `IsNormalized` method determine if a string is normalized in .NET?",
+      "answer": "The `IsNormalized` method indicates whether a string is in a specified Unicode normalization form or whether the specified string is in Unicode normalization form C.",
+      "supporting_sentences": [
+        "IsNormalized(String, NormalizationForm): Indicates whether a string is in a specified Unicode normalization form.",
+        "IsNormalized(String): Indicates whether the specified string is in Unicode normalization form C."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does the `IsNormalized` method determine if a string is normalized in .NET?",
+      "answer": "The `IsNormalized` method indicates whether a string is in a specified Unicode normalization form or whether the specified string is in Unicode normalization form C.",
+      "supporting_sentences": [
+        "IsNormalized(String, NormalizationForm): Indicates whether a string is in a specified Unicode normalization form.",
+        "IsNormalized(String): Indicates whether the specified string is in Unicode normalization form C."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the role of the `ToDictionary` method in .NET?",
+      "answer": "The `ToDictionary` method creates a `Dictionary<TKey,TValue>` from an `IEnumerable<T>` according to a specified key selector function and optionally an element selector function or comparer.",
+      "supporting_sentences": [
+        "ToDictionary<TSource,TKey,TElement>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TSource,TElement>, IEqualityComparer<TKey>): Creates a Dictionary<TKey,TValue> from an IEnumerable<T> according to a specified key selector function, a comparer, and an element selector function.",
+        "ToDictionary<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>): Creates a Dictionary<TKey,TValue> from an IEnumerable<T> according to a specified key selector function."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the role of the `ToDictionary` method in .NET?",
+      "answer": "The `ToDictionary` method creates a `Dictionary<TKey,TValue>` from an `IEnumerable<T>` according to a specified key selector function and optionally an element selector function or comparer.",
+      "supporting_sentences": [
+        "ToDictionary<TSource,TKey,TElement>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TSource,TElement>, IEqualityComparer<TKey>): Creates a Dictionary<TKey,TValue> from an IEnumerable<T> according to a specified key selector function, a comparer, and an element selector function.",
+        "ToDictionary<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>): Creates a Dictionary<TKey,TValue> from an IEnumerable<T> according to a specified key selector function."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

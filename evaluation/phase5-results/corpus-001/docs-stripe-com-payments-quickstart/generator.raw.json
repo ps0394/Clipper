@@ -1,0 +1,45 @@
+```json
+[
+    {
+        "question": "What is the purpose of the test API key mentioned in the Stripe integration tutorial?",
+        "answer": "The test API key is a public sample key used for demonstration purposes. It should not be used to submit any personally identifiable information in requests.",
+        "supporting_sentences": [
+            "# This is a public sample test API key.",
+            "# Don’t submit any personally identifiable information in requests made with this key."
+        ]
+    },
+    {
+        "question": "What port is the server configured to run on in the Stripe integration tutorial?",
+        "answer": "The server is configured to run on port 4242.",
+        "supporting_sentences": [
+            "set :port, 4242"
+        ]
+    },
+    {
+        "question": "What is the purpose of the `calculate_order_amount` method in the Stripe integration tutorial?",
+        "answer": "The `calculate_order_amount` method securely calculates the order total on the server to prevent people from directly manipulating the amount on the client.",
+        "supporting_sentences": [
+            "# Securely calculate the order amount",
+            "# Calculate the order total on the server to prevent",
+            "# people from directly manipulating the amount on the client"
+        ]
+    },
+    {
+        "question": "What is the URL where users are redirected after a successful payment in the Stripe integration tutorial?",
+        "answer": "Users are redirected to `http://localhost:4242/complete.html` after a successful payment.",
+        "supporting_sentences": [
+            "// Make sure to change this to your payment completion page",
+            "return_url: \"http://localhost:4242/complete.html\""
+        ]
+    },
+    {
+        "question": "What are the three possible payment statuses displayed in the order status page of the Stripe integration tutorial?",
+        "answer": "The three possible payment statuses are 'succeeded', 'processing', and 'requires_payment_method'.",
+        "supporting_sentences": [
+            "case \"succeeded\":",
+            "case \"processing\":",
+            "case \"requires_payment_method\":"
+        ]
+    }
+]
+```

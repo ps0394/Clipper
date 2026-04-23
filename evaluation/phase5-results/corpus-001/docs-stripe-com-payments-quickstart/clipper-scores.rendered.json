@@ -1,0 +1,1856 @@
+{
+  "parseability_score": 40.023114938689346,
+  "failure_mode": "significant_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-001\\docs-stripe-com-payments-quickstart\\page.rendered.html",
+  "url": "https://docs.stripe.com/payments/quickstart",
+  "component_scores": {
+    "semantic_html": 45.45454545454545,
+    "content_extractability": 65.63791430021192,
+    "structured_data": 5,
+    "dom_navigability": 0,
+    "metadata_completeness": 55,
+    "http_compliance": 60.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "article",
+          "count": 1,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 72,
+      "heading_elements_count": 30,
+      "scoring_breakdown": {
+        "semantic_coverage": 5.454545454545455,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 25940,
+        "extracted_text_length": 15902,
+        "extracted_chars": 15902,
+        "extraction_ratio": 0.613,
+        "extracted_title": "Build an advanced integration",
+        "extracted_preview": "require 'sinatra' require 'stripe' # This is a public sample test API key. # Don’t submit any personally identifiable information in requests made with this key. # Sign in to see your own test API key embedded in code samples. # Don't put any keys in code. See https://docs.stripe.com/keys-best-pract...",
+        "original_headings": 30,
+        "extracted_headings": 0,
+        "original_lists": 2,
+        "extracted_lists": 0,
+        "original_code_blocks": 18,
+        "extracted_code_blocks": 9,
+        "has_main_element": false,
+        "has_article_element": true
+      },
+      "score_breakdown": {
+        "signal_to_noise": 38.75757241987003,
+        "structure_preservation": 5.0,
+        "boundary_detection": 21.88034188034188
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 0,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [],
+      "key_fields_found": [],
+      "formats_present": 1,
+      "score_breakdown": {
+        "type_appropriateness": 0,
+        "field_completeness": 0,
+        "multiple_formats": 5,
+        "schema_validation": 0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": []
+      },
+      "sample_structured_data": {
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:type",
+                "website"
+              ],
+              [
+                "og:title",
+                "Build an advanced integration"
+              ],
+              [
+                "og:description",
+                "Learn how to embed a custom Stripe payment form in your website or application. Build a checkout form with Elements to complete a payment using various payment methods."
+              ],
+              [
+                "og:image",
+                "https://d37ugbyn3rpeym.cloudfront.net/docs/og-image/payments.quickstart.ogimage.png"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures role attribute has an appropriate value for the element",
+          "help": "ARIA role must be appropriate for the element",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+          "id": "aria-allowed-role",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "presentation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role presentation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role presentation  is not allowed for given element",
+              "html": "<iframe name=\"__privateStripeFrame3545\" frameborder=\"0\" allowtransparency=\"true\" scrolling=\"no\" role=\"presentation\" allow=\"payment *; publickey-credentials-get *\" src=\"https://js.stripe.com/v3/elements-inner-accessory-target-9e48dde23c1c2589d1392d6391188b5f.html#__shared_params__[version]=dahlia&amp;__shared_params__[light_experiment_assignments]=%7B%22token%22%3A%229aa7fc6e-ddf3-4656-bdf4-5efe613d1fa9%22%2C%22assignments%22%3A%7B%22link_ewcs_prewarm_experiment_v2%22%3A%22control%22%7D%7D&amp;wait=false&amp;rtl=false&amp;publicOptions[layout][type]=accordion&amp;publicOptions[layout][visibleAccordionItemsCount]=2&amp;elementsInitSource=stripe.elements&amp;elementId=payment-e8968ffb-e775-4fd8-9246-350847d80fab&amp;componentName=payment&amp;keyMode=test&amp;apiKey=pk_test_51JIF4wIPedPoXQNKIe7fGQdOi9GJ4c01DlI5TjKsWCZSmyNah5VZGXGznsyzQQZaJdogsE0qtzG3FAmiPEvC9LqZ00lGPrTU19&amp;frameMessagingStrategy=direct&amp;cryptoWalletDetected=false&amp;accessoryCssUrl=https%3A%2F%2Fjs.stripe.com%2Fv3%2Ffingerprinted%2Fcss%2Felements-inner-payment-7eb0eed25c53bcf572cd3c0bc8e379c0.css&amp;referrer=https%3A%2F%2Fdocs.stripe.com%2Fpayments%2Fquickstart&amp;controllerId=__privateStripeController3542\" title=\"Secure payment input frame\" style=\"border: 0px !important; margin: -4px; padding: 0px !important; width: calc(100% + 8px); min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; transform: translate(0px) !important; color-scheme: light only !important; height: 186.188px; opacity: 1; transition: height 0.35s, opacity 0.4s 0.1s;\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "iframe[name=\"__privateStripeFrame3545\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "presentation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role presentation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role presentation  is not allowed for given element",
+              "html": "<iframe name=\"__privateStripeController3541\" frameborder=\"0\" allowtransparency=\"true\" scrolling=\"no\" role=\"presentation\" allow=\"payment *\" src=\"https://js.stripe.com/v3/controller-with-preconnect-78436fd093b9904bc5fcdbe1aef255fa.html#__shared_params__[version]=dahlia&amp;__shared_params__[light_experiment_assignments]=%7B%22token%22%3A%229aa7fc6e-ddf3-4656-bdf4-5efe613d1fa9%22%2C%22assignments%22%3A%7B%22link_ewcs_prewarm_experiment_v2%22%3A%22control%22%7D%7D&amp;apiKey=pk_test_51K1yvAK258Vuxm4DefLCmuJHyQole8qXDOAXoeOFlGAvvGeFwYlkeMutePA37wn4qcO7io15Zrs0KjD1m5qZiVtN00v35dmhXA&amp;apiVersion=2026-03-25.dahlia&amp;stripeJsId=9aa7fc6e-ddf3-4656-bdf4-5efe613d1fa9&amp;stripeObjId=sobj-5cad754c-0e22-41dd-b700-79a4f9191a6c&amp;firstStripeInstanceCreatedLatency=166&amp;controllerCount=1&amp;isCheckout=false&amp;stripeJsLoadTime=1776980429048&amp;manualBrowserDeprecationRollout=false&amp;mids[guid]=NA&amp;mids[muid]=NA&amp;mids[sid]=NA&amp;referrer=https%3A%2F%2Fdocs.stripe.com%2Fpayments%2Fquickstart&amp;controllerId=__privateStripeController3541\" aria-hidden=\"true\" tabindex=\"-1\" style=\"border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: initial !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; visibility: hidden !important; position: fixed !important; height: 1px !important; pointer-events: none !important; user-select: none !important;\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "iframe[name=\"__privateStripeController3541\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "presentation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role presentation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role presentation  is not allowed for given element",
+              "html": "<iframe name=\"__privateStripeController3542\" frameborder=\"0\" allowtransparency=\"true\" scrolling=\"no\" role=\"presentation\" allow=\"payment *\" src=\"https://js.stripe.com/v3/controller-with-preconnect-78436fd093b9904bc5fcdbe1aef255fa.html#__shared_params__[version]=dahlia&amp;__shared_params__[light_experiment_assignments]=%7B%22token%22%3A%229aa7fc6e-ddf3-4656-bdf4-5efe613d1fa9%22%2C%22assignments%22%3A%7B%22link_ewcs_prewarm_experiment_v2%22%3A%22control%22%7D%7D&amp;apiKey=pk_test_51JIF4wIPedPoXQNKIe7fGQdOi9GJ4c01DlI5TjKsWCZSmyNah5VZGXGznsyzQQZaJdogsE0qtzG3FAmiPEvC9LqZ00lGPrTU19&amp;apiVersion=2026-03-25.dahlia&amp;stripeJsId=9aa7fc6e-ddf3-4656-bdf4-5efe613d1fa9&amp;stripeObjId=sobj-89390a42-e051-4b6d-a478-59765dac3827&amp;firstStripeInstanceCreatedLatency=166&amp;controllerCount=2&amp;isCheckout=false&amp;stripeJsLoadTime=1776980429047&amp;manualBrowserDeprecationRollout=false&amp;mids[guid]=NA&amp;mids[muid]=NA&amp;mids[sid]=NA&amp;referrer=https%3A%2F%2Fdocs.stripe.com%2Fpayments%2Fquickstart&amp;controllerId=__privateStripeController3542\" aria-hidden=\"true\" tabindex=\"-1\" style=\"border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: initial !important; margin: 0px !important; padding: 0px !important; width: 0px !important; min-width: 0px !important; overflow: hidden !important; display: block !important; visibility: hidden !important; position: fixed !important; height: 0px !important; pointer-events: none !important; user-select: none !important;\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "iframe[name=\"__privateStripeController3542\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "presentation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role presentation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role presentation  is not allowed for given element",
+              "html": "<iframe name=\"__privateStripeFrame3544\" frameborder=\"0\" allowtransparency=\"true\" scrolling=\"no\" role=\"presentation\" allow=\"payment *\" src=\"https://js.stripe.com/v3/elements-inner-loader-ui-7deed0af3283ec010f5bd8b87af77153.html#__shared_params__[version]=dahlia&amp;__shared_params__[light_experiment_assignments]=%7B%22token%22%3A%229aa7fc6e-ddf3-4656-bdf4-5efe613d1fa9%22%2C%22assignments%22%3A%7B%22link_ewcs_prewarm_experiment_v2%22%3A%22control%22%7D%7D&amp;referrer=https%3A%2F%2Fdocs.stripe.com%2Fpayments%2Fquickstart&amp;controllerId=__privateStripeController3542\" aria-hidden=\"true\" tabindex=\"-1\" style=\"border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: initial !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; visibility: hidden !important; position: fixed !important; height: 1px !important; pointer-events: none !important; user-select: none !important;\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "iframe[name=\"__privateStripeFrame3544\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "presentation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role presentation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role presentation  is not allowed for given element",
+              "html": "<iframe name=\"__privateStripeFrame3547\" frameborder=\"0\" allowtransparency=\"true\" scrolling=\"no\" role=\"presentation\" allow=\"payment *\" sandbox=\"allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin\" referrerpolicy=\"origin\" src=\"https://js.stripe.com/v3/payment-request-inner-google-pay-e7d16df04e6712e105b12d1ae6055394.html#__shared_params__[version]=dahlia&amp;__shared_params__[light_experiment_assignments]=%7B%22token%22%3A%229aa7fc6e-ddf3-4656-bdf4-5efe613d1fa9%22%2C%22assignments%22%3A%7B%22link_ewcs_prewarm_experiment_v2%22%3A%22control%22%7D%7D&amp;authentication[apiKey]=pk_test_51JIF4wIPedPoXQNKIe7fGQdOi9GJ4c01DlI5TjKsWCZSmyNah5VZGXGznsyzQQZaJdogsE0qtzG3FAmiPEvC9LqZ00lGPrTU19&amp;mids[guid]=NA&amp;mids[muid]=NA&amp;mids[sid]=NA&amp;origin=https%3A%2F%2Fdocs.stripe.com&amp;referrer=https%3A%2F%2Fdocs.stripe.com%2Fpayments%2Fquickstart&amp;controllerId=__privateStripeController3542\" aria-hidden=\"true\" tabindex=\"-1\" style=\"border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: initial !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; visibility: hidden !important; position: fixed !important; height: 1px !important; pointer-events: none !important; user-select: none !important;\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "iframe[name=\"__privateStripeFrame3547\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "presentation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role presentation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role presentation  is not allowed for given element",
+              "html": "<iframe name=\"__privateStripeMetricsController3540\" frameborder=\"0\" allowtransparency=\"true\" scrolling=\"no\" role=\"presentation\" allow=\"payment *\" src=\"https://js.stripe.com/v3/m-outer-3437aaddcdf6922d623e172c2d6f9278.html#url=https%3A%2F%2Fdocs.stripe.com%2Fpayments%2Fquickstart&amp;title=Build%20an%20advanced%20integration%20%7C%20Stripe%20Documentation&amp;referrer=&amp;muid=NA&amp;sid=NA&amp;version=6&amp;preview=true&amp;__shared_params__[version]=dahlia\" aria-hidden=\"true\" tabindex=\"-1\" style=\"border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: initial !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; visibility: hidden !important; position: fixed !important; height: 1px !important; pointer-events: none !important; user-select: none !important;\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "iframe[allow=\"payment\\ \\*\"][role=\"presentation\"][frameborder=\"\\30 \"]:nth-child(16)"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-valid-attr-value?application=axeAPI",
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": [
+                    "aria-controls=\"StripeAssistant\""
+                  ],
+                  "id": "aria-valid-attr-value",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute value: aria-controls=\"StripeAssistant\"",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"StripeAssistant\"",
+              "html": "<a data-testid=\"StripeAssistant--Header-AskAI\" aria-expanded=\"false\" aria-controls=\"StripeAssistant\" aria-label=\"Stripe Assistant\" class=\"tooltip-trigger-isolate ⚙ rs-2 rs-3 rs-4 rs-7 rs-3 rs-2 rs-5 rs-6 rs-3 as-8 as-9 as-a as-w as-2e as-1k as-y as-14 as-3r as-3s as-p as-3t as-21 as-3u as-18 as-19 as-3v as-3b as-2n as-3w as-3x as-3y as-3z as-40 as-41 as-42 as-43 as-3n as-3o as-1s as-22 as-23 as-25 as-26 as-27 as-29 as-2a as-2b as-2c as-2d ⚙qm4ya9\" tabindex=\"0\" role=\"button\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                ".as-3y"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+          ]
+        },
+        {
+          "description": "Ensures buttons have discernible text",
+          "help": "Buttons must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/button-name?application=axeAPI",
+          "id": "button-name",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<a tabindex=\"0\" role=\"button\" class=\"⚙ rs-2 rs-3 rs-2 as-8 as-9 as-a as-b as-c as-5k as-5l as-d as-5m as-5n ⚙bg10ay\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                ".as-5k"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button data-test=\"copy-button\" class=\"UnstyledLink ButtonLink CopyButton--step IconParent Flex-flex\" type=\"button\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                ".TabGroup-Tab.Box-root > .sn-hpiv3q.sn-2zit7g.sn-1c37ise > .Flex-flex.Box-root > .Flex-flex.Box-root > .CopyButton--step.ButtonLink[data-test=\"copy-button\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<span role=\"button\" class=\"⚙  as-3r as-1e as-1u as-1v as-9r ⚙sm5kdb\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "#configure-payment-methods > .⚙w54g2d.as-1r.as-y > .⚙1kc9vkf.as-3r.⚙ > .as-9r.⚙sm5kdb[role=\"button\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button data-test=\"copy-button\" class=\"UnstyledLink ButtonLink CopyButton--step IconParent Flex-flex\" type=\"button\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                ".Margin-top--8.Box-hideIfEmpty.Box-root:nth-child(3) > .sn-hpiv3q.sn-2zit7g.sn-1c37ise > .Flex-flex.Box-root > .Flex-flex.Box-root > .CopyButton--step.ButtonLink[data-test=\"copy-button\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<span role=\"button\" class=\"⚙  as-3r as-1e as-1u as-1v as-9r ⚙sm5kdb\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "#accept-payments-and-enhance-your-integration > .⚙w54g2d.as-1r.as-y > .⚙1kc9vkf.as-3r.⚙ > .as-9r.⚙sm5kdb[role=\"button\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<span role=\"button\" class=\"⚙  as-3r as-1e as-1u as-1v as-9r ⚙sm5kdb\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "#next-steps > .⚙w54g2d.as-1r.as-y > .⚙1kc9vkf.as-3r.⚙ > .as-9r.⚙sm5kdb[role=\"button\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a"
+          ]
+        },
+        {
+          "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+          "help": "Elements must have sufficient color contrast",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f4f7fa",
+                    "contrastRatio": 4.49,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#5469d4",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.49 (foreground color: #5469d4, background color: #f4f7fa, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"⚙ rs-4 as-1i as-1j as-w as-1k as-y as-v as-1l ⚙11i1pyt\">",
+                      "target": [
+                        ".as-1i"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.49 (foreground color: #5469d4, background color: #f4f7fa, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"https://dashboard.stripe.com/register\" tabindex=\"0\" class=\"⚙ rs-2 rs-3 rs-3 rs-3 as-8 as-9 as-a as-12 as-17 as-18 as-19 as-1a as-1b as-1c as-1d as-1e as-1f as-1g as-1h as-4b ⚙7d7ugr\">Create account</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".⚙7d7ugr"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f4f7fa",
+                    "contrastRatio": 4.49,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#5469d4",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.49 (foreground color: #5469d4, background color: #f4f7fa, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"Header-collapsable ⚙ rs-4 as-w as-4f as-v as-4g as-1j ⚙1mg4ppv\" data-db-analytics-name=\"docs_top_right_nav\">",
+                      "target": [
+                        ".Header-collapsable"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.49 (foreground color: #5469d4, background color: #f4f7fa, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"Header-tab-text Header-tab-text-active Text-color--blue Text-fontSize--14 Text-fontWeight--medium Text-lineHeight--20 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline\">Payments</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".Header-tab-text-active"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#212d63",
+                    "contrastRatio": 1.01,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#2a2f45",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 1.01 (foreground color: #2a2f45, background color: #212d63, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"RightContainer Box-root\">",
+                      "target": [
+                        ".RightContainer"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.01 (foreground color: #2a2f45, background color: #212d63, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"Text-color--gray800 Text-fontSize--14 Text-fontWeight--medium Text-lineHeight--20 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline\">Copy</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".Text-color--gray800"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value of active elements is unique",
+          "help": "IDs of active elements must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id-active?application=axeAPI",
+          "id": "duplicate-id-active",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "email",
+                  "id": "duplicate-id-active",
+                  "impact": "serious",
+                  "message": "Document has active elements with the same id attribute: email",
+                  "relatedNodes": [
+                    {
+                      "html": "<input class=\"email--input\" id=\"email\" type=\"text\" style=\"--borderFocused: 0; --boxShadowFocused: 0px 1px 1px rgba(0, 0, 0, 0.03), 0px 3px 6px rgba(0, 0, 0, 0.02), 0 0 0 3px rgba(5, 112, 222, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.08); background-color: rgb(255, 255, 255); border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.03) 0px 1px 1px, rgba(0, 0, 0, 0.02) 0px 3px 6px; color: rgb(48, 49, 61); padding: 0px; border: 0px; height: 0px; transform: translateY(20px) scale(0.9); opacity: 0; position: absolute;\">",
+                      "target": [
+                        ".email--input"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has active elements with the same id attribute: email",
+              "html": "<div data-id=\"email\" id=\"email\" class=\"Step Step--toggle Box-root Margin-top--24\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div[data-id=\"email\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures <iframe> and <frame> elements contain a non-empty title attribute",
+          "help": "Frames must have title attribute",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/frame-title?application=axeAPI",
+          "id": "frame-title",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<iframe src=\"https://b.stripecdn.com/stripethirdparty-srv/assets/v21.30/GoogleTagManager.html?id=86aeb6a7-3c5b-4777-b504-44640403c66f&amp;origin=https%3A%2F%2Fdocs.stripe.com\" style=\"border: 0px; height: 0px; width: 0px; position: absolute;\"></iframe>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div:nth-child(10) > iframe"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.text-alternatives",
+            "wcag2a",
+            "wcag241",
+            "wcag412",
+            "section508",
+            "section508.22.i"
+          ]
+        },
+        {
+          "description": "Ensures the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/heading-order?application=axeAPI",
+          "id": "heading-order",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": 4,
+                  "id": "heading-order",
+                  "impact": "moderate",
+                  "message": "Heading order invalid",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Heading order invalid",
+              "html": "<h4 data-component=\"CalloutHeading\" class=\"⚙ rs-3 as-9o as-9p as-16 as-81 as-2r ⚙4pf0e0\">Interested in using Stripe Tax, discounts, shipping, or currency conversion?</h4>",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                ".Text-fontSize--16 > .CalloutWrapper.as-9j.as-9k > .as-9o.as-9p.⚙4pf0e0"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": 4,
+                  "id": "heading-order",
+                  "impact": "moderate",
+                  "message": "Heading order invalid",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Heading order invalid",
+              "html": "<h4 class=\"Heading\" id=\"\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                ".TabGroup-Tab.Box-root > h4"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures every form element has a label",
+          "help": "Form elements must have labels",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/label?application=axeAPI",
+          "id": "label",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Form element has explicit <label> that is hidden",
+              "html": "<input tabindex=\"-1\" placeholder=\"Search\" type=\"text\" aria-invalid=\"false\" aria-labelledby=\"react-aria-:R9cp4miqH3:\" id=\"react-aria-:R9cp4miq:\" class=\"⚙ rs-2 rs-3 rs-4 rs-7 rs-8  rs-3 as-1z as-2z as-30 as-31 as-32 as-2n as-w as-33 as-x as-34 as-35 as-36 as-37 as-38 as-39 as-3a as-3b as-3c as-3d as-3e as-1v as-3f as-3g as-9 as-3h ⚙13d8t1p\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "hidden-explicit-label",
+                  "impact": "critical",
+                  "message": "Form element has explicit <label> that is hidden",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "#react-aria-\\:R9cp4miq\\:"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "implicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an implicit (wrapped) <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "explicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an explicit <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  Element has no title attribute or the title attribute is empty",
+              "html": "<select aria-invalid=\"false\" id=\"Select3\" class=\"Select-element PressableContext Padding-right--24 Padding-left--8 Padding-vertical--4 PressableContext--cursor--pointer PressableContext--display--inlineFlex PressableContext--fontLineHeight--20 PressableContext--fontSize--14 PressableContext--fontWeight--medium PressableContext--height PressableContext--height--medium PressableContext--radius--all PressableContext--width PressableContext--width--auto\" style=\"color: rgb(60, 66, 87);\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "#Select3"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "implicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an implicit (wrapped) <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "explicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an explicit <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  Element has no title attribute or the title attribute is empty",
+              "html": "<input aria-invalid=\"false\" placeholder=\"\" type=\"text\" class=\"Input Input--nowrap PressableContext Padding-horizontal--8 Padding-vertical--4 PressableContext--cursor--text PressableContext--display--inlineFlex PressableContext--fontLineHeight--20 PressableContext--fontSize--14 PressableContext--fontWeight--regular PressableContext--height PressableContext--height--medium PressableContext--radius--all PressableContext--width PressableContext--width--short TextInput-element TextInput-element--align--left PressableContext Padding-horizontal--8 Padding-vertical--4 PressableContext--cursor--text PressableContext--display--inlineFlex PressableContext--fontLineHeight--20 PressableContext--fontSize--14 PressableContext--fontWeight--regular PressableContext--height PressableContext--height--medium PressableContext--radius--all PressableContext--width PressableContext--width--short\" value=\"0570de\" style=\"color: rgb(60, 66, 87);\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "input[value=\"\\30 570de\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "implicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an implicit (wrapped) <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "explicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an explicit <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  Element has no title attribute or the title attribute is empty",
+              "html": "<input class=\"ColorPicker-appearanceColorInput\" type=\"color\" value=\"#0570de\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "input[value=\"\\#0570de\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "implicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an implicit (wrapped) <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "explicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an explicit <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  Element has no title attribute or the title attribute is empty",
+              "html": "<input aria-invalid=\"false\" placeholder=\"\" type=\"text\" class=\"Input Input--nowrap PressableContext Padding-horizontal--8 Padding-vertical--4 PressableContext--cursor--text PressableContext--display--inlineFlex PressableContext--fontLineHeight--20 PressableContext--fontSize--14 PressableContext--fontWeight--regular PressableContext--height PressableContext--height--medium PressableContext--radius--all PressableContext--width PressableContext--width--short TextInput-element TextInput-element--align--left PressableContext Padding-horizontal--8 Padding-vertical--4 PressableContext--cursor--text PressableContext--display--inlineFlex PressableContext--fontLineHeight--20 PressableContext--fontSize--14 PressableContext--fontWeight--regular PressableContext--height PressableContext--height--medium PressableContext--radius--all PressableContext--width PressableContext--width--short\" value=\"ffffff\" style=\"color: rgb(60, 66, 87);\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "input[value=\"ffffff\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "implicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an implicit (wrapped) <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "explicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an explicit <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  Element has no title attribute or the title attribute is empty",
+              "html": "<input class=\"ColorPicker-appearanceColorInput\" type=\"color\" value=\"#ffffff\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "input[value=\"\\#ffffff\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "implicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an implicit (wrapped) <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "explicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an explicit <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  Element has no title attribute or the title attribute is empty",
+              "html": "<input aria-invalid=\"false\" placeholder=\"\" type=\"text\" class=\"Input Input--nowrap PressableContext Padding-horizontal--8 Padding-vertical--4 PressableContext--cursor--text PressableContext--display--inlineFlex PressableContext--fontLineHeight--20 PressableContext--fontSize--14 PressableContext--fontWeight--regular PressableContext--height PressableContext--height--medium PressableContext--radius--all PressableContext--width PressableContext--width--short TextInput-element TextInput-element--align--left PressableContext Padding-horizontal--8 Padding-vertical--4 PressableContext--cursor--text PressableContext--display--inlineFlex PressableContext--fontLineHeight--20 PressableContext--fontSize--14 PressableContext--fontWeight--regular PressableContext--height PressableContext--height--medium PressableContext--radius--all PressableContext--width PressableContext--width--short\" value=\"30313d\" style=\"color: rgb(60, 66, 87);\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "input[value=\"\\33 0313d\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "implicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an implicit (wrapped) <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "explicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an explicit <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  Element has no title attribute or the title attribute is empty",
+              "html": "<input class=\"ColorPicker-appearanceColorInput\" type=\"color\" value=\"#30313d\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "input[value=\"\\#30313d\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "implicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an implicit (wrapped) <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "explicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an explicit <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  Element has no title attribute or the title attribute is empty",
+              "html": "<input class=\"email--input\" id=\"email\" type=\"text\" style=\"--borderFocused: 0; --boxShadowFocused: 0px 1px 1px rgba(0, 0, 0, 0.03), 0px 3px 6px rgba(0, 0, 0, 0.02), 0 0 0 3px rgba(5, 112, 222, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.08); background-color: rgb(255, 255, 255); border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.03) 0px 1px 1px, rgba(0, 0, 0, 0.02) 0px 3px 6px; color: rgb(48, 49, 61); padding: 0px; border: 0px; height: 0px; transform: translateY(20px) scale(0.9); opacity: 0; position: absolute;\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                ".email--input"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.forms",
+            "wcag2a",
+            "wcag332",
+            "wcag131",
+            "section508",
+            "section508.22.n"
+          ]
+        },
+        {
+          "description": "Ensures the page has only one main landmark and each iframe in the page has at most one main landmark",
+          "help": "Page must have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/landmark-one-main?application=axeAPI",
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": null,
+                  "id": "page-has-main",
+                  "impact": "moderate",
+                  "message": "Page does not have a main landmark",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Page does not have a main landmark",
+              "html": "<html id=\"​\" lang=\"en-US\" style=\"width: 100vw\" data-rh=\"style\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "#​"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures that lists are structured correctly",
+          "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/list?application=axeAPI",
+          "id": "list",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed inside <li> elements",
+              "html": "<ul data-testid=\"subtree\" class=\"sn-d7kp2a sn-1fnc4mz sn-1c37ise sn-18m9hpv\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "only-listitems",
+                  "impact": "serious",
+                  "message": "List element has direct children that are not allowed inside <li> elements",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Overview-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\"><a data-testid=\"docs-sidebar-node-link\" href=\"/payments/advanced\" class=\"⚙ rs-4 rs-3  as-w as-1b as-9 as-4k as-4u as-4b as-z as-3n as-3o as-59 ⚙17s1wok\"><span class=\"⚙\"><span>Overview</span></span></a></div>",
+                      "target": [
+                        "div:nth-child(10) > .sn-1iugkao > div > ul > .sn-o2xpkb[aria-hidden=\"false\"]:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Quickstart guides-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        "div:nth-child(10) > .sn-1iugkao > div > ul > .sn-o2xpkb[aria-hidden=\"false\"]:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Stripe Elements-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Compare Checkout Sessions and PaymentIntents-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Design an advanced integration-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Customize look and feel-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Manage payment methods-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Collect additional information-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Build a subscriptions integration-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(9)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Dynamic updates-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(10)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Add discounts-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(11)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Collect taxes on your payments-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(12)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Redeem credits-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(13)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Let customers pay in their local currency-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(14)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Save and retrieve customer payment methods-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(15)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Send receipts and paid invoices-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(16)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Manually approve payments on your server-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(17)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Authorize and capture a payment separately-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(18)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Elements with Checkout Sessions API beta changelog-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(19)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                "div:nth-child(10) > .sn-1iugkao > div > ul"
+              ]
+            },
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed inside <li> elements",
+              "html": "<ul data-testid=\"subtree\" class=\"sn-d7kp2a sn-1fnc4mz sn-1c37ise sn-18m9hpv\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "only-listitems",
+                  "impact": "serious",
+                  "message": "List element has direct children that are not allowed inside <li> elements",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Build a checkout page with Checkout Sessions API-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(2) > .sn-1iugkao > div > ul > .sn-o2xpkb[aria-hidden=\"false\"]:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<div data-testid=\"docs-sidebar-item-Build a checkout page with Payment Intents API-selector\" aria-hidden=\"false\" class=\"sn-o2xpkb\">",
+                      "target": [
+                        ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(2) > .sn-1iugkao > div > ul > .sn-o2xpkb[aria-hidden=\"false\"]:nth-child(2)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                ".sn-o2xpkb[aria-hidden=\"false\"]:nth-child(2) > .sn-1iugkao > div > ul"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.structure",
+            "wcag2a",
+            "wcag131"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 13,
+      "passes_count": 33,
+      "total_penalty": 250,
+      "penalty_per_rule": {
+        "aria-allowed-role": {
+          "impact": "minor",
+          "node_count": 6,
+          "raw_penalty": 30,
+          "capped_penalty": 15
+        },
+        "aria-valid-attr-value": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "button-name": {
+          "impact": "critical",
+          "node_count": 6,
+          "raw_penalty": 150,
+          "capped_penalty": 25
+        },
+        "color-contrast": {
+          "impact": "serious",
+          "node_count": 3,
+          "raw_penalty": 45,
+          "capped_penalty": 25
+        },
+        "duplicate-id-active": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "frame-title": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "heading-order": {
+          "impact": "moderate",
+          "node_count": 2,
+          "raw_penalty": 20,
+          "capped_penalty": 20
+        },
+        "label": {
+          "impact": "critical",
+          "node_count": 9,
+          "raw_penalty": 225,
+          "capped_penalty": 25
+        },
+        "landmark-one-main": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        },
+        "list": {
+          "impact": "serious",
+          "node_count": 2,
+          "raw_penalty": 30,
+          "capped_penalty": 25
+        },
+        "radiogroup": {
+          "impact": "critical",
+          "node_count": 3,
+          "raw_penalty": 75,
+          "capped_penalty": 25
+        },
+        "region": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        },
+        "tabindex": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        }
+      },
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 0,
+        "date": 0,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [
+          "meta:description",
+          "og:description"
+        ],
+        "author": [],
+        "date": [],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 4,
+      "fields_total": 7,
+      "json_ld_type": "none"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "absent",
+        "last_modified": "absent",
+        "cache_control": "absent"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 0,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "tutorial",
+      "detection": {
+        "source": "url",
+        "matched_value": "/quickstart"
+      },
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.25,
+        "structured_data": 0.15,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "tutorial",
+  "universal_score": 36.99121922367875,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 45.45454545454545,
+    "content_extractability": 65.63791430021192,
+    "structured_data": 5,
+    "dom_navigability": 0,
+    "metadata_completeness": 55,
+    "http_compliance": 60.0
+  },
+  "evidence_references": null
+}

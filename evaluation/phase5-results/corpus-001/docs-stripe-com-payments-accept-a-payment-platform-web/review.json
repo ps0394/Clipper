@@ -1,0 +1,102 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of a Checkout Session in Stripe?",
+      "answer": "A Checkout Session is the programmatic representation of what your customer sees when they\u2019re redirected to the payment form.",
+      "supporting_sentences": [
+        "A Checkout Session is the programmatic representation of what your customer sees when they\u2019re redirected to the payment form."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of a Checkout Session in Stripe?",
+      "answer": "A Checkout Session is the programmatic representation of what your customer sees when they\u2019re redirected to the payment form.",
+      "supporting_sentences": [
+        "A Checkout Session is the programmatic representation of what your customer sees when they\u2019re redirected to the payment form."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How long does a Checkout Session remain valid by default?",
+      "answer": "Checkout Sessions expire 24 hours after creation by default.",
+      "supporting_sentences": [
+        "Note\nCheckout Sessions expire 24 hours after creation by default."
+      ]
+    },
+    "edited_pair": {
+      "question": "How long does a Checkout Session remain valid by default?",
+      "answer": "Checkout Sessions expire 24 hours after creation by default.",
+      "supporting_sentences": [
+        "Note\nCheckout Sessions expire 24 hours after creation by default."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What URL must be populated when configuring a Checkout Session?",
+      "answer": "You must populate `success_url` with the URL value of a page on your website that Checkout returns your customer to after they complete the payment.",
+      "supporting_sentences": [
+        "You must populate `success_url` with the URL value of a page on your website that Checkout returns your customer to after they complete the payment."
+      ]
+    },
+    "edited_pair": {
+      "question": "What URL must be populated when configuring a Checkout Session?",
+      "answer": "You must populate `success_url` with the URL value of a page on your website that Checkout returns your customer to after they complete the payment.",
+      "supporting_sentences": [
+        "You must populate `success_url` with the URL value of a page on your website that Checkout returns your customer to after they complete the payment."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How can you enable Apple Pay and Google Pay in Stripe Checkout?",
+      "answer": "You can enable Apple Pay and Google Pay in your payment methods settings in the Stripe Dashboard.",
+      "supporting_sentences": [
+        "You can enable Apple Pay and Google Pay in your payment methods settings."
+      ]
+    },
+    "edited_pair": {
+      "question": "How can you enable Apple Pay and Google Pay in Stripe Checkout?",
+      "answer": "You can enable Apple Pay and Google Pay in your payment methods settings in the Stripe Dashboard.",
+      "supporting_sentences": [
+        "You can enable Apple Pay and Google Pay in your payment methods settings."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What command can you run to confirm your endpoint is accessible for creating a Checkout Session?",
+      "answer": "You can run the following command: `curl -X POST -is \"http://localhost:4242/create-checkout-session\" -d \"\"`.",
+      "supporting_sentences": [
+        "Confirm your endpoint is accessible by starting your web server (for example, localhost:4242) and running the following command:\ncurl -X POST -is \"http://localhost:4242/create-checkout-session\" -d \"\""
+      ]
+    },
+    "edited_pair": {
+      "question": "What command can you run to confirm your endpoint is accessible for creating a Checkout Session?",
+      "answer": "You can run the following command: `curl -X POST -is \"http://localhost:4242/create-checkout-session\" -d \"\"`.",
+      "supporting_sentences": [
+        "Confirm your endpoint is accessible by starting your web server (for example, localhost:4242) and running the following command:\ncurl -X POST -is \"http://localhost:4242/create-checkout-session\" -d \"\""
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

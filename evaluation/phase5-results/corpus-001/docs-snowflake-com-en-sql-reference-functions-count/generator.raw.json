@@ -1,0 +1,45 @@
+```json
+[
+    {
+        "question": "What does the COUNT function return when an unqualified and unfiltered wildcard is specified?",
+        "answer": "The COUNT function returns the total number of rows in the table, including rows with NULL values.",
+        "supporting_sentences": [
+            "The All column in this output shows that when an unqualified and unfiltered wildcard is specified for COUNT, the function returns the total number of rows in the table, including rows with NULL values."
+        ]
+    },
+    {
+        "question": "How many rows are excluded from the count when using COUNT(i_col) on the basic_example table?",
+        "answer": "2 rows are excluded from the count (the rows with NULL values in the i_col column).",
+        "supporting_sentences": [
+            "The other columns in the output show that when a column or a wildcard with filtering is specified, the function excludes rows with NULL values.",
+            "The output for COUNT(i_col) is 4, and the table has 6 rows total, so 2 rows (with NULL in i_col) are excluded."
+        ]
+    },
+    {
+        "what": "What is the result of COUNT(n.*) on the basic_example table?",
+        "question": "What is the result of using COUNT(alias.*) on the basic_example table?",
+        "answer": "The result is 3, representing the number of rows that don’t contain any NULL values.",
+        "supporting_sentences": [
+            "The following example shows that COUNT(alias.*) returns the number of rows that don’t contain any NULL values.",
+            "The basic_example table has a total of six rows, but three rows have at least one NULL value, and the other three rows have no NULL values.",
+            "SELECT COUNT(n.*) FROM basic_example AS n; returns 3."
+        ]
+    },
+    {
+        "question": "How does the COUNT function treat JSON null (VARIANT NULL) values?",
+        "answer": "The COUNT function treats JSON null (VARIANT NULL) values as SQL NULL values, excluding them from the count.",
+        "supporting_sentences": [
+            "The following example shows that JSON null (VARIANT NULL) is treated as SQL NULL by the COUNT function.",
+            "Show that the COUNT function treats both the NULL and the JSON null (VARIANT NULL) values as NULLs."
+        ]
+    },
+    {
+        "question": "What is the result of COUNT(v:Title) on the count_example_with_variant_column table?",
+        "answer": "The result is 2, as both SQL NULL and JSON null values are excluded from the count.",
+        "supporting_sentences": [
+            "Show that the COUNT function treats both the NULL and the JSON null (VARIANT NULL) values as NULLs. There are four rows in the table. One has a SQL NULL and the other has a JSON null. Both those rows are excluded from the count, so the count is 2.",
+            "SELECT COUNT(v:Title) FROM count_example_with_variant_column; returns 2."
+        ]
+    }
+]
+```

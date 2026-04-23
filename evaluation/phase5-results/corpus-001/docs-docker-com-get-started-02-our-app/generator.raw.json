@@ -1,0 +1,42 @@
+```json
+[
+    {
+        "question": "What is the name of the repository that contains the todo list manager application source code?",
+        "answer": "getting-started-app",
+        "supporting_sentences": [
+            "Clone the getting-started-app repository using the following command:",
+            "In the getting-started-app directory, the same location as the package.json file, create a file named Dockerfile with the following contents:"
+        ]
+    },
+    {
+        "question": "Which base image is used in the Dockerfile for the todo list manager application?",
+        "answer": "node:24-alpine",
+        "supporting_sentences": [
+            "Uses node:24-alpine as the base image, a lightweight Linux image with Node.js pre-installed"
+        ]
+    },
+    {
+        "question": "What is the purpose of the `-d` flag in the `docker run` command for this application?",
+        "answer": "The `-d` flag (short for `--detach`) runs the container in the background.",
+        "supporting_sentences": [
+            "The -d flag (short for --detach) runs the container in the background.",
+            "This means that Docker starts your container and returns you to the terminal prompt. Also, it does not display logs in the terminal."
+        ]
+    },
+    {
+        "question": "What port mapping is created when running the container with the `-p` flag in this tutorial?",
+        "answer": "The container's port 3000 is published to `127.0.0.1:3000` (localhost:3000) on the host.",
+        "supporting_sentences": [
+            "The -p flag (short for --publish) creates a port mapping between the host and the container.",
+            "The command publishes the container's port 3000 to 127.0.0.1:3000 (localhost:3000) on the host."
+        ]
+    },
+    {
+        "question": "What command is used to list running containers in Docker?",
+        "answer": "docker ps",
+        "supporting_sentences": [
+            "Run the docker ps command in a terminal to list your containers."
+        ]
+    }
+]
+```

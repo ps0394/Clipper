@@ -1,0 +1,1095 @@
+RunInstances
+Launches the specified number of instances using an AMI for which you have
+            permissions.
+You can specify a number of options, or leave the default options. The following rules
+            apply:
+
+If you don't specify a subnet ID, we choose a default subnet from
+                    your default VPC for you. If you don't have a default VPC, you must specify a
+                    subnet ID in the request.
+
+All instances have a network interface with a primary private IPv4
+                    address. If you don't specify this address, we choose one from the IPv4 range of
+                    your subnet.
+
+Not all instance types support IPv6 addresses. For more information, see
+
+Instance
+                    types
+.
+
+If you don't specify a security group ID, we use the default security group
+                    for the VPC. For more information, see 
+Security
+                        groups
+.
+
+If any of the AMIs have a product code attached for which the user has not
+                    subscribed, the request fails.
+
+You can create a 
+launch template
+,
+            which is a resource that contains the parameters to launch an instance. When you launch
+            an instance using RunInstances, you can specify the launch template
+            instead of specifying the launch parameters.
+To ensure faster instance launches, break up large requests into smaller batches. For
+            example, create five separate launch requests for 100 instances each instead of one
+            launch request for 500 instances.
+
+RunInstances
+ is subject to both request rate limiting and resource rate
+            limiting. For more information, see 
+Request throttling
+.
+An instance is ready for you to use when it's in the 
+running
+ state. You
+            can check the state of your instance using 
+DescribeInstances
+. You can
+            tag instances and EBS volumes during launch, after launch, or both. For more
+            information, see 
+CreateTags
+ and 
+Tagging your Amazon EC2
+                resources
+.
+Linux instances have access to the public key of the key pair at boot. You can use
+            this key to provide secure access to the instance. Amazon EC2 public images use this
+            feature to provide secure access without passwords. For more information, see 
+Key
+                pairs
+.
+For troubleshooting, see 
+What to do if
+                an instance immediately terminates
+, and 
+Troubleshooting connecting to your instance
+.
+
+Request Parameters
+
+The following parameters are for this specific action. For more information about required and optional parameters that are common to all actions, see 
+Common Query Parameters
+.
+
+AdditionalInfo
+
+Reserved.
+
+Type: String
+
+Required: No
+
+BlockDeviceMapping.N
+
+The block device mapping, which defines the EBS volumes and instance store volumes to
+            attach to the instance at launch. For more information, see 
+Block device
+                mappings
+ in the 
+Amazon EC2 User Guide
+.
+
+Type: Array of 
+BlockDeviceMapping
+ objects
+
+Required: No
+
+CapacityReservationSpecification
+
+Information about the Capacity Reservation targeting option. If you do not specify this parameter, the
+            instance's Capacity Reservation preference defaults to 
+open
+, which enables
+            it to run in any open Capacity Reservation that has matching attributes (instance type,
+            platform, Availability Zone, and tenancy).
+
+Type: 
+CapacityReservationSpecification
+ object
+
+Required: No
+
+ClientToken
+
+Unique, case-sensitive identifier you provide to ensure the idempotency of the
+            request. If you do not specify a client token, a randomly generated token is used for
+            the request to ensure idempotency.
+
+For more information, see 
+Ensuring idempotency in Amazon EC2 API requests
+.
+
+Constraints: Maximum 64 ASCII characters
+
+Type: String
+
+Required: No
+
+CpuOptions
+
+The CPU options for the instance. For more information, see 
+Optimize CPU options
+ in the 
+Amazon EC2 User Guide
+.
+
+Type: 
+CpuOptionsRequest
+ object
+
+Required: No
+
+CreditSpecification
+
+The credit option for CPU usage of the burstable performance instance. Valid values
+            are 
+standard
+ and 
+unlimited
+. To change this attribute after
+            launch, use 
+
+                ModifyInstanceCreditSpecification
+. For more information, see 
+Burstable
+                performance instances
+ in the 
+Amazon EC2 User Guide
+.
+
+Default: 
+standard
+ (T2 instances) or 
+unlimited
+ (T3/T3a/T4g
+            instances)
+
+For T3 instances with 
+host
+ tenancy, only 
+standard
+ is
+            supported.
+
+Type: 
+CreditSpecificationRequest
+ object
+
+Required: No
+
+DisableApiStop
+
+Indicates whether an instance is enabled for stop protection. For more information,
+            see 
+Enable stop protection for your EC2 instances
+.
+
+Type: Boolean
+
+Required: No
+
+DisableApiTermination
+
+Indicates whether termination protection is enabled for the instance. The default
+            is 
+false
+, which means that you can terminate the instance using
+            the Amazon EC2 console, command line tools, or API. You can enable termination protection
+            when you launch an instance, while the instance is running, or while the instance
+            is stopped.
+
+Type: Boolean
+
+Required: No
+
+DryRun
+
+Checks whether you have the required permissions for the operation, without actually making the 
+  request, and provides an error response. If you have the required permissions, the error response is 
+
+DryRunOperation
+. Otherwise, it is 
+UnauthorizedOperation
+.
+
+Type: Boolean
+
+Required: No
+
+EbsOptimized
+
+Indicates whether the instance is optimized for Amazon EBS I/O. This optimization
+            provides dedicated throughput to Amazon EBS and an optimized configuration stack to
+            provide optimal Amazon EBS I/O performance. This optimization isn't available with all
+            instance types. Additional usage charges apply when using an EBS-optimized
+            instance.
+
+Default: 
+false
+
+Type: Boolean
+
+Required: No
+
+ElasticGpuSpecification.N
+
+This parameter has been deprecated.
+
+An elastic GPU to associate with the instance.
+
+Amazon Elastic Graphics reached end of life on January 8, 2024.
+
+Type: Array of 
+ElasticGpuSpecification
+ objects
+
+Required: No
+
+ElasticInferenceAccelerator.N
+
+This parameter has been deprecated.
+
+An elastic inference accelerator to associate with the instance.
+
+Amazon Elastic Inference is no longer available.
+
+Type: Array of 
+ElasticInferenceAccelerator
+ objects
+
+Required: No
+
+EnablePrimaryIpv6
+
+If you’re launching an instance into a dual-stack or IPv6-only subnet, you can enable
+            assigning a primary IPv6 address. A primary IPv6 address is an IPv6 GUA address
+            associated with an ENI that you have enabled to use a primary IPv6 address. Use this
+            option if an instance relies on its IPv6 address not changing. When you launch the
+            instance, AWS will automatically assign an IPv6 address associated with
+            the ENI attached to your instance to be the primary IPv6 address. Once you enable an
+            IPv6 GUA address to be a primary IPv6, you cannot disable it. When you enable an IPv6
+            GUA address to be a primary IPv6, the first IPv6 GUA will be made the primary IPv6
+            address until the instance is terminated or the network interface is detached. If you
+            have multiple IPv6 addresses associated with an ENI attached to your instance and you
+            enable a primary IPv6 address, the first IPv6 GUA address associated with the ENI
+            becomes the primary IPv6 address.
+
+Type: Boolean
+
+Required: No
+
+EnclaveOptions
+
+Indicates whether the instance is enabled for AWS Nitro Enclaves. For
+            more information, see 
+AWS Nitro
+                Enclaves User Guide
+.
+
+You can't enable AWS Nitro Enclaves and hibernation on the same
+            instance.
+
+Type: 
+EnclaveOptionsRequest
+ object
+
+Required: No
+
+HibernationOptions
+
+Indicates whether an instance is enabled for hibernation. This parameter is valid only
+            if the instance meets the 
+hibernation
+                prerequisites
+. For more information, see 
+Hibernate your Amazon EC2
+                instance
+ in the 
+Amazon EC2 User Guide
+.
+
+You can't enable hibernation and AWS Nitro Enclaves on the same
+            instance.
+
+Type: 
+HibernationOptionsRequest
+ object
+
+Required: No
+
+IamInstanceProfile
+
+The name or Amazon Resource Name (ARN) of an IAM instance
+            profile.
+
+Type: 
+IamInstanceProfileSpecification
+ object
+
+Required: No
+
+ImageId
+
+The ID of the AMI. An AMI ID is required to launch an instance and must be specified
+            here or in a launch template.
+
+Type: String
+
+Required: No
+
+InstanceInitiatedShutdownBehavior
+
+Indicates whether an instance stops or terminates when you initiate shutdown from the
+            instance (using the operating system command for system shutdown).
+
+Default: 
+stop
+
+Type: String
+
+Valid Values: 
+stop | terminate
+
+Required: No
+
+InstanceMarketOptions
+
+The market (purchasing) option for the instances.
+
+Type: 
+InstanceMarketOptionsRequest
+ object
+
+Required: No
+
+InstanceType
+
+The instance type. For more information, see 
+Amazon EC2 Instance
+                Types Guide
+.
+
+Type: String
+
+Valid Values: 
+a1.medium | a1.large | a1.xlarge | a1.2xlarge | a1.4xlarge | a1.metal | c1.medium | c1.xlarge | c3.large | c3.xlarge | c3.2xlarge | c3.4xlarge | c3.8xlarge | c4.large | c4.xlarge | c4.2xlarge | c4.4xlarge | c4.8xlarge | c5.large | c5.xlarge | c5.2xlarge | c5.4xlarge | c5.9xlarge | c5.12xlarge | c5.18xlarge | c5.24xlarge | c5.metal | c5a.large | c5a.xlarge | c5a.2xlarge | c5a.4xlarge | c5a.8xlarge | c5a.12xlarge | c5a.16xlarge | c5a.24xlarge | c5ad.large | c5ad.xlarge | c5ad.2xlarge | c5ad.4xlarge | c5ad.8xlarge | c5ad.12xlarge | c5ad.16xlarge | c5ad.24xlarge | c5d.large | c5d.xlarge | c5d.2xlarge | c5d.4xlarge | c5d.9xlarge | c5d.12xlarge | c5d.18xlarge | c5d.24xlarge | c5d.metal | c5n.large | c5n.xlarge | c5n.2xlarge | c5n.4xlarge | c5n.9xlarge | c5n.18xlarge | c5n.metal | c6g.medium | c6g.large | c6g.xlarge | c6g.2xlarge | c6g.4xlarge | c6g.8xlarge | c6g.12xlarge | c6g.16xlarge | c6g.metal | c6gd.medium | c6gd.large | c6gd.xlarge | c6gd.2xlarge | c6gd.4xlarge | c6gd.8xlarge | c6gd.12xlarge | c6gd.16xlarge | c6gd.metal | c6gn.medium | c6gn.large | c6gn.xlarge | c6gn.2xlarge | c6gn.4xlarge | c6gn.8xlarge | c6gn.12xlarge | c6gn.16xlarge | c6i.large | c6i.xlarge | c6i.2xlarge | c6i.4xlarge | c6i.8xlarge | c6i.12xlarge | c6i.16xlarge | c6i.24xlarge | c6i.32xlarge | c6i.metal | cc1.4xlarge | cc2.8xlarge | cg1.4xlarge | cr1.8xlarge | d2.xlarge | d2.2xlarge | d2.4xlarge | d2.8xlarge | d3.xlarge | d3.2xlarge | d3.4xlarge | d3.8xlarge | d3en.xlarge | d3en.2xlarge | d3en.4xlarge | d3en.6xlarge | d3en.8xlarge | d3en.12xlarge | dl1.24xlarge | f1.2xlarge | f1.4xlarge | f1.16xlarge | g2.2xlarge | g2.8xlarge | g3.4xlarge | g3.8xlarge | g3.16xlarge | g3s.xlarge | g4ad.xlarge | g4ad.2xlarge | g4ad.4xlarge | g4ad.8xlarge | g4ad.16xlarge | g4dn.xlarge | g4dn.2xlarge | g4dn.4xlarge | g4dn.8xlarge | g4dn.12xlarge | g4dn.16xlarge | g4dn.metal | g5.xlarge | g5.2xlarge | g5.4xlarge | g5.8xlarge | g5.12xlarge | g5.16xlarge | g5.24xlarge | g5.48xlarge | g5g.xlarge | g5g.2xlarge | g5g.4xlarge | g5g.8xlarge | g5g.16xlarge | g5g.metal | hi1.4xlarge | hpc6a.48xlarge | hs1.8xlarge | h1.2xlarge | h1.4xlarge | h1.8xlarge | h1.16xlarge | i2.xlarge | i2.2xlarge | i2.4xlarge | i2.8xlarge | i3.large | i3.xlarge | i3.2xlarge | i3.4xlarge | i3.8xlarge | i3.16xlarge | i3.metal | i3en.large | i3en.xlarge | i3en.2xlarge | i3en.3xlarge | i3en.6xlarge | i3en.12xlarge | i3en.24xlarge | i3en.metal | im4gn.large | im4gn.xlarge | im4gn.2xlarge | im4gn.4xlarge | im4gn.8xlarge | im4gn.16xlarge | inf1.xlarge | inf1.2xlarge | inf1.6xlarge | inf1.24xlarge | is4gen.medium | is4gen.large | is4gen.xlarge | is4gen.2xlarge | is4gen.4xlarge | is4gen.8xlarge | m1.small | m1.medium | m1.large | m1.xlarge | m2.xlarge | m2.2xlarge | m2.4xlarge | m3.medium | m3.large | m3.xlarge | m3.2xlarge | m4.large | m4.xlarge | m4.2xlarge | m4.4xlarge | m4.10xlarge | m4.16xlarge | m5.large | m5.xlarge | m5.2xlarge | m5.4xlarge | m5.8xlarge | m5.12xlarge | m5.16xlarge | m5.24xlarge | m5.metal | m5a.large | m5a.xlarge | m5a.2xlarge | m5a.4xlarge | m5a.8xlarge | m5a.12xlarge | m5a.16xlarge | m5a.24xlarge | m5ad.large | m5ad.xlarge | m5ad.2xlarge | m5ad.4xlarge | m5ad.8xlarge | m5ad.12xlarge | m5ad.16xlarge | m5ad.24xlarge | m5d.large | m5d.xlarge | m5d.2xlarge | m5d.4xlarge | m5d.8xlarge | m5d.12xlarge | m5d.16xlarge | m5d.24xlarge | m5d.metal | m5dn.large | m5dn.xlarge | m5dn.2xlarge | m5dn.4xlarge | m5dn.8xlarge | m5dn.12xlarge | m5dn.16xlarge | m5dn.24xlarge | m5dn.metal | m5n.large | m5n.xlarge | m5n.2xlarge | m5n.4xlarge | m5n.8xlarge | m5n.12xlarge | m5n.16xlarge | m5n.24xlarge | m5n.metal | m5zn.large | m5zn.xlarge | m5zn.2xlarge | m5zn.3xlarge | m5zn.6xlarge | m5zn.12xlarge | m5zn.metal | m6a.large | m6a.xlarge | m6a.2xlarge | m6a.4xlarge | m6a.8xlarge | m6a.12xlarge | m6a.16xlarge | m6a.24xlarge | m6a.32xlarge | m6a.48xlarge | m6g.metal | m6g.medium | m6g.large | m6g.xlarge | m6g.2xlarge | m6g.4xlarge | m6g.8xlarge | m6g.12xlarge | m6g.16xlarge | m6gd.metal | m6gd.medium | m6gd.large | m6gd.xlarge | m6gd.2xlarge | m6gd.4xlarge | m6gd.8xlarge | m6gd.12xlarge | m6gd.16xlarge | m6i.large | m6i.xlarge | m6i.2xlarge | m6i.4xlarge | m6i.8xlarge | m6i.12xlarge | m6i.16xlarge | m6i.24xlarge | m6i.32xlarge | m6i.metal | mac1.metal | p2.xlarge | p2.8xlarge | p2.16xlarge | p3.2xlarge | p3.8xlarge | p3.16xlarge | p3dn.24xlarge | p4d.24xlarge | r3.large | r3.xlarge | r3.2xlarge | r3.4xlarge | r3.8xlarge | r4.large | r4.xlarge | r4.2xlarge | r4.4xlarge | r4.8xlarge | r4.16xlarge | r5.large | r5.xlarge | r5.2xlarge | r5.4xlarge | r5.8xlarge | r5.12xlarge | r5.16xlarge | r5.24xlarge | r5.metal | r5a.large | r5a.xlarge | r5a.2xlarge | r5a.4xlarge | r5a.8xlarge | r5a.12xlarge | r5a.16xlarge | r5a.24xlarge | r5ad.large | r5ad.xlarge | r5ad.2xlarge | r5ad.4xlarge | r5ad.8xlarge | r5ad.12xlarge | r5ad.16xlarge | r5ad.24xlarge | r5b.large | r5b.xlarge | r5b.2xlarge | r5b.4xlarge | r5b.8xlarge | r5b.12xlarge | r5b.16xlarge | r5b.24xlarge | r5b.metal | r5d.large | r5d.xlarge | r5d.2xlarge | r5d.4xlarge | r5d.8xlarge | r5d.12xlarge | r5d.16xlarge | r5d.24xlarge | r5d.metal | r5dn.large | r5dn.xlarge | r5dn.2xlarge | r5dn.4xlarge | r5dn.8xlarge | r5dn.12xlarge | r5dn.16xlarge | r5dn.24xlarge | r5dn.metal | r5n.large | r5n.xlarge | r5n.2xlarge | r5n.4xlarge | r5n.8xlarge | r5n.12xlarge | r5n.16xlarge | r5n.24xlarge | r5n.metal | r6g.medium | r6g.large | r6g.xlarge | r6g.2xlarge | r6g.4xlarge | r6g.8xlarge | r6g.12xlarge | r6g.16xlarge | r6g.metal | r6gd.medium | r6gd.large | r6gd.xlarge | r6gd.2xlarge | r6gd.4xlarge | r6gd.8xlarge | r6gd.12xlarge | r6gd.16xlarge | r6gd.metal | r6i.large | r6i.xlarge | r6i.2xlarge | r6i.4xlarge | r6i.8xlarge | r6i.12xlarge | r6i.16xlarge | r6i.24xlarge | r6i.32xlarge | r6i.metal | t1.micro | t2.nano | t2.micro | t2.small | t2.medium | t2.large | t2.xlarge | t2.2xlarge | t3.nano | t3.micro | t3.small | t3.medium | t3.large | t3.xlarge | t3.2xlarge | t3a.nano | t3a.micro | t3a.small | t3a.medium | t3a.large | t3a.xlarge | t3a.2xlarge | t4g.nano | t4g.micro | t4g.small | t4g.medium | t4g.large | t4g.xlarge | t4g.2xlarge | u-6tb1.56xlarge | u-6tb1.112xlarge | u-9tb1.112xlarge | u-12tb1.112xlarge | u-6tb1.metal | u-9tb1.metal | u-12tb1.metal | u-18tb1.metal | u-24tb1.metal | vt1.3xlarge | vt1.6xlarge | vt1.24xlarge | x1.16xlarge | x1.32xlarge | x1e.xlarge | x1e.2xlarge | x1e.4xlarge | x1e.8xlarge | x1e.16xlarge | x1e.32xlarge | x2iezn.2xlarge | x2iezn.4xlarge | x2iezn.6xlarge | x2iezn.8xlarge | x2iezn.12xlarge | x2iezn.metal | x2gd.medium | x2gd.large | x2gd.xlarge | x2gd.2xlarge | x2gd.4xlarge | x2gd.8xlarge | x2gd.12xlarge | x2gd.16xlarge | x2gd.metal | z1d.large | z1d.xlarge | z1d.2xlarge | z1d.3xlarge | z1d.6xlarge | z1d.12xlarge | z1d.metal | x2idn.16xlarge | x2idn.24xlarge | x2idn.32xlarge | x2iedn.xlarge | x2iedn.2xlarge | x2iedn.4xlarge | x2iedn.8xlarge | x2iedn.16xlarge | x2iedn.24xlarge | x2iedn.32xlarge | c6a.large | c6a.xlarge | c6a.2xlarge | c6a.4xlarge | c6a.8xlarge | c6a.12xlarge | c6a.16xlarge | c6a.24xlarge | c6a.32xlarge | c6a.48xlarge | c6a.metal | m6a.metal | i4i.large | i4i.xlarge | i4i.2xlarge | i4i.4xlarge | i4i.8xlarge | i4i.16xlarge | i4i.32xlarge | i4i.metal | x2idn.metal | x2iedn.metal | c7g.medium | c7g.large | c7g.xlarge | c7g.2xlarge | c7g.4xlarge | c7g.8xlarge | c7g.12xlarge | c7g.16xlarge | mac2.metal | c6id.large | c6id.xlarge | c6id.2xlarge | c6id.4xlarge | c6id.8xlarge | c6id.12xlarge | c6id.16xlarge | c6id.24xlarge | c6id.32xlarge | c6id.metal | m6id.large | m6id.xlarge | m6id.2xlarge | m6id.4xlarge | m6id.8xlarge | m6id.12xlarge | m6id.16xlarge | m6id.24xlarge | m6id.32xlarge | m6id.metal | r6id.large | r6id.xlarge | r6id.2xlarge | r6id.4xlarge | r6id.8xlarge | r6id.12xlarge | r6id.16xlarge | r6id.24xlarge | r6id.32xlarge | r6id.metal | r6a.large | r6a.xlarge | r6a.2xlarge | r6a.4xlarge | r6a.8xlarge | r6a.12xlarge | r6a.16xlarge | r6a.24xlarge | r6a.32xlarge | r6a.48xlarge | r6a.metal | p4de.24xlarge | u-3tb1.56xlarge | u-18tb1.112xlarge | u-24tb1.112xlarge | trn1.2xlarge | trn1.32xlarge | hpc6id.32xlarge | c6in.large | c6in.xlarge | c6in.2xlarge | c6in.4xlarge | c6in.8xlarge | c6in.12xlarge | c6in.16xlarge | c6in.24xlarge | c6in.32xlarge | m6in.large | m6in.xlarge | m6in.2xlarge | m6in.4xlarge | m6in.8xlarge | m6in.12xlarge | m6in.16xlarge | m6in.24xlarge | m6in.32xlarge | m6idn.large | m6idn.xlarge | m6idn.2xlarge | m6idn.4xlarge | m6idn.8xlarge | m6idn.12xlarge | m6idn.16xlarge | m6idn.24xlarge | m6idn.32xlarge | r6in.large | r6in.xlarge | r6in.2xlarge | r6in.4xlarge | r6in.8xlarge | r6in.12xlarge | r6in.16xlarge | r6in.24xlarge | r6in.32xlarge | r6idn.large | r6idn.xlarge | r6idn.2xlarge | r6idn.4xlarge | r6idn.8xlarge | r6idn.12xlarge | r6idn.16xlarge | r6idn.24xlarge | r6idn.32xlarge | c7g.metal | m7g.medium | m7g.large | m7g.xlarge | m7g.2xlarge | m7g.4xlarge | m7g.8xlarge | m7g.12xlarge | m7g.16xlarge | m7g.metal | r7g.medium | r7g.large | r7g.xlarge | r7g.2xlarge | r7g.4xlarge | r7g.8xlarge | r7g.12xlarge | r7g.16xlarge | r7g.metal | c6in.metal | m6in.metal | m6idn.metal | r6in.metal | r6idn.metal | inf2.xlarge | inf2.8xlarge | inf2.24xlarge | inf2.48xlarge | trn1n.32xlarge | i4g.large | i4g.xlarge | i4g.2xlarge | i4g.4xlarge | i4g.8xlarge | i4g.16xlarge | hpc7g.4xlarge | hpc7g.8xlarge | hpc7g.16xlarge | c7gn.medium | c7gn.large | c7gn.xlarge | c7gn.2xlarge | c7gn.4xlarge | c7gn.8xlarge | c7gn.12xlarge | c7gn.16xlarge | p5.48xlarge | m7i.large | m7i.xlarge | m7i.2xlarge | m7i.4xlarge | m7i.8xlarge | m7i.12xlarge | m7i.16xlarge | m7i.24xlarge | m7i.48xlarge | m7i-flex.large | m7i-flex.xlarge | m7i-flex.2xlarge | m7i-flex.4xlarge | m7i-flex.8xlarge | m7a.medium | m7a.large | m7a.xlarge | m7a.2xlarge | m7a.4xlarge | m7a.8xlarge | m7a.12xlarge | m7a.16xlarge | m7a.24xlarge | m7a.32xlarge | m7a.48xlarge | m7a.metal-48xl | hpc7a.12xlarge | hpc7a.24xlarge | hpc7a.48xlarge | hpc7a.96xlarge | c7gd.medium | c7gd.large | c7gd.xlarge | c7gd.2xlarge | c7gd.4xlarge | c7gd.8xlarge | c7gd.12xlarge | c7gd.16xlarge | m7gd.medium | m7gd.large | m7gd.xlarge | m7gd.2xlarge | m7gd.4xlarge | m7gd.8xlarge | m7gd.12xlarge | m7gd.16xlarge | r7gd.medium | r7gd.large | r7gd.xlarge | r7gd.2xlarge | r7gd.4xlarge | r7gd.8xlarge | r7gd.12xlarge | r7gd.16xlarge | r7a.medium | r7a.large | r7a.xlarge | r7a.2xlarge | r7a.4xlarge | r7a.8xlarge | r7a.12xlarge | r7a.16xlarge | r7a.24xlarge | r7a.32xlarge | r7a.48xlarge | c7i.large | c7i.xlarge | c7i.2xlarge | c7i.4xlarge | c7i.8xlarge | c7i.12xlarge | c7i.16xlarge | c7i.24xlarge | c7i.48xlarge | mac2-m2pro.metal | r7iz.large | r7iz.xlarge | r7iz.2xlarge | r7iz.4xlarge | r7iz.8xlarge | r7iz.12xlarge | r7iz.16xlarge | r7iz.32xlarge | c7a.medium | c7a.large | c7a.xlarge | c7a.2xlarge | c7a.4xlarge | c7a.8xlarge | c7a.12xlarge | c7a.16xlarge | c7a.24xlarge | c7a.32xlarge | c7a.48xlarge | c7a.metal-48xl | r7a.metal-48xl | r7i.large | r7i.xlarge | r7i.2xlarge | r7i.4xlarge | r7i.8xlarge | r7i.12xlarge | r7i.16xlarge | r7i.24xlarge | r7i.48xlarge | dl2q.24xlarge | mac2-m2.metal | i4i.12xlarge | i4i.24xlarge | c7i.metal-24xl | c7i.metal-48xl | m7i.metal-24xl | m7i.metal-48xl | r7i.metal-24xl | r7i.metal-48xl | r7iz.metal-16xl | r7iz.metal-32xl | c7gd.metal | m7gd.metal | r7gd.metal | g6.xlarge | g6.2xlarge | g6.4xlarge | g6.8xlarge | g6.12xlarge | g6.16xlarge | g6.24xlarge | g6.48xlarge | gr6.4xlarge | gr6.8xlarge | c7i-flex.large | c7i-flex.xlarge | c7i-flex.2xlarge | c7i-flex.4xlarge | c7i-flex.8xlarge | u7i-12tb.224xlarge | u7in-16tb.224xlarge | u7in-24tb.224xlarge | u7in-32tb.224xlarge | u7ib-12tb.224xlarge | c7gn.metal | r8g.medium | r8g.large | r8g.xlarge | r8g.2xlarge | r8g.4xlarge | r8g.8xlarge | r8g.12xlarge | r8g.16xlarge | r8g.24xlarge | r8g.48xlarge | r8g.metal-24xl | r8g.metal-48xl | mac2-m1ultra.metal | g6e.xlarge | g6e.2xlarge | g6e.4xlarge | g6e.8xlarge | g6e.12xlarge | g6e.16xlarge | g6e.24xlarge | g6e.48xlarge | c8g.medium | c8g.large | c8g.xlarge | c8g.2xlarge | c8g.4xlarge | c8g.8xlarge | c8g.12xlarge | c8g.16xlarge | c8g.24xlarge | c8g.48xlarge | c8g.metal-24xl | c8g.metal-48xl | m8g.medium | m8g.large | m8g.xlarge | m8g.2xlarge | m8g.4xlarge | m8g.8xlarge | m8g.12xlarge | m8g.16xlarge | m8g.24xlarge | m8g.48xlarge | m8g.metal-24xl | m8g.metal-48xl | x8g.medium | x8g.large | x8g.xlarge | x8g.2xlarge | x8g.4xlarge | x8g.8xlarge | x8g.12xlarge | x8g.16xlarge | x8g.24xlarge | x8g.48xlarge | x8g.metal-24xl | x8g.metal-48xl | i7ie.large | i7ie.xlarge | i7ie.2xlarge | i7ie.3xlarge | i7ie.6xlarge | i7ie.12xlarge | i7ie.18xlarge | i7ie.24xlarge | i7ie.48xlarge | i8g.large | i8g.xlarge | i8g.2xlarge | i8g.4xlarge | i8g.8xlarge | i8g.12xlarge | i8g.16xlarge | i8g.24xlarge | i8g.metal-24xl | u7i-6tb.112xlarge | u7i-8tb.112xlarge | u7inh-32tb.480xlarge | p5e.48xlarge | p5en.48xlarge | f2.12xlarge | f2.48xlarge | trn2.48xlarge | c7i-flex.12xlarge | c7i-flex.16xlarge | m7i-flex.12xlarge | m7i-flex.16xlarge | i7ie.metal-24xl | i7ie.metal-48xl | i8g.48xlarge | c8gd.medium | c8gd.large | c8gd.xlarge | c8gd.2xlarge | c8gd.4xlarge | c8gd.8xlarge | c8gd.12xlarge | c8gd.16xlarge | c8gd.24xlarge | c8gd.48xlarge | c8gd.metal-24xl | c8gd.metal-48xl | i7i.large | i7i.xlarge | i7i.2xlarge | i7i.4xlarge | i7i.8xlarge | i7i.12xlarge | i7i.16xlarge | i7i.24xlarge | i7i.48xlarge | i7i.metal-24xl | i7i.metal-48xl | p6-b200.48xlarge | m8gd.medium | m8gd.large | m8gd.xlarge | m8gd.2xlarge | m8gd.4xlarge | m8gd.8xlarge | m8gd.12xlarge | m8gd.16xlarge | m8gd.24xlarge | m8gd.48xlarge | m8gd.metal-24xl | m8gd.metal-48xl | r8gd.medium | r8gd.large | r8gd.xlarge | r8gd.2xlarge | r8gd.4xlarge | r8gd.8xlarge | r8gd.12xlarge | r8gd.16xlarge | r8gd.24xlarge | r8gd.48xlarge | r8gd.metal-24xl | r8gd.metal-48xl | c8gn.medium | c8gn.large | c8gn.xlarge | c8gn.2xlarge | c8gn.4xlarge | c8gn.8xlarge | c8gn.12xlarge | c8gn.16xlarge | c8gn.24xlarge | c8gn.48xlarge | c8gn.metal-24xl | c8gn.metal-48xl | f2.6xlarge | p6e-gb200.36xlarge | g6f.large | g6f.xlarge | g6f.2xlarge | g6f.4xlarge | gr6f.4xlarge | p5.4xlarge | r8i.large | r8i.xlarge | r8i.2xlarge | r8i.4xlarge | r8i.8xlarge | r8i.12xlarge | r8i.16xlarge | r8i.24xlarge | r8i.32xlarge | r8i.48xlarge | r8i.96xlarge | r8i.metal-48xl | r8i.metal-96xl | r8i-flex.large | r8i-flex.xlarge | r8i-flex.2xlarge | r8i-flex.4xlarge | r8i-flex.8xlarge | r8i-flex.12xlarge | r8i-flex.16xlarge
+
+Required: No
+
+Ipv6Address.N
+
+The IPv6 addresses from the range of the subnet to associate with the
+            primary network interface. You cannot specify this option and the option to assign a
+            number of IPv6 addresses in the same request. You cannot specify this option if you've
+            specified a minimum number of instances to launch.
+
+You cannot specify this option and the network interfaces option in the same
+            request.
+
+Type: Array of 
+InstanceIpv6Address
+ objects
+
+Required: No
+
+Ipv6AddressCount
+
+The number of IPv6 addresses to associate with the primary network
+            interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet. You
+            cannot specify this option and the option to assign specific IPv6 addresses in the same
+            request. You can specify this option if you've specified a minimum number of instances
+            to launch.
+
+You cannot specify this option and the network interfaces option in the same
+            request.
+
+Type: Integer
+
+Required: No
+
+KernelId
+
+The ID of the kernel.
+
+We recommend that you use PV-GRUB instead of kernels and RAM disks. For more
+                information, see 
+PV-GRUB
+ in the
+
+Amazon EC2 User Guide
+.
+
+Type: String
+
+Required: No
+
+KeyName
+
+The name of the key pair. For more information, see 
+Create a key pair for your EC2 instance
+.
+
+If you do not specify a key pair, you can't connect to the instance unless you
+                choose an AMI that is configured to allow users another way to log in.
+
+Type: String
+
+Required: No
+
+LaunchTemplate
+
+The launch template. Any additional parameters that you specify for the new instance 
+            overwrite the corresponding parameters included in the launch template.
+
+Type: 
+LaunchTemplateSpecification
+ object
+
+Required: No
+
+LicenseSpecification.N
+
+The license configurations.
+
+Type: Array of 
+LicenseConfigurationRequest
+ objects
+
+Required: No
+
+MaintenanceOptions
+
+The maintenance and recovery options for the instance.
+
+Type: 
+InstanceMaintenanceOptionsRequest
+ object
+
+Required: No
+
+MaxCount
+
+The maximum number of instances to launch. If you specify a value that is more
+            capacity than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 
+            launches the largest possible number of instances above the specified minimum
+            count.
+
+Constraints: Between 1 and the quota for the specified instance type for your account for this Region. 
+            For more information, see 
+Amazon EC2 instance type quotas
+.
+
+Type: Integer
+
+Required: Yes
+
+MetadataOptions
+
+The metadata options for the instance. For more information, see 
+Configure the Instance Metadata Service options
+.
+
+Type: 
+InstanceMetadataOptionsRequest
+ object
+
+Required: No
+
+MinCount
+
+The minimum number of instances to launch. If you specify a value that is more
+            capacity than Amazon EC2 can provide in the target Availability Zone, Amazon EC2 does
+            not launch any instances.
+
+Constraints: Between 1 and the quota for the specified instance type for your account for this Region.
+            For more information, see 
+Amazon EC2 instance type quotas
+.
+
+Type: Integer
+
+Required: Yes
+
+Monitoring
+
+Specifies whether detailed monitoring is enabled for the instance.
+
+Type: 
+RunInstancesMonitoringEnabled
+ object
+
+Required: No
+
+NetworkInterface.N
+
+The network interfaces to associate with the instance.
+
+Type: Array of 
+InstanceNetworkInterfaceSpecification
+ objects
+
+Required: No
+
+NetworkPerformanceOptions
+
+Contains settings for the network performance options for the instance.
+
+Type: 
+InstanceNetworkPerformanceOptionsRequest
+ object
+
+Required: No
+
+Operator
+
+Reserved for internal use.
+
+Type: 
+OperatorRequest
+ object
+
+Required: No
+
+Placement
+
+The placement for the instance.
+
+Type: 
+Placement
+ object
+
+Required: No
+
+PrivateDnsNameOptions
+
+The options for the instance hostname. 
+            The default values are inherited from the subnet.
+            Applies only if creating a network interface, not attaching an existing one.
+
+Type: 
+PrivateDnsNameOptionsRequest
+ object
+
+Required: No
+
+PrivateIpAddress
+
+The primary IPv4 address. You must specify a value from the IPv4 address
+            range of the subnet.
+
+Only one private IP address can be designated as primary. You can't specify this
+            option if you've specified the option to designate a private IP address as the primary
+            IP address in a network interface specification. You cannot specify this option if
+            you're launching more than one instance in the request.
+
+You cannot specify this option and the network interfaces option in the same
+            request.
+
+Type: String
+
+Required: No
+
+RamdiskId
+
+The ID of the RAM disk to select. Some kernels require additional drivers at launch.
+            Check the kernel requirements for information about whether you need to specify a RAM
+            disk. To find kernel requirements, go to the AWS Resource Center and
+            search for the kernel ID.
+
+We recommend that you use PV-GRUB instead of kernels and RAM disks. For more
+                information, see 
+PV-GRUB
+ in the
+
+Amazon EC2 User Guide
+.
+
+Type: String
+
+Required: No
+
+SecondaryInterface.N
+
+The secondary interfaces to associate with the instance.
+
+Type: Array of 
+InstanceSecondaryInterfaceSpecificationRequest
+ objects
+
+Required: No
+
+SecurityGroup.N
+
+[Default VPC] The names of the security groups.
+
+If you specify a network interface, you must specify any security groups as part of
+            the network interface instead of using this parameter.
+
+Default: Amazon EC2 uses the default security group.
+
+Type: Array of strings
+
+Required: No
+
+SecurityGroupId.N
+
+The IDs of the security groups.
+
+If you specify a network interface, you must specify any security groups as part of
+            the network interface instead of using this parameter.
+
+Type: Array of strings
+
+Required: No
+
+SubnetId
+
+The ID of the subnet to launch the instance into.
+
+If you specify a network interface, you must specify any subnets as part of the
+            network interface instead of using this parameter.
+
+Type: String
+
+Required: No
+
+TagSpecification.N
+
+The tags to apply to the resources that are created during instance launch.
+
+You can specify tags for the following resources only:
+
+Instances
+
+Volumes
+
+Spot Instance requests
+
+Network interfaces
+
+To tag a resource after it has been created, see 
+CreateTags
+.
+
+Type: Array of 
+TagSpecification
+ objects
+
+Required: No
+
+UserData
+
+The user data to make available to the instance. User data must be base64-encoded.
+            Depending on the tool or SDK that you're using, the base64-encoding might be performed for you.
+            For more information, see 
+Run commands at launch using instance user data
+.
+
+Type: String
+
+Required: No
+
+Response Elements
+
+The following elements are returned by the service.
+
+groupSet
+
+Not supported.
+
+Type: Array of 
+GroupIdentifier
+ objects
+
+instancesSet
+
+The instances.
+
+Type: Array of 
+Instance
+ objects
+
+ownerId
+
+The ID of the AWS account that owns the reservation.
+
+Type: String
+
+requesterId
+
+The ID of the requester that launched the instances on your behalf (for example,
+                AWS Management Console or Auto Scaling).
+
+Type: String
+
+requestId
+
+The ID of the request.
+
+Type: String
+
+reservationId
+
+The ID of the reservation.
+
+Type: String
+
+Errors
+
+For information about the errors that are common to all actions, see 
+Common client error codes
+.
+
+Examples
+
+Example 1
+
+This example launches three instances using the specified AMI.
+
+Sample Request
+
+https://ec2.amazonaws.com/?Action=RunInstances
+&ImageId=ami-60a54009
+&MaxCount=3
+&MinCount=1
+&KeyName=my-key-pair
+&SecurityGroupId.1=sg-0598c7d3
+&Placement.AvailabilityZone=us-east-1d
+&AUTHPARAMS
+
+Example 2
+
+This example launches an instance into the specified subnet. Because no
+                    network interface is specified, a new network interface is created.
+
+Sample Request
+
+https://ec2.amazonaws.com/?Action=RunInstances
+&ImageId=ami-31814f58
+&InstanceType=t2.micro
+&MaxCount=1
+&MinCount=1
+&KeyName=my-key-pair
+&SecurityGroupId.1=sg-0598c7d3
+&SubnetId=subnet-b2a249da
+&AUTHPARAMS
+
+Example 3
+
+This example launches an instance into the specified subnet. The network
+                    interface specifies a primary private IPv4 address of 
+10.0.2.106
+
+                    and two secondary private IPv4 addresses (
+10.0.2.107
+ and
+
+10.0.2.108
+).
+
+Sample Request
+
+https://ec2.amazonaws.com/?Action=RunInstances
+&ImageId=ami-beb0caec
+&InstanceType=t2.small
+&MaxCount=1
+&MinCount=1
+&KeyName=my-key-pair
+&NetworkInterface.1.DeviceIndex=0
+&NetworkInterface.1.PrivateIpAddresses.1.Primary=true
+&NetworkInterface.1.PrivateIpAddresses.1.PrivateIpAddress=10.0.2.106
+&NetworkInterface.1.PrivateIpAddresses.2.Primary=false
+&NetworkInterface.1.PrivateIpAddresses.2.PrivateIpAddress=10.0.2.107
+&NetworkInterface.1.PrivateIpAddresses.3.Primary=false
+&NetworkInterface.1.PrivateIpAddresses.3.PrivateIpAddress=10.0.2.108
+&NetworkInterface.1.SubnetId=subnet-a61dafcf
+&AUTHPARAMS
+
+Example 4
+
+This example launches a Dedicated Instance into the specified subnet.
+
+Sample Request
+
+https://ec2.amazonaws.com/?Action=RunInstances
+&ImageId=ami-2a1fec43
+&InstanceType=m6i.8xlarge
+&MaxCount=1
+&MinCount=1
+&KeyName=my-key-pair
+&SecurityGroupId.1=sg-0598c7d3
+&SubnetId=subnet-dea63cb7
+&Placement.Tenancy=dedicated
+&AUTHPARAMS
+
+Example 5
+
+This request launches an instance into the specified subnet, and requests a
+                    public IPv4 address for a new network interface with the device index of
+                    0.
+
+Sample Request
+
+https://ec2.amazonaws.com/?Action=RunInstances
+&ImageId=ami-1a2b3c4d
+&InstanceType=m6i.8xlarge
+&MaxCount=1
+&MinCount=1
+&NetworkInterface.1.DeviceIndex=0
+&NetworkInterface.1.AssociatePublicIpAddress=true
+&NetworkInterface.1.SubnetId=subnet-1a2b3c4d
+&AUTHPARAMS
+
+Example 6
+
+This request launches an instance with a block device mapping. There are two
+                    instance store volumes mapped to 
+/dev/sdc
+ and
+
+/dev/sdd
+, and a 100-GB EBS volume mapped to 
+/dev/sdf
+.
+                    The EBS volume attached to the instance is encrypted using a customer managed
+                    KMS key.
+
+For more information about block device mappings, see 
+EbsBlockDevice
+ and 
+Modifying block device mappings during launch
+.
+
+For more information, see 
+Amazon EBS encryption
+.
+
+Sample Request
+
+https://ec2.amazonaws.com/?Action=RunInstances
+&ImageId=ami-1a2b3c4d
+&InstanceType=m6id.12xlarge
+&BlockDeviceMapping.1.DeviceName=%2Fdev%2Fsdc
+&BlockDeviceMapping.1.VirtualName=ephemeral0
+&BlockDeviceMapping.2.DeviceName=%2Fdev%2Fsdd
+&BlockDeviceMapping.2.VirtualName=ephemeral1
+&BlockDeviceMapping.3.DeviceName=%2Fdev%2Fsdf
+&BlockDeviceMapping.3.Ebs.DeleteOnTermination=false
+&BlockDeviceMapping.3.Ebs.VolumeSize=100
+&BlockDeviceMapping.3.Ebs.Encrypted=true
+&BlockDeviceMapping.3.Ebs.KmsKeyId=arn%3Aaws%3Akms%3Aus-east-1%3A009400881653%3Akey%2Fa48a521f-3aff-4b34-a159-376ac5d37812
+&EbsOptimized=false
+&MinCount=1
+&MaxCount=1
+&DisableApiTermination=false
+&Monitoring.Enabled=false
+&AUTHPARAMS
+
+Example 7
+
+This request launches two instances and applies a tag with a key of
+
+webserver
+ and a value of 
+production
+ to the
+                    instances. The request also applies a tag with a key of 
+cost-center
+
+                    and a value of 
+cc123
+ to the volumes that are created (in this case,
+                    the root volume for each instance).
+
+Sample Request
+
+https://ec2.amazonaws.com/?Action=RunInstances
+&ImageId=ami-31814f58
+&InstanceType=t2.large
+&MaxCount=2
+&MinCount=1
+&KeyName=my-key-pair
+&SecurityGroupId.1=sg-0598c7d3
+&SubnetId=subnet-b2a249da
+&TagSpecification.1.ResourceType=instance
+&TagSpecification.1.Tag.1.Key=webserver
+&TagSpecification.1.Tag.1.Value=production
+&TagSpecification.2.ResourceType=volume
+&TagSpecification.2.Tag.1.Key=cost-center
+&TagSpecification.2.Tag.1.Value=cc123
+&AUTHPARAMS
+
+Example 8
+
+This request launches a burstable performance instance with the credit option
+                    for CPU usage set to 
+unlimited
+.
+
+Sample Request
+
+https://ec2.amazonaws.com/?Action=RunInstances
+&ImageId=ami-31814f58
+&InstanceType=t2.micro
+&MaxCount=1
+&MinCount=1
+&KeyName=my-key-pair
+&SecurityGroupId.1=sg-0598c7d3
+&CreditSpecification.CpuCredits=unlimited
+&AUTHPARAMS
+
+Example 9
+
+This request launches an instance into the specified partition placement group
+                    but does not specify the partition.
+
+Sample Request
+
+https://ec2.amazonaws.com/?Action=RunInstances
+&ImageId=ami-31814f58
+&InstanceType=t3.large
+&MaxCount=1
+&MinCount=1
+&KeyName=my-key-pair
+&SecurityGroupId.1=sg-0598c7d3
+&Placement=HDFS-Group-A
+&AUTHPARAMS
+
+Example 10
+
+This request launches an instance into the specified partition placement group
+                    and into the specified partition.
+
+Sample Request
+
+https://ec2.amazonaws.com/?Action=RunInstances
+&ImageId=ami-31814f58
+&InstanceType=t3.large
+&MaxCount=1
+&MinCount=1
+&KeyName=my-key-pair
+&SecurityGroupId.1=sg-0598c7d3
+&Placement=HDFS-Group-A
+&Partition=2
+&AUTHPARAMS
+
+Example 11
+
+This example launches an instance with a metadata type requiring a session
+                    token for metadata retrieval requests.
+
+Sample Request
+
+https://ec2.amazonaws.com/?Action=RunInstances
+&ImageId=ami-1a2b3c4d
+&InstanceType=c6i.large
+&MaxCount=1
+&MinCount=1
+&KeyName=my-key-pair
+&SecurityGroupId.1=sg-0598c7d3
+&MetadataOptions.HttpTokens=required
+&AUTHPARAMS
+
+Example 12
+
+This example launches an instance with instance metadata access turned
+                    off.
+
+Sample Request
+
+https://ec2.amazonaws.com/?Action=RunInstances
+&ImageId=ami-1a2b3c4d 
+&InstanceType=c6i.large
+&MaxCount=1
+&MinCount=1
+&KeyName=my-key-pair
+&SecurityGroupId.1=sg-0598c7d3
+&MetadataOptions.HttpEndpoint=disabled
+&AUTHPARAMS
+
+Example 13
+
+This example launches an instance with a metadata type requiring a session
+                    token for metadata retrieval requests and a metadata hop limit of
+
+3
+.
+
+Sample Request
+
+https://ec2.amazonaws.com/?Action=RunInstances
+&ImageId=ami-1a2b3c4d
+&InstanceType=c6i.large
+&MaxCount=1
+&MinCount=1
+&KeyName=my-key-pair
+&SecurityGroupId.1=sg-0598c7d3
+&MetadataOptions.HttpTokens=required
+&MetadataOptions.HttpPutResponseHopLimit=3
+&AUTHPARAMS
+
+Example 14
+
+This example launches an instance and assigns two security groups and an IPv6
+                    address to the primary network interface.
+
+Sample Request
+
+https://ec2.amazonaws.com/?Action=RunInstances
+&ImageId=ami-00112233445566aab
+&InstanceType=t2.micro
+&MinCount=1
+&MaxCount=1
+&NetworkInterface.1.DeviceIndex=0
+&NetworkInterface.1.SecurityGroupId.1=sg-444455556666cccdd
+&NetworkInterface.1.SecurityGroupId.2=sg-111122223333aaabb
+&NetworkInterface.1.Ipv6Addresses.1.Ipv6Address=2001:db8:1234:1a00::123
+&NetworkInterface.1.SubnetId=subnet-aabbccdd112233445
+&AUTHPARAMS
+
+Example 15
+
+This example launches a single instance with 8 secondary interfaces, each on a separate network card and configured for automatic deletion on termination.
+
+Sample Request
+
+https://ec2.amazonaws.com/?Action=RunInstances
+  &ImageId=ami-beb0caec
+  &InstanceType=<instanceType>
+  &MaxCount=1
+  &MinCount=1
+  &Placement.AvailabilityZoneId=use2-az1
+  &NetworkInterface.1.DeviceIndex=0
+  &NetworkInterface.1.SubnetId=subnet-a61dafcf
+  &NetworkInterface.1.DeleteOnTermination
+  &SecondaryInterface.1.SecondarySubnetId=ss-073988ab526b59d2c
+  &SecondaryInterface.1.NetworkCardIndex=1
+  &SecondaryInterface.1.DeviceIndex=0
+  &SecondaryInterface.1.InterfaceType=secondary
+  &SecondaryInterface.1.DeleteOnTermination=true
+  &SecondaryInterface.1.PrivateIpAddressCount=1
+  &SecondaryInterface.2.SecondarySubnetId=ss-061ba0b5a43c9eabe
+  &SecondaryInterface.2.NetworkCardIndex=2
+  &SecondaryInterface.2.DeviceIndex=0
+  &SecondaryInterface.2.InterfaceType=secondary
+  &SecondaryInterface.2.DeleteOnTermination=true
+  &SecondaryInterface.2.PrivateIpAddressCount=1
+  &SecondaryInterface.3.SecondarySubnetId=ss-060c8c15859a0c8e5
+  &SecondaryInterface.3.NetworkCardIndex=3
+  &SecondaryInterface.3.DeviceIndex=0
+  &SecondaryInterface.3.InterfaceType=secondary
+  &SecondaryInterface.3.DeleteOnTermination=true
+  &SecondaryInterface.3.PrivateIpAddressCount=1
+  &SecondaryInterface.4.SecondarySubnetId=ss-0dafcecef369ae17d
+  &SecondaryInterface.4.NetworkCardIndex=4
+  &SecondaryInterface.4.DeviceIndex=0
+  &SecondaryInterface.4.InterfaceType=secondary
+  &SecondaryInterface.4.DeleteOnTermination=true
+  &SecondaryInterface.4.PrivateIpAddressCount=1
+  &Sec
+
+[document truncated for prompt size]

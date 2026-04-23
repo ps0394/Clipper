@@ -1,0 +1,41 @@
+[
+  {
+    "question": "What is the purpose of the 'hello-node' Deployment in the Hello Minikube tutorial?",
+    "answer": "The 'hello-node' Deployment checks on the health of your Pod and restarts the Pod's Container if it terminates. Deployments are the recommended way to manage the creation and scaling of Pods.",
+    "supporting_sentences": [
+      "A Kubernetes Deployment checks on the health of your Pod and restarts the Pod's Container if it terminates. Deployments are the recommended way to manage the creation and scaling of Pods.",
+      "Use the kubectl create command to create a Deployment that manages a Pod. The Pod runs a Container based on the provided Docker image."
+    ]
+  },
+  {
+    "question": "What command is used to expose the 'hello-node' Pod as a Kubernetes Service in the tutorial?",
+    "answer": "The command used is `kubectl expose deployment hello-node --type=LoadBalancer --port=8080`.",
+    "supporting_sentences": [
+      "Expose the Pod to the public internet using the kubectl expose command:",
+      "kubectl expose deployment hello-node --type=LoadBalancer --port=8080"
+    ]
+  },
+  {
+    "question": "How can you access the Kubernetes dashboard without letting minikube open a web browser for you?",
+    "answer": "You can run the `dashboard` subcommand with the `--url` flag, which outputs a URL that you can open in your preferred browser.",
+    "supporting_sentences": [
+      "If you don't want minikube to open a web browser for you, run the dashboard subcommand with the --url flag.",
+      "minikube outputs a URL that you can open in the browser you prefer."
+    ]
+  },
+  {
+    "question": "What is the default accessibility of the Kubernetes dashboard in minikube?",
+    "answer": "By default, the dashboard is only accessible from within the internal Kubernetes virtual network.",
+    "supporting_sentences": [
+      "By default, the dashboard is only accessible from within the internal Kubernetes virtual network."
+    ]
+  },
+  {
+    "question": "Which command enables the 'metrics-server' addon in minikube?",
+    "answer": "The command to enable the 'metrics-server' addon is `minikube addons enable metrics-server`.",
+    "supporting_sentences": [
+      "Enable an addon, for example, metrics-server:",
+      "minikube addons enable metrics-server"
+    ]
+  }
+]

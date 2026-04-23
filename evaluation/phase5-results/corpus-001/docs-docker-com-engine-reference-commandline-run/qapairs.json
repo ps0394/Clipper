@@ -1,0 +1,48 @@
+[
+  {
+    "question": "What is the default behavior of the `docker container run` command when an image is not found in the local image cache?",
+    "answer": "By default, the `docker container run` command only pulls the image if it is not present in the daemon's image cache. This is the 'missing' pull policy.",
+    "supporting_sentences": [
+      "The default (missing) is to only pull the image if it's not present in the daemon's image cache.",
+      "The --pull flag can take one of these values: missing (default) Pull the image if it was not found in the image cache, or use the cached image otherwise."
+    ]
+  },
+  {
+    "question": "What are the three possible values for the `--pull` flag in the `docker container run` command?",
+    "answer": "The three possible values for the `--pull` flag are: `missing`, `never`, and `always`.",
+    "supporting_sentences": [
+      "The --pull flag can take one of these values: missing (default) Pull the image if it was not found in the image cache, or use the cached image otherwise. never Do not pull the image, even if it's missing, and produce an error if the image does not exist in the image cache. always Always perform a pull before creating the container."
+    ]
+  },
+  {
+    "question": "What happens when the `--rm` flag is used with the `docker container run` command?",
+    "answer": "When the `--rm` flag is used, Docker automatically removes the container and its associated anonymous volumes when the container exits.",
+    "supporting_sentences": [
+      "If you'd like Docker to automatically clean up the container and remove the file system when the container exits, use the --rm flag:",
+      "If you set the --rm flag, Docker also removes the anonymous volumes associated with the container when the container is removed."
+    ]
+  },
+  {
+    "question": "What are the valid values for the `--cgroupns` flag in the `docker container run` command?",
+    "answer": "The valid values for the `--cgroupns` flag are: `host`, `private`, or an empty string (default).",
+    "supporting_sentences": [
+      "'host': Run the container in the Docker host's cgroup namespace",
+      "'private': Run the container in its own private cgroup namespace",
+      "'': Use the cgroup namespace as configured by the default-cgroupns-mode option on the daemon (default)"
+    ]
+  },
+  {
+    "question": "What capabilities does the `--privileged` flag grant to a container?",
+    "answer": "The `--privileged` flag grants the following capabilities to a container: enables all Linux kernel capabilities, disables the default seccomp profile, disables the default AppArmor profile, disables the SELinux process label, grants access to all host devices, makes `/sys` read-write, and makes cgroups mounts read-write.",
+    "supporting_sentences": [
+      "The --privileged flag gives the following capabilities to a container:",
+      "Enables all Linux kernel capabilities",
+      "Disables the default seccomp profile",
+      "Disables the default AppArmor profile",
+      "Disables the SELinux process label",
+      "Grants access to all host devices",
+      "Makes /sys read-write",
+      "Makes cgroups mounts read-write"
+    ]
+  }
+]

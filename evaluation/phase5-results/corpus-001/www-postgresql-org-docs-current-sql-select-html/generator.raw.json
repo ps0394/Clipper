@@ -1,0 +1,42 @@
+```json
+[
+    {
+        "question": "What is the purpose of the WITH clause in a PostgreSQL SELECT statement?",
+        "answer": "The WITH clause allows you to specify one or more subqueries that can be referenced by name in the primary query. The subqueries effectively act as temporary tables or views for the duration of the primary query.",
+        "supporting_sentences": [
+            "The WITH clause allows you to specify one or more subqueries that can be referenced by name in the primary query.",
+            "The subqueries effectively act as temporary tables or views for the duration of the primary query."
+        ]
+    },
+    {
+        "question": "What happens if the RETURNING clause is omitted in a data-modifying statement within a WITH clause?",
+        "answer": "If RETURNING is omitted, the statement is still executed, but it produces no output so it cannot be referenced as a table by the primary query.",
+        "supporting_sentences": [
+            "When writing a data-modifying statement (INSERT, UPDATE, DELETE, or MERGE) in WITH, it is usual to include a RETURNING clause.",
+            "If RETURNING is omitted, the statement is still executed, but it produces no output so it cannot be referenced as a table by the primary query."
+        ]
+    },
+    {
+        "question": "What are the two standard sampling methods included in PostgreSQL for the TABLESAMPLE clause?",
+        "answer": "The standard PostgreSQL distribution includes two sampling methods, BERNOULLI and SYSTEM.",
+        "supporting_sentences": [
+            "The standard PostgreSQL distribution includes two sampling methods, BERNOULLI and SYSTEM, and other sampling methods can be installed in the database via extensions."
+        ]
+    },
+    {
+        "question": "What is the effect of the RECURSIVE keyword in a WITH clause?",
+        "answer": "If RECURSIVE is specified, it allows a SELECT subquery to reference itself by name. Such a subquery must have the form non_recursive_term UNION [ALL | DISTINCT] recursive_term.",
+        "supporting_sentences": [
+            "If RECURSIVE is specified, it allows a SELECT subquery to reference itself by name.",
+            "Such a subquery must have the form non_recursive_term UNION [ ALL | DISTINCT ] recursive_term"
+        ]
+    },
+    {
+        "question": "What does the LEFT OUTER JOIN clause return in a PostgreSQL SELECT statement?",
+        "answer": "LEFT OUTER JOIN returns all rows in the qualified Cartesian product (i.e., all combined rows that pass its join condition), plus one copy of each row in the left-hand table for which there was no right-hand row that passed the join condition.",
+        "supporting_sentences": [
+            "LEFT OUTER JOIN returns all rows in the qualified Cartesian product (i.e., all combined rows that pass its join condition), plus one copy of each row in the left-hand table for which there was no right-hand row that passed the join condition."
+        ]
+    }
+]
+```

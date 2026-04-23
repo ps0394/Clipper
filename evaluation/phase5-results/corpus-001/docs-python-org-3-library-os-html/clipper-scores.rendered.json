@@ -1,0 +1,282 @@
+{
+  "parseability_score": 57.234118716629126,
+  "failure_mode": "significant_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-001\\docs-python-org-3-library-os-html\\page.rendered.html",
+  "url": "https://docs.python.org/3/library/os.html",
+  "component_scores": {
+    "semantic_html": 50.90909090909091,
+    "content_extractability": 77.034229946782,
+    "structured_data": 5,
+    "dom_navigability": 100.0,
+    "metadata_completeness": 55,
+    "http_compliance": 76.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "nav",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "section",
+          "count": 15,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 12,
+      "heading_elements_count": 25,
+      "scoring_breakdown": {
+        "semantic_coverage": 10.90909090909091,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 178246,
+        "extracted_text_length": 158334,
+        "extracted_chars": 158334,
+        "extraction_ratio": 0.888,
+        "extracted_title": "os - Miscellaneous operating system interfaces - Python 3.14.4 documentation",
+        "extracted_preview": "os — Miscellaneous operating system interfaces Source code: Lib/os.py This module provides a portable way of using operating system dependent\r\nfunctionality.  If you just want to read or write a file see open() , if\r\nyou want to manipulate paths, see the os.path module, and if you want to\r\nread all ...",
+        "original_headings": 25,
+        "extracted_headings": 15,
+        "original_lists": 37,
+        "extracted_lists": 14,
+        "original_code_blocks": 1681,
+        "extracted_code_blocks": 1555,
+        "has_main_element": false,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 35,
+        "structure_preservation": 19.034229946782,
+        "boundary_detection": 23
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 0,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [],
+      "key_fields_found": [],
+      "formats_present": 1,
+      "score_breakdown": {
+        "type_appropriateness": 0,
+        "field_completeness": 0,
+        "multiple_formats": 5,
+        "schema_validation": 0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": []
+      },
+      "sample_structured_data": {
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:title",
+                "os — Miscellaneous operating system interfaces"
+              ],
+              [
+                "og:type",
+                "website"
+              ],
+              [
+                "og:url",
+                "https://docs.python.org/3/library/os.html"
+              ],
+              [
+                "og:site_name",
+                "Python documentation"
+              ],
+              [
+                "og:description",
+                "Source code: Lib/os.py This module provides a portable way of using operating system dependent functionality. If you just want to read or write a file see open(), if you want to manipulate paths, s..."
+              ],
+              [
+                "og:image:width",
+                "1146"
+              ],
+              [
+                "og:image:height",
+                "600"
+              ],
+              [
+                "og:image",
+                "https://docs.python.org/3.14/_images/social_previews/summary_library_os_900ce1c0.png"
+              ],
+              [
+                "og:image:alt",
+                "Source code: Lib/os.py This module provides a portable way of using operating system dependent functionality. If you just want to read or write a file see open(), if you want to manipulate paths, s..."
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Static HTML accessibility analysis (fallback)",
+      "violations": [],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "axe_fallback_reason": "Browser accessibility evaluation failed: Message: script timeout\n  (Session info: chrome=147.0.7727.102)\nStacktrace:\n\tchromedriver!GetHandleVerifier [0x7ff6c3dda8e5+14e45]\n\tchromedriver!GetHandleVerifier [0x7ff6c3dda950+14eb0]\n\tchromedriver!(No symbol) [0x7ff6c3b4d4d6]\n\tchromedriver!(No symbol) [0x7ff6c3bf63e1]\n\tchromedriver!(No symbol) [0x7ff6c3bd002a]\n\tchromedriver!(No symbol) [0x7ff6c3bf483b]\n\tchromedriver!(No symbol) [0x7ff6c3b990e8]\n\tchromedriver!(No symbol) [0x7ff6c3b99fc3]\n\tchromedriver!GetHandleVerifier [0x7ff6c40f0149+32a6a9]\n\tchromedriver!GetHandleVerifier [0x7ff6c40ea715+324c75]\n\tchromedriver!GetHandleVerifier [0x7ff6c410c012+346572]\n\tchromedriver!GetHandleVerifier [0x7ff6c3df7cb5+32215]\n\tchromedriver!GetHandleVerifier [0x7ff6c3e0087c+3addc]\n\tchromedriver!GetHandleVerifier [0x7ff6c3de40e4+1e644]\n\tchromedriver!GetHandleVerifier [0x7ff6c3de4296+1e7f6]\n\tchromedriver!GetHandleVerifier [0x7ff6c3dc8737+2c97]\n\tKERNEL32!BaseThreadInitThunk [0x7ffea548e957+17]\n\tntdll!RtlUserThreadStart [0x7ffea754427c+2c]\n",
+      "evaluation_method": "Static HTML analysis (axe-core unavailable)",
+      "checks_performed": {
+        "has_lang_attribute": true,
+        "has_title": true,
+        "images_have_alt": true,
+        "headings_structured": true,
+        "links_descriptive": true
+      },
+      "passed_checks": "5/5"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 0,
+        "date": 0,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [
+          "meta:description",
+          "og:description"
+        ],
+        "author": [],
+        "date": [],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 4,
+      "fields_total": 7,
+      "json_ld_type": "none"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "\"69ea7059-b067c\"",
+        "last_modified": "Thu, 23 Apr 2026 19:17:45 GMT",
+        "cache_control": "absent"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 16,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0"
+    },
+    "_content_type": {
+      "profile": "article",
+      "detection": {
+        "source": "default"
+      },
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.2,
+        "structured_data": 0.2,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "article",
+  "universal_score": 57.234118716629126,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 50.90909090909091,
+    "content_extractability": 77.034229946782,
+    "structured_data": 5,
+    "dom_navigability": 100.0,
+    "metadata_completeness": 55,
+    "http_compliance": 76.0
+  },
+  "evidence_references": null
+}

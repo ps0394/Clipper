@@ -1,0 +1,549 @@
+{
+  "parseability_score": 71.58120311377037,
+  "failure_mode": "moderate_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-001\\cloud-google-com-bigquery-docs-samples\\page.rendered.html",
+  "url": "https://cloud.google.com/bigquery/docs/samples",
+  "component_scores": {
+    "semantic_html": 67.27272727272728,
+    "content_extractability": 80.8151064779427,
+    "structured_data": 92.0,
+    "dom_navigability": 60,
+    "metadata_completeness": 40,
+    "http_compliance": 72.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 5,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "article",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "section",
+          "count": 2,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 69,
+      "heading_elements_count": 244,
+      "scoring_breakdown": {
+        "semantic_coverage": 27.272727272727273,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 40176,
+        "extracted_text_length": 23813,
+        "extracted_chars": 23813,
+        "extraction_ratio": 0.593,
+        "extracted_title": "All BigQuery code samples",
+        "extracted_preview": "Send feedback Delete a data policy Deletes a data policy from the BigQuery Data Policy API, which is identified by its project ID, location, and data policy ID. BigQuery Google Cloud BigQuery DataPolicy API JavaScript Node JS Python Write to destination table Run a query on the natality public datas...",
+        "original_headings": 244,
+        "extracted_headings": 142,
+        "original_lists": 257,
+        "extracted_lists": 141,
+        "original_code_blocks": 0,
+        "extracted_code_blocks": 0,
+        "has_main_element": true,
+        "has_article_element": true
+      },
+      "score_breakdown": {
+        "signal_to_noise": 38.46738635717131,
+        "structure_preservation": 16.306053454104738,
+        "boundary_detection": 26.041666666666664
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 1,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [
+        "BreadcrumbList"
+      ],
+      "key_fields_found": [],
+      "formats_present": 2,
+      "score_breakdown": {
+        "type_appropriateness": 20.0,
+        "field_completeness": 30.0,
+        "multiple_formats": 12,
+        "schema_validation": 30.0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [
+          {
+            "index": 0,
+            "type": "BreadcrumbList",
+            "present": 1,
+            "expected": 1,
+            "ratio": 1.0,
+            "missing": [],
+            "invalid": []
+          }
+        ],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": [],
+        "average_ratio": 1.0
+      },
+      "sample_structured_data": {
+        "json-ld": [
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "BigQuery",
+                "item": "https://docs.cloud.google.com/bigquery/docs"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "All BigQuery code samples",
+                "item": "https://docs.cloud.google.com/bigquery/docs/samples"
+              }
+            ]
+          }
+        ],
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:site_name",
+                "Google Cloud Documentation"
+              ],
+              [
+                "og:type",
+                "website"
+              ],
+              [
+                "og:title",
+                "All BigQuery code samples  |  Google Cloud Documentation"
+              ],
+              [
+                "og:url",
+                "https://docs.cloud.google.com/bigquery/docs/samples"
+              ],
+              [
+                "og:image",
+                "https://docs.cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png"
+              ],
+              [
+                "og:image:width",
+                "1200"
+              ],
+              [
+                "og:image:height",
+                "630"
+              ],
+              [
+                "og:locale",
+                "en"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures role attribute has an appropriate value for the element",
+          "help": "ARIA role must be appropriate for the element",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+          "id": "aria-allowed-role",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "combobox"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role combobox  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role combobox  is not allowed for given element",
+              "html": "<input aria-activedescendant=\"\" aria-autocomplete=\"list\" aria-label=\"Search\" aria-expanded=\"false\" aria-haspopup=\"listbox\" autocomplete=\"off\" class=\"devsite-search-field devsite-search-query\" name=\"q\" placeholder=\"Search\" role=\"combobox\" type=\"text\" value=\"\" aria-controls=\"devsite-search-popout-container-id-1\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".devsite-search-field"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "dialog"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role dialog  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role dialog  is not allowed for given element",
+              "html": "<ul class=\"menu\" role=\"dialog\" id=\"menu\" hidden=\"\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                [
+                  "devsite-appearance-selector",
+                  "#menu"
+                ]
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "searchbox"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role searchbox  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role searchbox  is not allowed for given element",
+              "html": "<input type=\"text\" placeholder=\"Filter\" aria-label=\"Type to filter\" role=\"searchbox\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "input[placeholder=\"Filter\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "main"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role main  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role main  is not allowed for given element",
+              "html": "<main role=\"main\" id=\"main-content\" class=\"devsite-main-content\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#main-content"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/heading-order?application=axeAPI",
+          "id": "heading-order",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": 3,
+                  "id": "heading-order",
+                  "impact": "moderate",
+                  "message": "Heading order invalid",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Heading order invalid",
+              "html": "<h3 class=\"no-link hide-from-toc\">Run a query and get total rows</h3>",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "a[track-metadata-position=\"\\30 \"] > .hide-from-toc"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/link-name?application=axeAPI",
+          "id": "link-name",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<a href=\"https://docs.cloud.google.com/bigquery/docs\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                ".devsite-product-id > a"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "wcag244",
+            "section508",
+            "section508.22.a"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 3,
+      "passes_count": 40,
+      "total_penalty": 40,
+      "penalty_per_rule": {
+        "aria-allowed-role": {
+          "impact": "minor",
+          "node_count": 4,
+          "raw_penalty": 20,
+          "capped_penalty": 15
+        },
+        "heading-order": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        },
+        "link-name": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        }
+      },
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 0,
+        "author": 0,
+        "date": 0,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [],
+        "author": [],
+        "date": [],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 3,
+      "fields_total": 7,
+      "json_ld_type": "BreadcrumbList"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "absent",
+        "last_modified": "Mon, 20 Apr 2026 21:52:46 GMT",
+        "cache_control": "no-cache, must-revalidate"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 12,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "article",
+      "detection": {
+        "schema_type_raw": "BreadcrumbList",
+        "source": "default"
+      },
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.2,
+        "structured_data": 0.2,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "article",
+  "universal_score": 71.58120311377037,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 67.27272727272728,
+    "content_extractability": 80.8151064779427,
+    "structured_data": 92.0,
+    "dom_navigability": 60,
+    "metadata_completeness": 40,
+    "http_compliance": 72.0
+  },
+  "evidence_references": null
+}

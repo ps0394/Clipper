@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What error occurs when you try to modify a variable from an outer scope inside a function without declaring it as global or nonlocal?",
+    "answer": "An UnboundLocalError occurs.",
+    "supporting_sentences": [
+      "This code: ... results in an UnboundLocalError: ... cannot access local variable 'x' where it is not associated with a value",
+      "This is because when you make an assignment to a variable in a scope, that variable becomes local to that scope and shadows any similarly named variable in the outer scope."
+    ]
+  },
+  {
+    "question": "How can you avoid the issue where all lambdas in a loop return the same value due to late binding?",
+    "answer": "You can save the values in variables local to the lambdas by using a default argument, such as `lambda n=x: n**2`.",
+    "supporting_sentences": [
+      "In order to avoid this, you need to save the values in variables local to the lambdas, so that they don\u2019t rely on the value of the global x:",
+      "Here, `n=x` creates a new variable `n` local to the lambda and computed when the lambda is defined so that it has the same value that `x` had at that point in the loop."
+    ]
+  },
+  {
+    "question": "What is the recommended way to share information across modules in a Python program?",
+    "answer": "The canonical way is to create a special module (often called `config` or `cfg`) and import it in all modules of your application.",
+    "supporting_sentences": [
+      "The canonical way to share information across modules within a single program is to create a special module (often called config or cfg).",
+      "Just import the config module in all modules of your application; the module then becomes available as a global name."
+    ]
+  },
+  {
+    "question": "Why should you avoid using mutable objects like dictionaries or lists as default values in function definitions?",
+    "answer": "Because default values are created exactly once when the function is defined, and subsequent calls to the function will refer to the same changed object.",
+    "supporting_sentences": [
+      "Default values are created exactly once, when the function is defined. If that object is changed, like the dictionary in this example, subsequent calls to the function will refer to this changed object.",
+      "Because of this feature, it is good programming practice to not use mutable objects as default values."
+    ]
+  },
+  {
+    "question": "What is the purpose of the slash (`/`) in a Python function's argument list?",
+    "answer": "The slash denotes that the parameters prior to it are positional-only, meaning they cannot be passed as keyword arguments.",
+    "supporting_sentences": [
+      "A slash in the argument list of a function denotes that the parameters prior to it are positional-only.",
+      "The slash at the end of the parameter list means that both parameters are positional-only. Thus, calling `divmod()` with keyword arguments would lead to an error."
+    ]
+  }
+]

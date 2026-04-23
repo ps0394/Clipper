@@ -1,0 +1,1410 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>RunInstances - Amazon Elastic Compute Cloud</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="assets_root" content="/assets"><meta name="target_state" content="API_RunInstances"><meta name="default_state" content="API_RunInstances"><link rel="icon" type="image/ico" href="/assets/images/favicon.ico"><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico"><link rel="canonical" href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"><meta name="description" content="Launches the specified number of instances using an AMI for which you have permissions."><meta name="deployment_region" content="IAD"><meta name="product" content="Amazon Elastic Compute Cloud"><meta name="guide" content="API Reference"><meta name="abstract" content="You can access the features of Amazon Elastic Compute Cloud (Amazon EC2) programmatically. For more information, see the Amazon EC2 Developer Guide."><meta name="guide-locale" content="en_us"><meta name="tocs" content="toc-contents.json"><link rel="canonical" href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"><link rel="alternate" href="https://docs.aws.amazon.com/id_id/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="id-id"><link rel="alternate" href="https://docs.aws.amazon.com/id_id/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="id"><link rel="alternate" href="https://docs.aws.amazon.com/de_de/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="de-de"><link rel="alternate" href="https://docs.aws.amazon.com/de_de/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="de"><link rel="alternate" href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="en-us"><link rel="alternate" href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="en"><link rel="alternate" href="https://docs.aws.amazon.com/es_es/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="es-es"><link rel="alternate" href="https://docs.aws.amazon.com/es_es/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="es"><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="fr-fr"><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="fr"><link rel="alternate" href="https://docs.aws.amazon.com/it_it/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="it-it"><link rel="alternate" href="https://docs.aws.amazon.com/it_it/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="it"><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="ja-jp"><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="ja"><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="ko-kr"><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="ko"><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="pt-br"><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="pt"><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="zh-cn"><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="zh-tw"><link rel="alternate" href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html" hreflang="x-default"><meta name="feedback-item" content="EC2 API"><meta name="this_doc_product" content="Amazon Elastic Compute Cloud"><meta name="this_doc_guide" content="API Reference"> <script async="" src="https://a.b.cdn.console.awsstatic.com/a/v1/CEQ753HGI4VIEBGCDVTGJAUVQGBTUEBLQAPUZKXOPUCG73VLELWQ/4f9d21011c2f449797c97ad39e28d981db54e8abc2d447ce9b3129dbc8be99c4.js" crossorigin="anonymous"></script><script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"><script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'ec2'}"></script><meta id="panorama-serviceSubSection" value="API Reference"><meta id="panorama-serviceConsolePage" value="RunInstances"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-2272" src="https://docs.aws.amazon.com/assets/r/vendor3.7a02051d9a0e6f6b110e.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-566" src="https://docs.aws.amazon.com/assets/r/resources.cbc0225cc7197bb1e596.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/816.99c18e3d1b22e3ad1cb8.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-816" src="https://docs.aws.amazon.com/assets/r/816.e5770ec2543b621ace3e.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/2514.a11f076dc4fb2cca74eb.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-2514" src="https://docs.aws.amazon.com/assets/r/2514.4d80dfde7e744fc6b7ad.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-172" src="https://docs.aws.amazon.com/assets/r/172.a0134563aac90d9d5656.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/4011.397f421b3798c0b7d477.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-4011" src="https://docs.aws.amazon.com/assets/r/4011.cd1f13006e036ee2489e.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/4845.6a595925b3d104a21f39.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-4845" src="https://docs.aws.amazon.com/assets/r/4845.2a406f842106c6a12224.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-7028" src="https://docs.aws.amazon.com/assets/r/7028.8e7f264e82b5b6ba9da1.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/8745.41985563f64e72bd14ae.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-8745" src="https://docs.aws.amazon.com/assets/r/8745.d867d25998648dbc724e.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/6420.4035928faf176abb7346.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-6420" src="https://docs.aws.amazon.com/assets/r/6420.c775a1acf98c25a66e8a.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/3486.74ba6c31bf7a6e9619ce.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-3486" src="https://docs.aws.amazon.com/assets/r/3486.9cdc6d2c41d158b83b76.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-7524" src="https://docs.aws.amazon.com/assets/r/7524.824b3fb8e1edd154c1eb.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/1759.691ade396dc86297ed81.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-1759" src="https://docs.aws.amazon.com/assets/r/1759.bdc98cf47b1091ac9366.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/6208.0d22eea0741becffb14f.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-6208" src="https://docs.aws.amazon.com/assets/r/6208.93302a3368333c3fad1d.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/5999.ba438acf0bb4227e2a73.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-5999" src="https://docs.aws.amazon.com/assets/r/5999.6d6f2675d28f6ad1014f.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/7342.a255ffa4610ca45ee17a.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-7342" src="https://docs.aws.amazon.com/assets/r/7342.8fc985de0cf4b69e75b1.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/3708.1abf383dfb7f28a7a55e.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-3708" src="https://docs.aws.amazon.com/assets/r/3708.712595a3e5c42552af9d.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-3573" src="https://docs.aws.amazon.com/assets/r/3573.0d23b56ba05c6fc177ce.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/8736.24e4aedc7402456643b1.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-8736" src="https://docs.aws.amazon.com/assets/r/8736.09724923a23fd7763f12.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-7284" src="https://docs.aws.amazon.com/assets/r/7284.e1041661978795bb9fc6.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/5257.caa6b15afb10fd910731.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-5257" src="https://docs.aws.amazon.com/assets/r/5257.a46fccf21a9d59ae0a7f.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-352" src="https://docs.aws.amazon.com/assets/r/352.e659e2a1a775ec910c64.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/5521.8435a18a94708b32bbb0.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-5521" src="https://docs.aws.amazon.com/assets/r/5521.65b3c2ecf161c12300a9.js"></script></head>
+<body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="API_RunInstances.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><title>RunInstances - Amazon Elastic Compute Cloud</title><meta name="pdf" content="/pdfs/AWSEC2/latest/APIReference/ec2-api.pdf#API_RunInstances"><meta name="forums" content="https://repost.aws/tags/TAO-wqN9fYRoyrpdULLa5y7g"><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=EC2%20API&amp;topic_url=https://docs.aws.amazon.com/en_us/AWSEC2/latest/APIReference/API_RunInstances.html"><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/AWSEC2/latest/APIReference/API_RunInstances.html"><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/AWSEC2/latest/APIReference/API_RunInstances.html"><meta name="keywords" content="API,requests,RunInstances"><link rel="alternate" type="text/markdown" href="API_RunInstances.md" title="Markdown version"><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon EC2",
+        "item" : "https://docs.aws.amazon.com/ec2/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "API Reference",
+        "item" : "https://docs.aws.amazon.com/AWSEC2/latest/APIReference"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Actions",
+        "item" : "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Operations.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "RunInstances",
+        "item" : "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Operations.html"
+      }
+    ]
+}
+</script><div id="main"><div style="display: none"><a href="/pdfs/AWSEC2/latest/APIReference/ec2-api.pdf#API_RunInstances" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/ec2/index.html">Amazon EC2</a><a href="Welcome.html">API Reference</a></div><div id="page-toc-src"><a href="#API_RunInstances_RequestParameters">Request Parameters</a><a href="#API_RunInstances_ResponseElements">Response Elements</a><a href="#API_RunInstances_Errors">Errors</a><a href="#API_RunInstances_Examples">Examples</a><a href="#API_RunInstances_SeeAlso">See Also</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="API_RunInstances">RunInstances</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Launches the specified number of instances using an AMI for which you have
+            permissions.</p><p>You can specify a number of options, or leave the default options. The following rules
+            apply:</p><div class="itemizedlist">
+       
+       
+       
+       
+       
+   <ul class="itemizedlist"><li class="listitem">
+         <p>If you don't specify a subnet ID, we choose a default subnet from
+                    your default VPC for you. If you don't have a default VPC, you must specify a
+                    subnet ID in the request.</p>
+      </li><li class="listitem">
+         <p>All instances have a network interface with a primary private IPv4
+                    address. If you don't specify this address, we choose one from the IPv4 range of
+                    your subnet.</p>
+      </li><li class="listitem">
+         <p>Not all instance types support IPv6 addresses. For more information, see
+                        <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
+                    types</a>.</p>
+      </li><li class="listitem">
+         <p>If you don't specify a security group ID, we use the default security group
+                    for the VPC. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">Security
+                        groups</a>.</p>
+      </li><li class="listitem">
+         <p>If any of the AMIs have a product code attached for which the user has not
+                    subscribed, the request fails.</p>
+      </li></ul></div><p>You can create a <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html">launch template</a>,
+            which is a resource that contains the parameters to launch an instance. When you launch
+            an instance using RunInstances, you can specify the launch template
+            instead of specifying the launch parameters.</p><p>To ensure faster instance launches, break up large requests into smaller batches. For
+            example, create five separate launch requests for 100 instances each instead of one
+            launch request for 500 instances.</p><p>
+      <code class="code">RunInstances</code> is subject to both request rate limiting and resource rate
+            limiting. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-throttling.html">Request throttling</a>.</p><p>An instance is ready for you to use when it's in the <code class="code">running</code> state. You
+            can check the state of your instance using <a href="./API_DescribeInstances.html">DescribeInstances</a>. You can
+            tag instances and EBS volumes during launch, after launch, or both. For more
+            information, see <a href="./API_CreateTags.html">CreateTags</a> and <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html">Tagging your Amazon EC2
+                resources</a>.</p><p>Linux instances have access to the public key of the key pair at boot. You can use
+            this key to provide secure access to the instance. Amazon EC2 public images use this
+            feature to provide secure access without passwords. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">Key
+                pairs</a>.</p><p>For troubleshooting, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_InstanceStraightToTerminated.html">What to do if
+                an instance immediately terminates</a>, and <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html">Troubleshooting connecting to your instance</a>.</p>
+      <h2 id="API_RunInstances_RequestParameters">Request Parameters</h2>
+      <p>The following parameters are for this specific action. For more information about required and optional parameters that are common to all actions, see <a href="./CommonParameters.html">Common Query Parameters</a>.</p>
+      <div class="variablelist">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+      <dl>
+            <dt><span class="term">
+               <b>AdditionalInfo</b>
+            </span></dt>
+            <dd>
+               <p>Reserved.</p>
+               <p>Type: String</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>BlockDeviceMapping.N</b>
+            </span></dt>
+            <dd>
+               <p>The block device mapping, which defines the EBS volumes and instance store volumes to
+            attach to the instance at launch. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html">Block device
+                mappings</a> in the <em>Amazon EC2 User Guide</em>.</p>
+               <p>Type: Array of <a href="./API_BlockDeviceMapping.html">BlockDeviceMapping</a> objects</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>CapacityReservationSpecification</b>
+            </span></dt>
+            <dd>
+               <p>Information about the Capacity Reservation targeting option. If you do not specify this parameter, the
+            instance's Capacity Reservation preference defaults to <code class="code">open</code>, which enables
+            it to run in any open Capacity Reservation that has matching attributes (instance type,
+            platform, Availability Zone, and tenancy).</p>
+               <p>Type: <a href="./API_CapacityReservationSpecification.html">CapacityReservationSpecification</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>ClientToken</b>
+            </span></dt>
+            <dd>
+               <p>Unique, case-sensitive identifier you provide to ensure the idempotency of the
+            request. If you do not specify a client token, a randomly generated token is used for
+            the request to ensure idempotency.</p>
+               <p>For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">Ensuring idempotency in Amazon EC2 API requests</a>.</p>
+               <p>Constraints: Maximum 64 ASCII characters</p>
+               <p>Type: String</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>CpuOptions</b>
+            </span></dt>
+            <dd>
+               <p>The CPU options for the instance. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html">Optimize CPU options</a> in the <em>Amazon EC2 User Guide</em>.</p>
+               <p>Type: <a href="./API_CpuOptionsRequest.html">CpuOptionsRequest</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>CreditSpecification</b>
+            </span></dt>
+            <dd>
+               <p>The credit option for CPU usage of the burstable performance instance. Valid values
+            are <code class="code">standard</code> and <code class="code">unlimited</code>. To change this attribute after
+            launch, use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceCreditSpecification.html">
+                ModifyInstanceCreditSpecification</a>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html">Burstable
+                performance instances</a> in the <em>Amazon EC2 User Guide</em>.</p>
+               <p>Default: <code class="code">standard</code> (T2 instances) or <code class="code">unlimited</code> (T3/T3a/T4g
+            instances)</p>
+               <p>For T3 instances with <code class="code">host</code> tenancy, only <code class="code">standard</code> is
+            supported.</p>
+               <p>Type: <a href="./API_CreditSpecificationRequest.html">CreditSpecificationRequest</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>DisableApiStop</b>
+            </span></dt>
+            <dd>
+               <p>Indicates whether an instance is enabled for stop protection. For more information,
+            see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-stop-protection.html">Enable stop protection for your EC2 instances</a>.</p>
+               <p>Type: Boolean</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>DisableApiTermination</b>
+            </span></dt>
+            <dd>
+               <p>Indicates whether termination protection is enabled for the instance. The default
+            is <code class="code">false</code>, which means that you can terminate the instance using
+            the Amazon EC2 console, command line tools, or API. You can enable termination protection
+            when you launch an instance, while the instance is running, or while the instance
+            is stopped.</p>
+               <p>Type: Boolean</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>DryRun</b>
+            </span></dt>
+            <dd>
+               <p>Checks whether you have the required permissions for the operation, without actually making the 
+  request, and provides an error response. If you have the required permissions, the error response is 
+  <code class="code">DryRunOperation</code>. Otherwise, it is <code class="code">UnauthorizedOperation</code>.</p>
+               <p>Type: Boolean</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>EbsOptimized</b>
+            </span></dt>
+            <dd>
+               <p>Indicates whether the instance is optimized for Amazon EBS I/O. This optimization
+            provides dedicated throughput to Amazon EBS and an optimized configuration stack to
+            provide optimal Amazon EBS I/O performance. This optimization isn't available with all
+            instance types. Additional usage charges apply when using an EBS-optimized
+            instance.</p>
+               <p>Default: <code class="code">false</code>
+               </p>
+               <p>Type: Boolean</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>ElasticGpuSpecification.N</b>
+            </span></dt>
+            <dd>
+               <p>
+                  <em>This parameter has been deprecated.</em>
+               </p>
+               <p>An elastic GPU to associate with the instance.</p>
+               <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Amazon Elastic Graphics reached end of life on January 8, 2024.</p></div></div>
+               <p>Type: Array of <a href="./API_ElasticGpuSpecification.html">ElasticGpuSpecification</a> objects</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>ElasticInferenceAccelerator.N</b>
+            </span></dt>
+            <dd>
+               <p>
+                  <em>This parameter has been deprecated.</em>
+               </p>
+               <p>An elastic inference accelerator to associate with the instance.</p>
+               <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Amazon Elastic Inference is no longer available.</p></div></div>
+               <p>Type: Array of <a href="./API_ElasticInferenceAccelerator.html">ElasticInferenceAccelerator</a> objects</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>EnablePrimaryIpv6</b>
+            </span></dt>
+            <dd>
+               <p>If you’re launching an instance into a dual-stack or IPv6-only subnet, you can enable
+            assigning a primary IPv6 address. A primary IPv6 address is an IPv6 GUA address
+            associated with an ENI that you have enabled to use a primary IPv6 address. Use this
+            option if an instance relies on its IPv6 address not changing. When you launch the
+            instance, AWS will automatically assign an IPv6 address associated with
+            the ENI attached to your instance to be the primary IPv6 address. Once you enable an
+            IPv6 GUA address to be a primary IPv6, you cannot disable it. When you enable an IPv6
+            GUA address to be a primary IPv6, the first IPv6 GUA will be made the primary IPv6
+            address until the instance is terminated or the network interface is detached. If you
+            have multiple IPv6 addresses associated with an ENI attached to your instance and you
+            enable a primary IPv6 address, the first IPv6 GUA address associated with the ENI
+            becomes the primary IPv6 address.</p>
+               <p>Type: Boolean</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>EnclaveOptions</b>
+            </span></dt>
+            <dd>
+               <p>Indicates whether the instance is enabled for AWS Nitro Enclaves. For
+            more information, see <a href="https://docs.aws.amazon.com/enclaves/latest/user/">AWS Nitro
+                Enclaves User Guide</a>.</p>
+               <p>You can't enable AWS Nitro Enclaves and hibernation on the same
+            instance.</p>
+               <p>Type: <a href="./API_EnclaveOptionsRequest.html">EnclaveOptionsRequest</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>HibernationOptions</b>
+            </span></dt>
+            <dd>
+               <p>Indicates whether an instance is enabled for hibernation. This parameter is valid only
+            if the instance meets the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html">hibernation
+                prerequisites</a>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html">Hibernate your Amazon EC2
+                instance</a> in the <em>Amazon EC2 User Guide</em>.</p>
+               <p>You can't enable hibernation and AWS Nitro Enclaves on the same
+            instance.</p>
+               <p>Type: <a href="./API_HibernationOptionsRequest.html">HibernationOptionsRequest</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>IamInstanceProfile</b>
+            </span></dt>
+            <dd>
+               <p>The name or Amazon Resource Name (ARN) of an IAM instance
+            profile.</p>
+               <p>Type: <a href="./API_IamInstanceProfileSpecification.html">IamInstanceProfileSpecification</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>ImageId</b>
+            </span></dt>
+            <dd>
+               <p>The ID of the AMI. An AMI ID is required to launch an instance and must be specified
+            here or in a launch template.</p>
+               <p>Type: String</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>InstanceInitiatedShutdownBehavior</b>
+            </span></dt>
+            <dd>
+               <p>Indicates whether an instance stops or terminates when you initiate shutdown from the
+            instance (using the operating system command for system shutdown).</p>
+               <p>Default: <code class="code">stop</code>
+               </p>
+               <p>Type: String</p>
+               <p>Valid Values: <code class="code">stop | terminate</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>InstanceMarketOptions</b>
+            </span></dt>
+            <dd>
+               <p>The market (purchasing) option for the instances.</p>
+               <p>Type: <a href="./API_InstanceMarketOptionsRequest.html">InstanceMarketOptionsRequest</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>InstanceType</b>
+            </span></dt>
+            <dd>
+               <p>The instance type. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-types.html">Amazon EC2 Instance
+                Types Guide</a>.</p>
+               <p>Type: String</p>
+               <p>Valid Values: <code class="code">a1.medium | a1.large | a1.xlarge | a1.2xlarge | a1.4xlarge | a1.metal | c1.medium | c1.xlarge | c3.large | c3.xlarge | c3.2xlarge | c3.4xlarge | c3.8xlarge | c4.large | c4.xlarge | c4.2xlarge | c4.4xlarge | c4.8xlarge | c5.large | c5.xlarge | c5.2xlarge | c5.4xlarge | c5.9xlarge | c5.12xlarge | c5.18xlarge | c5.24xlarge | c5.metal | c5a.large | c5a.xlarge | c5a.2xlarge | c5a.4xlarge | c5a.8xlarge | c5a.12xlarge | c5a.16xlarge | c5a.24xlarge | c5ad.large | c5ad.xlarge | c5ad.2xlarge | c5ad.4xlarge | c5ad.8xlarge | c5ad.12xlarge | c5ad.16xlarge | c5ad.24xlarge | c5d.large | c5d.xlarge | c5d.2xlarge | c5d.4xlarge | c5d.9xlarge | c5d.12xlarge | c5d.18xlarge | c5d.24xlarge | c5d.metal | c5n.large | c5n.xlarge | c5n.2xlarge | c5n.4xlarge | c5n.9xlarge | c5n.18xlarge | c5n.metal | c6g.medium | c6g.large | c6g.xlarge | c6g.2xlarge | c6g.4xlarge | c6g.8xlarge | c6g.12xlarge | c6g.16xlarge | c6g.metal | c6gd.medium | c6gd.large | c6gd.xlarge | c6gd.2xlarge | c6gd.4xlarge | c6gd.8xlarge | c6gd.12xlarge | c6gd.16xlarge | c6gd.metal | c6gn.medium | c6gn.large | c6gn.xlarge | c6gn.2xlarge | c6gn.4xlarge | c6gn.8xlarge | c6gn.12xlarge | c6gn.16xlarge | c6i.large | c6i.xlarge | c6i.2xlarge | c6i.4xlarge | c6i.8xlarge | c6i.12xlarge | c6i.16xlarge | c6i.24xlarge | c6i.32xlarge | c6i.metal | cc1.4xlarge | cc2.8xlarge | cg1.4xlarge | cr1.8xlarge | d2.xlarge | d2.2xlarge | d2.4xlarge | d2.8xlarge | d3.xlarge | d3.2xlarge | d3.4xlarge | d3.8xlarge | d3en.xlarge | d3en.2xlarge | d3en.4xlarge | d3en.6xlarge | d3en.8xlarge | d3en.12xlarge | dl1.24xlarge | f1.2xlarge | f1.4xlarge | f1.16xlarge | g2.2xlarge | g2.8xlarge | g3.4xlarge | g3.8xlarge | g3.16xlarge | g3s.xlarge | g4ad.xlarge | g4ad.2xlarge | g4ad.4xlarge | g4ad.8xlarge | g4ad.16xlarge | g4dn.xlarge | g4dn.2xlarge | g4dn.4xlarge | g4dn.8xlarge | g4dn.12xlarge | g4dn.16xlarge | g4dn.metal | g5.xlarge | g5.2xlarge | g5.4xlarge | g5.8xlarge | g5.12xlarge | g5.16xlarge | g5.24xlarge | g5.48xlarge | g5g.xlarge | g5g.2xlarge | g5g.4xlarge | g5g.8xlarge | g5g.16xlarge | g5g.metal | hi1.4xlarge | hpc6a.48xlarge | hs1.8xlarge | h1.2xlarge | h1.4xlarge | h1.8xlarge | h1.16xlarge | i2.xlarge | i2.2xlarge | i2.4xlarge | i2.8xlarge | i3.large | i3.xlarge | i3.2xlarge | i3.4xlarge | i3.8xlarge | i3.16xlarge | i3.metal | i3en.large | i3en.xlarge | i3en.2xlarge | i3en.3xlarge | i3en.6xlarge | i3en.12xlarge | i3en.24xlarge | i3en.metal | im4gn.large | im4gn.xlarge | im4gn.2xlarge | im4gn.4xlarge | im4gn.8xlarge | im4gn.16xlarge | inf1.xlarge | inf1.2xlarge | inf1.6xlarge | inf1.24xlarge | is4gen.medium | is4gen.large | is4gen.xlarge | is4gen.2xlarge | is4gen.4xlarge | is4gen.8xlarge | m1.small | m1.medium | m1.large | m1.xlarge | m2.xlarge | m2.2xlarge | m2.4xlarge | m3.medium | m3.large | m3.xlarge | m3.2xlarge | m4.large | m4.xlarge | m4.2xlarge | m4.4xlarge | m4.10xlarge | m4.16xlarge | m5.large | m5.xlarge | m5.2xlarge | m5.4xlarge | m5.8xlarge | m5.12xlarge | m5.16xlarge | m5.24xlarge | m5.metal | m5a.large | m5a.xlarge | m5a.2xlarge | m5a.4xlarge | m5a.8xlarge | m5a.12xlarge | m5a.16xlarge | m5a.24xlarge | m5ad.large | m5ad.xlarge | m5ad.2xlarge | m5ad.4xlarge | m5ad.8xlarge | m5ad.12xlarge | m5ad.16xlarge | m5ad.24xlarge | m5d.large | m5d.xlarge | m5d.2xlarge | m5d.4xlarge | m5d.8xlarge | m5d.12xlarge | m5d.16xlarge | m5d.24xlarge | m5d.metal | m5dn.large | m5dn.xlarge | m5dn.2xlarge | m5dn.4xlarge | m5dn.8xlarge | m5dn.12xlarge | m5dn.16xlarge | m5dn.24xlarge | m5dn.metal | m5n.large | m5n.xlarge | m5n.2xlarge | m5n.4xlarge | m5n.8xlarge | m5n.12xlarge | m5n.16xlarge | m5n.24xlarge | m5n.metal | m5zn.large | m5zn.xlarge | m5zn.2xlarge | m5zn.3xlarge | m5zn.6xlarge | m5zn.12xlarge | m5zn.metal | m6a.large | m6a.xlarge | m6a.2xlarge | m6a.4xlarge | m6a.8xlarge | m6a.12xlarge | m6a.16xlarge | m6a.24xlarge | m6a.32xlarge | m6a.48xlarge | m6g.metal | m6g.medium | m6g.large | m6g.xlarge | m6g.2xlarge | m6g.4xlarge | m6g.8xlarge | m6g.12xlarge | m6g.16xlarge | m6gd.metal | m6gd.medium | m6gd.large | m6gd.xlarge | m6gd.2xlarge | m6gd.4xlarge | m6gd.8xlarge | m6gd.12xlarge | m6gd.16xlarge | m6i.large | m6i.xlarge | m6i.2xlarge | m6i.4xlarge | m6i.8xlarge | m6i.12xlarge | m6i.16xlarge | m6i.24xlarge | m6i.32xlarge | m6i.metal | mac1.metal | p2.xlarge | p2.8xlarge | p2.16xlarge | p3.2xlarge | p3.8xlarge | p3.16xlarge | p3dn.24xlarge | p4d.24xlarge | r3.large | r3.xlarge | r3.2xlarge | r3.4xlarge | r3.8xlarge | r4.large | r4.xlarge | r4.2xlarge | r4.4xlarge | r4.8xlarge | r4.16xlarge | r5.large | r5.xlarge | r5.2xlarge | r5.4xlarge | r5.8xlarge | r5.12xlarge | r5.16xlarge | r5.24xlarge | r5.metal | r5a.large | r5a.xlarge | r5a.2xlarge | r5a.4xlarge | r5a.8xlarge | r5a.12xlarge | r5a.16xlarge | r5a.24xlarge | r5ad.large | r5ad.xlarge | r5ad.2xlarge | r5ad.4xlarge | r5ad.8xlarge | r5ad.12xlarge | r5ad.16xlarge | r5ad.24xlarge | r5b.large | r5b.xlarge | r5b.2xlarge | r5b.4xlarge | r5b.8xlarge | r5b.12xlarge | r5b.16xlarge | r5b.24xlarge | r5b.metal | r5d.large | r5d.xlarge | r5d.2xlarge | r5d.4xlarge | r5d.8xlarge | r5d.12xlarge | r5d.16xlarge | r5d.24xlarge | r5d.metal | r5dn.large | r5dn.xlarge | r5dn.2xlarge | r5dn.4xlarge | r5dn.8xlarge | r5dn.12xlarge | r5dn.16xlarge | r5dn.24xlarge | r5dn.metal | r5n.large | r5n.xlarge | r5n.2xlarge | r5n.4xlarge | r5n.8xlarge | r5n.12xlarge | r5n.16xlarge | r5n.24xlarge | r5n.metal | r6g.medium | r6g.large | r6g.xlarge | r6g.2xlarge | r6g.4xlarge | r6g.8xlarge | r6g.12xlarge | r6g.16xlarge | r6g.metal | r6gd.medium | r6gd.large | r6gd.xlarge | r6gd.2xlarge | r6gd.4xlarge | r6gd.8xlarge | r6gd.12xlarge | r6gd.16xlarge | r6gd.metal | r6i.large | r6i.xlarge | r6i.2xlarge | r6i.4xlarge | r6i.8xlarge | r6i.12xlarge | r6i.16xlarge | r6i.24xlarge | r6i.32xlarge | r6i.metal | t1.micro | t2.nano | t2.micro | t2.small | t2.medium | t2.large | t2.xlarge | t2.2xlarge | t3.nano | t3.micro | t3.small | t3.medium | t3.large | t3.xlarge | t3.2xlarge | t3a.nano | t3a.micro | t3a.small | t3a.medium | t3a.large | t3a.xlarge | t3a.2xlarge | t4g.nano | t4g.micro | t4g.small | t4g.medium | t4g.large | t4g.xlarge | t4g.2xlarge | u-6tb1.56xlarge | u-6tb1.112xlarge | u-9tb1.112xlarge | u-12tb1.112xlarge | u-6tb1.metal | u-9tb1.metal | u-12tb1.metal | u-18tb1.metal | u-24tb1.metal | vt1.3xlarge | vt1.6xlarge | vt1.24xlarge | x1.16xlarge | x1.32xlarge | x1e.xlarge | x1e.2xlarge | x1e.4xlarge | x1e.8xlarge | x1e.16xlarge | x1e.32xlarge | x2iezn.2xlarge | x2iezn.4xlarge | x2iezn.6xlarge | x2iezn.8xlarge | x2iezn.12xlarge | x2iezn.metal | x2gd.medium | x2gd.large | x2gd.xlarge | x2gd.2xlarge | x2gd.4xlarge | x2gd.8xlarge | x2gd.12xlarge | x2gd.16xlarge | x2gd.metal | z1d.large | z1d.xlarge | z1d.2xlarge | z1d.3xlarge | z1d.6xlarge | z1d.12xlarge | z1d.metal | x2idn.16xlarge | x2idn.24xlarge | x2idn.32xlarge | x2iedn.xlarge | x2iedn.2xlarge | x2iedn.4xlarge | x2iedn.8xlarge | x2iedn.16xlarge | x2iedn.24xlarge | x2iedn.32xlarge | c6a.large | c6a.xlarge | c6a.2xlarge | c6a.4xlarge | c6a.8xlarge | c6a.12xlarge | c6a.16xlarge | c6a.24xlarge | c6a.32xlarge | c6a.48xlarge | c6a.metal | m6a.metal | i4i.large | i4i.xlarge | i4i.2xlarge | i4i.4xlarge | i4i.8xlarge | i4i.16xlarge | i4i.32xlarge | i4i.metal | x2idn.metal | x2iedn.metal | c7g.medium | c7g.large | c7g.xlarge | c7g.2xlarge | c7g.4xlarge | c7g.8xlarge | c7g.12xlarge | c7g.16xlarge | mac2.metal | c6id.large | c6id.xlarge | c6id.2xlarge | c6id.4xlarge | c6id.8xlarge | c6id.12xlarge | c6id.16xlarge | c6id.24xlarge | c6id.32xlarge | c6id.metal | m6id.large | m6id.xlarge | m6id.2xlarge | m6id.4xlarge | m6id.8xlarge | m6id.12xlarge | m6id.16xlarge | m6id.24xlarge | m6id.32xlarge | m6id.metal | r6id.large | r6id.xlarge | r6id.2xlarge | r6id.4xlarge | r6id.8xlarge | r6id.12xlarge | r6id.16xlarge | r6id.24xlarge | r6id.32xlarge | r6id.metal | r6a.large | r6a.xlarge | r6a.2xlarge | r6a.4xlarge | r6a.8xlarge | r6a.12xlarge | r6a.16xlarge | r6a.24xlarge | r6a.32xlarge | r6a.48xlarge | r6a.metal | p4de.24xlarge | u-3tb1.56xlarge | u-18tb1.112xlarge | u-24tb1.112xlarge | trn1.2xlarge | trn1.32xlarge | hpc6id.32xlarge | c6in.large | c6in.xlarge | c6in.2xlarge | c6in.4xlarge | c6in.8xlarge | c6in.12xlarge | c6in.16xlarge | c6in.24xlarge | c6in.32xlarge | m6in.large | m6in.xlarge | m6in.2xlarge | m6in.4xlarge | m6in.8xlarge | m6in.12xlarge | m6in.16xlarge | m6in.24xlarge | m6in.32xlarge | m6idn.large | m6idn.xlarge | m6idn.2xlarge | m6idn.4xlarge | m6idn.8xlarge | m6idn.12xlarge | m6idn.16xlarge | m6idn.24xlarge | m6idn.32xlarge | r6in.large | r6in.xlarge | r6in.2xlarge | r6in.4xlarge | r6in.8xlarge | r6in.12xlarge | r6in.16xlarge | r6in.24xlarge | r6in.32xlarge | r6idn.large | r6idn.xlarge | r6idn.2xlarge | r6idn.4xlarge | r6idn.8xlarge | r6idn.12xlarge | r6idn.16xlarge | r6idn.24xlarge | r6idn.32xlarge | c7g.metal | m7g.medium | m7g.large | m7g.xlarge | m7g.2xlarge | m7g.4xlarge | m7g.8xlarge | m7g.12xlarge | m7g.16xlarge | m7g.metal | r7g.medium | r7g.large | r7g.xlarge | r7g.2xlarge | r7g.4xlarge | r7g.8xlarge | r7g.12xlarge | r7g.16xlarge | r7g.metal | c6in.metal | m6in.metal | m6idn.metal | r6in.metal | r6idn.metal | inf2.xlarge | inf2.8xlarge | inf2.24xlarge | inf2.48xlarge | trn1n.32xlarge | i4g.large | i4g.xlarge | i4g.2xlarge | i4g.4xlarge | i4g.8xlarge | i4g.16xlarge | hpc7g.4xlarge | hpc7g.8xlarge | hpc7g.16xlarge | c7gn.medium | c7gn.large | c7gn.xlarge | c7gn.2xlarge | c7gn.4xlarge | c7gn.8xlarge | c7gn.12xlarge | c7gn.16xlarge | p5.48xlarge | m7i.large | m7i.xlarge | m7i.2xlarge | m7i.4xlarge | m7i.8xlarge | m7i.12xlarge | m7i.16xlarge | m7i.24xlarge | m7i.48xlarge | m7i-flex.large | m7i-flex.xlarge | m7i-flex.2xlarge | m7i-flex.4xlarge | m7i-flex.8xlarge | m7a.medium | m7a.large | m7a.xlarge | m7a.2xlarge | m7a.4xlarge | m7a.8xlarge | m7a.12xlarge | m7a.16xlarge | m7a.24xlarge | m7a.32xlarge | m7a.48xlarge | m7a.metal-48xl | hpc7a.12xlarge | hpc7a.24xlarge | hpc7a.48xlarge | hpc7a.96xlarge | c7gd.medium | c7gd.large | c7gd.xlarge | c7gd.2xlarge | c7gd.4xlarge | c7gd.8xlarge | c7gd.12xlarge | c7gd.16xlarge | m7gd.medium | m7gd.large | m7gd.xlarge | m7gd.2xlarge | m7gd.4xlarge | m7gd.8xlarge | m7gd.12xlarge | m7gd.16xlarge | r7gd.medium | r7gd.large | r7gd.xlarge | r7gd.2xlarge | r7gd.4xlarge | r7gd.8xlarge | r7gd.12xlarge | r7gd.16xlarge | r7a.medium | r7a.large | r7a.xlarge | r7a.2xlarge | r7a.4xlarge | r7a.8xlarge | r7a.12xlarge | r7a.16xlarge | r7a.24xlarge | r7a.32xlarge | r7a.48xlarge | c7i.large | c7i.xlarge | c7i.2xlarge | c7i.4xlarge | c7i.8xlarge | c7i.12xlarge | c7i.16xlarge | c7i.24xlarge | c7i.48xlarge | mac2-m2pro.metal | r7iz.large | r7iz.xlarge | r7iz.2xlarge | r7iz.4xlarge | r7iz.8xlarge | r7iz.12xlarge | r7iz.16xlarge | r7iz.32xlarge | c7a.medium | c7a.large | c7a.xlarge | c7a.2xlarge | c7a.4xlarge | c7a.8xlarge | c7a.12xlarge | c7a.16xlarge | c7a.24xlarge | c7a.32xlarge | c7a.48xlarge | c7a.metal-48xl | r7a.metal-48xl | r7i.large | r7i.xlarge | r7i.2xlarge | r7i.4xlarge | r7i.8xlarge | r7i.12xlarge | r7i.16xlarge | r7i.24xlarge | r7i.48xlarge | dl2q.24xlarge | mac2-m2.metal | i4i.12xlarge | i4i.24xlarge | c7i.metal-24xl | c7i.metal-48xl | m7i.metal-24xl | m7i.metal-48xl | r7i.metal-24xl | r7i.metal-48xl | r7iz.metal-16xl | r7iz.metal-32xl | c7gd.metal | m7gd.metal | r7gd.metal | g6.xlarge | g6.2xlarge | g6.4xlarge | g6.8xlarge | g6.12xlarge | g6.16xlarge | g6.24xlarge | g6.48xlarge | gr6.4xlarge | gr6.8xlarge | c7i-flex.large | c7i-flex.xlarge | c7i-flex.2xlarge | c7i-flex.4xlarge | c7i-flex.8xlarge | u7i-12tb.224xlarge | u7in-16tb.224xlarge | u7in-24tb.224xlarge | u7in-32tb.224xlarge | u7ib-12tb.224xlarge | c7gn.metal | r8g.medium | r8g.large | r8g.xlarge | r8g.2xlarge | r8g.4xlarge | r8g.8xlarge | r8g.12xlarge | r8g.16xlarge | r8g.24xlarge | r8g.48xlarge | r8g.metal-24xl | r8g.metal-48xl | mac2-m1ultra.metal | g6e.xlarge | g6e.2xlarge | g6e.4xlarge | g6e.8xlarge | g6e.12xlarge | g6e.16xlarge | g6e.24xlarge | g6e.48xlarge | c8g.medium | c8g.large | c8g.xlarge | c8g.2xlarge | c8g.4xlarge | c8g.8xlarge | c8g.12xlarge | c8g.16xlarge | c8g.24xlarge | c8g.48xlarge | c8g.metal-24xl | c8g.metal-48xl | m8g.medium | m8g.large | m8g.xlarge | m8g.2xlarge | m8g.4xlarge | m8g.8xlarge | m8g.12xlarge | m8g.16xlarge | m8g.24xlarge | m8g.48xlarge | m8g.metal-24xl | m8g.metal-48xl | x8g.medium | x8g.large | x8g.xlarge | x8g.2xlarge | x8g.4xlarge | x8g.8xlarge | x8g.12xlarge | x8g.16xlarge | x8g.24xlarge | x8g.48xlarge | x8g.metal-24xl | x8g.metal-48xl | i7ie.large | i7ie.xlarge | i7ie.2xlarge | i7ie.3xlarge | i7ie.6xlarge | i7ie.12xlarge | i7ie.18xlarge | i7ie.24xlarge | i7ie.48xlarge | i8g.large | i8g.xlarge | i8g.2xlarge | i8g.4xlarge | i8g.8xlarge | i8g.12xlarge | i8g.16xlarge | i8g.24xlarge | i8g.metal-24xl | u7i-6tb.112xlarge | u7i-8tb.112xlarge | u7inh-32tb.480xlarge | p5e.48xlarge | p5en.48xlarge | f2.12xlarge | f2.48xlarge | trn2.48xlarge | c7i-flex.12xlarge | c7i-flex.16xlarge | m7i-flex.12xlarge | m7i-flex.16xlarge | i7ie.metal-24xl | i7ie.metal-48xl | i8g.48xlarge | c8gd.medium | c8gd.large | c8gd.xlarge | c8gd.2xlarge | c8gd.4xlarge | c8gd.8xlarge | c8gd.12xlarge | c8gd.16xlarge | c8gd.24xlarge | c8gd.48xlarge | c8gd.metal-24xl | c8gd.metal-48xl | i7i.large | i7i.xlarge | i7i.2xlarge | i7i.4xlarge | i7i.8xlarge | i7i.12xlarge | i7i.16xlarge | i7i.24xlarge | i7i.48xlarge | i7i.metal-24xl | i7i.metal-48xl | p6-b200.48xlarge | m8gd.medium | m8gd.large | m8gd.xlarge | m8gd.2xlarge | m8gd.4xlarge | m8gd.8xlarge | m8gd.12xlarge | m8gd.16xlarge | m8gd.24xlarge | m8gd.48xlarge | m8gd.metal-24xl | m8gd.metal-48xl | r8gd.medium | r8gd.large | r8gd.xlarge | r8gd.2xlarge | r8gd.4xlarge | r8gd.8xlarge | r8gd.12xlarge | r8gd.16xlarge | r8gd.24xlarge | r8gd.48xlarge | r8gd.metal-24xl | r8gd.metal-48xl | c8gn.medium | c8gn.large | c8gn.xlarge | c8gn.2xlarge | c8gn.4xlarge | c8gn.8xlarge | c8gn.12xlarge | c8gn.16xlarge | c8gn.24xlarge | c8gn.48xlarge | c8gn.metal-24xl | c8gn.metal-48xl | f2.6xlarge | p6e-gb200.36xlarge | g6f.large | g6f.xlarge | g6f.2xlarge | g6f.4xlarge | gr6f.4xlarge | p5.4xlarge | r8i.large | r8i.xlarge | r8i.2xlarge | r8i.4xlarge | r8i.8xlarge | r8i.12xlarge | r8i.16xlarge | r8i.24xlarge | r8i.32xlarge | r8i.48xlarge | r8i.96xlarge | r8i.metal-48xl | r8i.metal-96xl | r8i-flex.large | r8i-flex.xlarge | r8i-flex.2xlarge | r8i-flex.4xlarge | r8i-flex.8xlarge | r8i-flex.12xlarge | r8i-flex.16xlarge</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>Ipv6Address.N</b>
+            </span></dt>
+            <dd>
+               <p>The IPv6 addresses from the range of the subnet to associate with the
+            primary network interface. You cannot specify this option and the option to assign a
+            number of IPv6 addresses in the same request. You cannot specify this option if you've
+            specified a minimum number of instances to launch.</p>
+               <p>You cannot specify this option and the network interfaces option in the same
+            request.</p>
+               <p>Type: Array of <a href="./API_InstanceIpv6Address.html">InstanceIpv6Address</a> objects</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>Ipv6AddressCount</b>
+            </span></dt>
+            <dd>
+               <p>The number of IPv6 addresses to associate with the primary network
+            interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet. You
+            cannot specify this option and the option to assign specific IPv6 addresses in the same
+            request. You can specify this option if you've specified a minimum number of instances
+            to launch.</p>
+               <p>You cannot specify this option and the network interfaces option in the same
+            request.</p>
+               <p>Type: Integer</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>KernelId</b>
+            </span></dt>
+            <dd>
+               <p>The ID of the kernel.</p>
+               <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>We recommend that you use PV-GRUB instead of kernels and RAM disks. For more
+                information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html">PV-GRUB</a> in the
+                    <em>Amazon EC2 User Guide</em>.</p></div></div>
+               <p>Type: String</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>KeyName</b>
+            </span></dt>
+            <dd>
+               <p>The name of the key pair. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html">Create a key pair for your EC2 instance</a>.</p>
+               <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>If you do not specify a key pair, you can't connect to the instance unless you
+                choose an AMI that is configured to allow users another way to log in.</p></div></div>
+               <p>Type: String</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>LaunchTemplate</b>
+            </span></dt>
+            <dd>
+               <p>The launch template. Any additional parameters that you specify for the new instance 
+            overwrite the corresponding parameters included in the launch template.</p>
+               <p>Type: <a href="./API_LaunchTemplateSpecification.html">LaunchTemplateSpecification</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>LicenseSpecification.N</b>
+            </span></dt>
+            <dd>
+               <p>The license configurations.</p>
+               <p>Type: Array of <a href="./API_LicenseConfigurationRequest.html">LicenseConfigurationRequest</a> objects</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>MaintenanceOptions</b>
+            </span></dt>
+            <dd>
+               <p>The maintenance and recovery options for the instance.</p>
+               <p>Type: <a href="./API_InstanceMaintenanceOptionsRequest.html">InstanceMaintenanceOptionsRequest</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>MaxCount</b>
+            </span></dt>
+            <dd>
+               <p>The maximum number of instances to launch. If you specify a value that is more
+            capacity than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 
+            launches the largest possible number of instances above the specified minimum
+            count.</p>
+               <p>Constraints: Between 1 and the quota for the specified instance type for your account for this Region. 
+            For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-quotas.html">Amazon EC2 instance type quotas</a>.</p>
+               <p>Type: Integer</p>
+               <p>Required: Yes</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>MetadataOptions</b>
+            </span></dt>
+            <dd>
+               <p>The metadata options for the instance. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html">Configure the Instance Metadata Service options</a>.</p>
+               <p>Type: <a href="./API_InstanceMetadataOptionsRequest.html">InstanceMetadataOptionsRequest</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>MinCount</b>
+            </span></dt>
+            <dd>
+               <p>The minimum number of instances to launch. If you specify a value that is more
+            capacity than Amazon EC2 can provide in the target Availability Zone, Amazon EC2 does
+            not launch any instances.</p>
+               <p>Constraints: Between 1 and the quota for the specified instance type for your account for this Region.
+            For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-quotas.html">Amazon EC2 instance type quotas</a>.</p>
+               <p>Type: Integer</p>
+               <p>Required: Yes</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>Monitoring</b>
+            </span></dt>
+            <dd>
+               <p>Specifies whether detailed monitoring is enabled for the instance.</p>
+               <p>Type: <a href="./API_RunInstancesMonitoringEnabled.html">RunInstancesMonitoringEnabled</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>NetworkInterface.N</b>
+            </span></dt>
+            <dd>
+               <p>The network interfaces to associate with the instance.</p>
+               <p>Type: Array of <a href="./API_InstanceNetworkInterfaceSpecification.html">InstanceNetworkInterfaceSpecification</a> objects</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>NetworkPerformanceOptions</b>
+            </span></dt>
+            <dd>
+               <p>Contains settings for the network performance options for the instance.</p>
+               <p>Type: <a href="./API_InstanceNetworkPerformanceOptionsRequest.html">InstanceNetworkPerformanceOptionsRequest</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>Operator</b>
+            </span></dt>
+            <dd>
+               <p>Reserved for internal use.</p>
+               <p>Type: <a href="./API_OperatorRequest.html">OperatorRequest</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>Placement</b>
+            </span></dt>
+            <dd>
+               <p>The placement for the instance.</p>
+               <p>Type: <a href="./API_Placement.html">Placement</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>PrivateDnsNameOptions</b>
+            </span></dt>
+            <dd>
+               <p>The options for the instance hostname. 
+            The default values are inherited from the subnet.
+            Applies only if creating a network interface, not attaching an existing one.</p>
+               <p>Type: <a href="./API_PrivateDnsNameOptionsRequest.html">PrivateDnsNameOptionsRequest</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>PrivateIpAddress</b>
+            </span></dt>
+            <dd>
+               <p>The primary IPv4 address. You must specify a value from the IPv4 address
+            range of the subnet.</p>
+               <p>Only one private IP address can be designated as primary. You can't specify this
+            option if you've specified the option to designate a private IP address as the primary
+            IP address in a network interface specification. You cannot specify this option if
+            you're launching more than one instance in the request.</p>
+               <p>You cannot specify this option and the network interfaces option in the same
+            request.</p>
+               <p>Type: String</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>RamdiskId</b>
+            </span></dt>
+            <dd>
+               <p>The ID of the RAM disk to select. Some kernels require additional drivers at launch.
+            Check the kernel requirements for information about whether you need to specify a RAM
+            disk. To find kernel requirements, go to the AWS Resource Center and
+            search for the kernel ID.</p>
+               <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>We recommend that you use PV-GRUB instead of kernels and RAM disks. For more
+                information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html">PV-GRUB</a> in the
+                    <em>Amazon EC2 User Guide</em>.</p></div></div>
+               <p>Type: String</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>SecondaryInterface.N</b>
+            </span></dt>
+            <dd>
+               <p>The secondary interfaces to associate with the instance.</p>
+               <p>Type: Array of <a href="./API_InstanceSecondaryInterfaceSpecificationRequest.html">InstanceSecondaryInterfaceSpecificationRequest</a> objects</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>SecurityGroup.N</b>
+            </span></dt>
+            <dd>
+               <p>[Default VPC] The names of the security groups.</p>
+               <p>If you specify a network interface, you must specify any security groups as part of
+            the network interface instead of using this parameter.</p>
+               <p>Default: Amazon EC2 uses the default security group.</p>
+               <p>Type: Array of strings</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>SecurityGroupId.N</b>
+            </span></dt>
+            <dd>
+               <p>The IDs of the security groups.</p>
+               <p>If you specify a network interface, you must specify any security groups as part of
+            the network interface instead of using this parameter.</p>
+               <p>Type: Array of strings</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>SubnetId</b>
+            </span></dt>
+            <dd>
+               <p>The ID of the subnet to launch the instance into.</p>
+               <p>If you specify a network interface, you must specify any subnets as part of the
+            network interface instead of using this parameter.</p>
+               <p>Type: String</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>TagSpecification.N</b>
+            </span></dt>
+            <dd>
+               <p>The tags to apply to the resources that are created during instance launch.</p>
+               <p>You can specify tags for the following resources only:</p>
+               <div class="itemizedlist">
+                   
+                   
+                   
+                   
+               <ul class="itemizedlist"><li class="listitem">
+                     <p>Instances</p>
+                  </li><li class="listitem">
+                     <p>Volumes</p>
+                  </li><li class="listitem">
+                     <p>Spot Instance requests</p>
+                  </li><li class="listitem">
+                     <p>Network interfaces</p>
+                  </li></ul></div>
+               <p>To tag a resource after it has been created, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html">CreateTags</a>.</p>
+               <p>Type: Array of <a href="./API_TagSpecification.html">TagSpecification</a> objects</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>UserData</b>
+            </span></dt>
+            <dd>
+               <p>The user data to make available to the instance. User data must be base64-encoded.
+            Depending on the tool or SDK that you're using, the base64-encoding might be performed for you.
+            For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html">Run commands at launch using instance user data</a>.</p>
+               <p>Type: String</p>
+               <p>Required: No</p>
+            </dd>
+         </dl></div>
+    
+      <h2 id="API_RunInstances_ResponseElements">Response Elements</h2>
+      <p>The following elements are returned by the service.</p>
+      <div class="variablelist">
+          
+          
+          
+          
+          
+          
+      <dl>
+            <dt><span class="term">
+               <b>groupSet</b>
+            </span></dt>
+            <dd>
+               <p>Not supported.</p>
+               <p>Type: Array of <a href="./API_GroupIdentifier.html">GroupIdentifier</a> objects</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>instancesSet</b>
+            </span></dt>
+            <dd>
+               <p>The instances.</p>
+               <p>Type: Array of <a href="./API_Instance.html">Instance</a> objects</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>ownerId</b>
+            </span></dt>
+            <dd>
+               <p>The ID of the AWS account that owns the reservation.</p>
+               <p>Type: String</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>requesterId</b>
+            </span></dt>
+            <dd>
+               <p>The ID of the requester that launched the instances on your behalf (for example,
+                AWS Management Console or Auto Scaling).</p>
+               <p>Type: String</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>requestId</b>
+            </span></dt>
+            <dd>
+               <p>The ID of the request.</p>
+               <p>Type: String</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>reservationId</b>
+            </span></dt>
+            <dd>
+               <p>The ID of the reservation.</p>
+               <p>Type: String</p>
+            </dd>
+         </dl></div>
+    
+      <h2 id="API_RunInstances_Errors">Errors</h2>
+      <p>For information about the errors that are common to all actions, see <a href="./errors-overview.html#CommonErrors">Common client error codes</a>.</p>
+    
+      <h2 id="API_RunInstances_Examples">Examples</h2>
+       
+         <h3 id="API_RunInstances_Example_1">Example 1</h3>
+         <p>This example launches three instances using the specified AMI.</p>
+          
+            <h4 id="API_RunInstances_Example_1_Request">Sample Request</h4>
+            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="">https://ec2.amazonaws.com/?Action=RunInstances
+&amp;ImageId=ami-60a54009
+&amp;MaxCount=3
+&amp;MinCount=1
+&amp;KeyName=my-key-pair
+&amp;SecurityGroupId.1=sg-0598c7d3
+&amp;Placement.AvailabilityZone=us-east-1d
+&amp;AUTHPARAMS</code></pre>
+          
+       
+       
+         <h3 id="API_RunInstances_Example_2">Example 2</h3>
+         <p>This example launches an instance into the specified subnet. Because no
+                    network interface is specified, a new network interface is created.</p>
+          
+            <h4 id="API_RunInstances_Example_2_Request">Sample Request</h4>
+            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="">https://ec2.amazonaws.com/?Action=RunInstances
+&amp;ImageId=ami-31814f58
+&amp;InstanceType=t2.micro
+&amp;MaxCount=1
+&amp;MinCount=1
+&amp;KeyName=my-key-pair
+&amp;SecurityGroupId.1=sg-0598c7d3
+&amp;SubnetId=subnet-b2a249da
+&amp;AUTHPARAMS</code></pre>
+          
+       
+       
+         <h3 id="API_RunInstances_Example_3">Example 3</h3>
+         <p>This example launches an instance into the specified subnet. The network
+                    interface specifies a primary private IPv4 address of <code class="code">10.0.2.106</code>
+                    and two secondary private IPv4 addresses (<code class="code">10.0.2.107</code> and
+                        <code class="code">10.0.2.108</code>).</p>
+          
+            <h4 id="API_RunInstances_Example_3_Request">Sample Request</h4>
+            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="">https://ec2.amazonaws.com/?Action=RunInstances
+&amp;ImageId=ami-beb0caec
+&amp;InstanceType=t2.small
+&amp;MaxCount=1
+&amp;MinCount=1
+&amp;KeyName=my-key-pair
+&amp;NetworkInterface.1.DeviceIndex=0
+&amp;NetworkInterface.1.PrivateIpAddresses.1.Primary=true
+&amp;NetworkInterface.1.PrivateIpAddresses.1.PrivateIpAddress=10.0.2.106
+&amp;NetworkInterface.1.PrivateIpAddresses.2.Primary=false
+&amp;NetworkInterface.1.PrivateIpAddresses.2.PrivateIpAddress=10.0.2.107
+&amp;NetworkInterface.1.PrivateIpAddresses.3.Primary=false
+&amp;NetworkInterface.1.PrivateIpAddresses.3.PrivateIpAddress=10.0.2.108
+&amp;NetworkInterface.1.SubnetId=subnet-a61dafcf
+&amp;AUTHPARAMS</code></pre>
+          
+       
+       
+         <h3 id="API_RunInstances_Example_4">Example 4</h3>
+         <p>This example launches a Dedicated Instance into the specified subnet.</p>
+          
+            <h4 id="API_RunInstances_Example_4_Request">Sample Request</h4>
+            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="">https://ec2.amazonaws.com/?Action=RunInstances
+&amp;ImageId=ami-2a1fec43
+&amp;InstanceType=m6i.8xlarge
+&amp;MaxCount=1
+&amp;MinCount=1
+&amp;KeyName=my-key-pair
+&amp;SecurityGroupId.1=sg-0598c7d3
+&amp;SubnetId=subnet-dea63cb7
+&amp;Placement.Tenancy=dedicated
+&amp;AUTHPARAMS</code></pre>
+          
+       
+       
+         <h3 id="API_RunInstances_Example_5">Example 5</h3>
+         <p>This request launches an instance into the specified subnet, and requests a
+                    public IPv4 address for a new network interface with the device index of
+                    0.</p>
+          
+            <h4 id="API_RunInstances_Example_5_Request">Sample Request</h4>
+            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="">https://ec2.amazonaws.com/?Action=RunInstances
+&amp;ImageId=ami-1a2b3c4d
+&amp;InstanceType=m6i.8xlarge
+&amp;MaxCount=1
+&amp;MinCount=1
+&amp;NetworkInterface.1.DeviceIndex=0
+&amp;NetworkInterface.1.AssociatePublicIpAddress=true
+&amp;NetworkInterface.1.SubnetId=subnet-1a2b3c4d
+&amp;AUTHPARAMS</code></pre>
+          
+       
+       
+         <h3 id="API_RunInstances_Example_6">Example 6</h3>
+         <p>This request launches an instance with a block device mapping. There are two
+                    instance store volumes mapped to <code class="code">/dev/sdc</code> and
+                    <code class="code">/dev/sdd</code>, and a 100-GB EBS volume mapped to <code class="code">/dev/sdf</code>.
+                    The EBS volume attached to the instance is encrypted using a customer managed
+                    KMS key.</p>
+         <p>For more information about block device mappings, see <a href="./API_EbsBlockDevice.html">EbsBlockDevice</a> and <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-instances.html#modify-block-device">Modifying block device mappings during launch</a>.</p>
+         <p>For more information, see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/ebs-encryption.html">Amazon EBS encryption</a>.</p>
+          
+            <h4 id="API_RunInstances_Example_6_Request">Sample Request</h4>
+            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="">https://ec2.amazonaws.com/?Action=RunInstances
+&amp;ImageId=ami-1a2b3c4d
+&amp;InstanceType=m6id.12xlarge
+&amp;BlockDeviceMapping.1.DeviceName=%2Fdev%2Fsdc
+&amp;BlockDeviceMapping.1.VirtualName=ephemeral0
+&amp;BlockDeviceMapping.2.DeviceName=%2Fdev%2Fsdd
+&amp;BlockDeviceMapping.2.VirtualName=ephemeral1
+&amp;BlockDeviceMapping.3.DeviceName=%2Fdev%2Fsdf
+&amp;BlockDeviceMapping.3.Ebs.DeleteOnTermination=false
+&amp;BlockDeviceMapping.3.Ebs.VolumeSize=100
+&amp;BlockDeviceMapping.3.Ebs.Encrypted=true
+&amp;BlockDeviceMapping.3.Ebs.KmsKeyId=arn%3Aaws%3Akms%3Aus-east-1%3A009400881653%3Akey%2Fa48a521f-3aff-4b34-a159-376ac5d37812
+&amp;EbsOptimized=false
+&amp;MinCount=1
+&amp;MaxCount=1
+&amp;DisableApiTermination=false
+&amp;Monitoring.Enabled=false
+&amp;AUTHPARAMS</code></pre>
+          
+       
+       
+         <h3 id="API_RunInstances_Example_7">Example 7</h3>
+         <p>This request launches two instances and applies a tag with a key of
+                        <code class="code">webserver</code> and a value of <code class="code">production</code> to the
+                    instances. The request also applies a tag with a key of <code class="code">cost-center</code>
+                    and a value of <code class="code">cc123</code> to the volumes that are created (in this case,
+                    the root volume for each instance).</p>
+          
+            <h4 id="API_RunInstances_Example_7_Request">Sample Request</h4>
+            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="">https://ec2.amazonaws.com/?Action=RunInstances
+&amp;ImageId=ami-31814f58
+&amp;InstanceType=t2.large
+&amp;MaxCount=2
+&amp;MinCount=1
+&amp;KeyName=my-key-pair
+&amp;SecurityGroupId.1=sg-0598c7d3
+&amp;SubnetId=subnet-b2a249da
+&amp;TagSpecification.1.ResourceType=instance
+&amp;TagSpecification.1.Tag.1.Key=webserver
+&amp;TagSpecification.1.Tag.1.Value=production
+&amp;TagSpecification.2.ResourceType=volume
+&amp;TagSpecification.2.Tag.1.Key=cost-center
+&amp;TagSpecification.2.Tag.1.Value=cc123
+&amp;AUTHPARAMS</code></pre>
+          
+       
+       
+         <h3 id="API_RunInstances_Example_8">Example 8</h3>
+         <p>This request launches a burstable performance instance with the credit option
+                    for CPU usage set to <code class="code">unlimited</code>.</p>
+          
+            <h4 id="API_RunInstances_Example_8_Request">Sample Request</h4>
+            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="">https://ec2.amazonaws.com/?Action=RunInstances
+&amp;ImageId=ami-31814f58
+&amp;InstanceType=t2.micro
+&amp;MaxCount=1
+&amp;MinCount=1
+&amp;KeyName=my-key-pair
+&amp;SecurityGroupId.1=sg-0598c7d3
+&amp;CreditSpecification.CpuCredits=unlimited
+&amp;AUTHPARAMS</code></pre>
+          
+       
+       
+         <h3 id="API_RunInstances_Example_9">Example 9</h3>
+         <p>This request launches an instance into the specified partition placement group
+                    but does not specify the partition.</p>
+          
+            <h4 id="API_RunInstances_Example_9_Request">Sample Request</h4>
+            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="">https://ec2.amazonaws.com/?Action=RunInstances
+&amp;ImageId=ami-31814f58
+&amp;InstanceType=t3.large
+&amp;MaxCount=1
+&amp;MinCount=1
+&amp;KeyName=my-key-pair
+&amp;SecurityGroupId.1=sg-0598c7d3
+&amp;Placement=HDFS-Group-A
+&amp;AUTHPARAMS</code></pre>
+          
+       
+       
+         <h3 id="API_RunInstances_Example_10">Example 10</h3>
+         <p>This request launches an instance into the specified partition placement group
+                    and into the specified partition.</p>
+          
+            <h4 id="API_RunInstances_Example_10_Request">Sample Request</h4>
+            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="">https://ec2.amazonaws.com/?Action=RunInstances
+&amp;ImageId=ami-31814f58
+&amp;InstanceType=t3.large
+&amp;MaxCount=1
+&amp;MinCount=1
+&amp;KeyName=my-key-pair
+&amp;SecurityGroupId.1=sg-0598c7d3
+&amp;Placement=HDFS-Group-A
+&amp;Partition=2
+&amp;AUTHPARAMS</code></pre>
+          
+       
+       
+         <h3 id="API_RunInstances_Example_11">Example 11</h3>
+         <p>This example launches an instance with a metadata type requiring a session
+                    token for metadata retrieval requests.</p>
+          
+            <h4 id="API_RunInstances_Example_11_Request">Sample Request</h4>
+            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="">https://ec2.amazonaws.com/?Action=RunInstances
+&amp;ImageId=ami-1a2b3c4d
+&amp;InstanceType=c6i.large
+&amp;MaxCount=1
+&amp;MinCount=1
+&amp;KeyName=my-key-pair
+&amp;SecurityGroupId.1=sg-0598c7d3
+&amp;MetadataOptions.HttpTokens=required
+&amp;AUTHPARAMS</code></pre>
+          
+       
+       
+         <h3 id="API_RunInstances_Example_12">Example 12</h3>
+         <p>This example launches an instance with instance metadata access turned
+                    off.</p>
+          
+            <h4 id="API_RunInstances_Example_12_Request">Sample Request</h4>
+            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="">https://ec2.amazonaws.com/?Action=RunInstances
+&amp;ImageId=ami-1a2b3c4d 
+&amp;InstanceType=c6i.large
+&amp;MaxCount=1
+&amp;MinCount=1
+&amp;KeyName=my-key-pair
+&amp;SecurityGroupId.1=sg-0598c7d3
+&amp;MetadataOptions.HttpEndpoint=disabled
+&amp;AUTHPARAMS</code></pre>
+          
+       
+       
+         <h3 id="API_RunInstances_Example_13">Example 13</h3>
+         <p>This example launches an instance with a metadata type requiring a session
+                    token for metadata retrieval requests and a metadata hop limit of
+                    <code class="code">3</code>.</p>
+          
+            <h4 id="API_RunInstances_Example_13_Request">Sample Request</h4>
+            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="">https://ec2.amazonaws.com/?Action=RunInstances
+&amp;ImageId=ami-1a2b3c4d
+&amp;InstanceType=c6i.large
+&amp;MaxCount=1
+&amp;MinCount=1
+&amp;KeyName=my-key-pair
+&amp;SecurityGroupId.1=sg-0598c7d3
+&amp;MetadataOptions.HttpTokens=required
+&amp;MetadataOptions.HttpPutResponseHopLimit=3
+&amp;AUTHPARAMS</code></pre>
+          
+       
+       
+         <h3 id="API_RunInstances_Example_14">Example 14</h3>
+         <p>This example launches an instance and assigns two security groups and an IPv6
+                    address to the primary network interface.</p>
+          
+            <h4 id="API_RunInstances_Example_14_Request">Sample Request</h4>
+            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="">https://ec2.amazonaws.com/?Action=RunInstances
+&amp;ImageId=ami-00112233445566aab
+&amp;InstanceType=t2.micro
+&amp;MinCount=1
+&amp;MaxCount=1
+&amp;NetworkInterface.1.DeviceIndex=0
+&amp;NetworkInterface.1.SecurityGroupId.1=sg-444455556666cccdd
+&amp;NetworkInterface.1.SecurityGroupId.2=sg-111122223333aaabb
+&amp;NetworkInterface.1.Ipv6Addresses.1.Ipv6Address=2001:db8:1234:1a00::123
+&amp;NetworkInterface.1.SubnetId=subnet-aabbccdd112233445
+&amp;AUTHPARAMS</code></pre>
+          
+       
+       
+         <h3 id="API_RunInstances_Example_15">Example 15</h3>
+         <p>This example launches a single instance with 8 secondary interfaces, each on a separate network card and configured for automatic deletion on termination.</p>
+          
+            <h4 id="API_RunInstances_Example_15_Request">Sample Request</h4>
+            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="">https://ec2.amazonaws.com/?Action=RunInstances
+  &amp;ImageId=ami-beb0caec
+  &amp;InstanceType=&lt;instanceType&gt;
+  &amp;MaxCount=1
+  &amp;MinCount=1
+  &amp;Placement.AvailabilityZoneId=use2-az1
+  &amp;NetworkInterface.1.DeviceIndex=0
+  &amp;NetworkInterface.1.SubnetId=subnet-a61dafcf
+  &amp;NetworkInterface.1.DeleteOnTermination
+  &amp;SecondaryInterface.1.SecondarySubnetId=ss-073988ab526b59d2c
+  &amp;SecondaryInterface.1.NetworkCardIndex=1
+  &amp;SecondaryInterface.1.DeviceIndex=0
+  &amp;SecondaryInterface.1.InterfaceType=secondary
+  &amp;SecondaryInterface.1.DeleteOnTermination=true
+  &amp;SecondaryInterface.1.PrivateIpAddressCount=1
+  &amp;SecondaryInterface.2.SecondarySubnetId=ss-061ba0b5a43c9eabe
+  &amp;SecondaryInterface.2.NetworkCardIndex=2
+  &amp;SecondaryInterface.2.DeviceIndex=0
+  &amp;SecondaryInterface.2.InterfaceType=secondary
+  &amp;SecondaryInterface.2.DeleteOnTermination=true
+  &amp;SecondaryInterface.2.PrivateIpAddressCount=1
+  &amp;SecondaryInterface.3.SecondarySubnetId=ss-060c8c15859a0c8e5
+  &amp;SecondaryInterface.3.NetworkCardIndex=3
+  &amp;SecondaryInterface.3.DeviceIndex=0
+  &amp;SecondaryInterface.3.InterfaceType=secondary
+  &amp;SecondaryInterface.3.DeleteOnTermination=true
+  &amp;SecondaryInterface.3.PrivateIpAddressCount=1
+  &amp;SecondaryInterface.4.SecondarySubnetId=ss-0dafcecef369ae17d
+  &amp;SecondaryInterface.4.NetworkCardIndex=4
+  &amp;SecondaryInterface.4.DeviceIndex=0
+  &amp;SecondaryInterface.4.InterfaceType=secondary
+  &amp;SecondaryInterface.4.DeleteOnTermination=true
+  &amp;SecondaryInterface.4.PrivateIpAddressCount=1
+  &amp;SecondaryInterface.5.SecondarySubnetId=ss-073988ab526b59d2e
+  &amp;SecondaryInterface.5.NetworkCardIndex=5
+  &amp;SecondaryInterface.5.DeviceIndex=0
+  &amp;SecondaryInterface.5.InterfaceType=secondary
+  &amp;SecondaryInterface.5.DeleteOnTermination=true
+  &amp;SecondaryInterface.5.PrivateIpAddressCount=1
+  &amp;SecondaryInterface.6.SecondarySubnetId=ss-061ba0b5a43c9eabf
+  &amp;SecondaryInterface.6.NetworkCardIndex=6
+  &amp;SecondaryInterface.6.DeviceIndex=0
+  &amp;SecondaryInterface.6.InterfaceType=secondary
+  &amp;SecondaryInterface.6.DeleteOnTermination=true
+  &amp;SecondaryInterface.6.PrivateIpAddressCount=1
+  &amp;SecondaryInterface.7.SecondarySubnetId=ss-060c8c15859a0c8e1
+  &amp;SecondaryInterface.7.NetworkCardIndex=7
+  &amp;SecondaryInterface.7.DeviceIndex=0
+  &amp;SecondaryInterface.7.InterfaceType=secondary
+  &amp;SecondaryInterface.7.DeleteOnTermination=true
+  &amp;SecondaryInterface.7.PrivateIpAddressCount=1
+  &amp;SecondaryInterface.8.SecondarySubnetId=ss-0dafcecef369ae172
+  &amp;SecondaryInterface.8.NetworkCardIndex=8
+  &amp;SecondaryInterface.8.DeviceIndex=0
+  &amp;SecondaryInterface.8.InterfaceType=secondary
+  &amp;SecondaryInterface.8.DeleteOnTermination=true
+  &amp;SecondaryInterface.8.PrivateIpAddressCount=1
+  &amp;AUTHPARAMS</code></pre>
+          
+          
+            <h4 id="API_RunInstances_Example_15_Response">Sample Response</h4>
+            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="">&lt;RunInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2016-11-15/"&gt;
+  &lt;requestId&gt;d61f4ee4-1e53-4bf8-9cf2-08c5e2f03da4&lt;/requestId&gt;
+  &lt;reservationId&gt;r-0ddcaaa5e0c45ca09&lt;/reservationId&gt;
+  &lt;ownerId&gt;123456789012&lt;/ownerId&gt;
+  &lt;groupSet /&gt;
+  &lt;instancesSet&gt;
+    &lt;item&gt;
+      &lt;instanceId&gt;i-05e4d39f17ac88e74&lt;/instanceId&gt;
+      &lt;imageId&gt;ami-beb0caec&lt;/imageId&gt;
+      &lt;instanceState&gt;
+        &lt;code&gt;0&lt;/code&gt;
+        &lt;name&gt;pending&lt;/name&gt;
+      &lt;/instanceState&gt;
+      &lt;privateDnsName&gt;ip-172-31-63-109.us-west-2.compute.internal&lt;/privateDnsName&gt;
+      &lt;dnsName /&gt;
+      &lt;reason /&gt;
+      &lt;amiLaunchIndex&gt;0&lt;/amiLaunchIndex&gt;
+      &lt;productCodes /&gt;
+      &lt;operator&gt;
+        &lt;managed&gt;false&lt;/managed&gt;
+      &lt;/operator&gt;
+      &lt;instanceType&gt;&lt;instanceType&gt;&lt;/instanceType&gt;
+      &lt;launchTime&gt;2026-01-07T12:19:54.000Z&lt;/launchTime&gt;
+      &lt;placement&gt;
+        &lt;availabilityZone&gt;us-east-2a&lt;/availabilityZone&gt;
+        &lt;availabilityZoneId&gt;use2-az1&lt;/availabilityZoneId&gt;
+        &lt;groupName /&gt;
+        &lt;tenancy&gt;default&lt;/tenancy&gt;
+      &lt;/placement&gt;
+      &lt;monitoring&gt;
+        &lt;state&gt;disabled&lt;/state&gt;
+      &lt;/monitoring&gt;
+      &lt;subnetId&gt;subnet-a61dafcf&lt;/subnetId&gt;
+      &lt;vpcId&gt;vpc-0564039f140880335&lt;/vpcId&gt;
+      &lt;privateIpAddress&gt;172.31.63.109&lt;/privateIpAddress&gt;
+      &lt;sourceDestCheck&gt;true&lt;/sourceDestCheck&gt;
+      &lt;groupSet&gt;
+        &lt;item&gt;
+          &lt;groupId&gt;sg-087603de13e5e0723&lt;/groupId&gt;
+          &lt;groupName&gt;default&lt;/groupName&gt;
+        &lt;/item&gt;
+      &lt;/groupSet&gt;
+      &lt;stateReason&gt;
+        &lt;code&gt;pending&lt;/code&gt;
+        &lt;message&gt;pending&lt;/message&gt;
+      &lt;/stateReason&gt;
+      &lt;architecture&gt;x86_64&lt;/architecture&gt;
+      &lt;rootDeviceType&gt;ebs&lt;/rootDeviceType&gt;
+      &lt;rootDeviceName&gt;/dev/xvda&lt;/rootDeviceName&gt;
+      &lt;blockDeviceMapping /&gt;
+      &lt;virtualizationType&gt;hvm&lt;/virtualizationType&gt;
+      &lt;clientToken /&gt;
+      &lt;hypervisor&gt;xen&lt;/hypervisor&gt;
+      &lt;networkInterfaceSet&gt;
+        &lt;item&gt;
+          &lt;networkInterfaceId&gt;eni-0e58a9ead2097b866&lt;/networkInterfaceId&gt;
+          &lt;subnetId&gt;subnet-a61dafcf&lt;/subnetId&gt;
+          &lt;vpcId&gt;vpc-0564039f140880335&lt;/vpcId&gt;
+          &lt;description /&gt;
+          &lt;ownerId&gt;123456789012&lt;/ownerId&gt;
+          &lt;status&gt;in-use&lt;/status&gt;
+          &lt;macAddress&gt;0e:2d:76:a2:bf:d3&lt;/macAddress&gt;
+          &lt;privateIpAddress&gt;172.31.63.109&lt;/privateIpAddress&gt;
+          &lt;privateDnsName&gt;ip-172-31-63-109.us-west-2.compute.internal&lt;/privateDnsName&gt;
+          &lt;sourceDestCheck&gt;true&lt;/sourceDestCheck&gt;
+          &lt;groupSet&gt;
+            &lt;item&gt;
+              &lt;groupId&gt;sg-087603de13e5e0723&lt;/groupId&gt;
+              &lt;groupName&gt;default&lt;/groupName&gt;
+            &lt;/item&gt;
+          &lt;/groupSet&gt;
+          &lt;attachment&gt;
+            &lt;attachmentId&gt;eni-attach-0366b9a273aec9b6d&lt;/attachmentId&gt;
+            &lt;deviceIndex&gt;0&lt;/deviceIndex&gt;
+            &lt;status&gt;attaching&lt;/status&gt;
+            &lt;attachTime&gt;2026-01-07T12:19:54.000Z&lt;/attachTime&gt;
+            &lt;deleteOnTermination&gt;true&lt;/deleteOnTermination&gt;
+            &lt;networkCardIndex&gt;0&lt;/networkCardIndex&gt;
+          &lt;/attachment&gt;
+          &lt;privateIpAddressesSet&gt;
+            &lt;item&gt;
+              &lt;privateIpAddress&gt;172.31.63.109&lt;/privateIpAddress&gt;
+              &lt;privateDnsName&gt;ip-172-31-63-109.us-west-2.compute.internal&lt;/privateDnsName&gt;
+              &lt;primary&gt;true&lt;/primary&gt;
+            &lt;/item&gt;
+          &lt;/privateIpAddressesSet&gt;
+          &lt;ipv6AddressesSet /&gt;
+          &lt;interfaceType&gt;interface&lt;/interfaceType&gt;
+          &lt;operator&gt;
+            &lt;managed&gt;false&lt;/managed&gt;
+          &lt;/operator&gt;
+        &lt;/item&gt;
+      &lt;/networkInterfaceSet&gt;
+      &lt;secondaryNetworkInterfaceSet&gt;
+        &lt;item&gt;
+          &lt;secondaryInterfaceId&gt;si-01ccd067bff3abaf8&lt;/secondaryInterfaceId&gt;
+          &lt;macAddress&gt;02:04:f6:35:eb:32&lt;/macAddress&gt;
+          &lt;ownerId&gt;123456789012&lt;/ownerId&gt;
+          &lt;privateIpAddresses&gt;
+            &lt;item&gt;
+              &lt;privateIpAddress&gt;11.0.1.251&lt;/privateIpAddress&gt;
+            &lt;/item&gt;
+          &lt;/privateIpAddresses&gt;
+          &lt;sourceDestCheck&gt;true&lt;/sourceDestCheck&gt;
+          &lt;status&gt;available&lt;/status&gt;
+          &lt;secondarySubnetId&gt;ss-073988ab526b59d2c&lt;/secondarySubnetId&gt;
+          &lt;secondaryNetworkId&gt;sn-01cdb8e434dffbb26&lt;/secondaryNetworkId&gt;
+          &lt;interfaceType&gt;secondary&lt;/interfaceType&gt;
+          &lt;attachment&gt;
+            &lt;deleteOnTermination&gt;true&lt;/deleteOnTermination&gt;
+            &lt;deviceIndex&gt;0&lt;/deviceIndex&gt;
+            &lt;networkCardIndex&gt;1&lt;/networkCardIndex&gt;
+          &lt;/attachment&gt;
+        &lt;/item&gt;
+        &lt;item&gt;
+          &lt;secondaryInterfaceId&gt;si-0b918509a38139722&lt;/secondaryInterfaceId&gt;
+          &lt;macAddress&gt;02:04:70:38:b6:1a&lt;/macAddress&gt;
+          &lt;ownerId&gt;123456789012&lt;/ownerId&gt;
+          &lt;privateIpAddresses&gt;
+            &lt;item&gt;
+              &lt;privateIpAddress&gt;11.0.2.251&lt;/privateIpAddress&gt;
+            &lt;/item&gt;
+          &lt;/privateIpAddresses&gt;
+          &lt;sourceDestCheck&gt;true&lt;/sourceDestCheck&gt;
+          &lt;status&gt;available&lt;/status&gt;
+          &lt;secondarySubnetId&gt;ss-061ba0b5a43c9eabe&lt;/secondarySubnetId&gt;
+          &lt;secondaryNetworkId&gt;sn-01cdb8e434dffbb26&lt;/secondaryNetworkId&gt;
+          &lt;interfaceType&gt;secondary&lt;/interfaceType&gt;
+          &lt;attachment&gt;
+            &lt;deleteOnTermination&gt;true&lt;/deleteOnTermination&gt;
+            &lt;deviceIndex&gt;0&lt;/deviceIndex&gt;
+            &lt;networkCardIndex&gt;2&lt;/networkCardIndex&gt;
+          &lt;/attachment&gt;
+        &lt;/item&gt;
+        &lt;item&gt;
+          &lt;secondaryInterfaceId&gt;si-0d042753b88c81245&lt;/secondaryInterfaceId&gt;
+          &lt;macAddress&gt;02:04:7d:07:d9:01&lt;/macAddress&gt;
+          &lt;ownerId&gt;123456789012&lt;/ownerId&gt;
+          &lt;privateIpAddresses&gt;
+            &lt;item&gt;
+              &lt;privateIpAddress&gt;11.0.3.251&lt;/privateIpAddress&gt;
+            &lt;/item&gt;
+          &lt;/privateIpAddresses&gt;
+          &lt;sourceDestCheck&gt;true&lt;/sourceDestCheck&gt;
+          &lt;status&gt;available&lt;/status&gt;
+          &lt;secondarySubnetId&gt;ss-060c8c15859a0c8e5&lt;/secondarySubnetId&gt;
+          &lt;secondaryNetworkId&gt;sn-01cdb8e434dffbb26&lt;/secondaryNetworkId&gt;
+          &lt;interfaceType&gt;secondary&lt;/interfaceType&gt;
+          &lt;attachment&gt;
+            &lt;deleteOnTermination&gt;true&lt;/deleteOnTermination&gt;
+            &lt;deviceIndex&gt;0&lt;/deviceIndex&gt;
+            &lt;networkCardIndex&gt;3&lt;/networkCardIndex&gt;
+          &lt;/attachment&gt;
+        &lt;/item&gt;
+        &lt;item&gt;
+          &lt;secondaryInterfaceId&gt;si-70dafcecef67ae17d&lt;/secondaryInterfaceId&gt;
+          &lt;macAddress&gt;02:04:8f:53:73:02&lt;/macAddress&gt;
+          &lt;ownerId&gt;123456789012&lt;/ownerId&gt;
+          &lt;privateIpAddresses&gt;
+            &lt;item&gt;
+              &lt;privateIpAddress&gt;11.0.4.251&lt;/privateIpAddress&gt;
+            &lt;/item&gt;
+          &lt;/privateIpAddresses&gt;
+          &lt;sourceDestCheck&gt;true&lt;/sourceDestCheck&gt;
+          &lt;status&gt;available&lt;/status&gt;
+          &lt;secondarySubnetId&gt;ss-0dafcecef369ae17d&lt;/secondarySubnetId&gt;
+          &lt;secondaryNetworkId&gt;sn-01cdb8e434dffbb26&lt;/secondaryNetworkId&gt;
+          &lt;interfaceType&gt;secondary&lt;/interfaceType&gt;
+          &lt;attachment&gt;
+            &lt;deleteOnTermination&gt;true&lt;/deleteOnTermination&gt;
+            &lt;deviceIndex&gt;0&lt;/deviceIndex&gt;
+            &lt;networkCardIndex&gt;4&lt;/networkCardIndex&gt;
+          &lt;/attachment&gt;
+        &lt;/item&gt;
+        &lt;item&gt;
+          &lt;secondaryInterfaceId&gt;si-0f4f36a50046f21b8&lt;/secondaryInterfaceId&gt;
+          &lt;macAddress&gt;02:04:8f:53:73:03&lt;/macAddress&gt;
+          &lt;ownerId&gt;123456789012&lt;/ownerId&gt;
+          &lt;privateIpAddresses&gt;
+            &lt;item&gt;
+              &lt;privateIpAddress&gt;11.0.4.230&lt;/privateIpAddress&gt;
+            &lt;/item&gt;
+          &lt;/privateIpAddresses&gt;
+          &lt;sourceDestCheck&gt;true&lt;/sourceDestCheck&gt;
+          &lt;status&gt;available&lt;/status&gt;
+          &lt;secondarySubnetId&gt;ss-073988ab526b59d2e&lt;/secondarySubnetId&gt;
+          &lt;secondaryNetworkId&gt;sn-01cdb8e434dffbb26&lt;/secondaryNetworkId&gt;
+          &lt;interfaceType&gt;secondary&lt;/interfaceType&gt;
+          &lt;attachment&gt;
+            &lt;deleteOnTermination&gt;true&lt;/deleteOnTermination&gt;
+            &lt;deviceIndex&gt;0&lt;/deviceIndex&gt;
+            &lt;networkCardIndex&gt;5&lt;/networkCardIndex&gt;
+          &lt;/attachment&gt;
+        &lt;/item&gt;
+        &lt;item&gt;
+          &lt;secondaryInterfaceId&gt;si-006736a50046f21b9&lt;/secondaryInterfaceId&gt;
+          &lt;macAddress&gt;02:04:8f:53:73:04&lt;/macAddress&gt;
+          &lt;ownerId&gt;123456789012&lt;/ownerId&gt;
+          &lt;privateIpAddresses&gt;
+            &lt;item&gt;
+              &lt;privateIpAddress&gt;11.0.4.231&lt;/privateIpAddress&gt;
+            &lt;/item&gt;
+          &lt;/privateIpAddresses&gt;
+          &lt;sourceDestCheck&gt;true&lt;/sourceDestCheck&gt;
+          &lt;status&gt;available&lt;/status&gt;
+          &lt;secondarySubnetId&gt;ss-061ba0b5a43c9eabf&lt;/secondarySubnetId&gt;
+          &lt;secondaryNetworkId&gt;sn-01cdb8e434dffbb26&lt;/secondaryNetworkId&gt;
+          &lt;interfaceType&gt;secondary&lt;/interfaceType&gt;
+          &lt;attachment&gt;
+            &lt;deleteOnTermination&gt;true&lt;/deleteOnTermination&gt;
+            &lt;deviceIndex&gt;0&lt;/deviceIndex&gt;
+            &lt;networkCardIndex&gt;6&lt;/networkCardIndex&gt;
+          &lt;/attachment&gt;
+        &lt;/item&gt;
+        &lt;item&gt;
+          &lt;secondaryInterfaceId&gt;si-0fff36a5d046f2110&lt;/secondaryInterfaceId&gt;
+          &lt;macAddress&gt;02:04:8f:53:73:05&lt;/macAddress&gt;
+          &lt;ownerId&gt;123456789012&lt;/ownerId&gt;
+          &lt;privateIpAddresses&gt;
+            &lt;item&gt;
+              &lt;privateIpAddress&gt;11.0.4.232&lt;/privateIpAddress&gt;
+            &lt;/item&gt;
+          &lt;/privateIpAddresses&gt;
+          &lt;sourceDestCheck&gt;true&lt;/sourceDestCheck&gt;
+          &lt;status&gt;available&lt;/status&gt;
+          &lt;secondarySubnetId&gt;ss-060c8c15859a0c8e1&lt;/secondarySubnetId&gt;
+          &lt;secondaryNetworkId&gt;sn-01cdb8e434dffbb26&lt;/secondaryNetworkId&gt;
+          &lt;interfaceType&gt;secondary&lt;/interfaceType&gt;
+          &lt;attachment&gt;
+            &lt;deleteOnTermination&gt;true&lt;/deleteOnTermination&gt;
+            &lt;deviceIndex&gt;0&lt;/deviceIndex&gt;
+            &lt;networkCardIndex&gt;7&lt;/networkCardIndex&gt;
+          &lt;/attachment&gt;
+        &lt;/item&gt;
+        &lt;item&gt;
+          &lt;secondaryInterfaceId&gt;si-afcf36a50046f2111&lt;/secondaryInterfaceId&gt;
+          &lt;macAddress&gt;02:04:8f:53:73:06&lt;/macAddress&gt;
+          &lt;ownerId&gt;123456789012&lt;/ownerId&gt;
+          &lt;privateIpAddresses&gt;
+            &lt;item&gt;
+              &lt;privateIpAddress&gt;11.0.4.233&lt;/privateIpAddress&gt;
+            &lt;/item&gt;
+          &lt;/privateIpAddresses&gt;
+          &lt;sourceDestCheck&gt;true&lt;/sourceDestCheck&gt;
+          &lt;status&gt;available&lt;/status&gt;
+          &lt;secondarySubnetId&gt;ss-0dafcecef369ae172&lt;/secondarySubnetId&gt;
+          &lt;secondaryNetworkId&gt;sn-01cdb8e434dffbb26&lt;/secondaryNetworkId&gt;
+          &lt;interfaceType&gt;secondary&lt;/interfaceType&gt;
+          &lt;attachment&gt;
+            &lt;deleteOnTermination&gt;true&lt;/deleteOnTermination&gt;
+            &lt;deviceIndex&gt;0&lt;/deviceIndex&gt;
+            &lt;networkCardIndex&gt;8&lt;/networkCardIndex&gt;
+          &lt;/attachment&gt;
+        &lt;/item&gt;
+      &lt;/secondaryNetworkInterfaceSet&gt;
+      &lt;ebsOptimized&gt;false&lt;/ebsOptimized&gt;
+      &lt;enaSupport&gt;true&lt;/enaSupport&gt;
+      &lt;cpuOptions&gt;
+        &lt;coreCount&gt;96&lt;/coreCount&gt;
+        &lt;threadsPerCore&gt;2&lt;/threadsPerCore&gt;
+      &lt;/cpuOptions&gt;
+      &lt;capacityReservationSpecification&gt;
+        &lt;capacityReservationPreference&gt;open&lt;/capacityReservationPreference&gt;
+      &lt;/capacityReservationSpecification&gt;
+      &lt;enclaveOptions&gt;
+        &lt;enabled&gt;false&lt;/enabled&gt;
+      &lt;/enclaveOptions&gt;
+      &lt;metadataOptions&gt;
+        &lt;state&gt;pending&lt;/state&gt;
+        &lt;httpTokens&gt;required&lt;/httpTokens&gt;
+        &lt;httpPutResponseHopLimit&gt;2&lt;/httpPutResponseHopLimit&gt;
+        &lt;httpEndpoint&gt;enabled&lt;/httpEndpoint&gt;
+        &lt;httpProtocolIpv4&gt;enabled&lt;/httpProtocolIpv4&gt;
+        &lt;httpProtocolIpv6&gt;disabled&lt;/httpProtocolIpv6&gt;
+        &lt;instanceMetadataTags&gt;disabled&lt;/instanceMetadataTags&gt;
+      &lt;/metadataOptions&gt;
+      &lt;maintenanceOptions&gt;
+        &lt;autoRecovery&gt;default&lt;/autoRecovery&gt;
+        &lt;rebootMigration&gt;default&lt;/rebootMigration&gt;
+      &lt;/maintenanceOptions&gt;
+      &lt;currentInstanceBootMode&gt;legacy-bios&lt;/currentInstanceBootMode&gt;
+      &lt;privateDnsNameOptions&gt;
+        &lt;hostnameType&gt;ip-name&lt;/hostnameType&gt;
+        &lt;enableResourceNameDnsARecord&gt;false&lt;/enableResourceNameDnsARecord&gt;
+        &lt;enableResourceNameDnsAAAARecord&gt;false&lt;/enableResourceNameDnsAAAARecord&gt;
+      &lt;/privateDnsNameOptions&gt;
+    &lt;/item&gt;
+  &lt;/instancesSet&gt;
+&lt;/RunInstancesResponse&gt;</code></pre>
+          
+       
+    
+      <h2 id="API_RunInstances_SeeAlso">See Also</h2>
+      <p>For more information about using this API in one of the language-specific AWS SDKs, see the following:</p>
+      <div class="itemizedlist">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/cli2/ec2-2016-11-15/RunInstances">AWS Command Line Interface V2</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/DotNetSDKV4/ec2-2016-11-15/RunInstances">AWS SDK for .NET V4</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForCpp/ec2-2016-11-15/RunInstances">AWS SDK for C++</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForGoV2/ec2-2016-11-15/RunInstances">AWS SDK for Go v2</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForJavaV2/ec2-2016-11-15/RunInstances">AWS SDK for Java V2</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForJavaScriptV3/ec2-2016-11-15/RunInstances">AWS SDK for JavaScript V3</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForKotlin/ec2-2016-11-15/RunInstances">AWS SDK for Kotlin</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForPHPV3/ec2-2016-11-15/RunInstances">AWS SDK for PHP V3</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/boto3/ec2-2016-11-15/RunInstances">AWS SDK for Python</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForRubyV3/ec2-2016-11-15/RunInstances">AWS SDK for Ruby V3</a>
+            </p>
+         </li></ul></div>
+   <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./API_RevokeSecurityGroupIngress.html">RevokeSecurityGroupIngress</div><div id="next" class="next-link" accesskey="n" href="./API_RunScheduledInstances.html">RunScheduledInstances</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=EC2 API&amp;topic_url=https://docs.aws.amazon.com/en_us/AWSEC2/latest/APIReference/API_RunInstances.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=EC2 API&amp;topic_url=https://docs.aws.amazon.com/en_us/AWSEC2/latest/APIReference/API_RunInstances.html"></awsui-button></p></div></div></div></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

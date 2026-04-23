@@ -1,0 +1,1379 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: String Class (System) | Microsoft Learn
+Document URL: https://learn.microsoft.com/en-us/dotnet/api/system.string
+Document profile: reference
+
+Document text:
+---
+Aggregate<TSource,TAccumulate,TResult>(IEnumerable<TSource>, TAccumulate, Func<TAccumulate,TSource,TAccumulate>, Func<TAccumulate,TResult>)
+
+Applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value, and the specified function is used to select the result value.
+
+Aggregate<TSource,TAccumulate>(IEnumerable<TSource>, TAccumulate, Func<TAccumulate,TSource,TAccumulate>)
+
+Applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value.
+
+Aggregate<TSource>(IEnumerable<TSource>, Func<TSource,TSource,TSource>)
+
+Applies an accumulator function over a sequence.
+
+Aggregate
+By<TSource,TKey,TAccumulate>(IEnumerable<TSource>, Func<TSource,
+TKey>, Func<TKey,TAccumulate>, Func<TAccumulate,TSource,TAccumulate>,
+ IEquality
+Comparer<TKey>)
+
+Applies an accumulator function over a sequence, grouping results by key.
+
+Aggregate
+By<TSource,TKey,TAccumulate>(IEnumerable<TSource>, Func<TSource,
+TKey>, TAccumulate, Func<TAccumulate,TSource,TAccumulate>, IEquality
+Comparer<TKey>)
+
+Applies an accumulator function over a sequence, grouping results by key.
+
+All<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)
+
+Determines whether all elements of a sequence satisfy a condition.
+
+Ancestors<T>(IEnumerable<T>, XName)
+
+Returns a filtered collection of elements that contains the ancestors of every node in the source collection. Only elements that have a matching 
+XName
+ are included in the collection.
+
+Ancestors<T>(IEnumerable<T>)
+
+Returns a collection of elements that contains the ancestors of every node in the source collection.
+
+Any<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)
+
+Determines whether any element of a sequence satisfies a condition.
+
+Any<TSource>(IEnumerable<TSource>)
+
+Determines whether a sequence contains any elements.
+
+Append<TSource>(IEnumerable<TSource>, TSource)
+
+Appends a value to the end of the sequence.
+
+As
+Enumerable<TSource>(IEnumerable<TSource>)
+
+Returns the input typed as 
+IEnumerable<T>
+.
+
+As
+Memory(String, Index)
+
+Creates a new 
+ReadOnlyMemory<Char>
+ over a portion of the target string starting at a specified index.
+
+As
+Memory(String, Int32, Int32)
+
+Creates a new 
+ReadOnlyMemory<Char>
+ over a portion of the target string beginning at a specified position with a length.
+
+As
+Memory(String, Int32)
+
+Creates a new 
+ReadOnlyMemory<Char>
+ over a portion of the target string starting at a specified character position.
+
+As
+Memory(String, Range)
+
+Creates a new 
+ReadOnlyMemory<Char>
+ over a specified range of the target string.
+
+As
+Memory(String)
+
+Creates a new 
+ReadOnlyMemory<Char>
+ over the portion of the target string.
+
+As
+Parallel(IEnumerable)
+
+Enables parallelization of a query.
+
+As
+Parallel<TSource>(IEnumerable<TSource>)
+
+Enables parallelization of a query.
+
+As
+Queryable(IEnumerable)
+
+Converts an 
+IEnumerable
+ to an 
+IQueryable
+.
+
+As
+Queryable<TElement>(IEnumerable<TElement>)
+
+Converts a generic 
+IEnumerable<T>
+ to a generic 
+IQueryable<T>
+.
+
+As
+Span(String, Index)
+
+Creates a new 
+ReadOnlySpan<T>
+ over a portion of the target string from a specified position to the end of the string.
+
+As
+Span(String, Int32, Int32)
+
+Creates a new read-only span over a portion of the target string from a specified position for a specified number of characters.
+
+As
+Span(String, Int32)
+
+Creates a new read-only span over a portion of the target string from a specified position to the end of the string.
+
+As
+Span(String, Range)
+
+Creates a new 
+ReadOnlySpan<T>
+ over a portion of a target string using the range start and end indexes.
+
+As
+Span(String)
+
+Creates a new read-only span over a string.
+
+Average<TSource>(IEnumerable<TSource>, Func<TSource,Decimal>)
+
+Computes the average of a sequence of 
+Decimal
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Average<TSource>(IEnumerable<TSource>, Func<TSource,Double>)
+
+Computes the average of a sequence of 
+Double
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Average<TSource>(IEnumerable<TSource>, Func<TSource,Int32>)
+
+Computes the average of a sequence of 
+Int32
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Average<TSource>(IEnumerable<TSource>, Func<TSource,Int64>)
+
+Computes the average of a sequence of 
+Int64
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Average<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Decimal>>)
+
+Computes the average of a sequence of nullable 
+Decimal
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Average<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Double>>)
+
+Computes the average of a sequence of nullable 
+Double
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Average<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Int32>>)
+
+Computes the average of a sequence of nullable 
+Int32
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Average<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Int64>>)
+
+Computes the average of a sequence of nullable 
+Int64
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Average<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Single>>)
+
+Computes the average of a sequence of nullable 
+Single
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Average<TSource>(IEnumerable<TSource>, Func<TSource,Single>)
+
+Computes the average of a sequence of 
+Single
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Cast<TResult>(IEnumerable)
+
+Casts the elements of an 
+IEnumerable
+ to the specified type.
+
+Chunk<TSource>(IEnumerable<TSource>, Int32)
+
+Splits the elements of a sequence into chunks of size at most 
+size
+.
+
+Concat<TSource>(IEnumerable<TSource>, IEnumerable<TSource>)
+
+Concatenates two sequences.
+
+Contains<TSource>(IEnumerable<TSource>, TSource, IEquality
+Comparer<TSource>)
+
+Determines whether a sequence contains a specified element by using a specified 
+IEqualityComparer<T>
+.
+
+Contains<TSource>(IEnumerable<TSource>, TSource)
+
+Determines whether a sequence contains a specified element by using the default equality comparer.
+
+Copy
+ToData
+Table<T>(IEnumerable<T>, Data
+Table, Load
+Option, Fill
+Error
+Event
+Handler)
+
+Copies 
+DataRow
+ objects to the specified 
+DataTable
+, given an input 
+IEnumerable<T>
+ object where the generic parameter 
+T
+ is 
+DataRow
+.
+
+Copy
+ToData
+Table<T>(IEnumerable<T>, Data
+Table, Load
+Option)
+
+Copies 
+DataRow
+ objects to the specified 
+DataTable
+, given an input 
+IEnumerable<T>
+ object where the generic parameter 
+T
+ is 
+DataRow
+.
+
+Copy
+ToData
+Table<T>(IEnumerable<T>)
+
+Returns a 
+DataTable
+ that contains copies of the 
+DataRow
+ objects, given an input 
+IEnumerable<T>
+ object where the generic parameter 
+T
+ is 
+DataRow
+.
+
+Count<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)
+
+Returns a number that represents how many elements in the specified sequence satisfy a condition.
+
+Count<TSource>(IEnumerable<TSource>)
+
+Returns the number of elements in a sequence.
+
+Count
+By<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>, IEquality
+Comparer<TKey>)
+
+Returns the count of elements in the source sequence grouped by key.
+
+Default
+IfEmpty<TSource>(IEnumerable<TSource>, TSource)
+
+Returns the elements of the specified sequence or the specified value in a singleton collection if the sequence is empty.
+
+Default
+IfEmpty<TSource>(IEnumerable<TSource>)
+
+Returns the elements of the specified sequence or the type parameter's default value in a singleton collection if the sequence is empty.
+
+Descendant
+Nodes<T>(IEnumerable<T>)
+
+Returns a collection of the descendant nodes of every document and element in the source collection.
+
+Descendants<T>(IEnumerable<T>, XName)
+
+Returns a filtered collection of elements that contains the descendant elements of every element and document in the source collection. Only elements that have a matching 
+XName
+ are included in the collection.
+
+Descendants<T>(IEnumerable<T>)
+
+Returns a collection of elements that contains the descendant elements of every element and document in the source collection.
+
+Distinct<TSource>(IEnumerable<TSource>, IEquality
+Comparer<TSource>)
+
+Returns distinct elements from a sequence by using a specified 
+IEqualityComparer<T>
+ to compare values.
+
+Distinct<TSource>(IEnumerable<TSource>)
+
+Returns distinct elements from a sequence by using the default equality comparer to compare values.
+
+Distinct
+By<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>, IEquality
+Comparer<TKey>)
+
+Returns distinct elements from a sequence according to a specified key selector function and using a specified comparer to compare keys.
+
+Distinct
+By<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>)
+
+Returns distinct elements from a sequence according to a specified key selector function.
+
+Element
+At<TSource>(IEnumerable<TSource>, Index)
+
+Returns the element at a specified index in a sequence.
+
+Element
+At<TSource>(IEnumerable<TSource>, Int32)
+
+Returns the element at a specified index in a sequence.
+
+Element
+AtOr
+Default<TSource>(IEnumerable<TSource>, Index)
+
+Returns the element at a specified index in a sequence or a default value if the index is out of range.
+
+Element
+AtOr
+Default<TSource>(IEnumerable<TSource>, Int32)
+
+Returns the element at a specified index in a sequence or a default value if the index is out of range.
+
+Elements<T>(IEnumerable<T>, XName)
+
+Returns a filtered collection of the child elements of every element and document in the source collection. Only elements that have a matching 
+XName
+ are included in the collection.
+
+Elements<T>(IEnumerable<T>)
+
+Returns a collection of the child elements of every element and document in the source collection.
+
+Except<TSource>(IEnumerable<TSource>, IEnumerable<TSource>, IEquality
+Comparer<TSource>)
+
+Produces the set difference of two sequences by using the specified 
+IEqualityComparer<T>
+ to compare values.
+
+Except<TSource>(IEnumerable<TSource>, IEnumerable<TSource>)
+
+Produces the set difference of two sequences by using the default equality comparer to compare values.
+
+Except
+By<TSource,TKey>(IEnumerable<TSource>, IEnumerable<TKey>, Func<TSource,TKey>, IEquality
+Comparer<TKey>)
+
+Produces the set difference of two sequences according to a specified key selector function.
+
+Except
+By<TSource,TKey>(IEnumerable<TSource>, IEnumerable<TKey>, Func<TSource,TKey>)
+
+Produces the set difference of two sequences according to a specified key selector function.
+
+First<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)
+
+Returns the first element in a sequence that satisfies a specified condition.
+
+First<TSource>(IEnumerable<TSource>)
+
+Returns the first element of a sequence.
+
+First
+OrDefault<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>, TSource)
+
+Returns the first element of the sequence that satisfies a condition, or a specified default value if no such element is found.
+
+First
+OrDefault<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)
+
+Returns the first element of the sequence that satisfies a condition or a default value if no such element is found.
+
+First
+OrDefault<TSource>(IEnumerable<TSource>, TSource)
+
+Returns the first element of a sequence, or a specified default value if the sequence contains no elements.
+
+First
+OrDefault<TSource>(IEnumerable<TSource>)
+
+Returns the first element of a sequence, or a default value if the sequence contains no elements.
+
+Group
+By<TSource,TKey,TElement,TResult>(IEnumerable<TSource>, Func<TSource,
+TKey>, Func<TSource,TElement>, Func<TKey,IEnumerable<TElement>,
+TResult>, IEquality
+Comparer<TKey>)
+
+Groups the elements of a sequence according to a specified key selector function and creates a result value from each group and its key. Key values are compared by using a specified comparer, and the elements of each group are projected by using a specified function.
+
+Group
+By<TSource,TKey,TElement,TResult>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TSource,TElement>, Func<TKey,IEnumerable<TElement>,TResult>)
+
+Groups the elements of a sequence according to a specified key selector function and creates a result value from each group and its key. The elements of each group are projected by using a specified function.
+
+Group
+By<TSource,TKey,TElement>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TSource,TElement>, IEquality
+Comparer<TKey>)
+
+Groups the elements of a sequence according to a key selector function. The keys are compared by using a comparer and each group's elements are projected by using a specified function.
+
+Group
+By<TSource,TKey,TElement>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TSource,TElement>)
+
+Groups the elements of a sequence according to a specified key selector function and projects the elements for each group by using a specified function.
+
+Group
+By<TSource,TKey,TResult>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TKey,IEnumerable<TSource>,TResult>, IEquality
+Comparer<TKey>)
+
+Groups the elements of a sequence according to a specified key selector function and creates a result value from each group and its key. The keys are compared by using a specified comparer.
+
+Group
+By<TSource,TKey,TResult>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TKey,IEnumerable<TSource>,TResult>)
+
+Groups the elements of a sequence according to a specified key selector function and creates a result value from each group and its key.
+
+Group
+By<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>, IEquality
+Comparer<TKey>)
+
+Groups the elements of a sequence according to a specified key selector function and compares the keys by using a specified comparer.
+
+Group
+By<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>)
+
+Groups the elements of a sequence according to a specified key selector function.
+
+Group
+Join<TOuter,TInner,TKey,TResult>(IEnumerable<TOuter>, IEnumerable<TInner>,
+ Func<TOuter,TKey>, Func<TInner,TKey>, Func<TOuter,IEnumerable<TInner>,
+TResult>, IEquality
+Comparer<TKey>)
+
+Correlates the elements of two sequences based on key equality and groups the results. A specified 
+IEqualityComparer<T>
+ is used to compare keys.
+
+Group
+Join<TOuter,TInner,TKey,TResult>(IEnumerable<TOuter>, IEnumerable<TInner>,
+ Func<TOuter,TKey>, Func<TInner,TKey>, Func<TOuter,IEnumerable<TInner>,
+TResult>)
+
+Correlates the elements of two sequences based on equality of keys and groups the results. The default equality comparer is used to compare keys.
+
+Index<TSource>(IEnumerable<TSource>)
+
+Returns an enumerable that incorporates the element's index into a tuple.
+
+In
+Document
+Order<T>(IEnumerable<T>)
+
+Returns a collection of nodes that contains all nodes in the source collection, sorted in document order.
+
+Intersect<TSource>(IEnumerable<TSource>, IEnumerable<TSource>, IEquality
+Comparer<TSource>)
+
+Produces the set intersection of two sequences by using the specified 
+IEqualityComparer<T>
+ to compare values.
+
+Intersect<TSource>(IEnumerable<TSource>, IEnumerable<TSource>)
+
+Produces the set intersection of two sequences by using the default equality comparer to compare values.
+
+Intersect
+By<TSource,TKey>(IEnumerable<TSource>, IEnumerable<TKey>, Func<TSource,TKey>, IEquality
+Comparer<TKey>)
+
+Produces the set intersection of two sequences according to a specified key selector function.
+
+Intersect
+By<TSource,TKey>(IEnumerable<TSource>, IEnumerable<TKey>, Func<TSource,TKey>)
+
+Produces the set intersection of two sequences according to a specified key selector function.
+
+Is
+Normalized(String, Normalization
+Form)
+
+Indicates whether a string is in a specified Unicode normalization form.
+
+Is
+Normalized(String)
+
+Indicates whether the specified string is in Unicode normalization form C.
+
+Join<TOuter,TInner,TKey,TResult>(IEnumerable<TOuter>, IEnumerable<TInner>,
+ Func<TOuter,TKey>, Func<TInner,TKey>, Func<TOuter,TInner,TResult>,
+ IEquality
+Comparer<TKey>)
+
+Correlates the elements of two sequences based on matching keys. A specified 
+IEqualityComparer<T>
+ is used to compare keys.
+
+Join<TOuter,TInner,TKey,TResult>(IEnumerable<TOuter>, IEnumerable<TInner>, Func<TOuter,TKey>, Func<TInner,TKey>, Func<TOuter,TInner,TResult>)
+
+Correlates the elements of two sequences based on matching keys. The default equality comparer is used to compare keys.
+
+Last<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)
+
+Returns the last element of a sequence that satisfies a specified condition.
+
+Last<TSource>(IEnumerable<TSource>)
+
+Returns the last element of a sequence.
+
+Last
+OrDefault<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>, TSource)
+
+Returns the last element of a sequence that satisfies a condition, or a specified default value if no such element is found.
+
+Last
+OrDefault<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)
+
+Returns the last element of a sequence that satisfies a condition or a default value if no such element is found.
+
+Last
+OrDefault<TSource>(IEnumerable<TSource>, TSource)
+
+Returns the last element of a sequence, or a specified default value if the sequence contains no elements.
+
+Last
+OrDefault<TSource>(IEnumerable<TSource>)
+
+Returns the last element of a sequence, or a default value if the sequence contains no elements.
+
+Left
+Join<TOuter,TInner,TKey,TResult>(IEnumerable<TOuter>, IEnumerable<TInner>,
+ Func<TOuter,TKey>, Func<TInner,TKey>, Func<TOuter,TInner,TResult>,
+ IEquality
+Comparer<TKey>)
+
+Correlates the elements of two sequences based on matching keys. A specified 
+IEqualityComparer<T>
+ is used to compare keys.
+
+Left
+Join<TOuter,TInner,TKey,TResult>(IEnumerable<TOuter>, IEnumerable<TInner>, Func<TOuter,TKey>, Func<TInner,TKey>, Func<TOuter,TInner,TResult>)
+
+Correlates the elements of two sequences based on matching keys. The default equality comparer is used to compare keys.
+
+Long
+Count<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)
+
+Returns an 
+Int64
+ that represents how many elements in a sequence satisfy a condition.
+
+Long
+Count<TSource>(IEnumerable<TSource>)
+
+Returns an 
+Int64
+ that represents the total number of elements in a sequence.
+
+Max<TSource,TResult>(IEnumerable<TSource>, Func<TSource,TResult>)
+
+Invokes a transform function on each element of a generic sequence and returns the maximum resulting value.
+
+Max<TSource>(IEnumerable<TSource>, Func<TSource,Decimal>)
+
+Invokes a transform function on each element of a sequence and returns the maximum 
+Decimal
+ value.
+
+Max<TSource>(IEnumerable<TSource>, Func<TSource,Double>)
+
+Invokes a transform function on each element of a sequence and returns the maximum 
+Double
+ value.
+
+Max<TSource>(IEnumerable<TSource>, Func<TSource,Int32>)
+
+Invokes a transform function on each element of a sequence and returns the maximum 
+Int32
+ value.
+
+Max<TSource>(IEnumerable<TSource>, Func<TSource,Int64>)
+
+Invokes a transform function on each element of a sequence and returns the maximum 
+Int64
+ value.
+
+Max<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Decimal>>)
+
+Invokes a transform function on each element of a sequence and returns the maximum nullable 
+Decimal
+ value.
+
+Max<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Double>>)
+
+Invokes a transform function on each element of a sequence and returns the maximum nullable 
+Double
+ value.
+
+Max<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Int32>>)
+
+Invokes a transform function on each element of a sequence and returns the maximum nullable 
+Int32
+ value.
+
+Max<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Int64>>)
+
+Invokes a transform function on each element of a sequence and returns the maximum nullable 
+Int64
+ value.
+
+Max<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Single>>)
+
+Invokes a transform function on each element of a sequence and returns the maximum nullable 
+Single
+ value.
+
+Max<TSource>(IEnumerable<TSource>, Func<TSource,Single>)
+
+Invokes a transform function on each element of a sequence and returns the maximum 
+Single
+ value.
+
+Max<TSource>(IEnumerable<TSource>, IComparer<TSource>)
+
+Returns the maximum value in a generic sequence.
+
+Max<TSource>(IEnumerable<TSource>)
+
+Returns the maximum value in a generic sequence.
+
+Max
+By<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>, IComparer<TKey>)
+
+Returns the maximum value in a generic sequence according to a specified key selector function and key comparer.
+
+Max
+By<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>)
+
+Returns the maximum value in a generic sequence according to a specified key selector function.
+
+Min<TSource,TResult>(IEnumerable<TSource>, Func<TSource,TResult>)
+
+Invokes a transform function on each element of a generic sequence and returns the minimum resulting value.
+
+Min<TSource>(IEnumerable<TSource>, Func<TSource,Decimal>)
+
+Invokes a transform function on each element of a sequence and returns the minimum 
+Decimal
+ value.
+
+Min<TSource>(IEnumerable<TSource>, Func<TSource,Double>)
+
+Invokes a transform function on each element of a sequence and returns the minimum 
+Double
+ value.
+
+Min<TSource>(IEnumerable<TSource>, Func<TSource,Int32>)
+
+Invokes a transform function on each element of a sequence and returns the minimum 
+Int32
+ value.
+
+Min<TSource>(IEnumerable<TSource>, Func<TSource,Int64>)
+
+Invokes a transform function on each element of a sequence and returns the minimum 
+Int64
+ value.
+
+Min<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Decimal>>)
+
+Invokes a transform function on each element of a sequence and returns the minimum nullable 
+Decimal
+ value.
+
+Min<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Double>>)
+
+Invokes a transform function on each element of a sequence and returns the minimum nullable 
+Double
+ value.
+
+Min<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Int32>>)
+
+Invokes a transform function on each element of a sequence and returns the minimum nullable 
+Int32
+ value.
+
+Min<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Int64>>)
+
+Invokes a transform function on each element of a sequence and returns the minimum nullable 
+Int64
+ value.
+
+Min<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Single>>)
+
+Invokes a transform function on each element of a sequence and returns the minimum nullable 
+Single
+ value.
+
+Min<TSource>(IEnumerable<TSource>, Func<TSource,Single>)
+
+Invokes a transform function on each element of a sequence and returns the minimum 
+Single
+ value.
+
+Min<TSource>(IEnumerable<TSource>, IComparer<TSource>)
+
+Returns the minimum value in a generic sequence.
+
+Min<TSource>(IEnumerable<TSource>)
+
+Returns the minimum value in a generic sequence.
+
+Min
+By<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>, IComparer<TKey>)
+
+Returns the minimum value in a generic sequence according to a specified key selector function and key comparer.
+
+Min
+By<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>)
+
+Returns the minimum value in a generic sequence according to a specified key selector function.
+
+Nodes<T>(IEnumerable<T>)
+
+Returns a collection of the child nodes of every document and element in the source collection.
+
+Normalize(String, Normalization
+Form)
+
+Normalizes a string to the specified Unicode normalization form.
+
+Normalize(String)
+
+Normalizes a string to a Unicode normalization form C.
+
+Of
+Type<TResult>(IEnumerable)
+
+Filters the elements of an 
+IEnumerable
+ based on a specified type.
+
+Order<T>(IEnumerable<T>, IComparer<T>)
+
+Sorts the elements of a sequence in ascending order.
+
+Order<T>(IEnumerable<T>)
+
+Sorts the elements of a sequence in ascending order.
+
+Order
+By<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>, IComparer<TKey>)
+
+Sorts the elements of a sequence in ascending order by using a specified comparer.
+
+Order
+By<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>)
+
+Sorts the elements of a sequence in ascending order according to a key.
+
+Order
+ByDescending<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>, IComparer<TKey>)
+
+Sorts the elements of a sequence in descending order by using a specified comparer.
+
+Order
+ByDescending<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>)
+
+Sorts the elements of a sequence in descending order according to a key.
+
+Order
+Descending<T>(IEnumerable<T>, IComparer<T>)
+
+Sorts the elements of a sequence in descending order.
+
+Order
+Descending<T>(IEnumerable<T>)
+
+Sorts the elements of a sequence in descending order.
+
+Prepend<TSource>(IEnumerable<TSource>, TSource)
+
+Adds a value to the beginning of the sequence.
+
+Remove<T>(IEnumerable<T>)
+
+Removes every node in the source collection from its parent node.
+
+Reverse<TSource>(IEnumerable<TSource>)
+
+Inverts the order of the elements in a sequence.
+
+Right
+Join<TOuter,TInner,TKey,TResult>(IEnumerable<TOuter>, IEnumerable<TInner>,
+ Func<TOuter,TKey>, Func<TInner,TKey>, Func<TOuter,TInner,TResult>,
+ IEquality
+Comparer<TKey>)
+
+Correlates the elements of two sequences based on matching keys. A specified 
+IEqualityComparer<T>
+ is used to compare keys.
+
+Right
+Join<TOuter,TInner,TKey,TResult>(IEnumerable<TOuter>, IEnumerable<TInner>, Func<TOuter,TKey>, Func<TInner,TKey>, Func<TOuter,TInner,TResult>)
+
+Correlates the elements of two sequences based on matching keys. The default equality comparer is used to compare keys.
+
+Select<TSource,TResult>(IEnumerable<TSource>, Func<TSource,Int32,TResult>)
+
+Projects each element of a sequence into a new form by incorporating the element's index.
+
+Select<TSource,TResult>(IEnumerable<TSource>, Func<TSource,TResult>)
+
+Projects each element of a sequence into a new form.
+
+Select
+Many<TSource,TCollection,TResult>(IEnumerable<TSource>, Func<TSource,IEnumerable<TCollection>>, Func<TSource,TCollection,TResult>)
+
+Projects each element of a sequence to an 
+IEnumerable<T>
+, flattens the resulting sequences into one sequence, and invokes a result selector function on each element therein.
+
+Select
+Many<TSource,TCollection,TResult>(IEnumerable<TSource>, Func<TSource,Int32,IEnumerable<TCollection>>, Func<TSource,TCollection,TResult>)
+
+Projects each element of a sequence to an 
+IEnumerable<T>
+, flattens the resulting sequences into one sequence, and invokes a result selector function on each element therein. The index of each source element is used in the intermediate projected form of that element.
+
+Select
+Many<TSource,TResult>(IEnumerable<TSource>, Func<TSource,IEnumerable<TResult>>)
+
+Projects each element of a sequence to an 
+IEnumerable<T>
+ and flattens the resulting sequences into one sequence.
+
+Select
+Many<TSource,TResult>(IEnumerable<TSource>, Func<TSource,Int32,IEnumerable<TResult>>)
+
+Projects each element of a sequence to an 
+IEnumerable<T>
+, and flattens the resulting sequences into one sequence. The index of each source element is used in the projected form of that element.
+
+Sequence
+Equal<TSource>(IEnumerable<TSource>, IEnumerable<TSource>, IEquality
+Comparer<TSource>)
+
+Determines whether two sequences are equal by comparing their elements by using a specified 
+IEqualityComparer<T>
+.
+
+Sequence
+Equal<TSource>(IEnumerable<TSource>, IEnumerable<TSource>)
+
+Determines whether two sequences are equal by comparing the elements by using the default equality comparer for their type.
+
+Shuffle<TSource>(IEnumerable<TSource>)
+
+Shuffles the order of the elements of a sequence.
+
+Single<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)
+
+Returns the only element of a sequence that satisfies a specified condition, and throws an exception if more than one such element exists.
+
+Single<TSource>(IEnumerable<TSource>)
+
+Returns the only element of a sequence, and throws an exception if there is not exactly one element in the sequence.
+
+Single
+OrDefault<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>, TSource)
+
+Returns the only element of a sequence that satisfies a specified condition, or a specified default value if no such element exists; this method throws an exception if more than one element satisfies the condition.
+
+Single
+OrDefault<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)
+
+Returns the only element of a sequence that satisfies a specified condition or a default value if no such element exists; this method throws an exception if more than one element satisfies the condition.
+
+Single
+OrDefault<TSource>(IEnumerable<TSource>, TSource)
+
+Returns the only element of a sequence, or a specified default value if the sequence is empty; this method throws an exception if there is more than one element in the sequence.
+
+Single
+OrDefault<TSource>(IEnumerable<TSource>)
+
+Returns the only element of a sequence, or a default value if the sequence is empty; this method throws an exception if there is more than one element in the sequence.
+
+Skip<TSource>(IEnumerable<TSource>, Int32)
+
+Bypasses a specified number of elements in a sequence and then returns the remaining elements.
+
+Skip
+Last<TSource>(IEnumerable<TSource>, Int32)
+
+Returns a new enumerable collection that contains the elements from 
+source
+ with the last 
+count
+ elements of the source collection omitted.
+
+Skip
+While<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)
+
+Bypasses elements in a sequence as long as a specified condition is true and then returns the remaining elements.
+
+Skip
+While<TSource>(IEnumerable<TSource>, Func<TSource,Int32,Boolean>)
+
+Bypasses elements in a sequence as long as a specified condition is true and then returns the remaining elements. The element's index is used in the logic of the predicate function.
+
+Sum<TSource>(IEnumerable<TSource>, Func<TSource,Decimal>)
+
+Computes the sum of the sequence of 
+Decimal
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Sum<TSource>(IEnumerable<TSource>, Func<TSource,Double>)
+
+Computes the sum of the sequence of 
+Double
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Sum<TSource>(IEnumerable<TSource>, Func<TSource,Int32>)
+
+Computes the sum of the sequence of 
+Int32
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Sum<TSource>(IEnumerable<TSource>, Func<TSource,Int64>)
+
+Computes the sum of the sequence of 
+Int64
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Sum<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Decimal>>)
+
+Computes the sum of the sequence of nullable 
+Decimal
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Sum<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Double>>)
+
+Computes the sum of the sequence of nullable 
+Double
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Sum<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Int32>>)
+
+Computes the sum of the sequence of nullable 
+Int32
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Sum<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Int64>>)
+
+Computes the sum of the sequence of nullable 
+Int64
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Sum<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Single>>)
+
+Computes the sum of the sequence of nullable 
+Single
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Sum<TSource>(IEnumerable<TSource>, Func<TSource,Single>)
+
+Computes the sum of the sequence of 
+Single
+ values that are obtained by invoking a transform function on each element of the input sequence.
+
+Take<TSource>(IEnumerable<TSource>, Int32)
+
+Returns a specified number of contiguous elements from the start of a sequence.
+
+Take<TSource>(IEnumerable<TSource>, Range)
+
+Returns a specified range of contiguous elements from a sequence.
+
+Take
+Last<TSource>(IEnumerable<TSource>, Int32)
+
+Returns a new enumerable collection that contains the last 
+count
+ elements from 
+source
+.
+
+Take
+While<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)
+
+Returns elements from a sequence as long as a specified condition is true.
+
+Take
+While<TSource>(IEnumerable<TSource>, Func<TSource,Int32,Boolean>)
+
+Returns elements from a sequence as long as a specified condition is true. The element's index is used in the logic of the predicate function.
+
+To
+Array<TSource>(IEnumerable<TSource>)
+
+Creates an array from a 
+IEnumerable<T>
+.
+
+To
+Async
+Enumerable<TSource>(IEnumerable<TSource>)
+
+Creates a new 
+IAsyncEnumerable<T>
+ that iterates through 
+source
+.
+
+To
+Dictionary<TSource,TKey,TElement>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TSource,TElement>, IEquality
+Comparer<TKey>)
+
+Creates a 
+Dictionary<TKey,TValue>
+ from an 
+IEnumerable<T>
+ according to a specified key selector function, a comparer, and an element selector function.
+
+To
+Dictionary<TSource,TKey,TElement>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TSource,TElement>)
+
+Creates a 
+Dictionary<TKey,TValue>
+ from an 
+IEnumerable<T>
+ according to specified key selector and element selector functions.
+
+To
+Dictionary<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>, IEquality
+Comparer<TKey>)
+
+Creates a 
+Dictionary<TKey,TValue>
+ from an 
+IEnumerable<T>
+ according to a specified key selector function and key comparer.
+
+To
+Dictionary<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>)
+
+Creates a 
+Dictionary<TKey,TValue>
+ from an 
+IEnumerable<T>
+ according to a specified key selector function.
+
+To
+Frozen
+Dictionary<TSource,TKey,TElement>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TSource,TElement>, IEquality
+Comparer<TKey>)
+
+Creates a 
+FrozenDictionary<TKey,TValue>
+ from an 
+IEnumerable<T>
+ according to specified key selector and element selector functions.
+
+To
+Frozen
+Dictionary<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>, IEquality
+Comparer<TKey>)
+
+Creates a 
+FrozenDictionary<TKey,TValue>
+ from an 
+IEnumerable<T>
+ according to specified key selector function.
+
+To
+Frozen
+Set<T>(IEnumerable<T>, IEquality
+Comparer<T>)
+
+Creates a 
+FrozenSet<T>
+ with the specified values.
+
+To
+Hash
+Set<TSource>(IEnumerable<TSource>, IEquality
+Comparer<TSource>)
+
+Creates a 
+HashSet<T>
+ from an 
+IEnumerable<T>
+ using the 
+comparer
+ to compare keys.
+
+To
+Hash
+Set<TSource>(IEnumerable<TSource>)
+
+Creates a 
+HashSet<T>
+ from an 
+IEnumerable<T>
+.
+
+To
+Immutable
+Array<TSource>(IEnumerable<TSource>)
+
+Creates an immutable array from the specified collection.
+
+To
+Immutable
+Dictionary<TSource,TKey,TValue>(IEnumerable<TSource>,
+ Func<TSource,TKey>, Func<TSource,TValue>, IEquality
+Comparer<TKey>,
+ IEquality
+Comparer<TValue>)
+
+Enumerates and transforms a sequence, and produces an immutable dictionary of its contents by using the specified key and value comparers.
+
+To
+Immutable
+Dictionary<TSource,TKey,TValue>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TSource,TValue>, IEquality
+Comparer<TKey>)
+
+Enumerates and transforms a sequence, and produces an immutable dictionary of its contents by using the specified key comparer.
+
+To
+Immutable
+Dictionary<TSource,TKey,TValue>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TSource,TValue>)
+
+Enumerates and transforms a sequence, and produces an immutable dictionary of its contents.
+
+To
+Immutable
+Dictionary<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>, IEquality
+Comparer<TKey>)
+
+Constructs an immutable dictionary based on some transformation of a sequence.
+
+To
+Immutable
+Dictionary<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>)
+
+Constructs an immutable dictionary from an existing collection of elements, applying a transformation function to the source keys.
+
+To
+Immutable
+Hash
+Set<TSource>(IEnumerable<TSource>, IEquality
+Comparer<TSource>)
+
+Enumerates a sequence, produces an immutable hash set of its contents, and uses the specified equality comparer for the set type.
+
+To
+Immutable
+Hash
+Set<TSource>(IEnumerable<TSource>)
+
+Enumerates a sequence and produces an immutable hash set of its contents.
+
+To
+Immutable
+List<TSource>(IEnumerable<TSource>)
+
+Enumerates a sequence and produces an immutable list of its contents.
+
+To
+Immutable
+Sorted
+Dictionary<TSource,TKey,TValue>(IEnumerable<TSource>,
+ Func<TSource,TKey>, Func<TSource,TValue>, IComparer<TKey>, IEquality
+Comparer<TValue>)
+
+Enumerates and transforms a sequence, and produces an immutable sorted dictionary of its contents by using the specified key and value comparers.
+
+To
+Immutable
+Sorted
+Dictionary<TSource,TKey,TValue>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TSource,TValue>, IComparer<TKey>)
+
+Enumerates and transforms a sequence, and produces an immutable sorted dictionary of its contents by using the specified key comparer.
+
+To
+Immutable
+Sorted
+Dictionary<TSource,TKey,TValue>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TSource,TValue>)
+
+Enumerates and transforms a sequence, and produces an immutable sorted dictionary of its contents.
+
+To
+Immutable
+Sorted
+Set<TSource>(IEnumerable<TSource>, IComparer<TSource>)
+
+Enumerates a sequence, produces an immutable sorted set of its contents, and uses the specified comparer.
+
+To
+Immutable
+Sorted
+Set<TSource>(IEnumerable<TSource>)
+
+Enumerates a sequence and produces an immutable sorted set of its contents.
+
+To
+List<TSource>(IEnumerable<TSource>)
+
+Creates a 
+List<T>
+ from an 
+IEnumerable<T>
+.
+
+To
+Lookup<TSource,TKey,TElement>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TSource,TElement>, IEquality
+Comparer<TKey>)
+
+Creates a 
+Lookup<TKey,TElement>
+ from an 
+IEnumerable<T>
+ according to a specified key selector function, a comparer and an element selector function.
+
+To
+Lookup<TSource,TKey,TElement>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TSource,TElement>)
+
+Creates a 
+Lookup<TKey,TElement>
+ from an 
+IEnumerable<T>
+ according to specified key selector and element selector functions.
+
+To
+Lookup<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>, IEquality
+Comparer<TKey>)
+
+Creates a 
+Lookup<TKey,TElement>
+ from an 
+IEnumerable<T>
+ according to a specified key selector function and key comparer.
+
+To
+Lookup<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>)
+
+Creates a 
+Lookup<TKey,TElement>
+ from an 
+IEnumerable<T>
+ according to a specified key selector function.
+
+Try
+Get
+Non
+Enumerated
+Count<TSource>(IEnumerable<TSource>, Int32)
+
+Attempts to determine the number of elements in a sequence without forcing an enumeration.
+
+Union<TSource>(IEnumerable<TSource>, IEnumerable<TSource>, IEquality
+Comparer<TSource>)
+
+Produces the set union of two sequences by using a specified 
+IEqualityComparer<T>
+.
+
+Union<TSource>(IEnumerable<TSource>, IEnumerable<TSource>)
+
+Produces the set union of two sequences by using the default equality comparer.
+
+Union
+By<TSource,TKey>(IEnumerable<TSource>, IEnumerable<TSource>, Func<TSource,TKey>, IEquality
+Comparer<TKey>)
+
+Produces the set union of two sequences according to a specified key selector function.
+
+Union
+By<TSource,TKey>(IEnumerable<TSource>, IEnumerable<TSource>, Func<TSource,TKey>)
+
+Produces the set union of two sequences according to a specified key selector function.
+
+Where<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)
+
+Filters a sequence of values based on a predicate.
+
+Where<TSource>(IEnumerable<TSource>, Func<TSource,Int32,Boolean>)
+
+Filters a sequence of values based on a predicate. Each element's index is used in the logic of the predicate function.
+
+Zip<TFirst,TSecond,TResult>(IEnumerable<TFirst>, IEnumerable<TSecond>, Func<TFirst,TSecond,TResult>)
+
+Applies a specified function to the corresponding elements of two sequences, producing a sequence of the results.
+
+Zip<TFirst,TSecond,TThird>(IEnumerable<TFirst>, IEnumerable<TSecond>, IEnumerable<TThird>)
+
+Produces a sequence of tuples with elements from the three specified sequences.
+
+Zip<TFirst,TSecond>(IEnumerable<TFirst>, IEnumerable<TSecond>)
+
+Produces a sequence of tuples with elements from the two specified sequences.
+---

@@ -1,0 +1,55 @@
+```json
+[
+    {
+        "question": "What is the alternative name for function calling mentioned in the OpenAI documentation?",
+        "answer": "Tool calling",
+        "supporting_sentences": [
+            "Function calling (also known as tool calling) provides a powerful and flexible way for OpenAI models to interface with external systems and access data outside their training data."
+        ]
+    },
+    {
+        "question": "Which OpenAI models support the 'tool_search' feature?",
+        "answer": "gpt-5.4 and later models",
+        "supporting_sentences": [
+            "Only gpt-5.4 and later models support tool_search."
+        ]
+    },
+    {
+        "question": "What are the five high-level steps in the tool calling flow described in the document?",
+        "answer": [
+            "Make a request to the model with tools it could call",
+            "Receive a tool call from the model",
+            "Execute code on the application side with input from the tool call",
+            "Make a second request to the model with the tool output",
+            "Receive a final response from the model (or more tool calls)"
+        ],
+        "supporting_sentences": [
+            "The tool calling flow has five high level steps:",
+            "1. Make a request to the model with tools it could call",
+            "2. Receive a tool call from the model",
+            "3. Execute code on the application side with input from the tool call",
+            "4. Make a second request to the model with the tool output",
+            "5. Receive a final response from the model (or more tool calls)"
+        ]
+    },
+    {
+        "question": "What is the purpose of the 'strict' field in a function definition?",
+        "answer": "To ensure function calls reliably adhere to the function schema instead of being best effort",
+        "supporting_sentences": [
+            "Setting strict to true will ensure function calls reliably adhere to the function schema, instead of being best effort."
+        ]
+    },
+    {
+        "question": "What are the two requirements for using strict mode in function definitions?",
+        "answer": [
+            "'additionalProperties' must be set to false for each object in the 'parameters'",
+            "All fields in 'properties' must be marked as 'required'"
+        ],
+        "supporting_sentences": [
+            "Under the hood, strict mode works by leveraging our structured outputs feature and therefore introduces a couple requirements:",
+            "additionalProperties must be set to false for each object in the parameters.",
+            "All fields in properties must be marked as required."
+        ]
+    }
+]
+```

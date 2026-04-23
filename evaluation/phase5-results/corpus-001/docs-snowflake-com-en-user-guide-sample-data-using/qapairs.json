@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What is the name of the sample database provided by Snowflake?",
+    "answer": "SNOWFLAKE_SAMPLE_DATA",
+    "supporting_sentences": [
+      "The sample database, SNOWFLAKE_SAMPLE_DATA, is identical to the databases that you create in your account, except that it is read-only.",
+      "CREATE DATABASE SNOWFLAKE_SAMPLE_DATA FROM SHARE SFC_SAMPLES.SAMPLE_DATA;"
+    ]
+  },
+  {
+    "question": "What operations are not allowed on the SNOWFLAKE_SAMPLE_DATA database?",
+    "answer": "DDL operations on the data set schemas, DML operations on the tables, and cloning or Time Travel on the database or any schemas/tables in the database.",
+    "supporting_sentences": [
+      "No DDL can be performed on the data set schemas (i.e. tables and other database objects cannot be added, dropped, or altered).",
+      "No DML can be performed on the tables in the schemas.",
+      "No cloning or Time Travel can be performed on the database or any schemas/tables in the database."
+    ]
+  },
+  {
+    "question": "How can you create the SNOWFLAKE_SAMPLE_DATA database if it is not available in your account?",
+    "answer": "Execute the SQL statements to create the database from the share and grant the PUBLIC role access to it.",
+    "supporting_sentences": [
+      "If the database has not been created for your account and you want access to it, execute the following SQL statements with the ACCOUNTADMIN role active:",
+      "-- Create a database from the share. CREATE DATABASE SNOWFLAKE_SAMPLE_DATA FROM SHARE SFC_SAMPLES.SAMPLE_DATA;",
+      "-- Grant the PUBLIC role access to the database. GRANT IMPORTED PRIVILEGES ON DATABASE SNOWFLAKE_SAMPLE_DATA TO ROLE PUBLIC;"
+    ]
+  },
+  {
+    "question": "What is the fully-qualified name of the shared database as shown in the 'origin' column of the SHOW DATABASES output?",
+    "answer": "SFC_SAMPLES.SAMPLE_DATA",
+    "supporting_sentences": [
+      "The origin column in the SHOW DATABASES output (or the Origin column in the Databases page in the interface) displays the fully-qualified name of the shared database, SFC_SAMPLES.SAMPLE_DATA, indicating it originated from the SFC_SAMPLES account (used by Snowflake to share the sample data)."
+    ]
+  },
+  {
+    "question": "What are the two methods to query a table or view in the SNOWFLAKE_SAMPLE_DATA database?",
+    "answer": "Reference the fully-qualified name of the table in your query or specify the sample database and schema for your session using the USE DATABASE and/or USE SCHEMA commands.",
+    "supporting_sentences": [
+      "To use a table or view in the sample database, you can either: Reference the fully-qualified name of the table in your query (in the form of snowflake_sample_data.schema_name.object_name). OR Specify the sample database (and schema) for your session using the USE DATABASE and/or USE SCHEMA commands."
+    ]
+  }
+]

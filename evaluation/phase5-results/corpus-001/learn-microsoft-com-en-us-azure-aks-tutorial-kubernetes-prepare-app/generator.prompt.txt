@@ -1,0 +1,305 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Kubernetes on Azure tutorial - Prepare an application for Azure Kubernetes Service (AKS) - Azure Kubernetes Service
+Document URL: https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-prepare-app
+Document profile: tutorial
+
+Document text:
+---
+In this tutorial, you prepare a multi-container application to use in Kubernetes. You use existing development tools like Docker Compose to locally build and test the application. You learn how to:
+
+Clone a sample application source from GitHub.
+
+Create a container image from the sample application source.
+
+Test the multi-container application in a local Docker environment.
+
+Once completed, the following application runs in your local development environment:
+
+In later tutorials, you upload the container image to an Azure Container Registry (ACR), and then deploy it into an AKS cluster.
+
+This tutorial assumes a basic understanding of core Docker concepts such as containers, container images, and 
+docker
+ commands. For a primer on container basics, see 
+Get started with Docker
+.
+
+To complete this tutorial, you need a local Docker development environment running Linux containers. Docker provides packages that configure Docker on a 
+Mac
+, 
+Windows
+, or 
+Linux
+ system.
+
+ Note
+
+Azure Cloud Shell doesn't include the Docker components required to complete every step in these tutorials. Therefore, we recommend using a full Docker development environment.
+
+The 
+sample application
+ used in this tutorial is a basic store front app including the following Kubernetes deployments and services:
+
+Store front
+: Web application for customers to view products and place orders.
+
+Product service
+: Shows product information.
+
+Order service
+: Places orders.
+
+Rabbit MQ
+: Message queue for an order queue.
+
+Create a directory on your computer and switch to that directory in your terminal session, like Bash. This example uses a directory named 
+demorepo
+ but you can use any name you want.
+
+mkdir demorepo
+cd demorepo
+
+Use 
+git
+ to clone the sample application to your development environment.
+
+git clone https://github.com/Azure-Samples/aks-store-demo.git
+
+Change into the cloned directory.
+
+cd aks-store-demo
+
+If you're using 
+azd
+ locally, create an empty directory named 
+aks-store-demo
+ to host the azd template files.
+
+mkdir aks-store-demo
+
+Change into the new directory to load all the files from the azd template.
+
+cd aks-store-demo
+
+Clone the sample application into the 
+aks-store-demo
+ directory using the 
+azd init
+ command with the 
+--template
+ flag set to 
+aks-store-demo
+.
+
+azd init --template aks-store-demo
+
+Review Docker Compose file
+
+The sample application you create in this tutorial uses the 
+docker-compose-quickstart
+ YAML file
+ from the 
+repository
+ you cloned.
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.13.2-management-alpine
+    container_name: 'rabbitmq'
+    restart: always
+    environment:
+      - "RABBITMQ_DEFAULT_USER=username"
+      - "RABBITMQ_DEFAULT_PASS=password"
+    ports:
+      - 15672:15672
+      - 5672:5672
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - ./rabbitmq_enabled_plugins:/etc/rabbitmq/enabled_plugins
+    networks:
+      - backend_services
+  order-service:
+    build: src/order-service
+    container_name: 'order-service'
+    restart: always
+    ports:
+      - 3000:3000
+    healthcheck:
+      test: ["CMD", "wget", "-O", "/dev/null", "-q", "http://order-service:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    environment:
+      - ORDER_QUEUE_HOSTNAME=rabbitmq
+      - ORDER_QUEUE_PORT=5672
+      - ORDER_QUEUE_USERNAME=username
+      - ORDER_QUEUE_PASSWORD=password
+      - ORDER_QUEUE_NAME=orders
+      - ORDER_QUEUE_RECONNECT_LIMIT=3
+    networks:
+      - backend_services
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+  product-service:
+    build: src/product-service
+    container_name: 'product-service'
+    restart: always
+    ports:
+      - 3002:3002
+    healthcheck:
+      test: ["CMD", "wget", "-O", "/dev/null", "-q", "http://product-service:3002/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    environment:
+      - AI_SERVICE_URL=http://ai-service:5001/
+    networks:
+      - backend_services
+  store-front:
+    build: src/store-front
+    container_name: 'store-front'
+    restart: always
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: ["CMD", "wget", "-O", "/dev/null", "-q", "http://store-front:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    environment:
+      - VUE_APP_PRODUCT_SERVICE_URL=http://product-service:3002/
+      - VUE_APP_ORDER_SERVICE_URL=http://order-service:3000/
+    networks:
+      - backend_services
+    depends_on:
+      - product-service
+      - order-service
+networks:
+  backend_services:
+    driver: bridge
+
+Create container images and run application
+
+You can use 
+Docker Compose
+ to automate building container images and the deployment of multi-container applications.
+
+Create the container image, download the RabbitMQ image, and start the application using the 
+docker compose
+ command:
+
+docker compose -f docker-compose-quickstart.yml up -d
+
+View the created images using the 
+docker images
+ command.
+
+docker images
+
+The following condensed example output shows the created images:
+
+REPOSITORY                        TAG                          IMAGE ID
+aks-store-demo-product-service    latest                       72f5cd7e6b84
+aks-store-demo-order-service      latest                       54ad5de546f9
+aks-store-demo-store-front        latest                       1125f85632ae
+...
+
+View the running containers using the 
+docker ps
+ command.
+
+docker ps
+
+The following condensed example output shows four running containers:
+
+CONTAINER ID        IMAGE
+f27fe74cfd0a        aks-store-demo-product-service
+df1eaa137885        aks-store-demo-order-service
+b3ce9e496e96        aks-store-demo-store-front
+31df28627ffa        rabbitmq:3.13.2-management-alpine
+
+To see your running application, navigate to 
+http://localhost:8080
+ in a local web browser. The sample application loads, as shown in the following example:
+
+On this page, you can view products, add them to your cart, and then place an order.
+
+Since you validated the application's functionality, you can stop and remove the running containers. 
+Do not delete the container images
+ because you use them in the next tutorial.
+
+Stop and remove the container instances and resources using the 
+docker-compose down
+ command.
+
+docker compose down
+
+When you use 
+azd
+, there are no manual container image dependencies. 
+azd
+ handles the provisioning, deployment, and clean up of your applications and clusters with the 
+azd up
+ and 
+azd down
+ commands, similar to Docker.
+
+You can customize the preparation steps to use either Terraform or Bicep before deploying the cluster within the 
+infra
+ section of your 
+azure.yaml
+. By default, this project uses Terraform:
+
+infra:
+  provider: terraform
+  path: infra/terraform
+
+If you want to change the provider to Bicep, update the 
+azure.yaml
+ file as follows:
+
+infra:
+  provider: bicep
+  path: infra/bicep
+
+In this tutorial, you created a sample application, created container images for the application, and then tested the application. You learned how to:
+
+Clone a sample application source from GitHub.
+
+Create a container image from the sample application source.
+
+Test the multi-container application in a local Docker environment.
+
+In the next tutorial, you learn how to store container images in an ACR.
+
+In this tutorial, you cloned a sample application using 
+azd
+. You learned how to:
+
+Clone a sample 
+azd
+ template from GitHub.
+
+View where container images are used from the sample application source.
+
+In the next tutorial, you learn how to create a cluster using the 
+azd
+ template you cloned.
+---

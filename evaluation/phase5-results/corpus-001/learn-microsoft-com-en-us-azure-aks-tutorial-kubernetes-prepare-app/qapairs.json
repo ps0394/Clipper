@@ -1,0 +1,51 @@
+[
+  {
+    "question": "What is the name of the GitHub repository used in this tutorial for the sample application?",
+    "answer": "aks-store-demo",
+    "supporting_sentences": [
+      "Use git to clone the sample application to your development environment.",
+      "git clone https://github.com/Azure-Samples/aks-store-demo.git"
+    ]
+  },
+  {
+    "question": "Which Docker Compose YAML file is used to create the sample application in this tutorial?",
+    "answer": "docker-compose-quickstart",
+    "supporting_sentences": [
+      "The sample application you create in this tutorial uses the docker-compose-quickstart YAML file from the repository you cloned."
+    ]
+  },
+  {
+    "question": "What are the four Kubernetes deployments and services included in the sample application?",
+    "answer": "Store front, Product service, Order service, and RabbitMQ",
+    "supporting_sentences": [
+      "The sample application used in this tutorial is a basic store front app including the following Kubernetes deployments and services:",
+      "Store front: Web application for customers to view products and place orders.",
+      "Product service: Shows product information.",
+      "Order service: Places orders.",
+      "Rabbit MQ: Message queue for an order queue."
+    ]
+  },
+  {
+    "question": "What command is used to stop and remove the container instances and resources after validating the application's functionality?",
+    "answer": "docker compose down",
+    "supporting_sentences": [
+      "Stop and remove the container instances and resources using the docker-compose down command.",
+      "docker compose down"
+    ]
+  },
+  {
+    "question": "Which two infrastructure providers can be specified in the `azure.yaml` file for deploying the cluster, and which one is used by default?",
+    "answer": "Terraform and Bicep; Terraform is used by default",
+    "supporting_sentences": [
+      "You can customize the preparation steps to use either Terraform or Bicep before deploying the cluster within the infra section of your azure.yaml.",
+      "By default, this project uses Terraform:",
+      "infra:",
+      "  provider: terraform",
+      "  path: infra/terraform",
+      "If you want to change the provider to Bicep, update the azure.yaml file as follows:",
+      "infra:",
+      "  provider: bicep",
+      "  path: infra/bicep"
+    ]
+  }
+]

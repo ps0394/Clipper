@@ -1,0 +1,108 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What type of JavaScript runtime is Node.js designed as?",
+      "answer": "Node.js is designed as an asynchronous event-driven JavaScript runtime.",
+      "supporting_sentences": [
+        "As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network applications."
+      ]
+    },
+    "edited_pair": {
+      "question": "What type of JavaScript runtime is Node.js designed as?",
+      "answer": "Node.js is designed as an asynchronous event-driven JavaScript runtime.",
+      "supporting_sentences": [
+        "As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network applications."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does Node.js handle concurrency compared to thread-based networking?",
+      "answer": "Node.js handles concurrency without using OS threads, which makes it relatively more efficient and avoids dead-locking the process, unlike thread-based networking.",
+      "supporting_sentences": [
+        "This is in contrast to today's more common concurrency model, in which OS threads are employed.",
+        "Thread-based networking is relatively inefficient and very difficult to use.",
+        "Furthermore, users of Node.js are free from worries of dead-locking the process, since there are no locks."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does Node.js handle concurrency compared to thread-based networking?",
+      "answer": "Node.js handles concurrency without using OS threads, which makes it relatively more efficient and avoids dead-locking the process, unlike thread-based networking.",
+      "supporting_sentences": [
+        "This is in contrast to today's more common concurrency model, in which OS threads are employed.",
+        "Thread-based networking is relatively inefficient and very difficult to use.",
+        "Furthermore, users of Node.js are free from worries of dead-locking the process, since there are no locks."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens in Node.js after executing the input script?",
+      "answer": "Node.js simply enters the event loop after executing the input script and exits the event loop when there are no more callbacks to perform.",
+      "supporting_sentences": [
+        "In Node.js, there is no such start-the-event-loop call. Node.js simply enters the event loop after executing the input script.",
+        "Node.js exits the event loop when there are no more callbacks to perform."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens in Node.js after executing the input script?",
+      "answer": "Node.js simply enters the event loop after executing the input script and exits the event loop when there are no more callbacks to perform.",
+      "supporting_sentences": [
+        "In Node.js, there is no such start-the-event-loop call. Node.js simply enters the event loop after executing the input script.",
+        "Node.js exits the event loop when there are no more callbacks to perform."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which API in Node.js allows spawning child processes to take advantage of multiple cores?",
+      "answer": "The `child_process.fork()` API allows spawning child processes to take advantage of multiple cores.",
+      "supporting_sentences": [
+        "Child processes can be spawned by using our child_process.fork() API, and are designed to be easy to communicate with."
+      ]
+    },
+    "edited_pair": {
+      "question": "Which API in Node.js allows spawning child processes to take advantage of multiple cores?",
+      "answer": "The `child_process.fork()` API allows spawning child processes to take advantage of multiple cores.",
+      "supporting_sentences": [
+        "Child processes can be spawned by using our child_process.fork() API, and are designed to be easy to communicate with."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the official domains for downloading Node.js binaries and accessing official documentation?",
+      "answer": "The official domains for downloading Node.js binaries and accessing official documentation are nodejs.org and nodejs.dev.",
+      "supporting_sentences": [
+        "For downloading Node.js binaries and accessing official documentation, use only these domains: nodejs.org, nodejs.dev."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the official domains for downloading Node.js binaries and accessing official documentation?",
+      "answer": "The official domains for downloading Node.js binaries and accessing official documentation are nodejs.org and nodejs.dev.",
+      "supporting_sentences": [
+        "For downloading Node.js binaries and accessing official documentation, use only these domains: nodejs.org, nodejs.dev."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "question": "Which model replaced Claude Haiku 3 and when is its retirement scheduled?",
+    "answer": "Claude Haiku 4.5 replaced the Claude Haiku 3 model (claude-3-haiku-20240307), and its retirement is scheduled for April 19, 2026.",
+    "supporting_sentences": [
+      "We announced the deprecation of the Claude Haiku 3 model (claude-3-haiku-20240307), with retirement scheduled for April 19, 2026. We recommend migrating to Claude Haiku 4.5.",
+      "We've retired the Claude Haiku 3 model (claude-3-haiku-20240307). All requests to this model will now return an error. We recommend upgrading to Claude Haiku 4.5."
+    ]
+  },
+  {
+    "question": "What is the maximum number of tokens allowed for the Message Batches API on Claude Opus 4.6 and Sonnet 4.6?",
+    "answer": "The max_tokens cap is 300k for the Message Batches API on Claude Opus 4.6 and Sonnet 4.6.",
+    "supporting_sentences": [
+      "We've raised the max_tokens cap to 300k on the Message Batches API for Claude Opus 4.6 and Sonnet 4.6. Include the output-300k-2026-03-24 beta header to generate longer single-turn outputs for long-form content, structured data, and large code generation tasks."
+    ]
+  },
+  {
+    "question": "What beta header is required to use the advisor tool in the Claude API?",
+    "answer": "The beta header advisor-tool-2026-03-01 is required to use the advisor tool.",
+    "supporting_sentences": [
+      "We've launched the advisor tool in public beta. Include the beta header advisor-tool-2026-03-01 in your requests."
+    ]
+  },
+  {
+    "question": "Which models support the 1M token context window at standard pricing without a beta header?",
+    "answer": "Claude Opus 4.6 and Sonnet 4.6 support the 1M token context window at standard pricing with no beta header required.",
+    "supporting_sentences": [
+      "The 1M token context window is now generally available for Claude Opus 4.6 and Sonnet 4.6 at standard pricing. Requests over 200k tokens work automatically for these models with no beta header required."
+    ]
+  },
+  {
+    "question": "What is the new URL for the Claude Console after the brand consolidation?",
+    "answer": "The new URL for the Claude Console is platform.claude.com.",
+    "supporting_sentences": [
+      "console.anthropic.com now redirects to platform.claude.com. The Claude Console has moved to its new home as part of our Claude brand consolidation."
+    ]
+  }
+]
