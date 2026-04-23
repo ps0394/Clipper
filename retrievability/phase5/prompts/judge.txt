@@ -10,10 +10,11 @@ Your job is to decide whether the candidate answer is a correct answer to the qu
 Rules:
 
 - Reply CORRECT if the candidate answer conveys the same facts as the ground-truth answer, even if the wording differs. Example: ground truth "1099 in USD" vs candidate "1099, usd" → CORRECT. Example: ground truth "Expiration month is 3 and year is 2024" vs candidate "3, 2024" → CORRECT. Example: ground truth "visa" vs candidate "Visa" → CORRECT.
-- Reply INCORRECT if the candidate answer states a different fact than the ground truth, is missing required information, or contradicts the ground truth. A partially-correct answer that omits a required element of the ground truth is INCORRECT.
+- Reply INCORRECT if the candidate answer states a different fact than the ground truth, is missing required information, or contradicts the ground truth. A partially-correct answer that omits a required element of the ground truth is INCORRECT. In particular, if the ground truth lists multiple items joined by "and" or "or" as a complete answer (e.g. "server-wide or per resource", "the parameter is X and its range is Y"), the candidate must cover every listed item; omitting any one of them is INCORRECT.
 - Reply NOT_IN_DOCUMENT if the candidate answer is exactly the string "not in document" (case-insensitive) or otherwise states that the answer cannot be found in the document.
 - Do not penalize the candidate for brevity or for omitting context that wasn't asked.
-- Do not credit the candidate for inventing facts not in the ground truth.
+- Do not penalize the candidate for listing additional correct facts that go beyond the ground truth, as long as every fact in the ground truth is covered and no fact is contradicted. Extra detail is acceptable; missing or contradictory detail is not.
+- Do not credit the candidate for inventing facts not in the ground truth or the question.
 
 Output format: exactly two lines.
 Line 1: one of CORRECT, INCORRECT, NOT_IN_DOCUMENT. No other text on that line.

@@ -1,0 +1,42 @@
+```json
+[
+    {
+        "question": "What is the primary purpose of the 'instructions' component in a GPT prompt?",
+        "answer": "Instructions are simply that: instructions to the model on what to do.",
+        "supporting_sentences": [
+            "Instructions are likely the most commonly used prompt component. Instructions are simply that: instructions to the model on what to do."
+        ]
+    },
+    {
+        "question": "What is the difference between 'primary content' and 'supporting content' in prompt engineering?",
+        "answer": "Primary content refers to text that is being processed or transformed by the model, while supporting content is information that the model can utilize to influence the output but isn't the main target of the task.",
+        "supporting_sentences": [
+            "Primary content refers to some sort of text that is being processed or transformed by the model.",
+            "Supporting content is information that the model can utilize to influence the output in some way. It differs from primary content in that it isn't the main target of task, but it's typically used along with primary content."
+        ]
+    },
+    {
+        "question": "What is the recommended approach for structuring a prompt to improve output quality, according to the document?",
+        "answer": "Telling the model the task you want it to do at the beginning of the prompt, before sharing additional contextual information or examples, can help produce higher-quality outputs.",
+        "supporting_sentences": [
+            "Our research suggests that telling the model the task you want it to do at the beginning of the prompt, before sharing additional contextual information or examples, can help produce higher-quality outputs."
+        ]
+    },
+    {
+        "question": "What are the two parameters mentioned in the document that control the randomness of a GPT model's response?",
+        "answer": "Temperature and Top_p parameters.",
+        "supporting_sentences": [
+            "Temperature and Top_p parameters",
+            "The temperature parameter can be set between 0 and 2. A higher value, for example 0.7 makes the output more random and produce more divergent responses, while a lower value, like. 0.2, makes the output more focused and concrete.",
+            "Top_probability is another parameter and is similar to Temperature in that it also controls the randomness of the model response, but it does so in a different way."
+        ]
+    },
+    {
+        "question": "Which technique is described as a way to reduce the possibility of inaccuracy in model responses by instructing the model to proceed step-by-step?",
+        "answer": "Chain of thought prompting.",
+        "supporting_sentences": [
+            "This is a variation on the break the task down technique. Instead of splitting a task into smaller steps, in this approach, the model response is instructed to proceed step-by-step and present all the steps involved. Doing so reduces the possibility of inaccuracy of outcomes and makes assessing the model response easier."
+        ]
+    }
+]
+```

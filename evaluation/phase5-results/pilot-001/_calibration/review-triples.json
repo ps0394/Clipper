@@ -1,0 +1,182 @@
+[
+  {
+    "slug": "developer-mozilla-org-en-US-docs-Web-HTTP-Status-429",
+    "pair_index": 0,
+    "question": "What does the HTTP 429 status code indicate?",
+    "ground_truth": "The HTTP 429 Too Many Requests client error response status code indicates the client has sent too many requests in a given amount of time.",
+    "candidate": "The client has sent too many requests in a given amount of time.",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer conveys the same fact as the ground-truth answer, omitting only the formal status code name."
+  },
+  {
+    "slug": "developer-mozilla-org-en-US-docs-Web-HTTP-Status-429",
+    "pair_index": 1,
+    "question": "What is the common term for the mechanism that asks a client to slow down the rate of requests?",
+    "ground_truth": "The common term for this mechanism is 'rate limiting'.",
+    "candidate": "rate limiting",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer conveys the same fact as the ground-truth answer, differing only in capitalization and wording."
+  },
+  {
+    "slug": "developer-mozilla-org-en-US-docs-Web-HTTP-Status-429",
+    "pair_index": 2,
+    "question": "What header might be included in a 429 response to suggest how long a client should wait before retrying?",
+    "ground_truth": "A Retry-After header may be included in a 429 response.",
+    "candidate": "Retry-After",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer conveys the same fact as the ground-truth answer, identifying the Retry-After header as the relevant header for a 429 response."
+  },
+  {
+    "slug": "developer-mozilla-org-en-US-docs-Web-HTTP-Status-429",
+    "pair_index": 3,
+    "question": "What are some factors that can influence how rate-limiting restrictions are applied?",
+    "ground_truth": "Rate-limiting restrictions may be based on a client's IP, specific to users, or authorized applications if requests are authenticated or contain a cookie.",
+    "candidate": "Client's IP, specific users, authorized applications, authentication, cookies, server-wide, per resource",
+    "judge_label": "incorrect",
+    "judge_rationale": "The candidate answer includes extra factors (server-wide, per resource) not mentioned in the ground-truth answer and also separates \"authentication\" and \"cookies\" which in the ground truth are connected to authorized applications."
+  },
+  {
+    "slug": "developer-mozilla-org-en-US-docs-Web-HTTP-Status-429",
+    "pair_index": 4,
+    "question": "Do rate-limiting implementations apply uniformly across an entire server or can they vary by resource?",
+    "ground_truth": "Implementations of rate limiting vary; restrictions may be server-wide or per resource.",
+    "candidate": "They can vary by resource.",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer conveys the same fact as the ground-truth answer, which states that rate-limiting implementations can vary by resource, in addition to possibly being server-wide."
+  },
+  {
+    "slug": "learn-microsoft-com-en-us-azure-ai-services-openai-concepts-prompt-engineering",
+    "pair_index": 0,
+    "question": "What is the primary purpose of the 'Prompt engineering techniques' article?",
+    "ground_truth": "The goal of the article is to help users get started with the learning process of prompt engineering by capturing general concepts and patterns that apply to all GPT models.",
+    "candidate": "The primary purpose of the 'Prompt engineering techniques' article is to help users get started with learning how to construct effective prompts for GPT models by capturing general concepts and patterns that apply to all GPT models, providing guidance, examples, and best practices for prompt construction.",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer conveys the same factual content as the ground-truth answer, despite some differences in wording and added details."
+  },
+  {
+    "slug": "learn-microsoft-com-en-us-azure-ai-services-openai-concepts-prompt-engineering",
+    "pair_index": 1,
+    "question": "What are the three distinct roles used in the Chat Completion API for prompt components?",
+    "ground_truth": "The three distinct roles are system, user, and assistant.",
+    "candidate": "system, user, assistant",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer conveys the same facts as the ground-truth answer, listing the three distinct roles used in the Chat Completion API for prompt components."
+  },
+  {
+    "slug": "learn-microsoft-com-en-us-azure-ai-services-openai-concepts-prompt-engineering",
+    "pair_index": 2,
+    "question": "What is the term for including one or more examples of the desired behavior in a prompt?",
+    "ground_truth": "The term is 'few-shot learning.'",
+    "candidate": "few-shot learning",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer conveys the same fact as the ground-truth answer, differing only in capitalization and punctuation."
+  },
+  {
+    "slug": "learn-microsoft-com-en-us-azure-ai-services-openai-concepts-prompt-engineering",
+    "pair_index": 3,
+    "question": "What parameter controls the randomness of the model's output, and what is its recommended range?",
+    "ground_truth": "The parameter is 'temperature,' and its recommended range is between 0 and 2.",
+    "candidate": "The temperature parameter controls the randomness of the model's output, and it can be set between 0 and 2.",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer conveys the same facts as the ground-truth answer, identifying the parameter as \"temperature\" and its recommended range as between 0 and 2."
+  },
+  {
+    "slug": "learn-microsoft-com-en-us-azure-ai-services-openai-concepts-prompt-engineering",
+    "pair_index": 4,
+    "question": "Which four companies are mentioned as early customers of the Azure OpenAI GPT-4 models?",
+    "ground_truth": "The four companies are Epic Healthcare, Coursera, Coca-Cola, and other companies of all sizes.",
+    "candidate": "- Epic Healthcare\n- Coursera\n- Coca-Cola\n- Other companies of all sizes",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer lists the same companies as the ground-truth answer, despite minor formatting differences."
+  },
+  {
+    "slug": "learn-microsoft-com-en-us-azure-ai-services-openai-overview",
+    "pair_index": 0,
+    "question": "What are the two main categories of Microsoft Foundry Models in the model catalog?",
+    "ground_truth": "Foundry Models sold directly by Azure and Foundry Models from partners and community.",
+    "candidate": "Foundry Models sold directly by Azure and Foundry Models from partners and community",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer conveys the same facts as the ground-truth answer, with no differences in factual content."
+  },
+  {
+    "slug": "learn-microsoft-com-en-us-azure-ai-services-openai-overview",
+    "pair_index": 1,
+    "question": "Which regions are available for the gpt-5.4-mini model under the Global Standard deployment?",
+    "ground_truth": "East US2, Sweden Central, South Central US, and Poland Central.",
+    "candidate": "East US2, Sweden Central, South Central US, Poland Central",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer conveys the same regions as the ground-truth answer, despite minor punctuation differences."
+  },
+  {
+    "slug": "learn-microsoft-com-en-us-azure-ai-services-openai-overview",
+    "pair_index": 2,
+    "question": "What is the context window size for the gpt-5.4 model?",
+    "ground_truth": "1,050,000 tokens.",
+    "candidate": "1,050,000",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer conveys the same fact as the ground-truth answer, which is the context window size for the gpt-5.4 model."
+  },
+  {
+    "slug": "learn-microsoft-com-en-us-azure-ai-services-openai-overview",
+    "pair_index": 3,
+    "question": "What is the default value for the reasoning_effort parameter in gpt-5.1?",
+    "ground_truth": "none",
+    "candidate": "none",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer matches the ground-truth answer, both stating that the default value is \"none\"."
+  },
+  {
+    "slug": "learn-microsoft-com-en-us-azure-ai-services-openai-overview",
+    "pair_index": 4,
+    "question": "Which model series includes the sora-2 model?",
+    "ground_truth": "Video generation models.",
+    "candidate": "Sora",
+    "judge_label": "incorrect",
+    "judge_rationale": "The candidate answer does not convey the same fact as the ground-truth answer, which specifies that the sora-2 model is part of the video generation models series."
+  },
+  {
+    "slug": "stripe-com-docs-api-charges-create",
+    "pair_index": 0,
+    "question": "What is the value of the 'object' field in the charge response from the Stripe API?",
+    "ground_truth": "charge",
+    "candidate": "charge",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer matches the ground-truth answer, conveying the same factual content."
+  },
+  {
+    "slug": "stripe-com-docs-api-charges-create",
+    "pair_index": 1,
+    "question": "What is the amount specified in the charge example, and in what currency?",
+    "ground_truth": "1099 in USD",
+    "candidate": "1099, usd",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer conveys the same facts as the ground-truth answer, with the amount and currency being correctly identified as 1099 and USD, respectively."
+  },
+  {
+    "slug": "stripe-com-docs-api-charges-create",
+    "pair_index": 2,
+    "question": "What is the brand of the card used in the payment method details of the charge example?",
+    "ground_truth": "visa",
+    "candidate": "visa",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer matches the ground-truth answer, stating the brand of the card is \"visa\"."
+  },
+  {
+    "slug": "stripe-com-docs-api-charges-create",
+    "pair_index": 3,
+    "question": "What is the 'risk_level' assigned to the charge in the outcome section?",
+    "ground_truth": "normal",
+    "candidate": "normal",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer matches the ground-truth answer, conveying the same fact about the 'risk_level' assigned to the charge."
+  },
+  {
+    "slug": "stripe-com-docs-api-charges-create",
+    "pair_index": 4,
+    "question": "What is the expiration month and year of the card used in the charge example?",
+    "ground_truth": "Expiration month is 3 and year is 2024",
+    "candidate": "3, 2024",
+    "judge_label": "correct",
+    "judge_rationale": "The candidate answer conveys the same factual content as the ground-truth answer, providing both the expiration month and year."
+  }
+]
