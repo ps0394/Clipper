@@ -1,0 +1,112 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the primary purpose of the 'instructions' component in a GPT prompt?",
+      "answer": "Instructions are simply that: instructions to the model on what to do. They are the most commonly used prompt component and can range from simple to complex directives.",
+      "supporting_sentences": [
+        "Instructions are likely the most commonly used prompt component. Instructions are simply that: instructions to the model on what to do.",
+        "While simple in concept, they can be complex in practice."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the primary purpose of the 'instructions' component in a GPT prompt?",
+      "answer": "Instructions are simply that: instructions to the model on what to do. They are the most commonly used prompt component and can range from simple to complex directives.",
+      "supporting_sentences": [
+        "Instructions are likely the most commonly used prompt component. Instructions are simply that: instructions to the model on what to do.",
+        "While simple in concept, they can be complex in practice."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does 'few-shot learning' differ from 'zero-shot learning' in the context of GPT prompts?",
+      "answer": "Few-shot learning includes one or more examples of the desired behavior in the prompt, while zero-shot learning provides no examples and relies solely on the model's pre-trained knowledge.",
+      "supporting_sentences": [
+        "Successful prompts often rely on the practice of 'one-shot' or 'few-shot' learning. This refers to the inclusion of one or more examples of the desired behavior of the model, typically by including input and output pairs.",
+        "The use of prompts with no examples is sometimes referred to as 'zero-shot' learning."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does 'few-shot learning' differ from 'zero-shot learning' in the context of GPT prompts?",
+      "answer": "Few-shot learning includes one or more examples of the desired behavior in the prompt, while zero-shot learning provides no examples and relies solely on the model's pre-trained knowledge.",
+      "supporting_sentences": [
+        "Successful prompts often rely on the practice of 'one-shot' or 'few-shot' learning. This refers to the inclusion of one or more examples of the desired behavior of the model, typically by including input and output pairs.",
+        "The use of prompts with no examples is sometimes referred to as 'zero-shot' learning."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the role of 'supporting content' in a GPT prompt?",
+      "answer": "Supporting content is information that the model can utilize to influence the output, such as contextual details like the current date, user name, or preferences. It differs from primary content because it isn\u2019t the main target of the task but helps organize or refine the output.",
+      "supporting_sentences": [
+        "Supporting content is information that the model can utilize to influence the output in some way. It differs from primary content in that it isn't the main target of task, but it's typically used along with primary content.",
+        "Common examples include contextual information such as the current date, the name of the user, user preferences, and so on."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the role of 'supporting content' in a GPT prompt?",
+      "answer": "Supporting content is information that the model can utilize to influence the output, such as contextual details like the current date, user name, or preferences. It differs from primary content because it isn\u2019t the main target of the task but helps organize or refine the output.",
+      "supporting_sentences": [
+        "Supporting content is information that the model can utilize to influence the output in some way. It differs from primary content in that it isn't the main target of task, but it's typically used along with primary content.",
+        "Common examples include contextual information such as the current date, the name of the user, user preferences, and so on."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the recommended approach for structuring a prompt to improve output quality when using GPT models?",
+      "answer": "The recommended approach is to start with clear instructions at the beginning of the prompt, before sharing additional contextual information or examples, as this can help produce higher-quality outputs.",
+      "supporting_sentences": [
+        "Start with clear instructions. The sequence information appears in the prompt matters. This is because GPT style models are built in a certain way that defines how they process the input.",
+        "Our research suggests that telling the model the task you want it to do at the beginning of the prompt, before sharing additional contextual information or examples, can help produce higher-quality outputs."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the recommended approach for structuring a prompt to improve output quality when using GPT models?",
+      "answer": "The recommended approach is to start with clear instructions at the beginning of the prompt, before sharing additional contextual information or examples, as this can help produce higher-quality outputs.",
+      "supporting_sentences": [
+        "Start with clear instructions. The sequence information appears in the prompt matters. This is because GPT style models are built in a certain way that defines how they process the input.",
+        "Our research suggests that telling the model the task you want it to do at the beginning of the prompt, before sharing additional contextual information or examples, can help produce higher-quality outputs."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How do the 'temperature' and 'top_p' parameters affect the output of a GPT model?",
+      "answer": "The 'temperature' parameter controls the randomness of the output: a higher value (e.g., 0.7) makes the output more random and divergent, while a lower value (e.g., 0.2) makes it more focused and concrete. The 'top_p' parameter also controls randomness but in a different way, and it is recommended to alter only one of these parameters at a time.",
+      "supporting_sentences": [
+        "Changing the temperature parameter changes the output of the model. The temperature parameter can be set between 0 and 2. A higher value, for example 0.7 makes the output more random and produce more divergent responses, while a lower value, like. 0.2, makes the output more focused and concrete.",
+        "Top_probability is another parameter and is similar to Temperature in that it also controls the randomness of the model response, but it does so in a different way. The general recommendation is to alter one of these two parameters at a time, not both."
+      ]
+    },
+    "edited_pair": {
+      "question": "How do the 'temperature' and 'top_p' parameters affect the output of a GPT model?",
+      "answer": "The 'temperature' parameter controls the randomness of the output: a higher value (e.g., 0.7) makes the output more random and divergent, while a lower value (e.g., 0.2) makes it more focused and concrete. The 'top_p' parameter also controls randomness but in a different way, and it is recommended to alter only one of these parameters at a time.",
+      "supporting_sentences": [
+        "Changing the temperature parameter changes the output of the model. The temperature parameter can be set between 0 and 2. A higher value, for example 0.7 makes the output more random and produce more divergent responses, while a lower value, like. 0.2, makes the output more focused and concrete.",
+        "Top_probability is another parameter and is similar to Temperature in that it also controls the randomness of the model response, but it does so in a different way. The general recommendation is to alter one of these two parameters at a time, not both."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

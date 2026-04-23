@@ -1,0 +1,118 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are five types of resources or operations that can enable cross-origin HTTP requests using the Cross-Origin Resource Sharing (CORS) standard?",
+      "answer": "Invocations of `fetch()` or `XMLHttpRequest`, Web Fonts (for cross-domain font usage in `@font-face` within CSS), WebGL textures, images/video frames drawn to a canvas using `drawImage()`, and CSS Shapes from images.",
+      "supporting_sentences": [
+        "This cross-origin sharing standard can enable cross-origin HTTP requests for:",
+        "Invocations of fetch() or XMLHttpRequest, as discussed above.",
+        "Web Fonts (for cross-domain font usage in @font-face within CSS), as described in the font fetching requirements, so that servers can deploy TrueType fonts that can only be loaded cross-origin and used by websites that are permitted to do so.",
+        "WebGL textures.",
+        "Images/video frames drawn to a canvas using drawImage().",
+        "CSS Shapes from images."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are five types of resources or operations that can enable cross-origin HTTP requests using the Cross-Origin Resource Sharing (CORS) standard?",
+      "answer": "Invocations of `fetch()` or `XMLHttpRequest`, Web Fonts (for cross-domain font usage in `@font-face` within CSS), WebGL textures, images/video frames drawn to a canvas using `drawImage()`, and CSS Shapes from images.",
+      "supporting_sentences": [
+        "This cross-origin sharing standard can enable cross-origin HTTP requests for:",
+        "Invocations of fetch() or XMLHttpRequest, as discussed above.",
+        "Web Fonts (for cross-domain font usage in @font-face within CSS), as described in the font fetching requirements, so that servers can deploy TrueType fonts that can only be loaded cross-origin and used by websites that are permitted to do so.",
+        "WebGL textures.",
+        "Images/video frames drawn to a canvas using drawImage().",
+        "CSS Shapes from images."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What HTTP request method is used by browsers to 'preflight' a CORS request before sending the actual request?",
+      "answer": "The HTTP `OPTIONS` request method is used to preflight a CORS request.",
+      "supporting_sentences": [
+        "Additionally, for HTTP request methods that can cause side-effects on server data (in particular, HTTP methods other than GET, or POST with certain MIME types), the specification mandates that browsers \"preflight\" the request, soliciting supported methods from the server with the HTTP OPTIONS request method, and then, upon \"approval\" from the server, sending the actual request."
+      ]
+    },
+    "edited_pair": {
+      "question": "What HTTP request method is used by browsers to 'preflight' a CORS request before sending the actual request?",
+      "answer": "The HTTP `OPTIONS` request method is used to preflight a CORS request.",
+      "supporting_sentences": [
+        "Additionally, for HTTP request methods that can cause side-effects on server data (in particular, HTTP methods other than GET, or POST with certain MIME types), the specification mandates that browsers \"preflight\" the request, soliciting supported methods from the server with the HTTP OPTIONS request method, and then, upon \"approval\" from the server, sending the actual request."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What header must a server include in its response to allow a credentialed CORS request to succeed, and what value must it have?",
+      "answer": "The server must include the `Access-Control-Allow-Credentials` header with the value `true`.",
+      "supporting_sentences": [
+        "To ask for a fetch() request to include credentials, set the credentials option to \"include\".",
+        "the browser will reject any response that does not have the Access-Control-Allow-Credentials header set to true, and not make the response available to the invoking web content."
+      ]
+    },
+    "edited_pair": {
+      "question": "What header must a server include in its response to allow a credentialed CORS request to succeed, and what value must it have?",
+      "answer": "The server must include the `Access-Control-Allow-Credentials` header with the value `true`.",
+      "supporting_sentences": [
+        "To ask for a fetch() request to include credentials, set the credentials option to \"include\".",
+        "the browser will reject any response that does not have the Access-Control-Allow-Credentials header set to true, and not make the response available to the invoking web content."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the conditions that define a 'simple request' in the context of CORS?",
+      "answer": "A simple request meets all the following conditions: (1) It uses one of the allowed methods (GET, HEAD, or POST), (2) It only includes CORS-safelisted request headers, and (3) The Content-Type header (if present) is one of the allowed values (application/x-www-form-urlencoded, multipart/form-data, or text/plain).",
+      "supporting_sentences": [
+        "A simple request is one that meets all the following conditions:",
+        "Note: WebKit Nightly and Safari Technology Preview place additional restrictions on the values allowed in the Accept, Accept-Language, and Content-Language headers. If any of those headers have \"nonstandard\" values, WebKit/Safari does not consider the request to be a \"simple request\"."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the conditions that define a 'simple request' in the context of CORS?",
+      "answer": "A simple request meets all the following conditions: (1) It uses one of the allowed methods (GET, HEAD, or POST), (2) It only includes CORS-safelisted request headers, and (3) The Content-Type header (if present) is one of the allowed values (application/x-www-form-urlencoded, multipart/form-data, or text/plain).",
+      "supporting_sentences": [
+        "A simple request is one that meets all the following conditions:",
+        "Note: WebKit Nightly and Safari Technology Preview place additional restrictions on the values allowed in the Accept, Accept-Language, and Content-Language headers. If any of those headers have \"nonstandard\" values, WebKit/Safari does not consider the request to be a \"simple request\"."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens if a server responds to a credentialed CORS request with the `Access-Control-Allow-Origin` header set to the wildcard `*`?",
+      "answer": "The browser will block access to the response and report a CORS error in the devtools console.",
+      "supporting_sentences": [
+        "If a request includes a credential (most commonly a Cookie header) and the response includes an Access-Control-Allow-Origin: * header (that is, with the wildcard), the browser will block access to the response, and report a CORS error in the devtools console.",
+        "When responding to a credentialed requests request, the server must specify an origin in the value of the Access-Control-Allow-Origin header, instead of specifying the * wildcard."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens if a server responds to a credentialed CORS request with the `Access-Control-Allow-Origin` header set to the wildcard `*`?",
+      "answer": "The browser will block access to the response and report a CORS error in the devtools console.",
+      "supporting_sentences": [
+        "If a request includes a credential (most commonly a Cookie header) and the response includes an Access-Control-Allow-Origin: * header (that is, with the wildcard), the browser will block access to the response, and report a CORS error in the devtools console.",
+        "When responding to a credentialed requests request, the server must specify an origin in the value of the Access-Control-Allow-Origin header, instead of specifying the * wildcard."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]
