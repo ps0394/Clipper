@@ -53,6 +53,7 @@ def _pilot(args: argparse.Namespace) -> int:
         reviewer_id=args.reviewer_id,
         use_secondary=bool(args.secondary_scorer),
         grader_mode=args.grader,
+        generator_prompt=getattr(args, "generator_prompt", "generator"),
     )
 
     print()

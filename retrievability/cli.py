@@ -265,6 +265,13 @@ def main():
         help='Grader: llm (Llama 3.3 as judge, semantically-tolerant; default) '
              'or substring (fast heuristic, false-negatives on paraphrase)',
     )
+    phase5_pilot_parser.add_argument(
+        '--generator-prompt',
+        default='generator',
+        help='Name of the generator prompt template under retrievability/phase5/prompts/ '
+             '(default: generator). Use e.g. "generator-hard" to run with a harder-Q/A '
+             'prompt without changing the baseline.',
+    )
 
     phase5_rejudge_parser = phase5_sub.add_parser(
         'rejudge',

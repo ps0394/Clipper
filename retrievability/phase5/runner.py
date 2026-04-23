@@ -213,6 +213,7 @@ def run_pilot(
     reviewer_id: str = "auto",
     use_secondary: bool = False,
     grader_mode: str = "substring",  # "substring" | "llm"
+    generator_prompt: str = "generator",
 ) -> List[PilotPageSummary]:
     out_dir.mkdir(parents=True, exist_ok=True)
     started_at = datetime.now(timezone.utc).isoformat()
@@ -367,6 +368,7 @@ def run_pilot(
             profile=profile,
             document_text=gen_text,
             out_dir=page_dir,
+            prompt_name=generator_prompt,
         )
         print(f"    generated {len(pairs)} pairs")
 
@@ -482,6 +484,7 @@ def run_pilot(
         "started_at": started_at,
         "finished_at": datetime.now(timezone.utc).isoformat(),
         "generator": config.generator_deployment,
+        "generator_prompt": generator_prompt,
         "scorer_primary": config.scorer_primary_deployment,
         "scorer_secondary": config.scorer_secondary_deployment if use_secondary else None,
         "grader_mode": grader_mode,

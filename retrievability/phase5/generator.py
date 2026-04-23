@@ -29,9 +29,16 @@ def build_generator_prompt(
     url: str,
     profile: str,
     document_text: str,
+    prompt_name: str = "generator",
 ) -> str:
-    """Render the generator prompt for a single page."""
-    template = load_template("generator")
+    """Render the generator prompt for a single page.
+
+    ``prompt_name`` selects which template under ``phase5/prompts/`` to
+    load (default: ``generator``). Use e.g. ``generator-hard`` to swap
+    in a harder-Q/A prompt for a follow-up corpus without changing the
+    baseline prompt.
+    """
+    template = load_template(prompt_name)
     return render(
         template,
         {
@@ -120,15 +127,23 @@ def generate_for_page(
     profile: str,
     document_text: str,
     out_dir: Path,
+    prompt_name: str = "generator",
 ) -> List[QAPair]:
     """Run the generator for one page and persist prompt + raw output.
 
     Writes `generator.prompt.txt` and `generator.raw.json` under
     `out_dir`. Returns the parsed QAPair list.
+
+    ``prompt_name`` selects which template under ``phase5/prompts/`` to
+    load.
     """
     out_dir.mkdir(parents=True, exist_ok=True)
     prompt = build_generator_prompt(
-        title=title, url=url, profile=profile, document_text=document_text
+        title=title,
+        url=url,
+        profile=profile,
+        document_text=document_text,
+        prompt_name=prompt_name,
     )
     (out_dir / "generator.prompt.txt").write_text(prompt, encoding="utf-8")
     raw = client.complete(prompt)
