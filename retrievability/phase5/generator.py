@@ -7,8 +7,9 @@ the pilot runner once credentials are available.
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
-from typing import List, Protocol
+from typing import List, Optional, Protocol
 
 from .schemas import QAPair
 from .templates import load_template, render
@@ -45,28 +46,70 @@ def build_generator_prompt(
 def parse_generator_output(raw: str) -> List[QAPair]:
     """Parse the JSON-array response from the generator into QAPair objects.
 
-    Tolerates leading/trailing whitespace and a surrounding ```json ... ```
-    fence. Mistral Large 3 wraps its output in a code block despite the
-    prompt instruction to the contrary; stripping is cheaper than
-    failing and re-prompting.
+    Tolerates (a) leading/trailing whitespace, (b) a surrounding
+    ```json ... ``` fence, and (c) multiple fenced code blocks — Mistral
+    Large 3 sometimes emits a first attempt, realizes it missed the
+    prompt constraint (e.g. "exactly 5 pairs"), and appends a
+    "Correction: ..." block with a second JSON array. In that case we
+    take the **last** valid JSON array, which is the model's corrected
+    output.
     """
-    s = raw.strip()
-    if s.startswith("```"):
-        # drop opening fence (``` or ```json) and closing fence
-        first_newline = s.find("\n")
-        if first_newline != -1:
-            s = s[first_newline + 1 :]
-        if s.rstrip().endswith("```"):
-            s = s.rstrip()[: -3].rstrip()
-    data = json.loads(s)
-    if not isinstance(data, list):
-        raise ValueError("Generator output is not a JSON array")
-    pairs: List[QAPair] = []
-    for i, obj in enumerate(data):
-        if not isinstance(obj, dict):
-            raise ValueError(f"Generator output item {i} is not an object")
-        pairs.append(QAPair.from_dict(obj))
-    return pairs
+    # Collect every fenced code block. If none, fall back to the whole string.
+    candidates = _extract_fenced_json_blocks(raw)
+    if not candidates:
+        candidates = [raw.strip()]
+
+    last_err: Optional[Exception] = None
+    # Iterate from last to first so a corrected second array wins over the
+    # first attempt. Also use raw_decode as a fallback for trailing garbage.
+    for snippet in reversed(candidates):
+        try:
+            data = json.loads(snippet)
+        except json.JSONDecodeError as exc:
+            # Tolerate trailing junk after the array ends.
+            try:
+                data, _ = json.JSONDecoder().raw_decode(snippet)
+            except json.JSONDecodeError as exc2:
+                last_err = exc2
+                continue
+        if not isinstance(data, list):
+            last_err = ValueError("Generator output is not a JSON array")
+            continue
+        pairs: List[QAPair] = []
+        ok = True
+        for i, obj in enumerate(data):
+            if not isinstance(obj, dict):
+                ok = False
+                last_err = ValueError(f"Generator output item {i} is not an object")
+                break
+            pairs.append(QAPair.from_dict(obj))
+        if ok:
+            return pairs
+
+    raise last_err or ValueError("Generator produced no parseable JSON array")
+
+
+_FENCE_RE = re.compile(r"```(?:json)?\s*\n?(.*?)\n?```", re.DOTALL | re.IGNORECASE)
+
+
+def _extract_fenced_json_blocks(text: str) -> List[str]:
+    """Return the contents of every ```json ... ``` fence in ``text``.
+
+    If the text has no fences at all, returns []. If a single fence has no
+    closing ``` (model ran out of tokens), returns the text after the
+    opening fence with whitespace stripped.
+    """
+    matches = _FENCE_RE.findall(text)
+    if matches:
+        return [m.strip() for m in matches if m.strip()]
+    # Unclosed fence fallback.
+    stripped = text.strip()
+    if stripped.startswith("```"):
+        # Drop opening fence marker line.
+        nl = stripped.find("\n")
+        if nl >= 0:
+            return [stripped[nl + 1 :].strip()]
+    return []
 
 
 def generate_for_page(
