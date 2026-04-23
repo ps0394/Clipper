@@ -1,0 +1,59 @@
+# Phase 5 N=43 corpus (option 2: rebalanced with tier-2 floor)
+# Format: url<TAB>profile<TAB>vendor
+# Tier 1 = passes raw httpx (server-rendered)
+# Tier 2 = passes only rendered (Playwright) — JS-required, the headline finding
+
+# --- article ---
+https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models	article	learn  # tier1
+https://help.github.com/en/github/site-policy/github-terms-of-service	article	github  # tier1
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html	article	aws  # tier1
+https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching	article	anthropic  # tier1
+https://docs.anthropic.com/en/release-notes/api	article	anthropic  # tier1
+https://docs.snowflake.com/en/user-guide/data-load-overview	article	snowflake  # tier1
+https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS	article	mdn  # tier1
+https://docs.perplexity.ai/guides/prompt-guide	article	perplexity  # tier1
+https://docs.perplexity.ai/guides/search-domain-filter-guide	article	perplexity  # tier1
+https://en.wikipedia.org/wiki/Cloud_computing	article	wikipedia  # tier2
+https://platform.openai.com/docs/guides/function-calling	article	openai  # tier2
+https://en.wikipedia.org/wiki/Large_language_model	article	wikipedia  # tier2
+
+# --- reference ---
+https://docs.python.org/3/library/os.html	reference	python  # tier1
+https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html	reference	aws  # tier1
+https://nodejs.org/api/fs.html	reference	nodejs  # tier1
+https://www.postgresql.org/docs/current/sql-select.html	reference	postgres  # tier1
+https://docs.docker.com/engine/reference/commandline/run/	reference	docker  # tier1
+https://learn.microsoft.com/en-us/dotnet/api/system.string	reference	learn  # tier1
+https://docs.github.com/en/rest/repos/repos	reference	github  # tier1
+https://kubernetes.io/docs/reference/kubectl/	reference	k8s  # tier1
+https://docs.python.org/3/library/functions.html	reference	python  # tier1
+https://docs.snowflake.com/en/sql-reference/functions/count	reference	snowflake  # tier1
+https://docs.anthropic.com/en/docs/about-claude/models/overview	reference	anthropic  # tier1
+https://docs.stripe.com/api/charges	reference	stripe  # tier1
+
+# --- tutorial ---
+https://docs.python.org/3/tutorial/introduction.html	tutorial	python  # tier1
+https://developer.mozilla.org/en-US/docs/Learn/Forms/Your_first_form	tutorial	mdn  # tier1
+https://kubernetes.io/docs/tutorials/hello-minikube/	tutorial	k8s  # tier1
+https://docs.github.com/en/get-started/start-your-journey/hello-world	tutorial	github  # tier1
+https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-prepare-app	tutorial	learn  # tier1
+https://docs.anthropic.com/en/api/getting-started	tutorial	anthropic  # tier1
+https://docs.docker.com/get-started/02_our_app/	tutorial	docker  # tier1
+https://docs.stripe.com/payments/accept-a-payment?platform=web	tutorial	stripe  # tier1
+https://platform.openai.com/docs/quickstart	tutorial	openai  # tier2
+https://docs.stripe.com/payments/quickstart	tutorial	stripe  # tier2
+
+# --- landing ---
+https://docs.github.com/en/get-started/learning-about-github/githubs-plans	landing	github  # tier1
+https://nodejs.org/en/about	landing	nodejs  # tier1
+https://docs.anthropic.com/en/docs/welcome	landing	anthropic  # tier1
+https://docs.docker.com/get-started/	landing	docker  # tier2
+
+# --- faq ---
+https://docs.python.org/3/faq/programming.html	faq	python  # tier1
+https://learn.microsoft.com/en-us/azure/aks/faq	faq	learn  # tier1
+https://docs.python.org/3/faq/general.html	faq	python  # tier1
+
+# --- sample ---
+https://docs.snowflake.com/en/user-guide/sample-data-using	sample	snowflake  # tier1
+https://cloud.google.com/bigquery/docs/samples	sample	gcp  # tier2

@@ -1,0 +1,107 @@
+# Phase 5 corpus candidates (target N=60, draft ~75 to cull).
+#
+# Columns: url<TAB>profile-hint<TAB>vendor
+# Profile hints: article | reference | landing | tutorial | faq | sample
+# Probe status is determined by scripts/phase5-probe-urls.py (fetch OK + >=1500 chars extracted).
+
+# === Trimmed golden (11 kept from 22) ===
+https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models	article	learn
+https://learn.microsoft.com/en-us/azure/aks/faq	faq	learn
+https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-prepare-app	tutorial	learn
+https://learn.microsoft.com/en-us/azure/storage/common/storage-samples	sample	learn
+https://learn.microsoft.com/en-us/dotnet/api/system.string	reference	learn
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API	article	mdn
+https://cloud.google.com/storage/docs/introduction	article	gcp
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html	article	aws
+https://docs.stripe.com/api/charges	reference	stripe
+https://en.wikipedia.org/wiki/Cloud_computing	article	wikipedia
+https://mintlify.com/docs/quickstart	tutorial	mintlify
+
+# === OpenAI (8) ===
+https://platform.openai.com/docs/overview	landing	openai
+https://platform.openai.com/docs/quickstart	tutorial	openai
+https://platform.openai.com/docs/api-reference/chat	reference	openai
+https://platform.openai.com/docs/models	reference	openai
+https://platform.openai.com/docs/guides/prompt-engineering	article	openai
+https://platform.openai.com/docs/guides/function-calling	article	openai
+https://platform.openai.com/docs/guides/text-generation	article	openai
+https://platform.openai.com/docs/guides/embeddings	article	openai
+
+# === Anthropic / Claude (8) ===
+https://docs.anthropic.com/en/docs/welcome	landing	anthropic
+https://docs.anthropic.com/en/api/getting-started	tutorial	anthropic
+https://docs.anthropic.com/en/api/messages	reference	anthropic
+https://docs.anthropic.com/en/docs/about-claude/models/overview	reference	anthropic
+https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview	article	anthropic
+https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching	article	anthropic
+https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/overview	article	anthropic
+https://docs.anthropic.com/en/release-notes/api	article	anthropic
+
+# === Perplexity (8) ===
+https://docs.perplexity.ai/home	landing	perplexity
+https://docs.perplexity.ai/getting-started/overview	article	perplexity
+https://docs.perplexity.ai/getting-started/quickstart	tutorial	perplexity
+https://docs.perplexity.ai/api-reference/chat-completions-post	reference	perplexity
+https://docs.perplexity.ai/guides/prompt-guide	article	perplexity
+https://docs.perplexity.ai/guides/search-domain-filter-guide	article	perplexity
+https://docs.perplexity.ai/models/model-cards	reference	perplexity
+https://docs.perplexity.ai/faq/faq	faq	perplexity
+
+# === Snowflake (8) ===
+https://docs.snowflake.com/en/user-guide-intro	landing	snowflake
+https://docs.snowflake.com/en/sql-reference/sql/select	reference	snowflake
+https://docs.snowflake.com/en/sql-reference/functions/count	reference	snowflake
+https://docs.snowflake.com/en/user-guide/tutorials/snowflake-in-20-minutes	tutorial	snowflake
+https://docs.snowflake.com/en/user-guide/intro-key-concepts	article	snowflake
+https://docs.snowflake.com/en/user-guide/data-load-overview	article	snowflake
+https://docs.snowflake.com/en/user-guide/sample-data-using	sample	snowflake
+https://docs.snowflake.com/en/user-guide/ui-snowsight	article	snowflake
+
+# === Upsun (8) ===
+https://docs.upsun.com/	landing	upsun
+https://docs.upsun.com/get-started/here.html	tutorial	upsun
+https://docs.upsun.com/get-started/deploy/own-code.html	tutorial	upsun
+https://docs.upsun.com/learn/overview/application.html	article	upsun
+https://docs.upsun.com/administration/cli.html	reference	upsun
+https://docs.upsun.com/configuration/app.html	reference	upsun
+https://docs.upsun.com/languages/python.html	article	upsun
+https://docs.upsun.com/increase-observability/integrate-observability.html	article	upsun
+
+# === Supplemental (Python, MDN, Stripe, AWS, GCP) — fill profile gaps ===
+https://docs.python.org/3/tutorial/introduction.html	tutorial	python
+https://docs.python.org/3/library/functions.html	reference	python
+https://docs.python.org/3/library/os.html	reference	python
+https://docs.python.org/3/faq/general.html	faq	python
+https://docs.python.org/3/faq/programming.html	faq	python
+https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS	article	mdn
+https://developer.mozilla.org/en-US/docs/Learn/Forms/Your_first_form	tutorial	mdn
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide	article	mdn
+https://docs.stripe.com/payments/quickstart	tutorial	stripe
+https://docs.stripe.com/api/errors	reference	stripe
+https://docs.stripe.com/payments/accept-a-payment?platform=web	tutorial	stripe
+https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html	reference	aws
+https://cloud.google.com/storage/docs/samples	sample	gcp
+https://cloud.google.com/bigquery/docs/samples	sample	gcp
+
+# === Extra fill for thin profiles (faq, sample, landing) ===
+https://docs.github.com/en/get-started/learning-about-github/githubs-plans	landing	github
+https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions	article	github
+https://docs.github.com/en/rest/repos/repos	reference	github
+https://docs.github.com/en/get-started/start-your-journey/hello-world	tutorial	github
+https://help.github.com/en/github/site-policy/github-terms-of-service	article	github
+https://kubernetes.io/docs/home/	landing	k8s
+https://kubernetes.io/docs/concepts/overview/	article	k8s
+https://kubernetes.io/docs/tutorials/hello-minikube/	tutorial	k8s
+https://kubernetes.io/docs/reference/kubectl/	reference	k8s
+https://nodejs.org/en/learn/getting-started/introduction-to-nodejs	article	nodejs
+https://nodejs.org/api/fs.html	reference	nodejs
+https://nodejs.org/en/about	landing	nodejs
+https://www.postgresql.org/docs/current/tutorial-start.html	tutorial	postgres
+https://www.postgresql.org/docs/current/sql-select.html	reference	postgres
+https://www.postgresql.org/docs/current/intro-whatis.html	article	postgres
+https://docs.docker.com/get-started/	landing	docker
+https://docs.docker.com/engine/reference/commandline/run/	reference	docker
+https://docs.docker.com/get-started/02_our_app/	tutorial	docker
+https://en.wikipedia.org/wiki/Retrieval-augmented_generation	article	wikipedia
+https://en.wikipedia.org/wiki/Large_language_model	article	wikipedia
+https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)	article	wikipedia
