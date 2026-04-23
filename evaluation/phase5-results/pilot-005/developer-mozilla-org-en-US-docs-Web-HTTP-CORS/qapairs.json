@@ -1,0 +1,46 @@
+[
+  {
+    "question": "What are five types of resources or operations that can enable cross-origin HTTP requests using the CORS standard?",
+    "answer": "Invocations of fetch() or XMLHttpRequest, Web Fonts (for cross-domain font usage in @font-face within CSS), WebGL textures, images/video frames drawn to a canvas using drawImage(), and CSS Shapes from images.",
+    "supporting_sentences": [
+      "This cross-origin sharing standard can enable cross-origin HTTP requests for:",
+      "Invocations of fetch() or XMLHttpRequest, as discussed above.",
+      "Web Fonts (for cross-domain font usage in @font-face within CSS), as described in the font fetching requirements, so that servers can deploy TrueType fonts that can only be loaded cross-origin and used by websites that are permitted to do so.",
+      "WebGL textures.",
+      "Images/video frames drawn to a canvas using drawImage().",
+      "CSS Shapes from images."
+    ]
+  },
+  {
+    "question": "What HTTP header does a server use to specify which origins are permitted to read a resource in a CORS-enabled response?",
+    "answer": "The server uses the `Access-Control-Allow-Origin` header.",
+    "supporting_sentences": [
+      "The Cross-Origin Resource Sharing standard works by adding new HTTP headers that let servers describe which origins are permitted to read that information from a web browser.",
+      "In response, the server returns an Access-Control-Allow-Origin header with Access-Control-Allow-Origin: *, which means that the resource can be accessed by any origin."
+    ]
+  },
+  {
+    "question": "Under what condition must a server specify an explicit origin instead of the wildcard (*) in the `Access-Control-Allow-Origin` header?",
+    "answer": "When responding to a credentialed request, the server must specify an explicit origin instead of the wildcard (*).",
+    "supporting_sentences": [
+      "When responding to a credentialed requests request, the server must specify an origin in the value of the Access-Control-Allow-Origin header, instead of specifying the * wildcard.",
+      "The server must not specify the * wildcard for the Access-Control-Allow-Origin response-header value, but must instead specify an explicit origin; for example: Access-Control-Allow-Origin: https://example.com"
+    ]
+  },
+  {
+    "question": "What HTTP method does the browser use to send a preflight request in CORS?",
+    "answer": "The browser uses the `OPTIONS` HTTP method to send a preflight request.",
+    "supporting_sentences": [
+      "Additionally, for HTTP request methods that can cause side-effects on server data (in particular, HTTP methods other than GET, or POST with certain MIME types), the specification mandates that browsers \"preflight\" the request, soliciting supported methods from the server with the HTTP OPTIONS request method, and then, upon \"approval\" from the server, sending the actual request.",
+      "The first exchange above represents the preflight request with the OPTIONS method."
+    ]
+  },
+  {
+    "question": "What is the purpose of the `Access-Control-Max-Age` header in a CORS preflight response?",
+    "answer": "The `Access-Control-Max-Age` header indicates how long the results of a preflight request can be cached without sending another preflight request.",
+    "supporting_sentences": [
+      "Finally, Access-Control-Max-Age gives the value in seconds for how long the response to the preflight request can be cached without sending another preflight request.",
+      "The Access-Control-Max-Age header indicates how long the results of a preflight request can be cached."
+    ]
+  }
+]

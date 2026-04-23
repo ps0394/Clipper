@@ -30,15 +30,17 @@ from __future__ import annotations
 import json
 import re
 import time
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 
 import httpx
 from bs4 import BeautifulSoup
 from readability import Document  # readability-lxml
 
+from ..access_gate_evaluator import AccessGateEvaluator
+from ..parse import _parse_html_file  # single-file parse helper; internal but stable
 from .clients import FoundryConfig, FoundryGeneratorClient, FoundryScoringClient
 from .generator import generate_for_page
 from .grader import grade_page, page_accuracy, persist_grades
@@ -71,6 +73,12 @@ class PilotPageSummary:
     accuracy: float
     tokens_in_total: int
     tokens_out_total: int
+    # Clipper pillar scoring (filled when the inline scorer runs per page).
+    # Optional so pilot runs still succeed if scoring fails or is skipped.
+    parseability_score: Optional[float] = None
+    universal_score: Optional[float] = None
+    content_type: Optional[str] = None
+    component_scores: Dict[str, float] = field(default_factory=dict)
 
 
 def _slugify(url: str) -> str:
@@ -98,6 +106,37 @@ def _extract(html: str) -> tuple[str, str]:
     if len(text) > MAX_DOCUMENT_CHARS:
         text = text[:MAX_DOCUMENT_CHARS] + "\n\n[document truncated for prompt size]"
     return title, text
+
+
+def _score_with_clipper(
+    *, page_html_path: Path, url: str, page_dir: Path
+) -> Optional[Dict[str, Any]]:
+    """Run Clipper's six-pillar scoring on a snapshotted page.
+
+    Uses the same single-file parse + AccessGateEvaluator path as `main.py express`.
+    Writes the full ScoreResult to `<page_dir>/clipper-scores.json` and returns a
+    compact dict ({parseability_score, universal_score, content_type,
+    component_scores}) for the per-page pilot summary. Returns None on any
+    failure so Clipper's browser/axe issues cannot kill the LLM pipeline.
+    """
+    try:
+        parse_result = _parse_html_file(page_html_path)
+        parse_data = parse_result.to_dict()
+        evaluator = AccessGateEvaluator()
+        score_result = evaluator.evaluate_access_gate(parse_data, url=url)
+        full = score_result.to_dict()
+        (page_dir / "clipper-scores.json").write_text(
+            json.dumps(full, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
+        return {
+            "parseability_score": full.get("parseability_score"),
+            "universal_score": full.get("universal_score"),
+            "content_type": full.get("content_type"),
+            "component_scores": full.get("component_scores", {}),
+        }
+    except Exception as exc:  # pragma: no cover - defensive
+        print(f"  [WARN] Clipper scoring failed: {type(exc).__name__}: {exc}")
+        return None
 
 
 def _auto_accept_all(pairs: List[QAPair], reviewer_id: str) -> List[ReviewRecord]:
@@ -184,6 +223,20 @@ def run_pilot(
             print(f"  [SKIP] extracted document below {MIN_DOCUMENT_CHARS}-char minimum")
             continue
 
+        print(f"  scoring (clipper)")
+        clipper = _score_with_clipper(
+            page_html_path=page_dir / "page.html", url=url, page_dir=page_dir
+        )
+        if clipper is not None:
+            ps = clipper.get("parseability_score")
+            us = clipper.get("universal_score")
+            ps_str = f"{ps:.1f}" if ps is not None else "n/a"
+            us_str = f"{us:.1f}" if us is not None else "n/a"
+            print(
+                f"    parseability={ps_str}  universal={us_str}  "
+                f"profile={clipper.get('content_type')}"
+            )
+
         print(f"  generating Q/A (Mistral)")
         pairs = generate_for_page(
             client=generator,
@@ -253,6 +306,10 @@ def run_pilot(
             accuracy=headline_accuracy,
             tokens_in_total=tokens_in,
             tokens_out_total=tokens_out,
+            parseability_score=clipper.get("parseability_score") if clipper else None,
+            universal_score=clipper.get("universal_score") if clipper else None,
+            content_type=clipper.get("content_type") if clipper else None,
+            component_scores=clipper.get("component_scores", {}) if clipper else {},
         )
         (page_dir / "summary.json").write_text(json.dumps(asdict(summary), indent=2), encoding="utf-8")
         summaries.append(summary)

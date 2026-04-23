@@ -1,0 +1,40 @@
+[
+  {
+    "question": "Which models are mentioned as not being suitable for the prompt engineering techniques described in the document?",
+    "answer": "Reasoning models like gpt-5 and o-series models.",
+    "supporting_sentences": [
+      "These techniques aren't recommended for reasoning models like gpt-5 and o-series models."
+    ]
+  },
+  {
+    "question": "What are the three distinct roles used in the Chat Completion API for prompt components?",
+    "answer": "System, user, and assistant.",
+    "supporting_sentences": [
+      "With the Chat Completion API there are distinct sections of the prompt that are sent to the API in the form of an array of dictionaries with associated roles: system, user, and assistant."
+    ]
+  },
+  {
+    "question": "What is the purpose of 'few-shot learning' in prompt engineering?",
+    "answer": "To include one or more examples of the desired behavior of the model to better condition it for the current inference.",
+    "supporting_sentences": [
+      "Successful prompts often rely on the practice of 'one-shot' or 'few-shot' learning. This refers to the inclusion of one or more examples of the desired behavior of the model, typically by including input and output pairs.",
+      "This isn't learning in the sense that the model is permanently changed, but rather that the examples better condition the model to respond as desired for only the current inference."
+    ]
+  },
+  {
+    "question": "What is the recommended approach for structuring prompts to improve output quality when using GPT models?",
+    "answer": "Start with clear instructions at the beginning of the prompt before sharing additional contextual information or examples.",
+    "supporting_sentences": [
+      "Our research suggests that telling the model the task you want it to do at the beginning of the prompt, before sharing additional contextual information or examples, can help produce higher-quality outputs."
+    ]
+  },
+  {
+    "question": "What are the two parameters mentioned that control the randomness of the model's output?",
+    "answer": "Temperature and Top_p.",
+    "supporting_sentences": [
+      "Temperature and Top_p parameters",
+      "The temperature parameter can be set between 0 and 2. A higher value, for example 0.7 makes the output more random and produce more divergent responses, while a lower value, like. 0.2, makes the output more focused and concrete.",
+      "Top_probability is another parameter and is similar to Temperature in that it also controls the randomness of the model response, but it does so in a different way."
+    ]
+  }
+]
