@@ -238,6 +238,18 @@ def run_pilot(
         slug = _slugify(url)
         page_dir = out_dir / slug
         page_dir.mkdir(parents=True, exist_ok=True)
+        summary_path = page_dir / "summary.json"
+        # Resume: if this page already has a completed summary.json from a
+        # previous run, load it back into `summaries` and move on. Lets us
+        # recover from mid-run crashes without re-burning tokens or time.
+        if summary_path.is_file():
+            try:
+                cached = json.loads(summary_path.read_text(encoding="utf-8"))
+                summaries.append(PilotPageSummary(**cached))
+                print(f"\n=== {slug} ({profile}) === [RESUME — cached summary]")
+                continue
+            except (json.JSONDecodeError, TypeError) as exc:
+                print(f"\n=== {slug} ({profile}) === [cache invalid, re-running: {exc}]")
         print(f"\n=== {slug} ({profile}) ===")
         t0 = time.time()
 

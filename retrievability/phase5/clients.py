@@ -114,7 +114,40 @@ class FoundryGeneratorClient:
             temperature=self._temperature,
             max_tokens=4096,
         )
-        return response.choices[0].message.content or ""
+        return _coerce_content_to_text(response.choices[0].message.content or "")
+
+
+def _coerce_content_to_text(content: object) -> str:
+    """Normalize an Azure AI Inference message.content value to a plain string.
+
+    GPT-4.1 via Azure AI Foundry usually returns ``content`` as a string, but
+    certain responses (e.g. when the model emits structured parts or when the
+    deployment is configured with a content-parts response format) come back
+    as a list of ``{"type": "text", "text": "..."}`` dicts or SDK objects.
+    Upstream grader/scorer code assumes a string, so coerce here.
+    """
+    if content is None:
+        return ""
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        parts: list[str] = []
+        for item in content:
+            if isinstance(item, str):
+                parts.append(item)
+                continue
+            # Handle both dicts ({"type": "text", "text": "..."}) and SDK
+            # objects that expose a ``text`` attribute.
+            text_val = None
+            if isinstance(item, dict):
+                text_val = item.get("text")
+            else:
+                text_val = getattr(item, "text", None)
+            if isinstance(text_val, str):
+                parts.append(text_val)
+        return "".join(parts)
+    # Unknown shape — last-resort string coercion so we don't crash the run.
+    return str(content)
 
 
 class FoundryScoringClient:
@@ -148,7 +181,8 @@ class FoundryScoringClient:
         if self._seed is not None:
             kwargs["seed"] = self._seed
         response = self._client.complete(**kwargs)
-        text = response.choices[0].message.content or ""
+        raw_content = response.choices[0].message.content or ""
+        text = _coerce_content_to_text(raw_content)
         usage = getattr(response, "usage", None)
         tokens_in = getattr(usage, "prompt_tokens", 0) if usage else 0
         tokens_out = getattr(usage, "completion_tokens", 0) if usage else 0
