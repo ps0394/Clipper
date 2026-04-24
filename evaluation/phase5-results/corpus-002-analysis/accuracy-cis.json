@@ -1,0 +1,217 @@
+{
+  "source_csv": "evaluation/phase5-results/corpus-002-analysis/per-page.csv",
+  "metric": "accuracy_rendered",
+  "judge": "single-judge (corpus-002 primary judge)",
+  "alpha": 0.1,
+  "n_bootstrap": 10000,
+  "seed": 42,
+  "overall": {
+    "n": 43,
+    "mean": 0.6977,
+    "ci_low": 0.6326,
+    "ci_high": 0.7581,
+    "alpha": 0.1,
+    "n_bootstrap": 10000
+  },
+  "by_vendor": {
+    "anthropic": {
+      "n": 5,
+      "mean": 0.72,
+      "ci_low": 0.6,
+      "ci_high": 0.84,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "aws": {
+      "n": 2,
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "docker": {
+      "n": 3,
+      "mean": 0.7333,
+      "ci_low": 0.6667,
+      "ci_high": 0.8,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "gcp": {
+      "n": 1,
+      "mean": 0.6,
+      "ci_low": 0.6,
+      "ci_high": 0.6,
+      "note": "n=1; no interval"
+    },
+    "github": {
+      "n": 4,
+      "mean": 0.45,
+      "ci_low": 0.15,
+      "ci_high": 0.6,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "k8s": {
+      "n": 2,
+      "mean": 0.8,
+      "ci_low": 0.8,
+      "ci_high": 0.8,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "learn": {
+      "n": 4,
+      "mean": 0.8,
+      "ci_low": 0.6,
+      "ci_high": 1.0,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "mdn": {
+      "n": 2,
+      "mean": 0.7,
+      "ci_low": 0.6,
+      "ci_high": 0.8,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "nodejs": {
+      "n": 2,
+      "mean": 0.7,
+      "ci_low": 0.6,
+      "ci_high": 0.8,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "openai": {
+      "n": 2,
+      "mean": 0.7,
+      "ci_low": 0.4,
+      "ci_high": 1.0,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "perplexity": {
+      "n": 2,
+      "mean": 0.8,
+      "ci_low": 0.8,
+      "ci_high": 0.8,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "postgres": {
+      "n": 1,
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0,
+      "note": "n=1; no interval"
+    },
+    "python": {
+      "n": 5,
+      "mean": 0.8,
+      "ci_low": 0.72,
+      "ci_high": 0.88,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "snowflake": {
+      "n": 3,
+      "mean": 0.7333,
+      "ci_low": 0.5333,
+      "ci_high": 0.9333,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "stripe": {
+      "n": 3,
+      "mean": 0.4667,
+      "ci_low": 0.2,
+      "ci_high": 0.7333,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "wikipedia": {
+      "n": 2,
+      "mean": 0.3,
+      "ci_low": 0.0,
+      "ci_high": 0.6,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    }
+  },
+  "by_profile": {
+    "article": {
+      "n": 12,
+      "mean": 0.7333,
+      "ci_low": 0.5833,
+      "ci_high": 0.8667,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "faq": {
+      "n": 3,
+      "mean": 0.9333,
+      "ci_low": 0.8667,
+      "ci_high": 1.0,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "landing": {
+      "n": 4,
+      "mean": 0.65,
+      "ci_low": 0.6,
+      "ci_high": 0.75,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "reference": {
+      "n": 12,
+      "mean": 0.6833,
+      "ci_low": 0.5167,
+      "ci_high": 0.8333,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "sample": {
+      "n": 2,
+      "mean": 0.7,
+      "ci_low": 0.6,
+      "ci_high": 0.8,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "tutorial": {
+      "n": 10,
+      "mean": 0.62,
+      "ci_low": 0.56,
+      "ci_high": 0.68,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    }
+  },
+  "by_tier": {
+    "tier1": {
+      "n": 36,
+      "mean": 0.7167,
+      "ci_low": 0.65,
+      "ci_high": 0.7778,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "tier2": {
+      "n": 7,
+      "mean": 0.6,
+      "ci_low": 0.4,
+      "ci_high": 0.7714,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    }
+  },
+  "caveats": [
+    "Single-judge CIs. Grader uncertainty across judges is not captured here; F3.2/F3.3 will add cross-judge variance.",
+    "Percentile bootstrap over pages; assumes pages are exchangeable within each stratum.",
+    "Small-n strata (anything with n<5) yield wide, uninformative intervals. Report them but treat as diagnostic only."
+  ]
+}

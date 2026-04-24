@@ -511,26 +511,51 @@ def run_pilot(
     return summaries
 
 
-def rejudge_pilot(*, pilot_dir: Path, config: FoundryConfig) -> dict:
-    """Re-grade an existing pilot directory with the LLM judge.
+def rejudge_pilot(
+    *,
+    pilot_dir: Path,
+    config: FoundryConfig,
+    judge_id: str = "primary",
+    judge_deployment: str | None = None,
+) -> dict:
+    """Re-grade an existing pilot directory with an LLM judge.
 
     Does not re-fetch pages or re-run the scorer. Reads
-    `qapairs.json` and `scoring.primary.json` from each page
-    subdirectory, calls the judge on each answer, writes
-    `grades.primary.judged.json`, and updates a `rejudge-summary.json`
-    at the pilot root.
+    `qapairs.json` and `scoring.primary.rendered.json` (or legacy
+    `scoring.primary.json`) from each page subdirectory, calls the
+    judge on each answer, writes
+    `grades.<judge_id>.judged.{rendered,}.json`, and updates a
+    `rejudge-summary.<judge_id>.json` at the pilot root.
 
-    Used for the calibration gate: compare these judged labels against
-    hand-labels stored at `<pilot_dir>/_calibration/hand-labels.json`.
+    Used in two places:
+
+    - Pilot calibration (default args): `judge_id="primary"` +
+      Llama-secondary deployment. Backwards-compatible with the
+      original single-judge flow.
+    - Phase 6 cross-judge variance (F3.2): a caller selects
+      `judge_id="claude35"` (or similar) plus a deployment for that
+      judge, and the produced grades file slots alongside the primary
+      grades for `scripts/phase6-cross-judge-kappa.py` to consume.
     """
-    if not config.scorer_secondary_deployment:
+    deployment = judge_deployment or config.scorer_secondary_deployment
+    if not deployment:
         raise RuntimeError(
-            "rejudge requires PHASE5_SCORER_SECONDARY_DEPLOYMENT (Llama 3.3 70B)"
+            "rejudge requires a judge deployment name. Default source is "
+            "PHASE5_SCORER_SECONDARY_DEPLOYMENT; pass judge_deployment "
+            "explicitly for non-default judges (F3.2 cross-judge runs)."
         )
-    judge_client = FoundryScoringClient(
-        config, deployment=config.scorer_secondary_deployment
-    )
-    out: dict = {"judge_model": judge_client.model_id, "pages": []}
+    judge_client = FoundryScoringClient(config, deployment=deployment)
+    out: dict = {
+        "judge_id": judge_id,
+        "judge_model": judge_client.model_id,
+        "judge_deployment": deployment,
+        "pages": [],
+    }
+
+    # Output filename infix. `judge_id="primary"` preserves the existing
+    # `grades.primary.judged.*.json` naming so pre-Session-3 callers are
+    # unaffected.
+    grade_tag = judge_id
 
     for page_dir in sorted(p for p in pilot_dir.iterdir() if p.is_dir() and not p.name.startswith("_")):
         qapath = page_dir / "qapairs.json"
@@ -545,13 +570,13 @@ def rejudge_pilot(*, pilot_dir: Path, config: FoundryConfig) -> dict:
         sc_raw = json.loads(scpath.read_text(encoding="utf-8"))
         ground_truth = [QAPair.from_dict(d) for d in qa_raw]
         answers = [ScoringAnswer.from_dict(d) for d in sc_raw]
-        print(f"  judging {page_dir.name}: {len(answers)} answers (from {scpath.name})")
+        print(f"  judging {page_dir.name} ({judge_id}): {len(answers)} answers (from {scpath.name})")
         judged = judge_page(client=judge_client, ground_truth=ground_truth, answers=answers)
         # Mirror the source-file naming so judged labels live next to the scoring file.
         judged_name = (
-            "grades.primary.judged.rendered.json"
+            f"grades.{grade_tag}.judged.rendered.json"
             if scpath.name.endswith(".rendered.json")
-            else "grades.primary.judged.json"
+            else f"grades.{grade_tag}.judged.json"
         )
         persist_judged_grades(judged, page_dir / judged_name)
         acc = judged_page_accuracy(judged)
@@ -561,5 +586,10 @@ def rejudge_pilot(*, pilot_dir: Path, config: FoundryConfig) -> dict:
         out["mean_judged_accuracy"] = sum(p["judged_accuracy"] for p in out["pages"]) / len(out["pages"])
     else:
         out["mean_judged_accuracy"] = 0.0
-    (pilot_dir / "rejudge-summary.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
+    summary_name = (
+        "rejudge-summary.json"
+        if judge_id == "primary"
+        else f"rejudge-summary.{judge_id}.json"
+    )
+    (pilot_dir / summary_name).write_text(json.dumps(out, indent=2), encoding="utf-8")
     return out

@@ -136,6 +136,7 @@ def _state(p: Path) -> str:
 
 
 def _rejudge(args: argparse.Namespace) -> int:
+    import os
     from .clients import FoundryConfig
     from .runner import rejudge_pilot
 
@@ -148,15 +149,33 @@ def _rejudge(args: argparse.Namespace) -> int:
     if not pilot_dir.is_dir():
         print(f"Pilot dir not found: {pilot_dir}")
         return 1
-    print(f"Rejudging {pilot_dir} with LLM judge ({config.scorer_secondary_deployment})")
-    result = rejudge_pilot(pilot_dir=pilot_dir, config=config)
+
+    judge_id = getattr(args, "judge_id", "primary")
+    env_var = getattr(args, "judge_deployment_env", "PHASE5_SCORER_SECONDARY_DEPLOYMENT")
+    if env_var == "PHASE5_SCORER_SECONDARY_DEPLOYMENT":
+        deployment = config.scorer_secondary_deployment
+    else:
+        deployment = os.environ.get(env_var, "")
+    if not deployment:
+        print(f"[!] Cannot rejudge — env var {env_var} is not set or empty.")
+        print(f"    Set {env_var} in .env to the Foundry deployment name for judge {judge_id!r}.")
+        return 1
+
+    print(f"Rejudging {pilot_dir} with judge_id={judge_id!r} (deployment={deployment!r} via {env_var})")
+    result = rejudge_pilot(
+        pilot_dir=pilot_dir,
+        config=config,
+        judge_id=judge_id,
+        judge_deployment=deployment,
+    )
+    summary_name = "rejudge-summary.json" if judge_id == "primary" else f"rejudge-summary.{judge_id}.json"
     print()
     print("Rejudge summary")
     print("-" * 40)
     for p in result["pages"]:
         print(f"  {p['judged_accuracy']:>5.0%}  {p['num_pairs']} pairs  {p['slug']}")
     print(f"  mean judged accuracy: {result['mean_judged_accuracy']:.0%}")
-    print(f"  results: {pilot_dir / 'rejudge-summary.json'}")
+    print(f"  results: {pilot_dir / summary_name}")
     return 0
 
 

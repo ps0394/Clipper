@@ -418,3 +418,146 @@ The v1 profile-weighted composite on the same 43 pages correlates at r = −0.00
 
 - **Authorizes:** tagging `v2-evidence-partial`, shipping the v2 scorer as the default, updating docs.
 - **Does not authorize:** claims about cross-vendor template quality, claims about JavaScript-dependence rankings, claims that four-pillar diagnostic-only status is "fair" to any specific vendor. All of those are open questions gated on Phase 6 and corpus-003.
+
+---
+
+## Addendum D — Session 3 Phase 6 Experiment 1 (Cross-Judge Variance) — Scaffold + Single-Judge CIs
+
+**Status:** scaffold landed; cross-judge κ statistics pending Foundry-deployment approval for 2 additional judges (F3.2). F3.4 CIs computable on the existing single-judge data are published below and should be treated as an **under-estimate** of true uncertainty — cross-grader variance is not yet captured in these intervals.
+
+### D.1 F3.1 — Judge selection criteria
+
+The PRD lists Claude-3.5-Sonnet, Gemini-1.5-Pro, and GPT-4o as candidates. For corpus-002 re-grading on 43 pages × 5 Q/A × 2 runs = ~430 judgments per added judge, the selection criteria are:
+
+1. **Architectural diversity from the existing judge.** The corpus-002 primary judge is **Llama-3.3-70B**, which already breaks within-family bias against the GPT-4.1 scorer. The two added judges must come from different vendors to avoid a two-of-three majority from a single family. The rule of three: OpenAI (GPT-4o), Anthropic (Claude-3.5-Sonnet), Google (Gemini-1.5-Pro), Meta (Llama — already present).
+2. **Azure AI Foundry availability.** The existing `retrievability/phase5/clients.py` talks to a single Foundry resource with per-judge deployment names. Extending to 2 more judges is a `.env` change, not a client rewrite, provided the deployments live in the same Foundry project.
+3. **Cost feasibility.** Each re-grading pass is ~430 judge calls. Judge prompts are short (question + ground truth + candidate + 2-line verdict template). At current per-token pricing for the candidate models, two full re-grading passes should sit well under corpus-003's projected budget. Exact cost estimate is deferred to the procurement step.
+4. **Token-limit and throughput parity.** Judge calls are small; any of the three candidates handle the prompt size comfortably. No hard tie-breaker here.
+
+**Recommended selection (to be confirmed at procurement):**
+
+- **Judge B: Claude-3.5-Sonnet** — strongest architectural diversity from Llama primary (different training corpus, different RLHF provider, different lineage). Also the most commonly-deployed judge in public RAG-evaluation literature.
+- **Judge C: GPT-4o** — same vendor as the scorer (GPT-4.1), which is a deliberate choice: if GPT-4o-as-judge produces *different* grades from the two non-OpenAI judges, that is a clean signal of within-family scorer/judge co-bias and is itself a finding.
+
+If Claude access is delayed by Foundry contracts, swap in **Gemini-1.5-Pro** as Judge B. The architectural-diversity requirement is satisfied by any non-OpenAI, non-Meta pick.
+
+This selection is **not final** until Foundry deployments are approved. The scaffold below is deployment-agnostic.
+
+### D.2 F3.2 — Regrade scaffold (no LLM calls yet)
+
+Existing harness in [`retrievability/phase5/runner.py`](../retrievability/phase5/runner.py) already supports re-grading a completed corpus directory. Previously it hardcoded `judge_id="primary"` and the Foundry `scorer_secondary` deployment. Session 3 extends `rejudge_pilot` with two new keyword arguments:
+
+- `judge_id: str` — tag written into the output filename: `grades.<judge_id>.judged.rendered.json`. Defaults to `"primary"` so existing pilot-calibration flows are untouched.
+- `judge_deployment: str | None` — explicit deployment override. Defaults to `config.scorer_secondary_deployment` (existing behaviour).
+
+The CLI exposes this through two new flags on `python main.py phase5 rejudge`:
+
+- `--judge-id NAME` — e.g. `--judge-id claude35`.
+- `--judge-deployment-env VARNAME` — names an env var in `.env` that holds the Foundry deployment string. Defaults to `PHASE5_SCORER_SECONDARY_DEPLOYMENT`.
+
+To run F3.2 once deployments are approved:
+
+```powershell
+# .env additions
+# PHASE5_JUDGE_CLAUDE35_DEPLOYMENT=<foundry-deployment-for-claude-3.5>
+# PHASE5_JUDGE_GPT4O_DEPLOYMENT=<foundry-deployment-for-gpt-4o>
+
+python main.py phase5 rejudge evaluation/phase5-results/corpus-002 `
+    --judge-id claude35 `
+    --judge-deployment-env PHASE5_JUDGE_CLAUDE35_DEPLOYMENT
+
+python main.py phase5 rejudge evaluation/phase5-results/corpus-002 `
+    --judge-id gpt4o `
+    --judge-deployment-env PHASE5_JUDGE_GPT4O_DEPLOYMENT
+```
+
+Each command writes `grades.<judge_id>.judged.rendered.json` into every per-page directory alongside the existing `grades.primary.judged.rendered.json`. It does **not** re-fetch pages or re-run the scorer — Q/A pairs and scoring answers are reused. Cost and time scale linearly in number of Q/A pairs, not in corpus build cost.
+
+### D.3 F3.3 — Cross-judge κ script (runs on whatever data is present)
+
+[`scripts/phase6-cross-judge-kappa.py`](../scripts/phase6-cross-judge-kappa.py) scans the corpus directory for `grades.*.judged.rendered.json` files, aligns labels per `(pair_index, run_index)`, and reports:
+
+- per-page κ for every judge pair
+- pooled κ for every judge pair across all pages
+- per-judge pooled accuracy (exposes severity differences alongside agreement)
+- count of pages with κ < 0.60 per judge pair (the F3.5 gate)
+
+It degrades gracefully on single-judge data: emits per-judge accuracy, skips κ, and writes a `warning` field indicating F3.2 has not run yet.
+
+**Current (single-judge) run:**
+
+```
+Pages: 43
+Judges found: primary
+  primary      n=215 accuracy=0.698
+(Pairwise kappa requires >=2 judges; warning recorded in output.)
+```
+
+This matches the pooled mean from [`corpus-002-analysis/per-page.csv`](../evaluation/phase5-results/corpus-002-analysis/per-page.csv) (n=43 pages × 5 pairs = 215 grades, mean 0.698), confirming the alignment logic is correct before cross-judge data arrives.
+
+### D.4 F3.4 — 90% CIs on corpus-002 accuracy (single-judge)
+
+Bootstrap (percentile) 90% CIs over pages, seed=42, n_bootstrap=10000, using `accuracy_rendered` from [`corpus-002-analysis/per-page.csv`](../evaluation/phase5-results/corpus-002-analysis/per-page.csv). Full per-stratum output: [`corpus-002-analysis/accuracy-cis.json`](../evaluation/phase5-results/corpus-002-analysis/accuracy-cis.json). Script: [`scripts/phase6-accuracy-cis.py`](../scripts/phase6-accuracy-cis.py).
+
+**Overall:**
+
+| stratum | n | mean | 90% CI |
+|---|---|---|---|
+| **overall** | 43 | 0.698 | [0.633, 0.758] |
+| tier1 | 36 | 0.717 | [0.650, 0.778] |
+| tier2 | 7 | 0.600 | [0.400, 0.771] |
+
+**By profile (collapsed to 2-pillar headline in v2 but still reported):**
+
+| profile | n | mean | 90% CI |
+|---|---|---|---|
+| faq | 3 | 0.933 | [0.867, 1.000] |
+| article | 12 | 0.733 | [0.583, 0.867] |
+| sample | 2 | 0.700 | [0.600, 0.800] |
+| reference | 12 | 0.683 | [0.517, 0.833] |
+| landing | 4 | 0.650 | [0.600, 0.750] |
+| tutorial | 10 | 0.620 | [0.560, 0.680] |
+
+**By vendor (strata with n ≤ 2 are diagnostic-only; intervals are uninformative):**
+
+| vendor | n | mean | 90% CI |
+|---|---|---|---|
+| aws | 2 | 1.000 | [1.000, 1.000] |
+| postgres | 1 | 1.000 | (n=1; no interval) |
+| k8s | 2 | 0.800 | [0.800, 0.800] |
+| learn | 4 | 0.800 | [0.600, 1.000] |
+| perplexity | 2 | 0.800 | [0.800, 0.800] |
+| python | 5 | 0.800 | [0.720, 0.880] |
+| docker | 3 | 0.733 | [0.667, 0.800] |
+| snowflake | 3 | 0.733 | [0.533, 0.933] |
+| anthropic | 5 | 0.720 | [0.600, 0.840] |
+| mdn | 2 | 0.700 | [0.600, 0.800] |
+| nodejs | 2 | 0.700 | [0.600, 0.800] |
+| openai | 2 | 0.700 | [0.400, 1.000] |
+| gcp | 1 | 0.600 | (n=1; no interval) |
+| stripe | 3 | 0.467 | [0.200, 0.733] |
+| github | 4 | 0.450 | [0.150, 0.600] |
+| wikipedia | 2 | 0.300 | [0.000, 0.600] |
+
+### D.5 What these numbers show — and what they don't
+
+**What they show:**
+
+- Overall corpus-002 accuracy is **0.698 with a 90% CI of [0.633, 0.758]** (n=43, single judge). The interval width is ~±0.06, which is the minimum uncertainty any comparison against a corpus-002 baseline has to budget for.
+- Per-vendor intervals are wide enough that almost no two vendors are separable at 90% confidence on this corpus. github (0.45) vs python (0.80) clearly separate; most other pairs overlap. Any "Vendor X beats Vendor Y on corpus-002" claim without a published interval is a methodology error.
+- Per-profile, `faq` (0.933) and `tutorial` (0.620) are clearly separated, but the ordering among `article`, `landing`, `reference`, `sample` is inside the noise.
+
+**What they do not show:**
+
+1. **Cross-judge variance.** These CIs are computed from a single judge's labels. A second and third judge will produce their own accuracy numbers per page, and the *true* uncertainty is the union of page-level sampling variance and cross-judge grader variance. F3.2 is the blocker.
+2. **Temporal variance.** corpus-002 was graded once, in a single window. Rendering and server-side content can drift; that is Session 5.
+3. **Corpus selection.** These intervals assume the 43 pages are a representative sample of the population of interest. They are not: they are a curated Phase 5 corpus. Generalisation to "the web" is not supported; generalisation to "developer documentation pages from the 14 sampled vendors" is cautiously supported.
+
+### D.6 F3.5 — Weight-range widening decision
+
+Deferred until F3.2 produces cross-judge κ data. The v2 shipping weights are the coarse 50/50 composite — there is no fractional-weight claim to widen. The `confidence_range` field in `ScoreResult` (Session 2 F2.8) already records `caveats` including `"single-corpus, single-judge calibration"`; once F3.2 lands, the caveat list is amended and any κ-driven widening is recorded at that time.
+
+### D.7 What this scaffold authorizes
+
+- **Authorizes:** committing the CLI surface, the κ script, and the CI script; publishing single-judge CIs; publishing the selection criteria.
+- **Does not authorize:** any claim of "validated cross-judge agreement" on corpus-002. That claim is gated on F3.2 execution.

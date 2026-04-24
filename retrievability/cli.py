@@ -281,6 +281,24 @@ def main():
         'pilot_dir',
         help='Path to an existing pilot output directory (e.g. evaluation/phase5-results/pilot-001)',
     )
+    phase5_rejudge_parser.add_argument(
+        '--judge-id',
+        default='primary',
+        help='Tag for output files: grades.<judge_id>.judged.{rendered,}.json. '
+             'Default "primary" preserves the original single-judge flow. '
+             'Use distinct tags (e.g. "claude35", "geminiPro") for Phase 6 '
+             'cross-judge regrading (F3.2).',
+    )
+    phase5_rejudge_parser.add_argument(
+        '--judge-deployment-env',
+        default='PHASE5_SCORER_SECONDARY_DEPLOYMENT',
+        help='Name of the env var that holds the Foundry deployment name for '
+             'this judge. Default PHASE5_SCORER_SECONDARY_DEPLOYMENT matches '
+             'the pilot calibration flow. For Phase 6 F3.2, set a new var '
+             '(e.g. PHASE5_JUDGE_CLAUDE35_DEPLOYMENT) in .env and pass it '
+             'here. The referenced deployment still resolves through the '
+             'same Foundry endpoint + API key in .env.',
+    )
 
     phase5_kappa_parser = phase5_sub.add_parser(
         'kappa',
