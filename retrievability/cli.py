@@ -309,6 +309,27 @@ def main():
         help='Path to an existing pilot output directory',
     )
 
+    phase5_regrade_md_parser = phase5_sub.add_parser(
+        'regrade-markdown',
+        help='F4.2 paired grading: fetch served markdown via the tri-fetcher '
+             'and re-score each page against its existing qapairs.json',
+    )
+    phase5_regrade_md_parser.add_argument(
+        'pilot_dir',
+        help='Path to an existing pilot output directory (will read URLs from '
+             'each page\'s summary.json; writes fetch.markdown.json, '
+             'page.markdown.txt, scoring.primary.markdown.json, '
+             'grades.primary.markdown.json, and (optionally) '
+             'grades.primary.judged.markdown.json into each page dir, plus '
+             'markdown-regrade-summary.json at the pilot root).',
+    )
+    phase5_regrade_md_parser.add_argument(
+        '--no-judge',
+        action='store_true',
+        help='Skip LLM-judge grading (substring grading only). Use to keep '
+             'costs down when a quick lift estimate is sufficient.',
+    )
+
     args = parser.parse_args()
     
     if args.command is None:

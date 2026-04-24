@@ -593,3 +593,165 @@ def rejudge_pilot(
     )
     (pilot_dir / summary_name).write_text(json.dumps(out, indent=2), encoding="utf-8")
     return out
+
+
+# --- F4.2 served-markdown paired grading ------------------------------------
+
+
+def _extract_markdown_text(md: str) -> str:
+    """Clean served markdown for prompt use.
+
+    The markdown prompt budget matches the HTML extract budget. No
+    HTML-to-text step here: we assume the server returned markdown, not
+    HTML, so the only transform is length clamping. Future refinement
+    (strip YAML front-matter, collapse code fences) is deliberately
+    deferred until F4.3 shows a lift that justifies it.
+    """
+    text = md.strip()
+    if len(text) > MAX_DOCUMENT_CHARS:
+        text = text[:MAX_DOCUMENT_CHARS] + "\n\n[document truncated for prompt size]"
+    return text
+
+
+def regrade_markdown_for_pilot(
+    *,
+    pilot_dir: Path,
+    config: FoundryConfig,
+    use_judge: bool = True,
+) -> dict:
+    """F4.2 paired grading: fetch served markdown and re-score each page.
+
+    For each page directory under ``pilot_dir`` that already has
+    ``qapairs.json``, this function:
+
+    1. Reads the URL from ``summary.json`` (recorded by the main pilot run).
+    2. Calls :func:`~retrievability.phase5.fetcher.fetch_markdown`. On
+       miss, records the miss and moves on — F4.3 null-result data.
+    3. Extracts clean markdown text (length-clamped).
+    4. Re-runs the same primary scorer against the markdown text using the
+       existing ``qapairs.json`` as ground truth.
+    5. Grades with both substring and (optional) LLM judge.
+    6. Writes ``page.markdown.txt``, ``fetch.markdown.json``,
+       ``scoring.primary.markdown.json``, ``grades.primary.markdown.json``,
+       and (if judge enabled) ``grades.primary.judged.markdown.json``.
+    7. Writes ``<pilot_dir>/markdown-regrade-summary.json`` listing every
+       page with ``resolved_by``, ``accuracy_markdown``, and
+       ``accuracy_rendered`` from the existing summary for paired delta
+       analysis.
+
+    Does not re-fetch the original HTML and does not re-run Q/A generation.
+    The paired design is: same Q/A, same scorer, same judge — only the
+    input document changes. Any accuracy delta is attributable to the
+    markdown-vs-HTML document, not to scorer or judge variance.
+
+    This is the LLM-cost-incurring half of Session 4; pure-HTTP probe
+    evidence (F4.3 input) should be produced first via
+    ``scripts/phase6-tri-fetcher-probe.py`` to target this run only at
+    vendors that actually serve markdown.
+    """
+    from .fetcher import fetch_markdown
+    from .schemas import QAPair, ScoringAnswer
+
+    missing = config.check()
+    if missing:
+        raise RuntimeError(
+            f"markdown regrade requires Foundry config; missing: {', '.join(missing)}"
+        )
+    primary = FoundryScoringClient(config, deployment=config.scorer_primary_deployment)
+    judge_client = None
+    if use_judge and config.scorer_secondary_deployment:
+        judge_client = FoundryScoringClient(
+            config, deployment=config.scorer_secondary_deployment
+        )
+
+    per_page: list[dict] = []
+    for page_dir in sorted(p for p in pilot_dir.iterdir() if p.is_dir() and not p.name.startswith("_")):
+        summary_path = page_dir / "summary.json"
+        qa_path = page_dir / "qapairs.json"
+        if not summary_path.is_file() or not qa_path.is_file():
+            continue
+        summary = json.loads(summary_path.read_text(encoding="utf-8"))
+        url = summary.get("url", "")
+        if not url:
+            continue
+
+        print(f"  {page_dir.name}: fetching markdown for {url}")
+        body, meta = fetch_markdown(url)
+        (page_dir / "fetch.markdown.json").write_text(
+            json.dumps(meta, indent=2), encoding="utf-8"
+        )
+
+        entry = {
+            "slug": page_dir.name,
+            "url": url,
+            "resolved_by": meta.get("resolved_by"),
+            "resolved_url": meta.get("resolved_url"),
+            "bytes": meta.get("bytes"),
+            "accuracy_rendered": summary.get("accuracy_rendered"),
+            "accuracy_markdown_substring": None,
+            "accuracy_markdown_judged": None,
+            "num_pairs": 0,
+            "skipped_reason": None,
+        }
+
+        if body is None:
+            entry["skipped_reason"] = "no_markdown_resolved"
+            per_page.append(entry)
+            continue
+
+        md_text = _extract_markdown_text(body)
+        if len(md_text) < MIN_DOCUMENT_CHARS:
+            entry["skipped_reason"] = f"markdown_too_short ({len(md_text)} < {MIN_DOCUMENT_CHARS})"
+            per_page.append(entry)
+            continue
+
+        (page_dir / "page.markdown.txt").write_text(md_text, encoding="utf-8")
+        ground_truth = [QAPair.from_dict(d) for d in json.loads(qa_path.read_text(encoding="utf-8"))]
+        answers = score_page(
+            client=primary,
+            document_text=md_text,
+            ground_truth=ground_truth,
+            runs_per_question=1,
+        )
+        persist_scores(answers, page_dir / "scoring.primary.markdown.json")
+        substring_grades = grade_page(ground_truth=ground_truth, answers=answers)
+        persist_grades(substring_grades, page_dir / "grades.primary.markdown.json")
+        entry["num_pairs"] = len(answers)
+        entry["accuracy_markdown_substring"] = page_accuracy(substring_grades)
+
+        if judge_client is not None:
+            judged = judge_page(
+                client=judge_client, ground_truth=ground_truth, answers=answers
+            )
+            persist_judged_grades(
+                judged, page_dir / "grades.primary.judged.markdown.json"
+            )
+            entry["accuracy_markdown_judged"] = judged_page_accuracy(judged)
+
+        per_page.append(entry)
+        print(
+            f"    resolved_by={entry['resolved_by']}  "
+            f"substring={entry['accuracy_markdown_substring']}  "
+            f"judged={entry['accuracy_markdown_judged']}  "
+            f"(vs rendered={entry['accuracy_rendered']})"
+        )
+
+    out = {
+        "n_pages": len(per_page),
+        "n_markdown_resolved": sum(1 for p in per_page if p["resolved_by"]),
+        "n_scored_markdown": sum(1 for p in per_page if p["num_pairs"]),
+        "caveats": [
+            "Paired design: same Q/A, same scorer, same judge; only the "
+            "input document changes (rendered HTML vs served markdown).",
+            "Q/A were generated against the rendered HTML. Some questions "
+            "may depend on content that is present in rendered HTML but "
+            "absent from the served markdown (or vice versa); those pages "
+            "will show lift or regression for reasons other than markdown "
+            "formatting itself. Flag them in F4.3 analysis.",
+        ],
+        "per_page": per_page,
+    }
+    (pilot_dir / "markdown-regrade-summary.json").write_text(
+        json.dumps(out, indent=2), encoding="utf-8"
+    )
+    return out

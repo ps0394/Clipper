@@ -561,3 +561,99 @@ Deferred until F3.2 produces cross-judge κ data. The v2 shipping weights are th
 
 - **Authorizes:** committing the CLI surface, the κ script, and the CI script; publishing single-judge CIs; publishing the selection criteria.
 - **Does not authorize:** any claim of "validated cross-judge agreement" on corpus-002. That claim is gated on F3.2 execution.
+
+
+---
+
+## Addendum E — Session 4: Phase 6 Experiment 2 scaffold (F4.1–F4.4)
+
+**Scope:** Served-markdown lift experiment per roadmap §7.4. Session 4 delivers the F4.1 tri-fetcher, its unit tests, an HTTP-only pre-experiment probe on corpus-002, the F4.2 paired-grading runner + CLI, and the F4.3 lift-analysis script. Execution of paired LLM grading (F4.2) and the final F4.4 promote/demote recommendation remain gated on Foundry deployment approval.
+
+### E.1 F4.1 — Tri-fetcher implementation
+
+`retrievability/phase5/fetcher.py` gains a public `fetch_markdown(url, *, html_body=None)` that probes three paths in order and returns the first one that yields a real markdown body:
+
+1. **`accept_header`** — GET with `Accept: text/markdown, text/x-markdown; q=0.9, text/plain; q=0.5`.
+2. **`link_alternate`** — parse the already-fetched HTML for `<link rel="alternate" type="text/markdown" href=…>` and GET that.
+3. **`sibling_md`** — append `.md` to the URL path and GET it.
+
+A content gate `_looks_like_markdown(body, content_type)` guards every probe. It runs the **HTML-negative-marker check first**: if the first ~2KB of body (lowercased, left-stripped) begins with `<!doctype`, `<html`, `<!--`, `<head`, or `<body`, the response is rejected even when the server advertises `Content-Type: text/markdown`. This closes an HTML-in-disguise failure mode observed in early drafting and is covered by `tests/test_tri_fetcher.py::test_tri_fetcher_rejects_html_disguised_as_markdown`.
+
+Meta dict returned alongside the body: `{mode, resolved_by, attempts, elapsed_s, resolved_url, status, content_type, bytes, [link_href|candidate_url]}` — sufficient for F4.3 accounting.
+
+Unit tests: `tests/test_tri_fetcher.py` (9 tests, all green). Uses an in-process `http.server` fixture on an ephemeral port so the tests have no network dependency. Full suite after Session 4: **168/168 passing** (159 baseline + 9 new).
+
+### E.2 F4.3 — Pre-experiment probe (HTTP-only, no LLM)
+
+Before spending Foundry tokens on a paired-grading regrade, Session 4 ran `scripts/phase6-tri-fetcher-probe.py` against all 43 corpus-002 URLs. This probes only — it does not call any LLM. Output: [tri-fetcher-probe.json](evaluation/phase5-results/corpus-002-analysis/tri-fetcher-probe.json), [tri-fetcher-probe.csv](evaluation/phase5-results/corpus-002-analysis/tri-fetcher-probe.csv).
+
+**Overall hit rate: 27/43 = 62.8%.** Resolution path distribution: `accept_header` = 20, `link_alternate` = 2, `sibling_md` = 5.
+
+Per-vendor (16 vendors in corpus-002; 14 with >1 page):
+
+| Vendor     | hits/n | rate   | Path(s) that worked              |
+|------------|--------|--------|----------------------------------|
+| anthropic  | 5/5    | 100%   | accept_header                    |
+| aws        | 2/2    | 100%   | link_alternate                   |
+| docker     | 3/3    | 100%   | accept_header                    |
+| gcp        | 0/1    |   0%   | —                                |
+| github     | 3/4    |  75%   | accept_header                    |
+| k8s        | 0/2    |   0%   | —                                |
+| learn      | 4/4    | 100%   | accept_header                    |
+| mdn        | 0/2    |   0%   | —                                |
+| nodejs     | 0/2    |   0%   | —                                |
+| openai     | 2/2    | 100%   | sibling_md                       |
+| perplexity | 2/2    | 100%   | accept_header                    |
+| postgres   | 0/1    |   0%   | —                                |
+| python     | 0/5    |   0%   | —                                |
+| snowflake  | 3/3    | 100%   | sibling_md                       |
+| stripe     | 3/3    | 100%   | accept_header                    |
+| wikipedia  | 0/2    |   0%   | —                                |
+
+**Nine vendors serve markdown on every page probed.** Seven serve none. This is an infrastructure fact about the current web, independent of any LLM-grading outcome: Clipper's served-markdown detection can only ever apply to the subset of the web where markdown is actually served. On this corpus that subset is **62.8% of pages** and **56% of vendors** (9/16). Any positive lift F4.2 eventually measures applies only to that fraction; for the remaining 37% of pages the feature contributes nothing one way or the other.
+
+### E.3 F4.2 — Paired-grading scaffold (executable; does not auto-run LLMs)
+
+`retrievability/phase5/runner.py` adds `regrade_markdown_for_pilot(pilot_dir, config, use_judge=True)`. For each page in an existing pilot directory it:
+
+1. Reads `summary.json` (for URL and rendered accuracy) and `qapairs.json` (for ground truth).
+2. Calls `fetch_markdown(url)`; writes `fetch.markdown.json` regardless of hit/miss.
+3. On hit, if extracted markdown ≥ 1,500 chars, writes `page.markdown.txt`, then scores via the existing `score_page` / `grade_page` / (optional) `judge_page` pipeline. Outputs `scoring.primary.markdown.json`, `grades.primary.markdown.json`, and `grades.primary.judged.markdown.json`.
+4. Aggregates per-page deltas into `markdown-regrade-summary.json` at the pilot root.
+
+CLI surface (tested via `--help` smoke run):
+
+```
+python main.py phase5 regrade-markdown evaluation/phase5-results/corpus-002 [--no-judge]
+```
+
+Required environment (same names as Session 3): `PHASE5_FOUNDRY_ENDPOINT`, `PHASE5_FOUNDRY_API_KEY`, `PHASE5_SCORER_PRIMARY_DEPLOYMENT`, plus `PHASE5_JUDGE_DEPLOYMENT` (or legacy `PHASE5_SCORER_SECONDARY_DEPLOYMENT`) when `--no-judge` is absent.
+
+The scaffold **does not execute LLM calls autonomously** in Session 4. Running it is an explicit operator action.
+
+### E.4 F4.3 — Lift analysis (probe-only null result)
+
+`scripts/phase6-markdown-lift.py` consumes the probe JSON and, optionally, the regrade summary. Run **without** `--regrade` in Session 4 to produce the committed probe-only report: [markdown-lift.json](evaluation/phase5-results/corpus-002-analysis/markdown-lift.json). Status: `"probe_only"`.
+
+**What the probe-only evidence says:** served-markdown is structurally available to 27/43 corpus-002 pages. **What it does not say:** whether grading against the served markdown produces higher Q/A accuracy than grading against the rendered/extracted HTML. No lift has been measured; no direction is implied. An overall positive lift, an overall negative lift, and no lift are all consistent with the current evidence.
+
+When paired grading runs, the script will emit one of four F4.4 statuses (see E.5).
+
+### E.5 F4.4 — Promote/demote recommendation (deferred)
+
+The lift script encodes the promotion rule at the default threshold of 0.10:
+
+| Condition                                                          | `f4_4_recommendation`            |
+|--------------------------------------------------------------------|----------------------------------|
+| Paired data missing                                                | `no_paired_data`                 |
+| Overall mean lift > 0.10 **and** ≥2 vendors above threshold        | `promote_to_pillar_contribution` |
+| Overall mean ≤ 0 or (≤ 0.10 and <2 vendors above)                  | `keep_as_diagnostic_only`        |
+| Otherwise                                                          | `insufficient_evidence`          |
+
+Session 4 publishes **no** F4.4 recommendation. It is not yet computable.
+
+### E.6 What this scaffold authorizes
+
+- **Authorizes:** committing the tri-fetcher + its tests, the probe script and its corpus-002 output, the paired-grading runner and CLI, the lift script, and the null-context framing that markdown lift is only measurable on the ~63% of corpus-002 pages where markdown is served.
+- **Does not authorize:** any claim that served markdown improves (or fails to improve) grading accuracy on corpus-002. That claim is gated on F4.2 execution and the F4.4 rule above.
+

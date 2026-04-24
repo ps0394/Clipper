@@ -20,6 +20,8 @@ def dispatch(args: argparse.Namespace) -> int:
         return _rejudge(args)
     if cmd == "kappa":
         return _kappa(args)
+    if cmd == "regrade-markdown":
+        return _regrade_markdown(args)
     print(f"Unknown phase5 subcommand: {args.phase5_command}")
     return 2
 
@@ -247,3 +249,33 @@ def _kappa(args: argparse.Namespace) -> int:
         if h != j:
             print(f"  {entry['slug']} pair {entry['pair_index']}: hand={h}  judge={j}")
     return 2
+
+
+def _regrade_markdown(args: argparse.Namespace) -> int:
+    from .clients import FoundryConfig
+    from .runner import regrade_markdown_for_pilot
+
+    config = FoundryConfig.from_env()
+    missing = config.check()
+    if missing:
+        print(f"[!] Cannot regrade-markdown — missing env vars: {', '.join(missing)}")
+        return 1
+    pilot_dir = Path(args.pilot_dir)
+    if not pilot_dir.is_dir():
+        print(f"Pilot dir not found: {pilot_dir}")
+        return 1
+
+    print(f"F4.2 markdown regrade: {pilot_dir}")
+    result = regrade_markdown_for_pilot(
+        pilot_dir=pilot_dir,
+        config=config,
+        use_judge=not bool(args.no_judge),
+    )
+    print()
+    print("Markdown regrade summary")
+    print("-" * 40)
+    print(f"  pages seen:                    {result['n_pages']}")
+    print(f"  pages with markdown resolved:  {result['n_markdown_resolved']}")
+    print(f"  pages actually scored:         {result['n_scored_markdown']}")
+    print(f"  results: {pilot_dir / 'markdown-regrade-summary.json'}")
+    return 0

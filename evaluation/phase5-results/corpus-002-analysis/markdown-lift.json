@@ -1,0 +1,131 @@
+{
+  "probe": {
+    "n_urls": 43,
+    "hit_count": 27,
+    "hit_rate": 0.6279,
+    "by_probe": {
+      "accept_header": 20,
+      "link_alternate": 2,
+      "sibling_md": 5
+    },
+    "by_vendor": {
+      "anthropic": {
+        "n": 5,
+        "hits": 5,
+        "by_probe": {
+          "accept_header": 5
+        },
+        "hit_rate": 1.0
+      },
+      "aws": {
+        "n": 2,
+        "hits": 2,
+        "by_probe": {
+          "link_alternate": 2
+        },
+        "hit_rate": 1.0
+      },
+      "docker": {
+        "n": 3,
+        "hits": 3,
+        "by_probe": {
+          "accept_header": 3
+        },
+        "hit_rate": 1.0
+      },
+      "gcp": {
+        "n": 1,
+        "hits": 0,
+        "by_probe": {},
+        "hit_rate": 0.0
+      },
+      "github": {
+        "n": 4,
+        "hits": 3,
+        "by_probe": {
+          "accept_header": 3
+        },
+        "hit_rate": 0.75
+      },
+      "k8s": {
+        "n": 2,
+        "hits": 0,
+        "by_probe": {},
+        "hit_rate": 0.0
+      },
+      "learn": {
+        "n": 4,
+        "hits": 4,
+        "by_probe": {
+          "accept_header": 4
+        },
+        "hit_rate": 1.0
+      },
+      "mdn": {
+        "n": 2,
+        "hits": 0,
+        "by_probe": {},
+        "hit_rate": 0.0
+      },
+      "nodejs": {
+        "n": 2,
+        "hits": 0,
+        "by_probe": {},
+        "hit_rate": 0.0
+      },
+      "openai": {
+        "n": 2,
+        "hits": 2,
+        "by_probe": {
+          "sibling_md": 2
+        },
+        "hit_rate": 1.0
+      },
+      "perplexity": {
+        "n": 2,
+        "hits": 2,
+        "by_probe": {
+          "accept_header": 2
+        },
+        "hit_rate": 1.0
+      },
+      "postgres": {
+        "n": 1,
+        "hits": 0,
+        "by_probe": {},
+        "hit_rate": 0.0
+      },
+      "python": {
+        "n": 5,
+        "hits": 0,
+        "by_probe": {},
+        "hit_rate": 0.0
+      },
+      "snowflake": {
+        "n": 3,
+        "hits": 3,
+        "by_probe": {
+          "sibling_md": 3
+        },
+        "hit_rate": 1.0
+      },
+      "stripe": {
+        "n": 3,
+        "hits": 3,
+        "by_probe": {
+          "accept_header": 3
+        },
+        "hit_rate": 1.0
+      },
+      "wikipedia": {
+        "n": 2,
+        "hits": 0,
+        "by_probe": {},
+        "hit_rate": 0.0
+      }
+    }
+  },
+  "regrade": null,
+  "status": "probe_only",
+  "f4_3_finding": "Probe-only report: served-markdown is available on 27/43 pages (62.8%). Paired grading has not yet run; no lift evidence either way. F4.4 promote-to-pillar recommendation is NOT yet actionable."
+}

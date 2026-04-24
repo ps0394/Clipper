@@ -1,0 +1,1156 @@
+{
+  "n_urls": 43,
+  "hit_count": 27,
+  "miss_count": 16,
+  "hit_rate": 0.6279,
+  "by_probe": {
+    "accept_header": 20,
+    "link_alternate": 2,
+    "sibling_md": 5
+  },
+  "by_vendor": {
+    "anthropic": {
+      "n": 5,
+      "hits": 5,
+      "by_probe": {
+        "accept_header": 5
+      },
+      "hit_rate": 1.0
+    },
+    "aws": {
+      "n": 2,
+      "hits": 2,
+      "by_probe": {
+        "link_alternate": 2
+      },
+      "hit_rate": 1.0
+    },
+    "docker": {
+      "n": 3,
+      "hits": 3,
+      "by_probe": {
+        "accept_header": 3
+      },
+      "hit_rate": 1.0
+    },
+    "gcp": {
+      "n": 1,
+      "hits": 0,
+      "by_probe": {},
+      "hit_rate": 0.0
+    },
+    "github": {
+      "n": 4,
+      "hits": 3,
+      "by_probe": {
+        "accept_header": 3
+      },
+      "hit_rate": 0.75
+    },
+    "k8s": {
+      "n": 2,
+      "hits": 0,
+      "by_probe": {},
+      "hit_rate": 0.0
+    },
+    "learn": {
+      "n": 4,
+      "hits": 4,
+      "by_probe": {
+        "accept_header": 4
+      },
+      "hit_rate": 1.0
+    },
+    "mdn": {
+      "n": 2,
+      "hits": 0,
+      "by_probe": {},
+      "hit_rate": 0.0
+    },
+    "nodejs": {
+      "n": 2,
+      "hits": 0,
+      "by_probe": {},
+      "hit_rate": 0.0
+    },
+    "openai": {
+      "n": 2,
+      "hits": 2,
+      "by_probe": {
+        "sibling_md": 2
+      },
+      "hit_rate": 1.0
+    },
+    "perplexity": {
+      "n": 2,
+      "hits": 2,
+      "by_probe": {
+        "accept_header": 2
+      },
+      "hit_rate": 1.0
+    },
+    "postgres": {
+      "n": 1,
+      "hits": 0,
+      "by_probe": {},
+      "hit_rate": 0.0
+    },
+    "python": {
+      "n": 5,
+      "hits": 0,
+      "by_probe": {},
+      "hit_rate": 0.0
+    },
+    "snowflake": {
+      "n": 3,
+      "hits": 3,
+      "by_probe": {
+        "sibling_md": 3
+      },
+      "hit_rate": 1.0
+    },
+    "stripe": {
+      "n": 3,
+      "hits": 3,
+      "by_probe": {
+        "accept_header": 3
+      },
+      "hit_rate": 1.0
+    },
+    "wikipedia": {
+      "n": 2,
+      "hits": 0,
+      "by_probe": {},
+      "hit_rate": 0.0
+    }
+  },
+  "caveats": [
+    "Pure HTTP probe: does not run JS, does not evaluate content quality.",
+    "A 'hit' means a markdown-like body was returned and passed the HTML-in-disguise gate. It does not mean the markdown is complete or semantically equivalent to the rendered HTML.",
+    "Some CDNs serve different content to User-Agent Clipper-Phase5 than to browser UAs. Vendor misses may be UA-gating, not absence of markdown. Rerun with a browser UA to confirm."
+  ],
+  "results": [
+    {
+      "slug": "cloud-google-com-bigquery-docs-samples",
+      "url": "https://cloud.google.com/bigquery/docs/samples",
+      "vendor": "gcp",
+      "resolved_by": null,
+      "resolved_url": null,
+      "bytes": null,
+      "content_type": null,
+      "elapsed_s": 7.875,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "probe": "sibling_md",
+          "ok": false
+        }
+      ],
+      "has_body": false
+    },
+    {
+      "slug": "developer-mozilla-org-en-US-docs-Learn-Forms-Your-first-form",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn/Forms/Your_first_form",
+      "vendor": "mdn",
+      "resolved_by": null,
+      "resolved_url": null,
+      "bytes": null,
+      "content_type": null,
+      "elapsed_s": 1.676,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "probe": "sibling_md",
+          "ok": false
+        }
+      ],
+      "has_body": false
+    },
+    {
+      "slug": "developer-mozilla-org-en-US-docs-Web-HTTP-CORS",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS",
+      "vendor": "mdn",
+      "resolved_by": null,
+      "resolved_url": null,
+      "bytes": null,
+      "content_type": null,
+      "elapsed_s": 1.636,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "probe": "sibling_md",
+          "ok": false
+        }
+      ],
+      "has_body": false
+    },
+    {
+      "slug": "docs-anthropic-com-en-api-getting-started",
+      "url": "https://docs.anthropic.com/en/api/getting-started",
+      "vendor": "anthropic",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://platform.claude.com/docs/en/api/overview",
+      "bytes": 7551,
+      "content_type": "text/markdown; charset=UTF-8",
+      "elapsed_s": 1.415,
+      "attempts": [
+        {
+          "resolved_url": "https://platform.claude.com/docs/en/api/overview",
+          "status": 200,
+          "content_type": "text/markdown; charset=UTF-8",
+          "bytes": 7551,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-anthropic-com-en-docs-about-claude-models-overview",
+      "url": "https://docs.anthropic.com/en/docs/about-claude/models/overview",
+      "vendor": "anthropic",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+      "bytes": 10425,
+      "content_type": "text/markdown; charset=UTF-8",
+      "elapsed_s": 1.287,
+      "attempts": [
+        {
+          "resolved_url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+          "status": 200,
+          "content_type": "text/markdown; charset=UTF-8",
+          "bytes": 10425,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-anthropic-com-en-docs-build-with-claude-prompt-caching",
+      "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching",
+      "vendor": "anthropic",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+      "bytes": 117934,
+      "content_type": "text/markdown; charset=UTF-8",
+      "elapsed_s": 1.877,
+      "attempts": [
+        {
+          "resolved_url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+          "status": 200,
+          "content_type": "text/markdown; charset=UTF-8",
+          "bytes": 117934,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-anthropic-com-en-docs-welcome",
+      "url": "https://docs.anthropic.com/en/docs/welcome",
+      "vendor": "anthropic",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://platform.claude.com/docs/en/intro",
+      "bytes": 3891,
+      "content_type": "text/markdown; charset=UTF-8",
+      "elapsed_s": 1.494,
+      "attempts": [
+        {
+          "resolved_url": "https://platform.claude.com/docs/en/intro",
+          "status": 200,
+          "content_type": "text/markdown; charset=UTF-8",
+          "bytes": 3891,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-anthropic-com-en-release-notes-api",
+      "url": "https://docs.anthropic.com/en/release-notes/api",
+      "vendor": "anthropic",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "bytes": 41566,
+      "content_type": "text/markdown; charset=UTF-8",
+      "elapsed_s": 1.256,
+      "attempts": [
+        {
+          "resolved_url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "status": 200,
+          "content_type": "text/markdown; charset=UTF-8",
+          "bytes": 41566,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-aws-amazon-com-AmazonS3-latest-userguide-Welcome-html",
+      "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html",
+      "vendor": "aws",
+      "resolved_by": "link_alternate",
+      "resolved_url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.md",
+      "bytes": 41498,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 1.198,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "link_href": "Welcome.md",
+          "resolved_url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.md",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 41498,
+          "probe": "link_alternate",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-aws-amazon-com-AWSEC2-latest-APIReference-API-RunInstances-html",
+      "url": "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html",
+      "vendor": "aws",
+      "resolved_by": "link_alternate",
+      "resolved_url": "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.md",
+      "bytes": 57883,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 1.98,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "link_href": "API_RunInstances.md",
+          "resolved_url": "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.md",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 57883,
+          "probe": "link_alternate",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-docker-com-engine-reference-commandline-run",
+      "url": "https://docs.docker.com/engine/reference/commandline/run/",
+      "vendor": "docker",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://docs.docker.com/reference/cli/docker/container/run/",
+      "bytes": 70622,
+      "content_type": "text/markdown",
+      "elapsed_s": 1.433,
+      "attempts": [
+        {
+          "resolved_url": "https://docs.docker.com/reference/cli/docker/container/run/",
+          "status": 200,
+          "content_type": "text/markdown",
+          "bytes": 70622,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-docker-com-get-started",
+      "url": "https://docs.docker.com/get-started/",
+      "vendor": "docker",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://docs.docker.com/get-started/",
+      "bytes": 444,
+      "content_type": "text/markdown",
+      "elapsed_s": 1.231,
+      "attempts": [
+        {
+          "resolved_url": "https://docs.docker.com/get-started/",
+          "status": 200,
+          "content_type": "text/markdown",
+          "bytes": 444,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-docker-com-get-started-02-our-app",
+      "url": "https://docs.docker.com/get-started/02_our_app/",
+      "vendor": "docker",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://docs.docker.com/get-started/workshop/02_our_app/",
+      "bytes": 6231,
+      "content_type": "text/markdown",
+      "elapsed_s": 1.194,
+      "attempts": [
+        {
+          "resolved_url": "https://docs.docker.com/get-started/workshop/02_our_app/",
+          "status": 200,
+          "content_type": "text/markdown",
+          "bytes": 6231,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-github-com-en-get-started-learning-about-github-githubs-plans",
+      "url": "https://docs.github.com/en/get-started/learning-about-github/githubs-plans",
+      "vendor": "github",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://docs.github.com/en/get-started/learning-about-github/githubs-plans",
+      "bytes": 9416,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 1.092,
+      "attempts": [
+        {
+          "resolved_url": "https://docs.github.com/en/get-started/learning-about-github/githubs-plans",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 9416,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-github-com-en-get-started-start-your-journey-hello-world",
+      "url": "https://docs.github.com/en/get-started/start-your-journey/hello-world",
+      "vendor": "github",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://docs.github.com/en/get-started/start-your-journey/hello-world",
+      "bytes": 10585,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 1.032,
+      "attempts": [
+        {
+          "resolved_url": "https://docs.github.com/en/get-started/start-your-journey/hello-world",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 10585,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-github-com-en-rest-repos-repos",
+      "url": "https://docs.github.com/en/rest/repos/repos",
+      "vendor": "github",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://docs.github.com/en/rest/repos/repos",
+      "bytes": 103554,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 2.433,
+      "attempts": [
+        {
+          "resolved_url": "https://docs.github.com/en/rest/repos/repos",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 103554,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-perplexity-ai-guides-prompt-guide",
+      "url": "https://docs.perplexity.ai/guides/prompt-guide",
+      "vendor": "perplexity",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://docs.perplexity.ai/docs/agent-api/prompt-guide.md",
+      "bytes": 14144,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 1.139,
+      "attempts": [
+        {
+          "resolved_url": "https://docs.perplexity.ai/docs/agent-api/prompt-guide.md",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 14144,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-perplexity-ai-guides-search-domain-filter-guide",
+      "url": "https://docs.perplexity.ai/guides/search-domain-filter-guide",
+      "vendor": "perplexity",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://docs.perplexity.ai/docs/search/filters/domain-filter.md",
+      "bytes": 19265,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 0.974,
+      "attempts": [
+        {
+          "resolved_url": "https://docs.perplexity.ai/docs/search/filters/domain-filter.md",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 19265,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-python-org-3-faq-general-html",
+      "url": "https://docs.python.org/3/faq/general.html",
+      "vendor": "python",
+      "resolved_by": null,
+      "resolved_url": null,
+      "bytes": null,
+      "content_type": null,
+      "elapsed_s": 0.977,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "probe": "sibling_md",
+          "ok": false
+        }
+      ],
+      "has_body": false
+    },
+    {
+      "slug": "docs-python-org-3-faq-programming-html",
+      "url": "https://docs.python.org/3/faq/programming.html",
+      "vendor": "python",
+      "resolved_by": null,
+      "resolved_url": null,
+      "bytes": null,
+      "content_type": null,
+      "elapsed_s": 1.254,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "probe": "sibling_md",
+          "ok": false
+        }
+      ],
+      "has_body": false
+    },
+    {
+      "slug": "docs-python-org-3-library-functions-html",
+      "url": "https://docs.python.org/3/library/functions.html",
+      "vendor": "python",
+      "resolved_by": null,
+      "resolved_url": null,
+      "bytes": null,
+      "content_type": null,
+      "elapsed_s": 1.267,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "probe": "sibling_md",
+          "ok": false
+        }
+      ],
+      "has_body": false
+    },
+    {
+      "slug": "docs-python-org-3-library-os-html",
+      "url": "https://docs.python.org/3/library/os.html",
+      "vendor": "python",
+      "resolved_by": null,
+      "resolved_url": null,
+      "bytes": null,
+      "content_type": null,
+      "elapsed_s": 1.647,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "probe": "sibling_md",
+          "ok": false
+        }
+      ],
+      "has_body": false
+    },
+    {
+      "slug": "docs-python-org-3-tutorial-introduction-html",
+      "url": "https://docs.python.org/3/tutorial/introduction.html",
+      "vendor": "python",
+      "resolved_by": null,
+      "resolved_url": null,
+      "bytes": null,
+      "content_type": null,
+      "elapsed_s": 1.141,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "probe": "sibling_md",
+          "ok": false
+        }
+      ],
+      "has_body": false
+    },
+    {
+      "slug": "docs-snowflake-com-en-sql-reference-functions-count",
+      "url": "https://docs.snowflake.com/en/sql-reference/functions/count",
+      "vendor": "snowflake",
+      "resolved_by": "sibling_md",
+      "resolved_url": "https://docs.snowflake.com/en/sql-reference/functions/count.md",
+      "bytes": 10214,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 1.562,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "candidate_url": "https://docs.snowflake.com/en/sql-reference/functions/count.md",
+          "resolved_url": "https://docs.snowflake.com/en/sql-reference/functions/count.md",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 10214,
+          "probe": "sibling_md",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-snowflake-com-en-user-guide-data-load-overview",
+      "url": "https://docs.snowflake.com/en/user-guide/data-load-overview",
+      "vendor": "snowflake",
+      "resolved_by": "sibling_md",
+      "resolved_url": "https://docs.snowflake.com/en/user-guide/data-load-overview.md",
+      "bytes": 29957,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 1.391,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "candidate_url": "https://docs.snowflake.com/en/user-guide/data-load-overview.md",
+          "resolved_url": "https://docs.snowflake.com/en/user-guide/data-load-overview.md",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 29957,
+          "probe": "sibling_md",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-snowflake-com-en-user-guide-sample-data-using",
+      "url": "https://docs.snowflake.com/en/user-guide/sample-data-using",
+      "vendor": "snowflake",
+      "resolved_by": "sibling_md",
+      "resolved_url": "https://docs.snowflake.com/en/user-guide/sample-data-using.md",
+      "bytes": 4354,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 1.09,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "candidate_url": "https://docs.snowflake.com/en/user-guide/sample-data-using.md",
+          "resolved_url": "https://docs.snowflake.com/en/user-guide/sample-data-using.md",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 4354,
+          "probe": "sibling_md",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-stripe-com-api-charges",
+      "url": "https://docs.stripe.com/api/charges",
+      "vendor": "stripe",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://docs.stripe.com/api/charges",
+      "bytes": 950,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 1.259,
+      "attempts": [
+        {
+          "resolved_url": "https://docs.stripe.com/api/charges",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 950,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-stripe-com-payments-accept-a-payment-platform-web",
+      "url": "https://docs.stripe.com/payments/accept-a-payment?platform=web",
+      "vendor": "stripe",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://docs.stripe.com/payments/accept-a-payment?platform=web",
+      "bytes": 340886,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 1.32,
+      "attempts": [
+        {
+          "resolved_url": "https://docs.stripe.com/payments/accept-a-payment?platform=web",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 340886,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "docs-stripe-com-payments-quickstart",
+      "url": "https://docs.stripe.com/payments/quickstart",
+      "vendor": "stripe",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://docs.stripe.com/payments/quickstart",
+      "bytes": 161848,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 1.474,
+      "attempts": [
+        {
+          "resolved_url": "https://docs.stripe.com/payments/quickstart",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 161848,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "en-wikipedia-org-wiki-Cloud-computing",
+      "url": "https://en.wikipedia.org/wiki/Cloud_computing",
+      "vendor": "wikipedia",
+      "resolved_by": null,
+      "resolved_url": null,
+      "bytes": null,
+      "content_type": null,
+      "elapsed_s": 1.219,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "probe": "sibling_md",
+          "ok": false
+        }
+      ],
+      "has_body": false
+    },
+    {
+      "slug": "en-wikipedia-org-wiki-Large-language-model",
+      "url": "https://en.wikipedia.org/wiki/Large_language_model",
+      "vendor": "wikipedia",
+      "resolved_by": null,
+      "resolved_url": null,
+      "bytes": null,
+      "content_type": null,
+      "elapsed_s": 1.078,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "probe": "sibling_md",
+          "ok": false
+        }
+      ],
+      "has_body": false
+    },
+    {
+      "slug": "help-github-com-en-github-site-policy-github-terms-of-service",
+      "url": "https://help.github.com/en/github/site-policy/github-terms-of-service",
+      "vendor": "github",
+      "resolved_by": null,
+      "resolved_url": null,
+      "bytes": null,
+      "content_type": null,
+      "elapsed_s": 2.461,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "probe": "sibling_md",
+          "ok": false
+        }
+      ],
+      "has_body": false
+    },
+    {
+      "slug": "kubernetes-io-docs-reference-kubectl",
+      "url": "https://kubernetes.io/docs/reference/kubectl/",
+      "vendor": "k8s",
+      "resolved_by": null,
+      "resolved_url": null,
+      "bytes": null,
+      "content_type": null,
+      "elapsed_s": 1.841,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "probe": "sibling_md",
+          "ok": false
+        }
+      ],
+      "has_body": false
+    },
+    {
+      "slug": "kubernetes-io-docs-tutorials-hello-minikube",
+      "url": "https://kubernetes.io/docs/tutorials/hello-minikube/",
+      "vendor": "k8s",
+      "resolved_by": null,
+      "resolved_url": null,
+      "bytes": null,
+      "content_type": null,
+      "elapsed_s": 1.521,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "probe": "sibling_md",
+          "ok": false
+        }
+      ],
+      "has_body": false
+    },
+    {
+      "slug": "learn-microsoft-com-en-us-azure-ai-services-openai-concepts-models",
+      "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models",
+      "vendor": "learn",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+      "bytes": 97070,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 1.787,
+      "attempts": [
+        {
+          "resolved_url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 97070,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "learn-microsoft-com-en-us-azure-aks-faq",
+      "url": "https://learn.microsoft.com/en-us/azure/aks/faq",
+      "vendor": "learn",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://learn.microsoft.com/en-us/azure/aks/faq",
+      "bytes": 28720,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 1.39,
+      "attempts": [
+        {
+          "resolved_url": "https://learn.microsoft.com/en-us/azure/aks/faq",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 28720,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "learn-microsoft-com-en-us-azure-aks-tutorial-kubernetes-prepare-app",
+      "url": "https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-prepare-app",
+      "vendor": "learn",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-prepare-app",
+      "bytes": 11733,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 1.319,
+      "attempts": [
+        {
+          "resolved_url": "https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-prepare-app",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 11733,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "learn-microsoft-com-en-us-dotnet-api-system-string",
+      "url": "https://learn.microsoft.com/en-us/dotnet/api/system.string",
+      "vendor": "learn",
+      "resolved_by": "accept_header",
+      "resolved_url": "https://learn.microsoft.com/en-us/dotnet/api/system.string?view=net-10.0",
+      "bytes": 159477,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 1.677,
+      "attempts": [
+        {
+          "resolved_url": "https://learn.microsoft.com/en-us/dotnet/api/system.string?view=net-10.0",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 159477,
+          "probe": "accept_header",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "nodejs-org-api-fs-html",
+      "url": "https://nodejs.org/api/fs.html",
+      "vendor": "nodejs",
+      "resolved_by": null,
+      "resolved_url": null,
+      "bytes": null,
+      "content_type": null,
+      "elapsed_s": 6.008,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "probe": "sibling_md",
+          "ok": false
+        }
+      ],
+      "has_body": false
+    },
+    {
+      "slug": "nodejs-org-en-about",
+      "url": "https://nodejs.org/en/about",
+      "vendor": "nodejs",
+      "resolved_by": null,
+      "resolved_url": null,
+      "bytes": null,
+      "content_type": null,
+      "elapsed_s": 1.795,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "probe": "sibling_md",
+          "ok": false
+        }
+      ],
+      "has_body": false
+    },
+    {
+      "slug": "platform-openai-com-docs-guides-function-calling",
+      "url": "https://platform.openai.com/docs/guides/function-calling",
+      "vendor": "openai",
+      "resolved_by": "sibling_md",
+      "resolved_url": "https://developers.openai.com/api/docs/guides/function-calling.md",
+      "bytes": 29320,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 2.073,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "candidate_url": "https://platform.openai.com/docs/guides/function-calling.md",
+          "resolved_url": "https://developers.openai.com/api/docs/guides/function-calling.md",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 29320,
+          "probe": "sibling_md",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "platform-openai-com-docs-quickstart",
+      "url": "https://platform.openai.com/docs/quickstart",
+      "vendor": "openai",
+      "resolved_by": "sibling_md",
+      "resolved_url": "https://developers.openai.com/api/docs/quickstart.md",
+      "bytes": 6946,
+      "content_type": "text/markdown; charset=utf-8",
+      "elapsed_s": 4.722,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "candidate_url": "https://platform.openai.com/docs/quickstart.md",
+          "resolved_url": "https://developers.openai.com/api/docs/quickstart.md",
+          "status": 200,
+          "content_type": "text/markdown; charset=utf-8",
+          "bytes": 6946,
+          "probe": "sibling_md",
+          "ok": true
+        }
+      ],
+      "has_body": true
+    },
+    {
+      "slug": "www-postgresql-org-docs-current-sql-select-html",
+      "url": "https://www.postgresql.org/docs/current/sql-select.html",
+      "vendor": "postgres",
+      "resolved_by": null,
+      "resolved_url": null,
+      "bytes": null,
+      "content_type": null,
+      "elapsed_s": 2.866,
+      "attempts": [
+        {
+          "probe": "accept_header",
+          "ok": false
+        },
+        {
+          "probe": "link_alternate",
+          "ok": false
+        },
+        {
+          "probe": "sibling_md",
+          "ok": false
+        }
+      ],
+      "has_body": false
+    }
+  ]
+}
