@@ -24,6 +24,7 @@ from retrievability.profiles import (
     PROFILE_REFERENCE,
     PROFILE_TUTORIAL,
     PROFILE_WEIGHTS,
+    V2_WEIGHTS,
     detect_content_type,
 )
 
@@ -114,22 +115,48 @@ def test_scoreresult_has_content_type_and_universal_score():
     assert ct_audit is not None
     assert ct_audit['profile'] == PROFILE_LANDING
     assert ct_audit['detection']['source'] == 'ms_topic'
-    assert ct_audit['weights'] == PROFILE_WEIGHTS[PROFILE_LANDING]
+    # v2: all profiles collapse to V2_WEIGHTS for headline scoring. The v1
+    # profile-specific weights are preserved in the audit trail under
+    # v1_weights_for_reference so the classifier stays observable.
+    assert ct_audit['weights'] == V2_WEIGHTS
+    assert ct_audit['v1_weights_for_reference'] == PROFILE_WEIGHTS[PROFILE_LANDING]
 
 
 def test_article_default_has_parseability_equal_to_universal():
     """A page that falls through to the default profile produces identical
-    parseability_score and universal_score — no regression on existing URLs."""
+    parseability_score and universal_score. In v2 this is true for every
+    profile, not just article, because all profiles share V2_WEIGHTS."""
     result = _score("semantic_html_good.html")
     assert result.content_type == PROFILE_ARTICLE
     assert result.parseability_score == pytest.approx(result.universal_score)
 
 
-def test_faq_profile_diverges_from_article_weights():
-    """Under synthetic component scores that are strong on structured_data
-    and weak on content_extractability, the FAQ profile must score
-    higher than the default article profile because FAQ up-weights
-    structured_data and down-weights extractability."""
+def test_v2_all_profiles_collapse_to_same_headline_weights():
+    """In v2 the headline composite is the same for every profile.
+    parseability_score equals universal_score for any detected profile."""
+    result = _score("content_type_landing.html")
+    assert result.content_type == PROFILE_LANDING
+    assert result.parseability_score == pytest.approx(result.universal_score)
+
+
+def test_v2_weights_are_two_pillar_composite():
+    """V2_WEIGHTS: content_extractability and http_compliance at 0.50 each;
+    all other pillars at 0.0. This is the evidence-partial ship configuration
+    per findings Addendum B §B.5."""
+    assert V2_WEIGHTS['content_extractability'] == 0.50
+    assert V2_WEIGHTS['http_compliance'] == 0.50
+    for p in ('semantic_html', 'structured_data', 'dom_navigability',
+              'metadata_completeness'):
+        assert V2_WEIGHTS[p] == 0.0
+    assert abs(sum(V2_WEIGHTS.values()) - 1.0) < 1e-6
+
+
+def test_v2_profiles_do_not_diverge_on_headline_score():
+    """Synthetic pillar scores produce the same v2 headline regardless of
+    which v1 profile is detected. This replaces the pre-v2 divergence tests
+    (test_faq_profile_diverges_from_article_weights,
+    test_landing_profile_rewards_structure_over_prose), which assumed
+    profile-specific weights — collapsed in v2 pending corpus-003 evidence."""
     evaluator = AccessGateEvaluator()
     scores = {
         'semantic_html':          50.0,
@@ -139,33 +166,11 @@ def test_faq_profile_diverges_from_article_weights():
         'metadata_completeness':  50.0,
         'http_compliance':        50.0,
     }
-    article_score = evaluator._weighted_score(scores, PROFILE_WEIGHTS[PROFILE_ARTICLE])
-    faq_score = evaluator._weighted_score(scores, PROFILE_WEIGHTS[PROFILE_FAQ])
-    assert faq_score > article_score + 3, (
-        f"FAQ weights should lift this shape meaningfully: "
-        f"article={article_score:.2f}, faq={faq_score:.2f}"
-    )
-
-
-def test_landing_profile_rewards_structure_over_prose():
-    """Landing pages weight structured_data over content_extractability, so
-    a page with strong structure and weak prose must score higher under the
-    landing profile than under article."""
-    evaluator = AccessGateEvaluator()
-    scores = {
-        'semantic_html':          60.0,
-        'content_extractability': 10.0,
-        'structured_data':        85.0,
-        'dom_navigability':       70.0,
-        'metadata_completeness':  70.0,
-        'http_compliance':        70.0,
-    }
-    article_score = evaluator._weighted_score(scores, PROFILE_WEIGHTS[PROFILE_ARTICLE])
-    landing_score = evaluator._weighted_score(scores, PROFILE_WEIGHTS[PROFILE_LANDING])
-    assert landing_score > article_score + 3, (
-        f"Landing profile should lift this shape: "
-        f"article={article_score:.2f}, landing={landing_score:.2f}"
-    )
+    article_score = evaluator._weighted_score(scores, V2_WEIGHTS)
+    faq_score = evaluator._weighted_score(scores, V2_WEIGHTS)
+    landing_score = evaluator._weighted_score(scores, V2_WEIGHTS)
+    assert article_score == pytest.approx(faq_score)
+    assert article_score == pytest.approx(landing_score)
 
 
 def test_url_heuristic_works_when_html_has_no_hints():

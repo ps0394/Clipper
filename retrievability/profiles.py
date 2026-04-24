@@ -118,6 +118,47 @@ for _name, _weights in PROFILE_WEIGHTS.items():
     )
 
 
+# --- Clipper v2 scoring weights (Session 2, Phase 6 roadmap) ------------------
+#
+# v2 collapses all profile-specific weights to a single two-pillar composite.
+# Evidence: corpus-002 single-pillar correlations vs accuracy_rendered
+# (findings/phase-5-corpus-002-findings.md Addendum B §B.1):
+#
+#     content_extractability   r = +0.484
+#     http_compliance          r = +0.242
+#     metadata_completeness    r = +0.224
+#     structured_data          r = +0.036
+#     dom_navigability         r = -0.189
+#     semantic_html            r = -0.301
+#
+# γ experiments (scripts/gamma-experiments.py, Addendum B §B.2) showed the
+# top-2 equal-weighted composite reaches Pearson r = +0.548 on corpus-002,
+# well above the +0.35 ship gate. All six pillars continue to be evaluated
+# and reported; four of them carry zero headline weight in v2 but remain
+# as first-class diagnostics for authors.
+#
+# v1 PROFILE_WEIGHTS above are retained for backward-compat, test fixtures,
+# and the profile-detection audit trail. They are NOT used to compute the
+# headline score in v2.
+CLIPPER_SCORING_VERSION = 'v2-evidence-partial'
+
+V2_WEIGHTS: Dict[str, float] = {
+    'semantic_html':           0.00,
+    'content_extractability':  0.50,
+    'structured_data':         0.00,
+    'dom_navigability':        0.00,
+    'metadata_completeness':   0.00,
+    'http_compliance':         0.50,
+}
+
+V2_HEADLINE_PILLARS = tuple(p for p, w in V2_WEIGHTS.items() if w > 0)
+V2_DIAGNOSTIC_PILLARS = tuple(p for p, w in V2_WEIGHTS.items() if w == 0)
+
+assert abs(sum(V2_WEIGHTS.values()) - 1.0) < 1e-6, (
+    f"V2_WEIGHTS do not sum to 1.0: {sum(V2_WEIGHTS.values())}"
+)
+
+
 # ms.topic values used across Microsoft Learn and similar Microsoft-hosted
 # docs. Mapped to Clipper profile names. Unknown ms.topic values fall
 # through to the next detection stage.

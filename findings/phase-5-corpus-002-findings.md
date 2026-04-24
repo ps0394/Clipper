@@ -365,3 +365,56 @@ This is a much more aggressive change than Addendum A contemplated. The PRD fram
 ### B.7 Decision locked
 
 Proceeding with **α-ship-best-γ**, specifically the `top2_equal` variant per §B.5. F1.3 commits and Session 2 replan follow.
+
+---
+
+## Addendum C — Session 2 v2 regression check (F2.6)
+
+**Status:** ship gate **PASSED**. Recorded once v2 scorer wired. Purpose of this addendum is to pin the number actually produced by the shipping v2 code against `accuracy_rendered`, separate from the γ-sweep projection in §B.
+
+### C.1 Method
+
+The v2 scorer differs from the γ-sweep projection in one material way: PRD F2.2/F2.3 demotes `agent_content_hints` (markdown-alt link, `markdown_url` meta, `llms.txt`, non-HTML alternates, `data-llm-hint`) inside `http_compliance` to diagnostic-only. Those hint points are no longer added to the `http_compliance` subscore. Since `http_compliance` is a 50% headline pillar in v2, this change propagates into the composite for any page that previously earned hint points.
+
+The regression script replays this arithmetically against the committed corpus-002 on-disk `clipper-scores.rendered.json` files. For each page:
+
+1. Read the v1 `http_compliance.score_breakdown` from the audit trail.
+2. Subtract `agent_content_hints` from the uncapped sum; recap at 100.
+3. Apply `V2_WEIGHTS` (0.50 × `content_extractability` + 0.50 × recomputed `http_compliance`).
+4. Correlate against `accuracy_rendered` from `per-page.csv`.
+
+Script: [`scripts/v2-regression-corpus002.py`](../scripts/v2-regression-corpus002.py).
+Full per-page output: [`evaluation/phase5-results/corpus-002-analysis/v2-regression.json`](../evaluation/phase5-results/corpus-002-analysis/v2-regression.json).
+
+### C.2 Result
+
+| metric | value |
+|---|---|
+| N | 43 |
+| skipped | 0 |
+| v1 parseability mean | 54.57 |
+| v2 headline mean | 71.14 |
+| Pearson r (v1 profile-weighted composite vs. accuracy_rendered) | −0.0086 |
+| **Pearson r (v2 composite vs. accuracy_rendered)** | **+0.6181** |
+| Ship gate | r ≥ +0.35 |
+| **Decision** | **PASS** |
+
+### C.3 Interpretation
+
+The r = +0.618 observed here is higher than the +0.548 γ-sweep projection in §B. The delta is the F2.2/F2.3 hint demotion: removing the hint contribution from `http_compliance` strengthens that pillar's alignment with `accuracy_rendered` because the hint signals were behaving like noise on this corpus rather than a retrieval-lift predictor.
+
+That delta is useful diagnostic evidence on its own — it means `agent_content_hints` was a mild *detractor* for headline correlation on corpus-002, not a neutral addition. This is consistent with the PRD framing that declared agent-alternate formats are capability claims, not capability evidence, and should not earn points until the alternates are fetched, validated, and shown to lift retrieval success.
+
+The v1 profile-weighted composite on the same 43 pages correlates at r = −0.0086 — not statistically different from zero. The v1 → v2 shift is therefore a move from "no headline signal" to "moderate positive headline signal," not a refinement of an already-working system. This is what `v2-evidence-partial` claims and is the evidence basis for the tag.
+
+### C.4 Caveats for this number
+
+- Single corpus, single agent configuration, two-shot mode. r = +0.62 on corpus-002 does not project to other agents or longer-horizon tasks.
+- n = 43 is adequate to ship above the +0.35 gate; it does not support fractional-weight tuning (50/50 is a deliberately coarse choice).
+- The four diagnostic-only pillars are still scored and reported; they are just excluded from the headline. Any of them may be restored to the headline once a dedicated corpus shows retrieval-relevance.
+- This regression uses on-disk rendered HTML captured during the Phase 5 corpus build. A live re-fetch would introduce network and rendering variance not present here.
+
+### C.5 What this gate does and does not authorize
+
+- **Authorizes:** tagging `v2-evidence-partial`, shipping the v2 scorer as the default, updating docs.
+- **Does not authorize:** claims about cross-vendor template quality, claims about JavaScript-dependence rankings, claims that four-pillar diagnostic-only status is "fair" to any specific vendor. All of those are open questions gated on Phase 6 and corpus-003.

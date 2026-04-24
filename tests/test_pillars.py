@@ -225,12 +225,31 @@ def test_extraction_preview_is_persisted(score_fixture):
 # ---------------------------------------------------------------------------
 
 
-def test_agent_hints_markdown_boosts_http_compliance(score_fixture):
+def test_agent_hints_markdown_does_not_boost_http_compliance(score_fixture):
+    """v2 (PRD F2.2/F2.3): agent content hints — markdown alternates,
+    llms.txt references, and data-llm-hint attributes — are detected and
+    recorded in the audit trail but do NOT contribute to the headline
+    score. Retrieval-lift evidence for these signals belongs to Phase 6.
+    Two pages that differ only in presence/absence of hints must produce
+    identical http_compliance scores."""
     with_hints = score_fixture("agent_hints_markdown.html").component_scores["http_compliance"]
     without = score_fixture("agent_hints_none.html").component_scores["http_compliance"]
-    assert with_hints > without + 10, (
-        f"agent-hints signal collapse: with_hints={with_hints}, without={without}"
+    assert with_hints == pytest.approx(without), (
+        f"agent-hints must not affect http_compliance in v2: "
+        f"with_hints={with_hints}, without={without}"
     )
+
+
+def test_agent_hints_recorded_with_zero_scoring_contribution(score_fixture):
+    """Detection stays in the audit trail even though scoring is zero."""
+    result = score_fixture("agent_hints_markdown.html")
+    hints_block = (
+        result.audit_trail.get("http_compliance", {})
+        .get("agent_content_hints", {})
+    )
+    assert hints_block.get("scoring_contribution") == 0
+    assert hints_block.get("diagnostic_only") is True
+    assert hints_block.get("signals_found", {}).get("has_markdown_alternate") is True
 
 
 def test_agent_hints_markdown_detected(score_fixture):

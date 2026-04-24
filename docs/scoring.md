@@ -1,41 +1,48 @@
 # Clipper Scoring System
 
-Clipper evaluates whether agents can reliably access, extract, and use web page content. It scores pages 0–100 across six industry-standard pillars, entirely API-free.
+Clipper evaluates whether agents can reliably access, extract, and use web page content. Pages are scored 0–100 across six industry-standard pillars, entirely API-free.
 
-## Pillars and Weights
+This document describes the **v2 (`v2-evidence-partial`) scoring model**. v2 narrows the **headline score** to the two pillars for which Clipper has published retrieval-relevance evidence on the corpus-002 benchmark (n=43, rendered HTML, two-shot retrieval QA). The other four pillars are still evaluated, still reported, and still audited — they just carry **zero weight in the headline composite** until their retrieval-relevance is measured. The old six-pillar weighted composite is preserved in `audit_trail._content_type.v1_weights_for_reference` for back-compat and A/B work.
 
-| Pillar | Weight | Standard | Implementation |
-|--------|--------|----------|----------------|
-| **Semantic HTML** | 25% | W3C HTML5 Specification | BeautifulSoup + html5lib |
-| **Content Extractability** | 20% | Mozilla Readability | readability-lxml |
-| **Structured Data** | 20% | Schema.org Consortium | extruct |
-| **DOM Navigability** | 15% | WCAG 2.1 AA + Deque axe-core | axe-selenium-python |
-| **Metadata Completeness** | 10% | Dublin Core / Schema.org / OpenGraph | BeautifulSoup |
-| **HTTP Compliance** | 10% | RFC 7231 + robots.txt | httpx |
+The current version is declared at module load:
+[`retrievability/profiles.py`](../retrievability/profiles.py) →
+`CLIPPER_SCORING_VERSION = 'v2-evidence-partial'`.
 
-The final score is a weighted sum: each pillar produces a 0–100 score, multiplied by its weight. The weights shown above are the **article** profile (default). Clipper also reports a **type-adjusted** score that applies different weights depending on what kind of page is being evaluated — see [Content-Type Profiles](#content-type-profiles).
+## Pillars and Weights (v2)
+
+| Pillar | Weight (v2) | Standard | Implementation | corpus-002 single-pillar r vs. accuracy_rendered |
+|--------|-------------|----------|----------------|---------------------------------------------------|
+| **Content Extractability** | **50%** | Mozilla Readability | readability-lxml | **+0.484** |
+| **HTTP Compliance** | **50%** | RFC 7231 + robots.txt | httpx | **+0.242** |
+| Semantic HTML | 0% *(diagnostic)* | W3C HTML5 | BeautifulSoup + html5lib | −0.301 |
+| Structured Data | 0% *(diagnostic)* | Schema.org | extruct | +0.036 |
+| DOM Navigability | 0% *(diagnostic)* | WCAG 2.1 AA + axe-core | axe-selenium-python | −0.189 |
+| Metadata Completeness | 0% *(diagnostic)* | Dublin Core / Schema.org / OpenGraph | BeautifulSoup | +0.224 |
+
+Correlation source: [`findings/phase-5-corpus-002-findings.md`](../findings/phase-5-corpus-002-findings.md) Addendum B §B.1 (n=43). The two pillars with a positive correlation ≥ +0.24 on corpus-002 are retained as headline contributors at equal weight (`top2_equal` in the γ sweep). The four `0% (diagnostic)` pillars are **still evaluated and scored**; their sub-scores appear in `component_scores` and in `audit_trail` exactly as before. They just don't contribute to the composite.
+
+Two numbers are still reported side-by-side for back-compat:
+
+- `parseability_score` — v2 composite = 0.50 × `content_extractability` + 0.50 × `http_compliance`.
+- `universal_score` — same value as `parseability_score` under v2. In v1 these two numbers could diverge by content-type profile; under v2 they are identical because the profile system no longer re-weights the headline (see [Content-Type Profiles](#content-type-profiles)).
+
+### v2 regression check
+
+Applying v2 weights to corpus-002 yields **Pearson r = +0.6181** (n=43) between the composite and `accuracy_rendered`, clearing the PRD F2.6 ship gate of +0.35. Full numbers, including per-page deltas vs. the v1 composite, are in [`evaluation/phase5-results/corpus-002-analysis/v2-regression.json`](../evaluation/phase5-results/corpus-002-analysis/v2-regression.json).
+
+The v1 six-pillar profile-weighted composite on the same pages correlates at r = −0.01 vs. the same accuracy signal. The shift from a null correlation to a moderate positive one is what "evidence-partial" means in the version string.
 
 ## Content-Type Profiles
 
-Not every page is an article. A samples landing page lives or dies on its structured-data index, not on prose extractability. A FAQ page's value is its `FAQPage` JSON-LD. A reference page is mostly navigation. Clipper detects the content type of each page and reweights the six pillars accordingly.
+Clipper still detects the content type of every page (article / landing / reference / sample / faq / tutorial) and records it in `content_type.profile`. Detection ordering and precedence are unchanged — see [Detection precedence](#detection-precedence).
 
-Two numbers are always reported side-by-side:
+In **v2**, profile-specific weight tables are **inactive for the headline score**. Every detected profile collapses onto the same two-pillar headline composite. This is a deliberate reset: the v1 profile weights (landing over-weights structured-data, tutorial over-weights extractability, etc.) were hand-set, never empirically validated per-profile, and cannot be defended until per-profile corpora are collected in Phase 6 (see [Known Gaps](#known-gaps)).
 
-- `parseability_score` — the **primary** score, computed with the profile that matches the detected content type.
-- `universal_score` — the same pillar scores under the default **article** weights. Kept for backward compatibility and cross-type comparison.
+Profile **detection** still matters because:
 
-### Profiles
-
-| Profile | Semantic HTML | Content Extract. | Structured Data | DOM Nav. | Metadata | HTTP |
-|---|---|---|---|---|---|---|
-| **article** *(default)* | 25% | 20% | 20% | 15% | 10% | 10% |
-| **landing** | 20% | 10% | 30% | 20% | 10% | 10% |
-| **reference** | 20% | 10% | 25% | 25% | 10% | 10% |
-| **sample** | 15% | 10% | 30% | 20% | 15% | 10% |
-| **faq** | 20% | 15% | 30% | 15% | 10% | 10% |
-| **tutorial** | 25% | 25% | 15% | 15% | 10% | 10% |
-
-Each row sums to 1.0. Profiles differ mainly in how much weight goes to structured-data vs. content-extractability: pages that *are* their structure get more weight there; pages that *are* prose get more weight on extractability.
+1. The profile label is reported alongside the score and is useful for diagnostics and filtering.
+2. The classifier-lockdown golden file still pins detection behaviour so regressions are caught.
+3. The v1 profile weights remain in `profiles.PROFILE_WEIGHTS` and are recorded in every audit trail as `v1_weights_for_reference`, so anyone who wants to A/B against v1 can do so without re-running the pipeline.
 
 ### Detection precedence
 
@@ -77,9 +84,30 @@ for the full workflow.
 
 ### Using the two scores
 
-- Compare `parseability_score` against peers **of the same content type**.
-- Use `universal_score` to track a page over time without profile changes biasing the series, or to compare pages across content types on a level playing field.
-- If `parseability_score > universal_score`, the page plays to the strengths its profile expects (e.g., a landing page with strong JSON-LD). If it's lower, the page is weaker than its type would require.
+In v2, `parseability_score` and `universal_score` are **equal by construction**. Both fields are retained so downstream tooling, reports, and JSON consumers keep working without a schema change. A non-zero delta between them is a data-integrity flag — it should never occur for pages scored under `v2-evidence-partial` and indicates a cross-version mix.
+
+To compare against the v1 profile-weighted composite on the same run, read:
+
+- `audit_trail._content_type.weights` — the v2 weights actually applied (always `V2_WEIGHTS`).
+- `audit_trail._content_type.v1_weights_for_reference` — the profile weights v1 *would* have applied to the detected profile. Multiply these into `component_scores` yourself to reproduce the v1 composite.
+
+## Known Gaps
+
+`v2-evidence-partial` is labeled partial for specific, enumerable reasons. Every report generated against this scoring version should cite the subset of these gaps that bear on its findings.
+
+1. **Four pillars are diagnostic-only pending retrieval-relevance evidence.** `semantic_html`, `structured_data`, `dom_navigability`, and `metadata_completeness` have single-pillar correlations against `accuracy_rendered` on corpus-002 that are either near-zero (`structured_data` +0.04) or negative (`semantic_html` −0.30, `dom_navigability` −0.19). A positive correlation on a dedicated corpus is required before any of these is restored to the headline. This work is Phase 6 on [`findings/v2-scoring-phase6-roadmap-prd.md`](../findings/v2-scoring-phase6-roadmap-prd.md).
+
+2. **Profile-specific weights are collapsed, not validated.** The v1 profile tables (landing / reference / sample / faq / tutorial) were hand-set and never benchmarked. They are retained in code for reference but do not affect the headline in v2. Per-profile corpora and per-profile weight fits are a Phase 6 dependency; until then, profile-specific weighting is not defensible as a ranking signal.
+
+3. **Served-markdown and `llms.txt` are not yet measured.** v2 removes `agent_content_hints` from the `http_compliance` score (`markdown_url_meta`, `has_markdown_alternate`, `has_llm_hints`, `has_non_html_alternate`, `llms.txt`). These signals are *declarations*, not *capabilities* — a page can claim a markdown alternate exists while serving `text/html` at that URL with no useful content. Detection still runs and the results are recorded in `audit_trail.http_compliance.agent_content_hints` with `diagnostic_only: true` and `scoring_contribution: 0`. Restoring any of them to the headline requires (a) actually fetching and validating the declared resource and (b) a retrieval-lift benchmark that shows the signal predicts agent success. See PRD F2.2/F2.3.
+
+4. **Fetch Integrity is not yet a pillar.** Clipper measures how a page is *structured* for agents. It does not yet measure whether the page *renders stably* across agent fetches: whether the server honours `Accept`, whether cache semantics are consistent, whether redirect chains terminate deterministically under agent user-agents. Fetch Integrity as a distinct pillar is scoped for Phase 6.
+
+5. **Cross-agent variance is unmeasured.** corpus-002 was evaluated with a single agent configuration in two-shot mode. The `accuracy_rendered` target is therefore a single-agent ground truth. Scores predict success for that evaluator class; generalisation to other agents, other prompting modes, and longer-horizon tasks is an open question until a multi-agent benchmark lands.
+
+6. **Calibration corpus size.** n=43 on corpus-002 is sufficient to ship v2 above the gate but not sufficient to defend fine-grained weight differences. The 50/50 split between `content_extractability` and `http_compliance` is deliberately a coarse choice (two winners, equal weight) rather than an over-fit to corpus-002. corpus-003 (planned Phase 6) is the first corpus that should drive any fractional-weight move.
+
+Reports that make cross-vendor, cross-template, or cross-corpus claims should disclose which of these gaps bear on the claim. See `.github/copilot-instructions.md` → *When Asked to Write a Comparison or Analysis Report* for the full disclosure checklist.
 
 ## Score Classification
 
@@ -93,9 +121,9 @@ for the full workflow.
 
 ## Pillar Details
 
-### 1. Semantic HTML (25%)
+### 1. Semantic HTML (diagnostic-only in v2)
 
-Measures HTML5 semantic element coverage and proper usage.
+Measures HTML5 semantic element coverage and proper usage. **Scored and reported; does not contribute to the v2 headline** (single-pillar r = −0.30 on corpus-002). See [Known Gaps](#known-gaps) item 1.
 
 **Scoring breakdown:**
 - **Semantic element coverage** (60%): Checks for `<header>`, `<nav>`, `<main>`, `<article>`, `<section>`, `<aside>`, `<footer>`, `<figure>`, `<figcaption>`, `<time>`, `<mark>`. Score = (found / total) × 60.
@@ -104,9 +132,9 @@ Measures HTML5 semantic element coverage and proper usage.
 
 Validates proper usage (e.g., exactly one `<main>`, reasonable `<header>`/`<footer>` count).
 
-### 2. Content Extractability (20%)
+### 2. Content Extractability (50% in v2)
 
-Uses the Mozilla Readability algorithm (same as Firefox Reader View) to measure how cleanly an agent can extract meaningful content.
+Uses the Mozilla Readability algorithm (same as Firefox Reader View) to measure how cleanly an agent can extract meaningful content. **Primary headline contributor in v2** (single-pillar r = +0.48 on corpus-002).
 
 | Sub-signal | Max Points | What it measures |
 |---|---|---|
@@ -121,9 +149,9 @@ Uses the Mozilla Readability algorithm (same as Firefox Reader View) to measure 
 
 The markdown report surfaces the preview as an **Extracted Preview** block under each URL's score, so a reader can see at a glance whether Readability captured the intended article or got confused by chrome.
 
-### 3. Structured Data (20%)
+### 3. Structured Data (diagnostic-only in v2)
 
-Evaluates Schema.org structured data quality using the extruct library.
+Evaluates Schema.org structured data quality using the extruct library. **Scored and reported; does not contribute to the v2 headline** (single-pillar r = +0.04 on corpus-002 — essentially null). See [Known Gaps](#known-gaps) item 1.
 
 | Sub-signal | Max Points | What it measures |
 |---|---|---|
@@ -159,9 +187,9 @@ logged in `audit_trail.structured_data.field_completeness_detail` with
 the offending `@type` and field names — an incomplete `FAQPage` now
 scores below a complete one and the audit trail explains why.
 
-### 4. DOM Navigability (15%)
+### 4. DOM Navigability (diagnostic-only in v2)
 
-Evaluates WCAG 2.1 AA compliance using Deque's axe-core engine via Selenium.
+Evaluates WCAG 2.1 AA compliance using Deque's axe-core engine via Selenium. **Scored and reported; does not contribute to the v2 headline** (single-pillar r = −0.19 on corpus-002). See [Known Gaps](#known-gaps) item 1.
 
 **Live evaluation** (when URL is available):
 - Runs axe-core in a headless Chrome browser against the live page.
@@ -173,9 +201,9 @@ Evaluates WCAG 2.1 AA compliance using Deque's axe-core engine via Selenium.
 - Checks: `lang` attribute, `<title>` presence, image alt texts, heading structure, link descriptions.
 - Score = (passed checks / total checks) × 100.
 
-### 5. Metadata Completeness (10%)
+### 5. Metadata Completeness (diagnostic-only in v2)
 
-Checks for 7 key metadata fields across Dublin Core, Schema.org, and OpenGraph standards.
+Checks for 7 key metadata fields across Dublin Core, Schema.org, and OpenGraph standards. **Scored and reported; does not contribute to the v2 headline** (single-pillar r = +0.22 on corpus-002 — below the +0.24 cutoff used to pick v2 headline pillars). See [Known Gaps](#known-gaps) item 1.
 
 | Field | Max Points | Sources checked |
 |---|---|---|
@@ -201,9 +229,9 @@ give pages from that vendor credit no other doc system could earn from a
 comparable internal signal. The topic-field check above was cleaned up in
 this pass; `ms.topic` previously appeared here and was removed.
 
-### 6. HTTP Compliance (10%)
+### 6. HTTP Compliance (50% in v2)
 
-Evaluates whether agents can reach, cache, and negotiate machine-readable content.
+Evaluates whether agents can reach, cache, and negotiate machine-readable content. **Primary headline contributor in v2** (single-pillar r = +0.24 on corpus-002).
 
 | Sub-signal | Max Points | What it measures |
 |---|---|---|
@@ -211,14 +239,17 @@ Evaluates whether agents can reach, cache, and negotiate machine-readable conten
 | **Redirect Efficiency** | 25 | Chain length (0 hops = optimal, >4 penalized), proper status codes, performance impact. |
 | **Crawl Permissions** | 20 | `robots.txt` allows access for generic agents (`User-agent: *`) + no `<meta name="robots" content="noindex">`. |
 | **Cache Headers** | 20 | Presence of `ETag`, `Last-Modified`, and `Cache-Control` headers. |
-| **Agent Content Hints** | 20 | Signals that the page offers machine-readable alternate formats or LLM-specific endpoints. |
+| **Agent Content Hints** | **0 (diagnostic-only)** | Declared alternate-format signals. Detection still runs; scoring contribution is 0 in v2. See below. |
 
-**Agent Content Hints** checks for:
-- `<link rel="alternate" type="text/markdown">` (6 pts) — markdown alternate link
-- `<meta name="markdown_url">` (4 pts) — markdown URL metadata (e.g. Microsoft Learn)
-- `data-llm-hint` attributes (4 pts) — explicit LLM guidance in HTML
-- `llms.txt` references (3 pts) — site-level LLM endpoint declaration
-- Non-HTML `<link rel="alternate">` (3 pts) — any non-HTML alternate format (JSON, XML, etc.)
+**Agent Content Hints (diagnostic-only in v2).** The following signals are detected and recorded in `audit_trail.http_compliance.agent_content_hints` with `diagnostic_only: true` and `scoring_contribution: 0`. They **do not** add points to the HTTP Compliance score in `v2-evidence-partial`:
+
+- `<link rel="alternate" type="text/markdown">` — markdown alternate link
+- `<meta name="markdown_url">` — markdown URL metadata (e.g. Microsoft Learn)
+- `data-llm-hint` attributes — explicit LLM guidance in HTML
+- `llms.txt` references — site-level LLM endpoint declaration
+- Non-HTML `<link rel="alternate">` — any non-HTML alternate format (JSON, XML, etc.)
+
+Rationale: these are *declarations* of agent-friendly alternates, not *validated capabilities*. A page can claim a markdown alternate exists and then serve `text/html` at that URL, or serve a file that doesn't contain the page's actual content. Restoring any of these signals to the headline requires fetching and validating the declared resource plus a retrieval-lift benchmark. See [Known Gaps](#known-gaps) item 3 and PRD F2.2/F2.3.
 
 The robots.txt parser respects `User-agent` directives and only applies rules from the `User-agent: *` block. `Allow`/`Disallow` conflicts are resolved by longest-match precedence.
 
@@ -232,7 +263,9 @@ Every evaluation produces a complete audit trail documenting:
 
 ```json
 {
-  "parseability_score": 60.7,
+  "scoring_version": "v2-evidence-partial",
+  "parseability_score": 68.2,
+  "universal_score": 68.2,
   "failure_mode": "moderate_issues",
   "component_scores": {
     "semantic_html": 72.7,
@@ -240,9 +273,29 @@ Every evaluation produces a complete audit trail documenting:
     "structured_data": 12.0,
     "dom_navigability": 35.0,
     "metadata_completeness": 100.0,
-    "http_compliance": 100.0
+    "http_compliance": 61.9
   },
-  "audit_trail": { "..." : "..." },
+  "confidence_range": {
+    "scoring_version": "v2-evidence-partial",
+    "evidence_tier": "partial",
+    "headline_weights": {"content_extractability": 0.5, "http_compliance": 0.5},
+    "calibration_corpus": {
+      "name": "corpus-002",
+      "n": 43,
+      "pearson_r": 0.548,
+      "gate_threshold": 0.35,
+      "source": "findings/phase-5-corpus-002-findings.md"
+    },
+    "caveats": ["..."]
+  },
+  "audit_trail": {
+    "_content_type": {
+      "profile": "article",
+      "weights": {"content_extractability": 0.5, "http_compliance": 0.5, "...": 0.0},
+      "v1_weights_for_reference": {"semantic_html": 0.25, "content_extractability": 0.20, "...": "..."},
+      "scoring_version": "v2-evidence-partial"
+    }
+  },
   "standards_authority": {
     "semantic_html": "HTML5 Semantic Elements (W3C)",
     "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
@@ -251,7 +304,7 @@ Every evaluation produces a complete audit trail documenting:
     "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
     "http_compliance": "RFC 7231 + robots.txt + Cache headers"
   },
-  "evaluation_methodology": "Clipper Standards-Based Access Gate"
+  "evaluation_methodology": "Clipper Standards-Based Access Gate (v2-evidence-partial)"
 }
 ```
 
@@ -376,8 +429,10 @@ planned follow-up within this phase.
 - **Entry points**: `score.py` (standard mode), `performance_score.py` (async/parallel mode)
 - **Evaluator**: `access_gate_evaluator.py` — `AccessGateEvaluator` class
 - **Each pillar**: A `_evaluate_*` method returning `Tuple[float, Dict]` (score 0–100, audit trail)
-- **Weights**: `WEIGHTS` dict at class level (must sum to 1.0)
-- **Output schema**: `schemas.py` — `ScoreResult` dataclass
+- **v2 weights**: `profiles.V2_WEIGHTS` (frozen at module load, asserted to sum to 1.0)
+- **v1 weights (reference only)**: `profiles.PROFILE_WEIGHTS[profile]` — recorded in every audit trail as `v1_weights_for_reference`; not applied to the v2 headline.
+- **Version declaration**: `profiles.CLIPPER_SCORING_VERSION`
+- **Output schema**: `schemas.py` — `ScoreResult` dataclass, including the v2 `confidence_range` block.
 # YARA 2.0 Hybrid Scoring System
 
 This document explains how **YARA 2.0** (Yet Another Retrieval Analyzer) evaluates documentation pages using its proven hybrid scoring methodology that combines industry-standard web metrics with agent-specific analysis.

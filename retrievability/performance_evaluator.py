@@ -26,7 +26,12 @@ from urllib.parse import urljoin, urlparse
 # Keep existing imports for compatibility
 from .access_gate_evaluator import AccessGateEvaluator
 from .schemas import ScoreResult
-from .profiles import PROFILE_ARTICLE, PROFILE_WEIGHTS
+from .profiles import (
+    CLIPPER_SCORING_VERSION,
+    PROFILE_ARTICLE,
+    PROFILE_WEIGHTS,
+    V2_WEIGHTS,
+)
 
 # AsyncIO and performance imports
 from selenium import webdriver
@@ -358,18 +363,23 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
 
         partial_evaluation = bool(failed_pillars)
 
-        # Detect content type and pick the weight profile (Phase 1.1).
+        # Detect content type for audit/report purposes. v2 collapses all
+        # profiles to V2_WEIGHTS (see retrievability/profiles.py and
+        # findings/phase-5-corpus-002-findings.md Addendum B).
         content_type, detection_trace = self._detect_content_type(html_content, url)
-        profile_weights = PROFILE_WEIGHTS[content_type]
+        v1_profile_weights = PROFILE_WEIGHTS[content_type]
         audit_trail['_content_type'] = {
             'profile': content_type,
             'detection': detection_trace,
-            'weights': profile_weights,
+            'weights': dict(V2_WEIGHTS),
+            'v1_weights_for_reference': v1_profile_weights,
+            'scoring_version': CLIPPER_SCORING_VERSION,
         }
 
-        # Renormalize the weighted average over surviving pillars.
-        final_score = self._weighted_score(scores, profile_weights)
-        universal_score = self._weighted_score(scores, PROFILE_WEIGHTS[PROFILE_ARTICLE])
+        # v2: parseability_score and universal_score are the same 2-pillar
+        # composite; kept as separate fields for backward compatibility.
+        final_score = self._weighted_score(scores, V2_WEIGHTS)
+        universal_score = final_score
 
         # Determine failure mode based on standards compliance
         failure_mode = self._determine_failure_mode_standards(
@@ -412,6 +422,24 @@ class PerformanceOptimizedEvaluator(AccessGateEvaluator):
             content_type=content_type,
             universal_score=universal_score,
             render_mode=render_mode,
+            confidence_range={
+                'scoring_version': CLIPPER_SCORING_VERSION,
+                'evidence_tier': 'partial',
+                'headline_weights': dict(V2_WEIGHTS),
+                'calibration_corpus': {
+                    'name': 'corpus-002',
+                    'n': 43,
+                    'pearson_r_vs_accuracy_rendered': 0.548,
+                    'gate_threshold': 0.35,
+                    'source': 'findings/phase-5-corpus-002-findings.md Addendum B',
+                },
+                'caveats': [
+                    'Single corpus, single grader architecture, single run.',
+                    'Four pillars carry zero headline weight in v2; still reported as diagnostics.',
+                    'Profile-specific weights collapse to the same 2-pillar composite pending corpus-003.',
+                    'No cross-judge or temporal variance measured yet.',
+                ],
+            },
         )
     
     async def _evaluate_wcag_fallback_async(self, html_content: str) -> Tuple[float, Dict]:

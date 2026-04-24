@@ -102,6 +102,14 @@ class ScoreResult:
     # Rendering-mode dimension (Phase 3.1)
     render_mode: str = 'rendered'          # 'raw' | 'rendered' — which fetch path produced the HTML evaluated
 
+    # v2 evidence disclosure (Phase 6 Session 2)
+    # The v2 headline score ships as "evidence-partial": it is calibrated
+    # against corpus-002 (n=43, single grader architecture, one corpus
+    # snapshot, no held-out validation). This block exposes the corpus-002
+    # r and the evidence tier so downstream tooling can surface CI-style
+    # qualifiers without re-reading the findings doc.
+    confidence_range: Optional[Dict[str, Any]] = None
+
     # Backward compatibility
     subscores: Optional[Dict[str, float]] = None
     evidence_references: Optional[List[str]] = None

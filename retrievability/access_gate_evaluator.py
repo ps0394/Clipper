@@ -31,8 +31,10 @@ from readability import Document as ReadabilityDocument
 from .schemas import ScoreResult
 from . import __version__ as CLIPPER_VERSION
 from .profiles import (
+    CLIPPER_SCORING_VERSION,
     PROFILE_ARTICLE,
     PROFILE_WEIGHTS,
+    V2_WEIGHTS,
     detect_content_type,
 )
 
@@ -238,27 +240,51 @@ class AccessGateEvaluator:
 
         partial_evaluation = bool(failed_pillars)
 
-        # Detect content type and pick the weight profile (Phase 1.1). The
-        # default ``article`` weights match the pre-1.1 behavior exactly, so
-        # pages that fall through to the default keep producing the same
-        # score as before.
+        # Detect content type for audit-trail and report purposes. In v2 the
+        # detected profile does NOT change the headline weights: all profiles
+        # collapse to V2_WEIGHTS (a 2-pillar composite). Profile-specific
+        # reweighting is deferred to v3 pending corpus-003 evidence. See
+        # findings/phase-5-corpus-002-findings.md Addendum B.
         content_type, detection_trace = self._detect_content_type(html_content, url)
-        profile_weights = PROFILE_WEIGHTS[content_type]
+        v1_profile_weights = PROFILE_WEIGHTS[content_type]
         audit_trail['_content_type'] = {
             'profile': content_type,
             'detection': detection_trace,
-            'weights': profile_weights,
+            'weights': dict(V2_WEIGHTS),
+            'v1_weights_for_reference': v1_profile_weights,
+            'scoring_version': CLIPPER_SCORING_VERSION,
         }
 
-        # Final score renormalizes over surviving pillar weights. If every
-        # pillar failed the score is 0 and the failure mode reflects that.
-        final_score = self._weighted_score(scores, profile_weights)
-        universal_score = self._weighted_score(scores, PROFILE_WEIGHTS[PROFILE_ARTICLE])
+        # v2: headline = 2-pillar composite (content_extractability + http_compliance).
+        # parseability_score and universal_score are identical in v2 because
+        # profile-specific weights have been collapsed; both fields are kept
+        # for backward compatibility with existing report/JSON consumers.
+        final_score = self._weighted_score(scores, V2_WEIGHTS)
+        universal_score = final_score
 
         # Determine failure mode based on standards compliance
         failure_mode = self._determine_failure_mode_standards(
             scores, final_score, partial_evaluation=partial_evaluation
         )
+
+        confidence_range = {
+            'scoring_version': CLIPPER_SCORING_VERSION,
+            'evidence_tier': 'partial',
+            'headline_weights': dict(V2_WEIGHTS),
+            'calibration_corpus': {
+                'name': 'corpus-002',
+                'n': 43,
+                'pearson_r_vs_accuracy_rendered': 0.548,
+                'gate_threshold': 0.35,
+                'source': 'findings/phase-5-corpus-002-findings.md Addendum B',
+            },
+            'caveats': [
+                'Single corpus, single grader architecture, single run.',
+                'Four pillars carry zero headline weight in v2; still reported as diagnostics.',
+                'Profile-specific weights collapse to the same 2-pillar composite pending corpus-003.',
+                'No cross-judge or temporal variance measured yet.',
+            ],
+        }
 
         return ScoreResult(
             parseability_score=final_score,
@@ -274,6 +300,7 @@ class AccessGateEvaluator:
             content_type=content_type,
             universal_score=universal_score,
             render_mode=render_mode,
+            confidence_range=confidence_range,
         )
     
     def _load_html_content(self, html_path: str) -> Optional[str]:
@@ -940,30 +967,32 @@ class AccessGateEvaluator:
             score_components['cache_headers'] = min(cache_score, 20)
             audit_trail['cache_headers'] = cache_audit
             
-            # 5. Agent content hints (0-20 points) — does the HTML declare
-            #    machine-readable alternate formats or LLM-specific endpoints?
-            agent_hints_score = 0
-            agent_hints_audit = {}
-            
+            # 5. Agent content hints (DIAGNOSTIC ONLY in v2) — detect
+            #    machine-readable alternate formats (markdown alternates,
+            #    llms.txt references, data-llm-hint attributes) and record
+            #    them in the audit trail. These signals do NOT contribute
+            #    to the headline score in v2.
+            #
+            #    Rationale (findings/phase-5-corpus-002-findings.md §8.3 and
+            #    roadmap PRD F2.2 / F2.3): retrieval-lift evidence for these
+            #    signals belongs to Phase 6 (tri-fetcher served-markdown A/B).
+            #    Shipping headline points for undemonstrated signals gave
+            #    Learn-style pages a vendor-specific credit that the data
+            #    does not support.
+            agent_hints_audit = {
+                'scoring_contribution': 0,
+                'diagnostic_only': True,
+                'rationale': 'PRD F2.2/F2.3: retrieval-lift evidence deferred to Phase 6',
+            }
+
             # Re-use the soup already created for robots check
             from .parse import _detect_agent_content_hints
             hints = _detect_agent_content_hints(soup)
             agent_hints_audit['signals_found'] = hints
-            
-            if hints.get('has_markdown_alternate'):
-                agent_hints_score += 6   # <link rel="alternate" type="text/markdown">
-            if hints.get('has_markdown_url_meta'):
-                agent_hints_score += 4   # <meta name="markdown_url">
-            if hints.get('has_llm_hints'):
-                agent_hints_score += 4   # data-llm-hint attributes
-            if hints.get('has_llms_txt_ref'):
-                agent_hints_score += 3   # llms.txt reference
-            if hints.get('has_non_html_alternate'):
-                agent_hints_score += 3   # any non-HTML <link rel="alternate">
-            
-            score_components['agent_content_hints'] = min(agent_hints_score, 20)
+
+            score_components['agent_content_hints'] = 0
             audit_trail['agent_content_hints'] = agent_hints_audit
-            
+
             final_score = min(sum(score_components.values()), 100)
             audit_trail['score_breakdown'] = score_components
             

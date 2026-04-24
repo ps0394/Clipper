@@ -64,13 +64,17 @@ def test_pillar_failure_is_excluded_not_zeroed(monkeypatch):
 
     # The renormalized final score must be a weighted average over the
     # surviving pillars and strictly greater than the pre-Phase-0.2 behavior
-    # of multiplying the semantic-html zero into the sum. Exact formula:
+    # of multiplying the semantic-html zero into the sum.
+    #
+    # In v2 (Phase 6 Session 2) the headline weights are the 2-pillar
+    # composite: content_extractability=0.50, http_compliance=0.50, all
+    # other pillars at 0.0. Dropping semantic_html does not change the
+    # surviving-weight denominator because semantic_html already carried
+    # zero weight in v2. Surviving-weight renormalization is still exercised
+    # here — it's just that removing a zero-weight pillar is a no-op.
     surviving_weights = {
-        'content_extractability': 0.20,
-        'structured_data': 0.20,
-        'dom_navigability': 0.15,
-        'metadata_completeness': 0.10,
-        'http_compliance': 0.10,
+        'content_extractability': 0.50,
+        'http_compliance':        0.50,
     }
     denom = sum(surviving_weights.values())
     expected = sum(
