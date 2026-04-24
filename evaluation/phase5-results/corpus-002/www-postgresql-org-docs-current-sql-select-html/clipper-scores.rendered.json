@@ -1,0 +1,2710 @@
+{
+  "parseability_score": 38.577928446282876,
+  "failure_mode": "severe_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-002\\www-postgresql-org-docs-current-sql-select-html\\page.rendered.html",
+  "url": "https://www.postgresql.org/docs/current/sql-select.html",
+  "component_scores": {
+    "semantic_html": 40.90909090909091,
+    "content_extractability": 79.25327859505074,
+    "structured_data": 5,
+    "dom_navigability": 0,
+    "metadata_completeness": 55,
+    "http_compliance": 60.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "nav",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 1,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 2,
+      "heading_elements_count": 37,
+      "scoring_breakdown": {
+        "semantic_coverage": 10.90909090909091,
+        "aria_bonus": 10,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 63160,
+        "extracted_text_length": 51446,
+        "extracted_chars": 51446,
+        "extraction_ratio": 0.815,
+        "extracted_title": "Documentation: 18: SELECT",
+        "extracted_preview": "Parameters WITH Clause The WITH clause allows you to specify one or more subqueries that can be referenced by name in the primary query. The subqueries effectively act as temporary tables or views for the duration of the primary query. Each subquery can be a SELECT , TABLE , VALUES , INSERT , UPDATE...",
+        "original_headings": 37,
+        "extracted_headings": 19,
+        "original_lists": 3,
+        "extracted_lists": 1,
+        "original_code_blocks": 948,
+        "extracted_code_blocks": 738,
+        "has_main_element": false,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 40.0,
+        "structure_preservation": 16.253278595050748,
+        "boundary_detection": 23
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 0,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [],
+      "key_fields_found": [],
+      "formats_present": 1,
+      "score_breakdown": {
+        "type_appropriateness": 0,
+        "field_completeness": 0,
+        "multiple_formats": 5,
+        "schema_validation": 0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": []
+      },
+      "sample_structured_data": {
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#",
+              "article": "http://ogp.me/ns/article#"
+            },
+            "properties": [
+              [
+                "og:url",
+                "https://www.postgresql.org/docs/18/sql-select.html"
+              ],
+              [
+                "og:type",
+                "article"
+              ],
+              [
+                "article:published_time",
+                "2026-02-26T14:07:09"
+              ],
+              [
+                "og:image",
+                "https://www.postgresql.org/media/img/about/press/elephant.png"
+              ],
+              [
+                "og:title",
+                "SELECT"
+              ],
+              [
+                "og:description",
+                "SELECT SELECT, TABLE, WITH — retrieve rows from a table or view Synopsis [ WITH [ RECURSIVE ] with_query [, …"
+              ],
+              [
+                "og:site_name",
+                "PostgreSQL Documentation"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures every accesskey attribute value is unique",
+          "help": "accesskey attribute value must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/accesskeys?application=axeAPI",
+          "id": "accesskeys",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Document has multiple elements with the same accesskey",
+              "html": "<a accesskey=\"p\" href=\"sql-security-label.html\" title=\"SECURITY LABEL\">Prev</a>",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": "p",
+                  "id": "accesskeys",
+                  "impact": "serious",
+                  "message": "Document has multiple elements with the same accesskey",
+                  "relatedNodes": [
+                    {
+                      "html": "<a accesskey=\"p\" href=\"sql-security-label.html\" title=\"SECURITY LABEL\">Prev</a>",
+                      "target": [
+                        "td[width=\"\\34 0\\%\"][align=\"left\"] > a[accesskey=\"p\"][href$=\"sql-security-label.html\"][title=\"SECURITY\\ LABEL\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                "td[width=\"\\31 0\\%\"][align=\"left\"]:nth-child(1) > a[accesskey=\"p\"][href$=\"sql-security-label.html\"][title=\"SECURITY\\ LABEL\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Document has multiple elements with the same accesskey",
+              "html": "<a accesskey=\"u\" href=\"sql-commands.html\" title=\"SQL Commands\">Up</a>",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": "u",
+                  "id": "accesskeys",
+                  "impact": "serious",
+                  "message": "Document has multiple elements with the same accesskey",
+                  "relatedNodes": [
+                    {
+                      "html": "<a accesskey=\"u\" href=\"sql-commands.html\" title=\"SQL Commands\">Up</a>",
+                      "target": [
+                        "td[width=\"\\32 0\\%\"][align=\"center\"] > a[accesskey=\"u\"][href$=\"sql-commands.html\"][title=\"SQL\\ Commands\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                "td[width=\"\\31 0\\%\"][align=\"left\"]:nth-child(2) > a[accesskey=\"u\"][href$=\"sql-commands.html\"][title=\"SQL\\ Commands\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Document has multiple elements with the same accesskey",
+              "html": "<a accesskey=\"h\" href=\"index.html\" title=\"PostgreSQL 18.3 Documentation\">Home</a>",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": "h",
+                  "id": "accesskeys",
+                  "impact": "serious",
+                  "message": "Document has multiple elements with the same accesskey",
+                  "relatedNodes": [
+                    {
+                      "html": "<a accesskey=\"h\" href=\"index.html\" title=\"PostgreSQL 18.3 Documentation\">Home</a>",
+                      "target": [
+                        "td[width=\"\\32 0\\%\"][align=\"center\"] > a[accesskey=\"h\"][href=\"index.html\"][title=\"PostgreSQL\\ 18\\.3\\ Documentation\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                "td[width=\"\\31 0\\%\"][align=\"right\"]:nth-child(4) > a[accesskey=\"h\"][href=\"index.html\"][title=\"PostgreSQL\\ 18\\.3\\ Documentation\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Document has multiple elements with the same accesskey",
+              "html": "<a accesskey=\"n\" href=\"sql-selectinto.html\" title=\"SELECT INTO\">Next</a>",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": "n",
+                  "id": "accesskeys",
+                  "impact": "serious",
+                  "message": "Document has multiple elements with the same accesskey",
+                  "relatedNodes": [
+                    {
+                      "html": "<a accesskey=\"n\" href=\"sql-selectinto.html\" title=\"SELECT INTO\">Next</a>",
+                      "target": [
+                        "td[width=\"\\34 0\\%\"][align=\"right\"] > a[accesskey=\"n\"][href$=\"sql-selectinto.html\"][title=\"SELECT\\ INTO\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                "td[width=\"\\31 0\\%\"][align=\"right\"]:nth-child(5) > a[accesskey=\"n\"][href$=\"sql-selectinto.html\"][title=\"SELECT\\ INTO\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "best-practice",
+            "cat.keyboard"
+          ]
+        },
+        {
+          "description": "Ensures buttons have discernible text",
+          "help": "Buttons must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/button-name?application=axeAPI",
+          "id": "button-name",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button class=\"btn btn-default\" type=\"submit\"><i class=\"fas fa-search\"></i></button>",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "#pgNavbar > form[role=\"search\"][method=\"get\"][action=\"\\/search\\/\"] > .input-group > .input-group-btn > button[type=\"submit\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button id=\"btn-theme\" class=\"btn btn-default ml-1\" type=\"button\"><i class=\"fas fa-moon\"></i></button>",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "#btn-theme"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button class=\"btn btn-default\" type=\"submit\"><i class=\"fas fa-search\"></i></button>",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "#docSearchForm > .input-group > .input-group-btn > button[type=\"submit\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value of active elements is unique",
+          "help": "IDs of active elements must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id-active?application=axeAPI",
+          "id": "duplicate-id-active",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "q",
+                  "id": "duplicate-id-active",
+                  "impact": "serious",
+                  "message": "Document has active elements with the same id attribute: q",
+                  "relatedNodes": [
+                    {
+                      "html": "<input type=\"text\" id=\"q\" name=\"q\" class=\"form-control\" placeholder=\"Search the documentation for...\">",
+                      "target": [
+                        "#docSearchForm > .input-group > .form-control[type=\"text\"][name=\"q\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has active elements with the same id attribute: q",
+              "html": "<input id=\"q\" name=\"q\" type=\"text\" size=\"20\" maxlength=\"255\" accesskey=\"s\" class=\"form-control\" placeholder=\"Search for...\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "input[size=\"\\32 0\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures every form element has a label",
+          "help": "Form elements must have labels",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/label?application=axeAPI",
+          "id": "label",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "implicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an implicit (wrapped) <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "explicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an explicit <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  Element has no title attribute or the title attribute is empty",
+              "html": "<input id=\"q\" name=\"q\" type=\"text\" size=\"20\" maxlength=\"255\" accesskey=\"s\" class=\"form-control\" placeholder=\"Search for...\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "input[size=\"\\32 0\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "implicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an implicit (wrapped) <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "explicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an explicit <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  Element has no title attribute or the title attribute is empty",
+              "html": "<input type=\"text\" id=\"q\" name=\"q\" class=\"form-control\" placeholder=\"Search the documentation for...\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "#docSearchForm > .input-group > .form-control[type=\"text\"][name=\"q\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.forms",
+            "wcag2a",
+            "wcag332",
+            "wcag131",
+            "section508",
+            "section508.22.n"
+          ]
+        },
+        {
+          "description": "Ensures the page has only one main landmark and each iframe in the page has at most one main landmark",
+          "help": "Page must have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/landmark-one-main?application=axeAPI",
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": null,
+                  "id": "page-has-main",
+                  "impact": "moderate",
+                  "message": "Page does not have a main landmark",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Page does not have a main landmark",
+              "html": "<html lang=\"en\" data-theme=\"light\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+          "help": "Page must contain a level-one heading",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/page-has-heading-one?application=axeAPI",
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": null,
+                  "id": "page-has-heading-one",
+                  "impact": "moderate",
+                  "message": "Page must have a level-one heading",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Page must have a level-one heading",
+              "html": "<html lang=\"en\" data-theme=\"light\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures all page content is contained by landmarks",
+          "help": "All page content must be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/region?application=axeAPI",
+          "id": "region",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "region",
+                  "impact": "moderate",
+                  "message": "Some page content is not contained by landmarks",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"col text-white text-center\">February 26, 2026: <a href=\"/about/news/postgresql-183-179-1613-1517-and-1422-released-3246/\">\n  PostgreSQL 18.3, 17.9, 16.13, 15.17, and 14.22 Released!\n</a>\n</div>",
+                      "target": [
+                        ".text-white"
+                      ]
+                    },
+                    {
+                      "html": "<div>\n                    <a href=\"/docs/\" title=\"Documentation\">Documentation</a> → <a href=\"/docs/18/index.html\">PostgreSQL 18</a>\n                  </div>",
+                      "target": [
+                        ".col > div"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"col\">",
+                      "target": [
+                        ".mb-2 > .row:nth-child(2) > .col"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"col\">\n                    Development Versions:\n                    \n                      \n                      <a href=\"/docs/devel/sql-select.html\" title=\"PostgreSQL devel - SELECT\" rel=\"nofollow\">devel</a>\n                    \n                  </div>",
+                      "target": [
+                        ".row:nth-child(3) > .col"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"col-12\">",
+                      "target": [
+                        ".col-12"
+                      ]
+                    },
+                    {
+                      "html": "<th colspan=\"5\" align=\"center\">SELECT</th>",
+                      "target": [
+                        "th[colspan=\"\\35 \"]"
+                      ]
+                    },
+                    {
+                      "html": "<a accesskey=\"p\" href=\"sql-security-label.html\" title=\"SECURITY LABEL\">Prev</a>",
+                      "target": [
+                        "td[width=\"\\31 0\\%\"][align=\"left\"]:nth-child(1) > a[accesskey=\"p\"][href$=\"sql-security-label.html\"][title=\"SECURITY\\ LABEL\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a accesskey=\"u\" href=\"sql-commands.html\" title=\"SQL Commands\">Up</a>",
+                      "target": [
+                        "td[width=\"\\31 0\\%\"][align=\"left\"]:nth-child(2) > a[accesskey=\"u\"][href$=\"sql-commands.html\"][title=\"SQL\\ Commands\"]"
+                      ]
+                    },
+                    {
+                      "html": "<th width=\"60%\" align=\"center\">SQL Commands</th>",
+                      "target": [
+                        "th[width=\"\\36 0\\%\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a accesskey=\"h\" href=\"index.html\" title=\"PostgreSQL 18.3 Documentation\">Home</a>",
+                      "target": [
+                        "td[width=\"\\31 0\\%\"][align=\"right\"]:nth-child(4) > a[accesskey=\"h\"][href=\"index.html\"][title=\"PostgreSQL\\ 18\\.3\\ Documentation\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a accesskey=\"n\" href=\"sql-selectinto.html\" title=\"SELECT INTO\">Next</a>",
+                      "target": [
+                        "td[width=\"\\31 0\\%\"][align=\"right\"]:nth-child(5) > a[accesskey=\"n\"][href$=\"sql-selectinto.html\"][title=\"SELECT\\ INTO\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"refentrytitle\">SELECT</span>",
+                      "target": [
+                        ".refentrytitle"
+                      ]
+                    },
+                    {
+                      "html": "<p>SELECT, TABLE, WITH — retrieve rows from a table or view</p>",
+                      "target": [
+                        ".refnamediv > p"
+                      ]
+                    },
+                    {
+                      "html": "<h2>Synopsis</h2>",
+                      "target": [
+                        ".refsynopsisdiv > h2"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\">",
+                      "target": [
+                        ".refsynopsisdiv > .synopsis"
+                      ]
+                    },
+                    {
+                      "html": "<h2>Description</h2>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.7 > h2"
+                      ]
+                    },
+                    {
+                      "html": "<p><code class=\"command\">SELECT</code> retrieves rows from zero or more tables. The general processing of <code class=\"command\">SELECT</code> is as follows:</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.7 > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "ol > .listitem:nth-child(1) > p"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "ol > .listitem:nth-child(2) > p"
+                      ]
+                    },
+                    {
+                      "html": "<p>If the <code class=\"literal\">WHERE</code> clause is specified, all rows that do not satisfy the condition are eliminated from the output. (See <a class=\"xref\" href=\"sql-select.html#SQL-WHERE\" title=\"WHERE Clause\">WHERE Clause</a> below.)</p>",
+                      "target": [
+                        "ol > .listitem:nth-child(3) > p"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "ol > .listitem:nth-child(4) > p"
+                      ]
+                    },
+                    {
+                      "html": "<p>The actual output rows are computed using the <code class=\"command\">SELECT</code> output expressions for each selected row or row group. (See <a class=\"xref\" href=\"sql-select.html#SQL-SELECT-LIST\" title=\"SELECT List\">SELECT List</a> below.)</p>",
+                      "target": [
+                        ".listitem:nth-child(5) > p"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        ".listitem:nth-child(6) > p"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        ".listitem:nth-child(7) > p"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        ".listitem:nth-child(8) > p"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        ".listitem:nth-child(9) > p"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        ".listitem:nth-child(10) > p"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.7 > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<h2>Parameters</h2>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.8 > h2"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">WITH</code> Clause</h3>",
+                      "target": [
+                        "#SQL-WITH > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WITH > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<p>A name (without schema qualification) must be specified for each <code class=\"literal\">WITH</code> query. Optionally, a list of column names can be specified; if this is omitted, the column names are inferred from the subquery.</p>",
+                      "target": [
+                        "#SQL-WITH > p:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<p>If <code class=\"literal\">RECURSIVE</code> is specified, it allows a <code class=\"command\">SELECT</code> subquery to reference itself by name. Such a subquery must have the form</p>",
+                      "target": [
+                        "#SQL-WITH > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\"><em class=\"replaceable\"><code>non_recursive_term</code></em> UNION [ ALL | DISTINCT ] <em class=\"replaceable\"><code>recursive_term</code></em>\n</pre>",
+                      "target": [
+                        "#SQL-WITH > .synopsis"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WITH > p:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WITH > p:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WITH > p:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WITH > p:nth-child(9)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WITH > p:nth-child(10)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WITH > p:nth-child(11)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WITH > p:nth-child(12)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WITH > p:nth-child(13)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WITH > p:nth-child(14)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WITH > p:nth-child(15)"
+                      ]
+                    },
+                    {
+                      "html": "<p>See <a class=\"xref\" href=\"queries-with.html\" title=\"7.8.&nbsp;WITH Queries (Common Table Expressions)\">Section&nbsp;7.8</a> for additional information.</p>",
+                      "target": [
+                        "#SQL-WITH > p:nth-child(16)"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">FROM</code> Clause</h3>",
+                      "target": [
+                        "#SQL-FROM > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-FROM > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<p>The <code class=\"literal\">FROM</code> clause can contain the following elements:</p>",
+                      "target": [
+                        "#SQL-FROM > p:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<code>table_name</code>",
+                      "target": [
+                        "dt:nth-child(1) > .term > .replaceable > code"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(2) > p"
+                      ]
+                    },
+                    {
+                      "html": "<code>alias</code>",
+                      "target": [
+                        "dt:nth-child(3) > .term > .replaceable > code"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(4) > p"
+                      ]
+                    },
+                    {
+                      "html": "<code class=\"literal\">TABLESAMPLE <em class=\"replaceable\"><code>sampling_method</code></em> ( <em class=\"replaceable\"><code>argument</code></em> [, ...] ) [ REPEATABLE ( <em class=\"replaceable\"><code>seed</code></em> ) ]</code>",
+                      "target": [
+                        "dt:nth-child(5) > .term > .literal"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(6) > p:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(6) > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(6) > p:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<code>select</code>",
+                      "target": [
+                        "dt:nth-child(7) > .term > .replaceable > code"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(8) > p"
+                      ]
+                    },
+                    {
+                      "html": "<code>with_query_name</code>",
+                      "target": [
+                        "dt:nth-child(9) > .term > .replaceable > code"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(10) > p"
+                      ]
+                    },
+                    {
+                      "html": "<code>function_name</code>",
+                      "target": [
+                        "dt:nth-child(11) > .term > .replaceable > code"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(12) > p:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(12) > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<p>An alias can be provided in the same way as for a table. If an alias is written, a column alias list can also be written to provide substitute names for one or more attributes of the function's composite return type, including the ordinality column if present.</p>",
+                      "target": [
+                        "dd:nth-child(12) > p:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(12) > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(12) > p:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(12) > p:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<p>To use <code class=\"literal\">ORDINALITY</code> together with a column definition list, you must use the <code class=\"literal\">ROWS FROM( ... )</code> syntax and put the column definition list inside <code class=\"literal\">ROWS FROM( ... )</code>.</p>",
+                      "target": [
+                        "dd:nth-child(12) > p:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<code>join_type</code>",
+                      "target": [
+                        "dt:nth-child(13) > .term > .replaceable > code"
+                      ]
+                    },
+                    {
+                      "html": "<p>One of</p>",
+                      "target": [
+                        "dd:nth-child(14) > p:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<code class=\"literal\">[ INNER ] JOIN</code>",
+                      "target": [
+                        "ul > .listitem:nth-child(1) > p > .literal"
+                      ]
+                    },
+                    {
+                      "html": "<code class=\"literal\">LEFT [ OUTER ] JOIN</code>",
+                      "target": [
+                        "ul > .listitem:nth-child(2) > p > .literal"
+                      ]
+                    },
+                    {
+                      "html": "<code class=\"literal\">RIGHT [ OUTER ] JOIN</code>",
+                      "target": [
+                        "ul > .listitem:nth-child(3) > p > .literal"
+                      ]
+                    },
+                    {
+                      "html": "<code class=\"literal\">FULL [ OUTER ] JOIN</code>",
+                      "target": [
+                        "ul > .listitem:nth-child(4) > p > .literal"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(14) > p:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(14) > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(14) > p:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(14) > p:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<p><code class=\"literal\">FULL OUTER JOIN</code> returns all the joined rows, plus one row for each unmatched left-hand row (extended with nulls on the right), plus one row for each unmatched right-hand row (extended with nulls on the left).</p>",
+                      "target": [
+                        "dd:nth-child(14) > p:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<code class=\"literal\">ON <em class=\"replaceable\"><code>join_condition</code></em></code>",
+                      "target": [
+                        "dt:nth-child(15) > .term > .literal"
+                      ]
+                    },
+                    {
+                      "html": "<p><em class=\"replaceable\"><code>join_condition</code></em> is an expression resulting in a value of type <code class=\"type\">boolean</code> (similar to a <code class=\"literal\">WHERE</code> clause) that specifies which rows in a join are considered to match.</p>",
+                      "target": [
+                        "dd:nth-child(16) > p"
+                      ]
+                    },
+                    {
+                      "html": "<code class=\"literal\">USING ( <em class=\"replaceable\"><code>join_column</code></em> [, ...] ) [ AS <em class=\"replaceable\"><code>join_using_alias</code></em> ]</code>",
+                      "target": [
+                        "dt:nth-child(17) > .term > .literal"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(18) > p:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(18) > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<code class=\"literal\">NATURAL</code>",
+                      "target": [
+                        "dt:nth-child(19) > .term > .literal"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(20) > p"
+                      ]
+                    },
+                    {
+                      "html": "<code class=\"literal\">CROSS JOIN</code>",
+                      "target": [
+                        "dt:nth-child(21) > .term > .literal"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(22) > p"
+                      ]
+                    },
+                    {
+                      "html": "<code class=\"literal\">LATERAL</code>",
+                      "target": [
+                        "dt:nth-child(23) > .term > .literal"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(24) > p:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<p><code class=\"literal\">LATERAL</code> can also precede a function-call <code class=\"literal\">FROM</code> item, but in this case it is a noise word, because the function expression can refer to earlier <code class=\"literal\">FROM</code> items in any case.</p>",
+                      "target": [
+                        "dd:nth-child(24) > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(24) > p:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(24) > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "dd:nth-child(24) > p:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">WHERE</code> Clause</h3>",
+                      "target": [
+                        "#SQL-WHERE > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>The optional <code class=\"literal\">WHERE</code> clause has the general form</p>",
+                      "target": [
+                        "#SQL-WHERE > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\">WHERE <em class=\"replaceable\"><code>condition</code></em>\n</pre>",
+                      "target": [
+                        "#SQL-WHERE > .synopsis"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WHERE > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">GROUP BY</code> Clause</h3>",
+                      "target": [
+                        "#SQL-GROUPBY > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>The optional <code class=\"literal\">GROUP BY</code> clause has the general form</p>",
+                      "target": [
+                        "#SQL-GROUPBY > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\">GROUP BY [ ALL | DISTINCT ] <em class=\"replaceable\"><code>grouping_element</code></em> [, ...]\n</pre>",
+                      "target": [
+                        "#SQL-GROUPBY > .synopsis"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-GROUPBY > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-GROUPBY > p:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-GROUPBY > p:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-GROUPBY > p:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-GROUPBY > p:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<p>Currently, <code class=\"literal\">FOR NO KEY UPDATE</code>, <code class=\"literal\">FOR UPDATE</code>, <code class=\"literal\">FOR SHARE</code> and <code class=\"literal\">FOR KEY SHARE</code> cannot be specified with <code class=\"literal\">GROUP BY</code>.</p>",
+                      "target": [
+                        "#SQL-GROUPBY > p:nth-child(9)"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">HAVING</code> Clause</h3>",
+                      "target": [
+                        "#SQL-HAVING > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>The optional <code class=\"literal\">HAVING</code> clause has the general form</p>",
+                      "target": [
+                        "#SQL-HAVING > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\">HAVING <em class=\"replaceable\"><code>condition</code></em>\n</pre>",
+                      "target": [
+                        "#SQL-HAVING > .synopsis"
+                      ]
+                    },
+                    {
+                      "html": "<p>where <em class=\"replaceable\"><code>condition</code></em> is the same as specified for the <code class=\"literal\">WHERE</code> clause.</p>",
+                      "target": [
+                        "#SQL-HAVING > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-HAVING > p:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-HAVING > p:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<p>Currently, <code class=\"literal\">FOR NO KEY UPDATE</code>, <code class=\"literal\">FOR UPDATE</code>, <code class=\"literal\">FOR SHARE</code> and <code class=\"literal\">FOR KEY SHARE</code> cannot be specified with <code class=\"literal\">HAVING</code>.</p>",
+                      "target": [
+                        "#SQL-HAVING > p:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">WINDOW</code> Clause</h3>",
+                      "target": [
+                        "#SQL-WINDOW > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>The optional <code class=\"literal\">WINDOW</code> clause has the general form</p>",
+                      "target": [
+                        "#SQL-WINDOW > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\">WINDOW <em class=\"replaceable\"><code>window_name</code></em> AS ( <em class=\"replaceable\"><code>window_definition</code></em> ) [, ...]\n</pre>",
+                      "target": [
+                        "#SQL-WINDOW > .synopsis:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<p>where <em class=\"replaceable\"><code>window_name</code></em> is a name that can be referenced from <code class=\"literal\">OVER</code> clauses or subsequent window definitions, and <em class=\"replaceable\"><code>window_definition</code></em> is</p>",
+                      "target": [
+                        "#SQL-WINDOW > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\">",
+                      "target": [
+                        "#SQL-WINDOW > .synopsis:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WINDOW > p:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WINDOW > p:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WINDOW > p:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WINDOW > p:nth-child(9)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\">",
+                      "target": [
+                        ".synopsis:nth-child(10)"
+                      ]
+                    },
+                    {
+                      "html": "<p>where <em class=\"replaceable\"><code>frame_start</code></em> and <em class=\"replaceable\"><code>frame_end</code></em> can be one of</p>",
+                      "target": [
+                        "#SQL-WINDOW > p:nth-child(11)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\">UNBOUNDED PRECEDING\n<em class=\"replaceable\"><code>offset</code></em> PRECEDING\nCURRENT ROW\n<em class=\"replaceable\"><code>offset</code></em> FOLLOWING\nUNBOUNDED FOLLOWING\n</pre>",
+                      "target": [
+                        ".synopsis:nth-child(12)"
+                      ]
+                    },
+                    {
+                      "html": "<p>and <em class=\"replaceable\"><code>frame_exclusion</code></em> can be one of</p>",
+                      "target": [
+                        "#SQL-WINDOW > p:nth-child(13)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\">EXCLUDE CURRENT ROW\nEXCLUDE GROUP\nEXCLUDE TIES\nEXCLUDE NO OTHERS\n</pre>",
+                      "target": [
+                        ".synopsis:nth-child(14)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WINDOW > p:nth-child(15)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WINDOW > p:nth-child(16)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "p:nth-child(17)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WINDOW > p:nth-child(18)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WINDOW > p:nth-child(19)"
+                      ]
+                    },
+                    {
+                      "html": "<p>Currently, <code class=\"literal\">FOR NO KEY UPDATE</code>, <code class=\"literal\">FOR UPDATE</code>, <code class=\"literal\">FOR SHARE</code> and <code class=\"literal\">FOR KEY SHARE</code> cannot be specified with <code class=\"literal\">WINDOW</code>.</p>",
+                      "target": [
+                        "p:nth-child(20)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-WINDOW > p:nth-child(21)"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"command\">SELECT</code> List</h3>",
+                      "target": [
+                        "#SQL-SELECT-LIST > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-SELECT-LIST > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-SELECT-LIST > p:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-SELECT-LIST > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-SELECT-LIST > p:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-SELECT-LIST > p:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<h3 class=\"title\">Note</h3>",
+                      "target": [
+                        ".note > .title"
+                      ]
+                    },
+                    {
+                      "html": "<p><span class=\"productname\">PostgreSQL</span> versions before 9.6 did not provide any guarantees about the timing of evaluation of output expressions versus sorting and limiting; it depended on the form of the chosen query plan.</p>",
+                      "target": [
+                        ".note > p"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">DISTINCT</code> Clause</h3>",
+                      "target": [
+                        "#SQL-DISTINCT > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>If <code class=\"literal\">SELECT DISTINCT</code> is specified, all duplicate rows are removed from the result set (one row is kept from each group of duplicates). <code class=\"literal\">SELECT ALL</code> specifies the opposite: all rows are kept; that is the default.</p>",
+                      "target": [
+                        "#SQL-DISTINCT > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-DISTINCT > p:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">SELECT DISTINCT ON (location) location, time, report\n    FROM weather_reports\n    ORDER BY location, time DESC;\n</pre>",
+                      "target": [
+                        "#SQL-DISTINCT > .programlisting"
+                      ]
+                    },
+                    {
+                      "html": "<p>retrieves the most recent weather report for each location. But if we had not used <code class=\"literal\">ORDER BY</code> to force descending order of time values for each location, we'd have gotten a report from an unpredictable time for each location.</p>",
+                      "target": [
+                        "#SQL-DISTINCT > p:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-DISTINCT > p:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<p>Currently, <code class=\"literal\">FOR NO KEY UPDATE</code>, <code class=\"literal\">FOR UPDATE</code>, <code class=\"literal\">FOR SHARE</code> and <code class=\"literal\">FOR KEY SHARE</code> cannot be specified with <code class=\"literal\">DISTINCT</code>.</p>",
+                      "target": [
+                        "#SQL-DISTINCT > p:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">UNION</code> Clause</h3>",
+                      "target": [
+                        "#SQL-UNION > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>The <code class=\"literal\">UNION</code> clause has this general form:</p>",
+                      "target": [
+                        "#SQL-UNION > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\"><em class=\"replaceable\"><code>select_statement</code></em> UNION [ ALL | DISTINCT ] <em class=\"replaceable\"><code>select_statement</code></em>\n</pre>",
+                      "target": [
+                        "#SQL-UNION > .synopsis"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-UNION > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-UNION > p:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-UNION > p:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<p>Multiple <code class=\"literal\">UNION</code> operators in the same <code class=\"command\">SELECT</code> statement are evaluated left to right, unless otherwise indicated by parentheses.</p>",
+                      "target": [
+                        "#SQL-UNION > p:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-UNION > p:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">INTERSECT</code> Clause</h3>",
+                      "target": [
+                        "#SQL-INTERSECT > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>The <code class=\"literal\">INTERSECT</code> clause has this general form:</p>",
+                      "target": [
+                        "#SQL-INTERSECT > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\"><em class=\"replaceable\"><code>select_statement</code></em> INTERSECT [ ALL | DISTINCT ] <em class=\"replaceable\"><code>select_statement</code></em>\n</pre>",
+                      "target": [
+                        "#SQL-INTERSECT > .synopsis"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-INTERSECT > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<p>The <code class=\"literal\">INTERSECT</code> operator computes the set intersection of the rows returned by the involved <code class=\"command\">SELECT</code> statements. A row is in the intersection of two result sets if it appears in both result sets.</p>",
+                      "target": [
+                        "#SQL-INTERSECT > p:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-INTERSECT > p:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-INTERSECT > p:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-INTERSECT > p:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">EXCEPT</code> Clause</h3>",
+                      "target": [
+                        "#SQL-EXCEPT > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>The <code class=\"literal\">EXCEPT</code> clause has this general form:</p>",
+                      "target": [
+                        "#SQL-EXCEPT > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\"><em class=\"replaceable\"><code>select_statement</code></em> EXCEPT [ ALL | DISTINCT ] <em class=\"replaceable\"><code>select_statement</code></em>\n</pre>",
+                      "target": [
+                        "#SQL-EXCEPT > .synopsis"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-EXCEPT > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<p>The <code class=\"literal\">EXCEPT</code> operator computes the set of rows that are in the result of the left <code class=\"command\">SELECT</code> statement but not in the result of the right one.</p>",
+                      "target": [
+                        "#SQL-EXCEPT > p:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-EXCEPT > p:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<p>Multiple <code class=\"literal\">EXCEPT</code> operators in the same <code class=\"command\">SELECT</code> statement are evaluated left to right, unless parentheses dictate otherwise. <code class=\"literal\">EXCEPT</code> binds at the same level as <code class=\"literal\">UNION</code>.</p>",
+                      "target": [
+                        "#SQL-EXCEPT > p:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-EXCEPT > p:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">ORDER BY</code> Clause</h3>",
+                      "target": [
+                        "#SQL-ORDERBY > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>The optional <code class=\"literal\">ORDER BY</code> clause has this general form:</p>",
+                      "target": [
+                        "#SQL-ORDERBY > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\">ORDER BY <em class=\"replaceable\"><code>expression</code></em> [ ASC | DESC | USING <em class=\"replaceable\"><code>operator</code></em> ] [ NULLS { FIRST | LAST } ] [, ...]\n</pre>",
+                      "target": [
+                        "#SQL-ORDERBY > .synopsis"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-ORDERBY > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<p>Each <em class=\"replaceable\"><code>expression</code></em> can be the name or ordinal number of an output column (<code class=\"command\">SELECT</code> list item), or it can be an arbitrary expression formed from input-column values.</p>",
+                      "target": [
+                        "#SQL-ORDERBY > p:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-ORDERBY > p:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<p>It is also possible to use arbitrary expressions in the <code class=\"literal\">ORDER BY</code> clause, including columns that do not appear in the <code class=\"command\">SELECT</code> output list. Thus the following statement is valid:</p>",
+                      "target": [
+                        "#SQL-ORDERBY > p:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">SELECT name FROM distributors ORDER BY code;\n</pre>",
+                      "target": [
+                        "#SQL-ORDERBY > .programlisting"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-ORDERBY > p:nth-child(9)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-ORDERBY > p:nth-child(10)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-ORDERBY > p:nth-child(11)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-ORDERBY > p:nth-child(12)"
+                      ]
+                    },
+                    {
+                      "html": "<p>Note that ordering options apply only to the expression they follow; for example <code class=\"literal\">ORDER BY x, y DESC</code> does not mean the same thing as <code class=\"literal\">ORDER BY x DESC, y DESC</code>.</p>",
+                      "target": [
+                        "#SQL-ORDERBY > p:nth-child(13)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-ORDERBY > p:nth-child(14)"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">LIMIT</code> Clause</h3>",
+                      "target": [
+                        "#SQL-LIMIT > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>The <code class=\"literal\">LIMIT</code> clause consists of two independent sub-clauses:</p>",
+                      "target": [
+                        "#SQL-LIMIT > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\">LIMIT { <em class=\"replaceable\"><code>count</code></em> | ALL }\nOFFSET <em class=\"replaceable\"><code>start</code></em>\n</pre>",
+                      "target": [
+                        "#SQL-LIMIT > .synopsis:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-LIMIT > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<p>If the <em class=\"replaceable\"><code>count</code></em> expression evaluates to NULL, it is treated as <code class=\"literal\">LIMIT ALL</code>, i.e., no limit. If <em class=\"replaceable\"><code>start</code></em> evaluates to NULL, it is treated the same as <code class=\"literal\">OFFSET 0</code>.</p>",
+                      "target": [
+                        "#SQL-LIMIT > p:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<p>SQL:2008 introduced a different syntax to achieve the same result, which <span class=\"productname\">PostgreSQL</span> also supports. It is:</p>",
+                      "target": [
+                        "#SQL-LIMIT > p:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\">OFFSET <em class=\"replaceable\"><code>start</code></em> { ROW | ROWS }\nFETCH { FIRST | NEXT } [ <em class=\"replaceable\"><code>count</code></em> ] { ROW | ROWS } { ONLY | WITH TIES }\n</pre>",
+                      "target": [
+                        ".synopsis:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-LIMIT > p:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-LIMIT > p:nth-child(9)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-LIMIT > p:nth-child(10)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-LIMIT > p:nth-child(11)"
+                      ]
+                    },
+                    {
+                      "html": "<h3>The Locking Clause</h3>",
+                      "target": [
+                        "#SQL-FOR-UPDATE-SHARE > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-FOR-UPDATE-SHARE > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<p>The locking clause has the general form</p>",
+                      "target": [
+                        "#SQL-FOR-UPDATE-SHARE > p:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\">FOR <em class=\"replaceable\"><code>lock_strength</code></em> [ OF <em class=\"replaceable\"><code>from_reference</code></em> [, ...] ] [ NOWAIT | SKIP LOCKED ]\n</pre>",
+                      "target": [
+                        ".synopsis:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<p>where <em class=\"replaceable\"><code>lock_strength</code></em> can be one of</p>",
+                      "target": [
+                        "#SQL-FOR-UPDATE-SHARE > p:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"synopsis\">UPDATE\nNO KEY UPDATE\nSHARE\nKEY SHARE\n</pre>",
+                      "target": [
+                        ".synopsis:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-FOR-UPDATE-SHARE > p:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-FOR-UPDATE-SHARE > p:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-FOR-UPDATE-SHARE > p:nth-child(9)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-FOR-UPDATE-SHARE > p:nth-child(10)"
+                      ]
+                    },
+                    {
+                      "html": "<p>The locking clauses cannot be used in contexts where returned rows cannot be clearly identified with individual table rows; for example they cannot be used with aggregation.</p>",
+                      "target": [
+                        "#SQL-FOR-UPDATE-SHARE > p:nth-child(11)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-FOR-UPDATE-SHARE > p:nth-child(12)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-FOR-UPDATE-SHARE > p:nth-child(13)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">SELECT * FROM (SELECT * FROM mytable FOR UPDATE) ss WHERE col1 = 5;\n</pre>",
+                      "target": [
+                        ".programlisting:nth-child(14)"
+                      ]
+                    },
+                    {
+                      "html": "<p>will lock only rows having <code class=\"literal\">col1 = 5</code>, even though that condition is not textually within the sub-query.</p>",
+                      "target": [
+                        "#SQL-FOR-UPDATE-SHARE > p:nth-child(15)"
+                      ]
+                    },
+                    {
+                      "html": "<p>Previous releases failed to preserve a lock which is upgraded by a later savepoint. For example, this code:</p>",
+                      "target": [
+                        "#SQL-FOR-UPDATE-SHARE > p:nth-child(16)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">BEGIN;\nSELECT * FROM mytable WHERE key = 1 FOR UPDATE;\nSAVEPOINT s;\nUPDATE mytable SET ... WHERE key = 1;\nROLLBACK TO s;\n</pre>",
+                      "target": [
+                        "#SQL-FOR-UPDATE-SHARE > .programlisting:nth-child(17)"
+                      ]
+                    },
+                    {
+                      "html": "<p>would fail to preserve the <code class=\"literal\">FOR UPDATE</code> lock after the <code class=\"command\">ROLLBACK TO</code>. This has been fixed in release 9.3.</p>",
+                      "target": [
+                        "#SQL-FOR-UPDATE-SHARE > p:nth-child(18)"
+                      ]
+                    },
+                    {
+                      "html": "<h3 class=\"title\">Caution</h3>",
+                      "target": [
+                        ".caution > .title"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        ".caution > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">SELECT * FROM (SELECT * FROM mytable FOR UPDATE) ss ORDER BY column1;\n</pre>",
+                      "target": [
+                        ".caution > .programlisting"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        ".caution > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        ".caution > p:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">TABLE</code> Command</h3>",
+                      "target": [
+                        "#SQL-TABLE > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>The command</p>",
+                      "target": [
+                        "#SQL-TABLE > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">TABLE <em class=\"replaceable\"><code>name</code></em>\n</pre>",
+                      "target": [
+                        "#SQL-TABLE > .programlisting:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<p>is equivalent to</p>",
+                      "target": [
+                        "#SQL-TABLE > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">SELECT * FROM <em class=\"replaceable\"><code>name</code></em>\n</pre>",
+                      "target": [
+                        "#SQL-TABLE > .programlisting:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#SQL-TABLE > p:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<h2>Examples</h2>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.9 > h2"
+                      ]
+                    },
+                    {
+                      "html": "<p>To join the table <code class=\"literal\">films</code> with the table <code class=\"literal\">distributors</code>:</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.9 > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.9 > .programlisting:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<p>To sum the column <code class=\"literal\">len</code> of all films and group the results by <code class=\"literal\">kind</code>:</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.9 > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">SELECT kind, sum(len) AS total FROM films GROUP BY kind;\n\n   kind   | total\n----------+-------\n Action   | 07:34\n Comedy   | 02:58\n Drama    | 14:28\n Musical  | 06:42\n Romantic | 04:38\n</pre>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.9 > .programlisting:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<p>To sum the column <code class=\"literal\">len</code> of all films, group the results by <code class=\"literal\">kind</code> and show those group totals that are less than 5 hours:</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.9 > p:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">SELECT kind, sum(len) AS total\n    FROM films\n    GROUP BY kind\n    HAVING sum(len) &lt; interval '5 hours';\n\n   kind   | total\n----------+-------\n Comedy   | 02:58\n Romantic | 04:38\n</pre>",
+                      "target": [
+                        ".programlisting:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<p>The following two examples are identical ways of sorting the individual results according to the contents of the second column (<code class=\"literal\">name</code>):</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.9 > p:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">",
+                      "target": [
+                        ".programlisting:nth-child(9)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.9 > p:nth-child(10)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">",
+                      "target": [
+                        ".programlisting:nth-child(11)"
+                      ]
+                    },
+                    {
+                      "html": "<p>This example shows how to use a function in the <code class=\"literal\">FROM</code> clause, both with and without a column definition list:</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.9 > p:nth-child(12)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">",
+                      "target": [
+                        ".programlisting:nth-child(13)"
+                      ]
+                    },
+                    {
+                      "html": "<p>Here is an example of a function with an ordinality column added:</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.9 > p:nth-child(14)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">SELECT * FROM unnest(ARRAY['a','b','c','d','e','f']) WITH ORDINALITY;\n unnest | ordinality\n--------+----------\n a      |        1\n b      |        2\n c      |        3\n d      |        4\n e      |        5\n f      |        6\n(6 rows)\n</pre>",
+                      "target": [
+                        ".programlisting:nth-child(15)"
+                      ]
+                    },
+                    {
+                      "html": "<p>This example shows how to use a simple <code class=\"literal\">WITH</code> clause:</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.9 > p:nth-child(16)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">WITH t AS (\n    SELECT random() as x FROM generate_series(1, 3)\n  )\nSELECT * FROM t\nUNION ALL\nSELECT * FROM t;\n         x\n--------------------\n  0.534150459803641\n  0.520092216785997\n 0.0735620250925422\n  0.534150459803641\n  0.520092216785997\n 0.0735620250925422\n</pre>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.9 > .programlisting:nth-child(17)"
+                      ]
+                    },
+                    {
+                      "html": "<p>Notice that the <code class=\"literal\">WITH</code> query was evaluated only once, so that we got two sets of the same three random values.</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.9 > p:nth-child(18)"
+                      ]
+                    },
+                    {
+                      "html": "<p>This example uses <code class=\"literal\">WITH RECURSIVE</code> to find all subordinates (direct or indirect) of the employee Mary, and their level of indirectness, from a table that shows only direct subordinates:</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.9 > p:nth-child(19)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">",
+                      "target": [
+                        ".programlisting:nth-child(20)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.9 > p:nth-child(21)"
+                      ]
+                    },
+                    {
+                      "html": "<p>This example uses <code class=\"literal\">LATERAL</code> to apply a set-returning function <code class=\"function\">get_product_names()</code> for each row of the <code class=\"structname\">manufacturers</code> table:</p>",
+                      "target": [
+                        "p:nth-child(22)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">SELECT m.name AS mname, pname\nFROM manufacturers m, LATERAL get_product_names(m.id) pname;\n</pre>",
+                      "target": [
+                        ".programlisting:nth-child(23)"
+                      ]
+                    },
+                    {
+                      "html": "<p>Manufacturers not currently having any products would not appear in the result, since it is an inner join. If we wished to include the names of such manufacturers in the result, we could do:</p>",
+                      "target": [
+                        "p:nth-child(24)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">SELECT m.name AS mname, pname\nFROM manufacturers m LEFT JOIN LATERAL get_product_names(m.id) pname ON true;\n</pre>",
+                      "target": [
+                        ".programlisting:nth-child(25)"
+                      ]
+                    },
+                    {
+                      "html": "<h2>Compatibility</h2>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10 > h2"
+                      ]
+                    },
+                    {
+                      "html": "<p>Of course, the <code class=\"command\">SELECT</code> statement is compatible with the SQL standard. But there are some extensions and some missing features.</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10 > p"
+                      ]
+                    },
+                    {
+                      "html": "<h3>Omitted <code class=\"literal\">FROM</code> Clauses</h3>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.3 > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p><span class=\"productname\">PostgreSQL</span> allows one to omit the <code class=\"literal\">FROM</code> clause. It has a straightforward use to compute the results of simple expressions:</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.3 > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<pre class=\"programlisting\">SELECT 2+2;\n\n ?column?\n----------\n        4\n</pre>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.3 > .programlisting"
+                      ]
+                    },
+                    {
+                      "html": "<p>Some other <acronym class=\"acronym\">SQL</acronym> databases cannot do this except by introducing a dummy one-row table from which to do the <code class=\"command\">SELECT</code>.</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.3 > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<h3>Empty <code class=\"literal\">SELECT</code> Lists</h3>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.4 > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.4 > p"
+                      ]
+                    },
+                    {
+                      "html": "<h3>Omitting the <code class=\"literal\">AS</code> Key Word</h3>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.5 > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.5 > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<p>In <code class=\"literal\">FROM</code> items, both the standard and <span class=\"productname\">PostgreSQL</span> allow <code class=\"literal\">AS</code> to be omitted before an alias that is an unreserved keyword. But this is impractical for output column names, because of syntactic ambiguities.</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.5 > p:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<h3>Omitting Sub-<code class=\"command\">SELECT</code> Aliases in <code class=\"literal\">FROM</code></h3>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.6 > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>According to the SQL standard, a sub-<code class=\"command\">SELECT</code> in the <code class=\"literal\">FROM</code> list must have an alias. In <span class=\"productname\">PostgreSQL</span>, this alias may be omitted.</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.6 > p"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">ONLY</code> and Inheritance</h3>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.7 > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>The SQL standard requires parentheses around the table name when writing <code class=\"literal\">ONLY</code>, for example <code class=\"literal\">SELECT * FROM ONLY (tab1), ONLY (tab2) WHERE ...</code>. <span class=\"productname\">PostgreSQL</span> considers these parentheses to be optional.</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.7 > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<p><span class=\"productname\">PostgreSQL</span> allows a trailing <code class=\"literal\">*</code> to be written to explicitly specify the non-<code class=\"literal\">ONLY</code> behavior of including child tables. The standard does not allow this.</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.7 > p:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<p>(These points apply equally to all SQL commands supporting the <code class=\"literal\">ONLY</code> option.)</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.7 > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">TABLESAMPLE</code> Clause Restrictions</h3>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.8 > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>The <code class=\"literal\">TABLESAMPLE</code> clause is currently accepted only on regular tables and materialized views. According to the SQL standard it should be possible to apply it to any <code class=\"literal\">FROM</code> item.</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.8 > p"
+                      ]
+                    },
+                    {
+                      "html": "<h3>Function Calls in <code class=\"literal\">FROM</code></h3>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.9 > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.9 > p"
+                      ]
+                    },
+                    {
+                      "html": "<h3>Namespace Available to <code class=\"literal\">GROUP BY</code> and <code class=\"literal\">ORDER BY</code></h3>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.10 > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.10 > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.10 > p:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<h3>Functional Dependencies</h3>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.11 > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.11 > p"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">LIMIT</code> and <code class=\"literal\">OFFSET</code></h3>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.12 > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.12 > p"
+                      ]
+                    },
+                    {
+                      "html": "<h3><code class=\"literal\">FOR NO KEY UPDATE</code>, <code class=\"literal\">FOR UPDATE</code>, <code class=\"literal\">FOR SHARE</code>, <code class=\"literal\">FOR KEY SHARE</code></h3>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.13 > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.13 > p"
+                      ]
+                    },
+                    {
+                      "html": "<h3>Data-Modifying Statements in <code class=\"literal\">WITH</code></h3>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.14 > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.14 > p"
+                      ]
+                    },
+                    {
+                      "html": "<h3>Nonstandard Clauses</h3>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.15 > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p><code class=\"literal\">DISTINCT ON ( ... )</code> is an extension of the SQL standard.</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.15 > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<p><code class=\"literal\">ROWS FROM( ... )</code> is an extension of the SQL standard.</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.15 > p:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<p>The <code class=\"literal\">MATERIALIZED</code> and <code class=\"literal\">NOT MATERIALIZED</code> options of <code class=\"literal\">WITH</code> are extensions of the SQL standard.</p>",
+                      "target": [
+                        "#id-1\\.9\\.3\\.172\\.10\\.15 > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<a accesskey=\"p\" href=\"sql-security-label.html\" title=\"SECURITY LABEL\">Prev</a>",
+                      "target": [
+                        "td[width=\"\\34 0\\%\"][align=\"left\"] > a[accesskey=\"p\"][href$=\"sql-security-label.html\"][title=\"SECURITY\\ LABEL\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a accesskey=\"u\" href=\"sql-commands.html\" title=\"SQL Commands\">Up</a>",
+                      "target": [
+                        "td[width=\"\\32 0\\%\"][align=\"center\"] > a[accesskey=\"u\"][href$=\"sql-commands.html\"][title=\"SQL\\ Commands\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a accesskey=\"n\" href=\"sql-selectinto.html\" title=\"SELECT INTO\">Next</a>",
+                      "target": [
+                        "td[width=\"\\34 0\\%\"][align=\"right\"] > a[accesskey=\"n\"][href$=\"sql-selectinto.html\"][title=\"SELECT\\ INTO\"]"
+                      ]
+                    },
+                    {
+                      "html": "<td width=\"40%\" align=\"left\" valign=\"top\">SECURITY LABEL&nbsp;</td>",
+                      "target": [
+                        "td[valign=\"top\"][width=\"\\34 0\\%\"][align=\"left\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a accesskey=\"h\" href=\"index.html\" title=\"PostgreSQL 18.3 Documentation\">Home</a>",
+                      "target": [
+                        "td[width=\"\\32 0\\%\"][align=\"center\"] > a[accesskey=\"h\"][href=\"index.html\"][title=\"PostgreSQL\\ 18\\.3\\ Documentation\"]"
+                      ]
+                    },
+                    {
+                      "html": "<td width=\"40%\" align=\"right\" valign=\"top\">&nbsp;SELECT INTO</td>",
+                      "target": [
+                        "td[valign=\"top\"][width=\"\\34 0\\%\"][align=\"right\"]"
+                      ]
+                    },
+                    {
+                      "html": "<h2>Submit correction</h2>",
+                      "target": [
+                        "#docComments > h2"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#docComments > p"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks",
+              "html": "<html lang=\"en\" data-theme=\"light\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.keyboard",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 7,
+      "passes_count": 33,
+      "total_penalty": 120,
+      "penalty_per_rule": {
+        "accesskeys": {
+          "impact": "serious",
+          "node_count": 4,
+          "raw_penalty": 60,
+          "capped_penalty": 25
+        },
+        "button-name": {
+          "impact": "critical",
+          "node_count": 3,
+          "raw_penalty": 75,
+          "capped_penalty": 25
+        },
+        "duplicate-id-active": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "label": {
+          "impact": "critical",
+          "node_count": 2,
+          "raw_penalty": 50,
+          "capped_penalty": 25
+        },
+        "landmark-one-main": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        },
+        "page-has-heading-one": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        },
+        "region": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        }
+      },
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 0,
+        "date": 0,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [
+          "og:description"
+        ],
+        "author": [],
+        "date": [],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 4,
+      "fields_total": 7,
+      "json_ld_type": "none"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "absent",
+        "last_modified": "absent",
+        "cache_control": "absent"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 0,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "article",
+      "detection": {
+        "source": "default"
+      },
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.2,
+        "structured_data": 0.2,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "article",
+  "universal_score": 38.577928446282876,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 40.90909090909091,
+    "content_extractability": 79.25327859505074,
+    "structured_data": 5,
+    "dom_navigability": 0,
+    "metadata_completeness": 55,
+    "http_compliance": 60.0
+  },
+  "evidence_references": null
+}

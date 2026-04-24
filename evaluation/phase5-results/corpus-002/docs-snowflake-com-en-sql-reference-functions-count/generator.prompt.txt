@@ -1,0 +1,591 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports *non-trivial* retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 challenging question/answer pairs. Unlike simple fact extraction, these questions must require the reader to synthesize, compare, or compute across multiple parts of the document — not just locate a single sentence.
+
+## Difficulty mandate
+
+The baseline for this corpus is that a strong LLM scores 100% on simple fact-lookup questions. That ceiling is the problem this prompt solves. Generate questions such that a competent LLM reading only the document text should land in the 50–80% correct range. A question that can be answered by copying one sentence verbatim is too easy and must be replaced.
+
+## Required question-type mix
+
+You must produce exactly 5 Q/A pairs with the following distribution:
+
+- **At least 2 synthesis questions** — the answer requires combining information from two or more non-adjacent sections of the document. The reader must locate multiple facts and relate them. Example forms: "Under what conditions does X apply, and what happens when those conditions are not met?", "How does feature A relate to feature B?", "What is the full sequence of steps from X to Y?"
+
+- **At least 1 quantitative or comparative question** — the answer requires counting, ordering, ranking, computing a difference, or distinguishing options. Example forms: "Which of the supported options has the shortest timeout?", "How many … does the document describe, and in what order?", "What is the difference between the default and maximum value of X?"
+
+- **At least 1 constraint or edge-case question** — the answer depends on a condition, limitation, exception, or corner case mentioned in the document. Example forms: "What happens if X is set to a value above the supported range?", "Under which circumstances is behavior Y not guaranteed?"
+
+- The remaining pair(s) may be any of the above types. Do not include pure fact-lookup questions (e.g. "What is the name of X?", "What year was Y introduced?") unless the fact is genuinely non-obvious and spread across multiple sentences.
+
+## Answerability constraints
+
+1. **Every answer must be fully grounded in the document.** If the question requires outside knowledge, common sense beyond the document, or inference the document does not support, do not include it.
+2. **Answers may be short or multi-part**, but must be precise. Do not produce essay-length answers. For multi-part answers, separate components with semicolons or enumerate explicitly.
+3. **Supporting sentences are required.** For every Q/A pair, list the verbatim sentences from the document that together justify the answer. A synthesis question should have supporting sentences from multiple sections; a quantitative question should have the sentences containing the relevant numbers.
+4. **Self-contained questions.** A reader who has not seen the document must be able to understand what is being asked. Do not write "What is the second step?" or "What does the table show?".
+5. **Spread across the document.** The 5 questions together should exercise different sections, not cluster in one region.
+
+## Forbidden patterns
+
+- Questions answerable by copying a single sentence verbatim.
+- Questions whose answer is a single named entity pulled from a title, heading, or "About this page" metadata block.
+- Questions where the answer is restated in the question itself.
+- Questions requiring knowledge of the document's structure rather than its content (e.g. "What section comes after X?").
+
+## Output format
+
+A single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: COUNT | Snowflake Documentation
+Document URL: https://docs.snowflake.com/en/sql-reference/functions/count
+Document profile: reference
+
+Document text:
+---
+Returns either the number of non-NULL records for the specified columns, or the total number of records.
+
+Examples
+
+The following examples use the COUNT function on data with NULL values.
+
+Create a table and insert values:
+
+CREATE
+
+TABLE
+
+basic_example
+
+(
+i_col
+
+INTEGER
+,
+
+j_col
+
+INTEGER
+);
+
+INSERT
+
+INTO
+
+basic_example
+
+VALUES
+
+(
+11
+,
+
+101
+),
+
+(
+11
+,
+
+102
+),
+
+(
+11
+,
+
+NULL
+),
+
+(
+12
+,
+
+101
+),
+
+(
+NULL
+,
+
+101
+),
+
+(
+NULL
+,
+
+102
+);
+
+Query the table:
+
+SELECT
+
+*
+
+FROM
+
+basic_example
+
+ORDER
+
+BY
+
+i_col
+;
+
++-------+-------+
+
+| I_COL | J_COL |
+
+|-------+-------|
+
+|    11 |   101 |
+
+|    11 |   102 |
+
+|    11 |  NULL |
+
+|    12 |   101 |
+
+|  NULL |   101 |
+
+|  NULL |   102 |
+
++-------+-------+
+
+SELECT
+
+COUNT
+(*)
+
+AS
+
+"All"
+,
+
+COUNT
+(*
+
+ILIKE
+
+'i_c%'
+)
+
+AS
+
+"ILIKE"
+,
+
+COUNT
+(*
+
+EXCLUDE
+
+i_col
+)
+
+AS
+
+"EXCLUDE"
+,
+
+COUNT
+(
+i_col
+)
+
+AS
+
+"i_col"
+,
+
+COUNT
+(
+DISTINCT
+
+i_col
+)
+
+AS
+
+"DISTINCT i_col"
+,
+
+COUNT
+(
+j_col
+)
+
+AS
+
+"j_col"
+,
+
+COUNT
+(
+DISTINCT
+
+j_col
+)
+
+AS
+
+"DISTINCT j_col"
+
+FROM
+
+basic_example
+;
+
++-----+-------+---------+-------+----------------+-------+----------------+
+
+| All | ILIKE | EXCLUDE | i_col | DISTINCT i_col | j_col | DISTINCT j_col |
+
+|-----+-------+---------+-------+----------------+-------+----------------|
+
+|   6 |     4 |       5 |     4 |              2 |     5 |              2 |
+
++-----+-------+---------+-------+----------------+-------+----------------+
+
+The 
+All
+ column in this output shows that when an unqualified and unfiltered wildcard is specified
+for COUNT, the function returns the total number of rows in the table, including rows with NULL values. The other
+columns in the output show that when a column or a wildcard with filtering is specified, the function excludes
+rows with NULL values.
+
+The next query uses the COUNT function with the GROUP BY clause:
+
+SELECT
+
+i_col
+,
+
+COUNT
+(*),
+
+COUNT
+(
+j_col
+)
+
+FROM
+
+basic_example
+
+GROUP
+
+BY
+
+i_col
+
+ORDER
+
+BY
+
+i_col
+;
+
++-------+----------+--------------+
+
+| I_COL | COUNT(*) | COUNT(J_COL) |
+
+|-------+----------+--------------|
+
+|    11 |        3 |            2 |
+
+|    12 |        1 |            1 |
+
+|  NULL |        2 |            2 |
+
++-------+----------+--------------+
+
+The following example shows that 
+COUNT(
+alias
+.*)
+ returns the number of rows that don’t contain any NULL values.
+The 
+basic_example
+ table has a total of six rows, but three rows have at least one NULL value, and the other three rows
+have no NULL values.
+
+SELECT
+
+COUNT
+(
+n
+.*)
+
+FROM
+
+basic_example
+
+AS
+
+n
+;
+
++------------+
+
+| COUNT(N.*) |
+
+|------------|
+
+|          3 |
+
++------------+
+
+The following example shows that 
+JSON null
+ (VARIANT NULL) is treated as SQL NULL by
+the COUNT function.
+
+Create the table and insert data that contains both SQL NULL and JSON null values:
+
+CREATE
+
+OR
+
+REPLACE
+
+TABLE
+
+count_example_with_variant_column
+
+(
+
+i_col
+
+INTEGER
+,
+
+j_col
+
+INTEGER
+,
+
+v
+
+VARIANT
+);
+
+BEGIN
+
+WORK
+;
+
+INSERT
+
+INTO
+
+count_example_with_variant_column
+
+(
+i_col
+,
+
+j_col
+,
+
+v
+)
+
+VALUES
+
+(
+NULL
+,
+
+10
+,
+
+NULL
+);
+
+INSERT
+
+INTO
+
+count_example_with_variant_column
+
+(
+i_col
+,
+
+j_col
+,
+
+v
+)
+
+SELECT
+
+1
+,
+
+11
+,
+
+PARSE_JSON
+(
+'{"Title": null}'
+);
+
+INSERT
+
+INTO
+
+count_example_with_variant_column
+
+(
+i_col
+,
+
+j_col
+,
+
+v
+)
+
+SELECT
+
+2
+,
+
+12
+,
+
+PARSE_JSON
+(
+'{"Title": "O"}'
+);
+
+INSERT
+
+INTO
+
+count_example_with_variant_column
+
+(
+i_col
+,
+
+j_col
+,
+
+v
+)
+
+SELECT
+
+3
+,
+
+12
+,
+
+PARSE_JSON
+(
+'{"Title": "I"}'
+);
+
+COMMIT
+
+WORK
+;
+
+In this SQL code, note the following:
+
+The first INSERT INTO statement inserts a SQL NULL for both a VARIANT column and a non-VARIANT column.
+
+The second INSERT INTO statement inserts a JSON null (VARIANT NULL).
+
+The last two INSERT INTO statements insert non-NULL VARIANT values.
+
+Show the data:
+
+SELECT
+
+i_col
+,
+
+j_col
+,
+
+v
+,
+
+v
+:Title
+
+FROM
+
+count_example_with_variant_column
+
+ORDER
+
+BY
+
+i_col
+;
+
++-------+-------+-----------------+---------+
+
+| I_COL | J_COL | V               | V:TITLE |
+
+|-------+-------+-----------------+---------|
+
+|     1 |    11 | {               | null    |
+
+|       |       |   "Title": null |         |
+
+|       |       | }               |         |
+
+|     2 |    12 | {               | "O"     |
+
+|       |       |   "Title": "O"  |         |
+
+|       |       | }               |         |
+
+|     3 |    12 | {               | "I"     |
+
+|       |       |   "Title": "I"  |         |
+
+|       |       | }               |         |
+
+|  NULL |    10 | NULL            | NULL    |
+
++-------+-------+-----------------+---------+
+
+Show that the COUNT function treats both the NULL and the JSON null (VARIANT NULL) values
+as NULLs. There are four rows in the table. One has a SQL NULL and the other has a
+JSON null. Both those rows are excluded from the count, so the count is 
+2
+.
+
+SELECT
+
+COUNT
+(
+v
+:Title
+)
+
+FROM
+
+count_example_with_variant_column
+;
+
++----------------+
+
+| COUNT(V:TITLE) |
+
+|----------------|
+
+|              2 |
+
++----------------+
+---

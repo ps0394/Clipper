@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the conditions for automatic closure and the associated risks, despite minor wording differences.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 682,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same factual content as the ground-truth answer regarding the performance trade-off between callback-based and promise-based APIs.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 669,
+    "tokens_out": 32
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, explaining the difference between filehandle.datasync() and filehandle.sync() and when to use each.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 715,
+    "tokens_out": 39
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the required information about explicitly closing the stream using stream.close() as a mitigation method, and instead suggests calling stream.read(0), which is not present in the ground-truth answer.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 713,
+    "tokens_out": 47
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same key differences and usage scenarios as the ground-truth answer, despite some differences in wording and additional details provided.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 847,
+    "tokens_out": 33
+  }
+]

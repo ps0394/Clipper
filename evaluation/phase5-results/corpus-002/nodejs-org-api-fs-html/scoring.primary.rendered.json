@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "A FileHandle object will try to automatically close the file descriptor and emit a process warning if it is not closed using the filehandle.close() method. However, this behavior can be unreliable and the file may not be closed. Node.js may change this behavior in the future, so it is risky to rely on it.",
+    "run_index": 0,
+    "tokens_in": 10712,
+    "tokens_out": 65
+  },
+  {
+    "pair_index": 1,
+    "answer": "The callback-based versions of the node:fs module APIs are preferable over the use of the promise APIs when maximal performance (both in terms of execution time and memory allocation) is required.",
+    "run_index": 0,
+    "tokens_in": 10723,
+    "tokens_out": 38
+  },
+  {
+    "pair_index": 2,
+    "answer": "filehandle.datasync() forces all currently queued I/O operations associated with the file to the operating system's synchronized I/O completion state, but does not flush modified metadata. filehandle.sync() requests that all data for the open file descriptor is flushed to the storage device, including metadata. You would use filehandle.datasync() when you only need to flush file data but not metadata, and filehandle.sync() when you need to ensure both data and metadata are flushed.",
+    "run_index": 0,
+    "tokens_in": 10718,
+    "tokens_out": 95
+  },
+  {
+    "pair_index": 3,
+    "answer": "If the FileHandle points to a character device that only supports blocking reads (such as keyboard or sound card), read operations do not finish until data is available. This can prevent the process from exiting and the stream from closing naturally. Artificially marking end-of-stream by pushing null to the stream and calling stream.read(0) allows the stream to close.",
+    "run_index": 0,
+    "tokens_in": 10726,
+    "tokens_out": 72
+  },
+  {
+    "pair_index": 4,
+    "answer": "filehandle.pull() is asynchronous and returns an async iterable, performing reads in chunkSize-byte chunks (default 128 KB) off the main thread. It supports transforms, options like autoClose, start, limit, and chunkSize, and can be aborted with an AbortSignal. Use filehandle.pull() when you want to read files asynchronously, especially in environments where non-blocking I/O is important.\n\nfilehandle.pullSync() is synchronous and returns a sync iterable, performing reads in chunkSize-byte chunks (default 128 KB) on the main thread. It does not support AbortSignal since all operations are synchronous. Use filehandle.pullSync() when you need to read files synchronously, such as in scripts or environments where blocking the main thread is acceptable or required.\n\nfilehandle.pull() is for async, non-blocking use; filehandle.pullSync() is for sync, blocking use.",
+    "run_index": 0,
+    "tokens_in": 10715,
+    "tokens_out": 181
+  }
+]

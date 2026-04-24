@@ -1,0 +1,50 @@
+[
+  {
+    "question": "How did the evolution of language model architectures from the 1990s to 2024 influence the computational cost of training, and what trade-offs are implied by the shift from statistical models to transformer-based models?",
+    "answer": "Early statistical models like IBM's word alignment techniques in the 1990s and smoothed n-gram models in 2001 were constrained by computational and data limitations, requiring only 300 million words for training. The shift to transformer-based models in 2017 improved efficiency and parallelizability but drastically increased training costs: GPT-2 (1.5B parameters) cost $50,000 in 2019, while PaLM (540B parameters) cost $8 million in 2022. The trade-off is between computational scalability (transformers enable larger models) and financial/resource accessibility, as transformer models require orders of magnitude more compute despite their architectural advantages.",
+    "supporting_sentences": [
+      "Before the emergence of transformer-based models in 2017, some language models were considered large relative to the computational and data constraints of their time. In the early 1990s, IBM's statistical models pioneered word alignment techniques for machine translation... In 2001, a smoothed n-gram model... trained on 300 million words, achieved state-of-the-art perplexity on benchmark tests.",
+      "As of 2024, the largest and most capable LLMs are all based on transformer architectures, which, according to the 2017 paper Attention Is All You Need, can be more efficient and parallelizable than earlier statistical and recurrent neural network models.",
+      "The training of GPT-2 (i.e. a 1.5-billion-parameter model) in 2019 cost $50,000, while training of the PaLM (i.e. a 540-billion-parameter model) in 2022 cost $8 million, and Megatron-Turing NLG 530B (in 2021) cost around $11 million."
+    ]
+  },
+  {
+    "question": "What are the key differences between autoregressive models like GPT and masked models like BERT in terms of training objectives and practical applications, and how does their design influence their use in tasks like chatbots or code completion?",
+    "answer": "Autoregressive models (e.g., GPT) are trained to predict the next token in a sequence (e.g., guessing 'bread' after 'I like to eat'), making them ideal for generative tasks like chatbots or code completion. Masked models (e.g., BERT) are trained to predict missing tokens in a sequence (e.g., filling in 'smell' in 'I like to ___ roses'), excelling in tasks requiring bidirectional context, such as text classification or question answering. GPT's design suits open-ended generation, while BERT's masked training enables deeper contextual understanding but is less suited for sequential generation.",
+    "supporting_sentences": [
+      "Autoregressive models, such as GPTs, are trained to guess how a sequence continues; for example, whether the word sequence 'I like to eat' is more likely to be followed by the word 'bread' or the word 'rocks'.",
+      "Masked models, such as BERT, are trained to guess parts that are missing from a sequence, such as whether the missing word in 'I like to ___ roses' is more likely to be the word 'smell' or the word 'eat'.",
+      "An LLM can be turned into a chatbot by specializing it for conversation... This type of model became commercially available in 2022 with ChatGPT, a sibling model of InstructGPT fine-tuned to accept and produce dialog-formatted text based on GPT-3.5.",
+      "LLMs can handle programming languages similarly to how they handle natural languages... Services such as GitHub Copilot offer LLMs specifically trained, fine-tuned, or prompted for programming."
+    ]
+  },
+  {
+    "question": "According to the document, how many distinct methods for extending LLM capabilities beyond basic text generation are explicitly described, and what is the chronological order of their introduction?",
+    "answer": "Five distinct methods are explicitly described: 1) Few-shot prompting (2020), 2) Chain-of-thought prompting (2022), 3) Retrieval-augmented generation (RAG), 4) Tool use (expanded via API fine-tuning), and 5) Prompt chaining (2022). Chronological order: Few-shot prompting (2020), Retrieval-augmented generation, Tool use, Prompt chaining (2022), Chain-of-thought prompting (2022).",
+    "supporting_sentences": [
+      "In 2020, OpenAI researchers demonstrated that their new model GPT-3 could understand what format to use given a few rounds of Q and A... This technique, called few-shot prompting, allows LLMs to be adapted to any task without requiring fine-tuning.",
+      "A 2022 paper demonstrated a separate technique called chain-of-thought prompting, which makes the LLM break the question down autonomously.",
+      "Retrieval-augmented generation (RAG) is an approach that integrates LLMs with document retrieval systems.",
+      "Tool use is a mechanism that enables LLMs to interact with external systems, applications, or data sources... Fine-tuning LLMs for the ability to read API documentation and call API correctly has greatly expanded the range of tools accessible to an LLM.",
+      "Prompt chaining was introduced in 2022. In this method, a user manually breaks a complex problem down into several steps."
+    ]
+  },
+  {
+    "question": "Under what conditions does the 'Chinchilla scaling law' predict optimal LLM performance, and what happens if the model size (N) is increased while keeping the dataset size (D) fixed?",
+    "answer": "The Chinchilla scaling law predicts optimal performance when compute cost (C) is balanced between model size (N) and dataset size (D) as C = C\u2080ND, with loss L = A/N^\u03b1 + B/D^\u03b2 + L\u2080. If N is increased while D is fixed, the loss term A/N^\u03b1 decreases (improving performance), but the term B/D^\u03b2 remains constant, leading to diminishing returns. The model may overfit to the fixed dataset, as the law assumes sufficient data to match the model's capacity.",
+    "supporting_sentences": [
+      "Scaling laws are empirical statistical laws that predict LLM performance based on such factors... One particular scaling law (Chinchilla scaling) for LLM autoregressively trained for one epoch, with a log-log learning rate schedule, states that: { C = C\u2080ND; L = A/N^\u03b1 + B/D^\u03b2 + L\u2080 } where... C\u2080 = 6, \u03b1 = 0.34, \u03b2 = 0.28.",
+      "The performance of bigger models on various tasks, when plotted on a log-log scale, appears as a linear extrapolation of performance achieved by smaller models. However, this linearity may be punctuated by 'breaks' in the scaling law, where the slope of the line changes abruptly, and where larger models acquire 'emergent abilities'.",
+      "Cleaned datasets can increase training efficiency and lead to improved downstream performance."
+    ]
+  },
+  {
+    "question": "What is the documented exception to the general trend that larger LLMs exhibit emergent abilities like in-context learning, and how does this exception challenge the assumption that scaling alone guarantees improved reasoning?",
+    "answer": "Chain-of-thought prompting only improves performance for models with at least 62B parameters; smaller models perform *worse* when prompted to reason step-by-step compared to direct answering. This exception challenges the assumption that scaling alone guarantees improved reasoning, as emergent abilities like chain-of-thought are not uniformly beneficial across all model sizes and may require architectural or training adjustments beyond mere parameter scaling.",
+    "supporting_sentences": [
+      "One of the emergent abilities is in-context learning from example demonstrations... chain-of-thought prompting: In a 2022 research paper, chain-of-thought prompting only improved the performance for models that had at least 62B parameters. Smaller models perform better when prompted to answer immediately, without chain of thought.",
+      "They arise from the complex interaction of the model's components and are not explicitly programmed or designed.",
+      "Schaeffer et al. argue that the emergent abilities are not unpredictably acquired, but predictably acquired according to a smooth scaling law."
+    ]
+  }
+]

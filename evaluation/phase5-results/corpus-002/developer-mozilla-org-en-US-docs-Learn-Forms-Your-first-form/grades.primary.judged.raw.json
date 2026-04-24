@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the two primary ways form data can be used and the circumstances under which to choose one over the other, despite some differences in wording.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 705,
+    "tokens_out": 47
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the validation and keyboard layout differences between `<input type='email'>` and `<input type='text'>` fields.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 705,
+    "tokens_out": 44
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the three possible values for the `type` attribute, their effects when clicked, and the UX considerations for the `reset` type.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 785,
+    "tokens_out": 47
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer incorrectly identifies the number of distinct form controls and fails to distinguish between single-line and multi-line text fields, also incorrectly includes \"buttons\" which is not in the ground truth.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 619,
+    "tokens_out": 43
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer states that the information is not in the document, which is an acceptable response if the information cannot be found.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 630,
+    "tokens_out": 30
+  }
+]

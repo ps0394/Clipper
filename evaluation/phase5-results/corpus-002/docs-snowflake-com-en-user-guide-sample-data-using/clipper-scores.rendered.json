@@ -1,0 +1,2548 @@
+{
+  "parseability_score": 44.88620414673046,
+  "failure_mode": "significant_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-002\\docs-snowflake-com-en-user-guide-sample-data-using\\page.rendered.html",
+  "url": "https://docs.snowflake.com/en/user-guide/sample-data-using",
+  "component_scores": {
+    "semantic_html": 58.72727272727273,
+    "content_extractability": 90.0219298245614,
+    "structured_data": 5,
+    "dom_navigability": 0,
+    "metadata_completeness": 40,
+    "http_compliance": 72.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "nav",
+          "count": 3,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "article",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "section",
+          "count": 3,
+          "proper_usage": true
+        },
+        {
+          "element": "aside",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 1,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 12,
+      "heading_elements_count": 3,
+      "scoring_breakdown": {
+        "semantic_coverage": 32.72727272727273,
+        "aria_bonus": 20,
+        "heading_bonus": 6
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 4498,
+        "extracted_text_length": 3759,
+        "extracted_chars": 3759,
+        "extraction_ratio": 0.836,
+        "extracted_title": "Use the sample database",
+        "extracted_preview": "Use the sample database The sample database, SNOWFLAKE_SAMPLE_DATA, is identical to the databases that you create in your account, except that it is read-only.\r\nAs such, the following operations are not allowed: No DDL can be performed on the data set schemas (i.e. tables and other database objects ...",
+        "original_headings": 3,
+        "extracted_headings": 3,
+        "original_lists": 16,
+        "extracted_lists": 2,
+        "original_code_blocks": 7,
+        "extracted_code_blocks": 7,
+        "has_main_element": true,
+        "has_article_element": true
+      },
+      "score_breakdown": {
+        "signal_to_noise": 40.0,
+        "structure_preservation": 21.25,
+        "boundary_detection": 28.771929824561404
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 0,
+        "microdata_items": 0,
+        "opengraph_items": 0,
+        "microformat_items": 1
+      },
+      "schema_types_found": [],
+      "key_fields_found": [],
+      "formats_present": 1,
+      "score_breakdown": {
+        "type_appropriateness": 0,
+        "field_completeness": 0,
+        "multiple_formats": 5,
+        "schema_validation": 0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": []
+      },
+      "sample_structured_data": {
+        "microformat": [
+          {
+            "type": [
+              "h-full"
+            ],
+            "properties": {},
+            "children": [
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "/"
+                  ]
+                },
+                "lang": "en"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "OverviewGet started for usersTutorialsConcepts for administratorsSample dataUsageTPC-DSTPC-HContacting supportGet startedSample dataUsage Use the sample database¶\nThe sample database, SNOWFLAKE_SAMPLE_DATA, is identical to the databases that you create in your account, except that it is read-only. As such, the following operations are not allowed:\n\nNo DDL can be performed on the data set schemas (i.e. tables and other database objects cannot be added, dropped, or altered).\n\nNo DML can be performed on the tables in the schemas.\n\nNo cloning or Time Travel can be performed on the database or any schemas/tables in the database.\n\nHowever, you can use all the same commands and syntax to view the sample database, schemas, and tables, as well as execute queries on the tables.\n\nImportant\n\nThe sample database is created by default for newer accounts. If the database has not been created for your account and you want access to it, execute the following SQL statements with the ACCOUNTADMIN role active:\nCopy-- Create a database from the share.\r\nCREATE DATABASE SNOWFLAKE_SAMPLE_DATA FROM SHARE SFC_SAMPLES.SAMPLE_DATA;\r\n\r\n-- Grant the PUBLIC role access to the database.\r\n-- Optionally change the role name to restrict access to a subset of users.\r\nGRANT IMPORTED PRIVILEGES ON DATABASE SNOWFLAKE_SAMPLE_DATA TO ROLE PUBLIC;\r\n View the sample database¶\nYou can view the sample database and its contents either in Snowsight or using SQL:\n Snowsight:\nIn the navigation menu, select Catalog » Database Explorer » SNOWFLAKE_SAMPLE_DATA.\n SQL:\nExecute a SHOW DATABASES command.\n\nYou can also use the relevant SHOW <objects> commands to view the objects in the sample database.\n\nFor example, in SQL:\n Copyshow databases like '%sample%';\r\n\r\n+-------------------------------+-----------------------+------------+------------+-------------------------+--------------+---------+---------+----------------+\r\n| created_on                    | name                  | is_default | is_current | origin                  | owner        | comment | options | retention_time |\r\n|-------------------------------+-----------------------+------------+------------+-------------------------+--------------+---------+---------+----------------|\r\n| 2016-07-14 14:30:21.711 -0700 | SNOWFLAKE_SAMPLE_DATA | N          | N          | SFC_SAMPLES.SAMPLE_DATA | ACCOUNTADMIN |         |         | 1              |\r\n+-------------------------------+-----------------------+------------+------------+-------------------------+--------------+---------+---------+----------------+\r\n\nNote that this example illustrates the sample database, SNOWFLAKE_SAMPLE_DATA, has been shared with your account by Snowflake.\n\nThe origin column in the SHOW DATABASES output (or the Origin column in the Databases Databases tab  page in the interface) displays the fully-qualified name of the shared database, SFC_SAMPLES.SAMPLE_DATA, indicating it originated from the SFC_SAMPLES account (used by Snowflake to share the sample data).\n Query tables and views in the sample database¶\nTo use a table or view in the sample database, you can either:\n\nReference the fully-qualified name of the table in your query (in the form of snowflake_sample_data.schema_name.object_name).\n\nOR\n\nSpecify the sample database (and schema) for your session using the USE DATABASE and/or USE SCHEMA commands.\n\nThe following two examples illustrate using both approaches to query the lineitem table in the tpch_sf1 schema:\n CopyExpandselect count(*) from snowflake_sample_data.tpch_sf1.lineitem;\r\n\r\n+----------+\r\n| COUNT(*) |\r\n|----------|\r\n|  6001215 |\r\n+----------+\r\n\r\nuse schema snowflake_sample_data.tpch_sf1;\r\n\r\nselect count(*) from lineitem;\r\n\r\n+----------+\r\n| COUNT(*) |\r\n|----------|\r\n|  6001215 |\r\n+----------+\r\n Show lessSee moreScroll to top\nNote\n\nYou must have a running, current warehouse in your session to perform queries. You set the current warehouse in a session using the USE WAREHOUSE command (or within the Worksheet in the web interface.)\n\nWas this page helpful?\nYesNoVisit SnowflakeJoin the conversationDevelop with SnowflakeShare your feedbackRead the latest on our blogGet your own certificationPrivacy NoticeSite TermsCookies Settings© 2026 Snowflake, Inc. All Rights Reserved.\nOn this page\nView the sample databaseQuery tables and views in the sample database"
+                  ]
+                },
+                "lang": "en"
+              }
+            ],
+            "lang": "en"
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures role attribute has an appropriate value for the element",
+          "help": "ARIA role must be appropriate for the element",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+          "id": "aria-allowed-role",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "searchbox"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role searchbox  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role searchbox  is not allowed for given element",
+              "html": "<input autocomplete=\"off\" placeholder=\"Search\" role=\"searchbox\" class=\"outline-hidden w-full bg-gray-10 dark:bg-gray-85 placeholder:text-secondary pr-3 py-2 text-sm\" name=\"q\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".outline-hidden"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures attributes that begin with aria- are valid ARIA attributes",
+          "help": "ARIA attributes must conform to valid names",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-valid-attr?application=axeAPI",
+          "id": "aria-valid-attr",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "aria-description"
+                  ],
+                  "id": "aria-valid-attr",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute name: aria-description",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Invalid ARIA attribute name: aria-description",
+              "html": "<span aria-description=\"and then\">»</span>",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "span[aria-description=\"and\\ then\"]:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "aria-description"
+                  ],
+                  "id": "aria-valid-attr",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute name: aria-description",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Invalid ARIA attribute name: aria-description",
+              "html": "<span aria-description=\"and then\">»</span>",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "span[aria-description=\"and\\ then\"]:nth-child(4)"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+          ]
+        },
+        {
+          "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+          "help": "Elements must have sufficient color contrast",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#2c2f34",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #2c2f34, background color: #0NaN0NaN0NaN, font size: 12.0pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"admonition important\">",
+                      "target": [
+                        ".important"
+                      ]
+                    },
+                    {
+                      "html": "<body>",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #2c2f34, background color: #0NaN0NaN0NaN, font size: 12.0pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<p class=\"admonition-title\">Important</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".important > .admonition-title"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#2c2f34",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #2c2f34, background color: #0NaN0NaN0NaN, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"admonition important\">",
+                      "target": [
+                        ".important"
+                      ]
+                    },
+                    {
+                      "html": "<body>",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #2c2f34, background color: #0NaN0NaN0NaN, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>The sample database is created by default for newer accounts. If the database has not been created for your account and you want\naccess to it, execute the following SQL statements with the ACCOUNTADMIN role active:</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".important > p:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.57,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#35ae91",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"py\">-- Create a database from the share.</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".py:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">CREATE</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".is-expanded > .highlight > pre > .ni:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">DATABASE</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".ni:nth-child(4)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.57,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#35ae91",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"gi\">SNOWFLAKE_SAMPLE_DATA</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".gi:nth-child(5)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">FROM</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".ni:nth-child(6)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">SHARE</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".ni:nth-child(7)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.57,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#35ae91",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"gi\">SFC_SAMPLES</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".is-expanded > .highlight > pre > .gi:nth-child(8)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.57,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#35ae91",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"gi\">SAMPLE_DATA</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".is-expanded > .highlight > pre > .gi:nth-child(10)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.57,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#35ae91",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"py\">-- Grant the PUBLIC role access to the database.</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".py:nth-child(12)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.57,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#35ae91",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"py\">-- Optionally change the role name to restrict access to a subset of users.</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".py:nth-child(13)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">GRANT</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".ni:nth-child(14)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">IMPORTED</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".ni:nth-child(15)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">PRIVILEGES</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".ni:nth-child(16)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">ON</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".ni:nth-child(17)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">DATABASE</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".ni:nth-child(18)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.57,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#35ae91",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"gi\">SNOWFLAKE_SAMPLE_DATA</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".gi:nth-child(19)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">TO</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".is-expanded > .highlight > pre > .ni:nth-child(20)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">ROLE</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".ni:nth-child(21)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable is-expanded\">",
+                      "target": [
+                        ".is-expanded"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">PUBLIC</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".ni:nth-child(22)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" data-scroll-x=\"true\">",
+                      "target": [
+                        "div[data-scroll-x=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">show databases</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div[data-scroll-x=\"true\"] > .highlight > pre > .ni:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" data-scroll-x=\"true\">",
+                      "target": [
+                        "div[data-scroll-x=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">like</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div[data-scroll-x=\"true\"] > .highlight > pre > .ni:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 4.22,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#ce3f7e",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.22 (foreground color: #ce3f7e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" data-scroll-x=\"true\">",
+                      "target": [
+                        "div[data-scroll-x=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.22 (foreground color: #ce3f7e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"nc\">'%sample%'</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".nc"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.57,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#35ae91",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"samp docutils literal notranslate\"><span class=\"pre\">snowflake_sample_data.</span><em><span class=\"pre\">schema_name</span></em><span class=\"pre\">.</span><em><span class=\"pre\">object_name</span></em></code>",
+                      "target": [
+                        ".samp"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"pre\">schema_name</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "em:nth-child(2) > .pre"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.57,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#35ae91",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"samp docutils literal notranslate\"><span class=\"pre\">snowflake_sample_data.</span><em><span class=\"pre\">schema_name</span></em><span class=\"pre\">.</span><em><span class=\"pre\">object_name</span></em></code>",
+                      "target": [
+                        ".samp"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"pre\">object_name</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "em:nth-child(4) > .pre"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">select</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div[data-scroll-y=\"true\"] > .highlight > pre > .ni:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 4.22,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#ce3f7e",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.22 (foreground color: #ce3f7e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.22 (foreground color: #ce3f7e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"nd\">count</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".nd:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 1.9,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#ff9f36",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 1.9 (foreground color: #ff9f36, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.9 (foreground color: #ff9f36, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"p\">(*)</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".p:nth-child(4)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">from</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".ni:nth-child(5)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.57,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#35ae91",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"gi\">snowflake_sample_data</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".gi:nth-child(6)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.57,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#35ae91",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"gi\">tpch_sf1</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div[data-scroll-y=\"true\"] > .highlight > pre > .gi:nth-child(8)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.57,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#35ae91",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"gi\">lineitem</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div[data-scroll-y=\"true\"] > .highlight > pre > .gi:nth-child(10)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.74,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#8a999e",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"no\">----------+</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".no:nth-child(13)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.74,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#8a999e",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"no\">| COUNT(*) |</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".no:nth-child(14)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.74,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#8a999e",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"no\">|----------|</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".no:nth-child(15)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.74,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#8a999e",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"no\">|  6001215 |</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".no:nth-child(16)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.74,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#8a999e",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"no\">----------+</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".no:nth-child(18)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">use</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".ni:nth-child(19)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">schema</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div[data-scroll-y=\"true\"] > .highlight > pre > .ni:nth-child(20)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.57,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#35ae91",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"gi\">snowflake_sample_data</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".gi:nth-child(21)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.57,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#35ae91",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"gi\">tpch_sf1</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".gi:nth-child(23)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">select</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".ni:nth-child(25)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 4.22,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#ce3f7e",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.22 (foreground color: #ce3f7e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.22 (foreground color: #ce3f7e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"nd\">count</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".nd:nth-child(26)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 1.9,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#ff9f36",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 1.9 (foreground color: #ff9f36, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.9 (foreground color: #ff9f36, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"p\">(*)</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".p:nth-child(27)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.64,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#02a0f9",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #02a0f9, background color: #f7f7f7, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ni\">from</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".ni:nth-child(28)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.57,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#35ae91",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #35ae91, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"gi\">lineitem</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".gi:nth-child(29)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.74,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#8a999e",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"no\">----------+</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".no:nth-child(32)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.74,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#8a999e",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"no\">| COUNT(*) |</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".no:nth-child(33)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.74,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#8a999e",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"no\">|----------|</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".no:nth-child(34)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.74,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#8a999e",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"no\">|  6001215 |</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".no:nth-child(35)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f7f7f7",
+                    "contrastRatio": 2.74,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#8a999e",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"highlight-sqlexample notranslate codeblock-toggleable\" style=\"--scrollable-code-scrollbar-inline-safe: 20px;\" data-scroll-y=\"true\" data-scroll-y-bottom=\"true\">",
+                      "target": [
+                        "div[data-scroll-y=\"true\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.74 (foreground color: #8a999e, background color: #f7f7f7, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"no\">----------+</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".no:nth-child(37)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e9ecf1",
+                    "contrastRatio": 4.08,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#1a6ce7",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.08 (foreground color: #1a6ce7, background color: #e9ecf1, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"admonition note\">",
+                      "target": [
+                        ".note"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.08 (foreground color: #1a6ce7, background color: #e9ecf1, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"doc\">USE WAREHOUSE</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".note > p:nth-child(2) > .reference.internal > .doc"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+          ]
+        },
+        {
+          "description": "Ensures every form element has a label",
+          "help": "Form elements must have labels",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/label?application=axeAPI",
+          "id": "label",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "implicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an implicit (wrapped) <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "explicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an explicit <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  Element has no title attribute or the title attribute is empty",
+              "html": "<input autocomplete=\"off\" placeholder=\"Search\" role=\"searchbox\" class=\"outline-hidden w-full bg-gray-10 dark:bg-gray-85 placeholder:text-secondary pr-3 py-2 text-sm\" name=\"q\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                ".outline-hidden"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.forms",
+            "wcag2a",
+            "wcag332",
+            "wcag131",
+            "section508",
+            "section508.22.n"
+          ]
+        },
+        {
+          "description": "Ensures that lists are structured correctly",
+          "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/list?application=axeAPI",
+          "id": "list",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed inside <li> elements",
+              "html": "<ul><ol class=\"overflow-hidden\" style=\"height:0;opacity:0\"><div></div></ol></ul>",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "only-listitems",
+                  "impact": "serious",
+                  "message": "List element has direct children that are not allowed inside <li> elements",
+                  "relatedNodes": [
+                    {
+                      "html": "<ol class=\"overflow-hidden\" style=\"height:0;opacity:0\"><div></div></ol>",
+                      "target": [
+                        ".font-normal:nth-child(2) > ul > ol"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                "ol > .font-normal:nth-child(2) > ul"
+              ]
+            },
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed inside <li> elements",
+              "html": "<ol class=\"overflow-hidden\" style=\"height:0;opacity:0\"><div></div></ol>",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "only-listitems",
+                  "impact": "serious",
+                  "message": "List element has direct children that are not allowed inside <li> elements",
+                  "relatedNodes": [
+                    {
+                      "html": "<div></div>",
+                      "target": [
+                        ".font-normal:nth-child(2) > ul > ol > div"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                ".font-normal:nth-child(2) > ul > ol"
+              ]
+            },
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed inside <li> elements",
+              "html": "<ul><ol class=\"overflow-hidden\" style=\"height:0;opacity:0\"><div></div></ol></ul>",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "only-listitems",
+                  "impact": "serious",
+                  "message": "List element has direct children that are not allowed inside <li> elements",
+                  "relatedNodes": [
+                    {
+                      "html": "<ol class=\"overflow-hidden\" style=\"height:0;opacity:0\"><div></div></ol>",
+                      "target": [
+                        ".font-normal:nth-child(4) > ul > ol"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                ".font-normal:nth-child(4) > ul"
+              ]
+            },
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed inside <li> elements",
+              "html": "<ol class=\"overflow-hidden\" style=\"height:0;opacity:0\"><div></div></ol>",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "only-listitems",
+                  "impact": "serious",
+                  "message": "List element has direct children that are not allowed inside <li> elements",
+                  "relatedNodes": [
+                    {
+                      "html": "<div></div>",
+                      "target": [
+                        ".font-normal:nth-child(4) > ul > ol > div"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                ".font-normal:nth-child(4) > ul > ol"
+              ]
+            },
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed inside <li> elements",
+              "html": "<ul>",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "only-listitems",
+                  "impact": "serious",
+                  "message": "List element has direct children that are not allowed inside <li> elements",
+                  "relatedNodes": [
+                    {
+                      "html": "<ol class=\"overflow-hidden\" style=\"height: auto; opacity: 1;\">",
+                      "target": [
+                        ".font-normal:nth-child(5) > ul > ol"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                ".font-normal:nth-child(5) > ul"
+              ]
+            },
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed inside <li> elements",
+              "html": "<ol class=\"overflow-hidden\" style=\"height: auto; opacity: 1;\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "only-listitems",
+                  "impact": "serious",
+                  "message": "List element has direct children that are not allowed inside <li> elements",
+                  "relatedNodes": [
+                    {
+                      "html": "<div>",
+                      "target": [
+                        ".font-normal:nth-child(5) > ul > ol > div"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                ".font-normal:nth-child(5) > ul > ol"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.structure",
+            "wcag2a",
+            "wcag131"
+          ]
+        },
+        {
+          "description": "Ensures <li> elements are used semantically",
+          "help": "<li> elements must be contained in a <ul> or <ol>",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/listitem?application=axeAPI",
+          "id": "listitem",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"font-normal\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div > .font-normal:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"font-normal\"><div class=\"px-3 text-sm rounded-md hover:bg-level-3 mx-5 flex justify-between items-center pl-5\"><a href=\"/en/user-guide/sample-data-tpcds\" class=\"w-full py-2 text-ellipsis overflow-hidden text-sm leading-4\" title=\"TPC-DS\"><span>TPC-DS</span></a></div><ul></ul></li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div > .font-normal:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"font-normal\"><div class=\"px-3 text-sm rounded-md hover:bg-level-3 mx-5 flex justify-between items-center pl-5\"><a href=\"/en/user-guide/sample-data-tpch\" class=\"w-full py-2 text-ellipsis overflow-hidden text-sm leading-4\" title=\"TPC-H\"><span>TPC-H</span></a></div><ul></ul></li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "ol > div > .font-normal:nth-child(3)"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.structure",
+            "wcag2a",
+            "wcag131"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 6,
+      "passes_count": 37,
+      "total_penalty": 130,
+      "penalty_per_rule": {
+        "aria-allowed-role": {
+          "impact": "minor",
+          "node_count": 1,
+          "raw_penalty": 5,
+          "capped_penalty": 5
+        },
+        "aria-valid-attr": {
+          "impact": "critical",
+          "node_count": 2,
+          "raw_penalty": 50,
+          "capped_penalty": 25
+        },
+        "color-contrast": {
+          "impact": "serious",
+          "node_count": 53,
+          "raw_penalty": 795,
+          "capped_penalty": 25
+        },
+        "label": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "list": {
+          "impact": "serious",
+          "node_count": 6,
+          "raw_penalty": 90,
+          "capped_penalty": 25
+        },
+        "listitem": {
+          "impact": "serious",
+          "node_count": 3,
+          "raw_penalty": 45,
+          "capped_penalty": 25
+        }
+      },
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 0,
+        "author": 0,
+        "date": 0,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag"
+        ],
+        "description": [],
+        "author": [],
+        "date": [],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 3,
+      "fields_total": 7,
+      "json_ld_type": "none"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "\"ryajk6q1rz27du\"",
+        "last_modified": "absent",
+        "cache_control": "s-maxage=900"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 12,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "article",
+      "detection": {
+        "source": "default"
+      },
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.2,
+        "structured_data": 0.2,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "article",
+  "universal_score": 44.88620414673046,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 58.72727272727273,
+    "content_extractability": 90.0219298245614,
+    "structured_data": 5,
+    "dom_navigability": 0,
+    "metadata_completeness": 40,
+    "http_compliance": 72.0
+  },
+  "evidence_references": null
+}

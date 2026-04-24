@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "A WITH query can be marked as NOT MATERIALIZED if it is not recursive and is side-effect-free (i.e., it is a plain SELECT containing no volatile functions). The potential performance implications of doing so are that it can provide a net savings by allowing the queries to be optimized jointly, but it can also result in duplicate computations if the primary query refers to that WITH query more than once.",
+    "run_index": 0,
+    "tokens_in": 9330,
+    "tokens_out": 81
+  },
+  {
+    "pair_index": 1,
+    "answer": "When RECURSIVE is specified, a WITH query can reference itself by name, and the queries need not be ordered, allowing a query to reference another one that is later in the list. Without RECURSIVE, WITH queries can only reference sibling queries that are earlier in the list.",
+    "run_index": 0,
+    "tokens_in": 9336,
+    "tokens_out": 60
+  },
+  {
+    "pair_index": 2,
+    "answer": "The BERNOULLI and SYSTEM sampling methods in the TABLESAMPLE clause differ in how they select a random sample of rows from a table. The BERNOULLI method scans the whole table and selects or ignores individual rows independently with the specified probability. The SYSTEM method, on the other hand, does block-level sampling, where each block has the specified chance of being selected, and all rows in each selected block are returned. The SYSTEM method is significantly faster than the BERNOULLI method when small sampling percentages are specified, but it may return a less-random sample of the table due to clustering effects. The SYSTEM method might be preferred when speed is a concern and the sample size is small, while the BERNOULLI method might be preferred when a more random sample is needed.",
+    "run_index": 0,
+    "tokens_in": 9336,
+    "tokens_out": 158
+  },
+  {
+    "pair_index": 3,
+    "answer": "The SEARCH and CYCLE clauses are only valid for recursive WITH queries. The with_query must be a UNION (or UNION ALL) of two SELECT (or equivalent) commands (no nested UNIONS). If both clauses are used, the column added by the SEARCH clause appears before the columns added by the CYCLE clause. The SEARCH clause adds a column named search_seq_col_name to the result column list of the WITH query, while the CYCLE clause adds two columns: cycle_mark_col_name and cycle_path_col_name.",
+    "run_index": 0,
+    "tokens_in": 9333,
+    "tokens_out": 105
+  },
+  {
+    "pair_index": 4,
+    "answer": "The statement is still executed, but it produces no output, so it cannot be referenced as a table by the primary query.",
+    "run_index": 0,
+    "tokens_in": 9345,
+    "tokens_out": 26
+  }
+]

@@ -1,0 +1,46 @@
+```json
+[
+    {
+        "question": "Under what conditions can a BigQuery reservation group be deleted, and what API is responsible for this operation?",
+        "answer": "A reservation group can only be deleted if it does not contain any child reservations; the operation is performed using the BigQuery Reservation API.",
+        "supporting_sentences": [
+            "Deletes a reservation group from the BigQuery Reservation API. A reservation group can only be deleted if it does not contain any child reservations.",
+            "BigQuery Reservation API Client Libraries"
+        ]
+    },
+    {
+        "question": "How many distinct APIs are referenced in the document for managing BigQuery resources, and what are their names?",
+        "answer": "Four distinct APIs: BigQuery Reservation API, BigQuery Data Transfer Service, BigQuery Connection API, BigQuery DataPolicy API.",
+        "supporting_sentences": [
+            "BigQuery Reservation API",
+            "BigQuery Data Transfer Service",
+            "BigQuery Connection API",
+            "BigQuery DataPolicy API"
+        ]
+    },
+    {
+        "question": "What is the difference between the default behavior of a streaming insert and appending records using the JSON stream writer in 'pending' vs. 'committed' mode?",
+        "answer": "Streaming insert (insertAll) directly inserts rows into a table; appending records using the JSON stream writer in 'pending' mode requires finalization and commitment before data is visible, while 'committed' mode appends records immediately.",
+        "supporting_sentences": [
+            "Inserts simple rows into a table using the streaming API (insertAll).",
+            "Use the JSON stream writer to append pending records. The stream is created in a PENDING state and can be used to write data. The stream must be finalized and committed before the data is visible in the table.",
+            "Append committed records. Use the JSON stream writer to append committed records."
+        ]
+    },
+    {
+        "question": "Under what circumstances would deleting a data transfer configuration not remove the data already transferred to BigQuery?",
+        "answer": "Deleting a data transfer configuration stops future transfer runs but does not remove data that has already been transferred to BigQuery.",
+        "supporting_sentences": [
+            "Deletes a data transfer configuration in the BigQuery Data Transfer Service. Deleting a configuration stops future transfer runs but does not remove data that has already been transferred to BigQuery."
+        ]
+    },
+    {
+        "question": "What are the steps required to create a dataset with a customer-managed encryption key, and which languages support this operation?",
+        "answer": "1. Enable the Cloud Key Management Service API; 2. Specify the `google_kms_crypto_key` and `google_kms_key_ring` resources for the dataset; supported languages: Terraform, Python, Java, Go, C#, Ruby, JavaScript, Node.js, PHP.",
+        "supporting_sentences": [
+            "The following example creates a dataset named `mydataset`, and also uses the `google_kms_crypto_key` and `google_kms_key_ring` resources to specify a Cloud Key Management Service key for the dataset. You must enable the Cloud Key Management Service API before running this example.",
+            "Terraform, Python, Java, Go, C#, Ruby, JavaScript, Node JS, PHP"
+        ]
+    }
+]
+```

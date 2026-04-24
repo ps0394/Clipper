@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "The two distinct methods to access the Kubernetes dashboard are: \n1. Running the command \"minikube dashboard\" which enables the dashboard add-on and opens the proxy in the default web browser, making the dashboard accessible from outside the Kubernetes virtual network.\n2. Running the command \"minikube dashboard --url\" which outputs a URL that can be opened in a preferred browser, without automatically opening the browser. \nThe key difference is that the first method automatically opens the dashboard in the default browser, while the second method provides a URL to access the dashboard manually.",
+    "run_index": 0,
+    "tokens_in": 2335,
+    "tokens_out": 114
+  },
+  {
+    "pair_index": 1,
+    "answer": "On minikube, the external IP address would remain in a `<pending>` state because minikube does not support provisioning an external IP address, and the alternative command to access the Service is `minikube service hello-node`.",
+    "run_index": 0,
+    "tokens_in": 2337,
+    "tokens_out": 48
+  },
+  {
+    "pair_index": 2,
+    "answer": "4 \naddon-manager, dashboard, default-storageclass, storage-provisioner",
+    "run_index": 0,
+    "tokens_in": 2324,
+    "tokens_out": 16
+  },
+  {
+    "pair_index": 3,
+    "answer": "Create a Deployment, View the Deployment, View the Pod, Create a Service, View the Service, Run the command `minikube service hello-node`",
+    "run_index": 0,
+    "tokens_in": 2330,
+    "tokens_out": 32
+  },
+  {
+    "pair_index": 4,
+    "answer": "The agnhost container has a /shell endpoint, which is useful for debugging, but dangerous to expose to the public internet.",
+    "run_index": 0,
+    "tokens_in": 2330,
+    "tokens_out": 27
+  }
+]

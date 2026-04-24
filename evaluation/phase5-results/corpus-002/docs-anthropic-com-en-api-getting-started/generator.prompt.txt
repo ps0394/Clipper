@@ -1,0 +1,267 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports *non-trivial* retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 challenging question/answer pairs. Unlike simple fact extraction, these questions must require the reader to synthesize, compare, or compute across multiple parts of the document — not just locate a single sentence.
+
+## Difficulty mandate
+
+The baseline for this corpus is that a strong LLM scores 100% on simple fact-lookup questions. That ceiling is the problem this prompt solves. Generate questions such that a competent LLM reading only the document text should land in the 50–80% correct range. A question that can be answered by copying one sentence verbatim is too easy and must be replaced.
+
+## Required question-type mix
+
+You must produce exactly 5 Q/A pairs with the following distribution:
+
+- **At least 2 synthesis questions** — the answer requires combining information from two or more non-adjacent sections of the document. The reader must locate multiple facts and relate them. Example forms: "Under what conditions does X apply, and what happens when those conditions are not met?", "How does feature A relate to feature B?", "What is the full sequence of steps from X to Y?"
+
+- **At least 1 quantitative or comparative question** — the answer requires counting, ordering, ranking, computing a difference, or distinguishing options. Example forms: "Which of the supported options has the shortest timeout?", "How many … does the document describe, and in what order?", "What is the difference between the default and maximum value of X?"
+
+- **At least 1 constraint or edge-case question** — the answer depends on a condition, limitation, exception, or corner case mentioned in the document. Example forms: "What happens if X is set to a value above the supported range?", "Under which circumstances is behavior Y not guaranteed?"
+
+- The remaining pair(s) may be any of the above types. Do not include pure fact-lookup questions (e.g. "What is the name of X?", "What year was Y introduced?") unless the fact is genuinely non-obvious and spread across multiple sentences.
+
+## Answerability constraints
+
+1. **Every answer must be fully grounded in the document.** If the question requires outside knowledge, common sense beyond the document, or inference the document does not support, do not include it.
+2. **Answers may be short or multi-part**, but must be precise. Do not produce essay-length answers. For multi-part answers, separate components with semicolons or enumerate explicitly.
+3. **Supporting sentences are required.** For every Q/A pair, list the verbatim sentences from the document that together justify the answer. A synthesis question should have supporting sentences from multiple sections; a quantitative question should have the sentences containing the relevant numbers.
+4. **Self-contained questions.** A reader who has not seen the document must be able to understand what is being asked. Do not write "What is the second step?" or "What does the table show?".
+5. **Spread across the document.** The 5 questions together should exercise different sections, not cluster in one region.
+
+## Forbidden patterns
+
+- Questions answerable by copying a single sentence verbatim.
+- Questions whose answer is a single named entity pulled from a title, heading, or "About this page" metadata block.
+- Questions where the answer is restated in the question itself.
+- Questions requiring knowledge of the document's structure rather than its content (e.g. "What section comes after X?").
+
+## Output format
+
+A single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: API Overview - Claude API Docs
+Document URL: https://docs.anthropic.com/en/api/getting-started
+Document profile: tutorial
+
+Document text:
+---
+The Claude API is a RESTful API at 
+https://api.anthropic.com
+ that provides programmatic access to Claude models and Claude Managed Agents.
+
+New to Claude?
+ For direct model access, start with 
+Get started
+ and 
+Working with Messages
+. For managed agent infrastructure, see the 
+Claude Managed Agents quickstart
+.
+
+To use the Claude API, you'll need:
+
+For step-by-step setup instructions, see 
+Get started
+.
+
+The Claude API includes the following APIs:
+
+General Availability:
+
+Messages API
+: Send messages to Claude for conversational interactions (
+POST /v1/messages
+)
+
+Message Batches API
+: Process large volumes of Messages requests asynchronously with 50% cost reduction (
+POST /v1/messages/batches
+)
+
+Token Counting API
+: Count tokens in a message before sending to manage costs and rate limits (
+POST /v1/messages/count_tokens
+)
+
+Models API
+: List available Claude models and their details (
+GET /v1/models
+)
+
+Beta:
+
+Files API
+: Upload and manage files for use across multiple API calls (
+POST /v1/files
+, 
+GET /v1/files
+)
+
+Skills API
+: Create and manage custom agent skills (
+POST /v1/skills
+, 
+GET /v1/skills
+)
+
+Agents API
+: Define reusable, versioned agent configurations for Claude Managed Agents (
+POST /v1/agents
+, 
+GET /v1/agents
+)
+
+Sessions API
+: Run stateful agent sessions in managed cloud containers (
+POST /v1/sessions
+, 
+GET /v1/sessions/{id}/stream
+)
+
+Environments API
+: Configure container templates for agent sessions (
+POST /v1/environments
+, 
+GET /v1/environments
+)
+
+For the complete API reference with all endpoints, parameters, and response schemas, explore the API reference pages listed in the navigation. To access beta features, see 
+Beta headers
+.
+
+All requests to the Claude API must include these headers:
+
+Header
+Value
+Required
+x-api-key
+Your API key from Console
+Yes
+anthropic-version
+API version (e.g., 
+2023-06-01
+)
+Yes
+content-type
+application/json
+Yes
+
+If you are using the 
+Client SDKs
+, the SDK will send these headers automatically. For API versioning details, see 
+API versions
+.
+
+The API is made available via the web 
+Console
+. You can use the 
+Workbench
+ to try out the API in the browser and then generate API keys in 
+Account Settings
+. Use 
+workspaces
+ to segment your API keys and 
+control spend
+ by use case.
+
+Anthropic provides official SDKs that simplify API integration by handling authentication, request formatting, error handling, and more.
+
+Benefits
+:
+
+Automatic header management (x-api-key, anthropic-version, content-type)
+
+Type-safe request and response handling
+
+Built-in retry logic and error handling
+
+Streaming support
+
+Request timeouts and connection management
+
+For a list of client SDKs and their respective installation instructions, see 
+Client SDKs
+.
+
+Availability on partner platforms
+
+Claude is available through the direct Claude API and through partner platforms. Choose based on your infrastructure, compliance requirements, and pricing preferences.
+
+Direct access
+ to the latest models and features first
+
+Anthropic billing and support
+
+Best for
+: New integrations, full feature access, direct relationship with Anthropic
+
+Third-Party Platform APIs
+
+Access Claude through AWS, Google Cloud, or Microsoft Azure:
+
+Integrated
+ with cloud provider billing and IAM
+
+May have feature delays
+ or differences from the direct API
+
+Best for
+: Existing cloud commitments, specific compliance requirements, consolidated cloud billing
+
+Claude Managed Agents is available only through the direct Claude API. For feature availability across platforms, see the 
+Features overview
+.
+
+Request and Response Format
+
+Endpoint
+Maximum request size
+Messages, Token Counting
+32 MB
+Batch API
+256 MB
+Files API
+500 MB
+Sessions, Agents, Environments
+32 MB
+
+If you exceed these limits, you'll receive a 413 
+request_too_large
+ error.
+
+Third-party platforms have their own request size limits: Vertex AI limits requests to 30 MB, and Amazon Bedrock limits requests to 20 MB. Consult your platform's documentation for current values.
+
+The Claude API includes the following headers in every response:
+
+request-id
+: A globally unique identifier for the request
+
+anthropic-organization-id
+: The organization ID associated with the API key used in the request
+
+Rate Limits and Availability
+
+The API enforces rate limits and spend limits to prevent misuse and manage capacity. Limits are organized into usage tiers that increase automatically as you use the API. Each tier has:
+
+Spend limits
+: Maximum monthly cost for API usage
+
+Rate limits
+: Maximum number of requests per minute (RPM) and tokens per minute (TPM)
+
+You can view your organization's current limits in the 
+Console
+. For higher limits or Priority Tier (enhanced service levels with committed spend), contact sales through the Console.
+
+For detailed information about limits, tiers, and the token bucket algorithm used for rate limiting, see 
+Rate limits
+.
+
+The Claude API is available in 
+many countries and regions
+ worldwide. Check the supported regions page to confirm availability in your location.
+
+Complete API specification for direct model interactions
+Claude Managed Agents reference
+Agents, Sessions, and Environments endpoints
+Python, TypeScript, Java, Go, C#, Ruby, and PHP
+Usage tiers, spend limits, and token bucket algorithm
+---

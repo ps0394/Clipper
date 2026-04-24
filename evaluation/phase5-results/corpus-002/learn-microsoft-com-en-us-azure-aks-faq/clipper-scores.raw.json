@@ -1,0 +1,1000 @@
+{
+  "parseability_score": 80.54101107226107,
+  "failure_mode": "minor_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-002\\learn-microsoft-com-en-us-azure-aks-faq\\page.raw.html",
+  "url": "https://learn.microsoft.com/en-us/azure/aks/faq",
+  "component_scores": {
+    "semantic_html": 78.18181818181819,
+    "content_extractability": 88.30371017871018,
+    "structured_data": 97.0,
+    "dom_navigability": 35,
+    "metadata_completeness": 100,
+    "http_compliance": 84.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 4,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "article",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "section",
+          "count": 8,
+          "proper_usage": true
+        },
+        {
+          "element": "aside",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 1,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 14,
+      "heading_elements_count": 66,
+      "scoring_breakdown": {
+        "semantic_coverage": 38.18181818181818,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 24484,
+        "extracted_text_length": 22828,
+        "extracted_chars": 22828,
+        "extraction_ratio": 0.932,
+        "extracted_title": "AKS Frequently Asked Questions",
+        "extracted_preview": "Support Does AKS offer a service-level agreement? AKS provides service-level agreement (SLA) guarantees in the Standard pricing tier with the Uptime SLA feature . What is platform support, and what does it include? Platform support is a reduced support plan for unsupported n-3 version clusters. Plat...",
+        "original_headings": 66,
+        "extracted_headings": 59,
+        "original_lists": 12,
+        "extracted_lists": 10,
+        "original_code_blocks": 48,
+        "extracted_code_blocks": 47,
+        "has_main_element": true,
+        "has_article_element": true
+      },
+      "score_breakdown": {
+        "signal_to_noise": 35,
+        "structure_preservation": 27.064393939393938,
+        "boundary_detection": 26.23931623931624
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 1,
+        "microdata_items": 1,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [
+        "FAQPage"
+      ],
+      "key_fields_found": [],
+      "formats_present": 3,
+      "score_breakdown": {
+        "type_appropriateness": 20.0,
+        "field_completeness": 30.0,
+        "multiple_formats": 17,
+        "schema_validation": 30.0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [
+          {
+            "index": 0,
+            "type": "FAQPage",
+            "present": 1,
+            "expected": 1,
+            "ratio": 1.0,
+            "missing": [],
+            "invalid": []
+          }
+        ],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": [],
+        "average_ratio": 1.0
+      },
+      "sample_structured_data": {
+        "microdata": [
+          {
+            "type": "http://schema.org/Organization",
+            "value": ""
+          }
+        ],
+        "json-ld": [
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Does AKS offer a service-level agreement?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>AKS provides service-level agreement (SLA) guarantees in the <a href=\"free-standard-pricing-tiers\">Standard pricing tier with the Uptime SLA feature</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is platform support, and what does it include?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Platform support is a reduced support plan for unsupported n-3 version clusters. Platform support includes only Azure infrastructure support.</p>\n<p>For more information, see the <a href=\"supported-kubernetes-versions\">platform support policy</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does AKS automatically upgrade my unsupported clusters?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes, AKS initiates auto-upgrades for unsupported clusters. When a cluster in an n-3 version (where <em>n</em> is the latest supported AKS minor version that's generally available) is about to drop to n-4, AKS automatically upgrades the cluster to n-2 to remain in an AKS support policy.</p>\n<p>For more information, see <a href=\"supported-kubernetes-versions\">Supported Kubernetes versions</a>, <a href=\"planned-maintenance\">Planned maintenance windows</a>, and <a href=\"auto-upgrade-cluster\">Automatic upgrades</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I apply Azure reservation discounts to my AKS agent nodes?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>AKS agent nodes are billed as standard Azure virtual machines (VMs). If you purchased <a href=\"/azure/cost-management-billing/reservations/save-compute-costs-reservations\">Azure reservations</a> for the VM size that you're using in AKS, those discounts are automatically applied.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I run Windows Server containers on AKS?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes, AKS supports Windows Server containers. For more information, see the <a href=\"windows-faq\">Windows Server on AKS FAQ</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What Linux operating systems (OS) are supported on AKS?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>AKS supports four main Linux operating systems, including Ubuntu Linux, <a href=\"use-azure-linux\">Azure Linux</a>, <a href=\"use-azure-linux-os-guard\">Azure Linux OS Guard</a>, and <a href=\"flatcar-container-linux-for-aks\">Flatcar Container Linux for AKS</a>. When specifying <code>--os-type Linux</code> during node pool creation or cluster creation, the default OS is Ubuntu Linux.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What operating systems (OS) versions are supported on AKS?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>When using <code>--os-sku Ubuntu</code>, AKS defaults to Ubuntu 22.04 in Kubernetes versions 1.25-1.34. AKS defaults to Ubuntu 24.04 in Kubernetes versions 1.35+.\nWhen using <code>--os-sku AzureLinux</code>, AKS defaults to Azure Linux 3.0 in Kubernetes versions 1.32+.\nIn some scenarios, like FIPS-enabled node pools, the default OS version might differ. See <a href=\"node-images\">node images</a> for more information.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I move or migrate my cluster between Azure tenants?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>No. Moving your AKS cluster between tenants is currently unsupported.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I move or migrate my cluster between subscriptions?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>No. Moving your AKS cluster between subscriptions is currently unsupported.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I move or migrate my cluster to another virtual network?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>No. Moving your AKS cluster to another virtual network is currently unsupported.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I move my AKS cluster or AKS infrastructure resources to other resource groups or rename them?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>No. Moving or renaming your AKS cluster and its associated resources isn't supported.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I restore my cluster after I delete it?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>No. You can't restore your cluster after you delete it. When you delete your cluster, the node resource group and all its resources are also deleted.</p>\n<p>If you want to keep any of your resources, move them to another resource group before you delete your cluster. If you want to protect against accidental deletes, you can lock the AKS managed resource group that's hosting your cluster resources by using <a href=\"node-resource-group-lockdown\">Node resource group lockdown</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I scale my AKS cluster to zero?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>You can completely <a href=\"start-stop-cluster\">stop a running AKS cluster</a> or <a href=\"scale-cluster#scale-user-node-pools-to-0\">scale or autoscale all or specific <code>User</code> node pools</a> to zero.</p>\n<p>You can't directly scale <a href=\"use-system-pools\">system node pools</a> to zero.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I use the virtual machine scale set APIs to scale manually?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>No. Scale operations that use the virtual machine scale set APIs aren't supported. You can use the AKS APIs (<code>az aks scale</code>).</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I use virtual machine scale sets to manually scale to zero nodes?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>No. Scale operations that use the virtual machine scale set APIs aren't supported. You can use the AKS API to scale nonsystem node pools to zero or <a href=\"start-stop-cluster\">stop your cluster</a> instead.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I stop or deallocate all my VMs?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>No. This configuration isn't supported. <a href=\"start-stop-cluster\">Stop your cluster</a> instead.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why are two resource groups created with AKS?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>AKS builds upon many Azure infrastructure resources, including virtual machine scale sets, virtual networks, and managed disks. These integrations enable you to apply many of the core capabilities of the Azure platform within the managed Kubernetes environment provided by AKS. For example, you can use most Azure VM types directly with AKS, and you can use Azure Reservations to receive discounts on those resources automatically.</p>\n<p>To enable this architecture, each AKS deployment spans two resource groups:</p>\n<ol>\n<li>You create the first resource group. This group contains only the Kubernetes service resource. The AKS resource provider automatically creates the second resource group during deployment. An example of the second resource group is <em>MC_myResourceGroup_myAKSCluster_eastus</em>. For information on how to specify the name of this second resource group, see the next section.</li>\n<li>The second resource group, known as the <em>node resource group</em>, contains all of the infrastructure resources associated with the cluster. These resources include the Kubernetes node VMs, virtual networking, and storage. By default, the node resource group has a name like <em>MC_myResourceGroup_myAKSCluster_eastus</em>. AKS automatically deletes the node resource group whenever you delete the cluster. Use this resource group only for resources that share the cluster's lifecycle.</li>\n</ol>\n<div class=\"NOTE\">\n<p>Note</p>\n<p>Modifying any resource under the node resource group in the AKS cluster is an unsupported action and will cause cluster operation failures. You can prevent changes from being made to the node resource group. <a href=\"node-resource-group-lockdown\">Block users from modifying resources</a> that the AKS cluster manages.</p>\n</div>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I provide my own name for the AKS node resource group?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>By default, AKS names the node resource group <em>MC_resourcegroupname_clustername_location</em>, but you can provide your own name.</p>\n<p>To specify your own resource group name, install the <a href=\"/cli/azure/aks\">aks-preview</a> Azure CLI extension version <em>0.3.2</em> or later. When you create an AKS cluster by using the <code>az aks create</code> command, use the <code>--node-resource-group</code> parameter and specify a name for the resource group. If you use an <a href=\"/azure/templates/microsoft.containerservice/2022-09-01/managedclusters\">Azure Resource Manager template</a> to deploy an AKS cluster, you can define the resource group name by using the <code>nodeResourceGroup</code> property.</p>\n<ul>\n<li>The Azure resource provider automatically creates the secondary resource group.</li>\n<li>You can specify a custom resource group name only when you create the cluster.</li>\n</ul>\n<p>As you work with the node resource group, you can't:</p>\n<ul>\n<li>Specify an existing resource group for the node resource group.</li>\n<li>Specify a different subscription for the node resource group.</li>\n<li>Change the node resource group name after you create the cluster.</li>\n<li>Specify names for the managed resources within the node resource group.</li>\n<li>Modify or delete Azure-created tags of managed resources within the node resource group.</li>\n</ul>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I modify tags and other properties of the AKS resources in the node resource group?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>You might get unexpected scaling and upgrading errors if you modify or delete Azure-created tags and other resource properties in the node resource group. AKS allows you to create and modify custom tags created by end users, and you can add those tags when you <a href=\"manage-node-pools#specify-a-taint-label-or-tag-for-a-node-pool\">create a node pool</a>. You might want to create or modify custom tags, for example, to assign a business unit or cost center. Another option is to apply policies and modify tags through the AKS resource itself—specifically via the cluster and node pools..</p>\n<p>Azure-created tags are created for their respective Azure services, and you should always allow them. For AKS, there are the <code>aks-managed</code> and <code>k8s-azure</code> tags. Modifying any <em>Azure-created tags</em> on resources under the node resource group in the AKS cluster is an unsupported action, which breaks the service-level objective (SLO).</p>\n<div class=\"NOTE\">\n<p>Note</p>\n<p>In the past, the tag name <code>Owner</code> was reserved for AKS to manage the public IP that's assigned on the front-end IP of the load balancer. Now, services use the <code>aks-managed</code> prefix. For legacy resources, don't use Azure policies to apply the <code>Owner</code> tag name. Otherwise, all resources on your AKS cluster deployment and update operations will break. This restriction doesn't apply to newly created resources.</p>\n</div>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why do I see aks-managed prefixed Helm releases on my cluster, and why does their revision count keep increasing?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>AKS uses Helm to deliver components to your cluster. You can safely ignore <code>aks-managed</code> prefixed Helm releases. Continuously increasing revisions on these Helm releases are expected and safe.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which Azure regions currently provide AKS? \n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>For a complete list of available regions, see <a href=\"https://azure.microsoft.com/global-infrastructure/services/?products=kubernetes-service\">AKS regions and availability</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I spread an AKS cluster across regions?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>No. AKS clusters are regional resources and can't span regions. For guidance on how to create an architecture that includes multiple regions, see <a href=\"operator-best-practices-multi-region#plan-for-multiregion-deployment\">best practices for business continuity and disaster recovery</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I spread an AKS cluster across availability zones?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes, you can deploy an AKS cluster across one or more <a href=\"availability-zones\">availability zones</a> in <a href=\"/azure/reliability/availability-zones-region-support\">regions that support them</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I have different VM sizes in a single cluster?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes, you can use different VM sizes in your AKS cluster by creating <a href=\"create-node-pools\">multiple node pools</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What's the size limit on a container image in AKS?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>AKS doesn't set a limit on the container image size. But the larger the image, the higher the memory demand. A larger size could potentially exceed resource limits or the overall available memory of worker nodes. By default, memory for VM size Standard_DS2_v2 for an AKS cluster is set to 7 GiB.</p>\n<p>When a container image is excessively large, as in the terabyte (TB) range, the kubelet might not be able to pull it from your container registry to a node because of the lack of disk space.</p>\n<p>For Windows Server nodes, Windows Update doesn't automatically run and apply the latest updates. You should perform an upgrade on the cluster and the Windows Server node pools in your AKS cluster. Follow a regular schedule based on the Windows Update release cycle and your own validation process. This upgrade process creates nodes that run the latest Windows Server image and patches, and then removes the older nodes. For more information on this process, see <a href=\"manage-node-pools#upgrade-a-single-node-pool\">Upgrade a node pool in AKS</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Are AKS images required to run as root?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>The following images have functional requirements to run as root, and exceptions must be filed for any policies:</p>\n<ul>\n<li><em>mcr.microsoft.com/oss/kubernetes/coredns</em></li>\n<li><em>mcr.microsoft.com/azuremonitor/containerinsights/ciprod</em></li>\n<li><em>mcr.microsoft.com/oss/calico/node</em></li>\n<li><em>mcr.microsoft.com/oss/kubernetes-csi/azuredisk-csi</em></li>\n</ul>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I limit who has access to the Kubernetes API server?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes, there are two options for limiting access to the API server:</p>\n<ul>\n<li>Use <a href=\"api-server-authorized-ip-ranges\">API server authorized IP ranges</a> if you want to maintain a public endpoint for the API server but restrict access to a set of trusted IP ranges.</li>\n<li>Use a <a href=\"private-clusters\">private cluster</a> if you want to limit the API server to be accessible <em>only</em> from within your virtual network.</li>\n</ul>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Are security updates applied to AKS agent nodes?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>AKS patches CVEs that have a <em>vendor fix</em> every week. CVEs without a fix are waiting on a vendor fix before they can be remediated. The AKS images are automatically updated within 30 days. We recommend that you apply an updated node image on a regular cadence to ensure that the latest patched images and OS patches are all applied and current. You can do this task:</p>\n<ul>\n<li>Manually, through the Azure portal or the Azure CLI.</li>\n<li>By upgrading your AKS cluster. The cluster upgrades <a href=\"https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/\">cordon and drain nodes</a> automatically. Then it brings a new node online with the latest Ubuntu image and a new patch version or a minor Kubernetes version. For more information, see <a href=\"upgrade-cluster\">Upgrade an AKS cluster</a>.</li>\n<li>By using a <a href=\"node-image-upgrade\">node image upgrade</a>.</li>\n</ul>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Are there security threats that target AKS that I should be aware of?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Microsoft provides guidance for other actions that you can take to secure your workloads through services like <a href=\"/azure/defender-for-cloud/defender-for-containers-introduction?tabs=defender-for-container-arch-aks\">Microsoft Defender for Containers</a>. For information on a security threat related to AKS and Kubernetes, see <a href=\"https://techcommunity.microsoft.com/t5/azure-security-center/new-large-scale-campaign-targets-kubeflow/ba-p/2425750\">New large-scale campaign targets Kubeflow</a> (June 8, 2021).</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does AKS store any customer data outside the cluster's region?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>No. All data is stored in the cluster's region.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How can I avoid permission ownership setting slow issues when the volume has numerous files?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Traditionally, if your pod is running as a nonroot user (which it should), you must specify an <code>fsGroup</code> parameter inside the pod's security context so that the volume is readable and writable by the pod. For more information on this requirement, see <a href=\"https://kubernetes.io/docs/tasks/configure-pod-container/security-context/\">Configure a security context for a pod or container</a>.</p>\n<p>A side effect of setting <code>fsGroup</code> is that each time a volume is mounted, Kubernetes must use the <code>chown()</code> and <code>chmod()</code> commands recursively for all the files and directories inside the volume (with a few exceptions). This scenario happens even if group ownership of the volume already matches the requested <code>fsGroup</code> parameter. This configuration might be expensive for larger volumes with lots of small files, which can cause pod startup to take a long time. This scenario was a known problem before v1.20. The workaround is to set the pod to run as root:</p>\n<pre><code class=\"lang-yaml\">apiVersion: v1\nkind: Pod\nmetadata:\n  name: security-context-demo\nspec:\n  securityContext:\n    runAsUser: 0\n    fsGroup: 0\n</code></pre>\n<p>The issue was resolved with Kubernetes version 1.20. For more information, see <a href=\"https://kubernetes.io/blog/2020/12/14/kubernetes-release-1.20-fsgroupchangepolicy-fsgrouppolicy/\">Kubernetes 1.20: Granular control of volume permission changes</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does the managed control plane communicate with my nodes?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>AKS uses a secure tunnel communication to allow the <code>api-server</code> and individual node kubelets to communicate, even on separate virtual networks. The tunnel is secured through mutual Transport Layer Security encryption. The current main tunnel that AKS uses is <a href=\"https://kubernetes.io/docs/tasks/extend-kubernetes/setup-konnectivity/\">Konnectivity, previously known as apiserver-network-proxy</a>. Verify that all network rules follow the <a href=\"limit-egress-traffic\">Azure required network rules and fully qualified domain names (FQDNs)</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can my pods use the API server FQDN instead of the cluster IP?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes, you can add the annotation <code>kubernetes.azure.com/set-kube-service-host-fqdn</code> to pods to set the <code>KUBERNETES_SERVICE_HOST</code> variable to the domain name of the API server instead of the in-cluster service IP. This modification is useful in cases where your cluster egress is done via a layer 7 firewall. An example is when you use Azure Firewall with application rules.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I configure NSGs with AKS?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>AKS doesn't apply network security groups (NSGs) to its subnet and doesn't modify any of the NSGs associated with that subnet. AKS modifies only the network interface NSG settings. If you're using Container Network Interface (CNI), you also must ensure that the security rules in the NSGs allow traffic between the node and pod classless interdomain routing (CIDR) ranges. If you're using kubenet, you must also ensure that the security rules in the NSGs allow traffic between the node and pod CIDR. For more information, see <a href=\"concepts-network#network-security-groups\">Network security groups</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does time synchronization work in AKS?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>AKS nodes run the chrony service, which pulls time from the local host. Containers that run on pods get the time from the AKS nodes. Applications that open inside a container use time from the container of the pod.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I use custom VM extensions?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>No. AKS is a managed service. Manipulation of the infrastructure as a service (IaaS) resources isn't supported. To install custom components, use the Kubernetes APIs and mechanisms. For example, use DaemonSets to install any required components.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What Kubernetes admission controllers does AKS support? Can admission controllers be added or removed?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>AKS supports the following <a href=\"https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/\">admission controllers</a>:</p>\n<ul>\n<li><code>NamespaceLifecycle</code></li>\n<li><code>LimitRanger</code></li>\n<li><code>ServiceAccount</code></li>\n<li><code>DefaultIngressClass</code></li>\n<li><code>DefaultStorageClass</code></li>\n<li><code>DefaultTolerationSeconds</code></li>\n<li><code>MutatingAdmissionWebhook</code></li>\n<li><code>ValidatingAdmissionWebhook</code></li>\n<li><code>ResourceQuota</code></li>\n<li><code>PodNodeSelector</code></li>\n<li><code>PodTolerationRestriction</code></li>\n<li><code>ExtendedResourceToleration</code></li>\n</ul>\n<p>Currently, you can't modify the list of admission controllers in AKS.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I use admission controller webhooks on AKS?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes, you can use admission controller webhooks on AKS. We recommend that you exclude internal AKS namespaces, which are marked with the <code>control-plane</code> label. For example:</p>\n<pre><code class=\"lang-output\">namespaceSelector:\n    matchExpressions:\n    - key: control-plane\n      operator: DoesNotExist\n</code></pre>\n<p>AKS firewalls the API server egress so that your admission controller webhooks need to be accessible from within the cluster.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can admission controller webhooks affect kube-system and internal AKS namespaces?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>To protect the stability of the system and prevent custom admission controllers from affecting internal services in the <code>kube-system</code> namespace, AKS has an admissions enforcer, which automatically excludes <code>kube-system</code> and AKS internal namespaces. This service ensures that the custom admission controllers don't affect the services that run in <code>kube-system</code>.</p>\n<p>If you have a critical use case for deploying something on <code>kube-system</code> (not recommended) in support of your custom admission webhook, you can add the following label or annotation so that the admissions enforcer ignores it:</p>\n<ul>\n<li>Label: <code>&quot;admissions.enforcer/disabled&quot;: &quot;true&quot;</code></li>\n<li>Annotation: <code>&quot;admissions.enforcer/disabled&quot;: true</code></li>\n</ul>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is Azure Key Vault integrated with AKS?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p><a href=\"csi-secrets-store-driver\">Azure Key Vault provider for Secrets Store CSI Driver</a> provides native integration of Azure Key Vault into AKS.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I use FIPS cryptographic libraries with deployments on AKS?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Nodes that are enabled with Federal Information Processing Standards (FIPS) are now supported on Linux-based node pools. For more information, see <a href=\"enable-fips-nodes\">Add a FIPS-enabled node pool</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How are AKS add-ons updated?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Any patch, including a security patch, is automatically applied to the AKS cluster. Anything bigger than a patch, like major or minor version changes (which can have breaking changes to your deployed objects), are updated when you update your cluster if a new release is available. For information on when a new release is available, see <a href=\"https://github.com/Azure/AKS/releases\">AKS release notes</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the purpose of the AKS Linux extension that I see installed on my Linux virtual machine scale sets instances?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>The AKS Linux extension is an Azure VM extension that installs and configures monitoring tools on Kubernetes worker nodes. The extension is installed on all new and existing Linux nodes. It configures the following monitoring tools:</p>\n<ul>\n<li><a href=\"https://github.com/prometheus/node_exporter\">Node-exporter</a>: Collects hardware telemetry from the VM and makes it available by using a metrics endpoint. Then, a monitoring tool, such as Prometheus, can scrap these metrics.</li>\n<li><a href=\"https://github.com/kubernetes/node-problem-detector\">Node-problem-detector</a>: Aims to make various node problems visible to upstream layers in the cluster management stack. It's a systemd unit that runs on each node, detects node problems, and reports them to the cluster's API server by using <code>Events</code> and <code>NodeConditions</code>.</li>\n<li><a href=\"https://go.microsoft.com/fwlink/p/?linkid=2260320\">ig</a>: Is an eBPF-powered open-source framework for debugging and observing Linux and Kubernetes systems. It provides a set of tools (or gadgets) that gather relevant information that users can use to identify the cause of performance issues, crashes, or other anomalies. Notably, its independence from Kubernetes enables users to employ it also for debugging control plane issues.</li>\n</ul>\n<p>These tools help provide observability around many node health-related problems, such as:</p>\n<ul>\n<li><strong>Infrastructure daemon issues:</strong> NTP service down</li>\n<li><strong>Hardware issues:</strong> Bad CPU, memory, or disk</li>\n<li><strong>Kernel issues:</strong> Kernel deadlock, corrupted file system</li>\n<li><strong>Container runtime issues:</strong> Unresponsive runtime daemon</li>\n</ul>\n<p>The extension <em>doesn't require extra outbound access</em> to any URLs, IP addresses, or ports beyond the <a href=\"limit-egress-traffic\">documented AKS egress requirements</a>. It doesn't require any special permissions granted in Azure. It uses <code>kubeconfig</code> to connect to the API server to send the monitoring data that's collected.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why is it taking so long to delete my cluster?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Most clusters are deleted upon user request. In some cases, especially cases where you bring your own resource group or perform cross-resource group tasks, deletion can take more time or even fail. If you have an issue with deletions, double-check that you don't have locks on the resource group. Also make sure that any resources outside the resource group are disassociated from the resource group.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why is it taking so long to create or update my cluster?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>If you have issues with creating and updating clusters, make sure that you don't have any assigned policies or service constraints that might block your AKS cluster from managing resources like VMs, load balancers, or tags.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "If I have pods or deployments in NodeLost or Unknown states, can I still upgrade my cluster?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>You can, but we don't recommend it. Perform updates when the state of the cluster is known and healthy.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "If I have a cluster with one or more nodes in an Unhealthy state, or if it's shut down, can I perform an upgrade?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>No. Delete or remove any nodes that are in a failed state or otherwise from the cluster before you upgrade.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "I tried to delete my cluster, but I see the error \"[Errno 11001] getaddrinfo failed.\"\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Most commonly, this error arises if you have one or more NSGs in use that are still associated with the cluster. Remove them and attempt to delete the cluster again.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "I ran an upgrade, but now my pods are in crash loops and readiness probes fail.\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Confirm that your service principal isn't expired. For more information, see <a href=\"kubernetes-service-principal\">AKS service principal</a> and <a href=\"update-credentials\">AKS update credentials</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "My cluster was working, but suddenly I can't provision load balancers or mount persistent volume claims.\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Confirm that your service principal isn't expired. For more information, see <a href=\"kubernetes-service-principal\">AKS service principal</a> and <a href=\"update-credentials\">AKS update credentials</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which Linux OS versions are deprecated on AKS?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Starting on March 17, 2027, Azure Kubernetes Service (AKS) no longer supports or provides security updates Ubuntu 20.04. Any existing node images will be deleted, and you'll be unable to scale any node pools running Ubuntu 20.04. Migrate to a supported Ubuntu version by <a href=\"upgrade-aks-cluster\">upgrading your node pools</a> to Kubernetes version 1.35+. For more information on this retirement, see the <a href=\"https://github.com/Azure/AKS/issues/4874\">Retirement GitHub issue</a> and the <a href=\"https://azure.microsoft.com/updates?id=485795\">Azure Updates retirement announcement</a>. To stay informed on announcements and updates, follow the <a href=\"https://github.com/Azure/AKS/releases\">AKS release notes</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which Windows OS versions are deprecated on AKS?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Starting on March 01, 2026, Azure Kubernetes Service (AKS) no longer supports Windows Server 2019 node pools. Node pools running Kubernetes version 1.33+ can't use Windows Server 2019. Starting on April 01, 2027, AKS will remove all existing node images for Windows Server 2019, meaning that scaling operations will fail. For more information on this retirement, see the <a href=\"https://github.com/Azure/AKS/issues/4091\">Retirement GitHub issue</a> and the <a href=\"https://azure.microsoft.com/updates?id=aks-will-stop-support-for-windows-server-2019-on-march-1-2026\">Azure Updates retirement announcement</a>. To stay informed on announcements and updates, follow the <a href=\"https://github.com/Azure/AKS/releases\">AKS release notes</a>.\nStarting on March 15, 2027, Azure Kubernetes Service (AKS) no longer supports Windows Server 2022 node pools. Node pools running Kubernetes version 1.36+ can't use Windows Server 2022. Starting on April 01, 2028, AKS will remove all existing node images for Windows Server 2022, meaning that scaling operations will fail. For more information on this retirement, see the <a href=\"https://github.com/Azure/AKS/issues/4168\">Retirement GitHub issue</a> and the <a href=\"https://azure.microsoft.com/updates?id=ws2022-retirement-aks\">Azure Updates retirement announcement</a>. To stay informed on announcements and updates, follow the <a href=\"https://github.com/Azure/AKS/releases\">AKS release notes</a>.</p>\n"
+                }
+              }
+            ]
+          }
+        ],
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:type",
+                "website"
+              ],
+              [
+                "og:image:alt",
+                "Microsoft Learn"
+              ],
+              [
+                "og:image",
+                "https://learn.microsoft.com/en-us/media/open-graph-image.png"
+              ],
+              [
+                "og:title",
+                "AKS Frequently Asked Questions"
+              ],
+              [
+                "og:url",
+                "https://learn.microsoft.com/en-us/azure/aks/faq"
+              ],
+              [
+                "og:description",
+                "Frequently asked questions about Azure Kubernetes Service (AKS)"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures role attribute has an appropriate value for the element",
+          "help": "ARIA role must be appropriate for the element",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+          "id": "aria-allowed-role",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "combobox"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role combobox  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role combobox  is not allowed for given element",
+              "html": "<input role=\"combobox\" maxlength=\"100\" aria-autocomplete=\"list\" autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\" id=\"site-header-search-autocomplete-input-mobile\" data-test-id=\"site-header-search-autocomplete-input-mobile\" class=\"autocomplete-input input \n\t\t\t\t\t\t\n\t\t\t\t\t\twidth-full\" type=\"search\" name=\"terms\" aria-expanded=\"false\" aria-owns=\"ax-1-listbox\" aria-controls=\"ax-1-listbox\" aria-activedescendant=\"\" aria-label=\"Search\" aria-describedby=\"ms--site-header-search-autocomplete-input-mobile-description\" placeholder=\"Search\" data-bi-name=\"site-header-search-autocomplete-input-mobile\" pattern=\".*\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#site-header-search-autocomplete-input-mobile"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "combobox"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role combobox  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role combobox  is not allowed for given element",
+              "html": "<input role=\"combobox\" maxlength=\"100\" aria-autocomplete=\"list\" autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\" id=\"site-header-search-autocomplete-input\" data-test-id=\"site-header-search-autocomplete-input\" class=\"autocomplete-input input input-sm\n\t\t\t\t\t\t\n\t\t\t\t\t\twidth-full\" type=\"search\" name=\"terms\" aria-expanded=\"false\" aria-owns=\"ax-0-listbox\" aria-controls=\"ax-0-listbox\" aria-activedescendant=\"\" aria-label=\"Search\" aria-describedby=\"ms--site-header-search-autocomplete-input-description\" placeholder=\"Search\" data-bi-name=\"site-header-search-autocomplete-input\" pattern=\".*\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#site-header-search-autocomplete-input"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "navigation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role navigation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role navigation  is not allowed for given element",
+              "html": "<nav id=\"affixed-left-container\" class=\"margin-top-sm-tablet position-sticky display-flex flex-direction-column\" aria-label=\"Primary\" data-bi-name=\"left-toc\" role=\"navigation\" style=\"top: 24px; height: calc(-129.172px + 100vh); max-height: 14524.5px;\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#affixed-left-container"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "combobox"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role combobox  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role combobox  is not allowed for given element",
+              "html": "<input role=\"combobox\" maxlength=\"100\" aria-autocomplete=\"list\" autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\" id=\"ax-2\" data-test-id=\"ax-2\" class=\"autocomplete-input input input-sm\n\t\t\t\t\t\tcontrol has-icons-left\n\t\t\t\t\t\twidth-full\" type=\"text\" aria-expanded=\"false\" aria-owns=\"ax-3-listbox\" aria-controls=\"ax-3-listbox\" aria-activedescendant=\"\" aria-describedby=\"ms--ax-2-description\" placeholder=\"Find by title\" pattern=\".*\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#ax-2"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "main"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role main  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role main  is not allowed for given element",
+              "html": "<main id=\"main\" role=\"main\" class=\"layout-body-main \" data-bi-name=\"content\" lang=\"en-us\" dir=\"ltr\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#main"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "contentinfo"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role contentinfo  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role contentinfo  is not allowed for given element",
+              "html": "<footer id=\"footer\" data-test-id=\"footer\" data-bi-name=\"footer\" class=\"footer-layout has-padding has-default-focus border-top  uhf-container\" role=\"contentinfo\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#footer"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-valid-attr-value?application=axeAPI",
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": [
+                    "aria-controls=\"ms--collapsible-toc-content\""
+                  ],
+                  "id": "aria-valid-attr-value",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute value: aria-controls=\"ms--collapsible-toc-content\"",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"ms--collapsible-toc-content\"",
+              "html": "<button type=\"button\" class=\"button button-clear inner-focus\" data-collapsible-toc-toggle=\"\" aria-expanded=\"true\" aria-controls=\"ms--collapsible-toc-content\" aria-label=\"Collapse\" title=\"Collapse\" data-bi-name=\"toc-collapse\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "button[data-collapsible-toc-toggle=\"\"]"
+              ]
+            },
+            {
+              "all": [
+                {
+                  "data": [
+                    "aria-controls=\"{{ themeMenuId }}\""
+                  ],
+                  "id": "aria-valid-attr-value",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute value: aria-controls=\"{{ themeMenuId }}\"",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"{{ themeMenuId }}\"",
+              "html": "<button data-test-id=\"theme-selector-button\" class=\"dropdown-trigger button button-clear button-sm inner-focus theme-dropdown-trigger\" aria-controls=\"{{ themeMenuId }}\" aria-expanded=\"false\" title=\"Theme\" data-bi-name=\"theme\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                ".theme-dropdown-trigger"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+          ]
+        },
+        {
+          "description": "Ensures every form element has a label",
+          "help": "Form elements must have labels",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/label?application=axeAPI",
+          "id": "label",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Form element has explicit <label> that is hidden",
+              "html": "<input role=\"combobox\" maxlength=\"100\" aria-autocomplete=\"list\" autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\" id=\"ax-2\" data-test-id=\"ax-2\" class=\"autocomplete-input input input-sm\n\t\t\t\t\t\tcontrol has-icons-left\n\t\t\t\t\t\twidth-full\" type=\"text\" aria-expanded=\"false\" aria-owns=\"ax-3-listbox\" aria-controls=\"ax-3-listbox\" aria-activedescendant=\"\" aria-describedby=\"ms--ax-2-description\" placeholder=\"Find by title\" pattern=\".*\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "hidden-explicit-label",
+                  "impact": "critical",
+                  "message": "Form element has explicit <label> that is hidden",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "#ax-2"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.forms",
+            "wcag2a",
+            "wcag332",
+            "wcag131",
+            "section508",
+            "section508.22.n"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 3,
+      "passes_count": 39,
+      "total_penalty": 65,
+      "penalty_per_rule": {
+        "aria-allowed-role": {
+          "impact": "minor",
+          "node_count": 6,
+          "raw_penalty": 30,
+          "capped_penalty": 15
+        },
+        "aria-valid-attr-value": {
+          "impact": "critical",
+          "node_count": 2,
+          "raw_penalty": 50,
+          "capped_penalty": 25
+        },
+        "label": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        }
+      },
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 15,
+        "date": 15,
+        "topic": 15,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [
+          "meta:description",
+          "og:description"
+        ],
+        "author": [
+          "meta:author"
+        ],
+        "date": [
+          "meta:date"
+        ],
+        "topic": [
+          "meta:keywords"
+        ],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 7,
+      "fields_total": 7,
+      "json_ld_type": "FAQPage"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "\"xRRT7eGz0q/nZg6M9MlEjZu+p90=\"",
+        "last_modified": "Wed, 15 Apr 2026 06:35:19 GMT",
+        "cache_control": "public, max-age=569"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": true,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": [
+            "meta markdown_url: https://learn.microsoft.com/en-us/azure/aks/faq?accept=text/markdown"
+          ]
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 20,
+        "agent_content_hints": 4
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "faq",
+      "detection": {
+        "ms_topic_raw": "faq",
+        "source": "ms_topic",
+        "matched_value": "faq"
+      },
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.15,
+        "structured_data": 0.3,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.05,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "faq",
+  "universal_score": 80.25619658119659,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 78.18181818181819,
+    "content_extractability": 88.30371017871018,
+    "structured_data": 97.0,
+    "dom_navigability": 35,
+    "metadata_completeness": 100,
+    "http_compliance": 84.0
+  },
+  "evidence_references": null
+}

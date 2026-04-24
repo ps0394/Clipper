@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "kubectl assumes it is running inside a Kubernetes cluster if there is a Kubernetes service account token file mounted at /var/run/secrets/kubernetes.io/serviceaccount/token, and the KUBERNETES_SERVICE_HOST environment variable is set, and the KUBERNETES_SERVICE_PORT environment variable is set, and you don't explicitly specify a namespace on the kubectl command line. In this case, kubectl looks up the namespace of that ServiceAccount (the same as the namespace of the Pod) and acts against that namespace. If the POD_NAMESPACE environment variable is set during in-cluster authentication, it will override the default namespace from the service account token. Explicit use of --namespace <value> overrides this behavior.",
+    "run_index": 0,
+    "tokens_in": 5932,
+    "tokens_out": 144
+  },
+  {
+    "pair_index": 1,
+    "answer": "kubectl allows resource types to be specified using singular, plural, or abbreviated forms, and these are case-insensitive. When the resource name is omitted in a command, kubectl displays details for all resources of the specified type.",
+    "run_index": 0,
+    "tokens_in": 5928,
+    "tokens_out": 47
+  },
+  {
+    "pair_index": 2,
+    "answer": "The default output format is human readable plain-text. The '-o wide' output format is also plain-text but includes additional information; for pods, the node name is included.",
+    "run_index": 0,
+    "tokens_in": 5942,
+    "tokens_out": 36
+  },
+  {
+    "pair_index": 3,
+    "answer": "The '--server-print=false' flag would be necessary when you want to disable receiving specific column information from the server about objects, so that the client prints the output instead. The expected output when this flag is used is that the client prints only the columns it knows about, for example:\n\nNAME       AGE\npod-name   1m",
+    "run_index": 0,
+    "tokens_in": 5937,
+    "tokens_out": 68
+  },
+  {
+    "pair_index": 4,
+    "answer": "There are 58 distinct resource types listed in the 'Resource types' table. The following are not namespaced:\n\ncomponentstatuses\nnamespaces\nnodes\npersistentvolumes\nmutatingwebhookconfigurations\nvalidatingwebhookconfigurations\ncustomresourcedefinitions\napiservices\ntokenreviews\nselfsubjectaccessreviews\nselfsubjectrulesreviews\nsubjectaccessreviews\ncertificatesigningrequests\nflowschemas\nprioritylevelconfigurations\ningressclasses\nruntimeclasses\npodsecuritypolicies\nclusterrolebindings\nclusterroles\npriorityclasses\ncsidrivers\ncsinodes\nstorageclasses\nvolumeattachments",
+    "run_index": 0,
+    "tokens_in": 5929,
+    "tokens_out": 124
+  }
+]

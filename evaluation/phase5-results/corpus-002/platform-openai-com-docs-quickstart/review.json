@@ -1,0 +1,124 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the key differences in how the OpenAI API key is handled across the JavaScript, Python, .NET, Java, and Go SDK examples provided in the document?",
+      "answer": "JavaScript, Python, .NET, and Java SDKs automatically read the API key from the environment variable `OPENAI_API_KEY`; Go SDK requires explicit passing of the API key in the code via `option.WithAPIKey(\"My API Key\")`.",
+      "supporting_sentences": [
+        "OpenAI SDKs are configured to automatically read your API key from the system environment.",
+        "const client = new OpenAI(); // JavaScript example does not explicitly pass the API key",
+        "client = OpenAI() // Python example does not explicitly pass the API key",
+        "var client = new OpenAIClient(Environment.GetEnvironmentVariable(\"OPENAI_API_KEY\")); // .NET example reads from environment",
+        "OpenAIClient client = OpenAIOkHttpClient.fromEnv(); // Java example reads from environment",
+        "client := openai.NewClient(option.WithAPIKey(\"My API Key\")) // Go example explicitly passes the API key"
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the key differences in how the OpenAI API key is handled across the JavaScript, Python, .NET, Java, and Go SDK examples provided in the document?",
+      "answer": "JavaScript, Python, .NET, and Java SDKs automatically read the API key from the environment variable `OPENAI_API_KEY`; Go SDK requires explicit passing of the API key in the code via `option.WithAPIKey(\"My API Key\")`.",
+      "supporting_sentences": [
+        "OpenAI SDKs are configured to automatically read your API key from the system environment.",
+        "const client = new OpenAI(); // JavaScript example does not explicitly pass the API key",
+        "client = OpenAI() // Python example does not explicitly pass the API key",
+        "var client = new OpenAIClient(Environment.GetEnvironmentVariable(\"OPENAI_API_KEY\")); // .NET example reads from environment",
+        "OpenAIClient client = OpenAIOkHttpClient.fromEnv(); // Java example reads from environment",
+        "client := openai.NewClient(option.WithAPIKey(\"My API Key\")) // Go example explicitly passes the API key"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How many distinct input types (e.g., text, image, file) can be included in a single API request to the OpenAI Responses API, and what is the sequence in which they must appear in the `content` array?",
+      "answer": "Three distinct input types (input_text, input_image, input_file); the document does not specify a required sequence, but all examples show `input_text` first followed by the other types.",
+      "supporting_sentences": [
+        "\"content\": [{\"type\": \"input_text\", \"text\": \"What is in this image?\"}, {\"type\": \"input_image\", \"image_url\": \"https://openai-documentation.vercel.app/images/cat_and_otter.png\"}]",
+        "\"content\": [{\"type\": \"input_text\", \"text\": \"Analyze the letter and provide a summary of the key points.\"}, {\"type\": \"input_file\", \"file_url\": \"https://www.berkshirehathaway.com/letters/2024ltr.pdf\"}]",
+        "\"content\": [{\"type\": \"input_file\", \"file_id\": file.id}, {\"type\": \"input_text\", \"text\": \"What is the first dragon in the book?\"}]"
+      ]
+    },
+    "edited_pair": {
+      "question": "How many distinct input types (e.g., text, image, file) can be included in a single API request to the OpenAI Responses API, and what is the sequence in which they must appear in the `content` array?",
+      "answer": "Three distinct input types (input_text, input_image, input_file); the document does not specify a required sequence, but all examples show `input_text` first followed by the other types.",
+      "supporting_sentences": [
+        "\"content\": [{\"type\": \"input_text\", \"text\": \"What is in this image?\"}, {\"type\": \"input_image\", \"image_url\": \"https://openai-documentation.vercel.app/images/cat_and_otter.png\"}]",
+        "\"content\": [{\"type\": \"input_text\", \"text\": \"Analyze the letter and provide a summary of the key points.\"}, {\"type\": \"input_file\", \"file_url\": \"https://www.berkshirehathaway.com/letters/2024ltr.pdf\"}]",
+        "\"content\": [{\"type\": \"input_file\", \"file_id\": file.id}, {\"type\": \"input_text\", \"text\": \"What is the first dragon in the book?\"}]"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what conditions would you need to explicitly pass the OpenAI API key in your code instead of relying on the environment variable, and which SDK requires this approach?",
+      "answer": "You would need to explicitly pass the API key when using the Go SDK, as it does not automatically read from the environment variable like the other SDKs.",
+      "supporting_sentences": [
+        "OpenAI SDKs are configured to automatically read your API key from the system environment.",
+        "client := openai.NewClient(option.WithAPIKey(\"My API Key\")) // Go example explicitly passes the API key"
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what conditions would you need to explicitly pass the OpenAI API key in your code instead of relying on the environment variable, and which SDK requires this approach?",
+      "answer": "You would need to explicitly pass the API key when using the Go SDK, as it does not automatically read from the environment variable like the other SDKs.",
+      "supporting_sentences": [
+        "OpenAI SDKs are configured to automatically read your API key from the system environment.",
+        "client := openai.NewClient(option.WithAPIKey(\"My API Key\")) // Go example explicitly passes the API key"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the difference between the `web_search` and `file_search` tools in terms of their configuration requirements, and which models are explicitly mentioned as compatible with each?",
+      "answer": "`web_search` requires no additional configuration and is compatible with model `gpt-5.4`; `file_search` requires `vector_store_ids` and is compatible with model `gpt-4.1`.",
+      "supporting_sentences": [
+        "\"model\": \"gpt-5.4\", \"tools\": [{\"type\": \"web_search\"}]",
+        "\"model\": \"gpt-4.1\", \"tools\": [{\"type\": \"file_search\", \"vector_store_ids\": [\"<vector_store_id>\"]}]"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the difference between the `web_search` and `file_search` tools in terms of their configuration requirements, and which models are explicitly mentioned as compatible with each?",
+      "answer": "`web_search` requires no additional configuration and is compatible with model `gpt-5.4`; `file_search` requires `vector_store_ids` and is compatible with model `gpt-4.1`.",
+      "supporting_sentences": [
+        "\"model\": \"gpt-5.4\", \"tools\": [{\"type\": \"web_search\"}]",
+        "\"model\": \"gpt-4.1\", \"tools\": [{\"type\": \"file_search\", \"vector_store_ids\": [\"<vector_store_id>\"]}]"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "If you were to build an agent that routes requests based on language, what are the three agents described in the document, and what is the role of each?",
+      "answer": "1. Spanish agent: responds only in Spanish; 2. English agent: responds only in English; 3. Triage agent: routes requests to the appropriate agent based on language.",
+      "supporting_sentences": [
+        "const spanishAgent = new Agent({name: 'Spanish agent', instructions: 'You only speak Spanish.'});",
+        "const englishAgent = new Agent({name: 'English agent', instructions: 'You only speak English'});",
+        "const triageAgent = new Agent({name: 'Triage agent', instructions: 'Handoff to the appropriate agent based on the language of the request.', handoffs: [spanishAgent, englishAgent]});"
+      ]
+    },
+    "edited_pair": {
+      "question": "If you were to build an agent that routes requests based on language, what are the three agents described in the document, and what is the role of each?",
+      "answer": "1. Spanish agent: responds only in Spanish; 2. English agent: responds only in English; 3. Triage agent: routes requests to the appropriate agent based on language.",
+      "supporting_sentences": [
+        "const spanishAgent = new Agent({name: 'Spanish agent', instructions: 'You only speak Spanish.'});",
+        "const englishAgent = new Agent({name: 'English agent', instructions: 'You only speak English'});",
+        "const triageAgent = new Agent({name: 'Triage agent', instructions: 'Handoff to the appropriate agent based on the language of the request.', handoffs: [spanishAgent, englishAgent]});"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

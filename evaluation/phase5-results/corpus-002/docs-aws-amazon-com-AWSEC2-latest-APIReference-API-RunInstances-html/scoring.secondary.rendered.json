@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "You can enable a primary IPv6 address for an instance if you're launching it into a dual-stack or IPv6-only subnet. A primary IPv6 address is an IPv6 GUA address associated with an ENI that you have enabled to use a primary IPv6 address. Once you enable an IPv6 GUA address to be a primary IPv6, you cannot disable it. When you enable an IPv6 GUA address to be a primary IPv6, the first IPv6 GUA will be made the primary IPv6 address until the instance is terminated or the network interface is detached.",
+    "run_index": 0,
+    "tokens_in": 13334,
+    "tokens_out": 119
+  },
+  {
+    "pair_index": 1,
+    "answer": "AWS Nitro Enclaves and hibernation are the two mutually exclusive features that cannot be enabled together on the same instance. The documentation references that explain their prerequisites are the AWS Nitro Enclaves User Guide and the Amazon EC2 User Guide, specifically the sections on hibernation prerequisites.",
+    "run_index": 0,
+    "tokens_in": 13333,
+    "tokens_out": 61
+  },
+  {
+    "pair_index": 2,
+    "answer": "The default behavior for the CreditSpecification parameter differs as follows: \n- For T2 instances, the default is 'standard'. \n- For T3/T3a/T4g instances, the default is 'unlimited'. \n- For T3 instances with 'host' tenancy, only 'standard' is supported. \nTo change this attribute after launch, use the ModifyInstanceCreditSpecification action.",
+    "run_index": 0,
+    "tokens_in": 13355,
+    "tokens_out": 82
+  },
+  {
+    "pair_index": 3,
+    "answer": "The maximum number of instances you can launch is between 1 and the quota for the specified instance type for your account for this Region. If you specify a value that is more capacity than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 launches the largest possible number of instances above the specified minimum count.",
+    "run_index": 0,
+    "tokens_in": 13340,
+    "tokens_out": 65
+  },
+  {
+    "pair_index": 4,
+    "answer": "If you do not specify a subnet ID, AWS chooses a default subnet from your default VPC. However, if you don't have a default VPC, you must specify a subnet ID in the request.\n\nIf you do not specify a security group ID, AWS uses the default security group for the VPC.\n\nIf you do not specify a primary private IPv4 address, AWS chooses one from the IPv4 range of your subnet.\n\nThese defaults do not apply if you specify a network interface in the request. In such cases, you must specify the subnet ID and security group ID as part of the network interface, and you cannot specify the private IPv4 address separately.",
+    "run_index": 0,
+    "tokens_in": 13348,
+    "tokens_out": 135
+  }
+]

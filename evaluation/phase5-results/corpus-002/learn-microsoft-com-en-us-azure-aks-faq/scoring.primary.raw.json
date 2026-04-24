@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "AKS initiates auto-upgrades for unsupported clusters when a cluster in an n-3 version (where n is the latest supported AKS minor version that's generally available) is about to drop to n-4; AKS automatically upgrades the cluster to n-2 to remain in an AKS support policy.",
+    "run_index": 0,
+    "tokens_in": 4924,
+    "tokens_out": 63
+  },
+  {
+    "pair_index": 1,
+    "answer": "When using --os-sku Ubuntu, AKS defaults to Ubuntu 22.04 in Kubernetes versions 1.25-1.34 and Ubuntu 24.04 in Kubernetes versions 1.35+. In some scenarios, like FIPS-enabled node pools, the default OS version might differ.",
+    "run_index": 0,
+    "tokens_in": 4955,
+    "tokens_out": 61
+  },
+  {
+    "pair_index": 2,
+    "answer": "When specifying a custom resource group name for the AKS node resource group, you can only do so when you create the cluster. The following actions are explicitly unsupported after the cluster is created:\n\n- Specify an existing resource group for the node resource group.\n- Specify a different subscription for the node resource group.\n- Change the node resource group name after you create the cluster.\n- Specify names for the managed resources within the node resource group.\n- Modify or delete Azure-created tags of managed resources within the node resource group.",
+    "run_index": 0,
+    "tokens_in": 4933,
+    "tokens_out": 104
+  },
+  {
+    "pair_index": 3,
+    "answer": "AKS supports four main Linux operating systems, and the default OS is Ubuntu Linux when `--os-type Linux` is specified during node pool creation.",
+    "run_index": 0,
+    "tokens_in": 4935,
+    "tokens_out": 31
+  },
+  {
+    "pair_index": 4,
+    "answer": "Modifying any Azure-created tags on resources under the node resource group in the AKS cluster is an unsupported action, which breaks the service-level objective (SLO). You might get unexpected scaling and upgrading errors if you modify or delete Azure-created tags and other resource properties in the node resource group.",
+    "run_index": 0,
+    "tokens_in": 4947,
+    "tokens_out": 60
+  }
+]

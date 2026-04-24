@@ -1,0 +1,3007 @@
+{
+  "parseability_score": 60.48898388476998,
+  "failure_mode": "moderate_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-002\\en-wikipedia-org-wiki-Large-language-model\\page.rendered.html",
+  "url": "https://en.wikipedia.org/wiki/Large_language_model",
+  "component_scores": {
+    "semantic_html": 72.72727272727272,
+    "content_extractability": 65.53582851475899,
+    "structured_data": 87.0,
+    "dom_navigability": 0,
+    "metadata_completeness": 70,
+    "http_compliance": 48.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 12,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "figure",
+          "count": 8,
+          "proper_usage": true
+        },
+        {
+          "element": "figcaption",
+          "count": 8,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 35,
+      "heading_elements_count": 62,
+      "scoring_breakdown": {
+        "semantic_coverage": 32.72727272727273,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 114114,
+        "extracted_text_length": 98572,
+        "extracted_chars": 98572,
+        "extraction_ratio": 0.864,
+        "extracted_title": "Large language model",
+        "extracted_preview": "Type of machine learning model A large language model ( LLM ) is a neural network trained on a vast amount of text for natural language processing tasks, especially language generation . LLMs can generate, summarize, translate and parse text in many contexts, and are a foundational technology behind...",
+        "original_headings": 62,
+        "extracted_headings": 14,
+        "original_lists": 169,
+        "extracted_lists": 8,
+        "original_code_blocks": 6,
+        "extracted_code_blocks": 4,
+        "has_main_element": true,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 35,
+        "structure_preservation": 9.398103963860788,
+        "boundary_detection": 21.137724550898202
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 1,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [
+        "Article"
+      ],
+      "key_fields_found": [],
+      "formats_present": 2,
+      "score_breakdown": {
+        "type_appropriateness": 20.0,
+        "field_completeness": 25.0,
+        "multiple_formats": 12,
+        "schema_validation": 30.0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [
+          {
+            "index": 0,
+            "type": "Article",
+            "present": 5,
+            "expected": 6,
+            "ratio": 0.833,
+            "missing": [
+              "description"
+            ],
+            "invalid": []
+          }
+        ],
+        "unvalidated_items": 0,
+        "missing_fields": [
+          {
+            "type": "Article",
+            "fields": [
+              "description"
+            ]
+          }
+        ],
+        "invalid_fields": [],
+        "average_ratio": 0.833
+      },
+      "sample_structured_data": {
+        "json-ld": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "name": "Large language model",
+            "url": "https://en.wikipedia.org/wiki/Large_language_model",
+            "sameAs": "http://www.wikidata.org/entity/Q115305900",
+            "mainEntity": "http://www.wikidata.org/entity/Q115305900",
+            "author": {
+              "@type": "Organization",
+              "name": "Contributors to Wikimedia projects"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Wikimedia Foundation, Inc.",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.wikimedia.org/static/images/wmf-hor-googpub.png"
+              }
+            },
+            "datePublished": "2023-03-09T15:43:17Z",
+            "dateModified": "2026-04-23T13:01:40Z",
+            "headline": "language model built with very large amounts of texts"
+          }
+        ],
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:title",
+                "Large language model - Wikipedia"
+              ],
+              [
+                "og:type",
+                "website"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures role attribute has an appropriate value for the element",
+          "help": "ARIA role must be appropriate for the element",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+          "id": "aria-allowed-role",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<input type=\"checkbox\" id=\"vector-main-menu-dropdown-checkbox\" role=\"button\" aria-haspopup=\"true\" data-event-name=\"ui.dropdown-vector-main-menu-dropdown\" class=\"vector-dropdown-checkbox \" aria-label=\"Main menu\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#vector-main-menu-dropdown-checkbox"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<input type=\"checkbox\" id=\"vector-appearance-dropdown-checkbox\" role=\"button\" aria-haspopup=\"true\" data-event-name=\"ui.dropdown-vector-appearance-dropdown\" class=\"vector-dropdown-checkbox \" aria-label=\"Appearance\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#vector-appearance-dropdown-checkbox"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<input type=\"checkbox\" id=\"vector-user-links-dropdown-checkbox\" role=\"button\" aria-haspopup=\"true\" data-event-name=\"ui.dropdown-vector-user-links-dropdown\" class=\"vector-dropdown-checkbox \" aria-label=\"Personal tools\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#vector-user-links-dropdown-checkbox"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<input type=\"checkbox\" id=\"vector-page-titlebar-toc-checkbox\" role=\"button\" aria-haspopup=\"true\" data-event-name=\"ui.dropdown-vector-page-titlebar-toc\" class=\"vector-dropdown-checkbox \" aria-label=\"Toggle the table of contents\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#vector-page-titlebar-toc-checkbox"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<input type=\"checkbox\" id=\"p-lang-btn-checkbox\" role=\"button\" aria-haspopup=\"true\" data-event-name=\"ui.dropdown-p-lang-btn\" class=\"vector-dropdown-checkbox mw-interlanguage-selector\" aria-label=\"Go to an article in another language. Available in 65 languages\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#p-lang-btn-checkbox"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<input type=\"checkbox\" id=\"vector-variants-dropdown-checkbox\" role=\"button\" aria-haspopup=\"true\" data-event-name=\"ui.dropdown-vector-variants-dropdown\" class=\"vector-dropdown-checkbox \" aria-label=\"Change language variant\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#vector-variants-dropdown-checkbox"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<input type=\"checkbox\" id=\"vector-page-tools-dropdown-checkbox\" role=\"button\" aria-haspopup=\"true\" data-event-name=\"ui.dropdown-vector-page-tools-dropdown\" class=\"vector-dropdown-checkbox \" aria-label=\"Tools\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#vector-page-tools-dropdown-checkbox"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "navigation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role navigation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role navigation  is not allowed for given element",
+              "html": "<ul role=\"navigation\" aria-label=\"Portals\" class=\"noprint portalbox portalborder portalright\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".portalbox"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<input type=\"checkbox\" id=\"vector-sticky-header-toc-checkbox\" role=\"button\" aria-haspopup=\"true\" data-event-name=\"ui.dropdown-vector-sticky-header-toc\" class=\"vector-dropdown-checkbox \" aria-label=\"Toggle the table of contents\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#vector-sticky-header-toc-checkbox"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensure the autocomplete attribute is correct and suitable for the form field",
+          "help": "autocomplete attribute must be used correctly",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/autocomplete-valid?application=axeAPI",
+          "id": "autocomplete-valid",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": null,
+                  "id": "autocomplete-appropriate",
+                  "impact": "serious",
+                  "message": "the autocomplete value is inappropriate for this type of input",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  the autocomplete value is inappropriate for this type of input",
+              "html": "<input class=\"cdx-text-input__input mw-searchInput\" autocomplete=\"off\" type=\"search\" name=\"search\" placeholder=\"Search Wikipedia\" aria-label=\"Search Wikipedia\" autocapitalize=\"none\" spellcheck=\"false\" title=\"Search Wikipedia [alt-f]\" accesskey=\"f\" id=\"searchInput\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "#searchInput"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.forms",
+            "wcag21aa",
+            "wcag135"
+          ]
+        },
+        {
+          "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+          "help": "Elements must have sufficient color contrast",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\">Paradigms</div>",
+                      "target": [
+                        "tr:nth-child(3) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(3) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .mw-collapsible-toggle-collapsed.mw-collapsible-toggle.mw-collapsible-toggle-default > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\">Problems</div>",
+                      "target": [
+                        "tr:nth-child(4) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(4) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .mw-collapsible-toggle-collapsed.mw-collapsible-toggle.mw-collapsible-toggle-default > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\">",
+                      "target": [
+                        "tr:nth-child(5) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(5) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .mw-collapsible-toggle-collapsed.mw-collapsible-toggle.mw-collapsible-toggle-default > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "11.1pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 11.1pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\">",
+                      "target": [
+                        "tr:nth-child(5) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 11.1pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"/wiki/Supervised_learning\" title=\"Supervised learning\">Supervised learning</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div > a[href$=\"Supervised_learning\"][title=\"Supervised\\ learning\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "9.4pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 9.4pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\">",
+                      "target": [
+                        "tr:nth-child(5) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 9.4pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"/wiki/Statistical_classification\" title=\"Statistical classification\">classification</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "b:nth-child(1) > a[title=\"Statistical\\ classification\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "9.4pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 9.4pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\">",
+                      "target": [
+                        "tr:nth-child(5) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 9.4pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"/wiki/Regression_analysis\" title=\"Regression analysis\">regression</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "b:nth-child(2) > a[href$=\"Regression_analysis\"][title=\"Regression\\ analysis\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\"><a href=\"/wiki/Cluster_analysis\" title=\"Cluster analysis\">Clustering</a></div>",
+                      "target": [
+                        "tr:nth-child(6) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(6) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .mw-collapsible-toggle-collapsed.mw-collapsible-toggle.mw-collapsible-toggle-default > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "11.1pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 11.1pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\"><a href=\"/wiki/Cluster_analysis\" title=\"Cluster analysis\">Clustering</a></div>",
+                      "target": [
+                        "tr:nth-child(6) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 11.1pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"/wiki/Cluster_analysis\" title=\"Cluster analysis\">Clustering</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".sidebar-list-title > a[href$=\"Cluster_analysis\"][title=\"Cluster\\ analysis\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\"><a href=\"/wiki/Dimensionality_reduction\" title=\"Dimensionality reduction\">Dimensionality reduction</a></div>",
+                      "target": [
+                        "tr:nth-child(7) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(7) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .mw-collapsible-toggle-collapsed.mw-collapsible-toggle.mw-collapsible-toggle-default > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "11.1pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 11.1pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\"><a href=\"/wiki/Dimensionality_reduction\" title=\"Dimensionality reduction\">Dimensionality reduction</a></div>",
+                      "target": [
+                        "tr:nth-child(7) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 11.1pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"/wiki/Dimensionality_reduction\" title=\"Dimensionality reduction\">Dimensionality reduction</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".sidebar-list-title > a[href$=\"Dimensionality_reduction\"][title=\"Dimensionality\\ reduction\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\"><a href=\"/wiki/Structured_prediction\" title=\"Structured prediction\">Structured prediction</a></div>",
+                      "target": [
+                        "tr:nth-child(8) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(8) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .mw-collapsible-toggle-collapsed.mw-collapsible-toggle.mw-collapsible-toggle-default > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "11.1pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 11.1pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\"><a href=\"/wiki/Structured_prediction\" title=\"Structured prediction\">Structured prediction</a></div>",
+                      "target": [
+                        "tr:nth-child(8) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 11.1pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"/wiki/Structured_prediction\" title=\"Structured prediction\">Structured prediction</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".sidebar-list-title > a[href$=\"Structured_prediction\"][title=\"Structured\\ prediction\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\"><a href=\"/wiki/Anomaly_detection\" title=\"Anomaly detection\">Anomaly detection</a></div>",
+                      "target": [
+                        "tr:nth-child(9) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(9) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .mw-collapsible-toggle-collapsed.mw-collapsible-toggle.mw-collapsible-toggle-default > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "11.1pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 11.1pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\"><a href=\"/wiki/Anomaly_detection\" title=\"Anomaly detection\">Anomaly detection</a></div>",
+                      "target": [
+                        "tr:nth-child(9) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 11.1pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"/wiki/Anomaly_detection\" title=\"Anomaly detection\">Anomaly detection</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".sidebar-list-title > a[href$=\"Anomaly_detection\"][title=\"Anomaly\\ detection\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\"><a href=\"/wiki/Neural_network_(machine_learning)\" title=\"Neural network (machine learning)\">Neural networks</a></div>",
+                      "target": [
+                        "tr:nth-child(10) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsible > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">hide</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(10) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsible > .mw-collapsible-toggle.mw-collapsible-toggle-default[type=\"button\"] > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "11.1pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 11.1pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\"><a href=\"/wiki/Neural_network_(machine_learning)\" title=\"Neural network (machine learning)\">Neural networks</a></div>",
+                      "target": [
+                        "tr:nth-child(10) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsible > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 11.1pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"/wiki/Neural_network_(machine_learning)\" title=\"Neural network (machine learning)\">Neural networks</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(10) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsible > .sidebar-list-title > a"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\"><a href=\"/wiki/Reinforcement_learning\" title=\"Reinforcement learning\">Reinforcement learning</a></div>",
+                      "target": [
+                        "tr:nth-child(11) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(11) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .mw-collapsible-toggle-collapsed.mw-collapsible-toggle.mw-collapsible-toggle-default > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "11.1pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 11.1pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\"><a href=\"/wiki/Reinforcement_learning\" title=\"Reinforcement learning\">Reinforcement learning</a></div>",
+                      "target": [
+                        "tr:nth-child(11) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 11.1pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"/wiki/Reinforcement_learning\" title=\"Reinforcement learning\">Reinforcement learning</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".sidebar-list-title > a[href$=\"Reinforcement_learning\"][title=\"Reinforcement\\ learning\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\">Learning with humans</div>",
+                      "target": [
+                        "tr:nth-child(12) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(12) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .mw-collapsible-toggle-collapsed.mw-collapsible-toggle.mw-collapsible-toggle-default > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\">Model diagnostics</div>",
+                      "target": [
+                        "tr:nth-child(13) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(13) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .mw-collapsible-toggle-collapsed.mw-collapsible-toggle.mw-collapsible-toggle-default > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\">Mathematical foundations</div>",
+                      "target": [
+                        "tr:nth-child(14) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(14) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .mw-collapsible-toggle-collapsed.mw-collapsible-toggle.mw-collapsible-toggle-default > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\">Journals and conferences</div>",
+                      "target": [
+                        "tr:nth-child(15) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(15) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .mw-collapsible-toggle-collapsed.mw-collapsible-toggle.mw-collapsible-toggle-default > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e0e0e0",
+                    "contrastRatio": 4.06,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"sidebar-list-title\" style=\"border-top:1px solid #aaa; text-align:center;background-color:#e0e0e0;;color: var(--color-base)\">Related articles</div>",
+                      "target": [
+                        "tr:nth-child(16) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .sidebar-list-title"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #3366cc, background color: #e0e0e0, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "tr:nth-child(16) > .sidebar-content > .sidebar-list.machine-learning-list-title.mw-collapsed > .mw-collapsible-toggle-collapsed.mw-collapsible-toggle.mw-collapsible-toggle-default > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#808080",
+                    "contrastRatio": 3.94,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#ffffff",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #808080, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<td style=\"background-color: grey; color: white; border-left: 2px green; border-right: 2px green\">izer\n</td>",
+                      "target": [
+                        "table[cellpadding=\"\\30 \\;\"] > tbody > tr > td:nth-child(2)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #808080, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<td style=\"background-color: grey; color: white; border-left: 2px green; border-right: 2px green\">izer\n</td>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "table[cellpadding=\"\\30 \\;\"] > tbody > tr > td:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#808080",
+                    "contrastRatio": 3.94,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#ffffff",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #808080, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<td style=\"background-color: grey; color: white; border-left: 2px green; border-right: 2px green\">&nbsp;texts\n</td>",
+                      "target": [
+                        "td:nth-child(4)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #808080, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<td style=\"background-color: grey; color: white; border-left: 2px green; border-right: 2px green\">&nbsp;texts\n</td>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "td:nth-child(4)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#808080",
+                    "contrastRatio": 3.94,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#ffffff",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #808080, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<td style=\"background-color: grey; color: white; border-left: 2px green; border-right: 2px green\">series\n</td>",
+                      "target": [
+                        "td:nth-child(6)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #808080, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<td style=\"background-color: grey; color: white; border-left: 2px green; border-right: 2px green\">series\n</td>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "td:nth-child(6)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#808080",
+                    "contrastRatio": 3.94,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#ffffff",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #808080, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<td style=\"background-color: grey; color: white; border-left: 2px green; border-right: 2px green\">&nbsp;numerical\n</td>",
+                      "target": [
+                        "td:nth-child(8)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #808080, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<td style=\"background-color: grey; color: white; border-left: 2px green; border-right: 2px green\">&nbsp;numerical\n</td>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "td:nth-child(8)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#808080",
+                    "contrastRatio": 3.94,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#ffffff",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #808080, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<td style=\"background-color: grey; color: white; border-left: 2px green; border-right: 2px green\">ens\n</td>",
+                      "target": [
+                        "td:nth-child(12)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #808080, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<td style=\"background-color: grey; color: white; border-left: 2px green; border-right: 2px green\">ens\n</td>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "td:nth-child(12)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ccccff",
+                    "contrastRatio": 3.48,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<th scope=\"col\" class=\"navbox-title\" colspan=\"2\">",
+                      "target": [
+                        ".navbox[role=\"navigation\"]:nth-child(244) > .autocollapse.navbox-inner.nowraplinks > tbody > tr:nth-child(1) > .navbox-title[scope=\"col\"][colspan=\"\\32 \"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".navbox[role=\"navigation\"]:nth-child(244) > .autocollapse.navbox-inner.nowraplinks > tbody > tr:nth-child(1) > .navbox-title[scope=\"col\"][colspan=\"\\32 \"] > .mw-collapsible-toggle-collapsed.mw-collapsible-toggle.mw-collapsible-toggle-default > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ccccff",
+                    "contrastRatio": 3.48,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 12.0pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<th scope=\"col\" class=\"navbox-title\" colspan=\"2\">",
+                      "target": [
+                        ".navbox[role=\"navigation\"]:nth-child(244) > .autocollapse.navbox-inner.nowraplinks > tbody > tr:nth-child(1) > .navbox-title[scope=\"col\"][colspan=\"\\32 \"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 12.0pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"/wiki/Natural_language_processing\" title=\"Natural language processing\">Natural language processing</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "#Natural_language_processing4568 > a[title=\"Natural\\ language\\ processing\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ccccff",
+                    "contrastRatio": 3.48,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "10.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<th scope=\"col\" class=\"navbox-title\" colspan=\"2\">",
+                      "target": [
+                        ".navbox[role=\"navigation\"]:nth-child(246) > .autocollapse.navbox-inner.nowraplinks > tbody > tr:nth-child(1) > .navbox-title[scope=\"col\"][colspan=\"\\32 \"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 10.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"mw-collapsible-text\">show</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".navbox[role=\"navigation\"]:nth-child(246) > .autocollapse.navbox-inner.nowraplinks > tbody > tr:nth-child(1) > .navbox-title[scope=\"col\"][colspan=\"\\32 \"] > .mw-collapsible-toggle-collapsed.mw-collapsible-toggle.mw-collapsible-toggle-default > .mw-collapsible-text"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ccccff",
+                    "contrastRatio": 3.48,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#3366cc",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 12.0pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<th scope=\"col\" class=\"navbox-title\" colspan=\"2\">",
+                      "target": [
+                        ".navbox[role=\"navigation\"]:nth-child(246) > .autocollapse.navbox-inner.nowraplinks > tbody > tr:nth-child(1) > .navbox-title[scope=\"col\"][colspan=\"\\32 \"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #3366cc, background color: #ccccff, font size: 12.0pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"/wiki/Artificial_intelligence\" title=\"Artificial intelligence\">Artificial intelligence</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "#Artificial_intelligence_\\(AI\\)9397 > a[href$=\"Artificial_intelligence\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value is unique",
+          "help": "id attribute value must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id?application=axeAPI",
+          "id": "duplicate-id",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "Emergent_abilities",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"anchor\" id=\"Emergent_abilities\"></span>",
+                      "target": [
+                        ".anchor"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<h3 id=\"Emergent_abilities\">Emergent abilities</h3>",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".mw-heading3.mw-heading:nth-child(126) > h3"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "CITEREFBrownMannRyderSubbiah2020",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<cite id=\"CITEREFBrownMannRyderSubbiah2020\" class=\"citation journal cs1\">",
+                      "target": [
+                        "#cite_note-few-shot-learners3-105 > .reference-text > .journal"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<cite id=\"CITEREFBrownMannRyderSubbiah2020\" class=\"citation journal cs1\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#cite_note-few-shot-learners2-1 > .reference-text > .journal"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "CITEREFMetz2024",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<cite id=\"CITEREFMetz2024\" class=\"citation news cs1\">",
+                      "target": [
+                        "#cite_note-nyt-o3-59 > .reference-text > .news"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<cite id=\"CITEREFMetz2024\" class=\"citation web cs1\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#cite_note-NYTimesInfo-20 > .reference-text > .web"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "CITEREFEdwards2023",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<cite id=\"CITEREFEdwards2023\" class=\"citation web cs1\">",
+                      "target": [
+                        "#cite_note-107 > .reference-text > .web"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<cite id=\"CITEREFEdwards2023\" class=\"citation web cs1\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#cite_note-31 > .reference-text > .web"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "CITEREFAllamar",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<cite id=\"CITEREFAllamar\" class=\"citation web cs1\">",
+                      "target": [
+                        "#cite_note-Jay_Allamar_GPT2-35 > .reference-text > .web"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<cite id=\"CITEREFAllamar\" class=\"citation web cs1\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#cite_note-Jay_Allamar-34 > .reference-text > .web"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "CITEREFWuJiangDonsbachGray2022",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<cite id=\"CITEREFWuJiangDonsbachGray2022\" class=\"citation conference cs1\">",
+                      "target": [
+                        "#cite_note-52 > .reference-text > .conference"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<cite id=\"CITEREFWuJiangDonsbachGray2022\" class=\"citation book cs1\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#cite_note-51 > .reference-text > .book"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures <img> elements have alternate text or a role of none or presentation",
+          "help": "Images must have alternate text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/image-alt?application=axeAPI",
+          "id": "image-alt",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-alt",
+                  "impact": "critical",
+                  "message": "Element does not have an alt attribute",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<img src=\"//upload.wikimedia.org/wikipedia/commons/thumb/8/81/The_number_of_publications_about_Large_Language_Models_by_year.png/250px-The_number_of_publications_about_Large_Language_Models_by_year.png\" decoding=\"async\" width=\"250\" height=\"165\" class=\"mw-file-element\" srcset=\"//upload.wikimedia.org/wikipedia/commons/thumb/8/81/The_number_of_publications_about_Large_Language_Models_by_year.png/500px-The_number_of_publications_about_Large_Language_Models_by_year.png 2x\" data-file-width=\"3234\" data-file-height=\"2136\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "img[data-file-width=\"\\33 234\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-alt",
+                  "impact": "critical",
+                  "message": "Element does not have an alt attribute",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<img src=\"//upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Trends_in_AI_training_FLOP_over_time_%282010-2025%29.svg/250px-Trends_in_AI_training_FLOP_over_time_%282010-2025%29.svg.png\" decoding=\"async\" width=\"250\" height=\"226\" class=\"mw-file-element\" srcset=\"//upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Trends_in_AI_training_FLOP_over_time_%282010-2025%29.svg/500px-Trends_in_AI_training_FLOP_over_time_%282010-2025%29.svg.png 2x\" data-file-width=\"801\" data-file-height=\"724\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "img[height=\"\\32 26\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-alt",
+                  "impact": "critical",
+                  "message": "Element does not have an alt attribute",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<img src=\"//upload.wikimedia.org/wikipedia/commons/thumb/0/06/Large-scale_AI_training_compute_%28FLOP%29_vs_Publication_date_%282017-2024%29.svg/250px-Large-scale_AI_training_compute_%28FLOP%29_vs_Publication_date_%282017-2024%29.svg.png\" decoding=\"async\" width=\"250\" height=\"141\" class=\"mw-file-element\" srcset=\"//upload.wikimedia.org/wikipedia/commons/thumb/0/06/Large-scale_AI_training_compute_%28FLOP%29_vs_Publication_date_%282017-2024%29.svg/500px-Large-scale_AI_training_compute_%28FLOP%29_vs_Publication_date_%282017-2024%29.svg.png 2x\" data-file-width=\"1920\" data-file-height=\"1080\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "img[height=\"\\31 41\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-alt",
+                  "impact": "critical",
+                  "message": "Element does not have an alt attribute",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<img src=\"//upload.wikimedia.org/wikipedia/commons/thumb/8/8f/The-Transformer-model-architecture.png/330px-The-Transformer-model-architecture.png\" decoding=\"async\" width=\"330\" height=\"297\" style=\"--mw-file-upright: 1.3\" class=\"mw-file-element mw-file-upright\" srcset=\"//upload.wikimedia.org/wikipedia/commons/8/8f/The-Transformer-model-architecture.png 2x\" data-file-width=\"850\" data-file-height=\"765\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "img[height=\"\\32 97\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-alt",
+                  "impact": "critical",
+                  "message": "Element does not have an alt attribute",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<img src=\"//upload.wikimedia.org/wikipedia/commons/thumb/6/64/Estimated_training_cost_of_some_AI_models_-_2024_AI_index.jpg/500px-Estimated_training_cost_of_some_AI_models_-_2024_AI_index.jpg\" decoding=\"async\" width=\"380\" height=\"202\" style=\"--mw-file-upright: 1.5\" class=\"mw-file-element mw-file-upright\" srcset=\"//upload.wikimedia.org/wikipedia/commons/thumb/6/64/Estimated_training_cost_of_some_AI_models_-_2024_AI_index.jpg/960px-Estimated_training_cost_of_some_AI_models_-_2024_AI_index.jpg 2x\" data-file-width=\"2560\" data-file-height=\"1361\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "img[height=\"\\32 02\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-alt",
+                  "impact": "critical",
+                  "message": "Element does not have an alt attribute",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<img src=\"//upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Multiple_attention_heads.png/330px-Multiple_attention_heads.png\" decoding=\"async\" width=\"330\" height=\"486\" style=\"--mw-file-upright: 1.3\" class=\"mw-file-element mw-file-upright\" srcset=\"//upload.wikimedia.org/wikipedia/commons/e/e9/Multiple_attention_heads.png 2x\" data-file-width=\"870\" data-file-height=\"1280\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "img[height=\"\\34 86\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-alt",
+                  "impact": "critical",
+                  "message": "Element does not have an alt attribute",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<img src=\"//upload.wikimedia.org/wikipedia/commons/thumb/5/57/LLM_emergent_benchmarks.png/250px-LLM_emergent_benchmarks.png\" decoding=\"async\" width=\"250\" height=\"165\" class=\"mw-file-element\" srcset=\"//upload.wikimedia.org/wikipedia/commons/thumb/5/57/LLM_emergent_benchmarks.png/500px-LLM_emergent_benchmarks.png 2x\" data-file-width=\"1297\" data-file-height=\"858\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "img[data-file-width=\"\\31 297\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-alt",
+                  "impact": "critical",
+                  "message": "Element does not have an alt attribute",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<img src=\"//upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Energy_consumption_per_ChatGPT_query_compared_to_everyday_electricity_use.png/500px-Energy_consumption_per_ChatGPT_query_compared_to_everyday_electricity_use.png\" decoding=\"async\" width=\"380\" height=\"266\" style=\"--mw-file-upright: 1.5\" class=\"mw-file-element mw-file-upright\" srcset=\"//upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Energy_consumption_per_ChatGPT_query_compared_to_everyday_electricity_use.png/960px-Energy_consumption_per_ChatGPT_query_compared_to_everyday_electricity_use.png 2x\" data-file-width=\"3200\" data-file-height=\"2240\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "img[height=\"\\32 66\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.text-alternatives",
+            "wcag2a",
+            "wcag111",
+            "section508",
+            "section508.22.a"
+          ]
+        },
+        {
+          "description": "Ensures links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/link-name?application=axeAPI",
+          "id": "link-name",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<a href=\"/wiki/File:The_number_of_publications_about_Large_Language_Models_by_year.png\" class=\"mw-file-description\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "figure:nth-child(14) > .mw-file-description"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<a href=\"/wiki/File:Trends_in_AI_training_FLOP_over_time_(2010-2025).svg\" class=\"mw-file-description\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "figure:nth-child(15) > .mw-file-description"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<a href=\"/wiki/File:Large-scale_AI_training_compute_(FLOP)_vs_Publication_date_(2017-2024).svg\" class=\"mw-file-description\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "figure:nth-child(16) > .mw-file-description"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<a href=\"/wiki/File:The-Transformer-model-architecture.png\" class=\"mw-file-description\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "figure:nth-child(19) > .mw-file-description"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<a href=\"/wiki/File:Estimated_training_cost_of_some_AI_models_-_2024_AI_index.jpg\" class=\"mw-file-description\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                ".mw-halign-right > .mw-file-description"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<a href=\"/wiki/File:Multiple_attention_heads.png\" class=\"mw-file-description\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "figure:nth-child(62) > .mw-file-description"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<a href=\"/wiki/File:LLM_emergent_benchmarks.png\" class=\"mw-file-description\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "figure:nth-child(128) > .mw-file-description"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<a href=\"/wiki/File:Energy_consumption_per_ChatGPT_query_compared_to_everyday_electricity_use.png\" class=\"mw-file-description\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "figure:nth-child(222) > .mw-file-description"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "wcag244",
+            "section508",
+            "section508.22.a"
+          ]
+        },
+        {
+          "description": "Ensures <li> elements are used semantically",
+          "help": "<li> elements must be contained in a <ul> or <ol>",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/listitem?application=axeAPI",
+          "id": "listitem",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"portalbox-entry\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".portalbox-entry:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"portalbox-entry\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".portalbox-entry:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"portalbox-entry\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".portalbox-entry:nth-child(3)"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.structure",
+            "wcag2a",
+            "wcag131"
+          ]
+        },
+        {
+          "description": "Ensures related <input type=\"radio\"> elements have a group and that the group designation is consistent",
+          "help": "Radio inputs with the same name attribute value must be part of a group",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/radiogroup?application=axeAPI",
+          "id": "radiogroup",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "name": "skin-client-pref-vector-feature-custom-font-size-group",
+                    "type": "radio"
+                  },
+                  "id": "group-labelledby",
+                  "impact": "critical",
+                  "message": "All elements with the name \"skin-client-pref-vector-feature-custom-font-size-group\" do not reference the same element with aria-labelledby",
+                  "relatedNodes": []
+                },
+                {
+                  "data": {
+                    "failureCode": "no-group",
+                    "name": "skin-client-pref-vector-feature-custom-font-size-group",
+                    "type": "radio"
+                  },
+                  "id": "fieldset",
+                  "impact": "critical",
+                  "message": "Element does not have a containing fieldset or ARIA group",
+                  "relatedNodes": [
+                    {
+                      "html": "<input name=\"skin-client-pref-vector-feature-custom-font-size-group\" id=\"skin-client-pref-vector-feature-custom-font-size-value-1\" type=\"radio\" value=\"1\" data-event-name=\"skin-client-pref-vector-feature-custom-font-size-value-1\" class=\"cdx-radio__input\">",
+                      "target": [
+                        "#skin-client-pref-vector-feature-custom-font-size-value-1"
+                      ]
+                    },
+                    {
+                      "html": "<input name=\"skin-client-pref-vector-feature-custom-font-size-group\" id=\"skin-client-pref-vector-feature-custom-font-size-value-2\" type=\"radio\" value=\"2\" data-event-name=\"skin-client-pref-vector-feature-custom-font-size-value-2\" class=\"cdx-radio__input\">",
+                      "target": [
+                        "#skin-client-pref-vector-feature-custom-font-size-value-2"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  All elements with the name \"skin-client-pref-vector-feature-custom-font-size-group\" do not reference the same element with aria-labelledby\n  Element does not have a containing fieldset or ARIA group",
+              "html": "<input name=\"skin-client-pref-vector-feature-custom-font-size-group\" id=\"skin-client-pref-vector-feature-custom-font-size-value-0\" type=\"radio\" value=\"0\" data-event-name=\"skin-client-pref-vector-feature-custom-font-size-value-0\" class=\"cdx-radio__input\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "#skin-client-pref-vector-feature-custom-font-size-value-0"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "name": "skin-client-pref-vector-feature-limited-width-group",
+                    "type": "radio"
+                  },
+                  "id": "group-labelledby",
+                  "impact": "critical",
+                  "message": "All elements with the name \"skin-client-pref-vector-feature-limited-width-group\" do not reference the same element with aria-labelledby",
+                  "relatedNodes": []
+                },
+                {
+                  "data": {
+                    "failureCode": "no-group",
+                    "name": "skin-client-pref-vector-feature-limited-width-group",
+                    "type": "radio"
+                  },
+                  "id": "fieldset",
+                  "impact": "critical",
+                  "message": "Element does not have a containing fieldset or ARIA group",
+                  "relatedNodes": [
+                    {
+                      "html": "<input name=\"skin-client-pref-vector-feature-limited-width-group\" id=\"skin-client-pref-vector-feature-limited-width-value-0\" type=\"radio\" value=\"0\" data-event-name=\"skin-client-pref-vector-feature-limited-width-value-0\" class=\"cdx-radio__input\">",
+                      "target": [
+                        "#skin-client-pref-vector-feature-limited-width-value-0"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  All elements with the name \"skin-client-pref-vector-feature-limited-width-group\" do not reference the same element with aria-labelledby\n  Element does not have a containing fieldset or ARIA group",
+              "html": "<input name=\"skin-client-pref-vector-feature-limited-width-group\" id=\"skin-client-pref-vector-feature-limited-width-value-1\" type=\"radio\" value=\"1\" data-event-name=\"skin-client-pref-vector-feature-limited-width-value-1\" class=\"cdx-radio__input\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "#skin-client-pref-vector-feature-limited-width-value-1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "name": "skin-client-pref-skin-theme-group",
+                    "type": "radio"
+                  },
+                  "id": "group-labelledby",
+                  "impact": "critical",
+                  "message": "All elements with the name \"skin-client-pref-skin-theme-group\" do not reference the same element with aria-labelledby",
+                  "relatedNodes": []
+                },
+                {
+                  "data": {
+                    "failureCode": "no-group",
+                    "name": "skin-client-pref-skin-theme-group",
+                    "type": "radio"
+                  },
+                  "id": "fieldset",
+                  "impact": "critical",
+                  "message": "Element does not have a containing fieldset or ARIA group",
+                  "relatedNodes": [
+                    {
+                      "html": "<input name=\"skin-client-pref-skin-theme-group\" id=\"skin-client-pref-skin-theme-value-day\" type=\"radio\" value=\"day\" data-event-name=\"skin-client-pref-skin-theme-value-day\" class=\"cdx-radio__input\">",
+                      "target": [
+                        "#skin-client-pref-skin-theme-value-day"
+                      ]
+                    },
+                    {
+                      "html": "<input name=\"skin-client-pref-skin-theme-group\" id=\"skin-client-pref-skin-theme-value-night\" type=\"radio\" value=\"night\" data-event-name=\"skin-client-pref-skin-theme-value-night\" class=\"cdx-radio__input\">",
+                      "target": [
+                        "#skin-client-pref-skin-theme-value-night"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  All elements with the name \"skin-client-pref-skin-theme-group\" do not reference the same element with aria-labelledby\n  Element does not have a containing fieldset or ARIA group",
+              "html": "<input name=\"skin-client-pref-skin-theme-group\" id=\"skin-client-pref-skin-theme-value-os\" type=\"radio\" value=\"os\" data-event-name=\"skin-client-pref-skin-theme-value-os\" class=\"cdx-radio__input\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "#skin-client-pref-skin-theme-value-os"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.forms",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 8,
+      "passes_count": 46,
+      "total_penalty": 170,
+      "penalty_per_rule": {
+        "aria-allowed-role": {
+          "impact": "minor",
+          "node_count": 9,
+          "raw_penalty": 45,
+          "capped_penalty": 15
+        },
+        "autocomplete-valid": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "color-contrast": {
+          "impact": "serious",
+          "node_count": 32,
+          "raw_penalty": 480,
+          "capped_penalty": 25
+        },
+        "duplicate-id": {
+          "impact": "minor",
+          "node_count": 6,
+          "raw_penalty": 30,
+          "capped_penalty": 15
+        },
+        "image-alt": {
+          "impact": "critical",
+          "node_count": 8,
+          "raw_penalty": 200,
+          "capped_penalty": 25
+        },
+        "link-name": {
+          "impact": "serious",
+          "node_count": 8,
+          "raw_penalty": 120,
+          "capped_penalty": 25
+        },
+        "listitem": {
+          "impact": "serious",
+          "node_count": 3,
+          "raw_penalty": 45,
+          "capped_penalty": 25
+        },
+        "radiogroup": {
+          "impact": "critical",
+          "node_count": 3,
+          "raw_penalty": 75,
+          "capped_penalty": 25
+        }
+      },
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 0,
+        "author": 15,
+        "date": 15,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title",
+          "schema:name"
+        ],
+        "description": [],
+        "author": [
+          "schema:author",
+          "schema:publisher"
+        ],
+        "date": [
+          "schema:date"
+        ],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 5,
+      "fields_total": 7,
+      "json_ld_type": "Article"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 403,
+        "content_type": "text/plain"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "max-image-preview:standard",
+        "robots_txt_status": 403,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "absent",
+        "last_modified": "absent",
+        "cache_control": "absent"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": true,
+          "details": [
+            "link rel=alternate type=application/x-wiki href=/w/index.php?title=Large_language_model&action=edit"
+          ]
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 0,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 0,
+        "agent_content_hints": 3
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "article",
+      "detection": {
+        "schema_type_raw": "Article",
+        "source": "schema_type",
+        "matched_value": "Article"
+      },
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.2,
+        "structured_data": 0.2,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "article",
+  "universal_score": 60.48898388476998,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 72.72727272727272,
+    "content_extractability": 65.53582851475899,
+    "structured_data": 87.0,
+    "dom_navigability": 0,
+    "metadata_completeness": 70,
+    "http_compliance": 48.0
+  },
+  "evidence_references": null
+}

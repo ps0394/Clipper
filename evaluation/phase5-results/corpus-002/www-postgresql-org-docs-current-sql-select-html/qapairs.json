@@ -1,0 +1,45 @@
+[
+  {
+    "question": "Under what conditions can a WITH query be marked as NOT MATERIALIZED, and what are the potential performance implications of doing so?",
+    "answer": "A WITH query can be marked as NOT MATERIALIZED if it is side-effect-free (i.e., a plain SELECT containing no volatile functions) and is not recursive; the performance implication is that the query may be folded into the primary query for joint optimization, which can save resources if the WITH query is used multiple times but only a few rows are needed each time, though it may result in duplicate computations.",
+    "supporting_sentences": [
+      "However, a WITH query can be marked NOT MATERIALIZED to remove this guarantee. In that case, the WITH query can be folded into the primary query much as though it were a simple sub-SELECT in the primary query's FROM clause.",
+      "NOT MATERIALIZED is ignored if it is attached to a WITH query that is recursive or is not side-effect-free (i.e., is not a plain SELECT containing no volatile functions).",
+      "This results in duplicate computations if the primary query refers to that WITH query more than once; but if each such use requires only a few rows of the WITH query's total output, NOT MATERIALIZED can provide a net savings by allowing the queries to be optimized jointly."
+    ]
+  },
+  {
+    "question": "How does the behavior of a recursive WITH query differ when RECURSIVE is specified versus when it is omitted, particularly regarding query ordering and self-references?",
+    "answer": "When RECURSIVE is specified, a WITH query can reference itself (only once per query) and need not be ordered (can reference later queries in the list, though circular references are not allowed); without RECURSIVE, WITH queries can only reference sibling queries that appear earlier in the list.",
+    "supporting_sentences": [
+      "If RECURSIVE is specified, it allows a SELECT subquery to reference itself by name. Such a subquery must have the form non_recursive_term UNION [ ALL | DISTINCT ] recursive_term where the recursive self-reference must appear on the right-hand side of the UNION. Only one recursive self-reference is permitted per query.",
+      "Another effect of RECURSIVE is that WITH queries need not be ordered: a query can reference another one that is later in the list. (However, circular references, or mutual recursion, are not implemented.) Without RECURSIVE, WITH queries can only reference sibling WITH queries that are earlier in the WITH list."
+    ]
+  },
+  {
+    "question": "What is the difference between the BERNOULLI and SYSTEM sampling methods in the TABLESAMPLE clause, and under what circumstances might one be preferred over the other?",
+    "answer": "BERNOULLI scans the entire table and selects individual rows independently with the specified probability, while SYSTEM does block-level sampling; BERNOULLI is preferred when a more random sample is needed, while SYSTEM is significantly faster for small sampling percentages but may return a less-random sample due to clustering effects.",
+    "supporting_sentences": [
+      "The BERNOULLI and SYSTEM sampling methods each accept a single argument which is the fraction of the table to sample, expressed as a percentage between 0 and 100.",
+      "The BERNOULLI method scans the whole table and selects or ignores individual rows independently with the specified probability. The SYSTEM method does block-level sampling with each block having the specified chance of being selected; all rows in each selected block are returned.",
+      "The SYSTEM method is significantly faster than the BERNOULLI method when small sampling percentages are specified, but it may return a less-random sample of the table as a result of clustering effects."
+    ]
+  },
+  {
+    "question": "What are the restrictions on using the SEARCH and CYCLE clauses in a recursive WITH query, and what columns do they add to the result set?",
+    "answer": "The SEARCH and CYCLE clauses are only valid for recursive WITH queries that are a UNION (or UNION ALL) of two SELECT commands; SEARCH adds a column named search_seq_col_name for ordering results, while CYCLE adds cycle_mark_col_name (indicating cycle detection) and cycle_path_col_name (for internal tracking).",
+    "supporting_sentences": [
+      "Both the SEARCH and the CYCLE clause are only valid for recursive WITH queries. The with_query must be a UNION (or UNION ALL) of two SELECT (or equivalent) commands (no nested UNIONs).",
+      "The optional SEARCH clause computes a search sequence column that can be used for ordering the results of a recursive query in either breadth-first or depth-first order. [...] A column named search_seq_col_name will be added to the result column list of the WITH query.",
+      "The optional CYCLE clause is used to detect cycles in recursive queries. [...] A column named cycle_mark_col_name will be added to the result column list of the WITH query. [...] Furthermore, a column named cycle_path_col_name will be added to the result column list of the WITH query."
+    ]
+  },
+  {
+    "question": "If a data-modifying statement (INSERT, UPDATE, DELETE, or MERGE) is included in a WITH clause without a RETURNING clause, what is the impact on the primary query, and why?",
+    "answer": "The statement will still execute but produce no output, so it cannot be referenced as a table by the primary query; this is because the primary query can only read the output of the RETURNING clause, not the underlying table the statement modifies.",
+    "supporting_sentences": [
+      "When writing a data-modifying statement (INSERT, UPDATE, DELETE, or MERGE) in WITH, it is usual to include a RETURNING clause. It is the output of RETURNING, not the underlying table that the statement modifies, that forms the temporary table that is read by the primary query.",
+      "If RETURNING is omitted, the statement is still executed, but it produces no output so it cannot be referenced as a table by the primary query."
+    ]
+  }
+]

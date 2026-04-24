@@ -1,0 +1,74 @@
+```json
+[
+    {
+        "question": "Under what conditions does COUNT(*) differ from COUNT(column_name), and what is the specific difference in the first example's output for the 'i_col' and 'All' columns?",
+        "answer": "COUNT(*) includes all rows, including those with NULL values, while COUNT(column_name) excludes rows where the specified column is NULL; in the first example, COUNT(*) ('All') returns 6, while COUNT(i_col) returns 4 because there are 2 rows with NULL in 'i_col'.",
+        "supporting_sentences": [
+            "The All column in this output shows that when an unqualified and unfiltered wildcard is specified for COUNT, the function returns the total number of rows in the table, including rows with NULL values.",
+            "The other columns in the output show that when a column or a wildcard with filtering is specified, the function excludes rows with NULL values.",
+            "+-----+-------+---------+-------+----------------+-------+----------------+",
+            "| All | ILIKE | EXCLUDE | i_col | DISTINCT i_col | j_col | DISTINCT j_col |",
+            "|-----+-------+---------+-------+----------------+-------+----------------|",
+            "|   6 |     4 |       5 |     4 |              2 |     5 |              2 |"
+        ]
+    },
+    {
+        "question": "How does the behavior of COUNT(alias.*) differ from COUNT(*) in the context of NULL values, and what is the count returned by COUNT(n.*) in the provided example?",
+        "answer": "COUNT(alias.*) returns the number of rows that don’t contain any NULL values, while COUNT(*) returns the total number of rows regardless of NULLs; in the example, COUNT(n.*) returns 3 because 3 of the 6 rows have no NULL values.",
+        "supporting_sentences": [
+            "The following example shows that COUNT(alias.*) returns the number of rows that don’t contain any NULL values.",
+            "The basic_example table has a total of six rows, but three rows have at least one NULL value, and the other three rows have no NULL values.",
+            "+------------+",
+            "| COUNT(N.*) |",
+            "|------------|",
+            "|          3 |"
+        ]
+    },
+    {
+        "question": "What is the difference between the number of distinct values in 'i_col' and 'j_col' in the first example, and why does this difference exist?",
+        "answer": "The difference is 0; both 'i_col' and 'j_col' have 2 distinct values (COUNT(DISTINCT i_col) = 2, COUNT(DISTINCT j_col) = 2) because each column has two unique non-NULL values despite having different NULL counts.",
+        "supporting_sentences": [
+            "+-----+-------+---------+-------+----------------+-------+----------------+",
+            "| All | ILIKE | EXCLUDE | i_col | DISTINCT i_col | j_col | DISTINCT j_col |",
+            "|-----+-------+---------+-------+----------------+-------+----------------|",
+            "|   6 |     4 |       5 |     4 |              2 |     5 |              2 |",
+            "+-------+-------+",
+            "| I_COL | J_COL |",
+            "|-------+-------|",
+            "|    11 |   101 |",
+            "|    11 |   102 |",
+            "|    11 |  NULL |",
+            "|    12 |   101 |",
+            "|  NULL |   101 |",
+            "|  NULL |   102 |"
+        ]
+    },
+    {
+        "question": "How does the COUNT function treat JSON null (VARIANT NULL) compared to SQL NULL, and what is the count of non-NULL 'v:Title' values in the VARIANT example?",
+        "answer": "The COUNT function treats both JSON null (VARIANT NULL) and SQL NULL as NULL values, excluding them from the count; the count of non-NULL 'v:Title' values is 2.",
+        "supporting_sentences": [
+            "The following example shows that JSON null (VARIANT NULL) is treated as SQL NULL by the COUNT function.",
+            "Show that the COUNT function treats both the NULL and the JSON null (VARIANT NULL) values as NULLs. There are four rows in the table. One has a SQL NULL and the other has a JSON null. Both those rows are excluded from the count, so the count is 2.",
+            "+----------------+",
+            "| COUNT(V:TITLE) |",
+            "|----------------|",
+            "|              2 |"
+        ]
+    },
+    {
+        "question": "In the GROUP BY example, what is the relationship between the counts returned by COUNT(*) and COUNT(j_col) for the group where 'i_col' is NULL, and why does this relationship exist?",
+        "answer": "For the group where 'i_col' is NULL, COUNT(*) and COUNT(j_col) both return 2; this is because neither of the two rows in this group has a NULL in 'j_col', so COUNT(j_col) does not exclude any rows.",
+        "supporting_sentences": [
+            "SELECT i_col, COUNT(*), COUNT(j_col) FROM basic_example GROUP BY i_col ORDER BY i_col;",
+            "+-------+----------+--------------+",
+            "| I_COL | COUNT(*) | COUNT(J_COL) |",
+            "|-------+----------+--------------|",
+            "|    11 |        3 |            2 |",
+            "|    12 |        1 |            1 |",
+            "|  NULL |        2 |            2 |",
+            "+-------+----------+--------------+",
+            "The other columns in the output show that when a column or a wildcard with filtering is specified, the function excludes rows with NULL values."
+        ]
+    }
+]
+```

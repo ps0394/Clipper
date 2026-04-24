@@ -1,0 +1,49 @@
+```json
+[
+    {
+        "question": "Under what conditions can a GitHub Pages site be published privately, and which plans support this feature?",
+        "answer": "A GitHub Pages site can be published privately only if you have an organization account and your organization uses GitHub Enterprise Cloud; this feature is supported in GitHub Pro, GitHub Team, and GitHub Enterprise plans.",
+        "supporting_sentences": [
+            "Note: To publish a GitHub Pages site privately, you need to have an organization account. Additionally, your organization must use GitHub Enterprise Cloud.",
+            "In addition to the features available with GitHub Free for personal accounts, GitHub Pro includes: GitHub Pages",
+            "In addition to the features available with GitHub Free for organizations, GitHub Team includes: GitHub Pages",
+            "GitHub Enterprise includes two deployment options: GitHub Enterprise Cloud, which is hosted by GitHub in the cloud, and GitHub Enterprise Server, which is self-hosted."
+        ]
+    },
+    {
+        "question": "How many GitHub Actions minutes per month are included in GitHub Free for personal accounts, GitHub Pro, and GitHub Enterprise Cloud, and what is the difference between the highest and lowest values?",
+        "answer": "GitHub Free for personal accounts includes 2,000 minutes; GitHub Pro includes 3,000 minutes; GitHub Enterprise Cloud includes 50,000 minutes; the difference between the highest (50,000) and lowest (2,000) values is 48,000 minutes.",
+        "supporting_sentences": [
+            "GitHub Actions features: 2,000 minutes per month (GitHub Free for personal accounts)",
+            "3,000 GitHub Actions minutes per month (GitHub Pro)",
+            "50,000 GitHub Actions minutes per month (GitHub Enterprise Cloud)"
+        ]
+    },
+    {
+        "question": "What are the limitations on repository insights graphs for contributor, commit, and code frequency data, and which plans are affected by this constraint?",
+        "answer": "These insights are only available for repositories with fewer than 10,000 commits; this constraint applies to GitHub Pro, GitHub Free for organizations, and GitHub Team plans.",
+        "supporting_sentences": [
+            "Note: Certain contributor, commit, and code frequency insights are only available for repositories that have fewer than 10,000 commits.",
+            "With GitHub Pro: Repository insights graphs: Pulse, contributors, traffic, commits, code frequency, network, and forks",
+            "With GitHub Free for organizations: Repository insights graphs: Pulse, contributors, traffic, commits, code frequency, network, and forks",
+            "With GitHub Team: Repository insights graphs: Pulse, contributors, traffic, commits, code frequency, network, and forks"
+        ]
+    },
+    {
+        "question": "What happens to GitHub Actions usage in private repositories if a user exceeds the included minutes for their plan, and how does this differ for public repositories?",
+        "answer": "Any usage beyond the included minutes for private repositories is billed to the account; for public repositories, GitHub Actions usage is free for standard GitHub-hosted runners.",
+        "supporting_sentences": [
+            "GitHub Actions usage is free for standard GitHub-hosted runners in public repositories, and for self-hosted runners.",
+            "For private repositories, each GitHub account receives a quota of free minutes and storage for use with GitHub-hosted runners, depending on the account's plan. Any usage beyond the included amounts is billed to your account."
+        ]
+    },
+    {
+        "question": "Which GitHub plans include the ability to enforce two-factor authentication, and what additional security features are available exclusively in GitHub Enterprise?",
+        "answer": "Two-factor authentication enforcement is included in GitHub Free for personal accounts; GitHub Enterprise additionally includes SAML single sign-on, access provisioning with SAML or SCIM, audit log streaming, and IP allow list.",
+        "supporting_sentences": [
+            "With GitHub Free for personal accounts: Two-factor authentication enforcement",
+            "GitHub Enterprise includes: Authentication with SAML single sign-on; Access provisioning with SAML or SCIM; Additional features such as audit log streaming and IP allow list."
+        ]
+    }
+]
+```

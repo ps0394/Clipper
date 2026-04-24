@@ -1,0 +1,514 @@
+{
+  "parseability_score": 52.3287975838778,
+  "failure_mode": "significant_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-002\\platform-openai-com-docs-guides-function-calling\\page.rendered.html",
+  "url": "https://platform.openai.com/docs/guides/function-calling",
+  "component_scores": {
+    "semantic_html": 67.27272727272728,
+    "content_extractability": 80.89700851732937,
+    "structured_data": 12,
+    "dom_navigability": 35,
+    "metadata_completeness": 55,
+    "http_compliance": 45.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 4,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "article",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "section",
+          "count": 2,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 50,
+      "heading_elements_count": 78,
+      "scoring_breakdown": {
+        "semantic_coverage": 27.272727272727273,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 59353,
+        "extracted_text_length": 48727,
+        "extracted_chars": 48727,
+        "extraction_ratio": 0.821,
+        "extracted_title": "Function calling",
+        "extracted_preview": "Function calling (also known as tool calling ) provides a powerful and flexible way for OpenAI models to interface with external systems and access data outside their training data. This guide shows how you can connect a model to data and actions provided by your application. We’ll show how to use f...",
+        "original_headings": 78,
+        "extracted_headings": 1,
+        "original_lists": 119,
+        "extracted_lists": 18,
+        "original_code_blocks": 311,
+        "extracted_code_blocks": 311,
+        "has_main_element": true,
+        "has_article_element": true
+      },
+      "score_breakdown": {
+        "signal_to_noise": 40.0,
+        "structure_preservation": 11.640810170221934,
+        "boundary_detection": 29.25619834710744
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 0,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 3
+      },
+      "schema_types_found": [],
+      "key_fields_found": [],
+      "formats_present": 2,
+      "score_breakdown": {
+        "type_appropriateness": 0,
+        "field_completeness": 0,
+        "multiple_formats": 12,
+        "schema_validation": 0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": []
+      },
+      "sample_structured_data": {
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:type",
+                "website"
+              ],
+              [
+                "og:url",
+                "https://developers.openai.com/api/docs/guides/function-calling"
+              ],
+              [
+                "og:title",
+                "Function calling | OpenAI API"
+              ],
+              [
+                "og:description",
+                "Learn how function calling enables large language models to connect to external data and systems."
+              ],
+              [
+                "og:image",
+                "https://developers.openai.com/og/api/docs/guides/function-calling.png"
+              ]
+            ]
+          }
+        ],
+        "microformat": [
+          {
+            "type": [
+              "h-full"
+            ],
+            "properties": {
+              "name": [
+                "OpenAI Developers  Home   API  Docs  Guides and concepts for the OpenAI API  API reference  Endpoints, parameters, and responses   Codex  Docs  Guides, concepts, and product docs for Codex  Use cases  Example workflows and tasks teams hand to Codex   ChatGPT  Apps SDK  Build apps to extend ChatGPT  Commerce  Build commerce flows in ChatGPT   Resources  Showcase  Demo apps to get inspired  Blog  Learnings and experiences from developers  Cookbook  Notebook examples for building with OpenAI models  Learn  Docs, videos, and demo apps for building with OpenAI  Community  Programs, meetups, and support for builders  Start searching API Dashboard"
+              ],
+              "url": [
+                "https://platform.openai.com/"
+              ]
+            },
+            "lang": "en"
+          },
+          {
+            "type": [
+              "h-full"
+            ],
+            "properties": {
+              "name": [
+                "Search docsSuggestedresponses createreasoning_effortrealtimeprompt caching"
+              ]
+            },
+            "lang": "en"
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures headings have discernible text",
+          "help": "Headings must not be empty",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/empty-heading?application=axeAPI",
+          "id": "empty-heading",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element does not have text that is visible to screen readers",
+              "html": "<h2 id=\"quOO3\"></h2>",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#quOO3"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.name-role-value",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures every HTML document has a lang attribute",
+          "help": "<html> element must have a lang attribute",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/html-has-lang?application=axeAPI",
+          "id": "html-has-lang",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-lang",
+                  "impact": "serious",
+                  "message": "The <html> element does not have a lang attribute",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  The <html> element does not have a lang attribute",
+              "html": "<html dir=\"ltr\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.language",
+            "wcag2a",
+            "wcag311"
+          ]
+        },
+        {
+          "description": "Ensures <meta http-equiv=\"refresh\"> is not used",
+          "help": "Timed refresh must not exist",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/meta-refresh?application=axeAPI",
+          "id": "meta-refresh",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "meta-refresh",
+                  "impact": "critical",
+                  "message": "<meta> tag forces timed refresh of page",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  <meta> tag forces timed refresh of page",
+              "html": "<meta http-equiv=\"refresh\" content=\"360\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "meta"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.time",
+            "wcag2a",
+            "wcag2aaa",
+            "wcag221",
+            "wcag224",
+            "wcag325"
+          ]
+        },
+        {
+          "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+          "help": "Page must contain a level-one heading",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/page-has-heading-one?application=axeAPI",
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": null,
+                  "id": "page-has-heading-one",
+                  "impact": "moderate",
+                  "message": "Page must have a level-one heading",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Page must have a level-one heading",
+              "html": "<html dir=\"ltr\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures all page content is contained by landmarks",
+          "help": "All page content must be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/region?application=axeAPI",
+          "id": "region",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "region",
+                  "impact": "moderate",
+                  "message": "Some page content is not contained by landmarks",
+                  "relatedNodes": [
+                    {
+                      "html": "<svg width=\"41\" height=\"41\" viewBox=\"0 0 41 41\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" strokewidth=\"2\" class=\"scale-appear\">",
+                      "target": [
+                        "svg"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks",
+              "html": "<html dir=\"ltr\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.keyboard",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 5,
+      "passes_count": 14,
+      "total_penalty": 65,
+      "penalty_per_rule": {
+        "empty-heading": {
+          "impact": "minor",
+          "node_count": 1,
+          "raw_penalty": 5,
+          "capped_penalty": 5
+        },
+        "html-has-lang": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "meta-refresh": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "page-has-heading-one": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        },
+        "region": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        }
+      },
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 0,
+        "date": 0,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [
+          "meta:description",
+          "og:description"
+        ],
+        "author": [],
+        "date": [],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 4,
+      "fields_total": 7,
+      "json_ld_type": "none"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 403,
+        "content_type": "text/html; charset=UTF-8"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "absent",
+        "last_modified": "absent",
+        "cache_control": "absent"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 0,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 0,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "sample",
+      "detection": {
+        "source": "dom",
+        "matched_value": "sample"
+      },
+      "weights": {
+        "semantic_html": 0.2,
+        "content_extractability": 0.25,
+        "structured_data": 0.2,
+        "dom_navigability": 0.1,
+        "metadata_completeness": 0.15,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "sample",
+  "universal_score": 50.6475835216477,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 67.27272727272728,
+    "content_extractability": 80.89700851732937,
+    "structured_data": 12,
+    "dom_navigability": 35,
+    "metadata_completeness": 55,
+    "http_compliance": 45.0
+  },
+  "evidence_references": null
+}

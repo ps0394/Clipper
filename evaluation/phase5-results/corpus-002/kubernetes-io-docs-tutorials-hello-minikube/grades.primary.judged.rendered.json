@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, describing the two methods to access the Kubernetes dashboard and their key difference.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 725,
+    "tokens_out": 33
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, explaining the circumstance under which the external IP remains pending and providing the alternative command to access the Service.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 661,
+    "tokens_out": 39
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer incorrectly states that four addons are enabled by default and includes an incorrect addon, \"storage-provisioner\", while also omitting the fact that only three specific addons are enabled.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 606,
+    "tokens_out": 43
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same sequence of steps as the ground-truth answer, with only minor differences in wording and formatting.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 746,
+    "tokens_out": 30
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, identifying the security risk and the specific endpoint.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 631,
+    "tokens_out": 28
+  }
+]

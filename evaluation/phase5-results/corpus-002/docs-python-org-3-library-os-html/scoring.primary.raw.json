@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "The Python UTF-8 Mode is enabled if the LC_CTYPE locale is C or POSIX at Python startup. It ignores the locale encoding and forces the usage of the UTF-8 encoding. Command line arguments, environment variables, and filenames are decoded to text using the UTF-8 encoding. os.fsdecode() and os.fsencode() use the UTF-8 encoding. open(), io.open(), and codecs.open() use the UTF-8 encoding by default.",
+    "run_index": 0,
+    "tokens_in": 10581,
+    "tokens_out": 94
+  },
+  {
+    "pair_index": 1,
+    "answer": "On Unix, keys and values use sys.getfilesystemencoding() and 'surrogateescape' error handler. On Windows, the keys are converted to uppercase when getting, setting, or deleting an item. This affects portability because code relying on case-sensitive environment variable names may not work as expected on Windows.",
+    "run_index": 0,
+    "tokens_in": 10581,
+    "tokens_out": 61
+  },
+  {
+    "pair_index": 2,
+    "answer": "The default priority is 0; the range is -20 to 19. Setting a priority outside this range may raise an error.",
+    "run_index": 0,
+    "tokens_in": 10585,
+    "tokens_out": 28
+  },
+  {
+    "pair_index": 3,
+    "answer": "On VxWorks, os.popen, os.fork, os.execv and os.spawn*p* are not supported.\n\nFor portable file handling, the document recommends the os.path module for manipulating paths, the tempfile module for creating temporary files and directories, and the shutil module for high-level file and directory handling.",
+    "run_index": 0,
+    "tokens_in": 10587,
+    "tokens_out": 64
+  },
+  {
+    "pair_index": 4,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 10584,
+    "tokens_out": 4
+  }
+]

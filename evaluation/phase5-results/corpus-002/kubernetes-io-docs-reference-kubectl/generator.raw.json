@@ -1,0 +1,45 @@
+```json
+[
+    {
+        "question": "Under what conditions does kubectl assume it is running inside a Kubernetes cluster, and how does this affect the default namespace used for operations?",
+        "answer": "kubectl assumes it is running inside a cluster if the KUBERNETES_SERVICE_HOST and KUBERNETES_SERVICE_PORT environment variables are set, and a service account token file exists at /var/run/secrets/kubernetes.io/serviceaccount/token. In this case, kubectl uses the namespace of the ServiceAccount (same as the Pod's namespace) as the default for operations; if POD_NAMESPACE is set, it overrides the ServiceAccount's namespace. Outside the cluster, kubectl defaults to the namespace set in the current context of the client configuration.",
+        "supporting_sentences": [
+            "By default kubectl will first determine if it is running within a pod, and thus in a cluster. It starts by checking for the KUBERNETES_SERVICE_HOST and KUBERNETES_SERVICE_PORT environment variables and the existence of a service account token file at /var/run/secrets/kubernetes.io/serviceaccount/token. If all three are found in-cluster authentication is assumed.",
+            "To maintain backwards compatibility, if the POD_NAMESPACE environment variable is set during in-cluster authentication it will override the default namespace from the service account token.",
+            "If: there is Kubernetes service account token file mounted at /var/run/secrets/kubernetes.io/serviceaccount/token, and the KUBERNETES_SERVICE_HOST environment variable is set, and the KUBERNETES_SERVICE_PORT environment variable is set, and you don't explicitly specify a namespace on the kubectl command line then kubectl assumes it is running in your cluster. The kubectl tool looks up the namespace of that ServiceAccount (this is the same as the namespace of the Pod) and acts against that namespace. This is different from what happens outside of a cluster; when kubectl runs outside a cluster and you don't specify a namespace, the kubectl command acts against the namespace set for the current context in your client configuration."
+        ]
+    },
+    {
+        "question": "How does kubectl handle resource type abbreviations, and what are the implications for commands that omit the resource name?",
+        "answer": "kubectl allows resource types to be specified in singular, plural, or abbreviated forms (e.g., 'pod', 'pods', or 'po' all work). If the resource name is omitted, kubectl displays details for all resources of that type (e.g., 'kubectl get pods' lists all pods). This behavior applies to all commands that accept resource types and names.",
+        "supporting_sentences": [
+            "TYPE: Specifies the resource type. Resource types are case-insensitive and you can specify the singular, plural, or abbreviated forms. For example, the following commands produce the same output: kubectl get pod pod1; kubectl get pods pod1; kubectl get po pod1",
+            "NAME: Specifies the name of the resource. Names are case-sensitive. If the name is omitted, details for all resources are displayed, for example kubectl get pods."
+        ]
+    },
+    {
+        "question": "What is the difference between the default output format and the '-o wide' output format for the 'kubectl get' command, and which additional information does the latter provide for pods?",
+        "answer": "The default output format is human-readable plain-text, while '-o wide' provides additional information in the same plain-text format. For pods, '-o wide' includes the node name where the pod is running.",
+        "supporting_sentences": [
+            "The default output format for all kubectl commands is the human readable plain-text format.",
+            "-o wide: Output in the plain-text format with any additional information. For pods, the node name is included."
+        ]
+    },
+    {
+        "question": "Under what circumstances would the '--server-print=false' flag be necessary when using 'kubectl get', and what is the expected output when this flag is used?",
+        "answer": "The '--server-print=false' flag is necessary when you want to disable server-side column information and instead rely on client-side formatting. The expected output when this flag is used is a minimal set of columns (e.g., 'NAME' and 'AGE' for pods) without server-provided custom columns.",
+        "supporting_sentences": [
+            "kubectl supports receiving specific column information from the server about objects. This means that for any given resource, the server will return columns and rows relevant to that resource, for the client to print. This feature is enabled by default. To disable it, add the --server-print=false flag to the kubectl get command.",
+            "To print information about the status of a pod, use a command like the following: kubectl get pods <pod-name> --server-print=false. The output is similar to: NAME       AGE; pod-name   1m"
+        ]
+    },
+    {
+        "question": "How many distinct resource types are listed in the 'Resource types' table, and which of these are not namespaced?",
+        "answer": "There are 63 distinct resource types listed; 26 of these are not namespaced (namespaced=false).",
+        "supporting_sentences": [
+            "The 'Resource types' table includes 63 entries (counted from the NAME column).",
+            "The following resource types are not namespaced (namespaced=false): ComponentStatus, Namespace, Node, PersistentVolume, MutatingWebhookConfiguration, ValidatingWebhookConfiguration, CustomResourceDefinition, APIService, TokenReview, SelfSubjectAccessReview, SelfSubjectRulesReview, SubjectAccessReview, FlowSchema, PriorityLevelConfiguration, IngressClass, RuntimeClass, PodSecurityPolicy, ClusterRoleBinding, ClusterRole, PriorityClass, CSIDriver, CSINode, StorageClass, VolumeAttachment (total 26)."
+        ]
+    }
+]
+```

@@ -1,0 +1,114 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what conditions can data from archival cloud storage classes (e.g., Amazon S3 Glacier) be loaded into Snowflake, and what alternative approach is suggested for querying such data without loading it?",
+      "answer": "Data from archival cloud storage classes cannot be loaded into Snowflake because these classes require restoration before retrieval; instead, external tables can be used to query the data in place without loading it into Snowflake.",
+      "supporting_sentences": [
+        "You cannot access data held in archival cloud storage classes that requires restoration before it can be retrieved. These archival storage classes include, for example, the Amazon S3 Glacier Flexible Retrieval or Glacier Deep Archive storage class, or Microsoft Azure Archive Storage.",
+        "External tables enable querying existing data stored in external cloud storage for analysis without first loading it into Snowflake."
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what conditions can data from archival cloud storage classes (e.g., Amazon S3 Glacier) be loaded into Snowflake, and what alternative approach is suggested for querying such data without loading it?",
+      "answer": "Data from archival cloud storage classes cannot be loaded into Snowflake because these classes require restoration before retrieval; instead, external tables can be used to query the data in place without loading it into Snowflake.",
+      "supporting_sentences": [
+        "You cannot access data held in archival cloud storage classes that requires restoration before it can be retrieved. These archival storage classes include, for example, the Amazon S3 Glacier Flexible Retrieval or Glacier Deep Archive storage class, or Microsoft Azure Archive Storage.",
+        "External tables enable querying existing data stored in external cloud storage for analysis without first loading it into Snowflake."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How do the compute resources for bulk loading differ from those for Snowpipe, and what are the cost implications of each?",
+      "answer": "Bulk loading relies on user-provided virtual warehouses, which must be sized appropriately and incur costs based on warehouse usage; Snowpipe uses serverless compute resources provided by Snowflake, which are automatically resized and billed per-second based on actual workloads.",
+      "supporting_sentences": [
+        "Bulk loading relies on user-provided virtual warehouses, which are specified in the COPY statement. Users are required to size the warehouse appropriately to accommodate expected loads.",
+        "Snowpipe uses compute resources provided by Snowflake (i.e. a serverless compute model). These Snowflake-provided resources are automatically resized and scaled up or down as required, and are charged and itemized using per-second billing. Data ingestion is charged based upon the actual workloads."
+      ]
+    },
+    "edited_pair": {
+      "question": "How do the compute resources for bulk loading differ from those for Snowpipe, and what are the cost implications of each?",
+      "answer": "Bulk loading relies on user-provided virtual warehouses, which must be sized appropriately and incur costs based on warehouse usage; Snowpipe uses serverless compute resources provided by Snowflake, which are automatically resized and billed per-second based on actual workloads.",
+      "supporting_sentences": [
+        "Bulk loading relies on user-provided virtual warehouses, which are specified in the COPY statement. Users are required to size the warehouse appropriately to accommodate expected loads.",
+        "Snowpipe uses compute resources provided by Snowflake (i.e. a serverless compute model). These Snowflake-provided resources are automatically resized and scaled up or down as required, and are charged and itemized using per-second billing. Data ingestion is charged based upon the actual workloads."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the difference between the default behavior of a DML operation when an error occurs and the behavior when DML error logging is enabled for a table?",
+      "answer": "By default, a DML operation fails and rolls back all changes if any statement encounters an error; with DML error logging enabled, the operation continues, logs the error in an error table, and only rolls back the failed statement.",
+      "supporting_sentences": [
+        "When you execute a set of DML statements and one of the statements fails with an error, the DML operation ends and the changes made by the DML statement are rolled back.",
+        "When error logging is turned on for a table, Snowflake automatically creates an error table that is associated with the base table. DML operations that encounter supported errors log the errors in the error table instead of failing."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the difference between the default behavior of a DML operation when an error occurs and the behavior when DML error logging is enabled for a table?",
+      "answer": "By default, a DML operation fails and rolls back all changes if any statement encounters an error; with DML error logging enabled, the operation continues, logs the error in an error table, and only rolls back the failed statement.",
+      "supporting_sentences": [
+        "When you execute a set of DML statements and one of the statements fails with an error, the DML operation ends and the changes made by the DML statement are rolled back.",
+        "When error logging is turned on for a table, Snowflake automatically creates an error table that is associated with the base table. DML operations that encounter supported errors log the errors in the error table instead of failing."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which types of internal stages can be altered or dropped, and which cannot? Provide the reasoning for each.",
+      "answer": "Named internal stages can be altered or dropped because they are database objects with grantable privileges; user stages and table stages cannot be altered or dropped because they are implicit and tied to users or tables, respectively, without separate grantable privileges.",
+      "supporting_sentences": [
+        "User stages cannot be altered or dropped.",
+        "Table stages cannot be altered or dropped.",
+        "A named internal stage is a database object created in a schema. This stage type can store files that are staged and managed by one or more users and loaded into one or more tables. Because named stages are database objects, the ability to create, modify, use, or drop them can be controlled using security access control privileges."
+      ]
+    },
+    "edited_pair": {
+      "question": "Which types of internal stages can be altered or dropped, and which cannot? Provide the reasoning for each.",
+      "answer": "Named internal stages can be altered or dropped because they are database objects with grantable privileges; user stages and table stages cannot be altered or dropped because they are implicit and tied to users or tables, respectively, without separate grantable privileges.",
+      "supporting_sentences": [
+        "User stages cannot be altered or dropped.",
+        "Table stages cannot be altered or dropped.",
+        "A named internal stage is a database object created in a schema. This stage type can store files that are staged and managed by one or more users and loaded into one or more tables. Because named stages are database objects, the ability to create, modify, use, or drop them can be controlled using security access control privileges."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the three main types of errors logged by DML error logging, and under what circumstance would a DML error *not* be logged even if error logging is enabled?",
+      "answer": "The three main types of errors logged are: NOT NULL constraint violations, type conversion errors, and expression evaluation failures (e.g., division by zero); a DML error would not be logged if it occurs in a COPY INTO statement, as error logging is not supported for such statements.",
+      "supporting_sentences": [
+        "The following types of errors are logged: NOT NULL table constraint violations; Type conversion errors that occur when attempting to convert a value from to the base table column; Some expression evaluation failures, such as division by zero or PARSE_JSON function failures.",
+        "If you try to run a COPY INTO statement on a table with error logging enabled, the Error logging is not supported in statement 'COPY INTO' error is returned at compilation time."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the three main types of errors logged by DML error logging, and under what circumstance would a DML error *not* be logged even if error logging is enabled?",
+      "answer": "The three main types of errors logged are: NOT NULL constraint violations, type conversion errors, and expression evaluation failures (e.g., division by zero); a DML error would not be logged if it occurs in a COPY INTO statement, as error logging is not supported for such statements.",
+      "supporting_sentences": [
+        "The following types of errors are logged: NOT NULL table constraint violations; Type conversion errors that occur when attempting to convert a value from to the base table column; Some expression evaluation failures, such as division by zero or PARSE_JSON function failures.",
+        "If you try to run a COPY INTO statement on a table with error logging enabled, the Error logging is not supported in statement 'COPY INTO' error is returned at compilation time."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

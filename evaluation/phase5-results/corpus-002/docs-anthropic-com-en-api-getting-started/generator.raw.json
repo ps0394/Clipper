@@ -1,0 +1,44 @@
+```json
+[
+    {
+        "question": "Under what conditions would a user receive a 413 'request_too_large' error when using the Claude API, and how do these limits differ between the direct API and third-party platforms like AWS or Google Cloud?",
+        "answer": "A user would receive a 413 'request_too_large' error if they exceed the maximum request size limits for a specific endpoint on the direct Claude API; these limits are 32 MB for Messages/Token Counting, 256 MB for Batch API, and 500 MB for Files API. However, third-party platforms impose stricter limits: Vertex AI limits requests to 30 MB, and Amazon Bedrock limits requests to 20 MB.",
+        "supporting_sentences": [
+            "If you exceed these limits, you'll receive a 413 request_too_large error.",
+            "Endpoint Maximum request size Messages, Token Counting 32 MB Batch API 256 MB Files API 500 MB Sessions, Agents, Environments 32 MB",
+            "Third-party platforms have their own request size limits: Vertex AI limits requests to 30 MB, and Amazon Bedrock limits requests to 20 MB."
+        ]
+    },
+    {
+        "question": "How does the cost structure of the Message Batches API compare to the standard Messages API, and what trade-offs should a user consider when deciding between them?",
+        "answer": "The Message Batches API offers a 50% cost reduction compared to the standard Messages API; however, the trade-off is that the Batches API processes requests asynchronously, which may introduce latency for large volumes of messages.",
+        "supporting_sentences": [
+            "Messages API: Send messages to Claude for conversational interactions (POST /v1/messages)",
+            "Message Batches API: Process large volumes of Messages requests asynchronously with 50% cost reduction (POST /v1/messages/batches)"
+        ]
+    },
+    {
+        "question": "What are the key differences between accessing Claude through the direct API versus third-party platforms like AWS or Google Cloud, and which use cases are best suited for each?",
+        "answer": "Direct access provides the latest models and features first, Anthropic billing and support, and is best for new integrations or full feature access; third-party platforms integrate with cloud provider billing and IAM, may have feature delays or differences, and are best for existing cloud commitments, specific compliance requirements, or consolidated cloud billing.",
+        "supporting_sentences": [
+            "Direct access to the latest models and features first; Anthropic billing and support; Best for: New integrations, full feature access, direct relationship with Anthropic",
+            "Third-Party Platform APIs: Access Claude through AWS, Google Cloud, or Microsoft Azure: Integrated with cloud provider billing and IAM; May have feature delays or differences from the direct API; Best for: Existing cloud commitments, specific compliance requirements, consolidated cloud billing"
+        ]
+    },
+    {
+        "question": "Which Claude API endpoints have the smallest maximum request size limit, and what is the numerical difference between this limit and the largest request size limit?",
+        "answer": "The Messages, Token Counting, Sessions, Agents, and Environments endpoints have the smallest maximum request size limit at 32 MB; the numerical difference between this and the largest limit (500 MB for the Files API) is 468 MB.",
+        "supporting_sentences": [
+            "Endpoint Maximum request size Messages, Token Counting 32 MB Batch API 256 MB Files API 500 MB Sessions, Agents, Environments 32 MB"
+        ]
+    },
+    {
+        "question": "What happens if a user attempts to use Claude Managed Agents through a third-party platform like AWS or Google Cloud, and why?",
+        "answer": "The user would not be able to use Claude Managed Agents, as it is available only through the direct Claude API and not through third-party platforms.",
+        "supporting_sentences": [
+            "Claude Managed Agents is available only through the direct Claude API.",
+            "Third-Party Platform APIs: Access Claude through AWS, Google Cloud, or Microsoft Azure"
+        ]
+    }
+]
+```

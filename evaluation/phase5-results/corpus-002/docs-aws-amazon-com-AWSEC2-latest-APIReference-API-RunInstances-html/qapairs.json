@@ -1,0 +1,47 @@
+[
+  {
+    "question": "Under what conditions can you enable a primary IPv6 address for an instance, and what are the constraints on modifying it after launch?",
+    "answer": "You can enable a primary IPv6 address if launching an instance into a dual-stack or IPv6-only subnet; once enabled, the first IPv6 GUA address associated with the ENI becomes the primary IPv6 address, and you cannot disable it until the instance is terminated or the network interface is detached.",
+    "supporting_sentences": [
+      "If you\u2019re launching an instance into a dual-stack or IPv6-only subnet, you can enable assigning a primary IPv6 address.",
+      "When you launch the instance, AWS will automatically assign an IPv6 address associated with the ENI attached to your instance to be the primary IPv6 address.",
+      "Once you enable an IPv6 GUA address to be a primary IPv6, you cannot disable it.",
+      "When you enable an IPv6 GUA address to be a primary IPv6, the first IPv6 GUA will be made the primary IPv6 address until the instance is terminated or the network interface is detached."
+    ]
+  },
+  {
+    "question": "What are the two mutually exclusive features that cannot be enabled together on the same instance, and what documentation references explain their prerequisites?",
+    "answer": "AWS Nitro Enclaves and hibernation cannot be enabled on the same instance; their prerequisites are documented in the AWS Nitro Enclaves User Guide and the Hibernate your Amazon EC2 instance section of the Amazon EC2 User Guide, respectively.",
+    "supporting_sentences": [
+      "You can't enable AWS Nitro Enclaves and hibernation on the same instance.",
+      "For more information, see AWS Nitro Enclaves User Guide.",
+      "This parameter is valid only if the instance meets the hibernation prerequisites. For more information, see Hibernate your Amazon EC2 instance in the Amazon EC2 User Guide."
+    ]
+  },
+  {
+    "question": "How does the default behavior for the CreditSpecification parameter differ between T2, T3/T3a/T4g, and T3 instances with 'host' tenancy, and what action is required to change this attribute after launch?",
+    "answer": "The default is 'standard' for T2 instances, 'unlimited' for T3/T3a/T4g instances, and only 'standard' is supported for T3 instances with 'host' tenancy; to change this attribute after launch, use ModifyInstanceCreditSpecification.",
+    "supporting_sentences": [
+      "Default: standard (T2 instances) or unlimited (T3/T3a/T4g instances)",
+      "For T3 instances with host tenancy, only standard is supported.",
+      "To change this attribute after launch, use ModifyInstanceCreditSpecification."
+    ]
+  },
+  {
+    "question": "What is the maximum number of instances you can launch in a single RunInstances request, and what happens if you exceed the available capacity in the target Availability Zone?",
+    "answer": "The maximum number is constrained by the quota for the specified instance type in your account for the Region; if you exceed available capacity, Amazon EC2 launches the largest possible number of instances above the specified minimum count.",
+    "supporting_sentences": [
+      "Constraints: Between 1 and the quota for the specified instance type for your account for this Region.",
+      "If you specify a value that is more capacity than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 launches the largest possible number of instances above the specified minimum count."
+    ]
+  },
+  {
+    "question": "If you do not specify a subnet ID, security group ID, or private IPv4 address in a RunInstances request, what defaults does AWS apply, and under what conditions do these defaults not apply?",
+    "answer": "AWS chooses a default subnet from your default VPC if no subnet ID is specified (unless you don't have a default VPC, in which case you must specify a subnet ID); uses the default security group for the VPC if no security group ID is specified; and chooses a private IPv4 address from the subnet's IPv4 range if none is specified.",
+    "supporting_sentences": [
+      "If you don't specify a subnet ID, we choose a default subnet from your default VPC for you. If you don't have a default VPC, you must specify a subnet ID in the request.",
+      "If you don't specify a security group ID, we use the default security group for the VPC.",
+      "If you don't specify this address, we choose one from the IPv4 range of your subnet."
+    ]
+  }
+]

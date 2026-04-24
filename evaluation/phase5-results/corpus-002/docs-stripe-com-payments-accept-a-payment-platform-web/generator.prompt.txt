@@ -1,0 +1,270 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports *non-trivial* retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 challenging question/answer pairs. Unlike simple fact extraction, these questions must require the reader to synthesize, compare, or compute across multiple parts of the document — not just locate a single sentence.
+
+## Difficulty mandate
+
+The baseline for this corpus is that a strong LLM scores 100% on simple fact-lookup questions. That ceiling is the problem this prompt solves. Generate questions such that a competent LLM reading only the document text should land in the 50–80% correct range. A question that can be answered by copying one sentence verbatim is too easy and must be replaced.
+
+## Required question-type mix
+
+You must produce exactly 5 Q/A pairs with the following distribution:
+
+- **At least 2 synthesis questions** — the answer requires combining information from two or more non-adjacent sections of the document. The reader must locate multiple facts and relate them. Example forms: "Under what conditions does X apply, and what happens when those conditions are not met?", "How does feature A relate to feature B?", "What is the full sequence of steps from X to Y?"
+
+- **At least 1 quantitative or comparative question** — the answer requires counting, ordering, ranking, computing a difference, or distinguishing options. Example forms: "Which of the supported options has the shortest timeout?", "How many … does the document describe, and in what order?", "What is the difference between the default and maximum value of X?"
+
+- **At least 1 constraint or edge-case question** — the answer depends on a condition, limitation, exception, or corner case mentioned in the document. Example forms: "What happens if X is set to a value above the supported range?", "Under which circumstances is behavior Y not guaranteed?"
+
+- The remaining pair(s) may be any of the above types. Do not include pure fact-lookup questions (e.g. "What is the name of X?", "What year was Y introduced?") unless the fact is genuinely non-obvious and spread across multiple sentences.
+
+## Answerability constraints
+
+1. **Every answer must be fully grounded in the document.** If the question requires outside knowledge, common sense beyond the document, or inference the document does not support, do not include it.
+2. **Answers may be short or multi-part**, but must be precise. Do not produce essay-length answers. For multi-part answers, separate components with semicolons or enumerate explicitly.
+3. **Supporting sentences are required.** For every Q/A pair, list the verbatim sentences from the document that together justify the answer. A synthesis question should have supporting sentences from multiple sections; a quantitative question should have the sentences containing the relevant numbers.
+4. **Self-contained questions.** A reader who has not seen the document must be able to understand what is being asked. Do not write "What is the second step?" or "What does the table show?".
+5. **Spread across the document.** The 5 questions together should exercise different sections, not cluster in one region.
+
+## Forbidden patterns
+
+- Questions answerable by copying a single sentence verbatim.
+- Questions whose answer is a single named entity pulled from a title, heading, or "About this page" metadata block.
+- Questions where the answer is restated in the question itself.
+- Questions requiring knowledge of the document's structure rather than its content (e.g. "What section comes after X?").
+
+## Output format
+
+A single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Accept a payment
+Document URL: https://docs.stripe.com/payments/accept-a-payment?platform=web
+Document profile: tutorial
+
+Document text:
+---
+Add a checkout button to your website that calls a server-side endpoint to create a 
+Checkout Session
+.
+You can also create a Checkout Session for an 
+existing customer
+, allowing you to prefill Checkout fields with known contact information and unify your purchase history for that customer.
+<
+html
+>
+
+<
+head
+>
+
+<
+title
+>
+Buy cool new product
+</
+title
+>
+
+</
+head
+>
+
+<
+body
+>
+
+<
+form
+
+action
+=
+"/create-checkout-session"
+
+method
+=
+"POST"
+>
+
+<
+button
+
+type
+=
+"submit"
+>
+Checkout
+</
+button
+>
+
+</
+form
+>
+
+</
+body
+>
+
+</
+html
+>
+A Checkout Session is the programmatic representation of what your customer sees when they’re redirected to the payment form. You can configure it with options such as:
+You must populate 
+success_
+url
+ with the URL value of a page on your website that Checkout returns your customer to after they complete the payment.
+Note
+Checkout Sessions expire 24 hours after creation by default.
+After creating a Checkout Session, redirect your customer to the 
+URL
+ returned in the response.
+
+require
+
+'json'
+
+require
+
+'sinatra'
+
+require
+
+'stripe'
+
+client 
+=
+
+Stripe
+:
+:
+StripeClient
+.
+new
+(
+'sk_test_REDACTED'
+)
+
+post 
+'/create-checkout-session'
+
+do
+
+  session 
+=
+ client
+.
+v1
+.
+checkout
+.
+sessions
+.
+(
+{
+
+:
+
+[
+{
+
+:
+
+{
+
+:
+
+'usd'
+,
+
+:
+
+{
+
+:
+
+'T-shirt'
+,
+
+}
+,
+
+:
+
+2000
+,
+
+}
+,
+
+:
+
+1
+,
+
+}
+]
+,
+
+:
+
+'payment'
+,
+
+:
+
+'
+https://example.com/success
+'
+,
+
+}
+)
+
+  redirect session
+.
+url
+,
+
+303
+
+end
+Payment methods
+By default, Stripe enables cards and other common payment methods. You can turn individual payment methods on or off in the 
+Stripe Dashboard
+. In Checkout, Stripe evaluates the currency and any restrictions, then dynamically presents the supported payment methods to the customer.
+To see how your payment methods appear to customers, enter a transaction ID or set an order amount and currency in the Dashboard.
+You can enable Apple Pay and Google Pay in your 
+payment methods settings
+. By default, Apple Pay is enabled and Google Pay is disabled. However, in some cases Stripe filters them out even when they’re enabled. We filter Google Pay if you 
+enable automatic tax
+ without collecting a shipping address.
+Checkout’s Stripe-hosted pages don’t need integration changes to enable Apple Pay or Google Pay. Stripe handles these payments the same way as other card payments.
+Confirm your endpoint
+Confirm your endpoint is accessible by starting your web server (for example, 
+localhost:4242
+) and running the following command:
+curl
+ -X
+ POST
+ -is
+
+"http://localhost:4242/create-checkout-session"
+ -d
+
+""
+You should see a response in your terminal that looks like this:
+Verify your integration 
+You should now have a working checkout button that redirects your customer to Stripe Checkout.
+Click the checkout button.
+You’re redirected to the Stripe Checkout payment form.
+If your integration isn’t working:
+Open the Network tab in your browser’s developer tools.
+Click the checkout button and confirm it sent an XHR request to your server-side endpoint (
+POST /create-checkout-session
+).
+Verify the request is returning a 200 status.
+Use 
+console.
+log(session)
+ inside your button click listener to confirm the correct data returned.
+---

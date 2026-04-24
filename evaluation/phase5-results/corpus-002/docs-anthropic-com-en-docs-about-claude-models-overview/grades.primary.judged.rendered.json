@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same key trade-offs and conditions as the ground-truth answer, including the smaller context window, lack of adaptive thinking, and lower max output limit, despite some differences in wording and emphasis.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 808,
+    "tokens_out": 48
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same factual content as the ground-truth answer, differing only in wording and omitting some but not all details about the practical implications.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 735,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer incorrectly states the price difference between the two models, saying $4 more expensive per input MTok instead of 5 times more expensive, or $4 more per million tokens.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 662,
+    "tokens_out": 43
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer states that the information is not in the document, but the ground-truth answer provides a clear explanation of the limit and the alternative API to use.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 661,
+    "tokens_out": 38
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, listing the two endpoint types and describing how they differ in terms of data routing.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 638,
+    "tokens_out": 35
+  }
+]

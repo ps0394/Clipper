@@ -1,0 +1,49 @@
+[
+  {
+    "question": "Under what conditions is the Python UTF-8 Mode enabled by default, and what encoding-related behaviors does it override in the os module?",
+    "answer": "The Python UTF-8 Mode is enabled by default if the LC_CTYPE locale is 'C' or 'POSIX' at Python startup, or if the current locale is identified as a legacy ASCII-based locale and locale coercion is disabled or fails; it forces the usage of UTF-8 encoding for command line arguments, environment variables, filenames, os.fsdecode(), os.fsencode(), and the default encoding for open(), io.open(), and codecs.open().",
+    "supporting_sentences": [
+      "The Python UTF-8 Mode is enabled if the LC_CTYPE locale is C or POSIX at Python startup (see the PyConfig_Read() function).",
+      "It can be enabled or disabled using the -X utf8 command line option and the PYTHONUTF8 environment variable.",
+      "If the PYTHONUTF8 environment variable is not set at all, then the interpreter defaults to using the current locale settings, unless the current locale is identified as a legacy ASCII-based locale (as described for PYTHONCOERCECLOCALE), and locale coercion is either disabled or fails. In such legacy locales, the interpreter will default to enabling UTF-8 mode unless explicitly instructed not to do so.",
+      "Command line arguments, environment variables and filenames are decoded to text using the UTF-8 encoding.",
+      "os.fsdecode() and os.fsencode() use the UTF-8 encoding.",
+      "open(), io.open(), and codecs.open() use the UTF-8 encoding by default."
+    ]
+  },
+  {
+    "question": "How does the behavior of os.environ differ between Unix and Windows when modifying or querying environment variables, and what are the implications for portability?",
+    "answer": "On Unix, os.environ keys and values use sys.getfilesystemencoding() and the 'surrogateescape' error handler, while on Windows, keys are converted to uppercase; modifying os.environ updates the environment for subprocesses, but changes outside Python or via os.putenv()/os.unsetenv() are not reflected unless os.reload_environ() is called, posing portability challenges for case-sensitive or encoding-dependent applications.",
+    "supporting_sentences": [
+      "On Unix, keys and values use sys.getfilesystemencoding() and 'surrogateescape' error handler. Use environb if you would like to use a different encoding.",
+      "On Windows, the keys are converted to uppercase. This also applies when getting, setting, or deleting an item.",
+      "This mapping is captured the first time the os module is imported, typically during Python startup as part of processing site.py. Changes to the environment made after this time are not reflected in os.environ, except for changes made by modifying os.environ directly.",
+      "Note that using the file descriptor directly will bypass the file object methods, ignoring aspects such as internal buffering of data."
+    ]
+  },
+  {
+    "question": "What is the difference between the default and maximum priority values for os.setpriority(), and under what circumstances might setting a priority outside this range raise an error?",
+    "answer": "The default priority is 0, and the priority range is -20 to 19; setting a priority outside this range or using an unsupported 'which' parameter (e.g., PRIO_DARWIN_THREAD on non-Darwin systems) will raise an OSError, as the document states that all functions raise OSError for invalid arguments.",
+    "supporting_sentences": [
+      "priority is a value in the range -20 to 19. The default priority is 0; lower priorities cause more favorable scheduling.",
+      "All functions in this module raise OSError (or subclasses thereof) in the case of invalid or inaccessible file names and paths, or other arguments that have the correct type, but are not accepted by the operating system."
+    ]
+  },
+  {
+    "question": "Which platforms lack support for os.fork(), os.execv(), and os.spawn*p*, and what alternative modules or functions does the document recommend for portable file handling?",
+    "answer": "VxWorks lacks support for os.fork(), os.execv(), and os.spawn*p*; for portable file handling, the document recommends using open() for file I/O, os.path for path manipulation, tempfile for temporary files, and shutil for high-level file operations.",
+    "supporting_sentences": [
+      "On VxWorks, os.popen, os.fork, os.execv and os.spawn*p* are not supported.",
+      "If you just want to read or write a file see open(), if you want to manipulate paths, see the os.path module, and if you want to read all the lines in all the files on the command line see the fileinput module. For creating temporary files and directories see the tempfile module, and for high-level file and directory handling see the shutil module."
+    ]
+  },
+  {
+    "question": "What happens if you attempt to use os.environb on a platform where supports_bytes_environ is False, and how can you work around this limitation?",
+    "answer": "If supports_bytes_environ is False (e.g., on Windows), os.environb will not be available, and attempting to use it will raise an AttributeError; the workaround is to use os.environ with string keys/values or manually encode/decode using sys.getfilesystemencoding().",
+    "supporting_sentences": [
+      "environb is only available if supports_bytes_environ is True.",
+      "os.supports_bytes_environ: True if the native OS type of the environment is bytes (eg. False on Windows).",
+      "On Unix, keys and values use sys.getfilesystemencoding() and 'surrogateescape' error handler. Use environb if you would like to use a different encoding."
+    ]
+  }
+]

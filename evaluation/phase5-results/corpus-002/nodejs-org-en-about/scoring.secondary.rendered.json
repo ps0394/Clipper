@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "Node.js handles concurrency differently through an asynchronous event-driven model, which is more efficient and easier to use than traditional thread-based systems. This approach frees developers from worries about deadlocks, as there are no locks in Node.js. Additionally, almost no function in Node.js directly performs I/O, so the process never blocks except when using synchronous methods, making it easier to develop scalable systems.",
+    "run_index": 0,
+    "tokens_in": 985,
+    "tokens_out": 78
+  },
+  {
+    "pair_index": 1,
+    "answer": "Child processes can be spawned by using the child_process.fork() API, and the cluster module allows you to share sockets between processes to enable load balancing over your cores.",
+    "run_index": 0,
+    "tokens_in": 978,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 2,
+    "answer": "The document does not specify the number of official npm package scopes the Node.js team maintains, but it does mention that they maintain packages published by the nodejs-foundation npm account.",
+    "run_index": 0,
+    "tokens_in": 981,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 3,
+    "answer": "Node.js exits the event loop when there are no more callbacks to perform, and this behavior is different from systems like Ruby's Event Machine or Python's Twisted, where a blocking call is typically used to start the event loop.",
+    "run_index": 0,
+    "tokens_in": 985,
+    "tokens_out": 47
+  },
+  {
+    "pair_index": 4,
+    "answer": "The potential risk is a lack of authenticity and security, and the two official domains are not specified in the document, only that there are domains to use for downloading Node.js binaries and accessing official documentation, but they are not listed.",
+    "run_index": 0,
+    "tokens_in": 984,
+    "tokens_out": 47
+  }
+]

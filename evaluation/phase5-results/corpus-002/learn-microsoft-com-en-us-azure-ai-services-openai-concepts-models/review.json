@@ -1,0 +1,116 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what conditions would a user need to explicitly set the `reasoning_effort` parameter when upgrading to `gpt-5.1`, and what is the default behavior if this parameter is not set?",
+      "answer": "A user needs to explicitly set the `reasoning_effort` parameter when upgrading to `gpt-5.1` if they want reasoning to occur; the default behavior is `none` if the parameter is not set.",
+      "supporting_sentences": [
+        "`gpt-5.1` `reasoning_effort` defaults to `none`.",
+        "When upgrading from previous reasoning models to `gpt-5.1`, keep in mind that you may need to update your code to explicitly pass a `reasoning_effort` level if you want reasoning to occur."
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what conditions would a user need to explicitly set the `reasoning_effort` parameter when upgrading to `gpt-5.1`, and what is the default behavior if this parameter is not set?",
+      "answer": "A user needs to explicitly set the `reasoning_effort` parameter when upgrading to `gpt-5.1` if they want reasoning to occur; the default behavior is `none` if the parameter is not set.",
+      "supporting_sentences": [
+        "`gpt-5.1` `reasoning_effort` defaults to `none`.",
+        "When upgrading from previous reasoning models to `gpt-5.1`, keep in mind that you may need to update your code to explicitly pass a `reasoning_effort` level if you want reasoning to occur."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which `gpt-5.4` series model has the largest context window, and how does its input token capacity compare to its output token capacity?",
+      "answer": "`gpt-5.4` and `gpt-5.4-pro` both have the largest context window of 1,050,000 tokens; their input token capacity is 1,050,000, while their output token capacity is 128,000.",
+      "supporting_sentences": [
+        "Model ID: `gpt-5.4` (2026-03-05); Context Window: 1,050,000; Max Output Tokens: 128,000",
+        "Model ID: `gpt-5.4-pro` (2026-03-05); Context Window: 1,050,000; Max Output Tokens: 128,000"
+      ]
+    },
+    "edited_pair": {
+      "question": "Which `gpt-5.4` series model has the largest context window, and how does its input token capacity compare to its output token capacity?",
+      "answer": "`gpt-5.4` and `gpt-5.4-pro` both have the largest context window of 1,050,000 tokens; their input token capacity is 1,050,000, while their output token capacity is 128,000.",
+      "supporting_sentences": [
+        "Model ID: `gpt-5.4` (2026-03-05); Context Window: 1,050,000; Max Output Tokens: 128,000",
+        "Model ID: `gpt-5.4-pro` (2026-03-05); Context Window: 1,050,000; Max Output Tokens: 128,000"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the difference in max output tokens between `gpt-5.3-chat` and `gpt-5.3-codex`, and under what circumstances would `gpt-5.3-chat` not support a parameter like `temperature`?",
+      "answer": "`gpt-5.3-chat` has a max output of 16,384 tokens, while `gpt-5.3-codex` has 128,000 tokens; `gpt-5.3-chat` does not support parameters like `temperature` if it is a reasoning model, as reasoning models inherently lack support for such parameters.",
+      "supporting_sentences": [
+        "Model ID: `gpt-5.3-chat` (2026-03-03); Max Output Tokens: 16,384",
+        "Model ID: `gpt-5.3-codex` (2026-02-24); Max Output Tokens: 128,000",
+        "`gpt-5.1-chat` adds built-in reasoning capabilities. Like other `reasoning models` it does not support parameters like `temperature`."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the difference in max output tokens between `gpt-5.3-chat` and `gpt-5.3-codex`, and under what circumstances would `gpt-5.3-chat` not support a parameter like `temperature`?",
+      "answer": "`gpt-5.3-chat` has a max output of 16,384 tokens, while `gpt-5.3-codex` has 128,000 tokens; `gpt-5.3-chat` does not support parameters like `temperature` if it is a reasoning model, as reasoning models inherently lack support for such parameters.",
+      "supporting_sentences": [
+        "Model ID: `gpt-5.3-chat` (2026-03-03); Max Output Tokens: 16,384",
+        "Model ID: `gpt-5.3-codex` (2026-02-24); Max Output Tokens: 128,000",
+        "`gpt-5.1-chat` adds built-in reasoning capabilities. Like other `reasoning models` it does not support parameters like `temperature`."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does the `gpt-5.4-mini` model's regional availability in Global Standard compare to its availability in Datazone Standard, and which regions are unique to each deployment type?",
+      "answer": "`gpt-5.4-mini` is available in East US2, Sweden Central, South Central US, and Poland Central for Global Standard; in Datazone Standard, it is only available in East US2 and South Central US. Poland Central is unique to Global Standard, while no regions are unique to Datazone Standard.",
+      "supporting_sentences": [
+        "gpt-5.4-mini (Global Standard): East US2, Sweden Central, South Central US, Poland Central",
+        "gpt-5.4-mini (Datazone Standard): East US2, South Central US"
+      ]
+    },
+    "edited_pair": {
+      "question": "How does the `gpt-5.4-mini` model's regional availability in Global Standard compare to its availability in Datazone Standard, and which regions are unique to each deployment type?",
+      "answer": "`gpt-5.4-mini` is available in East US2, Sweden Central, South Central US, and Poland Central for Global Standard; in Datazone Standard, it is only available in East US2 and South Central US. Poland Central is unique to Global Standard, while no regions are unique to Datazone Standard.",
+      "supporting_sentences": [
+        "gpt-5.4-mini (Global Standard): East US2, Sweden Central, South Central US, Poland Central",
+        "gpt-5.4-mini (Datazone Standard): East US2, South Central US"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens if a user attempts to use a tool or function call definition exceeding 300,000 tokens with a GPT 4.1 series model, and what are the specific error messages for the Chat Completions API in such cases?",
+      "answer": "The request will fail even if the model's context limit (1 million tokens) is not reached; the Chat Completions API will return one of two errors: either a `context_length_exceeded` error citing token count or a `string_above_max_length` error for overly long function descriptions.",
+      "supporting_sentences": [
+        "A known issue is affecting all GPT 4.1 series models. Large tool or function call definitions that exceed 300,000 tokens will result in failures, even though the 1 million token context limit of the models wasn't reached.",
+        "Error code: 400 - {'error': {'message': \"This model's maximum context length is 300000 tokens. However, your messages resulted in 350564 tokens (100 in the messages, 350464 in the functions). Please reduce the length of the messages or functions.\", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}",
+        "Error code: 400 - {'error': {'message': \"Invalid 'tools[0].function.description': string too long. Expected a string with maximum length 1048576, but got a string with length 2778531 instead.\", 'type': 'invalid_request_error', 'param': 'tools[0].function.description', 'code': 'string_above_max_length'}}"
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens if a user attempts to use a tool or function call definition exceeding 300,000 tokens with a GPT 4.1 series model, and what are the specific error messages for the Chat Completions API in such cases?",
+      "answer": "The request will fail even if the model's context limit (1 million tokens) is not reached; the Chat Completions API will return one of two errors: either a `context_length_exceeded` error citing token count or a `string_above_max_length` error for overly long function descriptions.",
+      "supporting_sentences": [
+        "A known issue is affecting all GPT 4.1 series models. Large tool or function call definitions that exceed 300,000 tokens will result in failures, even though the 1 million token context limit of the models wasn't reached.",
+        "Error code: 400 - {'error': {'message': \"This model's maximum context length is 300000 tokens. However, your messages resulted in 350564 tokens (100 in the messages, 350464 in the functions). Please reduce the length of the messages or functions.\", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}",
+        "Error code: 400 - {'error': {'message': \"Invalid 'tools[0].function.description': string too long. Expected a string with maximum length 1048576, but got a string with length 2778531 instead.\", 'type': 'invalid_request_error', 'param': 'tools[0].function.description', 'code': 'string_above_max_length'}}"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

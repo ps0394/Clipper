@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, describing the two distinct actions Docker performs when building the image.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 614,
+    "tokens_out": 31
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, differing only in wording and formatting.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 649,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer incorrectly identifies only one port and its role, whereas the ground truth mentions two ports with specific roles.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 640,
+    "tokens_out": 28
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer regarding the functionality and omission effects of the `-d` and `-p` flags.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 688,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer states that the information is not in the document, but the ground-truth answer indicates that the information can be inferred from the document.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 635,
+    "tokens_out": 35
+  }
+]

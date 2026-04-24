@@ -1,0 +1,144 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what conditions would a charge's `amount_captured` differ from its `amount`, and what does this difference represent in the context of a Stripe charge?",
+      "answer": "`amount_captured` differs from `amount` when only a portion of the charge is captured; the difference represents the uncaptured amount that was authorized but not yet transferred to the merchant's account.",
+      "supporting_sentences": [
+        "\"amount\": 1099,",
+        "\"amount_captured\": 1099,",
+        "The `amount_captured` field represents the amount that has been captured (transferred to your account). If not all of the `amount` is captured, this field will be less than the `amount`."
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what conditions would a charge's `amount_captured` differ from its `amount`, and what does this difference represent in the context of a Stripe charge?",
+      "answer": "`amount_captured` differs from `amount` when only a portion of the charge is captured; the difference represents the uncaptured amount that was authorized but not yet transferred to the merchant's account.",
+      "supporting_sentences": [
+        "\"amount\": 1099,",
+        "\"amount_captured\": 1099,",
+        "The `amount_captured` field represents the amount that has been captured (transferred to your account). If not all of the `amount` is captured, this field will be less than the `amount`."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does the `outcome` object's `risk_level` and `risk_score` relate to the charge's `disputed` status, and what does this imply about the charge's reliability?",
+      "answer": "The `risk_level` is \"normal\" and the `risk_score` is 0, indicating low fraud risk; this does not directly affect the `disputed` status (which is `false`), but suggests the charge is unlikely to be disputed due to fraud.",
+      "supporting_sentences": [
+        "\"disputed\": false,",
+        "\"risk_level\": \"normal\",",
+        "\"risk_score\": 0,",
+        "The `outcome` object provides details about the risk assessment of the charge, including `risk_level` and `risk_score`, which can indicate potential fraud."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does the `outcome` object's `risk_level` and `risk_score` relate to the charge's `disputed` status, and what does this imply about the charge's reliability?",
+      "answer": "The `risk_level` is \"normal\" and the `risk_score` is 0, indicating low fraud risk; this does not directly affect the `disputed` status (which is `false`), but suggests the charge is unlikely to be disputed due to fraud.",
+      "supporting_sentences": [
+        "\"disputed\": false,",
+        "\"risk_level\": \"normal\",",
+        "\"risk_score\": 0,",
+        "The `outcome` object provides details about the risk assessment of the charge, including `risk_level` and `risk_score`, which can indicate potential fraud."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the difference between the `calculated_statement_descriptor` and the `statement_descriptor` in this charge, and why might a merchant use one over the other?",
+      "answer": "`calculated_statement_descriptor` is \"Stripe\" (auto-generated), while `statement_descriptor` is `null`; merchants might use `statement_descriptor` to customize the descriptor shown on the customer's bank statement, but if left unset, Stripe uses the `calculated_statement_descriptor`.",
+      "supporting_sentences": [
+        "\"calculated_statement_descriptor\": \"Stripe\",",
+        "\"statement_descriptor\": null,",
+        "The `calculated_statement_descriptor` is derived from the account settings if no custom `statement_descriptor` is provided."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the difference between the `calculated_statement_descriptor` and the `statement_descriptor` in this charge, and why might a merchant use one over the other?",
+      "answer": "`calculated_statement_descriptor` is \"Stripe\" (auto-generated), while `statement_descriptor` is `null`; merchants might use `statement_descriptor` to customize the descriptor shown on the customer's bank statement, but if left unset, Stripe uses the `calculated_statement_descriptor`.",
+      "supporting_sentences": [
+        "\"calculated_statement_descriptor\": \"Stripe\",",
+        "\"statement_descriptor\": null,",
+        "The `calculated_statement_descriptor` is derived from the account settings if no custom `statement_descriptor` is provided."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How many distinct fields in this charge object are explicitly set to `null`, and what does this indicate about the charge's configuration?",
+      "answer": "12 fields are set to `null`; this indicates the charge was created without optional features like `customer`, `application_fee`, `shipping`, or custom descriptors.",
+      "supporting_sentences": [
+        "\"application\": null,",
+        "\"application_fee\": null,",
+        "\"application_fee_amount\": null,",
+        "\"customer\": null,",
+        "\"description\": null,",
+        "\"destination\": null,",
+        "\"failure_balance_transaction\": null,",
+        "\"on_behalf_of\": null,",
+        "\"order\": null,",
+        "\"payment_intent\": null,",
+        "\"receipt_email\": null,",
+        "\"receipt_number\": null,",
+        "\"statement_descriptor\": null,",
+        "\"transfer_data\": null"
+      ]
+    },
+    "edited_pair": {
+      "question": "How many distinct fields in this charge object are explicitly set to `null`, and what does this indicate about the charge's configuration?",
+      "answer": "12 fields are set to `null`; this indicates the charge was created without optional features like `customer`, `application_fee`, `shipping`, or custom descriptors.",
+      "supporting_sentences": [
+        "\"application\": null,",
+        "\"application_fee\": null,",
+        "\"application_fee_amount\": null,",
+        "\"customer\": null,",
+        "\"description\": null,",
+        "\"destination\": null,",
+        "\"failure_balance_transaction\": null,",
+        "\"on_behalf_of\": null,",
+        "\"order\": null,",
+        "\"payment_intent\": null,",
+        "\"receipt_email\": null,",
+        "\"receipt_number\": null,",
+        "\"statement_descriptor\": null,",
+        "\"transfer_data\": null"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens if a charge's `cvc_check` in the `payment_method_details.card.checks` object is `null`, and how does this affect the charge's security validation?",
+      "answer": "If `cvc_check` is `null`, the CVC was not verified during the charge; this may indicate the card issuer did not require CVC validation, but it does not necessarily mean the charge is insecure, as other checks (e.g., `address_line1_check`) may still apply.",
+      "supporting_sentences": [
+        "\"cvc_check\": null,",
+        "The `cvc_check` field indicates whether the CVC was successfully verified. If `null`, the CVC was not checked, which may occur if the card issuer does not require it."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens if a charge's `cvc_check` in the `payment_method_details.card.checks` object is `null`, and how does this affect the charge's security validation?",
+      "answer": "If `cvc_check` is `null`, the CVC was not verified during the charge; this may indicate the card issuer did not require CVC validation, but it does not necessarily mean the charge is insecure, as other checks (e.g., `address_line1_check`) may still apply.",
+      "supporting_sentences": [
+        "\"cvc_check\": null,",
+        "The `cvc_check` field indicates whether the CVC was successfully verified. If `null`, the CVC was not checked, which may occur if the card issuer does not require it."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

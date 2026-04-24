@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, despite minor wording differences and omissions of non-essential details.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 702,
+    "tokens_out": 32
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the requirement for explicit origins and the four specific headers that cannot use the wildcard when credentials are included.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 706,
+    "tokens_out": 40
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the maximum value of Access-Control-Max-Age (86400 seconds or 24 hours) specified in the document, which is a required element of the ground truth.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 661,
+    "tokens_out": 44
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the issue with CORS requests and the two potential workarounds, despite minor wording differences.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 712,
+    "tokens_out": 38
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the two scenarios where third-party cookie policies might prevent the request from succeeding.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 746,
+    "tokens_out": 35
+  }
+]

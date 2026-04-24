@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "A container can use the host's UTS namespace when the --uts flag is set to \"host\". However, Docker disallows combining the --hostname and --domainname flags with --uts=host to prevent containers running in the host's UTS namespace from attempting to change the host's configuration.",
+    "run_index": 0,
+    "tokens_in": 9516,
+    "tokens_out": 61
+  },
+  {
+    "pair_index": 1,
+    "answer": "Combining `--restart` (restart policy) with the `--rm` (clean up) flag results in an error.",
+    "run_index": 0,
+    "tokens_in": 9519,
+    "tokens_out": 27
+  },
+  {
+    "pair_index": 2,
+    "answer": "The `--pull` flag can take one of three values: `missing` (default), `always`, and `never`. \n- `missing` (default): Pull the image if it was not found in the image cache, or use the cached image otherwise. This default allows you to run images that only exist locally and reduces networking.\n- `always`: Always perform a pull before creating the container. This option makes sure the image is up-to-date but may not be suitable in situations where you want to test a locally built image before pushing.\n- `never`: Do not pull the image, even if it's missing, and produce an error if the image does not exist in the image cache. This option is useful in situations where networking is not available or to prevent images from being pulled implicitly when creating containers.\nEach policy is most appropriate under different circumstances:\n- Use `missing` (default) for general use cases where you want to balance between using the latest image and minimizing network traffic.\n- Use `always` when you need to ensure you're using the most up-to-date version of an image, such as in production environments where having the latest updates is crucial.\n- Use `never` in scenarios where network connectivity is an issue, or when you're testing local images and don't want them overwritten by a pull operation.",
+    "run_index": 0,
+    "tokens_in": 9529,
+    "tokens_out": 270
+  },
+  {
+    "pair_index": 3,
+    "answer": "The `--mount` flag supports most options supported by the `-v` or `--volume` flag, but uses a different syntax. Although there is no plan to deprecate `--volume`, usage of `--mount` is recommended.",
+    "run_index": 0,
+    "tokens_in": 9532,
+    "tokens_out": 51
+  },
+  {
+    "pair_index": 4,
+    "answer": "Docker prioritizes block I/O based on the relative weight of each container or device. The valid range for `--blkio-weight` is between 10 and 1000, and for `--blkio-weight-device` it is also between 10 and 1000. In this case, the container has a default weight of 500 and a device-specific weight of 800 for `/dev/sda`, meaning that I/O operations on `/dev/sda` will be given higher priority than other I/O operations.",
+    "run_index": 0,
+    "tokens_in": 9546,
+    "tokens_out": 107
+  }
+]

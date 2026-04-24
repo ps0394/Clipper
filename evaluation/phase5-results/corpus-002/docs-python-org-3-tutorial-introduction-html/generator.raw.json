@@ -1,0 +1,49 @@
+```json
+[
+    {
+        "question": "Under what conditions does Python's division operator return an integer, and what are the two alternative operators that can be used to achieve integer division or retrieve the remainder?",
+        "answer": "Python's division operator (/) always returns a float; to get an integer result, you must use the floor division operator (//) for the quotient, or the modulus operator (%) for the remainder.",
+        "supporting_sentences": [
+            "Division (/) always returns a float.",
+            "To do floor division and get an integer result you can use the // operator; to calculate the remainder you can use %"
+        ]
+    },
+    {
+        "question": "How does Python handle string concatenation when using variables versus string literals, and what error occurs if you attempt to concatenate them incorrectly?",
+        "answer": "String literals next to each other are automatically concatenated, but variables and string literals cannot be concatenated this way; attempting to do so results in a SyntaxError.",
+        "supporting_sentences": [
+            "Two or more string literals (i.e. the ones enclosed between quotes) next to each other are automatically concatenated.",
+            "This only works with two literals though, not with variables or expressions:",
+            ">>> prefix 'thon' # can't concatenate a variable and a string literal\n  File \"<stdin>\", line 1\n    prefix 'thon'\n         ^^^^^^\nSyntaxError: invalid syntax"
+        ]
+    },
+    {
+        "question": "What is the difference between the behavior of out-of-range indices when used for indexing versus slicing in Python strings, and what error is raised in the former case?",
+        "answer": "Out-of-range indices raise an IndexError when used for indexing, but slicing handles them gracefully by returning an empty string or the available portion of the string.",
+        "supporting_sentences": [
+            "Attempting to use an index that is too large will result in an error:",
+            ">>> word[42] # the word only has 6 characters\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\nIndexError: string index out of range",
+            "However, out of range slice indexes are handled gracefully when used for slicing:",
+            ">>> word[4:42]\n'on'\n>>> word[42:]\n''"
+        ]
+    },
+    {
+        "question": "How many numeric types are explicitly mentioned in the document, and what are they in the order they are introduced?",
+        "answer": "Five numeric types are mentioned: int, float, Decimal, Fraction, and complex.",
+        "supporting_sentences": [
+            "The integer numbers (e.g. 2, 4, 20) have type int, the ones with a fractional part (e.g. 5.0, 1.6) have type float.",
+            "In addition to int and float, Python supports other types of numbers, such as Decimal and Fraction.",
+            "Python also has built-in support for complex numbers, and uses the j or J suffix to indicate the imaginary part (e.g. 3+5j)."
+        ]
+    },
+    {
+        "question": "What happens if you assign a list to another variable and then modify the original list, and how can you create a separate copy of the list to avoid this behavior?",
+        "answer": "Assigning a list to another variable does not create a copy; both variables reference the same list, so modifications affect both. To create a separate copy, use slice notation (e.g., list[:]) to return a shallow copy.",
+        "supporting_sentences": [
+            "Simple assignment in Python never copies data. When you assign a list to a variable, the variable refers to the existing list. Any changes you make to the list through one variable will be seen through all other variables that refer to it.",
+            "All slice operations return a new list containing the requested elements. This means that the following slice returns a shallow copy of the list:",
+            ">>> correct_rgba = rgba[:]"
+        ]
+    }
+]
+```

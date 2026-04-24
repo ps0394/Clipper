@@ -1,0 +1,864 @@
+{
+  "parseability_score": 38.81425355960136,
+  "failure_mode": "severe_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-002\\docs-python-org-3-library-functions-html\\page.rendered.html",
+  "url": "https://docs.python.org/3/library/functions.html",
+  "component_scores": {
+    "semantic_html": 54.36363636363636,
+    "content_extractability": 48.11672234346134,
+    "structured_data": 5,
+    "dom_navigability": 10,
+    "metadata_completeness": 55,
+    "http_compliance": 76.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "nav",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "section",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "aside",
+          "count": 2,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 15,
+      "heading_elements_count": 9,
+      "scoring_breakdown": {
+        "semantic_coverage": 16.363636363636363,
+        "aria_bonus": 20,
+        "heading_bonus": 18
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 81332,
+        "extracted_text_length": 8489,
+        "extracted_chars": 8489,
+        "extraction_ratio": 0.104,
+        "extracted_title": "Built-in Functions",
+        "extracted_preview": "Open file and return a corresponding file object .  If the file\r\ncannot be opened, an OSError is raised. See Reading and Writing Files for more examples of how to use this function. file is a path-like object giving the pathname (absolute or\r\nrelative to the current working directory) of the file to...",
+        "original_headings": 9,
+        "extracted_headings": 0,
+        "original_lists": 17,
+        "extracted_lists": 5,
+        "original_code_blocks": 815,
+        "extracted_code_blocks": 106,
+        "has_main_element": false,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 20.87493237594059,
+        "structure_preservation": 4.24178996752075,
+        "boundary_detection": 23
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 0,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [],
+      "key_fields_found": [],
+      "formats_present": 1,
+      "score_breakdown": {
+        "type_appropriateness": 0,
+        "field_completeness": 0,
+        "multiple_formats": 5,
+        "schema_validation": 0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": []
+      },
+      "sample_structured_data": {
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:title",
+                "Built-in Functions"
+              ],
+              [
+                "og:type",
+                "website"
+              ],
+              [
+                "og:url",
+                "https://docs.python.org/3/library/functions.html"
+              ],
+              [
+                "og:site_name",
+                "Python documentation"
+              ],
+              [
+                "og:description",
+                "The Python interpreter has a number of functions and types built into it that are always available. They are listed here in alphabetical order.,,,, Built-in Functions,,, A, abs(), aiter(), all(), a..."
+              ],
+              [
+                "og:image:width",
+                "1146"
+              ],
+              [
+                "og:image:height",
+                "600"
+              ],
+              [
+                "og:image",
+                "https://docs.python.org/3.14/_images/social_previews/summary_library_functions_087d61cd.png"
+              ],
+              [
+                "og:image:alt",
+                "The Python interpreter has a number of functions and types built into it that are always available. They are listed here in alphabetical order.,,,, Built-in Functions,,, A, abs(), aiter(), all(), a..."
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures role attribute has an appropriate value for the element",
+          "help": "ARIA role must be appropriate for the element",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+          "id": "aria-allowed-role",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "navigation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role navigation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role navigation  is not allowed for given element",
+              "html": "<nav class=\"nav-content\" role=\"navigation\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".nav-content"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "navigation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role navigation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role navigation  is not allowed for given element",
+              "html": "<nav class=\"menu\" role=\"navigation\" aria-label=\"main navigation\" tabindex=\"-1\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".menu"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+          "help": "Elements must have sufficient color contrast",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#d6d6d6",
+                    "contrastRatio": 3.62,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0072aa",
+                    "fontSize": "11.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.62 (foreground color: #0072aa, background color: #d6d6d6, font size: 11.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"xref py py-mod docutils literal notranslate\"><span class=\"pre\">code</span></code>",
+                      "target": [
+                        "a[href$=\"code.html#module-code\"] > .py-mod.xref.py"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.62 (foreground color: #0072aa, background color: #d6d6d6, font size: 11.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"pre\">code</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"code.html#module-code\"] > .py-mod.xref.py > .pre"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#d6d6d6",
+                    "contrastRatio": 3.62,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0072aa",
+                    "fontSize": "11.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.62 (foreground color: #0072aa, background color: #d6d6d6, font size: 11.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"xref py py-func docutils literal notranslate\"><span class=\"pre\">globals()</span></code>",
+                      "target": [
+                        ".note.admonition:nth-child(10) > p:nth-child(2) > .internal[title=\"globals\"][href$=\"#globals\"] > .py-func.xref.py"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.62 (foreground color: #0072aa, background color: #d6d6d6, font size: 11.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"pre\">globals()</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".note.admonition:nth-child(10) > p:nth-child(2) > .internal[title=\"globals\"][href$=\"#globals\"] > .py-func.xref.py > .pre"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#d6d6d6",
+                    "contrastRatio": 3.62,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0072aa",
+                    "fontSize": "11.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.62 (foreground color: #0072aa, background color: #d6d6d6, font size: 11.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"xref py py-func docutils literal notranslate\"><span class=\"pre\">locals()</span></code>",
+                      "target": [
+                        ".note.admonition:nth-child(10) > p:nth-child(2) > .internal[title=\"locals\"][href$=\"#locals\"] > .py-func.xref.py"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.62 (foreground color: #0072aa, background color: #d6d6d6, font size: 11.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"pre\">locals()</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".note.admonition:nth-child(10) > p:nth-child(2) > .internal[title=\"locals\"][href$=\"#locals\"] > .py-func.xref.py > .pre"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#d6d6d6",
+                    "contrastRatio": 3.62,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0072aa",
+                    "fontSize": "11.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.62 (foreground color: #0072aa, background color: #d6d6d6, font size: 11.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"xref py py-func docutils literal notranslate\"><span class=\"pre\">locals()</span></code>",
+                      "target": [
+                        ".note.admonition:nth-child(11) > p:nth-child(2) > .internal[title=\"locals\"][href$=\"#locals\"] > .py-func.xref.py"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.62 (foreground color: #0072aa, background color: #d6d6d6, font size: 11.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"pre\">locals()</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".note.admonition:nth-child(11) > p:nth-child(2) > .internal[title=\"locals\"][href$=\"#locals\"] > .py-func.xref.py > .pre"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#d6d6d6",
+                    "contrastRatio": 3.62,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0072aa",
+                    "fontSize": "11.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.62 (foreground color: #0072aa, background color: #d6d6d6, font size: 11.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"xref py py-meth docutils literal notranslate\"><span class=\"pre\">__hash__()</span></code>",
+                      "target": [
+                        "a[title=\"object\\.__hash__\"] > .py-meth.xref.py"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.62 (foreground color: #0072aa, background color: #d6d6d6, font size: 11.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"pre\">__hash__()</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[title=\"object\\.__hash__\"] > .py-meth.xref.py > .pre"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#d6d6d6",
+                    "contrastRatio": 3.62,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0072aa",
+                    "fontSize": "11.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.62 (foreground color: #0072aa, background color: #d6d6d6, font size: 11.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"xref py py-meth docutils literal notranslate\"><span class=\"pre\">float.hex()</span></code>",
+                      "target": [
+                        "a[href$=\"stdtypes.html#float.hex\"] > .py-meth.xref.py"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.62 (foreground color: #0072aa, background color: #d6d6d6, font size: 11.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"pre\">float.hex()</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"stdtypes.html#float.hex\"] > .py-meth.xref.py > .pre"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#d6d6d6",
+                    "contrastRatio": 3.62,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0072aa",
+                    "fontSize": "11.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.62 (foreground color: #0072aa, background color: #d6d6d6, font size: 11.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"xref py py-attr docutils literal notranslate\"><span class=\"pre\">__dict__</span></code>",
+                      "target": [
+                        ".note.admonition > p:nth-child(2) > .internal.reference[title=\"object\\.__dict__\"] > .py-attr.xref.py"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.62 (foreground color: #0072aa, background color: #d6d6d6, font size: 11.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"pre\">__dict__</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".note.admonition > p:nth-child(2) > .internal.reference[title=\"object\\.__dict__\"] > .py-attr.xref.py > .pre"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#d6d6d6",
+                    "contrastRatio": 3.62,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0072aa",
+                    "fontSize": "11.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.62 (foreground color: #0072aa, background color: #d6d6d6, font size: 11.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<code class=\"xref py py-func docutils literal notranslate\"><span class=\"pre\">importlib.import_module()</span></code>",
+                      "target": [
+                        "#index-15 > p:nth-child(2) > .internal.reference[title=\"importlib\\.import_module\"] > .py-func.xref.py"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.62 (foreground color: #0072aa, background color: #d6d6d6, font size: 11.6pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"pre\">importlib.import_module()</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "#index-15 > p:nth-child(2) > .internal.reference[title=\"importlib\\.import_module\"] > .py-func.xref.py > .pre"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+          ]
+        },
+        {
+          "description": "Ensures <dl> elements are structured correctly",
+          "help": "<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script> or <template> elements",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/definition-list?application=axeAPI",
+          "id": "definition-list",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed inside <dt> or <dd> elements",
+              "html": "<dl class=\"py class\" id=\"func-str\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "only-dlitems",
+                  "impact": "serious",
+                  "message": "List element has direct children that are not allowed inside <dt> or <dd> elements",
+                  "relatedNodes": [
+                    {
+                      "html": "<span id=\"index-13\"></span>",
+                      "target": [
+                        "#index-13"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                "#func-str"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.structure",
+            "wcag2a",
+            "wcag131"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value of active elements is unique",
+          "help": "IDs of active elements must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id-active?application=axeAPI",
+          "id": "duplicate-id-active",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "search-box",
+                  "id": "duplicate-id-active",
+                  "impact": "serious",
+                  "message": "Document has active elements with the same id attribute: search-box",
+                  "relatedNodes": [
+                    {
+                      "html": "<input placeholder=\"Quick search\" aria-label=\"Quick search\" type=\"search\" name=\"q\" id=\"search-box\">",
+                      "target": [
+                        ".related[aria-label=\"Related\"][role=\"navigation\"]:nth-child(4) > ul > .right:nth-child(12) > .inline-search[role=\"search\"] > form > input[placeholder=\"Quick\\ search\"][aria-label=\"Quick\\ search\"][type=\"search\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has active elements with the same id attribute: search-box",
+              "html": "<input placeholder=\"Quick search\" aria-label=\"Quick search\" type=\"search\" name=\"q\" id=\"search-box\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".related[aria-label=\"Related\"][role=\"navigation\"]:nth-child(2) > ul > .right:nth-child(12) > .inline-search[role=\"search\"] > form > input[placeholder=\"Quick\\ search\"][aria-label=\"Quick\\ search\"][type=\"search\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value is unique",
+          "help": "id attribute value must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id?application=axeAPI",
+          "id": "duplicate-id",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "cpython-language-and-version",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<li id=\"cpython-language-and-version\">\n      <a href=\"../index.html\">3.14.4 Documentation</a> »\n    </li>",
+                      "target": [
+                        ".related[aria-label=\"Related\"][role=\"navigation\"]:nth-child(4) > ul > li:nth-child(9)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<li id=\"cpython-language-and-version\">\n      <a href=\"../index.html\">3.14.4 Documentation</a> »\n    </li>",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".related[aria-label=\"Related\"][role=\"navigation\"]:nth-child(2) > ul > li:nth-child(9)"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/heading-order?application=axeAPI",
+          "id": "heading-order",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": 4,
+                  "id": "heading-order",
+                  "impact": "moderate",
+                  "message": "Heading order invalid",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Heading order invalid",
+              "html": "<h4>Previous topic</h4>",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "div:nth-child(1) > h4"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures all page content is contained by landmarks",
+          "help": "All page content must be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/region?application=axeAPI",
+          "id": "region",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "region",
+                  "impact": "moderate",
+                  "message": "Some page content is not contained by landmarks",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"footer\">",
+                      "target": [
+                        ".footer"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks",
+              "html": "<html lang=\"en\" data-content_root=\"../\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.keyboard",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 7,
+      "passes_count": 42,
+      "total_penalty": 90,
+      "penalty_per_rule": {
+        "aria-allowed-role": {
+          "impact": "minor",
+          "node_count": 2,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        },
+        "color-contrast": {
+          "impact": "serious",
+          "node_count": 8,
+          "raw_penalty": 120,
+          "capped_penalty": 25
+        },
+        "definition-list": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "duplicate-id-active": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "duplicate-id": {
+          "impact": "minor",
+          "node_count": 1,
+          "raw_penalty": 5,
+          "capped_penalty": 5
+        },
+        "heading-order": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        },
+        "region": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        }
+      },
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 0,
+        "date": 0,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [
+          "meta:description",
+          "og:description"
+        ],
+        "author": [],
+        "date": [],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 4,
+      "fields_total": 7,
+      "json_ld_type": "none"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "\"69ea7059-4d02c\"",
+        "last_modified": "Thu, 23 Apr 2026 19:17:45 GMT",
+        "cache_control": "absent"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 16,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "article",
+      "detection": {
+        "source": "default"
+      },
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.2,
+        "structured_data": 0.2,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "article",
+  "universal_score": 38.81425355960136,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 54.36363636363636,
+    "content_extractability": 48.11672234346134,
+    "structured_data": 5,
+    "dom_navigability": 10,
+    "metadata_completeness": 55,
+    "http_compliance": 76.0
+  },
+  "evidence_references": null
+}

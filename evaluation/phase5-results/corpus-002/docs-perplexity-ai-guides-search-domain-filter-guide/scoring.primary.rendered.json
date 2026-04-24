@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "A search using the `search_domain_filter` would return no results if the specified domains do not contain content relevant to your query or if the filters are overly restrictive. Two specific strategies to avoid this outcome are: (1) Ensure the domains you specify actually contain content relevant to your query, and (2) Use fewer, highly relevant domains rather than maximizing the 20-domain limit.",
+    "run_index": 0,
+    "tokens_in": 2875,
+    "tokens_out": 78
+  },
+  {
+    "pair_index": 1,
+    "answer": "When a root domain is specified, the domain filtering system matches all content from that domain and its subdomains. For example, specifying \"wikipedia.org\" will match en.wikipedia.org, fr.wikipedia.org, de.wikipedia.org, and any other Wikipedia language subdomain.",
+    "run_index": 0,
+    "tokens_in": 2872,
+    "tokens_out": 54
+  },
+  {
+    "pair_index": 2,
+    "answer": "The maximum number of domains allowed in a single `search_domain_filter` request is 20, while the 'Tech News Sources' example shows 4 domains. The difference is 16 domains. This difference matters because using fewer, highly relevant domains often produces better results than maximizing the 20-domain limit.",
+    "run_index": 0,
+    "tokens_in": 2886,
+    "tokens_out": 62
+  },
+  {
+    "pair_index": 3,
+    "answer": "The filter works in either allowlist mode (include only) or denylist mode (exclude), but not both simultaneously. Use either allowlist mode (include only) OR denylist mode (exclude), but not both in the same request.",
+    "run_index": 0,
+    "tokens_in": 2879,
+    "tokens_out": 49
+  },
+  {
+    "pair_index": 4,
+    "answer": "You cannot both exclude (denylist) and include (allowlist) domains in the same request using the `search_domain_filter` parameter; it supports only one mode at a time (either allowlist or denylist, not both). The potential issue is that the researcher cannot simultaneously exclude all social media domains and limit results to academic sources in a single request.",
+    "run_index": 0,
+    "tokens_in": 2892,
+    "tokens_out": 73
+  }
+]

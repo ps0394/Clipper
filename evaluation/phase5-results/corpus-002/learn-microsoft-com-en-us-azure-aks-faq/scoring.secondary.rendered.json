@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "AKS automatically upgrades unsupported clusters when they are about to drop to n-4 version, and it upgrades them to n-2 version.",
+    "run_index": 0,
+    "tokens_in": 4979,
+    "tokens_out": 29
+  },
+  {
+    "pair_index": 1,
+    "answer": "When using `--os-sku Ubuntu`, AKS defaults to Ubuntu 22.04 in Kubernetes versions 1.25-1.34, but defaults to Ubuntu 24.04 in Kubernetes versions 1.35+. However, in some scenarios like FIPS-enabled node pools, the default OS version might differ.",
+    "run_index": 0,
+    "tokens_in": 5010,
+    "tokens_out": 66
+  },
+  {
+    "pair_index": 2,
+    "answer": "You can't: \nSpecify an existing resource group for the node resource group.\nSpecify a different subscription for the node resource group.\nChange the node resource group name after you create the cluster.\nSpecify names for the managed resources within the node resource group.\nModify or delete Azure-created tags of managed resources within the node resource group.",
+    "run_index": 0,
+    "tokens_in": 4988,
+    "tokens_out": 66
+  },
+  {
+    "pair_index": 3,
+    "answer": "4, Ubuntu Linux",
+    "run_index": 0,
+    "tokens_in": 4990,
+    "tokens_out": 5
+  },
+  {
+    "pair_index": 4,
+    "answer": "Modifying any Azure-created tags on resources under the node resource group in the AKS cluster is an unsupported action, which breaks the service-level objective (SLO), and you might get unexpected scaling and upgrading errors.",
+    "run_index": 0,
+    "tokens_in": 5003,
+    "tokens_out": 44
+  }
+]

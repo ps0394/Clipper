@@ -1,0 +1,118 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what conditions can a container use the host's UTS namespace, and what limitations does Docker impose when this is configured?",
+      "answer": "A container can use the host's UTS namespace by setting `--uts=host`; however, Docker disallows combining this with the `--hostname` or `--domainname` flags to prevent containers from changing the host's configuration.",
+      "supporting_sentences": [
+        "The UTS namespace is for setting the hostname and the domain that's visible to running processes in that namespace. By default, all containers, including those with `--network=host`, have their own UTS namespace. Setting `--uts` to `host` results in the container using the same UTS namespace as the host.",
+        "Docker disallows combining the `--hostname` and `--domainname` flags with `--uts=host`. This is to prevent containers running in the host's UTS namespace from attempting to change the hosts' configuration."
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what conditions can a container use the host's UTS namespace, and what limitations does Docker impose when this is configured?",
+      "answer": "A container can use the host's UTS namespace by setting `--uts=host`; however, Docker disallows combining this with the `--hostname` or `--domainname` flags to prevent containers from changing the host's configuration.",
+      "supporting_sentences": [
+        "The UTS namespace is for setting the hostname and the domain that's visible to running processes in that namespace. By default, all containers, including those with `--network=host`, have their own UTS namespace. Setting `--uts` to `host` results in the container using the same UTS namespace as the host.",
+        "Docker disallows combining the `--hostname` and `--domainname` flags with `--uts=host`. This is to prevent containers running in the host's UTS namespace from attempting to change the hosts' configuration."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does the `--restart` policy interact with the `--rm` flag, and what happens if both are specified for a container?",
+      "answer": "Combining `--restart` (restart policy) with the `--rm` (clean up) flag results in an error; Docker does not allow both to be specified simultaneously because attached clients are disconnected on container restart.",
+      "supporting_sentences": [
+        "Combining `--restart` (restart policy) with the `--rm` (clean up) flag results in an error.",
+        "On container restart, attached clients are disconnected."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does the `--restart` policy interact with the `--rm` flag, and what happens if both are specified for a container?",
+      "answer": "Combining `--restart` (restart policy) with the `--rm` (clean up) flag results in an error; Docker does not allow both to be specified simultaneously because attached clients are disconnected on container restart.",
+      "supporting_sentences": [
+        "Combining `--restart` (restart policy) with the `--rm` (clean up) flag results in an error.",
+        "On container restart, attached clients are disconnected."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the difference between the default (`missing`), `always`, and `never` pull policies for the `--pull` flag, and under what circumstances would each be most appropriate?",
+      "answer": "`missing` (default) pulls the image only if it is not found in the local cache; `always` always pulls the image before creating the container, ensuring it is up-to-date; `never` disables pulling and only uses locally cached images, producing an error if the image is missing. `missing` is suitable for local development, `always` for production to avoid outdated images, and `never` for offline or controlled environments.",
+      "supporting_sentences": [
+        "The `--pull` flag can take one of these values: `missing` (default): Pull the image if it was not found in the image cache, or use the cached image otherwise; `never`: Do not pull the image, even if it's missing, and produce an error if the image does not exist in the image cache; `always`: Always perform a pull before creating the container.",
+        "The default (`missing`) is to only pull the image if it's not present in the daemon's image cache. This default allows you to run images that only exist locally (for example, images you built from a Dockerfile, but that have not been pushed to a registry), and reduces networking.",
+        "The `always` option always initiates a pull before creating the container. This option makes sure the image is up-to-date, and prevents you from using outdated images, but may not be suitable in situations where you want to test a locally built image before pushing (as pulling the image overwrites the existing image in the image cache).",
+        "The `never` option disables (implicit) pulling images when creating containers, and only uses images that are available in the image cache. If the specified image is not found, an error is produced, and the container is not created. This option is useful in situations where networking is not available, or to prevent images from being pulled implicitly when creating containers."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the difference between the default (`missing`), `always`, and `never` pull policies for the `--pull` flag, and under what circumstances would each be most appropriate?",
+      "answer": "`missing` (default) pulls the image only if it is not found in the local cache; `always` always pulls the image before creating the container, ensuring it is up-to-date; `never` disables pulling and only uses locally cached images, producing an error if the image is missing. `missing` is suitable for local development, `always` for production to avoid outdated images, and `never` for offline or controlled environments.",
+      "supporting_sentences": [
+        "The `--pull` flag can take one of these values: `missing` (default): Pull the image if it was not found in the image cache, or use the cached image otherwise; `never`: Do not pull the image, even if it's missing, and produce an error if the image does not exist in the image cache; `always`: Always perform a pull before creating the container.",
+        "The default (`missing`) is to only pull the image if it's not present in the daemon's image cache. This default allows you to run images that only exist locally (for example, images you built from a Dockerfile, but that have not been pushed to a registry), and reduces networking.",
+        "The `always` option always initiates a pull before creating the container. This option makes sure the image is up-to-date, and prevents you from using outdated images, but may not be suitable in situations where you want to test a locally built image before pushing (as pulling the image overwrites the existing image in the image cache).",
+        "The `never` option disables (implicit) pulling images when creating containers, and only uses images that are available in the image cache. If the specified image is not found, an error is produced, and the container is not created. This option is useful in situations where networking is not available, or to prevent images from being pulled implicitly when creating containers."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the key differences between the `--volume` (`-v`) and `--mount` flags for mounting volumes, and why does Docker recommend using `--mount` over `--volume`?",
+      "answer": "`--mount` supports more options and uses a different syntax compared to `--volume`; it is recommended because it is more explicit and less prone to ambiguity, though `--volume` is not deprecated. `--mount` allows finer control over mount configurations, such as specifying read-only or read-write modes, and supports additional options like `tmpfs` mounts.",
+      "supporting_sentences": [
+        "The `--mount` flag allows you to mount volumes, host-directories, and `tmpfs` mounts in a container. The `--mount` flag supports most options supported by the `-v` or the `--volume` flag, but uses a different syntax.",
+        "Even though there is no plan to deprecate `--volume`, usage of `--mount` is recommended.",
+        "For in-depth information on the `--mount` flag, and a comparison between `--volume` and `--mount`, refer to Bind mounts."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the key differences between the `--volume` (`-v`) and `--mount` flags for mounting volumes, and why does Docker recommend using `--mount` over `--volume`?",
+      "answer": "`--mount` supports more options and uses a different syntax compared to `--volume`; it is recommended because it is more explicit and less prone to ambiguity, though `--volume` is not deprecated. `--mount` allows finer control over mount configurations, such as specifying read-only or read-write modes, and supports additional options like `tmpfs` mounts.",
+      "supporting_sentences": [
+        "The `--mount` flag allows you to mount volumes, host-directories, and `tmpfs` mounts in a container. The `--mount` flag supports most options supported by the `-v` or the `--volume` flag, but uses a different syntax.",
+        "Even though there is no plan to deprecate `--volume`, usage of `--mount` is recommended.",
+        "For in-depth information on the `--mount` flag, and a comparison between `--volume` and `--mount`, refer to Bind mounts."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "If a container is started with `--blkio-weight=500` and `--blkio-weight-device=/dev/sda:800`, how does Docker prioritize block I/O between the default weight and the device-specific weight, and what is the valid range for these values?",
+      "answer": "Docker uses the device-specific weight (`800` for `/dev/sda`) for I/O operations on that device, overriding the default weight (`500`); the valid range for `--blkio-weight` is between 10 and 1000 (or 0 to disable), and `--blkio-weight-device` follows the same range for relative device weights.",
+      "supporting_sentences": [
+        "--blkio-weight: Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)",
+        "--blkio-weight-device: Block IO weight (relative device weight)"
+      ]
+    },
+    "edited_pair": {
+      "question": "If a container is started with `--blkio-weight=500` and `--blkio-weight-device=/dev/sda:800`, how does Docker prioritize block I/O between the default weight and the device-specific weight, and what is the valid range for these values?",
+      "answer": "Docker uses the device-specific weight (`800` for `/dev/sda`) for I/O operations on that device, overriding the default weight (`500`); the valid range for `--blkio-weight` is between 10 and 1000 (or 0 to disable), and `--blkio-weight-device` follows the same range for relative device weights.",
+      "supporting_sentences": [
+        "--blkio-weight: Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)",
+        "--blkio-weight-device: Block IO weight (relative device weight)"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

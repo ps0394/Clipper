@@ -1,0 +1,118 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the two distinct methods described in the tutorial to access the Kubernetes dashboard, and what is the key difference in how the dashboard is made accessible in each method?",
+      "answer": "The two methods are: 1) Running `minikube dashboard` (opens the dashboard in the default browser via a temporary proxy); 2) Running `minikube dashboard --url` (outputs a URL for manual browser access). The key difference is that the first method automatically opens the browser, while the second requires the user to manually open the URL in their preferred browser.",
+      "supporting_sentences": [
+        "Open the Kubernetes dashboard. You can do this two different ways:",
+        "minikube dashboard",
+        "The dashboard command enables the dashboard add-on and opens the proxy in the default web browser.",
+        "If you don't want minikube to open a web browser for you, run the dashboard subcommand with the --url flag. minikube outputs a URL that you can open in the browser you prefer.",
+        "minikube dashboard --url"
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the two distinct methods described in the tutorial to access the Kubernetes dashboard, and what is the key difference in how the dashboard is made accessible in each method?",
+      "answer": "The two methods are: 1) Running `minikube dashboard` (opens the dashboard in the default browser via a temporary proxy); 2) Running `minikube dashboard --url` (outputs a URL for manual browser access). The key difference is that the first method automatically opens the browser, while the second requires the user to manually open the URL in their preferred browser.",
+      "supporting_sentences": [
+        "Open the Kubernetes dashboard. You can do this two different ways:",
+        "minikube dashboard",
+        "The dashboard command enables the dashboard add-on and opens the proxy in the default web browser.",
+        "If you don't want minikube to open a web browser for you, run the dashboard subcommand with the --url flag. minikube outputs a URL that you can open in the browser you prefer.",
+        "minikube dashboard --url"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what circumstances would the `hello-node` Service's external IP remain in a `<pending>` state, and what alternative command is provided to access the Service in this scenario?",
+      "answer": "The external IP would remain `<pending>` when using minikube (as opposed to a cloud provider that supports load balancers); the alternative command to access the Service is `minikube service hello-node`.",
+      "supporting_sentences": [
+        "On cloud providers that support load balancers, an external IP address would be provisioned to access the Service. On minikube, the LoadBalancer type makes the Service accessible through the minikube service command.",
+        "Run the following command: minikube service hello-node",
+        "The output is similar to: NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE hello-node   LoadBalancer   10.108.144.78   <pending>     8080:30369/TCP   21s"
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what circumstances would the `hello-node` Service's external IP remain in a `<pending>` state, and what alternative command is provided to access the Service in this scenario?",
+      "answer": "The external IP would remain `<pending>` when using minikube (as opposed to a cloud provider that supports load balancers); the alternative command to access the Service is `minikube service hello-node`.",
+      "supporting_sentences": [
+        "On cloud providers that support load balancers, an external IP address would be provisioned to access the Service. On minikube, the LoadBalancer type makes the Service accessible through the minikube service command.",
+        "Run the following command: minikube service hello-node",
+        "The output is similar to: NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE hello-node   LoadBalancer   10.108.144.78   <pending>     8080:30369/TCP   21s"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How many addons are listed as enabled by default in the minikube environment, and which ones are they?",
+      "answer": "Three addons are enabled by default: `addon-manager`, `dashboard`, and `default-storageclass`.",
+      "supporting_sentences": [
+        "List the currently supported addons: The output is similar to: addon-manager: enabled dashboard: enabled default-storageclass: enabled efk: disabled freshpod: disabled gvisor: disabled helm-tiller: disabled ingress: disabled ingress-dns: disabled logviewer: disabled metrics-server: disabled nvidia-driver-installer: disabled nvidia-gpu-device-plugin: disabled registry: disabled registry-creds: disabled storage-provisioner: enabled storage-provisioner-gluster: disabled"
+      ]
+    },
+    "edited_pair": {
+      "question": "How many addons are listed as enabled by default in the minikube environment, and which ones are they?",
+      "answer": "Three addons are enabled by default: `addon-manager`, `dashboard`, and `default-storageclass`.",
+      "supporting_sentences": [
+        "List the currently supported addons: The output is similar to: addon-manager: enabled dashboard: enabled default-storageclass: enabled efk: disabled freshpod: disabled gvisor: disabled helm-tiller: disabled ingress: disabled ingress-dns: disabled logviewer: disabled metrics-server: disabled nvidia-driver-installer: disabled nvidia-gpu-device-plugin: disabled registry: disabled registry-creds: disabled storage-provisioner: enabled storage-provisioner-gluster: disabled"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the sequence of steps required to expose the `hello-node` Pod to the public internet, starting from the creation of the Deployment?",
+      "answer": "1) Create the Deployment using `kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.53 -- /agnhost netexec --http-port=8080`; 2) Expose the Pod as a Service using `kubectl expose deployment hello-node --type=LoadBalancer --port=8080`; 3) Access the Service via `minikube service hello-node`.",
+      "supporting_sentences": [
+        "Use the kubectl create command to create a Deployment that manages a Pod. The Pod runs a Container based on the provided Docker image. # Run a test container image that includes a webserver kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.53 -- /agnhost netexec --http-port=8080",
+        "Expose the Pod to the public internet using the kubectl expose command: kubectl expose deployment hello-node --type=LoadBalancer --port=8080",
+        "On minikube, the LoadBalancer type makes the Service accessible through the minikube service command. Run the following command: minikube service hello-node"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the sequence of steps required to expose the `hello-node` Pod to the public internet, starting from the creation of the Deployment?",
+      "answer": "1) Create the Deployment using `kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.53 -- /agnhost netexec --http-port=8080`; 2) Expose the Pod as a Service using `kubectl expose deployment hello-node --type=LoadBalancer --port=8080`; 3) Access the Service via `minikube service hello-node`.",
+      "supporting_sentences": [
+        "Use the kubectl create command to create a Deployment that manages a Pod. The Pod runs a Container based on the provided Docker image. # Run a test container image that includes a webserver kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.53 -- /agnhost netexec --http-port=8080",
+        "Expose the Pod to the public internet using the kubectl expose command: kubectl expose deployment hello-node --type=LoadBalancer --port=8080",
+        "On minikube, the LoadBalancer type makes the Service accessible through the minikube service command. Run the following command: minikube service hello-node"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the potential security risk mentioned when exposing the `hello-node` Pod as a Service, and what specific endpoint is flagged as dangerous?",
+      "answer": "The security risk is exposing the `/shell` endpoint of the `agnhost` container to the public internet, which is useful for debugging but dangerous in production or internet-facing clusters.",
+      "supporting_sentences": [
+        "Warning: The agnhost container has a /shell endpoint, which is useful for debugging, but dangerous to expose to the public internet. Do not run this on an internet-facing cluster, or a production cluster."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the potential security risk mentioned when exposing the `hello-node` Pod as a Service, and what specific endpoint is flagged as dangerous?",
+      "answer": "The security risk is exposing the `/shell` endpoint of the `agnhost` container to the public internet, which is useful for debugging but dangerous in production or internet-facing clusters.",
+      "supporting_sentences": [
+        "Warning: The agnhost container has a /shell endpoint, which is useful for debugging, but dangerous to expose to the public internet. Do not run this on an internet-facing cluster, or a production cluster."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

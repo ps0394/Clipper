@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "A CORS request triggers a preflight when it doesn't meet the conditions of a simple request. The two key headers the browser sends during this preflight are Access-Control-Request-Method and Access-Control-Request-Headers, which inform the server about the HTTP method and headers that will be used in the actual request.",
+    "run_index": 0,
+    "tokens_in": 4012,
+    "tokens_out": 64
+  },
+  {
+    "pair_index": 1,
+    "answer": "When credentials are included in a CORS request, the server's response headers are affected in that the server must not specify the * wildcard for certain headers. The four specific headers that cannot use the wildcard (*) when credentials are included are: Access-Control-Allow-Origin, Access-Control-Allow-Headers, Access-Control-Allow-Methods, and Access-Control-Expose-Headers. Instead, the server must specify an explicit origin or list of values for these headers.",
+    "run_index": 0,
+    "tokens_in": 4011,
+    "tokens_out": 86
+  },
+  {
+    "pair_index": 2,
+    "answer": "The default value is 5 seconds, while the maximum value is browser-specific and takes precedence when Access-Control-Max-Age exceeds it, such as 86400 seconds (= 24 hours) in the given example.",
+    "run_index": 0,
+    "tokens_in": 4004,
+    "tokens_out": 45
+  },
+  {
+    "pair_index": 3,
+    "answer": "If a CORS request that requires a preflight is redirected, some browsers will report an error message. Two potential workarounds are: \n1. Change the server-side behavior to avoid the preflight and/or to avoid the redirect, \n2. Change the request such that it is a simple request that doesn't cause a preflight, or make a simple request to determine the URL the real preflighted request would end up at, and then make another request using that URL.",
+    "run_index": 0,
+    "tokens_in": 4004,
+    "tokens_out": 98
+  },
+  {
+    "pair_index": 4,
+    "answer": "Third-party cookie policies may prevent third-party cookies from being sent in requests, effectively stopping a site from making credentialed requests even if permitted by the third-party server. The two scenarios where these policies might prevent the request from succeeding are: \n\n1. When a browser is configured to reject all third-party cookies in requests, \n2. When a browser is configured to reject all third-party cookies in responses, which would prevent the Set-Cookie header in the response from setting a cookie.",
+    "run_index": 0,
+    "tokens_in": 4013,
+    "tokens_out": 100
+  }
+]

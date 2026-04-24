@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "The Python UTF-8 Mode is enabled by default if the LC_CTYPE locale is C or POSIX at Python startup. It overrides the locale encoding and forces the usage of the UTF-8 encoding for command line arguments, environment variables, and filenames. Additionally, it changes the default behavior of several functions in the os module, including os.fsdecode() and os.fsencode(), to use the UTF-8 encoding. It also affects the behavior of the open() function, which uses the UTF-8 encoding by default in UTF-8 Mode.",
+    "run_index": 0,
+    "tokens_in": 10564,
+    "tokens_out": 110
+  },
+  {
+    "pair_index": 1,
+    "answer": "On Unix, keys and values in os.environ use sys.getfilesystemencoding() and 'surrogateescape' error handler. On Windows, the keys are converted to uppercase. This difference in behavior can affect portability, as code that works on one platform may not work as expected on the other. Additionally, changes to the environment made after the os module is imported are not reflected in os.environ, except for changes made by modifying os.environ directly. It is recommended to modify os.environ directly, rather than using putenv() or unsetenv(), to ensure consistency and avoid potential issues with portability.",
+    "run_index": 0,
+    "tokens_in": 10565,
+    "tokens_out": 120
+  },
+  {
+    "pair_index": 2,
+    "answer": "The default priority is 0, and the range is -20 to 19. Setting a priority outside this range may raise an error, but the document does not specify the exact circumstances under which this would occur.",
+    "run_index": 0,
+    "tokens_in": 10568,
+    "tokens_out": 44
+  },
+  {
+    "pair_index": 3,
+    "answer": "On VxWorks, os.popen, os.fork, os.execv and os.spawn*p* are not supported. For portable file handling, the document recommends using the shutil module for high-level file and directory handling, and the tempfile module for creating temporary files and directories.",
+    "run_index": 0,
+    "tokens_in": 10570,
+    "tokens_out": 57
+  },
+  {
+    "pair_index": 4,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 10567,
+    "tokens_out": 4
+  }
+]

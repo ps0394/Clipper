@@ -1,0 +1,44 @@
+[
+  {
+    "question": "What are the two distinct security measures implemented in the server-side code to prevent manipulation of the payment amount, and how do they work together?",
+    "answer": "The server-side code implements (1) calculating the order amount on the server using the `calculate_order_amount` method, which sums the amounts of items to prevent client-side manipulation; and (2) the use of a test API key (`sk_test_REDACTED`) that explicitly warns against submitting personally identifiable information, ensuring no real data is exposed during testing. These measures work together by ensuring the payment amount is both tamper-proof (server-side calculation) and processed in a secure, isolated environment (test key).",
+    "supporting_sentences": [
+      "# Securely calculate the order amount\ndef calculate_order_amount(_items)\n  # Calculate the order total on the server to prevent\n  # people from directly manipulating the amount on the client\n  _items.sum { |h| h['amount'] }\nend",
+      "# This is a public sample test API key.\n# Don\u2019t submit any personally identifiable information in requests made with this key."
+    ]
+  },
+  {
+    "question": "How does the payment flow handle errors during the `confirmPayment` step, and what are the specific conditions under which the user sees the message 'An unexpected error occurred.'?",
+    "answer": "The payment flow checks for errors of type `card_error` or `validation_error` during `confirmPayment` and displays the error message if either occurs. The message 'An unexpected error occurred.' is shown only if the error type is neither `card_error` nor `validation_error`, indicating a non-specific or unhandled failure.",
+    "supporting_sentences": [
+      "const { error } = await stripe.confirmPayment({\n    elements,\n    confirmParams: {\n        return_url: \"http://localhost:4242/complete.html\",\n    },\n});",
+      "// This point will only be reached if there is an immediate error when\n// confirming the payment. Otherwise, your customer will be redirected to\n// your `return_url`. For some payment methods like iDEAL, your customer will\n// be redirected to an intermediate site first to authorize the payment, then\n// redirected to the `return_url`.\nif (error.type === \"card_error\" || error.type === \"validation_error\") {\n    showMessage(error.message);\n} else {\n    showMessage(\"An unexpected error occurred.\");\n}"
+    ]
+  },
+  {
+    "question": "What is the sequence of steps the server and client follow from the moment a user submits the payment form to the point where the payment status is displayed on the completion page?",
+    "answer": "1. The client submits the payment form, triggering `handleSubmit`; 2. The client calls `stripe.confirmPayment` with the payment details and a `return_url`; 3. If successful, the user is redirected to `return_url` (e.g., `complete.html`); 4. The completion page runs `checkStatus`, which retrieves the payment intent using the `payment_intent_client_secret` from the URL; 5. The `setPaymentDetails` function updates the UI with the payment status and details.",
+    "supporting_sentences": [
+      "document.querySelector(\"#payment-form\").addEventListener(\"submit\", handleSubmit);",
+      "const { error } = await stripe.confirmPayment({\n    elements,\n    confirmParams: {\n        return_url: \"http://localhost:4242/complete.html\",\n    },\n});",
+      "// Fetches the payment intent status after payment submission\nasync function checkStatus() {\n    const clientSecret = new URLSearchParams(window.location.search).get(\"payment_intent_client_secret\");\n    if (!clientSecret) {\n        setErrorState();\n        return;\n    }\n    const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);\n    setPaymentDetails(paymentIntent);\n}"
+    ]
+  },
+  {
+    "question": "What are the three possible payment statuses displayed on the completion page, and what visual indicators (icon and color) are used for each?",
+    "answer": "1. 'succeeded': green icon (#30B130) with a success symbol; 2. 'processing': gray icon (#6D6E78) with an info symbol; 3. 'requires_payment_method' or default: red icon (#DF1B41) with an error symbol.",
+    "supporting_sentences": [
+      "switch (intent.status) {\n    case \"succeeded\":\n        statusText = \"Payment succeeded\";\n        iconColor = \"#30B130\";\n        icon = SuccessIcon;\n        break;\n    case \"processing\":\n        statusText = \"Your payment is processing.\";\n        iconColor = \"#6D6E78\";\n        icon = InfoIcon;\n        break;\n    case \"requires_payment_method\":\n        statusText = \"Your payment was not successful, please try again.\";\n        break;\n    default:\n        break;\n}",
+      "const SuccessIcon = `<svg ...`; // Success symbol\nconst ErrorIcon = `<svg ...`; // Error symbol\nconst InfoIcon = `<svg ...`; // Info symbol"
+    ]
+  },
+  {
+    "question": "Under what condition does the completion page hide the payment details table, and what triggers this behavior?",
+    "answer": "The payment details table is hidden if the `paymentIntent` object is missing or falsy during the `setPaymentDetails` call, or if `clientSecret` is not found in the URL during `checkStatus`. This occurs when the payment flow fails to retrieve the payment intent, such as due to an invalid or missing client secret.",
+    "supporting_sentences": [
+      "if (!intent) {\n    setErrorState();\n    return;\n}",
+      "function setErrorState() {\n    document.querySelector(\"#details-table\").classList.add(\"hidden\");\n    document.querySelector(\"#view-details\").classList.add(\"hidden\");\n}",
+      "const clientSecret = new URLSearchParams(window.location.search).get(\"payment_intent_client_secret\");\nif (!clientSecret) {\n    setErrorState();\n    return;\n}"
+    ]
+  }
+]

@@ -1,0 +1,116 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does Node.js handle concurrency differently from traditional thread-based systems, and what are the implications for developers in terms of deadlocks and I/O operations?",
+      "answer": "Node.js uses an asynchronous event-driven model where many connections are handled concurrently via callbacks, avoiding OS threads; this eliminates deadlocks since there are no locks, and almost no functions directly perform I/O, so the process rarely blocks except when using synchronous methods from the standard library.",
+      "supporting_sentences": [
+        "As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network applications. In the following \"hello world\" example, many connections can be handled concurrently. Upon each connection, the callback is fired, but if there is no work to be done, Node.js will sleep.",
+        "This is in contrast to today's more common concurrency model, in which OS threads are employed. Thread-based networking is relatively inefficient and very difficult to use.",
+        "Furthermore, users of Node.js are free from worries of dead-locking the process, since there are no locks. Almost no function in Node.js directly performs I/O, so the process never blocks except when the I/O is performed using synchronous methods of Node.js standard library."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does Node.js handle concurrency differently from traditional thread-based systems, and what are the implications for developers in terms of deadlocks and I/O operations?",
+      "answer": "Node.js uses an asynchronous event-driven model where many connections are handled concurrently via callbacks, avoiding OS threads; this eliminates deadlocks since there are no locks, and almost no functions directly perform I/O, so the process rarely blocks except when using synchronous methods from the standard library.",
+      "supporting_sentences": [
+        "As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network applications. In the following \"hello world\" example, many connections can be handled concurrently. Upon each connection, the callback is fired, but if there is no work to be done, Node.js will sleep.",
+        "This is in contrast to today's more common concurrency model, in which OS threads are employed. Thread-based networking is relatively inefficient and very difficult to use.",
+        "Furthermore, users of Node.js are free from worries of dead-locking the process, since there are no locks. Almost no function in Node.js directly performs I/O, so the process never blocks except when the I/O is performed using synchronous methods of Node.js standard library."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the two ways Node.js allows developers to utilize multiple CPU cores, and how do they differ in functionality?",
+      "answer": "Node.js supports spawning child processes via the `child_process.fork()` API and enables load balancing across cores using the `cluster` module, which shares sockets between processes; the former is for general multi-process communication, while the latter is specifically for distributing network traffic.",
+      "supporting_sentences": [
+        "Node.js being designed without threads doesn't mean you can't take advantage of multiple cores in your environment. Child processes can be spawned by using our child_process.fork() API, and are designed to be easy to communicate with.",
+        "Built upon that same interface is the cluster module, which allows you to share sockets between processes to enable load balancing over your cores."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the two ways Node.js allows developers to utilize multiple CPU cores, and how do they differ in functionality?",
+      "answer": "Node.js supports spawning child processes via the `child_process.fork()` API and enables load balancing across cores using the `cluster` module, which shares sockets between processes; the former is for general multi-process communication, while the latter is specifically for distributing network traffic.",
+      "supporting_sentences": [
+        "Node.js being designed without threads doesn't mean you can't take advantage of multiple cores in your environment. Child processes can be spawned by using our child_process.fork() API, and are designed to be easy to communicate with.",
+        "Built upon that same interface is the cluster module, which allows you to share sockets between processes to enable load balancing over your cores."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How many official npm package scopes does the Node.js team maintain, and what is the name of one additional npm account they oversee?",
+      "answer": "The Node.js team maintains two official npm package scopes; one additional npm account they oversee is `nodejs-foundation`.",
+      "supporting_sentences": [
+        "The Node.js team maintains the following official npm package scopes: [list implies two scopes]",
+        "Additionally, the Node.js team maintains packages published by the nodejs-foundation npm account, though other Node.js-related packages (like undici) may also be maintained by contributors closely tied to the project."
+      ]
+    },
+    "edited_pair": {
+      "question": "How many official npm package scopes does the Node.js team maintain, and what is the name of one additional npm account they oversee?",
+      "answer": "The Node.js team maintains two official npm package scopes; one additional npm account they oversee is `nodejs-foundation`.",
+      "supporting_sentences": [
+        "The Node.js team maintains the following official npm package scopes: [list implies two scopes]",
+        "Additionally, the Node.js team maintains packages published by the nodejs-foundation npm account, though other Node.js-related packages (like undici) may also be maintained by contributors closely tied to the project."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what circumstances would Node.js exit the event loop, and how does this behavior compare to systems like Ruby's Event Machine or Python's Twisted?",
+      "answer": "Node.js exits the event loop when there are no more callbacks to perform; unlike systems like Ruby's Event Machine or Python's Twisted, Node.js does not require an explicit blocking call to start or stop the event loop, as it automatically enters and exits based on callback execution.",
+      "supporting_sentences": [
+        "In Node.js, there is no such start-the-event-loop call. Node.js simply enters the event loop after executing the input script. Node.js exits the event loop when there are no more callbacks to perform.",
+        "In other systems, there is always a blocking call to start the event-loop. Typically, behavior is defined through callbacks at the beginning of a script, and at the end a server is started through a blocking call like EventMachine::run()."
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what circumstances would Node.js exit the event loop, and how does this behavior compare to systems like Ruby's Event Machine or Python's Twisted?",
+      "answer": "Node.js exits the event loop when there are no more callbacks to perform; unlike systems like Ruby's Event Machine or Python's Twisted, Node.js does not require an explicit blocking call to start or stop the event loop, as it automatically enters and exits based on callback execution.",
+      "supporting_sentences": [
+        "In Node.js, there is no such start-the-event-loop call. Node.js simply enters the event loop after executing the input script. Node.js exits the event loop when there are no more callbacks to perform.",
+        "In other systems, there is always a blocking call to start the event-loop. Typically, behavior is defined through callbacks at the beginning of a script, and at the end a server is started through a blocking call like EventMachine::run()."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the potential risk if a developer downloads Node.js binaries from an unofficial source, and what are the two official domains recommended for secure downloads?",
+      "answer": "Downloading from unofficial sources risks authenticity and security compromises; the two official domains for secure downloads are `nodejs.org` and the domains listed under the Node.js team's official npm package scopes.",
+      "supporting_sentences": [
+        "To ensure authenticity and security when working with Node.js, always use official sources. Avoid trusting emails, binaries, or downloads from unofficial sources.",
+        "For downloading Node.js binaries and accessing official documentation, use only these domains: [implied to include nodejs.org]",
+        "The Node.js team maintains the following official npm package scopes: [implies additional official domains]"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the potential risk if a developer downloads Node.js binaries from an unofficial source, and what are the two official domains recommended for secure downloads?",
+      "answer": "Downloading from unofficial sources risks authenticity and security compromises; the two official domains for secure downloads are `nodejs.org` and the domains listed under the Node.js team's official npm package scopes.",
+      "supporting_sentences": [
+        "To ensure authenticity and security when working with Node.js, always use official sources. Avoid trusting emails, binaries, or downloads from unofficial sources.",
+        "For downloading Node.js binaries and accessing official documentation, use only these domains: [implied to include nodejs.org]",
+        "The Node.js team maintains the following official npm package scopes: [implies additional official domains]"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

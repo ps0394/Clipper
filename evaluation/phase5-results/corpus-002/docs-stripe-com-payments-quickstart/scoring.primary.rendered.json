@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "The server calculates the order total on the server side using the `calculate_order_amount` function to prevent people from directly manipulating the amount on the client, and it does not trust the client-sent amount. These measures work together by ensuring that the final amount charged is determined securely on the server, not by any potentially altered client data.",
+    "run_index": 0,
+    "tokens_in": 6477,
+    "tokens_out": 68
+  },
+  {
+    "pair_index": 1,
+    "answer": "If the error type returned from `stripe.confirmPayment` is not \"card_error\" or \"validation_error\", the user sees the message 'An unexpected error occurred.'",
+    "run_index": 0,
+    "tokens_in": 6484,
+    "tokens_out": 34
+  },
+  {
+    "pair_index": 2,
+    "answer": "1. User submits the payment form on the checkout page.\n2. The client-side JavaScript intercepts the form submission and calls the handleSubmit function.\n3. handleSubmit calls stripe.confirmPayment with the payment elements and a return_url pointing to http://localhost:4242/complete.html.\n4. If there is an immediate error, an error message is shown; otherwise, the customer is redirected to the return_url (complete.html) after payment confirmation.\n5. On the completion page (complete.html), the client-side JavaScript runs checkStatus.\n6. checkStatus retrieves the payment_intent_client_secret from the URL parameters.\n7. checkStatus calls stripe.retrievePaymentIntent with the client secret to fetch the payment intent status.\n8. setPaymentDetails displays the payment status and details on the completion page.",
+    "run_index": 0,
+    "tokens_in": 6483,
+    "tokens_out": 164
+  },
+  {
+    "pair_index": 3,
+    "answer": "1. succeeded \u2014 SuccessIcon, #30B130\n2. processing \u2014 InfoIcon, #6D6E78\n3. requires_payment_method \u2014 ErrorIcon, #DF1B41",
+    "run_index": 0,
+    "tokens_in": 6476,
+    "tokens_out": 41
+  },
+  {
+    "pair_index": 4,
+    "answer": "The completion page hides the payment details table if the payment intent is not present, which is triggered when the client secret is missing from the URL or the payment intent cannot be retrieved.",
+    "run_index": 0,
+    "tokens_in": 6468,
+    "tokens_out": 37
+  }
+]

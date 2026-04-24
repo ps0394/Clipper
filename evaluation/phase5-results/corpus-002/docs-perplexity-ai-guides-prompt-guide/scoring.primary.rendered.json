@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "You should avoid few-shot prompting with web search models because it confuses the models by triggering searches for your examples rather than your actual query. Instead, the document recommends crafting specific, contextual prompts that clearly state what information you need, using search-friendly terms and focusing on one topic per query.",
+    "run_index": 0,
+    "tokens_in": 2513,
+    "tokens_out": 59
+  },
+  {
+    "pair_index": 1,
+    "answer": "The web search component finds and retrieves content from specific URLs, while the language generation component processes the retrieved content but doesn\u2019t have access to the original URLs. This means that when users ask for URLs in their prompts, the language model may generate inaccurate or hallucinated links, so users should not request URLs in prompts and should instead use the search_results field for accurate source information.",
+    "run_index": 0,
+    "tokens_in": 2524,
+    "tokens_out": 76
+  },
+  {
+    "pair_index": 2,
+    "answer": "The recommended approach is to use specific, contextual prompts focused on one topic and to rely on built-in API search parameters (such as date filters or domain restrictions) to control search behavior, rather than trying to direct the search through the prompt itself. The discouraged approach is to use generic, multi-part, or prompt-based instructions to control search, which can confuse the model and lead to unfocused or inaccurate results. The document advises against the latter because built-in parameters are processed directly by the search engine, ensuring reliable, consistent, and relevant results, while prompt-based control is less effective and can cause the model to hallucinate or provide speculative information.",
+    "run_index": 0,
+    "tokens_in": 2526,
+    "tokens_out": 130
+  },
+  {
+    "pair_index": 3,
+    "answer": "Two distinct scenarios are explicitly listed:\n\n1. Inaccessible Sources\n2. Overly Specific Recent Events",
+    "run_index": 0,
+    "tokens_in": 2516,
+    "tokens_out": 21
+  },
+  {
+    "pair_index": 4,
+    "answer": "If you attempt to control search behavior through prompts instead of using Perplexity's built-in API parameters, the search component will not reliably apply your instructions, leading to inconsistent and less relevant results. The document justifies this limitation by explaining that built-in parameters are processed directly by the search engine, ensuring guaranteed execution, better performance, cleaner prompts, and consistent results, whereas prompt-based instructions are not reliably interpreted by the search component.",
+    "run_index": 0,
+    "tokens_in": 2534,
+    "tokens_out": 87
+  }
+]

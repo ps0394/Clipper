@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "You would choose S3 Express One Zone over S3 Standard for a latency-sensitive application when your application requires single-digit millisecond latency and can tolerate the loss of data in the event of an Availability Zone failure. The trade-offs to consider when using S3 Express One Zone include: \n\n1. Data redundancy: S3 Express One Zone stores data in a single Availability Zone, which means that if the zone becomes unavailable, your data will be lost. \n2. Availability: S3 Express One Zone has a higher risk of data loss compared to S3 Standard, which stores data across multiple Availability Zones. \n3. Cost: S3 Express One Zone has a lower cost per GB compared to S3 Standard, but the request costs are higher. \n\nOverall, S3 Express One Zone is suitable for applications that require low latency and can tolerate some level of data loss, such as real-time analytics, gaming, or streaming media. However, for applications that require high availability and durability, S3 Standard may be a better choice.",
+    "run_index": 0,
+    "tokens_in": 7934,
+    "tokens_out": 208
+  },
+  {
+    "pair_index": 1,
+    "answer": "S3 Intelligent-Tiering optimizes storage costs by automatically moving data between four access tiers when access patterns change. The four access tiers include two low-latency access tiers optimized for frequent and infrequent access, and two opt-in archive access tiers designed for asynchronous access for rarely accessed data.",
+    "run_index": 0,
+    "tokens_in": 7924,
+    "tokens_out": 59
+  },
+  {
+    "pair_index": 2,
+    "answer": "The maximum number of directory buckets you can create per AWS account is 100, while the maximum number of table buckets you can create per AWS account per AWS Region is 10. Directory buckets are recommended for low-latency use cases and data-residency use cases, and are optimized for storing objects in a hierarchical directory structure. Table buckets, on the other hand, are recommended for storing tabular data, such as daily purchase transactions, streaming sensor data, or ad impressions, and are optimized for analytics and machine learning workloads.",
+    "run_index": 0,
+    "tokens_in": 7931,
+    "tokens_out": 107
+  },
+  {
+    "pair_index": 3,
+    "answer": "When you enable S3 Versioning on a bucket that already contains objects, the existing objects have a version ID of null. If you modify these objects later, they will get a unique version ID.",
+    "run_index": 0,
+    "tokens_in": 7927,
+    "tokens_out": 41
+  },
+  {
+    "pair_index": 4,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 7929,
+    "tokens_out": 4
+  }
+]

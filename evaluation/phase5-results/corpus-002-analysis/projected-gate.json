@@ -1,0 +1,107 @@
+{
+  "corpus": "evaluation\\phase5-results\\corpus-002",
+  "gate_threshold": 0.35,
+  "n_samples": 43,
+  "n_skipped": 0,
+  "skipped": [],
+  "candidates": {
+    "v1_baseline_article": {
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.2,
+        "structured_data": 0.2,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      },
+      "pearson_r": -0.0066,
+      "n": 43,
+      "composite_mean": 55.21,
+      "composite_min": 36.99,
+      "composite_max": 80.97,
+      "passes_gate": false
+    },
+    "A_extractability_40": {
+      "weights": {
+        "semantic_html": 0.1,
+        "content_extractability": 0.4,
+        "structured_data": 0.1,
+        "dom_navigability": 0.1,
+        "metadata_completeness": 0.15,
+        "http_compliance": 0.15
+      },
+      "pearson_r": 0.2784,
+      "n": 43,
+      "composite_mean": 62.06,
+      "composite_min": 44.6,
+      "composite_max": 83.18,
+      "passes_gate": false
+    },
+    "B_extractability_35": {
+      "weights": {
+        "semantic_html": 0.1,
+        "content_extractability": 0.35,
+        "structured_data": 0.15,
+        "dom_navigability": 0.1,
+        "metadata_completeness": 0.15,
+        "http_compliance": 0.15
+      },
+      "pearson_r": 0.2242,
+      "n": 43,
+      "composite_mean": 59.91,
+      "composite_min": 42.77,
+      "composite_max": 83.78,
+      "passes_gate": false
+    },
+    "C_extractability_30": {
+      "weights": {
+        "semantic_html": 0.15,
+        "content_extractability": 0.3,
+        "structured_data": 0.15,
+        "dom_navigability": 0.1,
+        "metadata_completeness": 0.15,
+        "http_compliance": 0.15
+      },
+      "pearson_r": 0.1696,
+      "n": 43,
+      "composite_mean": 59.36,
+      "composite_min": 43.99,
+      "composite_max": 83.71,
+      "passes_gate": false
+    },
+    "D_drop_semantic_and_dom": {
+      "weights": {
+        "semantic_html": 0.05,
+        "content_extractability": 0.4,
+        "structured_data": 0.15,
+        "dom_navigability": 0.05,
+        "metadata_completeness": 0.2,
+        "http_compliance": 0.15
+      },
+      "pearson_r": 0.3151,
+      "n": 43,
+      "composite_mean": 61.51,
+      "composite_min": 37.49,
+      "composite_max": 87.1,
+      "passes_gate": false
+    },
+    "E_http_metadata_lift": {
+      "weights": {
+        "semantic_html": 0.05,
+        "content_extractability": 0.3,
+        "structured_data": 0.15,
+        "dom_navigability": 0.05,
+        "metadata_completeness": 0.2,
+        "http_compliance": 0.25
+      },
+      "pearson_r": 0.2851,
+      "n": 43,
+      "composite_mean": 61.21,
+      "composite_min": 40.12,
+      "composite_max": 86.99,
+      "passes_gate": false
+    }
+  },
+  "any_candidate_passes_gate": false,
+  "best_candidate": "D_drop_semantic_and_dom"
+}

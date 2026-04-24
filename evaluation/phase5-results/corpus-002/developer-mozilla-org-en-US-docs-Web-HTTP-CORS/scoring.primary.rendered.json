@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "A CORS request triggers a preflight when it uses HTTP methods other than GET, or POST with certain MIME types, or includes custom headers. The two key headers the browser sends during this preflight are Access-Control-Request-Method and Access-Control-Request-Headers.",
+    "run_index": 0,
+    "tokens_in": 3982,
+    "tokens_out": 55
+  },
+  {
+    "pair_index": 1,
+    "answer": "When credentials are included in a CORS request, the server must not use the wildcard (*) in certain response headers and must instead specify explicit values. The four specific headers that cannot use the wildcard (*) when credentials are included are:\n\n1. Access-Control-Allow-Origin\n2. Access-Control-Allow-Headers\n3. Access-Control-Allow-Methods\n4. Access-Control-Expose-Headers",
+    "run_index": 0,
+    "tokens_in": 3981,
+    "tokens_out": 75
+  },
+  {
+    "pair_index": 2,
+    "answer": "The default value of Access-Control-Max-Age is 5 seconds. The maximum internal value is set by each browser and takes precedence when the Access-Control-Max-Age exceeds it.",
+    "run_index": 0,
+    "tokens_in": 3972,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 3,
+    "answer": "If a CORS request that requires a preflight is redirected, some browsers will report an error and disallow the cross-origin request. The two potential workarounds mentioned are: 1) Change the server-side behavior to avoid the preflight and/or to avoid the redirect, and 2) Change the request such that it is a simple request that doesn't cause a preflight.",
+    "run_index": 0,
+    "tokens_in": 3974,
+    "tokens_out": 78
+  },
+  {
+    "pair_index": 4,
+    "answer": "Cookies set in CORS requests and responses are subject to normal third-party cookie policies. Third-party cookie policies may prevent third party cookies being sent in requests, effectively stopping a site from making credentialed requests even if permitted by the third party server. Even if credentialed requests are allowed, a browser may be configured to reject all third-party cookies in responses.",
+    "run_index": 0,
+    "tokens_in": 3981,
+    "tokens_out": 72
+  }
+]

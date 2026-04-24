@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "A container can use the host's UTS namespace by setting --uts to host. Docker disallows combining the --hostname and --domainname flags with --uts=host to prevent containers running in the host's UTS namespace from attempting to change the host's configuration.",
+    "run_index": 0,
+    "tokens_in": 9480,
+    "tokens_out": 55
+  },
+  {
+    "pair_index": 1,
+    "answer": "Combining --restart (restart policy) with the --rm (clean up) flag results in an error.",
+    "run_index": 0,
+    "tokens_in": 9483,
+    "tokens_out": 23
+  },
+  {
+    "pair_index": 2,
+    "answer": "The `missing` (default) policy pulls the image only if it's not present in the local image cache, otherwise it uses the cached image. The `always` policy always pulls the image before creating the container, ensuring the image is up-to-date but overwriting any local image. The `never` policy never pulls the image and only uses images available in the cache, producing an error if the image is missing. Use `missing` to reduce networking and use local images, `always` to ensure the latest image is used, and `never` when networking is unavailable or to prevent implicit pulls.",
+    "run_index": 0,
+    "tokens_in": 9493,
+    "tokens_out": 122
+  },
+  {
+    "pair_index": 3,
+    "answer": "The --mount flag supports most options supported by the -v or the --volume flag, but uses a different syntax. Even though there is no plan to deprecate --volume, usage of --mount is recommended.",
+    "run_index": 0,
+    "tokens_in": 9496,
+    "tokens_out": 45
+  },
+  {
+    "pair_index": 4,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 9510,
+    "tokens_out": 4
+  }
+]

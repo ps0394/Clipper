@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "Node.js handles concurrency using an asynchronous event-driven model instead of OS threads. This means there are no locks, so developers do not need to worry about dead-locking the process. Almost no function in Node.js directly performs I/O, so the process never blocks except when synchronous methods are used. This makes scalable systems reasonable to develop in Node.js.",
+    "run_index": 0,
+    "tokens_in": 958,
+    "tokens_out": 71
+  },
+  {
+    "pair_index": 1,
+    "answer": "child_process.fork() and the cluster module; child_process.fork() spawns child processes for communication, while the cluster module allows sharing sockets between processes to enable load balancing over cores.",
+    "run_index": 0,
+    "tokens_in": 951,
+    "tokens_out": 39
+  },
+  {
+    "pair_index": 2,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 954,
+    "tokens_out": 4
+  },
+  {
+    "pair_index": 3,
+    "answer": "Node.js exits the event loop when there are no more callbacks to perform. This behavior is different from systems like Ruby's Event Machine or Python's Twisted, where there is always a blocking call to start the event-loop. In Node.js, the event loop is entered automatically after executing the input script and is hidden from the user.",
+    "run_index": 0,
+    "tokens_in": 958,
+    "tokens_out": 68
+  },
+  {
+    "pair_index": 4,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 957,
+    "tokens_out": 4
+  }
+]

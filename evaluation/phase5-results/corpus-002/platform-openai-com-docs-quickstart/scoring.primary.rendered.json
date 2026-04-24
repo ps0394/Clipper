@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "In JavaScript and Python, the OpenAI SDKs automatically read the API key from the system environment variable OPENAI_API_KEY. In .NET, the API key is retrieved from the environment variable and passed explicitly to the OpenAIClient. In Java, the client is initialized using OpenAIOkHttpClient.fromEnv(), which reads the API key from the environment. In Go, the client is created with option.WithAPIKey(\"My API Key\"), where the API key is provided directly in the code.",
+    "run_index": 0,
+    "tokens_in": 7941,
+    "tokens_out": 103
+  },
+  {
+    "pair_index": 1,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 7953,
+    "tokens_out": 4
+  },
+  {
+    "pair_index": 2,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 7938,
+    "tokens_out": 4
+  },
+  {
+    "pair_index": 3,
+    "answer": "The `web_search` tool requires only the type `\"web_search\"` in its configuration, while the `file_search` tool requires the type `\"file_search\"` and a list of `\"vector_store_ids\"`. The models explicitly mentioned as compatible with `web_search` are \"gpt-5.4\", and for `file_search` are \"gpt-4.1\" and \"gpt-5\".",
+    "run_index": 0,
+    "tokens_in": 7940,
+    "tokens_out": 85
+  },
+  {
+    "pair_index": 4,
+    "answer": "The three agents described are:\n\n1. Spanish agent: Only speaks Spanish.\n2. English agent: Only speaks English.\n3. Triage agent: Routes (handoffs) requests to the appropriate agent based on the language of the request.",
+    "run_index": 0,
+    "tokens_in": 7938,
+    "tokens_out": 49
+  }
+]

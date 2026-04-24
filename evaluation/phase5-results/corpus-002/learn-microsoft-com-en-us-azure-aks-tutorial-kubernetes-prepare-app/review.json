@@ -1,0 +1,120 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the specific conditions under which the `order-service` container will start, and what happens if those conditions are not met?",
+      "answer": "The `order-service` container starts only if the `rabbitmq` container is healthy, as defined by its health check passing; if the `rabbitmq` container fails its health check, the `order-service` will not start due to the `depends_on` condition.",
+      "supporting_sentences": [
+        "    depends_on:\n      rabbitmq:\n        condition: service_healthy",
+        "    healthcheck:\n      test: [\"CMD\", \"rabbitmqctl\", \"status\"]\n      interval: 30s\n      timeout: 10s\n      retries: 5"
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the specific conditions under which the `order-service` container will start, and what happens if those conditions are not met?",
+      "answer": "The `order-service` container starts only if the `rabbitmq` container is healthy, as defined by its health check passing; if the `rabbitmq` container fails its health check, the `order-service` will not start due to the `depends_on` condition.",
+      "supporting_sentences": [
+        "    depends_on:\n      rabbitmq:\n        condition: service_healthy",
+        "    healthcheck:\n      test: [\"CMD\", \"rabbitmqctl\", \"status\"]\n      interval: 30s\n      timeout: 10s\n      retries: 5"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How many distinct health checks are defined in the Docker Compose file, and what are their common parameters?",
+      "answer": "Four distinct health checks are defined (for `rabbitmq`, `order-service`, `product-service`, and `store-front`); all share the same `interval` (30s), `timeout` (10s), and `retries` (5) parameters.",
+      "supporting_sentences": [
+        "    healthcheck:\n      test: [\"CMD\", \"rabbitmqctl\", \"status\"]\n      interval: 30s\n      timeout: 10s\n      retries: 5",
+        "    healthcheck:\n      test: [\"CMD\", \"wget\", \"-O\", \"/dev/null\", \"-q\", \"http://order-service:3000/health\"]\n      interval: 30s\n      timeout: 10s\n      retries: 5",
+        "    healthcheck:\n      test: [\"CMD\", \"wget\", \"-O\", \"/dev/null\", \"-q\", \"http://product-service:3002/health\"]\n      interval: 30s\n      timeout: 10s\n      retries: 5",
+        "    healthcheck:\n      test: [\"CMD\", \"wget\", \"-O\", \"/dev/null\", \"-q\", \"http://store-front:80/health\"]\n      interval: 30s\n      timeout: 10s\n      retries: 5"
+      ]
+    },
+    "edited_pair": {
+      "question": "How many distinct health checks are defined in the Docker Compose file, and what are their common parameters?",
+      "answer": "Four distinct health checks are defined (for `rabbitmq`, `order-service`, `product-service`, and `store-front`); all share the same `interval` (30s), `timeout` (10s), and `retries` (5) parameters.",
+      "supporting_sentences": [
+        "    healthcheck:\n      test: [\"CMD\", \"rabbitmqctl\", \"status\"]\n      interval: 30s\n      timeout: 10s\n      retries: 5",
+        "    healthcheck:\n      test: [\"CMD\", \"wget\", \"-O\", \"/dev/null\", \"-q\", \"http://order-service:3000/health\"]\n      interval: 30s\n      timeout: 10s\n      retries: 5",
+        "    healthcheck:\n      test: [\"CMD\", \"wget\", \"-O\", \"/dev/null\", \"-q\", \"http://product-service:3002/health\"]\n      interval: 30s\n      timeout: 10s\n      retries: 5",
+        "    healthcheck:\n      test: [\"CMD\", \"wget\", \"-O\", \"/dev/null\", \"-q\", \"http://store-front:80/health\"]\n      interval: 30s\n      timeout: 10s\n      retries: 5"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the difference between the default infrastructure provider and the alternative provider in the `azd` workflow, and where is this configuration specified?",
+      "answer": "The default provider is Terraform (configured in `infra/terraform`), while the alternative is Bicep (configured in `infra/bicep`); the configuration is specified in the `azure.yaml` file under the `infra` section.",
+      "supporting_sentences": [
+        "By default, this project uses Terraform:\n\ninfra:\n  provider: terraform\n  path: infra/terraform",
+        "If you want to change the provider to Bicep, update the \nazure.yaml\n file as follows:\n\ninfra:\n  provider: bicep\n  path: infra/bicep"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the difference between the default infrastructure provider and the alternative provider in the `azd` workflow, and where is this configuration specified?",
+      "answer": "The default provider is Terraform (configured in `infra/terraform`), while the alternative is Bicep (configured in `infra/bicep`); the configuration is specified in the `azure.yaml` file under the `infra` section.",
+      "supporting_sentences": [
+        "By default, this project uses Terraform:\n\ninfra:\n  provider: terraform\n  path: infra/terraform",
+        "If you want to change the provider to Bicep, update the \nazure.yaml\n file as follows:\n\ninfra:\n  provider: bicep\n  path: infra/bicep"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what circumstances would the `store-front` container fail to start, and what dependencies must be satisfied first?",
+      "answer": "The `store-front` container fails to start if either the `product-service` or `order-service` containers are not running, as it depends on both; additionally, the `order-service` itself depends on `rabbitmq` being healthy, so indirect failure of `rabbitmq` would also prevent `store-front` from starting.",
+      "supporting_sentences": [
+        "    depends_on:\n      - product-service\n      - order-service",
+        "    depends_on:\n      rabbitmq:\n        condition: service_healthy"
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what circumstances would the `store-front` container fail to start, and what dependencies must be satisfied first?",
+      "answer": "The `store-front` container fails to start if either the `product-service` or `order-service` containers are not running, as it depends on both; additionally, the `order-service` itself depends on `rabbitmq` being healthy, so indirect failure of `rabbitmq` would also prevent `store-front` from starting.",
+      "supporting_sentences": [
+        "    depends_on:\n      - product-service\n      - order-service",
+        "    depends_on:\n      rabbitmq:\n        condition: service_healthy"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the full sequence of steps to prepare the application for AKS, starting from cloning the repository to validating the running application, and which tools are used at each step?",
+      "answer": "1. Clone the repository using `git clone` or `azd init`; 2. Review the `docker-compose-quickstart.yml` file; 3. Build container images and start the application using `docker compose -f docker-compose-quickstart.yml up -d`; 4. Validate the running application by navigating to `http://localhost:8080` in a browser; tools used: Git, Docker Compose, and a web browser.",
+      "supporting_sentences": [
+        "Use \ngit\n to clone the sample application to your development environment.\n\ngit clone https://github.com/Azure-Samples/aks-store-demo.git",
+        "Clone the sample application into the \naks-store-demo\n directory using the \nazd init\n command with the \n--template\n flag set to \naks-store-demo\n.\n\nazd init --template aks-store-demo",
+        "Create the container image, download the RabbitMQ image, and start the application using the \ndocker compose\n command:\n\ndocker compose -f docker-compose-quickstart.yml up -d",
+        "To see your running application, navigate to \nhttp://localhost:8080\n in a local web browser."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the full sequence of steps to prepare the application for AKS, starting from cloning the repository to validating the running application, and which tools are used at each step?",
+      "answer": "1. Clone the repository using `git clone` or `azd init`; 2. Review the `docker-compose-quickstart.yml` file; 3. Build container images and start the application using `docker compose -f docker-compose-quickstart.yml up -d`; 4. Validate the running application by navigating to `http://localhost:8080` in a browser; tools used: Git, Docker Compose, and a web browser.",
+      "supporting_sentences": [
+        "Use \ngit\n to clone the sample application to your development environment.\n\ngit clone https://github.com/Azure-Samples/aks-store-demo.git",
+        "Clone the sample application into the \naks-store-demo\n directory using the \nazd init\n command with the \n--template\n flag set to \naks-store-demo\n.\n\nazd init --template aks-store-demo",
+        "Create the container image, download the RabbitMQ image, and start the application using the \ndocker compose\n command:\n\ndocker compose -f docker-compose-quickstart.yml up -d",
+        "To see your running application, navigate to \nhttp://localhost:8080\n in a local web browser."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Under what conditions does the `open()` function use line buffering for text files, and what is the default buffer size for binary files when the device block size is unavailable?",
+    "answer": "Line buffering is used for 'interactive' text files where `isatty()` returns `True`; the default buffer size for binary files when the device block size is unavailable is `DEFAULT_BUFFER_SIZE`.",
+    "supporting_sentences": [
+      "\u201cInteractive\u201d text files (files for which `isatty()` returns `True`) use line buffering.",
+      "Binary files are buffered in fixed-size chunks; the size of the buffer is `max(min(blocksize, 8 MiB), DEFAULT_BUFFER_SIZE)` when the device block size is available.",
+      "On most systems, the buffer will typically be 128 kilobytes long."
+    ]
+  },
+  {
+    "question": "How does the `newline` parameter affect the behavior of `open()` when reading and writing files, and what are the differences between setting it to `None` versus an empty string (`''`)?",
+    "answer": "When reading with `newline=None`, universal newlines mode translates all line endings (`\\n`, `\\r`, `\\r\\n`) to `\\n`; with `newline=''`, line endings are returned untranslated. When writing with `newline=None`, `\\n` is translated to the system default (`os.linesep`); with `newline=''` or `newline='\\n'`, no translation occurs.",
+    "supporting_sentences": [
+      "When reading input from the stream, if `newline` is `None`, universal newlines mode is enabled. Lines in the input can end in `\\n`, `\\r`, or `\\r\\n`, and these are translated into `\\n` before being returned to the caller. If it is `''`, universal newlines mode is enabled, but line endings are returned to the caller untranslated.",
+      "When writing output to the stream, if `newline` is `None`, any `\\n` characters written are translated to the system default line separator, `os.linesep`. If `newline` is `''` or `\\n`, no translation takes place."
+    ]
+  },
+  {
+    "question": "What are the key differences between the `'w+'` and `'r+'` modes in `open()`, and how does the `buffering` parameter interact with these modes when set to `0`?",
+    "answer": "`w+` opens and truncates the file, while `r+` opens the file without truncation; setting `buffering=0` is only allowed in binary mode and thus incompatible with `w+` or `r+` unless the mode includes `'b'`.",
+    "supporting_sentences": [
+      "Modes `'w+'` and `'w+b'` open and truncate the file. Modes `'r+'` and `'r+b'` open the file with no truncation.",
+      "Pass 0 to switch buffering off (only allowed in binary mode).",
+      "TextIOWrapper (i.e., files opened with `mode='r+'`) would have another buffering."
+    ]
+  },
+  {
+    "question": "Which error handlers for the `errors` parameter in `open()` are only supported when writing to a file, and what is the default behavior if `errors` is not specified?",
+    "answer": "`xmlcharrefreplace` and `namereplace` are only supported when writing; the default behavior is `'strict'`, which raises a `ValueError` on encoding errors.",
+    "supporting_sentences": [
+      "'xmlcharrefreplace' is only supported when writing to a file. Characters not supported by the encoding are replaced with the appropriate XML character reference `&#nnn;`.",
+      "'namereplace' (also only supported when writing) replaces unsupported characters with `\\N{...}` escape sequences.",
+      "The default value of `None` has the same effect as `'strict'` to raise a `ValueError` exception if there is an encoding error."
+    ]
+  },
+  {
+    "question": "What is the sequence of steps required to open a file relative to a specific directory using a custom `opener`, and what happens to the file descriptor passed to `opener` if `closefd` is set to `False`?",
+    "answer": "1. Open the directory using `os.open()` to get a file descriptor; 2. Define a custom `opener` that calls `os.open()` with the directory file descriptor; 3. Pass the `opener` to `open()`; if `closefd=False`, the underlying file descriptor remains open after the file object is closed.",
+    "supporting_sentences": [
+      "A custom opener can be used by passing a callable as `opener`. The underlying file descriptor for the file object is then obtained by calling `opener` with (`file`, `flags`).",
+      "If `closefd` is `False` and a file descriptor rather than a filename was given, the underlying file descriptor will be kept open when the file is closed.",
+      "The following example uses the `dir_fd` parameter of the `os.open()` function to open a file relative to a given directory: [...] `os.close(dir_fd)` # don't leak a file descriptor"
+    ]
+  }
+]

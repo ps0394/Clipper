@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "The key differences in how the OpenAI API key is handled across the JavaScript, Python, .NET, Java, and Go SDK examples are:\n\n* In JavaScript, the API key is passed directly to the OpenAI client constructor.\n* In Python, the API key is passed directly to the OpenAI client constructor.\n* In .NET, the API key is retrieved from an environment variable named \"OPENAI_API_KEY\" and then passed to the OpenAI client constructor.\n* In Java, the API key is not explicitly shown in the example, but it is mentioned that the OpenAI SDK for Java is currently in beta.\n* In Go, the API key is passed directly to the OpenAI client constructor using the \"option.WithAPIKey\" function.\n\nIt's also worth noting that the document recommends storing the API key in a safe location, such as a .zshrc file or another text file on your computer, and then exporting it as an environment variable in your terminal. This approach is shown in the macOS/Linux and Windows examples at the beginning of the document.",
+    "run_index": 0,
+    "tokens_in": 7893,
+    "tokens_out": 216
+  },
+  {
+    "pair_index": 1,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 7906,
+    "tokens_out": 4
+  },
+  {
+    "pair_index": 2,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 7891,
+    "tokens_out": 4
+  },
+  {
+    "pair_index": 3,
+    "answer": "The `web_search` tool does not require any additional configuration, such as vector store IDs, whereas the `file_search` tool requires a `vector_store_ids` parameter to specify the vector store IDs to search. The `web_search` tool is compatible with models like `gpt-5.4`, while the `file_search` tool is compatible with models like `gpt-4.1`.",
+    "run_index": 0,
+    "tokens_in": 7893,
+    "tokens_out": 83
+  },
+  {
+    "pair_index": 4,
+    "answer": "Spanish agent, English agent, Triage agent. The Spanish and English agents only speak their respective languages, while the Triage agent hands off requests to the appropriate language agent based on the language of the request.",
+    "run_index": 0,
+    "tokens_in": 7891,
+    "tokens_out": 43
+  }
+]

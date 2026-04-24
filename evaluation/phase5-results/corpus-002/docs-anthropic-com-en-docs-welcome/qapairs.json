@@ -1,0 +1,45 @@
+[
+  {
+    "question": "Under what conditions would a developer choose Claude Managed Agents over the Messages API, and what specific advantage does the former provide for those conditions?",
+    "answer": "A developer would choose Claude Managed Agents over the Messages API for long-running tasks and asynchronous work; the specific advantage is that Managed Agents run in managed infrastructure, eliminating the need for custom agent loops or fine-grained control.",
+    "supporting_sentences": [
+      "Anthropic offers two ways to build with Claude, each suited to different use cases: Messages API; Claude Managed Agents",
+      "Best for: Custom agent loops and fine-grained control; Long-running tasks and asynchronous work",
+      "What it is: Direct model prompting access; Pre-built, configurable agent harness that runs in managed infrastructure"
+    ]
+  },
+  {
+    "question": "Rank the three latest Claude models by their generation number and describe the primary improvement introduced in the highest-ranked model.",
+    "answer": "Ranked by generation number: Claude Haiku 4.5, Claude Sonnet 4.6, Claude Opus 4.7; the primary improvement in Claude Opus 4.7 is a step-change jump in complex reasoning and agentic coding over Claude Opus 4.6.",
+    "supporting_sentences": [
+      "The latest generation of Claude models: Claude Opus 4.7; Claude Sonnet 4.6; Claude Haiku 4.5",
+      "Claude Opus 4.7 - Our most capable model for complex reasoning and agentic coding, with a step-change jump over Claude Opus 4.6"
+    ]
+  },
+  {
+    "question": "What is the full sequence of steps a new developer must follow to integrate Claude, starting from no prior setup and ending with feature exploration?",
+    "answer": "1. Make your first API call by setting up the environment, installing an SDK, and sending a message to Claude; 2. Understand the Messages API, including multi-turn conversations, system prompts, and stop reasons; 3. Compare Claude models by capability and cost; 4. Explore features and tools like extended thinking, web search, file handling, and structured outputs.",
+    "supporting_sentences": [
+      "Follow these steps to go from zero to a working Claude integration.",
+      "1 Make your first API call: Set up your environment, install an SDK, and send your first message to Claude.",
+      "2 Understand the Messages API: Learn the core request and response structure, including multi-turn conversations, system prompts, and stop reasons.",
+      "3 Compare Claude models by capability and cost to pick the best fit for your use case.",
+      "4 Explore features and tools: Discover what Claude can do: extended thinking, web search, file handling, structured outputs, and more."
+    ]
+  },
+  {
+    "question": "What happens if a developer attempts to use Claude for tasks beyond text, code, and images, and where is this limitation explicitly stated?",
+    "answer": "The document does not specify what happens, but it explicitly states that Claude can only assist with tasks involving text, code, and images, implying unsupported tasks may fail or behave unpredictably.",
+    "supporting_sentences": [
+      "Claude can assist with many tasks that involve text, code, and images."
+    ]
+  },
+  {
+    "question": "How does the 'extended thinking' feature mentioned in the features overview relate to the capabilities of Claude Opus 4.7, and what broader category of tasks does this feature likely support?",
+    "answer": "The 'extended thinking' feature complements Claude Opus 4.7's strength in complex reasoning and agentic coding; it likely supports tasks requiring deeper analysis or multi-step problem-solving.",
+    "supporting_sentences": [
+      "Claude Opus 4.7 - Our most capable model for complex reasoning and agentic coding, with a step-change jump over Claude Opus 4.6.",
+      "Explore features and tools: Discover what Claude can do: extended thinking, web search, file handling, structured outputs, and more."
+    ]
+  }
+]

@@ -1,0 +1,257 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports *non-trivial* retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 challenging question/answer pairs. Unlike simple fact extraction, these questions must require the reader to synthesize, compare, or compute across multiple parts of the document — not just locate a single sentence.
+
+## Difficulty mandate
+
+The baseline for this corpus is that a strong LLM scores 100% on simple fact-lookup questions. That ceiling is the problem this prompt solves. Generate questions such that a competent LLM reading only the document text should land in the 50–80% correct range. A question that can be answered by copying one sentence verbatim is too easy and must be replaced.
+
+## Required question-type mix
+
+You must produce exactly 5 Q/A pairs with the following distribution:
+
+- **At least 2 synthesis questions** — the answer requires combining information from two or more non-adjacent sections of the document. The reader must locate multiple facts and relate them. Example forms: "Under what conditions does X apply, and what happens when those conditions are not met?", "How does feature A relate to feature B?", "What is the full sequence of steps from X to Y?"
+
+- **At least 1 quantitative or comparative question** — the answer requires counting, ordering, ranking, computing a difference, or distinguishing options. Example forms: "Which of the supported options has the shortest timeout?", "How many … does the document describe, and in what order?", "What is the difference between the default and maximum value of X?"
+
+- **At least 1 constraint or edge-case question** — the answer depends on a condition, limitation, exception, or corner case mentioned in the document. Example forms: "What happens if X is set to a value above the supported range?", "Under which circumstances is behavior Y not guaranteed?"
+
+- The remaining pair(s) may be any of the above types. Do not include pure fact-lookup questions (e.g. "What is the name of X?", "What year was Y introduced?") unless the fact is genuinely non-obvious and spread across multiple sentences.
+
+## Answerability constraints
+
+1. **Every answer must be fully grounded in the document.** If the question requires outside knowledge, common sense beyond the document, or inference the document does not support, do not include it.
+2. **Answers may be short or multi-part**, but must be precise. Do not produce essay-length answers. For multi-part answers, separate components with semicolons or enumerate explicitly.
+3. **Supporting sentences are required.** For every Q/A pair, list the verbatim sentences from the document that together justify the answer. A synthesis question should have supporting sentences from multiple sections; a quantitative question should have the sentences containing the relevant numbers.
+4. **Self-contained questions.** A reader who has not seen the document must be able to understand what is being asked. Do not write "What is the second step?" or "What does the table show?".
+5. **Spread across the document.** The 5 questions together should exercise different sections, not cluster in one region.
+
+## Forbidden patterns
+
+- Questions answerable by copying a single sentence verbatim.
+- Questions whose answer is a single named entity pulled from a title, heading, or "About this page" metadata block.
+- Questions where the answer is restated in the question itself.
+- Questions requiring knowledge of the document's structure rather than its content (e.g. "What section comes after X?").
+
+## Output format
+
+A single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Use the sample database
+Document URL: https://docs.snowflake.com/en/user-guide/sample-data-using
+Document profile: sample
+
+Document text:
+---
+Use the sample database
+
+The sample database, SNOWFLAKE_SAMPLE_DATA, is identical to the databases that you create in your account, except that it is read-only.
+As such, the following operations are not allowed:
+
+No DDL can be performed on the data set schemas (i.e. tables and other database objects cannot be added, dropped, or altered).
+
+No DML can be performed on the tables in the schemas.
+
+No cloning or Time Travel can be performed on the database or any schemas/tables in the database.
+
+However, you can use all the same commands and syntax to view the sample database, schemas, and tables, as well as execute queries on the tables.
+
+Important
+
+The sample database is created by default for newer accounts. If the database has not been created for your account and you want
+access to it, execute the following SQL statements with the ACCOUNTADMIN role active:
+
+-- Create a database from the share.
+
+CREATE
+
+DATABASE
+
+SNOWFLAKE_SAMPLE_DATA
+
+FROM
+
+SHARE
+
+SFC_SAMPLES
+.
+SAMPLE_DATA
+;
+
+-- Grant the PUBLIC role access to the database.
+
+-- Optionally change the role name to restrict access to a subset of users.
+
+GRANT
+
+IMPORTED
+
+PRIVILEGES
+
+ON
+
+DATABASE
+
+SNOWFLAKE_SAMPLE_DATA
+
+TO
+
+ROLE
+
+PUBLIC
+;
+
+View the sample database
+
+You can view the sample database and its contents either in Snowsight or using SQL:
+
+Snowsight
+:
+
+In the navigation menu, select 
+Catalog
+
+»
+
+Database Explorer
+
+»
+
+SNOWFLAKE_SAMPLE_DATA
+.
+
+SQL
+:
+
+Execute a 
+SHOW DATABASES
+ command.
+
+You can also use the relevant 
+SHOW <objects>
+ commands to view the objects in the sample database.
+
+For example, in SQL:
+
+show databases
+
+like
+
+'%sample%'
+;
+
++
+-------------------------------+-----------------------+------------+------------+-------------------------+--------------+---------+---------+----------------+
+
+| created_on                    | name                  | is_default | is_current | origin                  | owner        | comment | options | retention_time |
+
+|-------------------------------+-----------------------+------------+------------+-------------------------+--------------+---------+---------+----------------|
+
+| 2016-07-14 14:30:21.711 -0700 | SNOWFLAKE_SAMPLE_DATA | N          | N          | SFC_SAMPLES.SAMPLE_DATA | ACCOUNTADMIN |         |         | 1              |
+
++
+-------------------------------+-----------------------+------------+------------+-------------------------+--------------+---------+---------+----------------+
+
+Note that this example illustrates the sample database, SNOWFLAKE_SAMPLE_DATA, has been 
+shared with your account
+ by Snowflake.
+
+The 
+origin
+ column in the SHOW DATABASES output (or the 
+Origin
+ column in the 
+Databases
+
+ page in the interface) displays the fully-qualified name of the shared
+database, SFC_SAMPLES.SAMPLE_DATA, indicating it originated from the SFC_SAMPLES account (used by Snowflake to share the sample data).
+
+Query tables and views in the sample database
+
+To use a table or view in the sample database, you can either:
+
+Reference the fully-qualified name of the table in your query (in the form of 
+snowflake_sample_data.
+schema_name
+.
+object_name
+).
+
+OR
+
+Specify the sample database (and schema) for your session using the 
+USE DATABASE
+ and/or 
+USE SCHEMA
+ commands.
+
+The following two examples illustrate using both approaches to query the 
+lineitem
+ table in the 
+tpch_sf1
+ schema:
+
+select
+
+count
+(*)
+
+from
+
+snowflake_sample_data
+.
+tpch_sf1
+.
+lineitem
+;
+
++
+----------+
+
+| COUNT(*) |
+
+|----------|
+
+|  6001215 |
+
++
+----------+
+
+use
+
+schema
+
+snowflake_sample_data
+.
+tpch_sf1
+;
+
+select
+
+count
+(*)
+
+from
+
+lineitem
+;
+
++
+----------+
+
+| COUNT(*) |
+
+|----------|
+
+|  6001215 |
+
++
+----------+
+
+Note
+
+You must have a running, current warehouse in your session to perform queries. You set the current warehouse in a session using the 
+USE WAREHOUSE
+
+command (or within the Worksheet in the web interface.)
+---

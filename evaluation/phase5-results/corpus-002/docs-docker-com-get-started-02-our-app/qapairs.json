@@ -1,0 +1,41 @@
+[
+  {
+    "question": "What are the two distinct actions Docker performs when building the image after downloading the base `node:24-alpine` layer, and in what order do they occur?",
+    "answer": "First, Docker copies the application source code into the image; second, it uses `npm` to install the application's dependencies.",
+    "supporting_sentences": [
+      "After Docker downloaded the image, the instructions from the Dockerfile copied in your application and used `npm` to install your application's dependencies."
+    ]
+  },
+  {
+    "question": "Under what condition would the application running in the container not be accessible from the host machine, and what specific flag in the `docker run` command prevents this?",
+    "answer": "The application would not be accessible if the port mapping is omitted; the `-p` (or `--publish`) flag prevents this by creating a port mapping between the host and the container.",
+    "supporting_sentences": [
+      "The `-p` flag (short for `--publish`) creates a port mapping between the host and the container.",
+      "Without the port mapping, you wouldn't be able to access the application from the host."
+    ]
+  },
+  {
+    "question": "How many ports are explicitly mentioned in the document as being involved in running the application, and what are their roles?",
+    "answer": "Two ports: port 3000 on the container (where the app listens) and port 3000 on the host (where the container's port is published).",
+    "supporting_sentences": [
+      "Documents that the app listens on port 3000",
+      "The command publishes the container's port 3000 to `127.0.0.1:3000` (`localhost:3000`) on the host"
+    ]
+  },
+  {
+    "question": "What is the difference between the `-d` and `-p` flags in the `docker run` command, and what happens if each is omitted?",
+    "answer": "The `-d` flag runs the container in the background (omitting it would keep the container attached to the terminal and display logs); the `-p` flag enables port mapping (omitting it would make the application inaccessible from the host).",
+    "supporting_sentences": [
+      "The `-d` flag (short for `--detach`) runs the container in the background. This means that Docker starts your container and returns you to the terminal prompt. Also, it does not display logs in the terminal.",
+      "The `-p` flag (short for `--publish`) creates a port mapping between the host and the container. [...] Without the port mapping, you wouldn't be able to access the application from the host."
+    ]
+  },
+  {
+    "question": "If you were to modify the Dockerfile to use a different base image (e.g., `node:22-alpine` instead of `node:24-alpine`), what two steps in the build process would be affected, and why?",
+    "answer": "Docker would need to download the new base image (`node:22-alpine`) instead of `node:24-alpine`, and the installed dependencies might differ if the Node.js version affects `npm` behavior.",
+    "supporting_sentences": [
+      "This is because you instructed the builder that you wanted to start from the `node:24-alpine` image. But, since you didn't have that on your machine, Docker needed to download the image.",
+      "After Docker downloaded the image, the instructions from the Dockerfile copied in your application and used `npm` to install your application's dependencies."
+    ]
+  }
+]

@@ -1,0 +1,120 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what conditions does a CORS request trigger a preflight, and what are the two key headers the browser sends during this preflight to inform the server about the upcoming actual request?",
+      "answer": "A CORS request triggers a preflight when it uses HTTP methods other than GET or POST with certain MIME types, or when it includes non-standard headers or a Content-Type other than simple types; during the preflight, the browser sends Access-Control-Request-Method and Access-Control-Request-Headers to inform the server about the method and headers of the actual request.",
+      "supporting_sentences": [
+        "Additionally, for HTTP request methods that can cause side-effects on server data (in particular, HTTP methods other than GET, or POST with certain MIME types), the specification mandates that browsers \"preflight\" the request, soliciting supported methods from the server with the HTTP OPTIONS request method, and then, upon \"approval\" from the server, sending the actual request.",
+        "The Access-Control-Request-Method header notifies the server as part of a preflight request that when the actual request is sent, it will do so with a POST request method. The Access-Control-Request-Headers header notifies the server that when the actual request is sent, it will do so with X-PINGOTHER and Content-Type custom headers.",
+        "The following is an example of a request that will be preflighted: The example above creates an XML body to send with the POST request. Also, a non-standard HTTP X-PINGOTHER request header is set. Such headers are not part of HTTP/1.1, but are generally useful to web applications. Since the request uses a Content-Type of text/xml, and since a custom header is set, this request is preflighted."
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what conditions does a CORS request trigger a preflight, and what are the two key headers the browser sends during this preflight to inform the server about the upcoming actual request?",
+      "answer": "A CORS request triggers a preflight when it uses HTTP methods other than GET or POST with certain MIME types, or when it includes non-standard headers or a Content-Type other than simple types; during the preflight, the browser sends Access-Control-Request-Method and Access-Control-Request-Headers to inform the server about the method and headers of the actual request.",
+      "supporting_sentences": [
+        "Additionally, for HTTP request methods that can cause side-effects on server data (in particular, HTTP methods other than GET, or POST with certain MIME types), the specification mandates that browsers \"preflight\" the request, soliciting supported methods from the server with the HTTP OPTIONS request method, and then, upon \"approval\" from the server, sending the actual request.",
+        "The Access-Control-Request-Method header notifies the server as part of a preflight request that when the actual request is sent, it will do so with a POST request method. The Access-Control-Request-Headers header notifies the server that when the actual request is sent, it will do so with X-PINGOTHER and Content-Type custom headers.",
+        "The following is an example of a request that will be preflighted: The example above creates an XML body to send with the POST request. Also, a non-standard HTTP X-PINGOTHER request header is set. Such headers are not part of HTTP/1.1, but are generally useful to web applications. Since the request uses a Content-Type of text/xml, and since a custom header is set, this request is preflighted."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does the use of credentials in a CORS request affect the server's response headers, and what are the four specific headers that cannot use the wildcard (*) when credentials are included?",
+      "answer": "When credentials are included in a CORS request, the server must specify an explicit origin in Access-Control-Allow-Origin instead of the wildcard (*); the four headers that cannot use the wildcard are Access-Control-Allow-Origin, Access-Control-Allow-Headers, Access-Control-Allow-Methods, and Access-Control-Expose-Headers.",
+      "supporting_sentences": [
+        "When responding to a credentialed requests request, the server must specify an origin in the value of the Access-Control-Allow-Origin header, instead of specifying the * wildcard.",
+        "Credentialed requests and wildcards: When responding to a credentialed request: The server must not specify the * wildcard for the Access-Control-Allow-Origin response-header value, but must instead specify an explicit origin; for example: Access-Control-Allow-Origin: https://example.com",
+        "The server must not specify the * wildcard for the Access-Control-Allow-Headers response-header value, but must instead specify an explicit list of header names; for example, Access-Control-Allow-Headers: X-PINGOTHER, Content-Type",
+        "The server must not specify the * wildcard for the Access-Control-Allow-Methods response-header value, but must instead specify an explicit list of method names; for example, Access-Control-Allow-Methods: POST, GET",
+        "The server must not specify the * wildcard for the Access-Control-Expose-Headers response-header value, but must instead specify an explicit list of header names; for example, Access-Control-Expose-Headers: Content-Encoding, Kuma-Revision"
+      ]
+    },
+    "edited_pair": {
+      "question": "How does the use of credentials in a CORS request affect the server's response headers, and what are the four specific headers that cannot use the wildcard (*) when credentials are included?",
+      "answer": "When credentials are included in a CORS request, the server must specify an explicit origin in Access-Control-Allow-Origin instead of the wildcard (*); the four headers that cannot use the wildcard are Access-Control-Allow-Origin, Access-Control-Allow-Headers, Access-Control-Allow-Methods, and Access-Control-Expose-Headers.",
+      "supporting_sentences": [
+        "When responding to a credentialed requests request, the server must specify an origin in the value of the Access-Control-Allow-Origin header, instead of specifying the * wildcard.",
+        "Credentialed requests and wildcards: When responding to a credentialed request: The server must not specify the * wildcard for the Access-Control-Allow-Origin response-header value, but must instead specify an explicit origin; for example: Access-Control-Allow-Origin: https://example.com",
+        "The server must not specify the * wildcard for the Access-Control-Allow-Headers response-header value, but must instead specify an explicit list of header names; for example, Access-Control-Allow-Headers: X-PINGOTHER, Content-Type",
+        "The server must not specify the * wildcard for the Access-Control-Allow-Methods response-header value, but must instead specify an explicit list of method names; for example, Access-Control-Allow-Methods: POST, GET",
+        "The server must not specify the * wildcard for the Access-Control-Expose-Headers response-header value, but must instead specify an explicit list of header names; for example, Access-Control-Expose-Headers: Content-Encoding, Kuma-Revision"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the difference between the default and maximum value of Access-Control-Max-Age, and how does this interact with browser-specific limits?",
+      "answer": "The default value of Access-Control-Max-Age is 5 seconds, while the maximum value shown in the document is 86400 seconds (24 hours); however, each browser has its own maximum internal value that overrides the server-specified value if it exceeds this limit.",
+      "supporting_sentences": [
+        "Finally, Access-Control-Max-Age gives the value in seconds for how long the response to the preflight request can be cached without sending another preflight request. The default value is 5 seconds.",
+        "In the present case, the max age is 86400 seconds (= 24 hours). Note that each browser has a maximum internal value that takes precedence when the Access-Control-Max-Age exceeds it."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the difference between the default and maximum value of Access-Control-Max-Age, and how does this interact with browser-specific limits?",
+      "answer": "The default value of Access-Control-Max-Age is 5 seconds, while the maximum value shown in the document is 86400 seconds (24 hours); however, each browser has its own maximum internal value that overrides the server-specified value if it exceeds this limit.",
+      "supporting_sentences": [
+        "Finally, Access-Control-Max-Age gives the value in seconds for how long the response to the preflight request can be cached without sending another preflight request. The default value is 5 seconds.",
+        "In the present case, the max age is 86400 seconds (= 24 hours). Note that each browser has a maximum internal value that takes precedence when the Access-Control-Max-Age exceeds it."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens if a CORS request that requires a preflight is redirected, and what are the two potential workarounds mentioned in the document?",
+      "answer": "If a CORS request that requires a preflight is redirected, some browsers will block the request and report an error; the two workarounds are: (1) changing the server-side behavior to avoid the preflight or redirect, or (2) changing the request to be a simple request that does not trigger a preflight.",
+      "supporting_sentences": [
+        "Not all browsers currently support following redirects after a preflighted request. If a redirect occurs after such a request, some browsers currently will report an error message such as the following: The request was redirected to https://example.com/foo, which is disallowed for cross-origin requests that require preflight.",
+        "Until browsers catch up with the spec, you may be able to work around this limitation by doing one or both of the following: Change the server-side behavior to avoid the preflight and/or to avoid the redirect; Change the request such that it is a simple request that doesn't cause a preflight."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens if a CORS request that requires a preflight is redirected, and what are the two potential workarounds mentioned in the document?",
+      "answer": "If a CORS request that requires a preflight is redirected, some browsers will block the request and report an error; the two workarounds are: (1) changing the server-side behavior to avoid the preflight or redirect, or (2) changing the request to be a simple request that does not trigger a preflight.",
+      "supporting_sentences": [
+        "Not all browsers currently support following redirects after a preflighted request. If a redirect occurs after such a request, some browsers currently will report an error message such as the following: The request was redirected to https://example.com/foo, which is disallowed for cross-origin requests that require preflight.",
+        "Until browsers catch up with the spec, you may be able to work around this limitation by doing one or both of the following: Change the server-side behavior to avoid the preflight and/or to avoid the redirect; Change the request such that it is a simple request that doesn't cause a preflight."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How do third-party cookie policies interact with CORS credentialed requests, and what are the two scenarios where these policies might prevent the request from succeeding even if the server permits it?",
+      "answer": "Third-party cookie policies may prevent third-party cookies from being sent in requests or saved in responses, even if the server permits credentialed requests with Access-Control-Allow-Credentials; specifically, (1) the browser may reject third-party cookies in requests, and (2) the browser may reject all third-party cookies in responses, regardless of server permissions.",
+      "supporting_sentences": [
+        "Note that cookies set in CORS responses are subject to normal third-party cookie policies. In the example above, the page is loaded from foo.example but the Set-Cookie header in the response is sent by bar.other, and would thus not be saved if the user's browser is configured to reject all third-party cookies.",
+        "Third-party cookie policies may prevent third party cookies being sent in requests, effectively stopping a site from making credentialed requests even if permitted by the third party server (using Access-Control-Allow-Credentials). The default policy differs between browsers, but may be set using the SameSite attribute. Even if credentialed requests are allowed, a browser may be configured to reject all third-party cookies in responses."
+      ]
+    },
+    "edited_pair": {
+      "question": "How do third-party cookie policies interact with CORS credentialed requests, and what are the two scenarios where these policies might prevent the request from succeeding even if the server permits it?",
+      "answer": "Third-party cookie policies may prevent third-party cookies from being sent in requests or saved in responses, even if the server permits credentialed requests with Access-Control-Allow-Credentials; specifically, (1) the browser may reject third-party cookies in requests, and (2) the browser may reject all third-party cookies in responses, regardless of server permissions.",
+      "supporting_sentences": [
+        "Note that cookies set in CORS responses are subject to normal third-party cookie policies. In the example above, the page is loaded from foo.example but the Set-Cookie header in the response is sent by bar.other, and would thus not be saved if the user's browser is configured to reject all third-party cookies.",
+        "Third-party cookie policies may prevent third party cookies being sent in requests, effectively stopping a site from making credentialed requests even if permitted by the third party server (using Access-Control-Allow-Credentials). The default policy differs between browsers, but may be set using the SameSite attribute. Even if credentialed requests are allowed, a browser may be configured to reject all third-party cookies in responses."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

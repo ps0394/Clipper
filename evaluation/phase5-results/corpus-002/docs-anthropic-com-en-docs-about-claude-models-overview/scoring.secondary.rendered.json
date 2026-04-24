@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "A developer would choose Claude Haiku 4.5 over Claude Sonnet 4.6 when they prioritize speed, as Claude Haiku 4.5 is described as the \"fastest model\" while still offering \"near-frontier intelligence\". The trade-offs for this choice include a lower context window of 200k tokens compared to 1M tokens for Claude Sonnet 4.6, and the same max output of 64k tokens. Additionally, Claude Haiku 4.5 does not support extended thinking or adaptive thinking, unlike Claude Sonnet 4.6 which supports extended thinking but not adaptive thinking.",
+    "run_index": 0,
+    "tokens_in": 1316,
+    "tokens_out": 128
+  },
+  {
+    "pair_index": 1,
+    "answer": "Claude Opus 4.7 has a context window of 1M tokens, while Claude Haiku 4.5 has a context window of 200k tokens. The practical implication of this difference is that Claude Opus 4.7 is more suitable for tasks requiring long-context handling due to its larger context window size.",
+    "run_index": 0,
+    "tokens_in": 1317,
+    "tokens_out": 69
+  },
+  {
+    "pair_index": 2,
+    "answer": "Claude Opus 4.7 has the highest input token pricing at $5/input MTok, and it is $4 more expensive than Claude Haiku 4.5, which has the lowest input token pricing at $1/input MTok.",
+    "run_index": 0,
+    "tokens_in": 1305,
+    "tokens_out": 52
+  },
+  {
+    "pair_index": 3,
+    "answer": "The output will be limited to 128k tokens, but the developer can use the Message Batches API with the output-300k-2026-03-24 beta header to generate up to 300k output tokens.",
+    "run_index": 0,
+    "tokens_in": 1320,
+    "tokens_out": 47
+  },
+  {
+    "pair_index": 4,
+    "answer": "global endpoints (dynamic routing for maximum availability) and regional endpoints (guaranteed data routing through specific geographic regions)",
+    "run_index": 0,
+    "tokens_in": 1311,
+    "tokens_out": 24
+  }
+]

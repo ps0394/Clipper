@@ -1,0 +1,49 @@
+```json
+[
+    {
+        "question": "Under what conditions would you choose S3 Express One Zone over S3 Standard for a latency-sensitive application, and what trade-offs must be considered when using S3 Express One Zone?",
+        "answer": "You would choose S3 Express One Zone for latency-sensitive applications requiring single-digit millisecond data access speeds and the ability to co-locate storage with compute resources in a single Availability Zone; trade-offs include higher cost (50% lower request costs but potentially higher storage costs), lack of multi-AZ redundancy, and the requirement to use a new bucket type (directory bucket) which may limit compatibility with some S3 features.",
+        "supporting_sentences": [
+            "Amazon S3 Express One Zone is a high-performance, single-zone Amazon S3 storage class that is purpose-built to deliver consistent, single-digit millisecond data access for your most latency-sensitive applications.",
+            "S3 Express One Zone is the lowest latency cloud object storage class available today, with data access speeds up to 10x faster and with request costs 50 percent lower than S3 Standard.",
+            "S3 Express One Zone is the first S3 storage class where you can select a single Availability Zone with the option to co-locate your object storage with your compute resources, which provides the highest possible access speed.",
+            "Directory buckets in Availability Zones support the S3 Express One Zone storage class. With S3 Express One Zone, your data is redundantly stored on multiple devices within a single Availability Zone.",
+            "Directory buckets have all public access disabled by default. This behavior can't be changed. You can't grant access to objects stored in directory buckets. You can grant access only to your directory buckets."
+        ]
+    },
+    {
+        "question": "How does S3 Intelligent-Tiering optimize storage costs, and what are the four access tiers it uses to move data automatically?",
+        "answer": "S3 Intelligent-Tiering optimizes storage costs by automatically moving data between four access tiers based on changing or unknown access patterns; the four access tiers are: two low-latency access tiers (one for frequent access and one for infrequent access) and two opt-in archive access tiers designed for asynchronous access to rarely accessed data.",
+        "supporting_sentences": [
+            "You can store data with changing or unknown access patterns in S3 Intelligent-Tiering, which optimizes storage costs by automatically moving your data between four access tiers when your access patterns change.",
+            "These four access tiers include two low-latency access tiers optimized for frequent and infrequent access, and two opt-in archive access tiers designed for asynchronous access for rarely accessed data."
+        ]
+    },
+    {
+        "question": "What is the difference between the maximum number of directory buckets and table buckets you can create per AWS account, and what are the key use cases for each bucket type?",
+        "answer": "You can create up to 100 directory buckets per AWS account with no limit on objects, while you can create up to 10 table buckets per AWS account per AWS Region with up to 10,000 tables per table bucket; directory buckets are recommended for low-latency and data-residency use cases, while table buckets are optimized for storing and querying tabular data in Apache Iceberg format for analytics and machine learning workloads.",
+        "supporting_sentences": [
+            "By default, you can create up to 100 directory buckets in your AWS account, with no limit on the number of objects that you can store in a directory bucket.",
+            "Directory buckets – Recommended for low-latency use cases and data-residency use cases.",
+            "By default, you can create up to 10 table buckets per AWS account per AWS Region and up to 10,000 tables per table bucket.",
+            "Table buckets – Recommended for storing tabular data, such as daily purchase transactions, streaming sensor data, or ad impressions. [...] S3 Tables are purpose-built for storing tabular data in the Apache Iceberg format."
+        ]
+    },
+    {
+        "question": "What happens if you enable S3 Versioning on a bucket that already contains objects, and how does this affect the version ID of existing objects?",
+        "answer": "When you enable S3 Versioning on a bucket that already contains objects, the existing objects retain a version ID of 'null'; new versions of these objects created after versioning is enabled will receive unique version IDs.",
+        "supporting_sentences": [
+            "When you enable S3 Versioning in a bucket, Amazon S3 generates a unique version ID for each object added to the bucket.",
+            "Objects that already existed in the bucket at the time that you enable versioning have a version ID of null."
+        ]
+    },
+    {
+        "question": "Under what circumstances would Amazon S3's strong consistency model not guarantee immediate consistency for read operations, and what specific actions require a 15-minute waiting period?",
+        "answer": "Amazon S3's strong consistency model does not guarantee immediate consistency for bucket configurations, specifically when enabling versioning on a bucket for the first time; AWS recommends waiting 15 minutes after enabling versioning before issuing write operations (PUT or DELETE requests) on objects in the bucket.",
+        "supporting_sentences": [
+            "Bucket configurations have an eventual consistency model. Specifically, this means that: [...] If you enable versioning on a bucket for the first time, it might take a short amount of time for the change to be fully propagated. We recommend that you wait for 15 minutes after enabling versioning before issuing write operations (PUT or DELETE requests) on objects in the bucket.",
+            "Amazon S3 provides strong read-after-write consistency for PUT and DELETE requests of objects in your Amazon S3 bucket in all AWS Regions. This behavior applies to both writes of new objects as well as PUT requests that overwrite existing objects and DELETE requests."
+        ]
+    }
+]
+```

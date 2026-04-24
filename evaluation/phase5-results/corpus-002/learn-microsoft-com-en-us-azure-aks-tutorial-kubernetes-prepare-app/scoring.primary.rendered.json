@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "The `order-service` container will start only when the `rabbitmq` service is healthy. If the `rabbitmq` service is not healthy, the `order-service` container will not start.",
+    "run_index": 0,
+    "tokens_in": 1822,
+    "tokens_out": 41
+  },
+  {
+    "pair_index": 1,
+    "answer": "Four distinct health checks are defined. Their common parameters are: test, interval, timeout, and retries.",
+    "run_index": 0,
+    "tokens_in": 1816,
+    "tokens_out": 22
+  },
+  {
+    "pair_index": 2,
+    "answer": "The default infrastructure provider is Terraform, and the alternative provider is Bicep. This configuration is specified in the infra section of the azure.yaml file.",
+    "run_index": 0,
+    "tokens_in": 1824,
+    "tokens_out": 31
+  },
+  {
+    "pair_index": 3,
+    "answer": "The `store-front` container would fail to start if the `product-service` and `order-service` containers are not running, as it depends on both. These dependencies must be satisfied first.",
+    "run_index": 0,
+    "tokens_in": 1818,
+    "tokens_out": 40
+  },
+  {
+    "pair_index": 4,
+    "answer": "Clone the sample application source from GitHub using git.  \nCreate a directory (e.g., demorepo), switch to it, and run `git clone https://github.com/Azure-Samples/aks-store-demo.git`.  \nChange into the cloned directory with `cd aks-store-demo`.  \nIf using azd, create an empty directory named aks-store-demo, change into it, and run `azd init --template aks-store-demo` to clone the azd template.  \nReview the docker-compose-quickstart YAML file from the cloned repository.  \nUse Docker Compose to build container images and start the application with `docker compose -f docker-compose-quickstart.yml up -d`.  \nView created images using `docker images`.  \nView running containers using `docker ps`.  \nNavigate to http://localhost:8080 in a web browser to validate the running application.  \nTools used: git, azd (if using azd template), Docker Compose, web browser.",
+    "run_index": 0,
+    "tokens_in": 1831,
+    "tokens_out": 199
+  }
+]

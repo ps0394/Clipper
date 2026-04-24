@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "A search using the `search_domain_filter` may return no results if the domains specified do not contain content relevant to the query, or if the filters are overly restrictive. Two strategies to avoid this outcome are to ensure the domains specified actually contain content relevant to the query and to combine domain filtering with other filters like `search_recency_filter` or `search_language_filter` to narrow down the search to highly relevant content.",
+    "run_index": 0,
+    "tokens_in": 2894,
+    "tokens_out": 85
+  },
+  {
+    "pair_index": 1,
+    "answer": "The domain filtering system matches all content from the specified root domain and its subdomains when a root domain is specified. One example of this behavior is when \"wikipedia.org\" is specified, it will match en.wikipedia.org, fr.wikipedia.org, de.wikipedia.org, and any other Wikipedia language subdomain.",
+    "run_index": 0,
+    "tokens_in": 2891,
+    "tokens_out": 62
+  },
+  {
+    "pair_index": 2,
+    "answer": "The maximum number of domains allowed is 20, while the 'Tech News Sources' example shows 4 domains. This difference matters because it shows that the example is well below the maximum limit, allowing for the addition of more domains if needed to broaden the search results.",
+    "run_index": 0,
+    "tokens_in": 2905,
+    "tokens_out": 55
+  },
+  {
+    "pair_index": 3,
+    "answer": "The document states that the filter works in either allowlist mode or denylist mode, but not both simultaneously, and explicitly advises to \"Choose Your Mode: Use either allowlist mode (include only) OR denylist mode (exclude), but not both in the same request.\"",
+    "run_index": 0,
+    "tokens_in": 2898,
+    "tokens_out": 56
+  },
+  {
+    "pair_index": 4,
+    "answer": "The correct way to structure the `search_domain_filter` parameter is to use denylist mode to exclude social media domains and allowlist mode to include academic sources, but according to the document, you can't use both modes simultaneously. A potential issue that might arise is that the researcher won't be able to exclude social media domains while also limiting results to academic sources in the same request.",
+    "run_index": 0,
+    "tokens_in": 2911,
+    "tokens_out": 78
+  }
+]

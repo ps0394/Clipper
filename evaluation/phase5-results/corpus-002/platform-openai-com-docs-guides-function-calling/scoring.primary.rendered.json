@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "A model can call multiple functions in a single turn by default. To prevent this behavior, set parallel_tool_calls to false.",
+    "run_index": 0,
+    "tokens_in": 11429,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 1,
+    "answer": "When you use tool search, tool_choice still applies to the tools that are currently callable in the turn. Only gpt-5.4 and later models support tool_search.",
+    "run_index": 0,
+    "tokens_in": 11424,
+    "tokens_out": 36
+  },
+  {
+    "pair_index": 2,
+    "answer": "The two key schema requirements for enabling strict mode in function definitions are:\n1. additionalProperties must be set to false for each object in the parameters.\n2. All fields in properties must be marked as required.\n\nIf these requirements are not met, the request will be rejected with details about the missing constraints.",
+    "run_index": 0,
+    "tokens_in": 11429,
+    "tokens_out": 62
+  },
+  {
+    "pair_index": 3,
+    "answer": "1. The user sends a prompt: \"What is my horoscope? I am an Aquarius.\"\n2. The application makes an API request to the model, including the user message and a list of available tools (including the get_horoscope function).\n3. The model examines the prompt and responds with a tool call for get_horoscope, providing the argument sign: \"Aquarius\".\n4. The application receives the tool call from the model, extracts the arguments, and executes the get_horoscope function in code, generating a result (e.g., \"Aquarius: Next Tuesday you will befriend a baby otter.\").\n5. The application appends a new message to the conversation, with role \"tool\", the tool_call_id (call_id) from the model's tool call, and the function output as content.\n6. The application sends another API request to the model, including the updated messages (user prompt, tool call, tool output) and the tools list.\n7. The model receives the tool output (referenced by call_id), incorporates it, and generates a final text response for the user (e.g., the horoscope).\n8. The call_id is used to associate the tool output with the specific tool call made by the model, ensuring the model knows which function result corresponds to which request.",
+    "run_index": 0,
+    "tokens_in": 11435,
+    "tokens_out": 268
+  },
+  {
+    "pair_index": 4,
+    "answer": "The default behavior is that Responses requests will normalize your schema into strict mode (for example, by setting additionalProperties: false and marking all fields as required), while Chat Completions requests remain non-strict by default. To opt out of strict mode in Responses and keep non-strict, best-effort function calling, explicitly set strict: false.",
+    "run_index": 0,
+    "tokens_in": 11438,
+    "tokens_out": 71
+  }
+]

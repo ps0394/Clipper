@@ -1,0 +1,126 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what conditions should you avoid few-shot prompting, and what alternative approach does the document recommend for web search models?",
+      "answer": "Avoid few-shot prompting when using web search models because it confuses the model by triggering searches for the examples rather than the actual query; the document recommends using direct, specific prompts without examples, such as 'Summarize the current research on mRNA vaccine technology.'",
+      "supporting_sentences": [
+        "While few-shot prompting works well for traditional LLMs, it confuses web search models by triggering searches for your examples rather than your actual query.",
+        "Good Example: 'Summarize the current research on mRNA vaccine technology'",
+        "Poor Example: 'Here\u2019s an example of a good summary about vaccines: [example text]. Now summarize the current research on mRNA vaccines.'"
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what conditions should you avoid few-shot prompting, and what alternative approach does the document recommend for web search models?",
+      "answer": "Avoid few-shot prompting when using web search models because it confuses the model by triggering searches for the examples rather than the actual query; the document recommends using direct, specific prompts without examples, such as 'Summarize the current research on mRNA vaccine technology.'",
+      "supporting_sentences": [
+        "While few-shot prompting works well for traditional LLMs, it confuses web search models by triggering searches for your examples rather than your actual query.",
+        "Good Example: 'Summarize the current research on mRNA vaccine technology'",
+        "Poor Example: 'Here\u2019s an example of a good summary about vaccines: [example text]. Now summarize the current research on mRNA vaccines.'"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does the document describe the relationship between the web search component and the language generation component in Perplexity's models, and what limitation does this impose on user prompts?",
+      "answer": "The web search component retrieves content from specific URLs, while the language generation component processes the retrieved content but does not have access to the original URLs; this means users cannot request URLs in their prompts because the model will hallucinate them, and must instead rely on the `search_results` field in the API response for accurate source information.",
+      "supporting_sentences": [
+        "Web Search Component: Finds and retrieves content from specific URLs",
+        "Language Generation Component: Processes the retrieved content but doesn\u2019t have access to the original URLs",
+        "Never ask for URLs or source links in your prompts. The generative model cannot see the actual URLs from the web search, which means any URLs it provides in the response text are likely to be hallucinated and incorrect.",
+        "URLs and source information are automatically returned in the `search_results` field of the API response."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does the document describe the relationship between the web search component and the language generation component in Perplexity's models, and what limitation does this impose on user prompts?",
+      "answer": "The web search component retrieves content from specific URLs, while the language generation component processes the retrieved content but does not have access to the original URLs; this means users cannot request URLs in their prompts because the model will hallucinate them, and must instead rely on the `search_results` field in the API response for accurate source information.",
+      "supporting_sentences": [
+        "Web Search Component: Finds and retrieves content from specific URLs",
+        "Language Generation Component: Processes the retrieved content but doesn\u2019t have access to the original URLs",
+        "Never ask for URLs or source links in your prompts. The generative model cannot see the actual URLs from the web search, which means any URLs it provides in the response text are likely to be hallucinated and incorrect.",
+        "URLs and source information are automatically returned in the `search_results` field of the API response."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the difference between the recommended and discouraged approaches for prompting Perplexity's web search models when requesting information about recent events, and why does the document advise against the latter?",
+      "answer": "The recommended approach is to use explicit instructions with clear boundaries (e.g., 'Based on publicly available sources from the past week, what are the latest policy changes in Canadian healthcare? If no recent information is found, indicate that.') and avoid overly specific or private queries (e.g., 'What was discussed in the closed-door meeting between Company A and Company B last week?'); the document advises against the latter because it may lead to hallucinated responses when the model lacks sufficient information or access to sources.",
+      "supporting_sentences": [
+        "Set Clear Boundaries: \u2705 GOOD: 'Based on publicly available sources from the past week, what are the latest policy changes in Canadian healthcare? If no recent information is found, please indicate that no recent updates were discovered.'",
+        "Overly Specific Recent Events: \u274c PROBLEMATIC: 'What was discussed in the closed-door meeting between Company A and Company B last week?' Private information that wouldn\u2019t be publicly searchable may still get a fabricated response.",
+        "LLMs are designed to be 'helpful' and may attempt to provide answers even when they lack sufficient information. This can lead to hallucinated or inaccurate responses, especially when asking about sources that Sonar cannot access."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the difference between the recommended and discouraged approaches for prompting Perplexity's web search models when requesting information about recent events, and why does the document advise against the latter?",
+      "answer": "The recommended approach is to use explicit instructions with clear boundaries (e.g., 'Based on publicly available sources from the past week, what are the latest policy changes in Canadian healthcare? If no recent information is found, indicate that.') and avoid overly specific or private queries (e.g., 'What was discussed in the closed-door meeting between Company A and Company B last week?'); the document advises against the latter because it may lead to hallucinated responses when the model lacks sufficient information or access to sources.",
+      "supporting_sentences": [
+        "Set Clear Boundaries: \u2705 GOOD: 'Based on publicly available sources from the past week, what are the latest policy changes in Canadian healthcare? If no recent information is found, please indicate that no recent updates were discovered.'",
+        "Overly Specific Recent Events: \u274c PROBLEMATIC: 'What was discussed in the closed-door meeting between Company A and Company B last week?' Private information that wouldn\u2019t be publicly searchable may still get a fabricated response.",
+        "LLMs are designed to be 'helpful' and may attempt to provide answers even when they lack sufficient information. This can lead to hallucinated or inaccurate responses, especially when asking about sources that Sonar cannot access."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How many distinct 'Common Scenarios That Lead to Hallucination' are explicitly listed in the document, and what are they?",
+      "answer": "Two; inaccessible sources (e.g., LinkedIn posts, private documents) and overly specific recent events (e.g., private meetings).",
+      "supporting_sentences": [
+        "Common Scenarios That Lead to Hallucination",
+        "Inaccessible Sources: \u274c PROBLEMATIC: 'What did the CEO of XYZ company post on LinkedIn yesterday about their new product launch?' Sonar may not be able to access LinkedIn content, but the model might still attempt to provide an answer based on general knowledge or patterns.",
+        "Overly Specific Recent Events: \u274c PROBLEMATIC: 'What was discussed in the closed-door meeting between Company A and Company B last week?' Private information that wouldn\u2019t be publicly searchable may still get a fabricated response."
+      ]
+    },
+    "edited_pair": {
+      "question": "How many distinct 'Common Scenarios That Lead to Hallucination' are explicitly listed in the document, and what are they?",
+      "answer": "Two; inaccessible sources (e.g., LinkedIn posts, private documents) and overly specific recent events (e.g., private meetings).",
+      "supporting_sentences": [
+        "Common Scenarios That Lead to Hallucination",
+        "Inaccessible Sources: \u274c PROBLEMATIC: 'What did the CEO of XYZ company post on LinkedIn yesterday about their new product launch?' Sonar may not be able to access LinkedIn content, but the model might still attempt to provide an answer based on general knowledge or patterns.",
+        "Overly Specific Recent Events: \u274c PROBLEMATIC: 'What was discussed in the closed-door meeting between Company A and Company B last week?' Private information that wouldn\u2019t be publicly searchable may still get a fabricated response."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens if you attempt to control search behavior (e.g., filtering by date or domain) through prompts instead of using Perplexity's built-in API parameters, and what is the document's justification for this limitation?",
+      "answer": "The search behavior will not be reliably applied because the language model cannot directly control the search component; the document justifies this by explaining that built-in API parameters are processed directly by the search engine, ensuring consistent and accurate results, whereas prompt-based instructions are ineffective and may lead to unpredictable outcomes.",
+      "supporting_sentences": [
+        "Always use Perplexity\u2019s built-in search parameters instead of trying to control search behavior through prompts. API parameters are guaranteed to work and are much more effective than asking the model to filter results.",
+        "\u274c Ineffective - Trying to control via prompts: { 'model': 'sonar-pro', 'messages': [{ 'role': 'user', 'content': 'Search only on Wikipedia and official government sites for information about climate change policies. Make sure to only look at sources from the past month.' }] }",
+        "\u2705 Effective - Using built-in parameters: { 'model': 'sonar-pro', 'messages': [{ 'role': 'user', 'content': 'What are the latest climate change policies?' }], 'search_domain_filter': ['wikipedia.org'] }",
+        "Built-in parameters are processed directly by the search engine, ensuring they\u2019re applied correctly every time."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens if you attempt to control search behavior (e.g., filtering by date or domain) through prompts instead of using Perplexity's built-in API parameters, and what is the document's justification for this limitation?",
+      "answer": "The search behavior will not be reliably applied because the language model cannot directly control the search component; the document justifies this by explaining that built-in API parameters are processed directly by the search engine, ensuring consistent and accurate results, whereas prompt-based instructions are ineffective and may lead to unpredictable outcomes.",
+      "supporting_sentences": [
+        "Always use Perplexity\u2019s built-in search parameters instead of trying to control search behavior through prompts. API parameters are guaranteed to work and are much more effective than asking the model to filter results.",
+        "\u274c Ineffective - Trying to control via prompts: { 'model': 'sonar-pro', 'messages': [{ 'role': 'user', 'content': 'Search only on Wikipedia and official government sites for information about climate change policies. Make sure to only look at sources from the past month.' }] }",
+        "\u2705 Effective - Using built-in parameters: { 'model': 'sonar-pro', 'messages': [{ 'role': 'user', 'content': 'What are the latest climate change policies?' }], 'search_domain_filter': ['wikipedia.org'] }",
+        "Built-in parameters are processed directly by the search engine, ensuring they\u2019re applied correctly every time."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

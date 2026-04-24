@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the two primary ways form data can be used and the circumstances under which to choose one over the other, despite minor differences in wording and examples.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 723,
+    "tokens_out": 49
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the differences in validation and keyboard layout on mobile devices.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 701,
+    "tokens_out": 31
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the three possible values for the `type` attribute and their effects when clicked, as well as the UX considerations for the `reset` type.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 791,
+    "tokens_out": 49
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer is missing the distinction between single-line and multi-line text fields, and also incorrectly includes \"buttons\" instead of specifying the correct type as \"radio buttons\" is mentioned but \"buttons\" is not the same as the ground truth's \"radio buttons\" in this context.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 619,
+    "tokens_out": 62
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer states that the information is not in the document, which is an acceptable response if the information cannot be found.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 630,
+    "tokens_out": 30
+  }
+]

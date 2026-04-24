@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "When upgrading from previous reasoning models to gpt-5.1, a user may need to explicitly set a reasoning_effort level if they want reasoning to occur, because reasoning_effort defaults to none. If the parameter is not set, the default behavior is that no reasoning occurs.",
+    "run_index": 0,
+    "tokens_in": 14021,
+    "tokens_out": 58
+  },
+  {
+    "pair_index": 1,
+    "answer": "gpt-5.4 and gpt-5.4-pro have the largest context window of 1,050,000 tokens; their input token capacity is 1,050,000 and their output token capacity is 128,000.",
+    "run_index": 0,
+    "tokens_in": 14010,
+    "tokens_out": 51
+  },
+  {
+    "pair_index": 2,
+    "answer": "The difference in max output tokens between `gpt-5.3-chat` and `gpt-5.3-codex` is 111,616 (128,000 for `gpt-5.3-codex` minus 16,384 for `gpt-5.3-chat`). `gpt-5.3-chat` would not support a parameter like `temperature` if it is a reasoning model, as reasoning models do not support parameters like `temperature`.",
+    "run_index": 0,
+    "tokens_in": 14032,
+    "tokens_out": 101
+  },
+  {
+    "pair_index": 3,
+    "answer": "In Global Standard, `gpt-5.4-mini` is available in East US2, Sweden Central, South Central US, and Poland Central.  \nIn Datazone Standard, it is available in East US2 and South Central US.\n\nRegions unique to Global Standard: Sweden Central, Poland Central.  \nNo regions are unique to Datazone Standard.",
+    "run_index": 0,
+    "tokens_in": 14017,
+    "tokens_out": 72
+  },
+  {
+    "pair_index": 4,
+    "answer": "If a user attempts to use a tool or function call definition exceeding 300,000 tokens with a GPT 4.1 series model, it will result in failures. The specific error messages for the Chat Completions API are:\n\nError code: 400 - {'error': {'message': \"This model's maximum context length is 300000 tokens. However, your messages resulted in 350564 tokens (100 in the messages, 350464 in the functions). Please reduce the length of the messages or functions.\", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}\n\nError code: 400 - {'error': {'message': \"Invalid 'tools[0].function.description': string too long. Expected a string with maximum length 1048576, but got a string with length 2778531 instead.\", 'type': 'invalid_request_error', 'param': 'tools[0].function.description', 'code': 'string_above_max_length'}}",
+    "run_index": 0,
+    "tokens_in": 14027,
+    "tokens_out": 208
+  }
+]

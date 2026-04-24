@@ -1,0 +1,1502 @@
+{
+  "parseability_score": 40.50885624400662,
+  "failure_mode": "significant_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-002\\docs-anthropic-com-en-release-notes-api\\page.rendered.html",
+  "url": "https://docs.anthropic.com/en/release-notes/api",
+  "component_scores": {
+    "semantic_html": 62.72727272727273,
+    "content_extractability": 96.27038062188439,
+    "structured_data": 12,
+    "dom_navigability": 0,
+    "metadata_completeness": 55,
+    "http_compliance": 61.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "article",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "aside",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 1,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 2,
+      "heading_elements_count": 98,
+      "scoring_breakdown": {
+        "semantic_coverage": 32.72727272727273,
+        "aria_bonus": 10,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 34800,
+        "extracted_text_length": 26864,
+        "extracted_chars": 26864,
+        "extraction_ratio": 0.772,
+        "extracted_title": "Claude Platform - Claude API Docs",
+        "extracted_preview": "Release notes Updates to the Claude Platform, including the Claude API, client SDKs, and the Claude Console. For release notes on Claude Apps, see the Release notes for Claude Apps in the Claude Help Center . For updates to Claude Code, see the complete CHANGELOG.md in the claude-code repository. Me...",
+        "original_headings": 98,
+        "extracted_headings": 90,
+        "original_lists": 104,
+        "extracted_lists": 81,
+        "original_code_blocks": 90,
+        "extracted_code_blocks": 90,
+        "has_main_element": true,
+        "has_article_element": true
+      },
+      "score_breakdown": {
+        "signal_to_noise": 40.0,
+        "structure_preservation": 26.972135007849296,
+        "boundary_detection": 29.29824561403509
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 0,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 1
+      },
+      "schema_types_found": [],
+      "key_fields_found": [],
+      "formats_present": 2,
+      "score_breakdown": {
+        "type_appropriateness": 0,
+        "field_completeness": 0,
+        "multiple_formats": 12,
+        "schema_validation": 0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": []
+      },
+      "sample_structured_data": {
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:title",
+                "Claude Platform"
+              ],
+              [
+                "og:description",
+                "Updates to the Claude Platform, including the Claude API, client SDKs, and the Claude Console."
+              ],
+              [
+                "og:url",
+                "https://platform.claude.com/docs/en/release-notes/overview"
+              ],
+              [
+                "og:site_name",
+                "Claude API Docs"
+              ],
+              [
+                "og:locale",
+                "en"
+              ],
+              [
+                "og:image",
+                "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview"
+              ],
+              [
+                "og:image:width",
+                "1200"
+              ],
+              [
+                "og:image:height",
+                "630"
+              ],
+              [
+                "og:image:alt",
+                "Claude Platform"
+              ],
+              [
+                "og:image:type",
+                "image/png"
+              ],
+              [
+                "og:type",
+                "article"
+              ]
+            ]
+          }
+        ],
+        "microformat": [
+          {
+            "type": [
+              "h-screen"
+            ],
+            "properties": {},
+            "children": [
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {},
+                "children": [
+                  {
+                    "type": [
+                      "h-full"
+                    ],
+                    "properties": {
+                      "name": [
+                        "BuildAdminModels & pricingClient SDKsAPI Reference"
+                      ]
+                    },
+                    "lang": "en-US"
+                  }
+                ],
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Intro to Claude"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Quickstart"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Features overview"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Using the Messages API"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Claude API skill"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Handling stop reasons"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Extended thinking"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Adaptive thinking"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Effort"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Task budgets (beta)"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Fast mode (beta: research preview)"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Structured outputs"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Citations"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Streaming Messages"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Batch processing"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Search results"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Streaming refusals"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Multilingual support"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Embeddings"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Overview"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "How tool use works"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Web search tool"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Web fetch tool"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Code execution tool"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Advisor tool"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Memory tool"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Bash tool"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Computer use tool"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Text editor tool"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Tool reference"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Tool search"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Programmatic tool calling"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Fine-grained tool streaming"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Context windows"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Compaction"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Context editing"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Prompt caching"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Token counting"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Files API"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "PDF support"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Images and vision"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Overview"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Quickstart"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Best practices"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Skills for enterprise"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Skills in the API"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Remote MCP servers"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "MCP connector"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Overview"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Prompting best practices"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Console prompting tools"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Define success and build evaluations"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Using the Evaluation Tool in Console"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Reducing latency"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Reduce hallucinations"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Increase output consistency"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Mitigate jailbreaks"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Reduce prompt leak"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Glossary"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Claude Platform"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Copy page"
+                  ]
+                },
+                "lang": "en-US"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Copy page"
+                  ]
+                },
+                "lang": "en-US"
+              }
+            ],
+            "lang": "en-US"
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures buttons have discernible text",
+          "help": "Buttons must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/button-name?application=axeAPI",
+          "id": "button-name",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button class=\"inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 w-8 rounded-md rounded py-1 px-2 max-w-full whitespace-nowrap text-ellipsis overflow-hidden Button_fill__JiIcX Button_ghost__BUAoh\" type=\"button\" id=\"radix-_r_a_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "#radix-_r_a_"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button class=\"bg-bg-000 flex items-center justify-center px-1 hover:bg-bg-200 rounded-r-lg border-0.5 border-border-200\" type=\"button\" id=\"radix-_R_kclfiuqkntiuuljb_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "#radix-_R_kclfiuqkntiuuljb_"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button class=\"inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 w-8 rounded-md mb-1 ml-1 p-0 Button_fill__JiIcX Button_ghost__BUAoh\" type=\"button\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                ".ml-1"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a"
+          ]
+        },
+        {
+          "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+          "help": "Elements must have sufficient color contrast",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#faf9f5",
+                    "contrastRatio": 1.05,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#ffffff",
+                    "fontSize": "9.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 1.05 (foreground color: #ffffff, background color: #faf9f5, font size: 9.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<header class=\"fixed top-0 left-0 gap-1 right-0 z-30 h-14 flex-none border-b-0.5 border-border-300 bg-bg-100 flex items-center justify-between px-2 md:px-4\">",
+                      "target": [
+                        ".z-30"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.05 (foreground color: #ffffff, background color: #faf9f5, font size: 9.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<button class=\"inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none font-base-bold\n        overflow-hidden\n        transition-transform\n        will-change-transform\n        ease-[cubic-bezier(0.165,0.85,0.45,1)]\n        duration-150\n        hover:scale-y-[1.015]\n        hover:scale-x-[1.005]\n        backface-hidden\n        after:absolute\n        after:inset-0\n        after:bg-[radial-gradient(at_bottom,hsla(var(--bg-000)/20%),hsla(var(--bg-000)/0%))]\n        after:opacity-0\n        after:transition\n        after:duration-200\n        after:translate-y-2\n        hover:after:opacity-100\n        hover:after:translate-y-0 h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs Button_fill__JiIcX Button_primary__0oSjX\" type=\"button\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".will-change-transform"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+          ]
+        },
+        {
+          "description": "Ensures the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/heading-order?application=axeAPI",
+          "id": "heading-order",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": 3,
+                  "id": "heading-order",
+                  "impact": "moderate",
+                  "message": "Heading order invalid",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Heading order invalid",
+              "html": "<h3 class=\"text-xl font-medium leading-[1.25] text-text-100\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                ".text-xl.leading-\\[1\\.25\\].font-medium:nth-child(4)"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures that lists are structured correctly",
+          "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/list?application=axeAPI",
+          "id": "list",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed inside <li> elements",
+              "html": "<ul class=\"relative space-y-1 text-sm overflow-hidden\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "only-listitems",
+                  "impact": "serious",
+                  "message": "List element has direct children that are not allowed inside <li> elements",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"absolute left-0 w-0.5 bg-text-000 rounded-full\" style=\"top: 0px; height: 28px;\"></div>",
+                      "target": [
+                        ".w-0\\.5"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                ".overflow-hidden.space-y-1"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.structure",
+            "wcag2a",
+            "wcag131"
+          ]
+        },
+        {
+          "description": "Ensures <meta name=\"viewport\"> does not disable text scaling and zooming",
+          "help": "Zooming and scaling must not be disabled",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/meta-viewport?application=axeAPI",
+          "id": "meta-viewport",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "maximum-scale",
+                  "id": "meta-viewport",
+                  "impact": "critical",
+                  "message": "maximum-scale on <meta> tag disables zooming on mobile devices",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  maximum-scale on <meta> tag disables zooming on mobile devices",
+              "html": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "meta[name=\"viewport\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.sensory-and-visual-cues",
+            "wcag2aa",
+            "wcag144"
+          ]
+        },
+        {
+          "description": "Ensures all page content is contained by landmarks",
+          "help": "All page content must be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/region?application=axeAPI",
+          "id": "region",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "region",
+                  "impact": "moderate",
+                  "message": "Some page content is not contained by landmarks",
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"bg-inkeep-primary-text-bold dark:bg-gray-dark-600 rounded-full px-[18px] py-3 text-white font-medium flex items-center space-x-2 shadow-2xl dark:shadow-none transition-transform ease-in-out hover:scale-110 ikp-chat-button__button\" data-part=\"chat-button__button\">",
+                      "target": [
+                        [
+                          "#inkeep-shadowradix-_R_6iuuljb_",
+                          ".bg-inkeep-primary-text-bold"
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks",
+              "html": "<html class=\"h-screen antialiased bg-bg-100 __variable_8d1da5 __variable_2d8cf6 __variable_5581e8\" lang=\"en-US\" data-theme=\"claude\" data-mode=\"light\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.keyboard",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 6,
+      "passes_count": 33,
+      "total_penalty": 100,
+      "penalty_per_rule": {
+        "button-name": {
+          "impact": "critical",
+          "node_count": 3,
+          "raw_penalty": 75,
+          "capped_penalty": 25
+        },
+        "color-contrast": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "heading-order": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        },
+        "list": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "meta-viewport": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "region": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        }
+      },
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 0,
+        "date": 0,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [
+          "meta:description",
+          "og:description"
+        ],
+        "author": [],
+        "date": [],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 4,
+      "fields_total": 7,
+      "json_ld_type": "none"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "absent",
+        "last_modified": "absent",
+        "cache_control": "private, no-cache, no-store, max-age=0, must-revalidate"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 1,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "landing",
+      "detection": {
+        "source": "dom",
+        "matched_value": "landing"
+      },
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.1,
+        "structured_data": 0.3,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "landing",
+  "universal_score": 48.93589430619506,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 62.72727272727273,
+    "content_extractability": 96.27038062188439,
+    "structured_data": 12,
+    "dom_navigability": 0,
+    "metadata_completeness": 55,
+    "http_compliance": 61.0
+  },
+  "evidence_references": null
+}

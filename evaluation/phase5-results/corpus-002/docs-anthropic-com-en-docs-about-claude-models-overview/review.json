@@ -1,0 +1,118 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what conditions would a developer choose Claude Haiku 4.5 over Claude Sonnet 4.6, and what trade-offs must they accept in terms of model capabilities and output limits?",
+      "answer": "A developer would choose Claude Haiku 4.5 over Claude Sonnet 4.6 when prioritizing speed and cost efficiency for tasks requiring near-frontier intelligence, but must accept a smaller context window (200k tokens vs. 1M tokens), no adaptive thinking, and a lower max output limit (64k tokens vs. 64k tokens for Sonnet, though Opus 4.7 supports 128k tokens); additionally, Haiku has a lower reliable knowledge cutoff (Feb 2025 vs. Aug 2025 for Sonnet).",
+      "supporting_sentences": [
+        "Claude Haiku 4.5: The fastest model with near-frontier intelligence",
+        "Claude Sonnet 4.6: The best combination of speed and intelligence",
+        "Context window: Claude Haiku 4.5 - 200k tokens; Claude Sonnet 4.6 - 1M tokens",
+        "Adaptive thinking: Claude Haiku 4.5 - No; Claude Sonnet 4.6 - Yes",
+        "Max output: Claude Haiku 4.5 - 64k tokens; Claude Sonnet 4.6 - 64k tokens; Claude Opus 4.7 - 128k tokens",
+        "Reliable knowledge cutoff: Claude Haiku 4.5 - Feb 2025; Claude Sonnet 4.6 - Aug 2025",
+        "Pricing: Claude Haiku 4.5 - $1 / input MTok, $5 / output MTok; Claude Sonnet 4.6 - $3 / input MTok, $15 / output MTok"
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what conditions would a developer choose Claude Haiku 4.5 over Claude Sonnet 4.6, and what trade-offs must they accept in terms of model capabilities and output limits?",
+      "answer": "A developer would choose Claude Haiku 4.5 over Claude Sonnet 4.6 when prioritizing speed and cost efficiency for tasks requiring near-frontier intelligence, but must accept a smaller context window (200k tokens vs. 1M tokens), no adaptive thinking, and a lower max output limit (64k tokens vs. 64k tokens for Sonnet, though Opus 4.7 supports 128k tokens); additionally, Haiku has a lower reliable knowledge cutoff (Feb 2025 vs. Aug 2025 for Sonnet).",
+      "supporting_sentences": [
+        "Claude Haiku 4.5: The fastest model with near-frontier intelligence",
+        "Claude Sonnet 4.6: The best combination of speed and intelligence",
+        "Context window: Claude Haiku 4.5 - 200k tokens; Claude Sonnet 4.6 - 1M tokens",
+        "Adaptive thinking: Claude Haiku 4.5 - No; Claude Sonnet 4.6 - Yes",
+        "Max output: Claude Haiku 4.5 - 64k tokens; Claude Sonnet 4.6 - 64k tokens; Claude Opus 4.7 - 128k tokens",
+        "Reliable knowledge cutoff: Claude Haiku 4.5 - Feb 2025; Claude Sonnet 4.6 - Aug 2025",
+        "Pricing: Claude Haiku 4.5 - $1 / input MTok, $5 / output MTok; Claude Sonnet 4.6 - $3 / input MTok, $15 / output MTok"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does the context window size differ between Claude Opus 4.7 and Claude Haiku 4.5, and what is the practical implication of this difference for tasks requiring long-context handling?",
+      "answer": "Claude Opus 4.7 has a context window of 1M tokens, while Claude Haiku 4.5 has a context window of 200k tokens; the practical implication is that Opus 4.7 can process and retain significantly more information in a single interaction (5x larger), making it better suited for tasks involving large documents, complex reasoning over extended inputs, or multi-turn conversations requiring extensive context.",
+      "supporting_sentences": [
+        "Context window: Claude Opus 4.7 - 1M tokens; Claude Haiku 4.5 - 200k tokens",
+        "Claude 4 models excel in: [...] long-context handling"
+      ]
+    },
+    "edited_pair": {
+      "question": "How does the context window size differ between Claude Opus 4.7 and Claude Haiku 4.5, and what is the practical implication of this difference for tasks requiring long-context handling?",
+      "answer": "Claude Opus 4.7 has a context window of 1M tokens, while Claude Haiku 4.5 has a context window of 200k tokens; the practical implication is that Opus 4.7 can process and retain significantly more information in a single interaction (5x larger), making it better suited for tasks involving large documents, complex reasoning over extended inputs, or multi-turn conversations requiring extensive context.",
+      "supporting_sentences": [
+        "Context window: Claude Opus 4.7 - 1M tokens; Claude Haiku 4.5 - 200k tokens",
+        "Claude 4 models excel in: [...] long-context handling"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which Claude model has the highest input token pricing, and how much more expensive is it compared to the model with the lowest input token pricing?",
+      "answer": "Claude Opus 4.7 has the highest input token pricing at $5 per million tokens; it is 5 times more expensive than Claude Haiku 4.5, which has the lowest input token pricing at $1 per million tokens.",
+      "supporting_sentences": [
+        "Pricing: Claude Opus 4.7 - $5 / input MTok; Claude Haiku 4.5 - $1 / input MTok"
+      ]
+    },
+    "edited_pair": {
+      "question": "Which Claude model has the highest input token pricing, and how much more expensive is it compared to the model with the lowest input token pricing?",
+      "answer": "Claude Opus 4.7 has the highest input token pricing at $5 per million tokens; it is 5 times more expensive than Claude Haiku 4.5, which has the lowest input token pricing at $1 per million tokens.",
+      "supporting_sentences": [
+        "Pricing: Claude Opus 4.7 - $5 / input MTok; Claude Haiku 4.5 - $1 / input MTok"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens if a developer uses the synchronous Messages API with Claude Opus 4.7 and attempts to generate an output larger than 128k tokens, and what alternative API should they use to exceed this limit?",
+      "answer": "The synchronous Messages API will not support outputs larger than 128k tokens for Claude Opus 4.7; to exceed this limit, the developer should use the Message Batches API, which supports up to 300k output tokens for Opus 4.7 when the `output-300k-2026-03-24` beta header is included.",
+      "supporting_sentences": [
+        "The Max output values above apply to the synchronous Messages API. On the Message Batches API, Opus 4.7 [...] support up to 300k output tokens by using the output-300k-2026-03-24 beta header.",
+        "Max output: Claude Opus 4.7 - 128k tokens"
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens if a developer uses the synchronous Messages API with Claude Opus 4.7 and attempts to generate an output larger than 128k tokens, and what alternative API should they use to exceed this limit?",
+      "answer": "The synchronous Messages API will not support outputs larger than 128k tokens for Claude Opus 4.7; to exceed this limit, the developer should use the Message Batches API, which supports up to 300k output tokens for Opus 4.7 when the `output-300k-2026-03-24` beta header is included.",
+      "supporting_sentences": [
+        "The Max output values above apply to the synchronous Messages API. On the Message Batches API, Opus 4.7 [...] support up to 300k output tokens by using the output-300k-2026-03-24 beta header.",
+        "Max output: Claude Opus 4.7 - 128k tokens"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "For developers using AWS Bedrock, what are the two endpoint types available for Claude Sonnet 4.6, and how do they differ in terms of data routing?",
+      "answer": "AWS Bedrock offers two endpoint types for Claude Sonnet 4.6: global endpoints (which use dynamic routing for maximum availability) and regional endpoints (which guarantee data routing through specific geographic regions).",
+      "supporting_sentences": [
+        "Starting with Claude Sonnet 4.5 and all subsequent models (including Claude Sonnet 4.6), AWS Bedrock offers two endpoint types: global endpoints (dynamic routing for maximum availability) and regional endpoints (guaranteed data routing through specific geographic regions)."
+      ]
+    },
+    "edited_pair": {
+      "question": "For developers using AWS Bedrock, what are the two endpoint types available for Claude Sonnet 4.6, and how do they differ in terms of data routing?",
+      "answer": "AWS Bedrock offers two endpoint types for Claude Sonnet 4.6: global endpoints (which use dynamic routing for maximum availability) and regional endpoints (which guarantee data routing through specific geographic regions).",
+      "supporting_sentences": [
+        "Starting with Claude Sonnet 4.5 and all subsequent models (including Claude Sonnet 4.6), AWS Bedrock offers two endpoint types: global endpoints (dynamic routing for maximum availability) and regional endpoints (guaranteed data routing through specific geographic regions)."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

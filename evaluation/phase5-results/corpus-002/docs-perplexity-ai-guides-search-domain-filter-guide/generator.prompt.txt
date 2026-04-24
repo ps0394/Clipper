@@ -1,0 +1,974 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports *non-trivial* retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 challenging question/answer pairs. Unlike simple fact extraction, these questions must require the reader to synthesize, compare, or compute across multiple parts of the document — not just locate a single sentence.
+
+## Difficulty mandate
+
+The baseline for this corpus is that a strong LLM scores 100% on simple fact-lookup questions. That ceiling is the problem this prompt solves. Generate questions such that a competent LLM reading only the document text should land in the 50–80% correct range. A question that can be answered by copying one sentence verbatim is too easy and must be replaced.
+
+## Required question-type mix
+
+You must produce exactly 5 Q/A pairs with the following distribution:
+
+- **At least 2 synthesis questions** — the answer requires combining information from two or more non-adjacent sections of the document. The reader must locate multiple facts and relate them. Example forms: "Under what conditions does X apply, and what happens when those conditions are not met?", "How does feature A relate to feature B?", "What is the full sequence of steps from X to Y?"
+
+- **At least 1 quantitative or comparative question** — the answer requires counting, ordering, ranking, computing a difference, or distinguishing options. Example forms: "Which of the supported options has the shortest timeout?", "How many … does the document describe, and in what order?", "What is the difference between the default and maximum value of X?"
+
+- **At least 1 constraint or edge-case question** — the answer depends on a condition, limitation, exception, or corner case mentioned in the document. Example forms: "What happens if X is set to a value above the supported range?", "Under which circumstances is behavior Y not guaranteed?"
+
+- The remaining pair(s) may be any of the above types. Do not include pure fact-lookup questions (e.g. "What is the name of X?", "What year was Y introduced?") unless the fact is genuinely non-obvious and spread across multiple sentences.
+
+## Answerability constraints
+
+1. **Every answer must be fully grounded in the document.** If the question requires outside knowledge, common sense beyond the document, or inference the document does not support, do not include it.
+2. **Answers may be short or multi-part**, but must be precise. Do not produce essay-length answers. For multi-part answers, separate components with semicolons or enumerate explicitly.
+3. **Supporting sentences are required.** For every Q/A pair, list the verbatim sentences from the document that together justify the answer. A synthesis question should have supporting sentences from multiple sections; a quantitative question should have the sentences containing the relevant numbers.
+4. **Self-contained questions.** A reader who has not seen the document must be able to understand what is being asked. Do not write "What is the second step?" or "What does the table show?".
+5. **Spread across the document.** The 5 questions together should exercise different sections, not cluster in one region.
+
+## Forbidden patterns
+
+- Questions answerable by copying a single sentence verbatim.
+- Questions whose answer is a single named entity pulled from a title, heading, or "About this page" metadata block.
+- Questions where the answer is restated in the question itself.
+- Questions requiring knowledge of the document's structure rather than its content (e.g. "What section comes after X?").
+
+## Output format
+
+A single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Search Domain Filter
+Document URL: https://docs.perplexity.ai/guides/search-domain-filter-guide
+Document profile: article
+
+Document text:
+---
+The 
+search_domain_filter
+ parameter allows you to limit search results to specific domains or exclude certain domains from search results. This supports domain-level filtering for precise content control.
+
+You can add a maximum of 20 domains to the 
+search_domain_filter
+ list. The filter works in either allowlist mode (include only) or denylist mode (exclude), but not both simultaneously.
+
+Domain filters allow you to specify which domains to include or exclude in search results. You can filter by specific domains, top-level domains (TLDs), or domain parts. You can specify up to 20 domains per request. Domains should be provided without the protocol (e.g., “nature.com” not “
+https://nature.com
+”).
+
+Overview
+
+The domain filter for the Search API allows you to control which sources appear in your search results by limiting them to specific domains or excluding certain domains. This is particularly useful when you need to:
+
+Focus research on authoritative or trusted sources
+
+Filter out specific domains from search results
+
+Search within specific publication networks or organizations
+
+Build domain-specific search applications
+
+Conduct competitive research within specific industry domains
+
+The 
+search_domain_filter
+ parameter accepts an array of domain strings. The filter operates in two modes:
+
+Allowlist mode
+: Include only the specified domains (no 
+-
+ prefix)
+
+Denylist mode
+: Exclude the specified domains (use 
+-
+ prefix)
+
+# Allowlist: Only search these domains
+
+"search_domain_filter"
+:
+ [
+"nature.com"
+, 
+"science.org",
+ "cell.com"]
+
+# Denylist: Exclude these domains
+
+"search_domain_filter"
+:
+ [
+"-reddit.com"
+, 
+"-pinterest.com",
+ "-quora.com"]
+
+Filtering Capabilities
+
+Domain filters support flexible matching across different domain components:
+
+Root Domain Filtering
+
+Specify a root domain to match all content from that domain and its subdomains:
+
+"search_domain_filter"
+:
+ [
+"wikipedia.org"
+]
+
+This will match:
+
+en.wikipedia.org
+
+fr.wikipedia.org
+
+de.wikipedia.org
+
+Any other Wikipedia language subdomain
+
+Top-Level Domain (TLD) Filtering
+
+Filter by top-level domain to target specific categories of sites:
+
+"search_domain_filter"
+:
+ [
+".gov"
+]
+
+This will match all government domains:
+
+nasa.gov
+
+cdc.gov
+
+irs.gov
+
+Any other 
+.gov
+ domain
+
+TLD filtering is particularly useful for targeting specific types of organizations, such as 
+.gov
+ for government sites, 
+.edu
+ for educational institutions, or country-specific TLDs like 
+.uk
+ or 
+.ca
+.
+
+Domain Part Filtering
+
+Any part of a domain can be used as a filter. The system will match domains containing that component.
+
+Examples
+
+1. Allowlist Specific Domains
+
+This example limits search results to authoritative academic publishers:
+
+Request Example
+
+from
+ perplexity 
+import
+ Perplexity
+
+client 
+=
+ Perplexity()
+
+response 
+=
+ client.search.create(
+
+    query
+=
+"climate change research"
+,
+
+    max_results
+=
+10
+,
+
+    search_domain_filter
+=
+[
+
+        "nature.com"
+,
+
+        "science.org"
+,
+
+        "cell.com"
+
+    ]
+
+)
+
+for
+ result 
+in
+ response.results:
+
+    print
+(
+f
+"
+{
+result.title
+}
+: 
+{
+result.url
+}
+"
+)
+
+2. Tech News Sources
+
+Search across major technology news websites:
+
+from
+ perplexity 
+import
+ Perplexity
+
+client 
+=
+ Perplexity()
+
+response 
+=
+ client.search.create(
+
+    query
+=
+"latest tech trends 2025"
+,
+
+    max_results
+=
+10
+,
+
+    search_domain_filter
+=
+[
+
+        "techcrunch.com"
+,
+
+        "theverge.com"
+,
+
+        "arstechnica.com"
+,
+
+        "wired.com"
+
+    ]
+
+)
+
+for
+ result 
+in
+ response.results:
+
+    print
+(
+f
+"
+{
+result.title
+}
+"
+)
+
+    print
+(
+f
+"Source: 
+{
+result.url
+}
+"
+)
+
+    print
+(
+f
+"Date: 
+{
+result.date
+}
+"
+)
+
+    print
+(
+"---"
+)
+
+3. Government and Educational Sources (TLD Filtering)
+
+Use top-level domain filtering to search across all government or educational institutions:
+
+from
+ perplexity 
+import
+ Perplexity
+
+client 
+=
+ Perplexity()
+
+# Search all .gov and .edu domains
+
+response 
+=
+ client.search.create(
+
+    query
+=
+"climate change policy research"
+,
+
+    max_results
+=
+15
+,
+
+    search_domain_filter
+=
+[
+
+        ".gov"
+,
+
+        ".edu"
+
+    ]
+
+)
+
+for
+ result 
+in
+ response.results:
+
+    print
+(
+f
+"
+{
+result.title
+}
+"
+)
+
+    print
+(
+f
+"Source: 
+{
+result.url
+}
+"
+)
+
+    print
+(
+"---"
+)
+
+4. Wikipedia Across Languages (Subdomain Matching)
+
+Search across all Wikipedia language editions by specifying the root domain:
+
+from
+ perplexity 
+import
+ Perplexity
+
+client 
+=
+ Perplexity()
+
+# Matches en.wikipedia.org, fr.wikipedia.org, de.wikipedia.org, etc.
+
+response 
+=
+ client.search.create(
+
+    query
+=
+"quantum mechanics"
+,
+
+    max_results
+=
+10
+,
+
+    search_domain_filter
+=
+[
+"wikipedia.org"
+]
+
+)
+
+for
+ result 
+in
+ response.results:
+
+    print
+(
+f
+"
+{
+result.title
+}
+"
+)
+
+    print
+(
+f
+"URL: 
+{
+result.url
+}
+"
+)
+
+    print
+(
+"---"
+)
+
+5. Denylist Specific Domains
+
+This example shows how to exclude specific domains from search results by prefixing the domain name with a minus sign (
+-
+):
+
+from
+ perplexity 
+import
+ Perplexity
+
+client 
+=
+ Perplexity()
+
+# Exclude social media and Q&A sites from search results
+
+response 
+=
+ client.search.create(
+
+    query
+=
+"latest advancements in renewable energy"
+,
+
+    max_results
+=
+10
+,
+
+    search_domain_filter
+=
+[
+
+        "-pinterest.com"
+,
+
+        "-reddit.com"
+,
+
+        "-quora.com"
+
+    ]
+
+)
+
+for
+ result 
+in
+ response.results:
+
+    print
+(
+f
+"
+{
+result.title
+}
+: 
+{
+result.url
+}
+"
+)
+
+6. Combining Domain Filter with Other Filters
+
+Domain filters work seamlessly with other search parameters for precise control:
+
+from
+ perplexity 
+import
+ Perplexity
+
+client 
+=
+ Perplexity()
+
+# Combine domain filter with date and language filters
+
+response 
+=
+ client.search.create(
+
+    query
+=
+"quantum computing breakthroughs"
+,
+
+    max_results
+=
+20
+,
+
+    search_domain_filter
+=
+[
+
+        "nature.com"
+,
+
+        "science.org"
+,
+
+        "arxiv.org"
+
+    ],
+
+    search_recency_filter
+=
+"month"
+,
+
+    search_language_filter
+=
+[
+"en"
+]
+
+)
+
+for
+ result 
+in
+ response.results:
+
+    print
+(
+f
+"
+{
+result.title
+}
+"
+)
+
+    print
+(
+f
+"URL: 
+{
+result.url
+}
+"
+)
+
+    print
+(
+f
+"Date: 
+{
+result.date
+}
+"
+)
+
+    print
+(
+"---"
+)
+
+Parameter Reference
+
+search_domain_filter
+
+Type
+: Array of strings
+
+Format
+:
+
+Domain names without protocol (e.g., “example.com”)
+
+Prefix with 
+-
+ for denylisting (e.g., “-reddit.com”)
+
+Description
+: Filters search results to include or exclude content from specified domains
+
+Optional
+: Yes
+
+Maximum
+: 20 domains per request
+
+Modes
+:
+
+Allowlist mode: Include only specified domains (no 
+-
+ prefix)
+
+Denylist mode: Exclude specified domains (use 
+-
+ prefix)
+
+Example
+:
+
+Allowlist: 
+"search_domain_filter": ["nature.com", "science.org"]
+
+Denylist: 
+"search_domain_filter": ["-reddit.com", "-pinterest.com"]
+
+Domain Format Guidelines
+
+Correct Domain Formats:
+
+"nature.com"
+ - Root domain (matches nature.com and all subdomains)
+
+"blog.example.com"
+ - Specific subdomain
+
+"arxiv.org"
+ - Root domain (matches all subdomains)
+
+".gov"
+ - Top-level domain (matches all .gov sites)
+
+".edu"
+ - Top-level domain (matches all .edu sites)
+
+".uk"
+ - Country-code TLD (matches all .uk sites)
+
+"wikipedia.org"
+ - Matches en.wikipedia.org, fr.wikipedia.org, etc.
+
+"-reddit.com"
+ - Exclude entire domain and all subdomains
+
+"-pinterest.com"
+ - Exclude domain
+
+"-.gov"
+ - Exclude all .gov domains
+
+Incorrect Domain Formats:
+
+❌ 
+"https://nature.com"
+ - Don’t include protocol
+
+❌ 
+"nature.com/"
+ - Don’t include trailing slash
+
+❌ 
+"nature.com/articles"
+ - Don’t include path (path filtering coming soon)
+
+❌ 
+"www.nature.com"
+ - Avoid www prefix (use root domain)
+
+Best Practices
+
+Domain Selection Strategy
+
+Use Root Domains for Broad Coverage
+: Specify root domains (e.g., “wikipedia.org”) to match all subdomains automatically, including different language versions and regional sites.
+
+Use TLDs for Categorical Filtering
+: Target specific organization types with TLD filters like 
+.gov
+ for government, 
+.edu
+ for education, or 
+.org
+ for non-profits.
+
+Be Specific When Needed
+: Choose specific domains that are directly relevant to your search query to ensure high-quality results.
+
+Quality Over Quantity
+: Using fewer, highly relevant domains often produces better results than maximizing the 20-domain limit.
+
+Consider Domain Authority
+: Prioritize authoritative sources in your field for more reliable information.
+
+Choose Your Mode
+: Use either allowlist mode (include only) OR denylist mode (exclude), but not both in the same request. Denylisting is useful when you want broad search coverage but need to exclude specific low-quality or irrelevant sources.
+
+Locale and Regional Targeting
+
+While domain filters don’t directly filter by user location, you can target specific locales using:
+
+Country-code TLDs
+: Use filters like 
+.uk
+, 
+.ca
+, 
+.de
+, 
+.jp
+ to target country-specific domains
+
+Subdomain matching
+: Specify regional subdomains when available (e.g., “uk.domain.com”)
+
+Combined approach
+: Mix country TLDs with specific trusted domains for precise regional filtering
+
+For international research, combine TLD filtering with the 
+search_language_filter
+ parameter to refine results by both location and language.
+
+Domain Selection
+
+Use Trusted Sources
+: Select a specific set of trusted sources you want to search within (e.g., academic research, official documentation).
+
+Leverage TLD Filtering
+: When researching topics that span many sites of the same type, use TLD filters to cast a wider net (e.g., 
+.gov
+ for policy research).
+
+Focus on Quality
+: Choose authoritative domains that consistently provide reliable information relevant to your queries.
+
+Client-Side Validation
+
+Validate domain formats on the client side before sending requests:
+
+import
+ re
+
+def
+ validate_domain
+(
+domain
+):
+
+    """Validate domain format including TLD filters."""
+
+    # TLD filter (e.g., .gov, .edu)
+
+    if
+ domain.startswith(
+'.'
+):
+
+        tld_pattern 
+=
+ r
+'
+^
+\.
+[
+a-zA-Z
+]
+{2,}
+$
+'
+
+        return
+ bool
+(re.match(tld_pattern, domain))
+
+    # Standard domain validation pattern
+
+    pattern 
+=
+ r
+'
+^
+[
+a-zA-Z0-9
+]([
+a-zA-Z0-9-
+]
+{0,61}
+[
+a-zA-Z0-9
+])
+?
+(
+\.
+[
+a-zA-Z0-9
+]([
+a-zA-Z0-9-
+]
+{0,61}
+[
+a-zA-Z0-9
+])
+?
+)
+*
+$
+'
+
+    return
+ bool
+(re.match(pattern, domain))
+
+def
+ validate_domain_filter
+(
+domains
+):
+
+    """Validate domain filter array."""
+
+    if
+ len
+(domains) 
+>
+ 20
+:
+
+        raise
+ ValueError
+(
+"Maximum 20 domains allowed"
+)
+
+    for
+ domain 
+in
+ domains:
+
+        if
+ not
+ validate_domain(domain):
+
+            raise
+ ValueError
+(
+f
+"Invalid domain format: 
+{
+domain
+}
+"
+)
+
+    return
+ True
+
+# Usage examples
+
+try
+:
+
+    # Mix of regular domains and TLD filters
+
+    domains 
+=
+ [
+"nature.com"
+, 
+"science.org"
+, 
+".gov"
+, 
+".edu"
+]
+
+    validate_domain_filter(domains)
+
+    response 
+=
+ client.search.create(
+
+        query
+=
+"research topic"
+,
+
+        search_domain_filter
+=
+domains
+
+    )
+
+except
+ ValueError
+ as
+ e:
+
+    print
+(
+f
+"Validation error: 
+{
+e
+}
+"
+)
+
+Performance Considerations
+
+Result Availability
+: Narrowing to specific domains may reduce the number of available results. Be prepared to handle cases where fewer results are returned than requested.
+
+Domain Coverage
+: Ensure the domains you specify actually contain content relevant to your query. Overly restrictive filters may return zero results.
+
+Combination Effects
+: Domain filters combined with other restrictive filters (date, language) can significantly reduce result counts.
+
+For best results, combine domain filtering with other filters like 
+search_recency_filter
+ or 
+search_language_filter
+ to narrow down your search to highly relevant, timely content from your target sources. Use TLD filters like 
+.gov
+ or 
+.edu
+ when you need broad coverage across an entire category of authoritative sites.
+---

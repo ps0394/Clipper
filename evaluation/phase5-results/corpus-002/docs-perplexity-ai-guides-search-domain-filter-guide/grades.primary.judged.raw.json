@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the strategy of combining domain filters with broader TLD filters and also does not mention the impact of combining the domain filter with other restrictive filters like date or language.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 739,
+    "tokens_out": 42
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the behavior of the domain filtering system and an example using the wikipedia.org domain.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 681,
+    "tokens_out": 36
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the difference in the number of domains and the reason why this difference matters, despite minor wording differences.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 701,
+    "tokens_out": 40
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same factual content as the ground-truth answer, despite minor wording differences.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 649,
+    "tokens_out": 25
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the limitation of mixing modes and the potential issue of invalid configuration when trying to combine exclude and include filters in a single request.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 742,
+    "tokens_out": 45
+  }
+]

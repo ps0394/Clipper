@@ -1,0 +1,114 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what conditions will a FileHandle object automatically close, and what are the risks of relying on this behavior?",
+      "answer": "A FileHandle object will try to automatically close the file descriptor and emit a process warning if it is not explicitly closed using filehandle.close(); however, this behavior is unreliable, the file may not be closed, and Node.js may change this behavior in the future.",
+      "supporting_sentences": [
+        "If a <FileHandle> is not closed using the filehandle.close() method, it will try to automatically close the file descriptor and emit a process warning, helping to prevent memory leaks.",
+        "Please do not rely on this behavior because it can be unreliable and the file may not be closed.",
+        "Instead, always explicitly close <FileHandle>s. Node.js may change this behavior in the future."
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what conditions will a FileHandle object automatically close, and what are the risks of relying on this behavior?",
+      "answer": "A FileHandle object will try to automatically close the file descriptor and emit a process warning if it is not explicitly closed using filehandle.close(); however, this behavior is unreliable, the file may not be closed, and Node.js may change this behavior in the future.",
+      "supporting_sentences": [
+        "If a <FileHandle> is not closed using the filehandle.close() method, it will try to automatically close the file descriptor and emit a process warning, helping to prevent memory leaks.",
+        "Please do not rely on this behavior because it can be unreliable and the file may not be closed.",
+        "Instead, always explicitly close <FileHandle>s. Node.js may change this behavior in the future."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does the performance trade-off between callback-based and promise-based APIs in the node:fs module differ, and in what scenario would you choose one over the other?",
+      "answer": "The callback-based versions of the node:fs module APIs are preferable over the promise APIs when maximal performance (both in terms of execution time and memory allocation) is required; the promise APIs use the underlying Node.js threadpool, which introduces overhead for offloading operations from the event loop thread.",
+      "supporting_sentences": [
+        "The callback-based versions of the node:fs module APIs are preferable over the use of the promise APIs when maximal performance (both in terms of execution time and memory allocation) is required.",
+        "The promise APIs use the underlying Node.js threadpool to perform file system operations off the event loop thread."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does the performance trade-off between callback-based and promise-based APIs in the node:fs module differ, and in what scenario would you choose one over the other?",
+      "answer": "The callback-based versions of the node:fs module APIs are preferable over the promise APIs when maximal performance (both in terms of execution time and memory allocation) is required; the promise APIs use the underlying Node.js threadpool, which introduces overhead for offloading operations from the event loop thread.",
+      "supporting_sentences": [
+        "The callback-based versions of the node:fs module APIs are preferable over the use of the promise APIs when maximal performance (both in terms of execution time and memory allocation) is required.",
+        "The promise APIs use the underlying Node.js threadpool to perform file system operations off the event loop thread."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the difference between filehandle.datasync() and filehandle.sync(), and under what circumstances would you use one instead of the other?",
+      "answer": "filehandle.datasync() forces all currently queued I/O operations to the OS's synchronized I/O completion state but does not flush modified metadata, while filehandle.sync() flushes both data and modified metadata to the storage device.",
+      "supporting_sentences": [
+        "filehandle.datasync(): Forces all currently queued I/O operations associated with the file to the operating system's synchronized I/O completion state. Unlike filehandle.sync this method does not flush modified metadata.",
+        "filehandle.sync(): Request that all data for the open file descriptor is flushed to the storage device. The specific implementation is operating system and device specific. Refer to the POSIX fsync(2) documentation for more detail."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the difference between filehandle.datasync() and filehandle.sync(), and under what circumstances would you use one instead of the other?",
+      "answer": "filehandle.datasync() forces all currently queued I/O operations to the OS's synchronized I/O completion state but does not flush modified metadata, while filehandle.sync() flushes both data and modified metadata to the storage device.",
+      "supporting_sentences": [
+        "filehandle.datasync(): Forces all currently queued I/O operations associated with the file to the operating system's synchronized I/O completion state. Unlike filehandle.sync this method does not flush modified metadata.",
+        "filehandle.sync(): Request that all data for the open file descriptor is flushed to the storage device. The specific implementation is operating system and device specific. Refer to the POSIX fsync(2) documentation for more detail."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "When using filehandle.createReadStream() on a character device like a keyboard or sound card, what behavior can prevent the process from exiting, and how can you mitigate this issue?",
+      "answer": "If the FileHandle points to a character device that only supports blocking reads, read operations do not finish until data is available, which can prevent the process from exiting and the stream from closing naturally; you can mitigate this by explicitly closing the stream using stream.close() and artificially marking end-of-stream with stream.push(null).",
+      "supporting_sentences": [
+        "If the FileHandle points to a character device that only supports blocking reads (such as keyboard or sound card), read operations do not finish until data is available. This can prevent the process from exiting and the stream from closing naturally.",
+        "setTimeout(() => { stream.close(); stream.push(null); stream.read(0); }, 100); // Artificially marking end-of-stream, as if the underlying resource had indicated end-of-file by itself, allows the stream to close."
+      ]
+    },
+    "edited_pair": {
+      "question": "When using filehandle.createReadStream() on a character device like a keyboard or sound card, what behavior can prevent the process from exiting, and how can you mitigate this issue?",
+      "answer": "If the FileHandle points to a character device that only supports blocking reads, read operations do not finish until data is available, which can prevent the process from exiting and the stream from closing naturally; you can mitigate this by explicitly closing the stream using stream.close() and artificially marking end-of-stream with stream.push(null).",
+      "supporting_sentences": [
+        "If the FileHandle points to a character device that only supports blocking reads (such as keyboard or sound card), read operations do not finish until data is available. This can prevent the process from exiting and the stream from closing naturally.",
+        "setTimeout(() => { stream.close(); stream.push(null); stream.read(0); }, 100); // Artificially marking end-of-stream, as if the underlying resource had indicated end-of-file by itself, allows the stream to close."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the key differences between filehandle.pull() and filehandle.pullSync(), and in what scenarios would you use each?",
+      "answer": "filehandle.pull() is asynchronous, supports AbortSignal, and uses the threadpool for I/O, while filehandle.pullSync() is synchronous, runs on the main thread, does not support AbortSignal, and locks the file handle during iteration; use pull() for non-blocking operations and pullSync() for performance-critical synchronous reads when the --experimental-stream-iter flag is enabled.",
+      "supporting_sentences": [
+        "filehandle.pull([...transforms][, options]): Return the file contents as an async iterable using the node:stream/iter pull model. Reads are performed in chunkSize-byte chunks (default 128 KB). The file handle is locked while the iterable is being consumed and unlocked when iteration completes, an error occurs, or the consumer breaks. This function is only available when the --experimental-stream-iter flag is enabled.",
+        "filehandle.pullSync([...transforms][, options]): Synchronous counterpart of filehandle.pull(). Returns a sync iterable that reads the file using synchronous I/O on the main thread. Reads are performed in chunkSize-byte chunks (default 128 KB). The file handle is locked while the iterable is being consumed. Unlike the async pull(), this method does not support AbortSignal since all operations are synchronous."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the key differences between filehandle.pull() and filehandle.pullSync(), and in what scenarios would you use each?",
+      "answer": "filehandle.pull() is asynchronous, supports AbortSignal, and uses the threadpool for I/O, while filehandle.pullSync() is synchronous, runs on the main thread, does not support AbortSignal, and locks the file handle during iteration; use pull() for non-blocking operations and pullSync() for performance-critical synchronous reads when the --experimental-stream-iter flag is enabled.",
+      "supporting_sentences": [
+        "filehandle.pull([...transforms][, options]): Return the file contents as an async iterable using the node:stream/iter pull model. Reads are performed in chunkSize-byte chunks (default 128 KB). The file handle is locked while the iterable is being consumed and unlocked when iteration completes, an error occurs, or the consumer breaks. This function is only available when the --experimental-stream-iter flag is enabled.",
+        "filehandle.pullSync([...transforms][, options]): Synchronous counterpart of filehandle.pull(). Returns a sync iterable that reads the file using synchronous I/O on the main thread. Reads are performed in chunkSize-byte chunks (default 128 KB). The file handle is locked while the iterable is being consumed. Unlike the async pull(), this method does not support AbortSignal since all operations are synchronous."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

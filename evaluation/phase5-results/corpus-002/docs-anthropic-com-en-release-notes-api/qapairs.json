@@ -1,0 +1,40 @@
+[
+  {
+    "question": "Under what conditions can a user access the 1M token context window without a beta header, and what happens if they attempt to use it with Claude Sonnet 4.5 after April 30, 2026?",
+    "answer": "The 1M token context window is generally available without a beta header for Claude Opus 4.6 and Sonnet 4.6; after April 30, 2026, requests to Claude Sonnet 4.5 exceeding the standard 200k-token context window will return an error, as the 1M token context window beta header will no longer have any effect on Sonnet 4.5 and Sonnet 4.",
+    "supporting_sentences": [
+      "The 1M token context window is now generally available for Claude Opus 4.6 and Sonnet 4.6 at standard pricing. Requests over 200k tokens work automatically for these models with no beta header required.",
+      "We're retiring the 1M token context window beta for Claude Sonnet 4.5 and Claude Sonnet 4 on April 30, 2026. After that date, the context-1m-2025-08-07 beta header will have no effect on these models, and requests that exceed the standard 200k-token context window will return an error."
+    ]
+  },
+  {
+    "question": "How does the pricing structure differ for data residency controls when using US-only inference, and which models are eligible for this feature?",
+    "answer": "US-only inference is available at 1.1x pricing; this feature applies to models released after February 1, 2026.",
+    "supporting_sentences": [
+      "We've introduced data residency controls, allowing you to specify where model inference runs with the inference_geo parameter. US-only inference is available at 1.1x pricing for models released after February 1, 2026."
+    ]
+  },
+  {
+    "question": "What is the sequence of steps required to migrate from Claude Opus 4.6 to Claude Opus 4.7, and what are the key differences in their supported features?",
+    "answer": "First, review the 'Migrating to Claude Opus 4.7' guide due to API breaking changes; Opus 4.7 replaces manual thinking (type: 'enabled' with budget_tokens) with adaptive thinking (type: 'adaptive') and does not support prefilling assistant messages, unlike Opus 4.6.",
+    "supporting_sentences": [
+      "Opus 4.7 includes API breaking changes versus Opus 4.6; see Migrating to Claude Opus 4.7 before upgrading.",
+      "Opus 4.6 recommends adaptive thinking (thinking: {type: \"adaptive\"}); manual thinking (type: \"enabled\" with budget_tokens) is deprecated. Opus 4.6 does not support prefilling assistant messages."
+    ]
+  },
+  {
+    "question": "Which Claude models support the 1M token context window at standard pricing without a beta header, and how many of these models are currently available for use?",
+    "answer": "Two models support the 1M token context window at standard pricing without a beta header: Claude Opus 4.6 and Claude Sonnet 4.6.",
+    "supporting_sentences": [
+      "The 1M token context window is now generally available for Claude Opus 4.6 and Sonnet 4.6 at standard pricing. Requests over 200k tokens work automatically for these models with no beta header required."
+    ]
+  },
+  {
+    "question": "What happens if a user attempts to use the Claude Haiku 3 model after its retirement date, and what alternative model does Anthropic recommend for migration?",
+    "answer": "All requests to the Claude Haiku 3 model will return an error after April 19, 2026; Anthropic recommends migrating to Claude Haiku 4.5.",
+    "supporting_sentences": [
+      "We announced the deprecation of the Claude Haiku 3 model (claude-3-haiku-20240307), with retirement scheduled for April 19, 2026. We recommend migrating to Claude Haiku 4.5.",
+      "We've retired the Claude Haiku 3 model (claude-3-haiku-20240307). All requests to this model will now return an error."
+    ]
+  }
+]

@@ -1,0 +1,128 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does the `Aggregate` method differ when a seed value is provided versus when it is not, and what is the role of the result selector function in the most complex overload?",
+      "answer": "When no seed value is provided, the `Aggregate` method uses the first element of the sequence as the initial accumulator value; when a seed is provided, that value is used instead. The result selector function in the most complex overload (`Aggregate<TSource,TAccumulate,TResult>`) transforms the final accumulator value into the desired result type after aggregation is complete.",
+      "supporting_sentences": [
+        "Aggregate<TSource,TAccumulate,TResult>(IEnumerable<TSource>, TAccumulate, Func<TAccumulate,TSource,TAccumulate>, Func<TAccumulate,TResult>): Applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value, and the specified function is used to select the result value.",
+        "Aggregate<TSource>(IEnumerable<TSource>, Func<TSource,TSource,TSource>): Applies an accumulator function over a sequence."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does the `Aggregate` method differ when a seed value is provided versus when it is not, and what is the role of the result selector function in the most complex overload?",
+      "answer": "When no seed value is provided, the `Aggregate` method uses the first element of the sequence as the initial accumulator value; when a seed is provided, that value is used instead. The result selector function in the most complex overload (`Aggregate<TSource,TAccumulate,TResult>`) transforms the final accumulator value into the desired result type after aggregation is complete.",
+      "supporting_sentences": [
+        "Aggregate<TSource,TAccumulate,TResult>(IEnumerable<TSource>, TAccumulate, Func<TAccumulate,TSource,TAccumulate>, Func<TAccumulate,TResult>): Applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value, and the specified function is used to select the result value.",
+        "Aggregate<TSource>(IEnumerable<TSource>, Func<TSource,TSource,TSource>): Applies an accumulator function over a sequence."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the difference between the `AsMemory` and `AsSpan` methods when applied to a string, and under what conditions would you use one over the other?",
+      "answer": "`AsMemory` returns a `ReadOnlyMemory<Char>` over a portion of the string, which is useful for async operations or when working with slices that need to persist beyond the current scope; `AsSpan` returns a `ReadOnlySpan<T>`, which is stack-allocated and more efficient for short-lived, high-performance scenarios but cannot be used across async boundaries.",
+      "supporting_sentences": [
+        "AsMemory(String, Index): Creates a new ReadOnlyMemory<Char> over a portion of the target string starting at a specified index.",
+        "AsSpan(String, Index): Creates a new ReadOnlySpan<T> over a portion of the target string from a specified position to the end of the string."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the difference between the `AsMemory` and `AsSpan` methods when applied to a string, and under what conditions would you use one over the other?",
+      "answer": "`AsMemory` returns a `ReadOnlyMemory<Char>` over a portion of the string, which is useful for async operations or when working with slices that need to persist beyond the current scope; `AsSpan` returns a `ReadOnlySpan<T>`, which is stack-allocated and more efficient for short-lived, high-performance scenarios but cannot be used across async boundaries.",
+      "supporting_sentences": [
+        "AsMemory(String, Index): Creates a new ReadOnlyMemory<Char> over a portion of the target string starting at a specified index.",
+        "AsSpan(String, Index): Creates a new ReadOnlySpan<T> over a portion of the target string from a specified position to the end of the string."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How many distinct numeric types are supported by the `Average` method overloads, and which of these types have nullable variants?",
+      "answer": "The `Average` method supports 5 distinct numeric types (Decimal, Double, Int32, Int64, Single); all of these types have nullable variants.",
+      "supporting_sentences": [
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Decimal>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Double>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Int32>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Int64>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Single>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Decimal>>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Double>>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Int32>>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Int64>>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Single>>)"
+      ]
+    },
+    "edited_pair": {
+      "question": "How many distinct numeric types are supported by the `Average` method overloads, and which of these types have nullable variants?",
+      "answer": "The `Average` method supports 5 distinct numeric types (Decimal, Double, Int32, Int64, Single); all of these types have nullable variants.",
+      "supporting_sentences": [
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Decimal>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Double>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Int32>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Int64>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Single>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Decimal>>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Double>>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Int32>>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Int64>>)",
+        "Average<TSource>(IEnumerable<TSource>, Func<TSource,Nullable<Single>>)"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what circumstances would the `SingleOrDefault` method throw an exception, and how does this behavior differ from `FirstOrDefault` or `LastOrDefault`?",
+      "answer": "`SingleOrDefault` throws an exception if more than one element satisfies the condition or if the sequence contains more than one element (when no condition is provided); `FirstOrDefault` and `LastOrDefault` do not throw exceptions in these cases and simply return the first or last matching element (or default).",
+      "supporting_sentences": [
+        "SingleOrDefault<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>, TSource): Returns the only element of a sequence that satisfies a specified condition, or a specified default value if no such element exists; this method throws an exception if more than one element satisfies the condition.",
+        "FirstOrDefault<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>): Returns the first element of the sequence that satisfies a condition or a default value if no such element is found.",
+        "LastOrDefault<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>): Returns the last element of a sequence that satisfies a condition or a default value if no such element is found."
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what circumstances would the `SingleOrDefault` method throw an exception, and how does this behavior differ from `FirstOrDefault` or `LastOrDefault`?",
+      "answer": "`SingleOrDefault` throws an exception if more than one element satisfies the condition or if the sequence contains more than one element (when no condition is provided); `FirstOrDefault` and `LastOrDefault` do not throw exceptions in these cases and simply return the first or last matching element (or default).",
+      "supporting_sentences": [
+        "SingleOrDefault<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>, TSource): Returns the only element of a sequence that satisfies a specified condition, or a specified default value if no such element exists; this method throws an exception if more than one element satisfies the condition.",
+        "FirstOrDefault<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>): Returns the first element of the sequence that satisfies a condition or a default value if no such element is found.",
+        "LastOrDefault<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>): Returns the last element of a sequence that satisfies a condition or a default value if no such element is found."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the full sequence of steps required to group elements of a sequence by a key, project each group's elements into a new form, and then transform the grouped results into a final output, as supported by the `GroupBy` method?",
+      "answer": "1. Apply a key selector function to group elements by key; 2. Use an element selector function to project each element in a group into a new form; 3. Apply a result selector function to transform each group (key and projected elements) into the final output.",
+      "supporting_sentences": [
+        "GroupBy<TSource,TKey,TElement,TResult>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TSource,TElement>, Func<TKey,IEnumerable<TElement>,TResult>): Groups the elements of a sequence according to a specified key selector function and creates a result value from each group and its key. The elements of each group are projected by using a specified function."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the full sequence of steps required to group elements of a sequence by a key, project each group's elements into a new form, and then transform the grouped results into a final output, as supported by the `GroupBy` method?",
+      "answer": "1. Apply a key selector function to group elements by key; 2. Use an element selector function to project each element in a group into a new form; 3. Apply a result selector function to transform each group (key and projected elements) into the final output.",
+      "supporting_sentences": [
+        "GroupBy<TSource,TKey,TElement,TResult>(IEnumerable<TSource>, Func<TSource,TKey>, Func<TSource,TElement>, Func<TKey,IEnumerable<TElement>,TResult>): Groups the elements of a sequence according to a specified key selector function and creates a result value from each group and its key. The elements of each group are projected by using a specified function."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

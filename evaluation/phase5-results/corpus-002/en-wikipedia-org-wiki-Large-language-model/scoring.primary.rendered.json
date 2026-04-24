@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "The evolution from statistical models in the 1990s to transformer-based models as of 2024 greatly increased the computational cost of training language models. Early statistical models, such as IBM's word alignment models and n-gram models, were limited by computational and data constraints of their time. With the introduction of neural networks in the 2000s and deep neural networks around 2012, computational requirements increased further. The transformer architecture, introduced in 2017, enabled more efficient and parallelizable training compared to earlier statistical and recurrent neural network models, but also allowed for much larger models with billions of parameters, dramatically increasing training costs (e.g., GPT-2 cost $50,000 to train in 2019, PaLM cost $8 million in 2022, and Megatron-Turing NLG 530B cost around $11 million in 2021). The trade-off implied by the shift is that while transformer-based models are more efficient and capable, they require vastly more computational resources and infrastructure for training, making them less accessible but more powerful than earlier statistical models.",
+    "run_index": 0,
+    "tokens_in": 9221,
+    "tokens_out": 220
+  },
+  {
+    "pair_index": 1,
+    "answer": "Autoregressive models like GPT are trained to guess how a sequence continues, predicting the next word in a sequence (e.g., whether \"I like to eat\" is more likely to be followed by \"bread\" or \"rocks\"). Masked models like BERT are trained to guess parts that are missing from a sequence, such as filling in the blank in \"I like to ___ roses\" (e.g., \"smell\" or \"eat\"). GPT models are decoder-only and excel at tasks involving text generation, such as chatbots and code completion, because they can generate coherent continuations of text. BERT is encoder-only and is better suited for tasks that require understanding and analyzing text, such as classification or extracting information, rather than generating new text. The design of GPT makes it suitable for applications like chatbots and code completion, while BERT's design is more suited for tasks involving comprehension rather than generation.",
+    "run_index": 0,
+    "tokens_in": 9222,
+    "tokens_out": 186
+  },
+  {
+    "pair_index": 2,
+    "answer": "Three distinct methods are explicitly described: few-shot prompting (2020), prompt chaining (2022), and chain-of-thought prompting (2022), in that chronological order.",
+    "run_index": 0,
+    "tokens_in": 9211,
+    "tokens_out": 36
+  },
+  {
+    "pair_index": 3,
+    "answer": "The Chinchilla scaling law predicts optimal LLM performance when the compute budget is allocated such that model size (N) and dataset size (D) are balanced according to the law's formula. If the model size (N) is increased while keeping the dataset size (D) fixed, the performance improvement will diminish, as the loss decreases more slowly with increasing N, and the model may overfit to the dataset.",
+    "run_index": 0,
+    "tokens_in": 9219,
+    "tokens_out": 85
+  },
+  {
+    "pair_index": 4,
+    "answer": "In a 2022 research paper, chain-of-thought prompting only improved the performance for models that had at least 62B parameters. Smaller models perform better when prompted to answer immediately, without chain of thought.",
+    "run_index": 0,
+    "tokens_in": 9217,
+    "tokens_out": 44
+  }
+]

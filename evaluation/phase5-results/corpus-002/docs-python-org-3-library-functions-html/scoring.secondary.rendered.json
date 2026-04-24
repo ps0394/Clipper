@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "The `open()` function uses line buffering for text files when the file is interactive (i.e., `isatty()` returns `True`). The default buffer size for binary files when the device block size is unavailable is `DEFAULT_BUFFER_SIZE`, but when the device block size is available, it is `max(min(blocksize, 8 MiB), DEFAULT_BUFFER_SIZE)`, which typically results in a buffer size of 128 kilobytes.",
+    "run_index": 0,
+    "tokens_in": 2331,
+    "tokens_out": 90
+  },
+  {
+    "pair_index": 1,
+    "answer": "When reading input from the stream, if `newline` is `None`, universal newlines mode is enabled.  Lines in the input can end in `\\n`, `\\r`, or `\\r\\n`, and these are translated into `\\n` before being returned to the caller.  If it is `''`, universal newlines mode is enabled, but line endings are returned to the caller untranslated.  If it has any of the other legal values, input lines are only terminated by the given string, and the line ending is returned to the caller untranslated.\n\nWhen writing output to the stream, if `newline` is `None`, any `\\n` characters written are translated to the system default line separator, `os.linesep`.  If `newline` is `''` or `\\n`, no translation takes place.  If `newline` is any of the other legal values, any `\\n` characters written are translated to the given string.",
+    "run_index": 0,
+    "tokens_in": 2337,
+    "tokens_out": 192
+  },
+  {
+    "pair_index": 2,
+    "answer": "The key differences between the `'w+'` and `'r+'` modes are that `'w+'` opens and truncates the file, while `'r+'` opens the file with no truncation. When `buffering` is set to `0`, it switches buffering off, but this is only allowed in binary mode. In text mode, to disable buffering, consider using the `write_through` flag for `io.TextIOWrapper.reconfigure()`.",
+    "run_index": 0,
+    "tokens_in": 2339,
+    "tokens_out": 94
+  },
+  {
+    "pair_index": 3,
+    "answer": "'xmlcharrefreplace' and 'namereplace' are only supported when writing to a file. The default value of None has the same effect as 'strict', to raise a ValueError exception if there is an encoding error.",
+    "run_index": 0,
+    "tokens_in": 2333,
+    "tokens_out": 47
+  },
+  {
+    "pair_index": 4,
+    "answer": "To open a file relative to a specific directory using a custom opener, first open the directory using os.open() with the O_RDONLY flag to obtain a file descriptor, then define a custom opener function that takes a path and flags as arguments and returns an open file descriptor by calling os.open() with the path, flags, and the directory file descriptor. This custom opener is then passed to the open() function along with the file path and mode. If closefd is set to False and a file descriptor rather than a filename was given, the underlying file descriptor will be kept open when the file is closed.",
+    "run_index": 0,
+    "tokens_in": 2345,
+    "tokens_out": 122
+  }
+]

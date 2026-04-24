@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "A model can call multiple functions in a single turn when parallel_tool_calls is set to true. To prevent this behavior, parallel_tool_calls must be set to false.",
+    "run_index": 0,
+    "tokens_in": 11470,
+    "tokens_out": 34
+  },
+  {
+    "pair_index": 1,
+    "answer": "The tool search feature interacts with the tool_choice parameter in that tool_choice still applies to the tools that are currently callable in the turn, even when tool search is used. This is most useful after you load a subset of tools and want to constrain the model to that subset. Only gpt-5.4 and later models support tool search.",
+    "run_index": 0,
+    "tokens_in": 11465,
+    "tokens_out": 70
+  },
+  {
+    "pair_index": 2,
+    "answer": "additionalProperties must be set to false for each object in the parameters, and all fields in properties must be marked as required. If these requirements are not met, the request will be rejected with details about the missing constraints.",
+    "run_index": 0,
+    "tokens_in": 11470,
+    "tokens_out": 45
+  },
+  {
+    "pair_index": 3,
+    "answer": "1. The user sends a prompt \"What is my horoscope? I am an Aquarius.\"\n2. The model receives the prompt and the available tools, including the get_horoscope function.\n3. The model responds with a tool call for the get_horoscope function, with the argument \"sign\" set to \"Aquarius\" and a unique call_id.\n4. The application receives the tool call and executes the get_horoscope function with the provided argument.\n5. The application returns the result of the get_horoscope function, including the call_id, to the model.\n6. The model receives the result and uses it to generate a final response, which includes the horoscope for the user's sign.\n7. The final response is returned to the user, completing the sequence of steps. The call_id is used to associate the tool call with the corresponding tool call output.",
+    "run_index": 0,
+    "tokens_in": 11478,
+    "tokens_out": 178
+  },
+  {
+    "pair_index": 4,
+    "answer": "In Responses API, strict mode is enabled by default, which means that the schema will be normalized into strict mode. In Chat Completions API, strict mode is disabled by default, allowing for non-strict, best-effort function calling. To opt out of strict mode in Responses API, you can explicitly set \"strict: false\".",
+    "run_index": 0,
+    "tokens_in": 11479,
+    "tokens_out": 69
+  }
+]

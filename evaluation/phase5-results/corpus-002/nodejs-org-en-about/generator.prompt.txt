@@ -1,0 +1,243 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports *non-trivial* retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 challenging question/answer pairs. Unlike simple fact extraction, these questions must require the reader to synthesize, compare, or compute across multiple parts of the document — not just locate a single sentence.
+
+## Difficulty mandate
+
+The baseline for this corpus is that a strong LLM scores 100% on simple fact-lookup questions. That ceiling is the problem this prompt solves. Generate questions such that a competent LLM reading only the document text should land in the 50–80% correct range. A question that can be answered by copying one sentence verbatim is too easy and must be replaced.
+
+## Required question-type mix
+
+You must produce exactly 5 Q/A pairs with the following distribution:
+
+- **At least 2 synthesis questions** — the answer requires combining information from two or more non-adjacent sections of the document. The reader must locate multiple facts and relate them. Example forms: "Under what conditions does X apply, and what happens when those conditions are not met?", "How does feature A relate to feature B?", "What is the full sequence of steps from X to Y?"
+
+- **At least 1 quantitative or comparative question** — the answer requires counting, ordering, ranking, computing a difference, or distinguishing options. Example forms: "Which of the supported options has the shortest timeout?", "How many … does the document describe, and in what order?", "What is the difference between the default and maximum value of X?"
+
+- **At least 1 constraint or edge-case question** — the answer depends on a condition, limitation, exception, or corner case mentioned in the document. Example forms: "What happens if X is set to a value above the supported range?", "Under which circumstances is behavior Y not guaranteed?"
+
+- The remaining pair(s) may be any of the above types. Do not include pure fact-lookup questions (e.g. "What is the name of X?", "What year was Y introduced?") unless the fact is genuinely non-obvious and spread across multiple sentences.
+
+## Answerability constraints
+
+1. **Every answer must be fully grounded in the document.** If the question requires outside knowledge, common sense beyond the document, or inference the document does not support, do not include it.
+2. **Answers may be short or multi-part**, but must be precise. Do not produce essay-length answers. For multi-part answers, separate components with semicolons or enumerate explicitly.
+3. **Supporting sentences are required.** For every Q/A pair, list the verbatim sentences from the document that together justify the answer. A synthesis question should have supporting sentences from multiple sections; a quantitative question should have the sentences containing the relevant numbers.
+4. **Self-contained questions.** A reader who has not seen the document must be able to understand what is being asked. Do not write "What is the second step?" or "What does the table show?".
+5. **Spread across the document.** The 5 questions together should exercise different sections, not cluster in one region.
+
+## Forbidden patterns
+
+- Questions answerable by copying a single sentence verbatim.
+- Questions whose answer is a single named entity pulled from a title, heading, or "About this page" metadata block.
+- Questions where the answer is restated in the question itself.
+- Questions requiring knowledge of the document's structure rather than its content (e.g. "What section comes after X?").
+
+## Output format
+
+A single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Node.js - About Node.js®
+Document URL: https://nodejs.org/en/about
+Document profile: landing
+
+Document text:
+---
+As an asynchronous event-driven JavaScript runtime, Node.js is designed to build
+scalable network applications. In the following "hello world" example, many
+connections can be handled concurrently. Upon each connection, the callback is
+fired, but if there is no work to be done, Node.js will sleep.
+
+CJS
+ESM
+const
+ {
+
+createServer
+ }
+ =
+
+require
+(
+'
+node:http
+'
+)
+;
+
+const
+
+hostname
+ =
+ '
+127.0.0.1
+'
+;
+
+const
+
+port
+ =
+ 3000
+;
+
+const
+
+server
+ =
+
+createServer
+(
+(
+req
+,
+
+res
+)
+ =>
+ {
+
+res
+.
+statusCode
+ =
+ 200
+;
+
+res
+.
+setHeader
+(
+'
+Content-Type
+'
+,
+ '
+text/plain
+'
+)
+;
+
+res
+.
+end
+(
+'
+Hello World
+'
+)
+;
+
+}
+)
+;
+
+server
+.
+listen
+(
+port
+,
+
+hostname
+,
+ ()
+ =>
+ {
+
+console
+.
+log
+(
+`
+Server running at http://
+${
+hostname
+}
+:
+${
+port
+}
+/
+`
+)
+;
+
+}
+)
+;
+This is in contrast to today's more common concurrency model, in which OS threads
+are employed. Thread-based networking is relatively inefficient and very
+difficult to use. Furthermore, users of Node.js are free from worries of
+dead-locking the process, since there are no locks. Almost no function in
+Node.js directly performs I/O, so the process never blocks except when the I/O is performed using
+synchronous methods of Node.js standard library. Because nothing blocks, scalable systems are very
+reasonable to develop in Node.js.
+
+If some of this language is unfamiliar, there is a full article on
+
+Blocking vs. Non-Blocking
+.
+
+Node.js is similar in design to, and influenced by, systems like Ruby's
+
+Event Machine
+ and Python's 
+Twisted
+. Node.js takes the event model a bit
+further. It presents an event loop as a runtime construct instead of as a library. In other systems,
+there is always a blocking call to start the event-loop.
+Typically, behavior is defined through callbacks at the beginning of a script, and
+at the end a server is started through a blocking call like 
+EventMachine::run()
+.
+In Node.js, there is no such start-the-event-loop call. Node.js simply enters the event loop after executing the input script. Node.js
+exits the event loop when there are no more callbacks to perform. This behavior
+is like browser JavaScript — the event loop is hidden from the user.
+
+HTTP is a first-class citizen in Node.js, designed with streaming and low
+latency in mind. This makes Node.js well suited for the foundation of a web
+library or framework.
+
+Node.js being designed without threads doesn't mean you can't take
+advantage of multiple cores in your environment. Child processes can be spawned
+by using our 
+child_process.fork()
+ API, and are designed to be easy to
+communicate with. Built upon that same interface is the 
+cluster
+ module,
+which allows you to share sockets between processes to enable load balancing
+over your cores.
+
+To ensure authenticity and security when working with Node.js, always use official sources. Avoid trusting emails,
+binaries, or downloads from unofficial sources.
+
+For downloading Node.js binaries and accessing official documentation, use only these domains:
+
+The Node.js team maintains the following official npm package scopes:
+
+Additionally, the Node.js team maintains packages published by the 
+nodejs-foundation
+ npm account,
+though other Node.js-related packages (like 
+undici
+) may also be maintained by contributors closely
+tied to the project.
+
+Using packages from the Node.js team guarantees that you are working with officially supported Node.js components.
+
+Node.js and related projects are maintained under these official GitHub organizations:
+
+Node.js and the OpenJS Foundation communicate through various official and community-supported channels. You can find details on
+how to get involved on the 
+Get Involved
+ page.
+
+If you encounter issues with the Node.js website, report them at the 
+Node.js website repository
+.
+For real-time updates on outages, visit the 
+Node.js Status Page
+.
+---

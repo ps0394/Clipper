@@ -1,0 +1,114 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what conditions would Google Pay not appear as a payment option in Checkout even if it is enabled in the payment methods settings, and how does this differ from Apple Pay's default behavior?",
+      "answer": "Google Pay is filtered out if automatic tax is enabled without collecting a shipping address; Apple Pay is enabled by default and is not subject to this specific filtering condition.",
+      "supporting_sentences": [
+        "You can enable Apple Pay and Google Pay in your payment methods settings. By default, Apple Pay is enabled and Google Pay is disabled.",
+        "We filter Google Pay if you enable automatic tax without collecting a shipping address."
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what conditions would Google Pay not appear as a payment option in Checkout even if it is enabled in the payment methods settings, and how does this differ from Apple Pay's default behavior?",
+      "answer": "Google Pay is filtered out if automatic tax is enabled without collecting a shipping address; Apple Pay is enabled by default and is not subject to this specific filtering condition.",
+      "supporting_sentences": [
+        "You can enable Apple Pay and Google Pay in your payment methods settings. By default, Apple Pay is enabled and Google Pay is disabled.",
+        "We filter Google Pay if you enable automatic tax without collecting a shipping address."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the full sequence of steps a customer experiences from clicking the checkout button to being redirected back to the merchant's website after a successful payment?",
+      "answer": "1. Customer clicks the checkout button, triggering a POST request to `/create-checkout-session`; 2. Server creates a Checkout Session and redirects the customer to the Stripe-hosted payment form; 3. Customer completes payment; 4. Stripe redirects the customer to the `success_url` specified in the Checkout Session.",
+      "supporting_sentences": [
+        "<form action=\"/create-checkout-session\" method=\"POST\"> <button type=\"submit\">Checkout</button> </form>",
+        "After creating a Checkout Session, redirect your customer to the URL returned in the response.",
+        "You must populate `success_url` with the URL value of a page on your website that Checkout returns your customer to after they complete the payment."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the full sequence of steps a customer experiences from clicking the checkout button to being redirected back to the merchant's website after a successful payment?",
+      "answer": "1. Customer clicks the checkout button, triggering a POST request to `/create-checkout-session`; 2. Server creates a Checkout Session and redirects the customer to the Stripe-hosted payment form; 3. Customer completes payment; 4. Stripe redirects the customer to the `success_url` specified in the Checkout Session.",
+      "supporting_sentences": [
+        "<form action=\"/create-checkout-session\" method=\"POST\"> <button type=\"submit\">Checkout</button> </form>",
+        "After creating a Checkout Session, redirect your customer to the URL returned in the response.",
+        "You must populate `success_url` with the URL value of a page on your website that Checkout returns your customer to after they complete the payment."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How many distinct payment methods are explicitly mentioned as being supported by default in Checkout, and what is the order in which they are dynamically presented to the customer?",
+      "answer": "Two distinct payment methods are explicitly mentioned as enabled by default (cards and Apple Pay); the order of presentation is dynamically determined by Stripe based on currency and restrictions, so no fixed order is specified.",
+      "supporting_sentences": [
+        "By default, Stripe enables cards and other common payment methods.",
+        "You can enable Apple Pay and Google Pay in your payment methods settings. By default, Apple Pay is enabled and Google Pay is disabled.",
+        "In Checkout, Stripe evaluates the currency and any restrictions, then dynamically presents the supported payment methods to the customer."
+      ]
+    },
+    "edited_pair": {
+      "question": "How many distinct payment methods are explicitly mentioned as being supported by default in Checkout, and what is the order in which they are dynamically presented to the customer?",
+      "answer": "Two distinct payment methods are explicitly mentioned as enabled by default (cards and Apple Pay); the order of presentation is dynamically determined by Stripe based on currency and restrictions, so no fixed order is specified.",
+      "supporting_sentences": [
+        "By default, Stripe enables cards and other common payment methods.",
+        "You can enable Apple Pay and Google Pay in your payment methods settings. By default, Apple Pay is enabled and Google Pay is disabled.",
+        "In Checkout, Stripe evaluates the currency and any restrictions, then dynamically presents the supported payment methods to the customer."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens if a Checkout Session is accessed 25 hours after its creation, and what is the default duration before this occurs?",
+      "answer": "The Checkout Session expires and is no longer usable; the default duration before expiration is 24 hours.",
+      "supporting_sentences": [
+        "Checkout Sessions expire 24 hours after creation by default."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens if a Checkout Session is accessed 25 hours after its creation, and what is the default duration before this occurs?",
+      "answer": "The Checkout Session expires and is no longer usable; the default duration before expiration is 24 hours.",
+      "supporting_sentences": [
+        "Checkout Sessions expire 24 hours after creation by default."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the two ways a merchant can verify their `/create-checkout-session` endpoint is working correctly, and what specific responses or behaviors should they look for in each case?",
+      "answer": "1. Run a `curl` command to the endpoint and check for a response in the terminal; 2. Click the checkout button, inspect the Network tab in browser developer tools for a 200 status on the XHR request to `/create-checkout-session`, and use `console.log(session)` to confirm the returned data.",
+      "supporting_sentences": [
+        "Confirm your endpoint is accessible by starting your web server (for example, localhost:4242) and running the following command: `curl -X POST -is \"http://localhost:4242/create-checkout-session\" -d \"\"` You should see a response in your terminal that looks like this:",
+        "Open the Network tab in your browser\u2019s developer tools. Click the checkout button and confirm it sent an XHR request to your server-side endpoint (POST /create-checkout-session). Verify the request is returning a 200 status. Use `console.log(session)` inside your button click listener to confirm the correct data returned."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the two ways a merchant can verify their `/create-checkout-session` endpoint is working correctly, and what specific responses or behaviors should they look for in each case?",
+      "answer": "1. Run a `curl` command to the endpoint and check for a response in the terminal; 2. Click the checkout button, inspect the Network tab in browser developer tools for a 200 status on the XHR request to `/create-checkout-session`, and use `console.log(session)` to confirm the returned data.",
+      "supporting_sentences": [
+        "Confirm your endpoint is accessible by starting your web server (for example, localhost:4242) and running the following command: `curl -X POST -is \"http://localhost:4242/create-checkout-session\" -d \"\"` You should see a response in your terminal that looks like this:",
+        "Open the Network tab in your browser\u2019s developer tools. Click the checkout button and confirm it sent an XHR request to your server-side endpoint (POST /create-checkout-session). Verify the request is returning a 200 status. Use `console.log(session)` inside your button click listener to confirm the correct data returned."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

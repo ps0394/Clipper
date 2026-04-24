@@ -1,0 +1,254 @@
+{
+  "n_samples": 43,
+  "gate_ship": 0.35,
+  "gate_directional": 0.32,
+  "experiments": {
+    "1_dropouts": [
+      {
+        "name": "dropout_semantic_html",
+        "dropped_pillar": "semantic_html",
+        "weights": {
+          "content_extractability": 0.42105263157894735,
+          "structured_data": 0.15789473684210525,
+          "dom_navigability": 0.05263157894736842,
+          "metadata_completeness": 0.21052631578947367,
+          "http_compliance": 0.15789473684210525
+        },
+        "pearson_r": 0.3412
+      },
+      {
+        "name": "dropout_content_extractability",
+        "dropped_pillar": "content_extractability",
+        "weights": {
+          "semantic_html": 0.08333333333333334,
+          "structured_data": 0.25,
+          "dom_navigability": 0.08333333333333334,
+          "metadata_completeness": 0.33333333333333337,
+          "http_compliance": 0.25
+        },
+        "pearson_r": 0.099
+      },
+      {
+        "name": "dropout_structured_data",
+        "dropped_pillar": "structured_data",
+        "weights": {
+          "semantic_html": 0.058823529411764705,
+          "content_extractability": 0.47058823529411764,
+          "dom_navigability": 0.058823529411764705,
+          "metadata_completeness": 0.23529411764705882,
+          "http_compliance": 0.1764705882352941
+        },
+        "pearson_r": 0.4571
+      },
+      {
+        "name": "dropout_dom_navigability",
+        "dropped_pillar": "dom_navigability",
+        "weights": {
+          "semantic_html": 0.05263157894736842,
+          "content_extractability": 0.42105263157894735,
+          "structured_data": 0.15789473684210525,
+          "metadata_completeness": 0.21052631578947367,
+          "http_compliance": 0.15789473684210525
+        },
+        "pearson_r": 0.3389
+      },
+      {
+        "name": "dropout_metadata_completeness",
+        "dropped_pillar": "metadata_completeness",
+        "weights": {
+          "semantic_html": 0.0625,
+          "content_extractability": 0.5,
+          "structured_data": 0.18749999999999997,
+          "dom_navigability": 0.0625,
+          "http_compliance": 0.18749999999999997
+        },
+        "pearson_r": 0.2998
+      },
+      {
+        "name": "dropout_http_compliance",
+        "dropped_pillar": "http_compliance",
+        "weights": {
+          "semantic_html": 0.058823529411764705,
+          "content_extractability": 0.47058823529411764,
+          "structured_data": 0.1764705882352941,
+          "dom_navigability": 0.058823529411764705,
+          "metadata_completeness": 0.23529411764705882
+        },
+        "pearson_r": 0.2889
+      }
+    ],
+    "2_topk": [
+      {
+        "name": "top2_equal",
+        "pillars": [
+          "content_extractability",
+          "http_compliance"
+        ],
+        "weights": {
+          "content_extractability": 0.5,
+          "http_compliance": 0.5
+        },
+        "pearson_r": 0.5478
+      },
+      {
+        "name": "top2_corr_proportional",
+        "pillars": [
+          "content_extractability",
+          "http_compliance"
+        ],
+        "weights": {
+          "content_extractability": 0.6668012465719475,
+          "http_compliance": 0.33319875342805255
+        },
+        "pearson_r": 0.5696
+      },
+      {
+        "name": "top3_equal",
+        "pillars": [
+          "content_extractability",
+          "http_compliance",
+          "metadata_completeness"
+        ],
+        "weights": {
+          "content_extractability": 0.3333333333333333,
+          "http_compliance": 0.3333333333333333,
+          "metadata_completeness": 0.3333333333333333
+        },
+        "pearson_r": 0.4652
+      },
+      {
+        "name": "top3_corr_proportional",
+        "pillars": [
+          "content_extractability",
+          "http_compliance",
+          "metadata_completeness"
+        ],
+        "weights": {
+          "content_extractability": 0.5097406543991083,
+          "http_compliance": 0.25471600644204323,
+          "metadata_completeness": 0.2355433391588486
+        },
+        "pearson_r": 0.5466
+      },
+      {
+        "name": "top4_equal",
+        "pillars": [
+          "content_extractability",
+          "http_compliance",
+          "metadata_completeness",
+          "structured_data"
+        ],
+        "weights": {
+          "content_extractability": 0.25,
+          "http_compliance": 0.25,
+          "metadata_completeness": 0.25,
+          "structured_data": 0.25
+        },
+        "pearson_r": 0.2523
+      },
+      {
+        "name": "top4_corr_proportional",
+        "pillars": [
+          "content_extractability",
+          "http_compliance",
+          "metadata_completeness",
+          "structured_data"
+        ],
+        "weights": {
+          "content_extractability": 0.4911455500599917,
+          "http_compliance": 0.2454240838226549,
+          "metadata_completeness": 0.226950826613021,
+          "structured_data": 0.0364795395043324
+        },
+        "pearson_r": 0.5104
+      },
+      {
+        "name": "_single_pillar_correlations",
+        "single_pillar_r": {
+          "semantic_html": -0.3006,
+          "content_extractability": 0.4839,
+          "structured_data": 0.0359,
+          "dom_navigability": -0.1889,
+          "metadata_completeness": 0.2236,
+          "http_compliance": 0.2418
+        },
+        "ranked": [
+          "content_extractability",
+          "http_compliance",
+          "metadata_completeness",
+          "structured_data",
+          "dom_navigability",
+          "semantic_html"
+        ]
+      }
+    ],
+    "3_zscore": [
+      {
+        "name": "zscore_z_v1",
+        "weights": {
+          "semantic_html": 0.25,
+          "content_extractability": 0.2,
+          "structured_data": 0.2,
+          "dom_navigability": 0.15,
+          "metadata_completeness": 0.1,
+          "http_compliance": 0.1
+        },
+        "pearson_r": 0.101
+      },
+      {
+        "name": "zscore_z_candidate_D",
+        "weights": {
+          "semantic_html": 0.05,
+          "content_extractability": 0.4,
+          "structured_data": 0.15,
+          "dom_navigability": 0.05,
+          "metadata_completeness": 0.2,
+          "http_compliance": 0.15
+        },
+        "pearson_r": 0.4566
+      }
+    ],
+    "4_rank": [
+      {
+        "name": "rank_based_candidate_D",
+        "weights": {
+          "semantic_html": 0.05,
+          "content_extractability": 0.4,
+          "structured_data": 0.15,
+          "dom_navigability": 0.05,
+          "metadata_completeness": 0.2,
+          "http_compliance": 0.15
+        },
+        "pearson_r": 0.3957,
+        "note": "Per-pillar rank with D weights; sign flipped so higher = better."
+      }
+    ],
+    "5_binary": [
+      {
+        "name": "binary_median_gate_candidate_D",
+        "weights": {
+          "semantic_html": 0.05,
+          "content_extractability": 0.4,
+          "structured_data": 0.15,
+          "dom_navigability": 0.05,
+          "metadata_completeness": 0.2,
+          "http_compliance": 0.15
+        },
+        "medians": {
+          "semantic_html": 67.27,
+          "content_extractability": 75.57,
+          "structured_data": 12.0,
+          "dom_navigability": 30.0,
+          "metadata_completeness": 55.0,
+          "http_compliance": 72.0
+        },
+        "pearson_r": 0.2813
+      }
+    ]
+  },
+  "best_candidate": {
+    "name": "2_topk::top2_corr_proportional",
+    "pearson_r": 0.5696
+  },
+  "decision_branch": "alpha_ship_best_gamma"
+}

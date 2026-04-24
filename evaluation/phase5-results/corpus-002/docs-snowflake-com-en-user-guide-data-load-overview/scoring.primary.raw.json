@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 4755,
+    "tokens_out": 4
+  },
+  {
+    "pair_index": 1,
+    "answer": "Bulk loading relies on user-provided virtual warehouses, which are specified in the COPY statement. Users are required to size the warehouse appropriately to accommodate expected loads. Snowpipe uses compute resources provided by Snowflake (i.e. a serverless compute model). These Snowflake-provided resources are automatically resized and scaled up or down as required, and are charged and itemized using per-second billing. Data ingestion is charged based upon the actual workloads.",
+    "run_index": 0,
+    "tokens_in": 4740,
+    "tokens_out": 89
+  },
+  {
+    "pair_index": 2,
+    "answer": "The default behavior is that the DML operation ends and the changes made by the DML statement are rolled back when an error occurs. When DML error logging is enabled for a table, the operation continues to execute the rest of the DML statements and logs the error that occurred in an associated error table.",
+    "run_index": 0,
+    "tokens_in": 4747,
+    "tokens_out": 63
+  },
+  {
+    "pair_index": 3,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 4737,
+    "tokens_out": 4
+  },
+  {
+    "pair_index": 4,
+    "answer": "NOT NULL table constraint violations, type conversion errors, incompatible precision and scale values. A DML error would not be logged if the error is not supported by DML error logging, causing the DML operation to fail directly.",
+    "run_index": 0,
+    "tokens_in": 4752,
+    "tokens_out": 46
+  }
+]

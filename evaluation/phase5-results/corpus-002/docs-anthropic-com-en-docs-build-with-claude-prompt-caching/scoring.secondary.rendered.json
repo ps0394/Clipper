@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "A user would pay for both 5-minute and 1-hour cache writes in the same request when cache entries with longer TTL (1-hour) must appear before shorter TTLs (5-minute), and there are cache misses for both. The token count is split between them based on three billing locations in the prompt: Position A (the token count at the highest cache hit), Position B (the token count at the highest 1-hour cache control block after A), and Position C (the token count at the last cache control block). The user is charged for cache read tokens for A, 1-hour cache write tokens for (B - A), and 5-minute cache write tokens for (C - B).",
+    "run_index": 0,
+    "tokens_in": 7118,
+    "tokens_out": 144
+  },
+  {
+    "pair_index": 1,
+    "answer": "On the third turn, the lookback window of 20 blocks will not find a matching cache entry from the first turn because the breakpoint has moved 30 blocks forward (15 blocks per turn x 2 turns), which exceeds the 20-block lookback window, resulting in no cache hit.",
+    "run_index": 0,
+    "tokens_in": 7124,
+    "tokens_out": 60
+  },
+  {
+    "pair_index": 2,
+    "answer": "Claude Opus 4.1 and Claude Opus 4, $14.50",
+    "run_index": 0,
+    "tokens_in": 7112,
+    "tokens_out": 20
+  },
+  {
+    "pair_index": 3,
+    "answer": "\u2713 indicates that the cache remains valid, while \u2718 indicates that the cache is invalidated. Enabling/disabling web search modifies the system prompt, so the system cache and messages cache are invalidated (\u2718), but the tools cache remains valid (\u2713).",
+    "run_index": 0,
+    "tokens_in": 7119,
+    "tokens_out": 54
+  },
+  {
+    "pair_index": 4,
+    "answer": "cache_read_input_tokens: 8000\ncache_creation_input_tokens: 1000\ninput_tokens: 200\nTotal input tokens: 9200",
+    "run_index": 0,
+    "tokens_in": 7169,
+    "tokens_out": 32
+  }
+]

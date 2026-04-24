@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the conditions and risks of relying on automatic closure.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 680,
+    "tokens_out": 30
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same factual content as the ground-truth answer, differing only in wording and omitting a non-essential detail about the underlying mechanism.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 669,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, explaining the difference between filehandle.datasync() and filehandle.sync() and when to use each.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 708,
+    "tokens_out": 39
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the explicit step of closing the stream using stream.close() as mentioned in the ground-truth answer, instead suggesting stream.read(0) which is not the recommended mitigation method.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 710,
+    "tokens_out": 45
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same key differences and usage scenarios as the ground-truth answer, despite some differences in wording and additional details provided.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 821,
+    "tokens_out": 33
+  }
+]

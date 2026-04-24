@@ -1,0 +1,130 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what conditions would a search using the `search_domain_filter` return no results, and what are two specific strategies the document suggests to avoid this outcome?",
+      "answer": "A search may return no results if the specified domains contain no content relevant to the query or if the domain filter is combined with other restrictive filters (e.g., date, language) that further limit availability; strategies to avoid this include (1) using fewer, highly relevant domains rather than maximizing the 20-domain limit and (2) combining domain filters with broader TLD filters (e.g., `.gov`, `.edu`) to ensure wider coverage.",
+      "supporting_sentences": [
+        "Narrowing to specific domains may reduce the number of available results.",
+        "Overly restrictive filters may return zero results.",
+        "Quality Over Quantity: Using fewer, highly relevant domains often produces better results than maximizing the 20-domain limit.",
+        "Use TLDs for Categorical Filtering: Target specific organization types with TLD filters like .gov for government, .edu for education, or .org for non-profits.",
+        "For best results, combine domain filtering with other filters like search_recency_filter or search_language_filter to narrow down your search to highly relevant, timely content from your target sources."
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what conditions would a search using the `search_domain_filter` return no results, and what are two specific strategies the document suggests to avoid this outcome?",
+      "answer": "A search may return no results if the specified domains contain no content relevant to the query or if the domain filter is combined with other restrictive filters (e.g., date, language) that further limit availability; strategies to avoid this include (1) using fewer, highly relevant domains rather than maximizing the 20-domain limit and (2) combining domain filters with broader TLD filters (e.g., `.gov`, `.edu`) to ensure wider coverage.",
+      "supporting_sentences": [
+        "Narrowing to specific domains may reduce the number of available results.",
+        "Overly restrictive filters may return zero results.",
+        "Quality Over Quantity: Using fewer, highly relevant domains often produces better results than maximizing the 20-domain limit.",
+        "Use TLDs for Categorical Filtering: Target specific organization types with TLD filters like .gov for government, .edu for education, or .org for non-profits.",
+        "For best results, combine domain filtering with other filters like search_recency_filter or search_language_filter to narrow down your search to highly relevant, timely content from your target sources."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does the domain filtering system handle subdomains when a root domain is specified, and what is one example of this behavior from the document?",
+      "answer": "When a root domain is specified (e.g., `wikipedia.org`), the filter matches all content from that domain and its subdomains (e.g., `en.wikipedia.org`, `fr.wikipedia.org`); an example is searching across all Wikipedia language editions by specifying `wikipedia.org`.",
+      "supporting_sentences": [
+        "Specify a root domain to match all content from that domain and its subdomains:",
+        "\"search_domain_filter\": [\"wikipedia.org\"]",
+        "This will match: en.wikipedia.org; fr.wikipedia.org; de.wikipedia.org; Any other Wikipedia language subdomain",
+        "# Matches en.wikipedia.org, fr.wikipedia.org, de.wikipedia.org, etc."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does the domain filtering system handle subdomains when a root domain is specified, and what is one example of this behavior from the document?",
+      "answer": "When a root domain is specified (e.g., `wikipedia.org`), the filter matches all content from that domain and its subdomains (e.g., `en.wikipedia.org`, `fr.wikipedia.org`); an example is searching across all Wikipedia language editions by specifying `wikipedia.org`.",
+      "supporting_sentences": [
+        "Specify a root domain to match all content from that domain and its subdomains:",
+        "\"search_domain_filter\": [\"wikipedia.org\"]",
+        "This will match: en.wikipedia.org; fr.wikipedia.org; de.wikipedia.org; Any other Wikipedia language subdomain",
+        "# Matches en.wikipedia.org, fr.wikipedia.org, de.wikipedia.org, etc."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the difference between the maximum number of domains allowed in a single `search_domain_filter` request and the number of domains shown in the 'Tech News Sources' example, and why might this difference matter?",
+      "answer": "The maximum number of domains allowed is 20, while the 'Tech News Sources' example uses 4 domains; this difference matters because using fewer, highly relevant domains (as recommended in best practices) can yield better results than exhausting the limit, especially when targeting specific, authoritative sources.",
+      "supporting_sentences": [
+        "You can add a maximum of 20 domains to the search_domain_filter list.",
+        "You can specify up to 20 domains per request.",
+        "\"search_domain_filter\": [\"techcrunch.com\", \"theverge.com\", \"arstechnica.com\", \"wired.com\"]",
+        "Quality Over Quantity: Using fewer, highly relevant domains often produces better results than maximizing the 20-domain limit."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the difference between the maximum number of domains allowed in a single `search_domain_filter` request and the number of domains shown in the 'Tech News Sources' example, and why might this difference matter?",
+      "answer": "The maximum number of domains allowed is 20, while the 'Tech News Sources' example uses 4 domains; this difference matters because using fewer, highly relevant domains (as recommended in best practices) can yield better results than exhausting the limit, especially when targeting specific, authoritative sources.",
+      "supporting_sentences": [
+        "You can add a maximum of 20 domains to the search_domain_filter list.",
+        "You can specify up to 20 domains per request.",
+        "\"search_domain_filter\": [\"techcrunch.com\", \"theverge.com\", \"arstechnica.com\", \"wired.com\"]",
+        "Quality Over Quantity: Using fewer, highly relevant domains often produces better results than maximizing the 20-domain limit."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens if a user attempts to use both allowlist and denylist modes in the same `search_domain_filter` request, and how does the document explicitly describe this limitation?",
+      "answer": "The document states that the filter works in either allowlist mode or denylist mode, but not both simultaneously; attempting to mix modes (e.g., including both prefixed and non-prefixed domains) would violate this constraint and is not supported.",
+      "supporting_sentences": [
+        "The filter works in either allowlist mode (include only) or denylist mode (exclude), but not both simultaneously.",
+        "Use either allowlist mode (include only) OR denylist mode (exclude), but not both in the same request."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens if a user attempts to use both allowlist and denylist modes in the same `search_domain_filter` request, and how does the document explicitly describe this limitation?",
+      "answer": "The document states that the filter works in either allowlist mode or denylist mode, but not both simultaneously; attempting to mix modes (e.g., including both prefixed and non-prefixed domains) would violate this constraint and is not supported.",
+      "supporting_sentences": [
+        "The filter works in either allowlist mode (include only) or denylist mode (exclude), but not both simultaneously.",
+        "Use either allowlist mode (include only) OR denylist mode (exclude), but not both in the same request."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "A researcher wants to exclude all social media domains while also limiting results to academic sources. According to the document, what is the correct way to structure the `search_domain_filter` parameter for this use case, and what potential issue might arise?",
+      "answer": "The correct way is to use denylist mode for social media domains (e.g., `\"-reddit.com\", \"-twitter.com\"`) and allowlist mode for academic domains (e.g., `\"nature.com\", \"science.org\"`) in separate requests, as mixing modes is not allowed; a potential issue is that combining these filters in a single request would violate the mode constraint, leading to an invalid configuration.",
+      "supporting_sentences": [
+        "The filter works in either allowlist mode (include only) or denylist mode (exclude), but not both simultaneously.",
+        "# Denylist: Exclude these domains \"search_domain_filter\": [\"-reddit.com\", \"-pinterest.com\", \"-quora.com\"]",
+        "# Allowlist: Only search these domains \"search_domain_filter\": [\"nature.com\", \"science.org\", \"cell.com\"]",
+        "Use either allowlist mode (include only) OR denylist mode (exclude), but not both in the same request."
+      ]
+    },
+    "edited_pair": {
+      "question": "A researcher wants to exclude all social media domains while also limiting results to academic sources. According to the document, what is the correct way to structure the `search_domain_filter` parameter for this use case, and what potential issue might arise?",
+      "answer": "The correct way is to use denylist mode for social media domains (e.g., `\"-reddit.com\", \"-twitter.com\"`) and allowlist mode for academic domains (e.g., `\"nature.com\", \"science.org\"`) in separate requests, as mixing modes is not allowed; a potential issue is that combining these filters in a single request would violate the mode constraint, leading to an invalid configuration.",
+      "supporting_sentences": [
+        "The filter works in either allowlist mode (include only) or denylist mode (exclude), but not both simultaneously.",
+        "# Denylist: Exclude these domains \"search_domain_filter\": [\"-reddit.com\", \"-pinterest.com\", \"-quora.com\"]",
+        "# Allowlist: Only search these domains \"search_domain_filter\": [\"nature.com\", \"science.org\", \"cell.com\"]",
+        "Use either allowlist mode (include only) OR denylist mode (exclude), but not both in the same request."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

@@ -1,0 +1,46 @@
+```json
+[
+    {
+        "question": "What are the two primary ways form data can be used after submission, and under what circumstances would you choose one over the other?",
+        "answer": "Form data can be sent to a web server for processing and storage, or used on the client-side to immediately update the interface; you would choose server-side processing when data needs to be stored or shared across users, and client-side updates when changes should be local and instantaneous (e.g., adding an item to a list or toggling a UI feature).",
+        "supporting_sentences": [
+            "Forms allow users to enter data, which is generally sent to a web server for processing and storage (see Sending form data later in the module), or used on the client-side to immediately update the interface in some way (for example, add another item to a list, or show or hide a UI feature).",
+            "From a user experience (UX) point of view, it's important to remember that the bigger your form, the more you risk frustrating people and losing users. Keep it simple and stay focused: ask only for the data you absolutely need."
+        ]
+    },
+    {
+        "question": "How does the `<input type='email'>` field differ from a standard `<input type='text'>` field in terms of validation and user experience, and what specific advantage does this provide on mobile devices?",
+        "answer": "The `<input type='email'>` field enforces a well-formed email address format and performs validation checks on user input, unlike `<input type='text'>` which accepts any text; on mobile devices, it also displays a more appropriate keyboard layout (e.g., with an @ symbol by default).",
+        "supporting_sentences": [
+            "In our simple example, we use the value text for the first input — the default value for this attribute. It represents a basic single-line text field that accepts any kind of text input.",
+            "For the second input, we use the value email, which defines a single-line text field that only accepts a well-formed email address. This turns a basic text field into a kind of \"intelligent\" field that will perform some validation checks on the data typed by the user. It also causes a more appropriate keyboard layout for entering email addresses (e.g., with an @ symbol by default) to appear on devices with dynamic keyboards, like smartphones."
+        ]
+    },
+    {
+        "question": "What are the three possible values for the `type` attribute of a `<button>` element, and what happens when each is clicked? Include any UX considerations mentioned in the document.",
+        "answer": "The three values are `submit`, `reset`, and `button`; clicking `submit` sends the form's data to the URL defined in the `action` attribute, clicking `reset` immediately resets all form widgets to their default values (considered bad UX practice), and clicking `button` does nothing by default (useful for custom JavaScript functionality).",
+        "supporting_sentences": [
+            "The <button> element also accepts a type attribute — this accepts one of three values: submit, reset, or button.",
+            "A click on a submit button (the default value) sends the form's data to the web page defined by the action attribute of the <form> element.",
+            "A click on a reset button resets all the form widgets to their default value immediately. From a UX point of view, this is considered bad practice, so you should avoid using this type of button unless you really have a good reason to include one.",
+            "A click on a button button does nothing! That sounds silly, but it's amazingly useful for building custom buttons — you can define their chosen functionality with JavaScript."
+        ]
+    },
+    {
+        "question": "How many distinct form controls are explicitly mentioned in the document, and what are they? List them in the order they appear in the text.",
+        "answer": "Five distinct form controls are mentioned: single-line text fields, multi-line text fields, dropdown boxes, checkboxes, and radio buttons.",
+        "supporting_sentences": [
+            "A web form's HTML is made up of one or more form controls (sometimes called widgets), plus some additional elements to help structure the overall form — they are often referred to as HTML forms. The controls can be single or multi-line text fields, dropdown boxes, buttons, checkboxes, or radio buttons, and are mostly created using the <input> element, although there are some other elements to learn about too."
+        ]
+    },
+    {
+        "question": "Under what condition would the `action` attribute of the `<form>` element not need to be set, and what is the potential consequence of omitting it?",
+        "answer": "The `action` attribute is optional, so it does not need to be set if no server-side processing is required; however, omitting it would result in the form data not being sent anywhere upon submission, effectively making the form non-functional for data storage or processing.",
+        "supporting_sentences": [
+            "All of its attributes are optional, but it's standard practice to always set at least the action and method attributes:",
+            "The action attribute defines the location (URL) where the form's collected data should be sent when it is submitted.",
+            "We'll look at how those attributes work in our Sending form data article later on."
+        ]
+    }
+]
+```

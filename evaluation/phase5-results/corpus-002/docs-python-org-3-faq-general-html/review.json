@@ -1,0 +1,118 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what conditions can Python's source code be used commercially, and what are the specific requirements regarding copyrights in such cases?",
+      "answer": "Python's source code can be used commercially as long as the copyrights are left intact and displayed in any documentation about Python that is produced; it is permissible to sell copies of Python in source or binary form (modified or unmodified) or to sell products that incorporate Python in some form.",
+      "supporting_sentences": [
+        "You can do anything you want with the source, as long as you leave the copyrights in and display those copyrights in any documentation about Python that you produce.",
+        "If you honor the copyright rules, it\u2019s OK to use Python for commercial use, to sell copies of Python in source or binary form (modified or unmodified), or to sell products that incorporate Python in some form."
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what conditions can Python's source code be used commercially, and what are the specific requirements regarding copyrights in such cases?",
+      "answer": "Python's source code can be used commercially as long as the copyrights are left intact and displayed in any documentation about Python that is produced; it is permissible to sell copies of Python in source or binary form (modified or unmodified) or to sell products that incorporate Python in some form.",
+      "supporting_sentences": [
+        "You can do anything you want with the source, as long as you leave the copyrights in and display those copyrights in any documentation about Python that you produce.",
+        "If you honor the copyright rules, it\u2019s OK to use Python for commercial use, to sell copies of Python in source or binary form (modified or unmodified), or to sell products that incorporate Python in some form."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does Python's version numbering system distinguish between feature releases, bugfix releases, and development releases, and what is the order of precedence among alpha, beta, and release candidate versions?",
+      "answer": "Python versions are numbered 'A.B.C' or 'A.B', where 'A' is the major version, 'B' is the minor version, and 'C' is the micro version (bugfix release). Development releases (alpha, beta, release candidate) have suffixes: 'aN' for alpha, 'bN' for beta, and 'rcN' for release candidate. The order of precedence is: alpha versions (e.g., 2.0aN) precede beta versions (e.g., 2.0bN), which precede release candidate versions (e.g., 2.0rcN), and those precede the final release (e.g., 2.0).",
+      "supporting_sentences": [
+        "Python versions are numbered 'A.B.C' or 'A.B': A is the major version number \u2013 it is only incremented for really major changes in the language. B is the minor version number \u2013 it is incremented for less earth-shattering changes. C is the micro version number \u2013 it is incremented for each bugfix release.",
+        "Alpha, beta and release candidate versions have an additional suffix: The suffix for an alpha version is 'aN' for some small number N. The suffix for a beta version is 'bN' for some small number N. The suffix for a release candidate version is 'rcN' for some small number N.",
+        "In other words, all versions labeled 2.0aN precede the versions labeled 2.0bN, which precede versions labeled 2.0rcN, and those precede 2.0."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does Python's version numbering system distinguish between feature releases, bugfix releases, and development releases, and what is the order of precedence among alpha, beta, and release candidate versions?",
+      "answer": "Python versions are numbered 'A.B.C' or 'A.B', where 'A' is the major version, 'B' is the minor version, and 'C' is the micro version (bugfix release). Development releases (alpha, beta, release candidate) have suffixes: 'aN' for alpha, 'bN' for beta, and 'rcN' for release candidate. The order of precedence is: alpha versions (e.g., 2.0aN) precede beta versions (e.g., 2.0bN), which precede release candidate versions (e.g., 2.0rcN), and those precede the final release (e.g., 2.0).",
+      "supporting_sentences": [
+        "Python versions are numbered 'A.B.C' or 'A.B': A is the major version number \u2013 it is only incremented for really major changes in the language. B is the minor version number \u2013 it is incremented for less earth-shattering changes. C is the micro version number \u2013 it is incremented for each bugfix release.",
+        "Alpha, beta and release candidate versions have an additional suffix: The suffix for an alpha version is 'aN' for some small number N. The suffix for a beta version is 'bN' for some small number N. The suffix for a release candidate version is 'rcN' for some small number N.",
+        "In other words, all versions labeled 2.0aN precede the versions labeled 2.0bN, which precede versions labeled 2.0rcN, and those precede 2.0."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the difference between the stability of Python's feature releases and bugfix releases, and how frequently are each issued as of version 3.9?",
+      "answer": "Feature releases introduce new changes and are issued every 12 months as of version 3.9; bugfix releases are managed for stability, include only fixes for known problems, and guarantee that interfaces remain unchanged throughout the series, with no specified frequency but historically issued roughly every 6 to 18 months.",
+      "supporting_sentences": [
+        "As of version 3.9, Python will have a new feature release every 12 months (PEP 602).",
+        "The developers issue bugfix releases of older versions, so the stability of existing releases gradually improves. Bugfix releases, indicated by a third component of the version number (e.g. 3.5.3, 3.6.2), are managed for stability; only fixes for known problems are included in a bugfix release, and it\u2019s guaranteed that interfaces will remain the same throughout a series of bugfix releases.",
+        "New, stable releases have been coming out roughly every 6 to 18 months since 1991, and this seems likely to continue."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the difference between the stability of Python's feature releases and bugfix releases, and how frequently are each issued as of version 3.9?",
+      "answer": "Feature releases introduce new changes and are issued every 12 months as of version 3.9; bugfix releases are managed for stability, include only fixes for known problems, and guarantee that interfaces remain unchanged throughout the series, with no specified frequency but historically issued roughly every 6 to 18 months.",
+      "supporting_sentences": [
+        "As of version 3.9, Python will have a new feature release every 12 months (PEP 602).",
+        "The developers issue bugfix releases of older versions, so the stability of existing releases gradually improves. Bugfix releases, indicated by a third component of the version number (e.g. 3.5.3, 3.6.2), are managed for stability; only fixes for known problems are included in a bugfix release, and it\u2019s guaranteed that interfaces will remain the same throughout a series of bugfix releases.",
+        "New, stable releases have been coming out roughly every 6 to 18 months since 1991, and this seems likely to continue."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the key advantages of using Python as a first programming language for students, and how does its standard library support this use case?",
+      "answer": "Python's advantages as a first language include its simple and consistent syntax, large standard library, and interactive interpreter; the standard library enables students to work on realistic applications early in the course, teaches code reuse, and allows them to test language features interactively while programming.",
+      "supporting_sentences": [
+        "Python has a very simple and consistent syntax and a large standard library and, most importantly, using Python in a beginning programming course lets students concentrate on important programming skills such as problem decomposition and data type design.",
+        "Like Java, Python has a large standard library so that students can be assigned programming projects very early in the course that do something. Assignments aren\u2019t restricted to the standard four-function calculator and check balancing programs. By using the standard library, students can gain the satisfaction of working on realistic applications as they learn the fundamentals of programming. Using the standard library also teaches students about code reuse.",
+        "Python\u2019s interactive interpreter enables students to test language features while they\u2019re programming. They can keep a window with the interpreter running while they enter their program\u2019s source in another window."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the key advantages of using Python as a first programming language for students, and how does its standard library support this use case?",
+      "answer": "Python's advantages as a first language include its simple and consistent syntax, large standard library, and interactive interpreter; the standard library enables students to work on realistic applications early in the course, teaches code reuse, and allows them to test language features interactively while programming.",
+      "supporting_sentences": [
+        "Python has a very simple and consistent syntax and a large standard library and, most importantly, using Python in a beginning programming course lets students concentrate on important programming skills such as problem decomposition and data type design.",
+        "Like Java, Python has a large standard library so that students can be assigned programming projects very early in the course that do something. Assignments aren\u2019t restricted to the standard four-function calculator and check balancing programs. By using the standard library, students can gain the satisfaction of working on realistic applications as they learn the fundamentals of programming. Using the standard library also teaches students about code reuse.",
+        "Python\u2019s interactive interpreter enables students to test language features while they\u2019re programming. They can keep a window with the interpreter running while they enter their program\u2019s source in another window."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens if a backward-incompatible change is proposed for Python, and what procedure is followed to minimize disruption for users?",
+      "answer": "Backward-incompatible changes are generally frowned upon unless they invalidate only a very small fraction of existing programs; a gradual upgrade path is required if such a change is necessary, and the procedure for introducing these changes is described in PEP 5.",
+      "supporting_sentences": [
+        "In general, no. There are already millions of lines of Python code around the world, so any change in the language that invalidates more than a very small fraction of existing programs has to be frowned upon. Even if you can provide a conversion program, there\u2019s still the problem of updating all documentation; many books have been written about Python, and we don\u2019t want to invalidate them all at a single stroke. Providing a gradual upgrade path is necessary if a feature has to be changed.",
+        "PEP 5 describes the procedure followed for introducing backward-incompatible changes while minimizing disruption for users."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens if a backward-incompatible change is proposed for Python, and what procedure is followed to minimize disruption for users?",
+      "answer": "Backward-incompatible changes are generally frowned upon unless they invalidate only a very small fraction of existing programs; a gradual upgrade path is required if such a change is necessary, and the procedure for introducing these changes is described in PEP 5.",
+      "supporting_sentences": [
+        "In general, no. There are already millions of lines of Python code around the world, so any change in the language that invalidates more than a very small fraction of existing programs has to be frowned upon. Even if you can provide a conversion program, there\u2019s still the problem of updating all documentation; many books have been written about Python, and we don\u2019t want to invalidate them all at a single stroke. Providing a gradual upgrade path is necessary if a feature has to be changed.",
+        "PEP 5 describes the procedure followed for introducing backward-incompatible changes while minimizing disruption for users."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

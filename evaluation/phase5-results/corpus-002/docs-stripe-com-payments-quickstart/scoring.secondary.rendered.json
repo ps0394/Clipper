@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 6463,
+    "tokens_out": 4
+  },
+  {
+    "pair_index": 1,
+    "answer": "The payment flow handles errors during the `confirmPayment` step by checking the error type. If the error type is either \"card_error\" or \"validation_error\", it shows the error message. For any other error type, it displays the message 'An unexpected error occurred.'",
+    "run_index": 0,
+    "tokens_in": 6470,
+    "tokens_out": 56
+  },
+  {
+    "pair_index": 2,
+    "answer": "1. The user submits the payment form.\n2. The client-side JavaScript code sends a request to the server to create a payment intent.\n3. The server creates a payment intent and sends the client secret back to the client.\n4. The client uses the client secret to confirm the payment with Stripe.\n5. Stripe processes the payment and redirects the user to the return URL specified by the client, which is the completion page.\n6. The completion page fetches the payment intent status from Stripe using the client secret.\n7. The completion page displays the payment status to the user.",
+    "run_index": 0,
+    "tokens_in": 6469,
+    "tokens_out": 118
+  },
+  {
+    "pair_index": 3,
+    "answer": "The three possible payment statuses are: \n1. \"succeeded\" - indicated by a green color (#30B130) and a SuccessIcon, \n2. \"processing\" - indicated by a gray color (#6D6E78) and an InfoIcon, \n3. \"requires_payment_method\" - indicated by a red color (#DF1B41) and an ErrorIcon.",
+    "run_index": 0,
+    "tokens_in": 6462,
+    "tokens_out": 80
+  },
+  {
+    "pair_index": 4,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 6454,
+    "tokens_out": 4
+  }
+]

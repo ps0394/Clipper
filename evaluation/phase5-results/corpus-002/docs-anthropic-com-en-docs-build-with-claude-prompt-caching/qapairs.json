@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Under what conditions would a user pay for both 5-minute and 1-hour cache writes in the same request, and how is the token count split between them?",
+    "answer": "A user pays for both 5-minute and 1-hour cache writes in the same request when the highest cache hit (position A) occurs before a 1-hour cache breakpoint (position B), and a 5-minute cache breakpoint (position C) appears after position B; the token count is split as: cache read tokens for A, 1-hour cache write tokens for (B - A), and 5-minute cache write tokens for (C - B).",
+    "supporting_sentences": [
+      "When mixing TTLs, the API determines three billing locations in your prompt: Position A: The token count at the highest cache hit (or 0 if no hits). Position B: The token count at the highest 1-hour cache_control block after A (or equals A if none exist). Position C: The token count at the last cache_control block.",
+      "You'll be charged for: Cache read tokens for A. 1-hour cache write tokens for (B - A). 5-minute cache write tokens for (C - B)."
+    ]
+  },
+  {
+    "question": "How does the lookback window of 20 blocks interact with a growing conversation where each turn adds 15 new blocks, and what happens on the third turn if only one explicit breakpoint is used?",
+    "answer": "On the third turn, the lookback window (20 blocks) will not find the prior cache entry from turn 2 because the breakpoint is 20 blocks away (35 - 15 = 20), resulting in no cache hit and a full reprocessing of the prompt; adding a second breakpoint at block 15 would resolve this.",
+    "supporting_sentences": [
+      "Turn 3: 35 blocks, breakpoint on block 35. The system checks 20 positions (blocks 35 through 16) and finds nothing. The turn-2 entry at block 15 is one position outside the window, so there is no cache hit.",
+      "If the system finds no matching entry in that window, checking stops (or resumes from the next explicit breakpoint, if any).",
+      "Add a second breakpoint closer to that position from the start so a write accumulates there before you need it."
+    ]
+  },
+  {
+    "question": "Which Claude model has the highest cost difference between its base input tokens and cache hits, and what is the numerical difference per million tokens?",
+    "answer": "Claude Opus 4.1 and Claude Opus 4 both have the highest cost difference; the difference is $13.50 per million tokens ($15.00 base input tokens - $1.50 cache hits).",
+    "supporting_sentences": [
+      "Claude Opus 4.1: Base Input Tokens $15 / MTok; Cache Hits & Refreshes $1.50 / MTok",
+      "Claude Opus 4: Base Input Tokens $15 / MTok; Cache Hits & Refreshes $1.50 / MTok",
+      "Cache read tokens are 0.1 times the base input tokens price"
+    ]
+  },
+  {
+    "question": "What happens to the cache if a user enables web search in a request after previously caching a prompt without web search, and how does this affect the system and messages cache?",
+    "answer": "Enabling web search invalidates the system cache and messages cache but leaves the tools cache intact; this requires a new cache entry to be created for the system and messages sections.",
+    "supporting_sentences": [
+      "Web search toggle: \u2713 Tools cache; \u2718 System cache; \u2718 Messages cache; Enabling/disabling web search modifies the system prompt",
+      "Modifications to cached content can invalidate some or all of the cache."
+    ]
+  },
+  {
+    "question": "If a user sends a request with 8,000 tokens of cached content (read from cache), 1,000 tokens of new content being cached (5-minute TTL), and 200 tokens in the user message after the cache breakpoint, what are the values of `cache_read_input_tokens`, `cache_creation_input_tokens`, and `input_tokens` in the API response, and what is the total input token count?",
+    "answer": "`cache_read_input_tokens`: 8,000; `cache_creation_input_tokens`: 1,000; `input_tokens`: 200; total input tokens: 9,200.",
+    "supporting_sentences": [
+      "cache_read_input_tokens: Number of tokens retrieved from the cache for this request.",
+      "cache_creation_input_tokens: Number of tokens written to the cache when creating a new entry.",
+      "input_tokens: Number of input tokens which were not read from or used to create a cache (that is, tokens after the last cache breakpoint).",
+      "total_input_tokens = cache_read_input_tokens + cache_creation_input_tokens + input_tokens"
+    ]
+  }
+]

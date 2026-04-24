@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "\u201cInteractive\u201d text files (files for which isatty() returns True) use line buffering. The default buffer size for binary files when the device block size is unavailable is 128 kilobytes.",
+    "run_index": 0,
+    "tokens_in": 2285,
+    "tokens_out": 42
+  },
+  {
+    "pair_index": 1,
+    "answer": "When reading, if newline is None, universal newlines mode is enabled and lines ending in '\\n', '\\r', or '\\r\\n' are translated into '\\n' before being returned; if it is '', universal newlines mode is enabled but line endings are returned untranslated. When writing, if newline is None, any '\\n' characters written are translated to the system default line separator; if newline is '' or '\\n', no translation takes place.",
+    "run_index": 0,
+    "tokens_in": 2291,
+    "tokens_out": 93
+  },
+  {
+    "pair_index": 2,
+    "answer": "'w+' opens and truncates the file. 'r+' opens the file with no truncation. The buffering parameter set to 0 is only allowed in binary mode.",
+    "run_index": 0,
+    "tokens_in": 2293,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 3,
+    "answer": "'xmlcharrefreplace' and 'namereplace' are only supported when writing to a file. The default value of None has the same effect as 'strict', which raises a ValueError exception if there is an encoding error.",
+    "run_index": 0,
+    "tokens_in": 2287,
+    "tokens_out": 48
+  },
+  {
+    "pair_index": 4,
+    "answer": "import os\ndir_fd = os.open('somedir', os.O_RDONLY)\ndef opener(path, flags):\n    return os.open(path, flags, dir_fd=dir_fd)\nwith open('spamspam.txt', 'w', opener=opener) as f:\n    print('This will be written to somedir/spamspam.txt', file=f)\nos.close(dir_fd)\n\nIf closefd is False and a file descriptor rather than a filename was given, the underlying file descriptor will be kept open when the file is closed.",
+    "run_index": 0,
+    "tokens_in": 2299,
+    "tokens_out": 108
+  }
+]

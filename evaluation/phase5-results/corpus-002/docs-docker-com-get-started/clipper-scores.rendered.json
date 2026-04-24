@@ -1,0 +1,1274 @@
+{
+  "parseability_score": 66.96520492829127,
+  "failure_mode": "moderate_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-002\\docs-docker-com-get-started\\page.rendered.html",
+  "url": "https://docs.docker.com/get-started/",
+  "component_scores": {
+    "semantic_html": 78.18181818181819,
+    "content_extractability": 70.09875191418362,
+    "structured_data": 67.0,
+    "dom_navigability": 10,
+    "metadata_completeness": 100,
+    "http_compliance": 85.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 3,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "article",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "section",
+          "count": 4,
+          "proper_usage": true
+        },
+        {
+          "element": "aside",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 1,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 27,
+      "heading_elements_count": 17,
+      "scoring_breakdown": {
+        "semantic_coverage": 38.18181818181818,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 5515,
+        "extracted_text_length": 3211,
+        "extracted_chars": 3211,
+        "extraction_ratio": 0.582,
+        "extracted_title": "Get started | Docker Docs",
+        "extracted_preview": "Gordon Gordon, your AI assistant for Docker docs What can I help you with? I'm Gordon, your AI assistant for Docker and documentation\r\nquestions. Answers are generated based on the documentation. Home / Get started Get started Open Markdown Ask Docs AI Claude Open in Claude If you're new to Docker, ...",
+        "original_headings": 17,
+        "extracted_headings": 5,
+        "original_lists": 10,
+        "extracted_lists": 0,
+        "original_code_blocks": 0,
+        "extracted_code_blocks": 0,
+        "has_main_element": true,
+        "has_article_element": true
+      },
+      "score_breakdown": {
+        "signal_to_noise": 38.31757544359539,
+        "structure_preservation": 7.9411764705882355,
+        "boundary_detection": 23.84
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 1,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 3
+      },
+      "schema_types_found": [
+        "TechArticle"
+      ],
+      "key_fields_found": [
+        "dateModified",
+        "url",
+        "description",
+        "publisher",
+        "headline",
+        "author"
+      ],
+      "formats_present": 3,
+      "score_breakdown": {
+        "type_appropriateness": 20.0,
+        "field_completeness": 20.0,
+        "multiple_formats": 17,
+        "schema_validation": 10.0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 1,
+        "missing_fields": [],
+        "invalid_fields": [],
+        "fallback": "generic key-field check (no validated @type)",
+        "fallback_fields_found": [
+          "author",
+          "dateModified",
+          "description",
+          "headline",
+          "publisher",
+          "url"
+        ]
+      },
+      "sample_structured_data": {
+        "json-ld": [
+          {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "articleSection": "get-started",
+            "author": {
+              "@type": "Organization",
+              "name": "Docker Inc",
+              "url": "https://www.docker.com"
+            },
+            "dateModified": "2026-01-07T23:36:33-08:00",
+            "description": "Get started with Docker",
+            "headline": "Get started",
+            "inLanguage": "en",
+            "keywords": [
+              "Docker",
+              "get",
+              "started"
+            ],
+            "mainEntityOfPage": {
+              "@id": "https://docs.docker.com/get-started/",
+              "@type": "WebPage"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://docs.docker.com/assets/images/docker-logo.png"
+              },
+              "name": "Docker Inc",
+              "url": "https://www.docker.com"
+            },
+            "url": "https://docs.docker.com/get-started/"
+          }
+        ],
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#",
+              "article": "http://ogp.me/ns/article#"
+            },
+            "properties": [
+              [
+                "og:description",
+                "Get started with Docker"
+              ],
+              [
+                "og:title",
+                "Get started"
+              ],
+              [
+                "og:description",
+                "Get started with Docker"
+              ],
+              [
+                "og:type",
+                "website"
+              ],
+              [
+                "og:updated_time",
+                "2026-01-07 23:36:33 -0800 -0800"
+              ],
+              [
+                "og:image",
+                "https://docs.docker.com/images/thumbnail.webp"
+              ],
+              [
+                "og:locale",
+                "en_US"
+              ],
+              [
+                "og:url",
+                "https://docs.docker.com/get-started/"
+              ],
+              [
+                "og:site_name",
+                "Docker Documentation"
+              ],
+              [
+                "article:published_time",
+                "2026-01-07 23:36:33 -0800 -0800"
+              ]
+            ]
+          }
+        ],
+        "microformat": [
+          {
+            "type": [
+              "h-full"
+            ],
+            "properties": {},
+            "children": [
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {},
+                "children": [
+                  {
+                    "type": [
+                      "h-full"
+                    ],
+                    "properties": {
+                      "name": [
+                        ""
+                      ]
+                    },
+                    "lang": "en"
+                  }
+                ],
+                "lang": "en"
+              },
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "Search"
+                  ]
+                },
+                "id": "search-bar",
+                "lang": "en"
+              }
+            ],
+            "lang": "en"
+          },
+          {
+            "type": [
+              "h-screen"
+            ],
+            "properties": {},
+            "children": [
+              {
+                "type": [
+                  "h-full"
+                ],
+                "properties": {
+                  "name": [
+                    "What can I help you with?\nI'm Gordon, your AI assistant for Docker and documentation questions.\n\nTry asking\n\nGet started with Docker\n\nDocker Hardened Images\n\nMCP Toolkit\n\nCreate an org"
+                  ]
+                },
+                "lang": "en"
+              }
+            ],
+            "id": "gordon-chat",
+            "lang": "en"
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures buttons have discernible text",
+          "help": "Buttons must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/button-name?application=axeAPI",
+          "id": "button-name",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button @click=\"expanded = !expanded\" class=\"rounded-sm hover:bg-gray-200 hover:dark:bg-gray-800\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                ".navbar-font > ul > li[x-data=\"\\{\\ expanded\\:\\ false\\ \\}\"]:nth-child(3) > .justify-between.items-center.flex > .hover\\:bg-gray-200.hover\\:dark\\:bg-gray-800[\\@click=\"expanded\\ \\=\\ \\!expanded\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button @click=\"expanded = !expanded\" class=\"rounded-sm hover:bg-gray-200 hover:dark:bg-gray-800\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "li[x-data=\"\\{\\ expanded\\:\\ false\\ \\}\"]:nth-child(4) > .justify-between.items-center.flex > .hover\\:bg-gray-200.hover\\:dark\\:bg-gray-800[\\@click=\"expanded\\ \\=\\ \\!expanded\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button @click=\"expanded = !expanded\" class=\"rounded-sm hover:bg-gray-200 hover:dark:bg-gray-800\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "li[x-data=\"\\{\\ expanded\\:\\ false\\ \\}\"]:nth-child(5) > .justify-between.items-center.flex > .hover\\:bg-gray-200.hover\\:dark\\:bg-gray-800[\\@click=\"expanded\\ \\=\\ \\!expanded\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a"
+          ]
+        },
+        {
+          "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+          "help": "Elements must have sufficient color contrast",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.61,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4b83f1",
+                    "fontSize": "10.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"https://docs.docker.com/\" class=\"link truncate\">Home</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".link.truncate[href$=\"docs.docker.com/\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 2.87,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#8b99b2",
+                    "fontSize": "10.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.87 (foreground color: #8b99b2, background color: #ffffff, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.87 (foreground color: #8b99b2, background color: #ffffff, font size: 10.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"truncate\">Get started</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "#breadcrumbs > .truncate:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "3:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "21.6pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 21.6pt, font weight: normal). Expected contrast ratio of 3:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 21.6pt, font weight: normal). Expected contrast ratio of 3:1",
+              "html": "<h1 data-pagefind-weight=\"10\">Get started</h1>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "h1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>If you're new to Docker, this section guides you through the essential resources to get started.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(4)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>Follow the guides to help you get started and learn how Docker can optimize your development workflows.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(5)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>For more advanced concepts and scenarios in Docker, see\n<a class=\"link\" href=\"/guides/\">Guides</a>.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(6)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.61,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4b83f1",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"link\" href=\"/guides/\">Guides</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".link[href$=\"guides/\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>Install Docker and jump into discovering what Docker is.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(8)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<p>Learn the foundational concepts and workflows of Docker.</p>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p:nth-child(10)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.61,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4b83f1",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"link\" rel=\"noopener\" href=\"https://github.com/docker/docs/edit/main/content/get-started/_index.md\">Edit this page</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".gap-1:nth-child(1) > .link[rel=\"noopener\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.61,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4b83f1",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-pagefind-body=\"\" class=\"dark:bg-background-dark w-full min-w-0 bg-white p-8\">",
+                      "target": [
+                        ".dark\\:bg-background-dark"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #4b83f1, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"link\" rel=\"noopener\" href=\"https://github.com/docker/docs/issues/new?template=doc_issue.yml&amp;location=https%3a%2f%2fdocs.docker.com%2fget-started%2f&amp;labels=status%2Ftriage\">Request changes</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".gap-1:nth-child(2) > .link[rel=\"noopener\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e7eaef",
+                    "contrastRatio": 2.38,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#8b99b2",
+                    "fontSize": "10.2pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.38 (foreground color: #8b99b2, background color: #e7eaef, font size: 10.2pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"border-t border-gray-200 bg-gray-100 px-4 py-4 text-sm text-gray-400 md:border-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-600\"><span>Copyright © 2013-2026 Docker Inc. All rights\nreserved.</span></div>",
+                      "target": [
+                        ".md\\:border-none"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.38 (foreground color: #8b99b2, background color: #e7eaef, font size: 10.2pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Copyright © 2013-2026 Docker Inc. All rights\nreserved.</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".md\\:border-none > span"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value used in ARIA and in labels is unique",
+          "help": "IDs used in ARIA and labels must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id-aria?application=axeAPI",
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "gordon-tooltip",
+                  "id": "duplicate-id-aria",
+                  "impact": "critical",
+                  "message": "Document has multiple elements referenced with ARIA with the same id attribute: gordon-tooltip",
+                  "relatedNodes": [
+                    {
+                      "html": "<div id=\"gordon-tooltip\" data-tooltip-body=\"\" class=\"absolute top-0 left-0 hidden rounded-sm bg-gray-900 p-2 text-sm whitespace-nowrap text-white\" role=\"tooltip\" x-show=\"messages.length &gt; 0\" style=\"display: none;\">",
+                      "target": [
+                        "div[data-tooltip-body=\"\"][role=\"tooltip\"][x-show=\"messages\\.length\\ \\>\\ 0\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: gordon-tooltip",
+              "html": "<div id=\"gordon-tooltip\" data-tooltip-body=\"\" class=\"absolute top-0 left-0 hidden rounded-sm bg-gray-900 p-2 text-sm whitespace-nowrap text-white\" role=\"tooltip\">Gordon, your AI assistant for Docker docs<div data-tooltip-arrow=\"\" class=\"absolute h-2 w-2 rotate-45 bg-gray-900\"></div></div>",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "#buttons > .gap-2.items-center.flex > .relative[data-tooltip-wrapper=\"\"] > .left-0[data-tooltip-body=\"\"][role=\"tooltip\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value is unique",
+          "help": "id attribute value must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id?application=axeAPI",
+          "id": "duplicate-id",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "search-modal",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<dialog class=\"pf-modal\" id=\"search-modal\" aria-label=\"search\">",
+                      "target": [
+                        "dialog"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<pagefind-modal id=\"search-modal\" reset-on-close=\"\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "pagefind-modal"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures all page content is contained by landmarks",
+          "help": "All page content must be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/region?application=axeAPI",
+          "id": "region",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "region",
+                  "impact": "moderate",
+                  "message": "Some page content is not contained by landmarks",
+                  "relatedNodes": [
+                    {
+                      "html": "<img decoding=\"async\" style=\"height:18px; margin-top:9px;\" src=\"https://www.docker.com/app/uploads/2024/01/icon-new.svg\" alt=\"\">",
+                      "target": [
+                        "img"
+                      ]
+                    },
+                    {
+                      "html": "<a id=\"dkr_global_banner_agent_ai_01\" href=\"https://www.docker.com/resources/the-state-of-agentic-ai-white-paper/\" style=\"font-size: clamp(14px, 2vw, 16px);font-weight: 600;color:hsla(0,0%,100%,.8)!important;\">",
+                      "target": [
+                        "#dkr_global_banner_agent_ai_01"
+                      ]
+                    },
+                    {
+                      "html": "<div style=\"color: white; cursor: pointer; position: absolute; top: 10px; right: 14px; font-size: 16px;\">✕</div>",
+                      "target": [
+                        "#docker-announcement-bar > div:nth-child(2)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks",
+              "html": "<html lang=\"en\" class=\"light\" data-theme-preference=\"auto\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.keyboard",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 5,
+      "passes_count": 35,
+      "total_penalty": 90,
+      "penalty_per_rule": {
+        "button-name": {
+          "impact": "critical",
+          "node_count": 3,
+          "raw_penalty": 75,
+          "capped_penalty": 25
+        },
+        "color-contrast": {
+          "impact": "serious",
+          "node_count": 12,
+          "raw_penalty": 180,
+          "capped_penalty": 25
+        },
+        "duplicate-id-aria": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "duplicate-id": {
+          "impact": "minor",
+          "node_count": 1,
+          "raw_penalty": 5,
+          "capped_penalty": 5
+        },
+        "region": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        }
+      },
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 15,
+        "date": 15,
+        "topic": 15,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title",
+          "schema:name"
+        ],
+        "description": [
+          "meta:description",
+          "og:description",
+          "schema:description"
+        ],
+        "author": [
+          "schema:author",
+          "schema:publisher"
+        ],
+        "date": [
+          "schema:date"
+        ],
+        "topic": [
+          "schema:articleSection",
+          "meta:keywords"
+        ],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 7,
+      "fields_total": 7,
+      "json_ld_type": "TechArticle"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "W/\"3967f6f4a913a07ef6cc51052011032d\"",
+        "last_modified": "Thu, 23 Apr 2026 20:56:52 GMT",
+        "cache_control": "absent"
+      },
+      "agent_content_hints": {
+        "signals_found": {
+          "has_markdown_alternate": true,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": true,
+          "has_non_html_alternate": false,
+          "details": [
+            "link rel=alternate type=text/markdown href=https://docs.docker.com/get-started/index.md",
+            "llms.txt link: /llms.txt"
+          ]
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 16,
+        "agent_content_hints": 9
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.102",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "article",
+      "detection": {
+        "schema_type_raw": "TechArticle",
+        "source": "schema_type",
+        "matched_value": "TechArticle"
+      },
+      "weights": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.2,
+        "structured_data": 0.2,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      }
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "article",
+  "universal_score": 66.96520492829127,
+  "render_mode": "rendered",
+  "subscores": {
+    "semantic_html": 78.18181818181819,
+    "content_extractability": 70.09875191418362,
+    "structured_data": 67.0,
+    "dom_navigability": 10,
+    "metadata_completeness": 100,
+    "http_compliance": 85.0
+  },
+  "evidence_references": null
+}
