@@ -22,6 +22,8 @@ def dispatch(args: argparse.Namespace) -> int:
         return _kappa(args)
     if cmd == "regrade-markdown":
         return _regrade_markdown(args)
+    if cmd == "regrade-intersection":
+        return _regrade_intersection(args)
     print(f"Unknown phase5 subcommand: {args.phase5_command}")
     return 2
 
@@ -278,4 +280,34 @@ def _regrade_markdown(args: argparse.Namespace) -> int:
     print(f"  pages with markdown resolved:  {result['n_markdown_resolved']}")
     print(f"  pages actually scored:         {result['n_scored_markdown']}")
     print(f"  results: {pilot_dir / 'markdown-regrade-summary.json'}")
+    return 0
+
+
+def _regrade_intersection(args: argparse.Namespace) -> int:
+    from .clients import FoundryConfig
+    from .runner import regrade_intersection_for_pilot
+
+    config = FoundryConfig.from_env()
+    missing = config.check()
+    if missing:
+        print(f"[!] Cannot regrade-intersection — missing env vars: {', '.join(missing)}")
+        return 1
+    pilot_dir = Path(args.pilot_dir)
+    if not pilot_dir.is_dir():
+        print(f"Pilot dir not found: {pilot_dir}")
+        return 1
+
+    print(f"F4.2 Track B intersection regrade: {pilot_dir}")
+    result = regrade_intersection_for_pilot(
+        pilot_dir=pilot_dir,
+        config=config,
+        use_judge=not bool(args.no_judge),
+        min_intersection_chars=int(args.min_chars),
+    )
+    print()
+    print("Intersection regrade summary")
+    print("-" * 40)
+    print(f"  pages seen:           {result['n_pages']}")
+    print(f"  pages scored:         {result['n_scored']}")
+    print(f"  results: {pilot_dir / 'intersection-regrade-summary.json'}")
     return 0

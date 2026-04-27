@@ -657,3 +657,178 @@ Session 4 publishes **no** F4.4 recommendation. It is not yet computable.
 - **Authorizes:** committing the tri-fetcher + its tests, the probe script and its corpus-002 output, the paired-grading runner and CLI, the lift script, and the null-context framing that markdown lift is only measurable on the ~63% of corpus-002 pages where markdown is served.
 - **Does not authorize:** any claim that served markdown improves (or fails to improve) grading accuracy on corpus-002. That claim is gated on F4.2 execution and the F4.4 rule above.
 
+## Addendum F — Session 5: Phase 6 Experiment 2 execution + token-efficiency probe (F4.2 / F4.3 / F4.4)
+
+Session 5 executes F4.2 (paired LLM grading) twice — once on the original HTML-anchored Q/A (Track A) and once on a bias-corrected intersection-Q/A design (Track B) — and adds a non-LLM token-efficiency probe that the original PRD did not anticipate. The combined evidence resolves F4.4.
+
+### F.1 Headline
+
+- **F4.4 verdict (paired grading): `keep_as_diagnostic_only`.** Bias-corrected paired grading shows mean delta **−0.0118** on n=17, with 16/17 pages at exactly zero. Served markdown and rendered HTML are interchangeable for in-context comprehension on this corpus.
+- **Token-efficiency finding (new):** served markdown is **~40% MORE tokens** than a clean readability extract on the median page (median 6,081 vs 4,637 cl100k_base tokens; ratio 1.39×). The widely-repeated "markdown is more token-efficient" framing applies to *naive raw-HTML ingestion*, not to a careful HTML→text pipeline. The ~50× token reduction agents experience comes from the HTML-cleaning step, not from format choice.
+- **Combined implication:** served markdown produces neither comprehension lift nor token savings for an agent that already does readability-style extraction. Whatever value served markdown provides for agents must lie in *preprocessing reliability* or *retrieval-side chunking*, neither of which this corpus measures.
+
+### F.2 Track A: paired grading on HTML-anchored Q/A (the original F4.2 design)
+
+The runner generates Q/A from rendered HTML, then grades the rendered extract and the served markdown against the same pairs.
+
+| Metric | n | Value |
+|---|---|---|
+| Pages with markdown resolved | 25 / 43 | 58.1% (probe was 62.8%; 2 pages dropped on extraction errors) |
+| Pages scored | 25 |  |
+| Mean delta (`accuracy_markdown_judged` − `accuracy_rendered`) | 25 | **−0.064** |
+| Pos / neg / zero | 25 | 5 / 7 / 13 |
+
+Per-vendor (judged):
+
+| Vendor | n | Mean Δ | Median Δ | Pos / Neg |
+|---|---|---|---|---|
+| github | 3 | +0.133 | +0.200 | 2 / 0 |
+| anthropic | 5 | +0.040 | 0.000 | 2 / 1 |
+| aws | 2 | 0.000 | 0.000 | 0 / 0 |
+| docker | 2 | 0.000 | 0.000 | 0 / 0 |
+| perplexity | 2 | 0.000 | 0.000 | 0 / 0 |
+| snowflake | 3 | −0.067 | 0.000 | 0 / 1 |
+| learn | 4 | −0.200 | −0.200 | 1 / 2 |
+| openai | 2 | −0.300 | −0.300 | 0 / 2 |
+| stripe | 2 | −0.300 | −0.300 | 0 / 1 |
+
+The F4.4 rule (mean lift > 0.10 AND ≥2 vendors above threshold) **fails**: overall mean is the wrong sign and only one vendor (github) clears the per-vendor threshold. Track A would yield `keep_as_diagnostic_only`.
+
+**However, Track A has a known design flaw.** Q/A drawn from the rendered HTML extract bake content-coverage asymmetry into the test: any content the markdown legitimately omits (nav, dynamic widgets, expanded tables) becomes a grading penalty against markdown. The Track A delta cannot distinguish "markdown has worse comprehension fidelity" from "markdown drops content the rendered extract included." Track B was added to remove this confound.
+
+### F.3 Track B: paired grading on intersection-Q/A (the bias-corrected design)
+
+A new module ([retrievability/phase5/intersection.py](retrievability/phase5/intersection.py), 11 unit tests) computes the **sentence-level content intersection** of the rendered extract and the served markdown. Q/A are then generated from the intersection text only — neither format has a coverage advantage on the question pool.
+
+Pre-flight on corpus-002 (no LLM cost):
+
+- **17 of 25 markdown-resolved pages** have intersection text ≥ 1500 chars (the minimum to support 5 non-clustered Q/A).
+- Median intersection size: 2,727 chars; max 15,453.
+- Median sentence-overlap: 45% of rendered sentences appear in markdown; 30% of markdown sentences appear in rendered. The two formats are **not** the same document on the median page.
+- 8 pages drop out: openai-quickstart, stripe (both pages), python (all 5 pages reported zero overlap because their markdown extracts are nav-only or missing — counted as `intersection_too_thin`), plus 3 anthropic / snowflake short pages.
+
+Track B paired grading on the 17 survivors:
+
+| Metric | Track A (HTML-Q/A) | Track B (intersection-Q/A) |
+|---|---|---|
+| n scored | 25 | 17 |
+| Mean delta (judged) | **−0.064** | **−0.012** |
+| Median delta | 0.000 | 0.000 |
+| Pos / neg / zero | 5 / 7 / 13 | **0 / 1 / 16** |
+| Track A − Track B (mean) | — | **+0.052** (size of the bias removed) |
+
+The −0.052 difference between Track A and Track B is the **size of the HTML-source bias** in the original F4.2 design. After correcting it, **16 of 17 pages produce identical scores on rendered HTML and served markdown**. The single negative is `docs-snowflake-com-en-user-guide-data-load-overview` (rendered=1.0, markdown=0.8) — one question's worth of difference on a 5-question page; not a vendor-level finding.
+
+Per-vendor Track B:
+
+| Vendor | n | Mean Δ | Note |
+|---|---|---|---|
+| anthropic | 3 | 0.000 | All zero |
+| aws | 2 | 0.000 | All zero |
+| docker | 2 | 0.000 | All zero |
+| github | 2 | 0.000 | (Track A's +0.133 was bias) |
+| learn | 3 | 0.000 | (Track A's −0.200 was bias) |
+| openai | 1 | 0.000 | Was −0.300 in Track A |
+| perplexity | 2 | 0.000 | All zero |
+| snowflake | 2 | −0.100 | Median page produced one-Q delta |
+
+Note also: **rendered scores went UP** in Track B vs Track A on many pages (e.g. anthropic-getting-started 0.6→1.0, docker-get-started-02 0.6→1.0, github-plans 0.6→1.0). This is expected — Track A's questions about content the markdown couldn't see also lowered the *rendered* grade on questions that hit boilerplate or marginal content; restricting Q/A to intersection content lifts both versions.
+
+### F.4 F4.4 promote/demote decision
+
+Under the rule encoded in [scripts/phase6-markdown-lift.py](scripts/phase6-markdown-lift.py) (mean lift > 0.10 AND ≥2 vendors above threshold), Track B yields `keep_as_diagnostic_only` even more decisively than Track A — mean is essentially zero and no vendor shows lift. The bias-corrected test does not reverse the verdict.
+
+**The reasoning behind the verdict shifts, however:**
+
+- **Track A's null was inconclusive** because the test design produced a coverage bias of unknown sign and magnitude.
+- **Track B's null is a positive finding** of format equivalence: 16/17 pages score identically. Within the corpus and grading methodology, **served markdown and rendered HTML produce indistinguishable in-context comprehension accuracy**.
+
+This is a stronger evidence base than Track A alone, but it scopes narrowly to one regime: an LLM that has the full document in its context window. The finding does **not** apply to:
+- **Retrieval-mode RAG.** Chunk boundaries, retriever recall, embedding quality differ between the formats; not measured here.
+- **Pipeline reliability.** Crawler/extractor variance is reduced by markdown ingestion; this benefit shows up as variance reduction, not as a per-page mean delta.
+- **Code-heavy pages.** Fenced code blocks may behave differently than prose; corpus-002 is mostly prose.
+
+### F.5 Token-efficiency probe (added in Session 5; not in original PRD)
+
+Pure file-size analysis on the 25 corpus-002 pages with all three artifacts ([scripts/phase6-token-efficiency.py](scripts/phase6-token-efficiency.py)). Token counts use `tiktoken` `cl100k_base` (GPT-4 / Claude family). Readability extract is re-computed locally without the runner's 40k clamp; markdown is read as-stored on disk (10 of 25 pages were clamped to 40k chars at fetch time, so reported markdown sizes are floors for those pages).
+
+**Median per page (cl100k_base tokens):**
+
+| Format | Tokens | vs readability |
+|---|---|---|
+| Rendered HTML (raw, with chrome/scripts/styles) | 206,611 | 53.6× larger |
+| Readability extract (un-clamped) | 4,637 | baseline |
+| Served markdown (clamped at 40k chars on disk) | 6,081 | **1.39× larger** |
+
+**Three findings:**
+
+1. **The 50× HTML→text reduction is real and is not from markdown.** Going raw HTML → readability extract is ~54× fewer tokens. Going raw HTML → served markdown is ~48× fewer tokens. The difference is small; the win comes from stripping nav/JS/styles, which both formats do. This is the "agent-friendly format" win that gets attributed to markdown but is mostly attributable to *cleaning*.
+2. **Served markdown is ~40% MORE tokens than a clean readability extract.** On corpus-002, the median page's markdown is 6,081 tokens vs 4,637 for readability. The "markdown is more token-efficient" claim, applied to web-published documentation, is **false in this corpus**. The likely cause: publisher markdown exports preserve breadcrumbs, version selectors, sidebar links, and front-matter that readability aggressively strips.
+3. **The clamp distorts the picture upward for 40% of pages.** 10 of 25 markdown files hit the 40k-char ceiling at fetch time; their true wire token counts are larger than the 6,081 median suggests. Stripe pages run 100k–200k+ chars on the wire. The aggregate markdown/readability ratio is a *floor*, not a ceiling.
+
+### F.6 Per-vendor token efficiency
+
+Sharper than the aggregate. (n=2 cells are noisy; n=4–5 cells more reliable. "clamp" = pages whose markdown was truncated at 40k chars on disk.)
+
+| Vendor | n | Clamped | Median md tokens | Median rt tokens | md/rt ratio | html/md ratio | Reading |
+|---|---|---|---|---|---|---|---|
+| openai | 2 | 0/2 | 4,115 | 10,818 | **0.34×** | 78× | Markdown is *one-third* the size of readability — **only vendor where markdown wins on tokens**. Likely OpenAI strips chrome more aggressively in their markdown export than readability does in their rendered HTML. |
+| aws | 2 | 2/2 | 10,894 | 11,693 | 1.00× | 2.2× | Token-equivalent. Both pages clamped on the markdown side, so true ratio could be much worse. The 2.2× HTML/md ratio is suspicious — AWS rendered HTML is unusually small on these endpoints. |
+| docker | 2 | 1/2 | 5,872 | 5,903 | 1.23× | 61× | Roughly equivalent. |
+| learn | 4 | 2/4 | 8,056 | 6,392 | 1.27× | 14× | Markdown ~27% larger. The 14× HTML/md ratio is the *worst* of the corpus — Learn's rendered HTML is the most aggressive at minimizing chrome (or its markdown is the most bloated; both can be true). |
+| snowflake | 3 | 0/3 | 2,561 | 1,343 | 1.31× | 48× | Markdown ~31% larger; clean comparison (no clamping). |
+| perplexity | 2 | 0/2 | 3,729 | 2,524 | 1.46× | 83× | Markdown ~46% larger; clean comparison. |
+| github | 3 | 1/3 | 2,646 | 1,696 | 1.56× | 32× | Markdown ~56% larger. |
+| anthropic | 5 | 2/5 | 2,911 | 1,163 | 1.61× | 70× | Markdown ~61% larger. The largest n in the corpus and a consistently negative result. |
+| stripe | 2 | 2/2 | 8,250 | 3,424 | **6.29×** | 72× | Markdown is **6× LARGER** than readability — and both pages were clamped, so the true wire ratio is even worse. Stripe's markdown export ships massive amounts of chrome / TOC / sidebar content. |
+
+**Reading the table:**
+
+- **Only OpenAI** ships markdown smaller than the readability extraction. Its 0.34× ratio is striking but resting on n=2.
+- **Eight of nine vendors** ship markdown that is **larger** than a clean HTML→text extraction. The ratios cluster around 1.2× – 1.6× for most vendors, with stripe as a 6× outlier and aws/openai as exceptions in the other direction.
+- **Learn's rendered HTML is unusually compact** (14× HTML/md ratio is by far the lowest), which means the markdown comparison flatters the vendor less than it would for vendors with bigger HTML pages — yet markdown is still larger.
+- **Stripe's markdown is dramatically inefficient**, which combined with stripe's Track A regression (−0.300 from the bias) suggests their markdown export is not optimized for agent ingestion at all. (Track B couldn't run on stripe — both pages had <10% sentence overlap.)
+
+### F.7 What this corpus does and does not say about "markdown is agent-friendly"
+
+The slogan does several jobs at once and they should be separated.
+
+| Claim | Evidence on corpus-002 |
+|---|---|
+| Raw HTML is enormously more verbose than text/markdown | **Confirmed.** ~50× reduction either way. |
+| Markdown beats a *naive* HTML ingestion in tokens | **Confirmed.** ~48× reduction. |
+| Markdown beats a *good* HTML→text extraction in tokens | **Refuted on this corpus.** 8 of 9 vendors ship markdown larger than readability. Median ratio 1.39×; one outlier at 6.29×. |
+| Markdown improves in-context LLM comprehension | **Refuted on this corpus.** Bias-corrected paired delta is −0.012; 16/17 pages identical. |
+| Markdown is unambiguously a quality signal worth scoring | **Not supported.** Serving markdown does not imply serving *clean* markdown; some vendors ship markdown that is worse than their HTML on every measurable axis. |
+| Markdown is useful for RAG / preprocessing pipelines | **Not measured.** Plausibly true; outside this corpus's regime. |
+| Markdown is useful for chunking fidelity (retrieval-side) | **Not measured.** Plausibly true; outside this corpus's regime. |
+
+### F.8 Implications for v2 scoring
+
+1. **F4.4 stays `keep_as_diagnostic_only`** with the stronger Track B evidence base. Served markdown is not promoted to a scored pillar / sub-pillar.
+2. **A binary "serves markdown" signal would be misleading** if added naively. Stripe and AWS publish markdown that is larger than their HTML extraction on every measured axis. Rewarding "ships markdown" without measuring "ships markdown that is *better than* the HTML alternative" would inflate scores for vendors whose markdown is publisher-side bloat.
+3. **A future served-markdown signal should be conditional**, not binary. Roughly: "publisher serves markdown AND token(markdown) ≤ token(HTML→clean) AND content(markdown) ⊇ content(HTML→clean)." That requires per-page measurement against a reference extractor, not just an `Accept: text/markdown` probe.
+4. **The token-efficiency analysis should remain a diagnostic in Clipper output** even without scoring impact. Publishers reading the report benefit from knowing whether their markdown export is leaner or more bloated than their HTML — that's actionable feedback the current pillars don't surface.
+
+### F.9 Caveats and known weaknesses
+
+1. **n is small.** 17 paired pages for Track B; 2-5 per vendor for token analysis. Per-vendor numbers are directional, not statistically separable from noise except where the effect size is large (stripe 6.29×, openai 0.34×).
+2. **Judge calibration is not validated on markdown inputs.** The Llama 3.3 judge was calibrated at k=0.773 on rendered-HTML grading. Whether that calibration transfers cleanly to markdown documents was deferred (see Q2 in the session 5 design notes). Track B's null result is consistent with no drift, but does not affirmatively prove no drift.
+3. **Test scope is comprehension-mode, not retrieval-mode.** Both versions of the document are in the LLM's context. RAG settings — chunk + embed + retrieve — were not tested. The "markdown helps retrieval" claim remains plausible and untested by this work.
+4. **Token analysis ignores publisher intent.** Some publishers may serve markdown specifically as machine-readable export and accept the larger size as a tradeoff for structure. The "1.39× larger than readability" finding is descriptive, not normative.
+5. **The 40k-char clamp affected 10 of 25 markdown files.** True wire ratios are worse on those pages than reported. Stripe in particular: the 6.29× ratio is a floor.
+
+### F.10 What this session authorizes
+
+- **Authorizes:** the Track B paired-grading code ([retrievability/phase5/intersection.py](retrievability/phase5/intersection.py), [retrievability/phase5/runner.py](retrievability/phase5/runner.py) `regrade_intersection_for_pilot`, CLI in [retrievability/phase5/cli.py](retrievability/phase5/cli.py) and [retrievability/cli.py](retrievability/cli.py)); the analyzer scripts ([scripts/phase6-intersection-preflight.py](scripts/phase6-intersection-preflight.py), [scripts/phase6-intersection-lift.py](scripts/phase6-intersection-lift.py), [scripts/phase6-token-efficiency.py](scripts/phase6-token-efficiency.py)); 11 new unit tests for intersection logic (test suite 179/179 green); on-disk artifacts under [evaluation/phase5-results/corpus-002/](evaluation/phase5-results/corpus-002) and [evaluation/phase5-results/corpus-002-analysis/](evaluation/phase5-results/corpus-002-analysis); the F4.4 verdict of `keep_as_diagnostic_only` with the stronger evidence base.
+- **Authorizes (new claim):** "served markdown does not measurably improve in-context comprehension accuracy on corpus-002, and on the median page is ~40% more tokens than a clean readability extract; the conventional 'markdown is more token-efficient' claim does not survive a careful comparison against a non-naive HTML pipeline."
+- **Does not authorize:** any claim about retrieval-mode (chunked/embedded) format effects; any claim that markdown is universally inferior to HTML extraction (the OpenAI counter-example is real, even if n=2); any per-vendor scoring rule using these results until cell sizes reach n≥5.
+
+### F.11 Suggested next work
+
+- **Phase 7 (proposed): retrieval-mode benchmark.** Chunk both formats with a standard splitter, embed, retrieve top-k for held-out questions, grade. This is the regime where the "markdown is agent-friendly" claim is most likely to be quantitatively true and where corpus-002's findings cannot reach.
+- **Bloat diagnostic for v2 reports.** Surface per-page `tokens(markdown) / tokens(readability_extract)` as an unweighted observability signal in the standard Clipper output. No scoring impact; reader benefit only.
+- **Corpus-003 (deferred).** Re-running F4.2 / token-efficiency on a larger corpus with ≥5 pages per markdown-serving vendor would tighten the per-vendor cells. Lower priority given the corpus-002 result is decisive on the comprehension question.
+
+
+

@@ -755,3 +755,221 @@ def regrade_markdown_for_pilot(
         json.dumps(out, indent=2), encoding="utf-8"
     )
     return out
+
+
+# --- F4.2 Track B: intersection-Q/A paired grading -------------------------
+
+def regrade_intersection_for_pilot(
+    *,
+    pilot_dir: Path,
+    config: FoundryConfig,
+    use_judge: bool = True,
+    min_intersection_chars: int = 1_500,
+    generator_prompt: str = "generator",
+) -> dict:
+    """F4.2 Track B: paired grading using Q/A from rendered-vs-markdown intersection.
+
+    Corrects the HTML-source bias in the original F4.2 paired test. For
+    each page that has both ``page.rendered.txt`` and ``page.markdown.txt``:
+
+    1. Compute the sentence-level intersection of the two extracts (pure
+       Python, no LLM cost).
+    2. Skip pages whose intersection text is below
+       ``min_intersection_chars`` — too thin for 5 non-clustered Qs.
+    3. Generate fresh Q/A from the intersection text using the existing
+       generator (Mistral). Auto-accept (no human review).
+    4. Score BOTH the rendered extract and the markdown extract against
+       the new Q/A using the existing primary scorer (GPT-4.1).
+    5. Optionally judge both with the existing Llama 3.3 judge.
+
+    Outputs per page:
+        intersection.txt
+        intersection.stats.json
+        qapairs.intersection.json
+        generator.intersection.prompt.txt
+        generator.intersection.raw.json
+        scoring.primary.intersection.rendered.json
+        scoring.primary.intersection.markdown.json
+        grades.primary.intersection.rendered.json
+        grades.primary.intersection.markdown.json
+        grades.primary.judged.intersection.rendered.json   (if use_judge)
+        grades.primary.judged.intersection.markdown.json   (if use_judge)
+
+    Top-level: ``<pilot_dir>/intersection-regrade-summary.json``.
+
+    Compared to :func:`regrade_markdown_for_pilot`, this function:
+
+    - Re-runs the generator (extra Mistral cost) so Q/A come from
+      neutral intersection content rather than rendered HTML.
+    - Re-scores BOTH versions (~2x scorer cost vs the markdown-only
+      regrade) so each format is graded on the same Q/A.
+    - Reuses the on-disk fetches; does not re-crawl.
+    """
+    from .intersection import compute_intersection, to_dict as intersection_to_dict
+    from .schemas import QAPair, ScoringAnswer
+
+    missing = config.check()
+    if missing:
+        raise RuntimeError(
+            "intersection regrade requires Foundry config; missing: "
+            + ", ".join(missing)
+        )
+
+    generator = FoundryGeneratorClient(config)
+    primary = FoundryScoringClient(config, deployment=config.scorer_primary_deployment)
+    judge_client = None
+    if use_judge and config.scorer_secondary_deployment:
+        judge_client = FoundryScoringClient(
+            config, deployment=config.scorer_secondary_deployment
+        )
+
+    per_page: list[dict] = []
+    for page_dir in sorted(p for p in pilot_dir.iterdir() if p.is_dir() and not p.name.startswith("_")):
+        rendered_path = page_dir / "page.rendered.txt"
+        md_path = page_dir / "page.markdown.txt"
+        summary_path = page_dir / "summary.json"
+        if not rendered_path.is_file() or not md_path.is_file():
+            continue
+
+        summary = (
+            json.loads(summary_path.read_text(encoding="utf-8"))
+            if summary_path.is_file()
+            else {}
+        )
+        url = summary.get("url", "")
+        profile = summary.get("profile", "article")
+
+        rendered_text = rendered_path.read_text(encoding="utf-8")
+        md_text = md_path.read_text(encoding="utf-8")
+
+        result = compute_intersection(rendered_text, md_text)
+        stats = intersection_to_dict(result)
+        (page_dir / "intersection.txt").write_text(result.text, encoding="utf-8")
+        (page_dir / "intersection.stats.json").write_text(
+            json.dumps(stats, indent=2), encoding="utf-8"
+        )
+
+        entry = {
+            "slug": page_dir.name,
+            "url": url,
+            "intersection_chars": result.chars,
+            "overlap_ratio_rendered": stats["overlap_ratio_rendered"],
+            "overlap_ratio_markdown": stats["overlap_ratio_markdown"],
+            "accuracy_rendered_intersection_substring": None,
+            "accuracy_markdown_intersection_substring": None,
+            "accuracy_rendered_intersection_judged": None,
+            "accuracy_markdown_intersection_judged": None,
+            "accuracy_rendered_original": summary.get("accuracy_rendered"),
+            "num_pairs": 0,
+            "skipped_reason": None,
+        }
+
+        if result.chars < min_intersection_chars:
+            entry["skipped_reason"] = (
+                f"intersection_too_thin ({result.chars} < {min_intersection_chars})"
+            )
+            per_page.append(entry)
+            continue
+
+        title = summary.get("title") or page_dir.name
+        print(f"  {page_dir.name}: generating intersection Q/A ({result.chars} chars)")
+
+        # Persist a separate prompt+raw pair so we don't clobber the
+        # original generator artifacts.
+        try:
+            int_prompt = (page_dir / "generator.intersection.prompt.txt")
+            int_raw = (page_dir / "generator.intersection.raw.json")
+            from .generator import build_generator_prompt, parse_generator_output
+
+            prompt = build_generator_prompt(
+                title=title,
+                url=url,
+                profile=profile,
+                document_text=result.text,
+                prompt_name=generator_prompt,
+            )
+            int_prompt.write_text(prompt, encoding="utf-8")
+            raw = generator.complete(prompt)
+            int_raw.write_text(raw, encoding="utf-8")
+            pairs = parse_generator_output(raw)
+        except Exception as exc:  # noqa: BLE001
+            entry["skipped_reason"] = f"generator_failed: {exc}"
+            per_page.append(entry)
+            print(f"    [SKIP] generator failed: {exc}")
+            continue
+
+        # Auto-accept all pairs; this is a methodology re-run, not a
+        # ground-truth-quality experiment.
+        ground_truth = list(pairs)
+        (page_dir / "qapairs.intersection.json").write_text(
+            json.dumps([p.to_dict() for p in ground_truth], indent=2),
+            encoding="utf-8",
+        )
+        entry["num_pairs"] = len(ground_truth)
+        if not ground_truth:
+            entry["skipped_reason"] = "no_pairs_generated"
+            per_page.append(entry)
+            print(f"    [SKIP] no pairs parsed")
+            continue
+
+        # Score both versions against the same intersection Q/A.
+        for mode, doc_text in (("rendered", rendered_text), ("markdown", md_text)):
+            answers = score_page(
+                client=primary,
+                document_text=doc_text,
+                ground_truth=ground_truth,
+                runs_per_question=1,
+            )
+            persist_scores(
+                answers, page_dir / f"scoring.primary.intersection.{mode}.json"
+            )
+            substring_grades = grade_page(ground_truth=ground_truth, answers=answers)
+            persist_grades(
+                substring_grades,
+                page_dir / f"grades.primary.intersection.{mode}.json",
+            )
+            entry[f"accuracy_{mode}_intersection_substring"] = page_accuracy(
+                substring_grades
+            )
+
+            if judge_client is not None:
+                judged = judge_page(
+                    client=judge_client,
+                    ground_truth=ground_truth,
+                    answers=answers,
+                )
+                persist_judged_grades(
+                    judged,
+                    page_dir / f"grades.primary.judged.intersection.{mode}.json",
+                )
+                entry[f"accuracy_{mode}_intersection_judged"] = (
+                    judged_page_accuracy(judged)
+                )
+
+        per_page.append(entry)
+        print(
+            f"    rendered judged={entry['accuracy_rendered_intersection_judged']}  "
+            f"markdown judged={entry['accuracy_markdown_intersection_judged']}  "
+            f"(orig rendered={entry['accuracy_rendered_original']})"
+        )
+
+    out = {
+        "n_pages": len(per_page),
+        "n_scored": sum(1 for p in per_page if p["num_pairs"] and not p["skipped_reason"]),
+        "min_intersection_chars": min_intersection_chars,
+        "caveats": [
+            "Paired design: same intersection-derived Q/A applied to "
+            "both the rendered extract and the served markdown.",
+            "Q/A are auto-accepted from the generator with no human "
+            "review. Generator quality is the same as the original "
+            "pilot, but applied to a smaller intersection passage; "
+            "questions may be more concentrated in shared content.",
+            "Per-vendor n is thinner than Track A because pages with "
+            "low overlap drop out of the survivor pool.",
+        ],
+        "per_page": per_page,
+    }
+    (pilot_dir / "intersection-regrade-summary.json").write_text(
+        json.dumps(out, indent=2), encoding="utf-8"
+    )
+    return out

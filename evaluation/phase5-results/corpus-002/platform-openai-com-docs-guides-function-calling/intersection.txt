@@ -1,0 +1,97 @@
+This guide shows how you can connect a model to data and actions provided by your application.
+
+Tools - functionality we give the model
+
+You could give the model access to tools that:
+
+Access account details for a given user ID
+
+Issue refunds for a lost order
+
+When we make an API request to the model with a prompt, we can include a list of tools the model could consider using.
+
+Tool calls - requests from the model to use tools
+
+Tool call outputs - output we generate for the model
+
+To complete our weather example:
+
+The weather in Paris today is 25C.
+
+A function is a specific kind of tool, defined by a JSON schema.
+
+A function definition allows the model to pass data to your application, where your code can access data or take actions suggested by the model.
+
+In addition to function tools, there are custom tools (described in this guide) that work with free text inputs and outputs.
+
+Tool calling is a multi-step conversation between your application and a model via the OpenAI API.
+
+The tool calling flow has five high level steps:
+
+Make a request to the model with tools it could call
+
+Receive a tool call from the model
+
+Execute code on the application side with input from the tool call
+
+Make a second request to the model with the tool output
+
+Receive a final response from the model (or more tool calls)
+
+Note that for reasoning models like GPT-5 or o4-mini, any reasoning items
+
+returned in model responses with tool calls must also be passed back with tool
+
+Either way, each callable function uses the same schema shape.
+
+A function definition has the following properties:
+
+Namespaces help organize similar tools and are especially useful when the model must choose between tools that serve different systems or purposes, such as one search tool for your CRM and another for your support ticketing system.
+
+Add the answers to the prompt.)
+
+Under the hood, functions are injected into the system message in a syntax the model has been trained on.
+
+When the model calls a function, you must execute it and return the result.
+
+Since model responses can include zero, one, or multiple calls, it is best practice to assume there are several.
+
+Once the function is loaded, handle the function call in the same way shown here.
+
+Here’s a possible implementation:
+
+The model will interpret that string as needed.
+
+By default the model will determine when and how many tools to use.
+
+tool_choice: {"type": "function", "name": "get_weather"}
+
+the tools available to the model.
+
+This is most useful after you load a subset of tools and want to constrain the model to that subset.
+
+The model may choose to call multiple functions in a single turn.
+
+It is recommended to disable this feature when using this nano snapshot.
+
+We recommend always enabling strict mode.
+
+the request will be rejected with details about the missing constraints.
+
+normalize your schema into strict mode (for example, by setting
+
+make previously optional fields mandatory, while Chat Completions requests
+
+To opt out of strict mode in Responses and keep
+
+While we recommend you enable strict mode, it has a few limitations:
+
+Specifically for fine tuned models:
+
+Schemas undergo additional processing on the first request (and are then cached).
+
+If your schemas vary from request to request, this may result in higher latencies.
+
+Streaming can be used to surface progress by showing which function is called as the model fills its arguments, and even displaying the arguments in real time.
+
+These events contain the following fields:

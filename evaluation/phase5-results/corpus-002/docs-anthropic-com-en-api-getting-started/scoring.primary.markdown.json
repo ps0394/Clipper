@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "A user would receive a 413 'request_too_large' error when their request exceeds the maximum request size for the endpoint they are using. For the direct Claude API, the limits are: Messages and Token Counting endpoints\u201432 MB, Batch API\u2014256 MB, Files API\u2014500 MB, Sessions, Agents, and Environments\u201432 MB. On third-party platforms, the limits are lower: Vertex AI (Google Cloud) limits requests to 30 MB, and Amazon Bedrock (AWS) limits requests to 20 MB.",
+    "run_index": 0,
+    "tokens_in": 1884,
+    "tokens_out": 109
+  },
+  {
+    "pair_index": 1,
+    "answer": "The Message Batches API processes large volumes of Messages requests asynchronously with 50% cost reduction compared to the standard Messages API. The trade-off is that requests are processed asynchronously rather than synchronously.",
+    "run_index": 0,
+    "tokens_in": 1872,
+    "tokens_out": 40
+  },
+  {
+    "pair_index": 2,
+    "answer": "Direct Claude API provides access to the latest models and features first, Anthropic billing and support, and is best for new integrations, full feature access, and a direct relationship with Anthropic. Third-party platform APIs (AWS, Google Cloud, Microsoft Azure) are integrated with cloud provider billing and IAM, may have feature delays or differences from the direct API, and are best for existing cloud commitments, specific compliance requirements, and consolidated cloud billing.",
+    "run_index": 0,
+    "tokens_in": 1873,
+    "tokens_out": 89
+  },
+  {
+    "pair_index": 3,
+    "answer": "Messages, Token Counting, Sessions, Agents, Environments endpoints have the smallest maximum request size limit of 32 MB. The largest request size limit is 500 MB for the Files API. The numerical difference is 468 MB.",
+    "run_index": 0,
+    "tokens_in": 1869,
+    "tokens_out": 47
+  },
+  {
+    "pair_index": 4,
+    "answer": "Claude Managed Agents is available only through the direct Claude API.",
+    "run_index": 0,
+    "tokens_in": 1866,
+    "tokens_out": 13
+  }
+]

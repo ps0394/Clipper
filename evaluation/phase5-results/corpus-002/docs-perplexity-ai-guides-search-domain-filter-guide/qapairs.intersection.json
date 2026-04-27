@@ -1,0 +1,43 @@
+[
+  {
+    "question": "What are the two modes in which the domain filter for Perplexity AI's Search API operates?",
+    "answer": "The domain filter operates in allowlist mode (include only) or denylist mode (exclude).",
+    "supporting_sentences": [
+      "The filter works in either allowlist mode (include only) or denylist mode (exclude), but not both simultaneously.",
+      "The filter operates in two modes:",
+      "# Allowlist: Only search these domains",
+      "# Denylist: Exclude these domains"
+    ]
+  },
+  {
+    "question": "How many domains can be specified per request when using the domain filter?",
+    "answer": "You can specify up to 20 domains per request.",
+    "supporting_sentences": [
+      "You can specify up to 20 domains per request."
+    ]
+  },
+  {
+    "question": "What is an example of a use case for denylisting domains in search results?",
+    "answer": "Denylisting is useful when you want broad search coverage but need to exclude specific low-quality or irrelevant sources.",
+    "supporting_sentences": [
+      "Denylisting is useful when you want broad search coverage but need to exclude specific low-quality or irrelevant sources."
+    ]
+  },
+  {
+    "question": "How can you search across all Wikipedia language editions using the domain filter?",
+    "answer": "You can search across all Wikipedia language editions by specifying the root domain 'wikipedia.org'.",
+    "supporting_sentences": [
+      "Search across all Wikipedia language editions by specifying the root domain:",
+      "# Matches en.wikipedia.org, fr.wikipedia.org, de.wikipedia.org, etc."
+    ]
+  },
+  {
+    "question": "What types of domain components can be used for filtering in Perplexity AI's Search API?",
+    "answer": "You can filter by specific domains, top-level domains (TLDs), or domain parts.",
+    "supporting_sentences": [
+      "You can filter by specific domains, top-level domains (TLDs), or domain parts.",
+      "Domain filters support flexible matching across different domain components:",
+      "Any part of a domain can be used as a filter."
+    ]
+  }
+]

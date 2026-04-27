@@ -1,0 +1,45 @@
+```json
+[
+    {
+        "question": "What is the key difference between Perplexity AI's web search models and traditional LLMs in terms of prompting?",
+        "answer": "Web search models require specificity to retrieve relevant search results, while few-shot prompting works well for traditional LLMs but confuses web search models.",
+        "supporting_sentences": [
+            "Unlike traditional LLMs, our web search models require specificity to retrieve relevant search results.",
+            "While few-shot prompting works well for traditional LLMs, it confuses web search models by triggering searches for your examples rather than your actual query."
+        ]
+    },
+    {
+        "question": "What should you avoid when crafting prompts for Perplexity AI's web search models to prevent scattered results?",
+        "answer": "Avoid generic prompts and complex prompts with multiple unrelated questions.",
+        "supporting_sentences": [
+            "Generic prompts lead to scattered web search results and unfocused responses.",
+            "Complex prompts with multiple unrelated questions can confuse the search component."
+        ]
+    },
+    {
+        "question": "How should you instruct Perplexity AI's model to handle requests for information it cannot access or verify?",
+        "answer": "Instruct the model to acknowledge when it cannot find information rather than guessing or providing speculative information.",
+        "supporting_sentences": [
+            "Always instruct the model to acknowledge when it cannot find information rather than guessing.",
+            "✅ GOOD: \"Based on publicly available sources from the past week, what are the latest policy changes in Canadian healthcare? If no recent information is found, please indicate that no recent updates were discovered.\""
+        ]
+    },
+    {
+        "question": "What is the recommended way to control the time frame of search results in Perplexity AI's web search models?",
+        "answer": "Use built-in API parameters instead of including time frame instructions in the prompt.",
+        "supporting_sentences": [
+            "❌ Ineffective - Trying to control via prompts: \"Make sure to only look at sources from the past month.\"",
+            "✅ Effective - Using built-in parameters:",
+            "Parameters filter results before they reach the language model, leading to more focused and relevant responses."
+        ]
+    },
+    {
+        "question": "What are two common scenarios that can lead to hallucination in Perplexity AI's search results?",
+        "answer": "Requesting information from sources that Sonar cannot access (e.g., LinkedIn posts, private documents, paywalled content) and asking for very recent information that may not be indexed yet.",
+        "supporting_sentences": [
+            "This tendency can be problematic when: You request information from sources that Sonar cannot access (e.g., LinkedIn posts, private documents, paywalled content)",
+            "You ask for very recent information that may not be indexed yet"
+        ]
+    }
+]
+```

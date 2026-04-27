@@ -1,0 +1,93 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.snowflake.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Use the sample database
+
+The sample database, SNOWFLAKE_SAMPLE_DATA, is identical to the databases that you create in your account, except that it is read-only.
+As such, the following operations are not allowed:
+
+* No DDL can be performed on the data set schemas (i.e. tables and other database objects cannot be added, dropped, or altered).
+* No DML can be performed on the tables in the schemas.
+* No cloning or Time Travel can be performed on the database or any schemas/tables in the database.
+
+However, you can use all the same commands and syntax to view the sample database, schemas, and tables, as well as execute queries on the tables.
+
+> **Important:**
+>
+> The sample database is created by default for newer accounts. If the database has not been created for your account and you want
+> access to it, execute the following SQL statements with the ACCOUNTADMIN role active:
+>
+> ```sqlexample
+> -- Create a database from the share.
+> CREATE DATABASE SNOWFLAKE_SAMPLE_DATA FROM SHARE SFC_SAMPLES.SAMPLE_DATA;
+>
+> -- Grant the PUBLIC role access to the database.
+> -- Optionally change the role name to restrict access to a subset of users.
+> GRANT IMPORTED PRIVILEGES ON DATABASE SNOWFLAKE_SAMPLE_DATA TO ROLE PUBLIC;
+> ```
+
+## View the sample database
+
+You can view the sample database and its contents either in Snowsight or using SQL:
+
+> Snowsight:
+> :   In the navigation menu, select Catalog » Database Explorer » SNOWFLAKE_SAMPLE_DATA.
+>
+> SQL:
+> :   Execute a [SHOW DATABASES](../sql-reference/sql/show-databases.md) command.
+>
+>     You can also use the relevant [SHOW <objects>](../sql-reference/sql/show.md) commands to view the objects in the sample database.
+
+For example, in SQL:
+
+> ```sqlexample
+> show databases like '%sample%';
+>
+> +-------------------------------+-----------------------+------------+------------+-------------------------+--------------+---------+---------+----------------+
+> | created_on                    | name                  | is_default | is_current | origin                  | owner        | comment | options | retention_time |
+> |-------------------------------+-----------------------+------------+------------+-------------------------+--------------+---------+---------+----------------|
+> | 2016-07-14 14:30:21.711 -0700 | SNOWFLAKE_SAMPLE_DATA | N          | N          | SFC_SAMPLES.SAMPLE_DATA | ACCOUNTADMIN |         |         | 1              |
+> +-------------------------------+-----------------------+------------+------------+-------------------------+--------------+---------+---------+----------------+
+> ```
+
+Note that this example illustrates the sample database, SNOWFLAKE_SAMPLE_DATA, has been [shared with your account](data-sharing-intro.md) by Snowflake.
+
+The `origin` column in the SHOW DATABASES output (or the Origin column in the Databases  page in the interface) displays the fully-qualified name of the shared
+database, SFC_SAMPLES.SAMPLE_DATA, indicating it originated from the SFC_SAMPLES account (used by Snowflake to share the sample data).
+
+## Query tables and views in the sample database
+
+To use a table or view in the sample database, you can either:
+
+* Reference the fully-qualified name of the table in your query (in the form of `snowflake_sample_data.schema_name.object_name`).
+
+  OR
+* Specify the sample database (and schema) for your session using the [USE DATABASE](../sql-reference/sql/use-database.md) and/or [USE SCHEMA](../sql-reference/sql/use-schema.md) commands.
+
+The following two examples illustrate using both approaches to query the `lineitem` table in the `tpch_sf1` schema:
+
+> ```sqlexample
+> select count(*) from snowflake_sample_data.tpch_sf1.lineitem;
+>
+> +----------+
+> | COUNT(*) |
+> |----------|
+> |  6001215 |
+> +----------+
+>
+> use schema snowflake_sample_data.tpch_sf1;
+>
+> select count(*) from lineitem;
+>
+> +----------+
+> | COUNT(*) |
+> |----------|
+> |  6001215 |
+> +----------+
+> ```
+
+> **Note:**
+>
+> You must have a running, current warehouse in your session to perform queries. You set the current warehouse in a session using the [USE WAREHOUSE](../sql-reference/sql/use-warehouse.md)
+> command (or within the Worksheet in the web interface.)

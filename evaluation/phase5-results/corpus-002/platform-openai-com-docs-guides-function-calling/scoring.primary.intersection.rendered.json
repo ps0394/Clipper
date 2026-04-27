@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "Make a request to the model with tools it could call\n\nReceive a tool call from the model\n\nExecute code on the application side with input from the tool call\n\nMake a second request to the model with the tool output\n\nReceive a final response from the model (or more tool calls)",
+    "run_index": 0,
+    "tokens_in": 11425,
+    "tokens_out": 59
+  },
+  {
+    "pair_index": 1,
+    "answer": "Namespaces are used to group related tools by domain, such as crm, billing, or shipping. Namespaces help organize similar tools and are especially useful when the model must choose between tools that serve different systems or purposes, such as one search tool for your CRM and another for your support ticketing system.",
+    "run_index": 0,
+    "tokens_in": 11422,
+    "tokens_out": 61
+  },
+  {
+    "pair_index": 2,
+    "answer": "If a function call is made by the model in the OpenAI function calling process, you must execute it and return the result. Since model responses can include zero, one, or multiple calls, it is best practice to assume there are several. The result you pass in the function_call_output message should typically be a string, where the format is up to you (JSON, error codes, plain text, etc.). After appending the results to your messages, you can send them back to the model to get a final response.",
+    "run_index": 0,
+    "tokens_in": 11423,
+    "tokens_out": 107
+  },
+  {
+    "pair_index": 3,
+    "answer": "The recommended setting is to always enable strict mode.",
+    "run_index": 0,
+    "tokens_in": 11422,
+    "tokens_out": 11
+  },
+  {
+    "pair_index": 4,
+    "answer": "The model will call exactly one specific function, in this case \"get_weather\".",
+    "run_index": 0,
+    "tokens_in": 11439,
+    "tokens_out": 17
+  }
+]

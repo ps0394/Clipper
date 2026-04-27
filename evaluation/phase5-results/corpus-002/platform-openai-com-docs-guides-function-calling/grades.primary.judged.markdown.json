@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the condition for calling multiple functions and the setting required to prevent this behavior.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 633,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the interaction between tool search and tool_choice, and the supported models.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 635,
+    "tokens_out": 34
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, with only minor differences in wording and formatting.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 684,
+    "tokens_out": 28
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer does not fully match the ground-truth sequence of steps, omitting details such as the application appending the tool output to messages with the matching call_id and the model returning the final horoscope response after receiving the messages back.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 905,
+    "tokens_out": 53
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the default behavior of strict mode in both APIs and how to opt out of strict mode in Responses API.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 679,
+    "tokens_out": 41
+  }
+]

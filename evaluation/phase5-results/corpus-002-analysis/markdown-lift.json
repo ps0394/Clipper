@@ -125,7 +125,384 @@
       }
     }
   },
-  "regrade": null,
-  "status": "probe_only",
-  "f4_3_finding": "Probe-only report: served-markdown is available on 27/43 pages (62.8%). Paired grading has not yet run; no lift evidence either way. F4.4 promote-to-pillar recommendation is NOT yet actionable."
+  "regrade": {
+    "overall": {
+      "n": 25,
+      "mean": -0.064,
+      "median": 0.0,
+      "stdev": 0.2289,
+      "min": -0.6,
+      "max": 0.2,
+      "n_positive": 5,
+      "n_negative": 7,
+      "n_zero": 13
+    },
+    "by_vendor": {
+      "anthropic": {
+        "n": 5,
+        "mean": 0.04,
+        "median": 0.0,
+        "stdev": 0.1673,
+        "min": -0.2,
+        "max": 0.2,
+        "n_positive": 2,
+        "n_negative": 1,
+        "n_zero": 2
+      },
+      "aws": {
+        "n": 2,
+        "mean": 0.0,
+        "median": 0.0,
+        "stdev": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n_positive": 0,
+        "n_negative": 0,
+        "n_zero": 2
+      },
+      "docker": {
+        "n": 2,
+        "mean": 0.0,
+        "median": 0.0,
+        "stdev": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n_positive": 0,
+        "n_negative": 0,
+        "n_zero": 2
+      },
+      "github": {
+        "n": 3,
+        "mean": 0.1333,
+        "median": 0.2,
+        "stdev": 0.1155,
+        "min": 0.0,
+        "max": 0.2,
+        "n_positive": 2,
+        "n_negative": 0,
+        "n_zero": 1
+      },
+      "learn": {
+        "n": 4,
+        "mean": -0.2,
+        "median": -0.2,
+        "stdev": 0.3651,
+        "min": -0.6,
+        "max": 0.2,
+        "n_positive": 1,
+        "n_negative": 2,
+        "n_zero": 1
+      },
+      "openai": {
+        "n": 2,
+        "mean": -0.3,
+        "median": -0.3,
+        "stdev": 0.1414,
+        "min": -0.4,
+        "max": -0.2,
+        "n_positive": 0,
+        "n_negative": 2,
+        "n_zero": 0
+      },
+      "perplexity": {
+        "n": 2,
+        "mean": 0.0,
+        "median": 0.0,
+        "stdev": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n_positive": 0,
+        "n_negative": 0,
+        "n_zero": 2
+      },
+      "snowflake": {
+        "n": 3,
+        "mean": -0.0667,
+        "median": 0.0,
+        "stdev": 0.1155,
+        "min": -0.2,
+        "max": 0.0,
+        "n_positive": 0,
+        "n_negative": 1,
+        "n_zero": 2
+      },
+      "stripe": {
+        "n": 2,
+        "mean": -0.3,
+        "median": -0.3,
+        "stdev": 0.4243,
+        "min": -0.6,
+        "max": 0.0,
+        "n_positive": 0,
+        "n_negative": 1,
+        "n_zero": 1
+      }
+    },
+    "by_probe_path": {
+      "accept_header": {
+        "n": 18,
+        "mean": -0.0444,
+        "median": 0.0,
+        "stdev": 0.2526,
+        "min": -0.6,
+        "max": 0.2,
+        "n_positive": 5,
+        "n_negative": 4,
+        "n_zero": 9
+      },
+      "link_alternate": {
+        "n": 2,
+        "mean": 0.0,
+        "median": 0.0,
+        "stdev": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n_positive": 0,
+        "n_negative": 0,
+        "n_zero": 2
+      },
+      "sibling_md": {
+        "n": 5,
+        "mean": -0.16,
+        "median": -0.2,
+        "stdev": 0.1673,
+        "min": -0.4,
+        "max": 0.0,
+        "n_positive": 0,
+        "n_negative": 3,
+        "n_zero": 2
+      }
+    },
+    "paired": [
+      {
+        "slug": "docs-anthropic-com-en-api-getting-started",
+        "url": "https://docs.anthropic.com/en/api/getting-started",
+        "vendor": "anthropic",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 0.6,
+        "accuracy_markdown": 0.8,
+        "delta": 0.2
+      },
+      {
+        "slug": "docs-anthropic-com-en-docs-about-claude-models-overview",
+        "url": "https://docs.anthropic.com/en/docs/about-claude/models/overview",
+        "vendor": "anthropic",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 0.6,
+        "accuracy_markdown": 0.8,
+        "delta": 0.2
+      },
+      {
+        "slug": "docs-anthropic-com-en-docs-build-with-claude-prompt-caching",
+        "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching",
+        "vendor": "anthropic",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 1.0,
+        "accuracy_markdown": 0.8,
+        "delta": -0.2
+      },
+      {
+        "slug": "docs-anthropic-com-en-docs-welcome",
+        "url": "https://docs.anthropic.com/en/docs/welcome",
+        "vendor": "anthropic",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 0.6,
+        "accuracy_markdown": 0.6,
+        "delta": 0.0
+      },
+      {
+        "slug": "docs-anthropic-com-en-release-notes-api",
+        "url": "https://docs.anthropic.com/en/release-notes/api",
+        "vendor": "anthropic",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 0.8,
+        "accuracy_markdown": 0.8,
+        "delta": 0.0
+      },
+      {
+        "slug": "docs-aws-amazon-com-AmazonS3-latest-userguide-Welcome-html",
+        "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html",
+        "vendor": "aws",
+        "resolved_by": "link_alternate",
+        "accuracy_rendered": 1.0,
+        "accuracy_markdown": 1.0,
+        "delta": 0.0
+      },
+      {
+        "slug": "docs-aws-amazon-com-AWSEC2-latest-APIReference-API-RunInstances-html",
+        "url": "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html",
+        "vendor": "aws",
+        "resolved_by": "link_alternate",
+        "accuracy_rendered": 1.0,
+        "accuracy_markdown": 1.0,
+        "delta": 0.0
+      },
+      {
+        "slug": "docs-docker-com-engine-reference-commandline-run",
+        "url": "https://docs.docker.com/engine/reference/commandline/run/",
+        "vendor": "docker",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 0.8,
+        "accuracy_markdown": 0.8,
+        "delta": 0.0
+      },
+      {
+        "slug": "docs-docker-com-get-started-02-our-app",
+        "url": "https://docs.docker.com/get-started/02_our_app/",
+        "vendor": "docker",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 0.6,
+        "accuracy_markdown": 0.6,
+        "delta": 0.0
+      },
+      {
+        "slug": "docs-github-com-en-get-started-learning-about-github-githubs-plans",
+        "url": "https://docs.github.com/en/get-started/learning-about-github/githubs-plans",
+        "vendor": "github",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 0.6,
+        "accuracy_markdown": 0.8,
+        "delta": 0.2
+      },
+      {
+        "slug": "docs-github-com-en-get-started-start-your-journey-hello-world",
+        "url": "https://docs.github.com/en/get-started/start-your-journey/hello-world",
+        "vendor": "github",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 0.6,
+        "accuracy_markdown": 0.8,
+        "delta": 0.2
+      },
+      {
+        "slug": "docs-github-com-en-rest-repos-repos",
+        "url": "https://docs.github.com/en/rest/repos/repos",
+        "vendor": "github",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 0.0,
+        "accuracy_markdown": 0.0,
+        "delta": 0.0
+      },
+      {
+        "slug": "docs-perplexity-ai-guides-prompt-guide",
+        "url": "https://docs.perplexity.ai/guides/prompt-guide",
+        "vendor": "perplexity",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 0.8,
+        "accuracy_markdown": 0.8,
+        "delta": 0.0
+      },
+      {
+        "slug": "docs-perplexity-ai-guides-search-domain-filter-guide",
+        "url": "https://docs.perplexity.ai/guides/search-domain-filter-guide",
+        "vendor": "perplexity",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 0.8,
+        "accuracy_markdown": 0.8,
+        "delta": 0.0
+      },
+      {
+        "slug": "docs-snowflake-com-en-sql-reference-functions-count",
+        "url": "https://docs.snowflake.com/en/sql-reference/functions/count",
+        "vendor": "snowflake",
+        "resolved_by": "sibling_md",
+        "accuracy_rendered": 1.0,
+        "accuracy_markdown": 1.0,
+        "delta": 0.0
+      },
+      {
+        "slug": "docs-snowflake-com-en-user-guide-data-load-overview",
+        "url": "https://docs.snowflake.com/en/user-guide/data-load-overview",
+        "vendor": "snowflake",
+        "resolved_by": "sibling_md",
+        "accuracy_rendered": 0.4,
+        "accuracy_markdown": 0.4,
+        "delta": 0.0
+      },
+      {
+        "slug": "docs-snowflake-com-en-user-guide-sample-data-using",
+        "url": "https://docs.snowflake.com/en/user-guide/sample-data-using",
+        "vendor": "snowflake",
+        "resolved_by": "sibling_md",
+        "accuracy_rendered": 0.8,
+        "accuracy_markdown": 0.6,
+        "delta": -0.2
+      },
+      {
+        "slug": "docs-stripe-com-payments-accept-a-payment-platform-web",
+        "url": "https://docs.stripe.com/payments/accept-a-payment?platform=web",
+        "vendor": "stripe",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 0.6,
+        "accuracy_markdown": 0.6,
+        "delta": 0.0
+      },
+      {
+        "slug": "docs-stripe-com-payments-quickstart",
+        "url": "https://docs.stripe.com/payments/quickstart",
+        "vendor": "stripe",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 0.8,
+        "accuracy_markdown": 0.2,
+        "delta": -0.6
+      },
+      {
+        "slug": "learn-microsoft-com-en-us-azure-ai-services-openai-concepts-models",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models",
+        "vendor": "learn",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 1.0,
+        "accuracy_markdown": 0.6,
+        "delta": -0.4
+      },
+      {
+        "slug": "learn-microsoft-com-en-us-azure-aks-faq",
+        "url": "https://learn.microsoft.com/en-us/azure/aks/faq",
+        "vendor": "learn",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 1.0,
+        "accuracy_markdown": 1.0,
+        "delta": 0.0
+      },
+      {
+        "slug": "learn-microsoft-com-en-us-azure-aks-tutorial-kubernetes-prepare-app",
+        "url": "https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-prepare-app",
+        "vendor": "learn",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 0.6,
+        "accuracy_markdown": 0.8,
+        "delta": 0.2
+      },
+      {
+        "slug": "learn-microsoft-com-en-us-dotnet-api-system-string",
+        "url": "https://learn.microsoft.com/en-us/dotnet/api/system.string",
+        "vendor": "learn",
+        "resolved_by": "accept_header",
+        "accuracy_rendered": 0.6,
+        "accuracy_markdown": 0.0,
+        "delta": -0.6
+      },
+      {
+        "slug": "platform-openai-com-docs-guides-function-calling",
+        "url": "https://platform.openai.com/docs/guides/function-calling",
+        "vendor": "openai",
+        "resolved_by": "sibling_md",
+        "accuracy_rendered": 1.0,
+        "accuracy_markdown": 0.8,
+        "delta": -0.2
+      },
+      {
+        "slug": "platform-openai-com-docs-quickstart",
+        "url": "https://platform.openai.com/docs/quickstart",
+        "vendor": "openai",
+        "resolved_by": "sibling_md",
+        "accuracy_rendered": 0.4,
+        "accuracy_markdown": 0.0,
+        "delta": -0.4
+      }
+    ]
+  },
+  "status": "paired_grading_complete",
+  "f4_4_recommendation": "keep_as_diagnostic_only",
+  "f4_4_recommendation_rationale": "Overall mean lift -0.064 does not exceed threshold 0.1, or fewer than 2 vendors show consistent lift. F4.4 condition NOT satisfied. Served-markdown detection stays diagnostic-only.",
+  "lift_threshold": 0.1
 }

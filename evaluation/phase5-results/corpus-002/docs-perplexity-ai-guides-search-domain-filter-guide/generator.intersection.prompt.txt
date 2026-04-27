@@ -1,0 +1,106 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: docs-perplexity-ai-guides-search-domain-filter-guide
+Document URL: https://docs.perplexity.ai/guides/search-domain-filter-guide
+Document profile: article
+
+Document text:
+---
+This supports domain-level filtering for precise content control.
+
+The filter works in either allowlist mode (include only) or denylist mode (exclude), but not both simultaneously.
+
+Domain filters allow you to specify which domains to include or exclude in search results.
+
+You can filter by specific domains, top-level domains (TLDs), or domain parts.
+
+You can specify up to 20 domains per request.
+
+The domain filter for the Search API allows you to control which sources appear in your search results by limiting them to specific domains or excluding certain domains.
+
+This is particularly useful when you need to:
+
+Focus research on authoritative or trusted sources
+
+Filter out specific domains from search results
+
+Search within specific publication networks or organizations
+
+Build domain-specific search applications
+
+Conduct competitive research within specific industry domains
+
+The filter operates in two modes:
+
+# Allowlist: Only search these domains
+
+# Denylist: Exclude these domains
+
+Domain filters support flexible matching across different domain components:
+
+Specify a root domain to match all content from that domain and its subdomains:
+
+Any other Wikipedia language subdomain
+
+Top-Level Domain (TLD) Filtering
+
+Filter by top-level domain to target specific categories of sites:
+
+This will match all government domains:
+
+Any part of a domain can be used as a filter.
+
+The system will match domains containing that component.
+
+This example limits search results to authoritative academic publishers:
+
+Search across major technology news websites:
+
+Government and Educational Sources (TLD Filtering)
+
+Use top-level domain filtering to search across all government or educational institutions:
+
+# Search all .gov and .edu domains
+
+Wikipedia Across Languages (Subdomain Matching)
+
+Search across all Wikipedia language editions by specifying the root domain:
+
+# Matches en.wikipedia.org, fr.wikipedia.org, de.wikipedia.org, etc.
+
+# Exclude social media and Q&A sites from search results
+
+Combining Domain Filter with Other Filters
+
+Domain filters work seamlessly with other search parameters for precise control:
+
+# Combine domain filter with date and language filters
+
+Denylisting is useful when you want broad search coverage but need to exclude specific low-quality or irrelevant sources.
+
+Validate domain formats on the client side before sending requests:
+
+"""Validate domain format including TLD filters."""
+
+# Standard domain validation pattern
+
+"""Validate domain filter array."""
+
+# Mix of regular domains and TLD filters
+
+Be prepared to handle cases where fewer results are returned than requested.
+
+Overly restrictive filters may return zero results.
+---

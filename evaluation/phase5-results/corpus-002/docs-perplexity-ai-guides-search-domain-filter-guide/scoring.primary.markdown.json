@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "A search using the `search_domain_filter` would return no results if the specified domains do not contain content relevant to your query or if the filters are overly restrictive (such as combining domain filters with other restrictive filters like date or language). Two specific strategies to avoid this outcome are: (1) Ensure the domains you specify actually contain content relevant to your query, and (2) avoid overly restrictive filters by not combining too many restrictive filters (domain, date, language) that could significantly reduce result counts.",
+    "run_index": 0,
+    "tokens_in": 4737,
+    "tokens_out": 102
+  },
+  {
+    "pair_index": 1,
+    "answer": "When a root domain is specified, the domain filtering system matches all content from that domain and its subdomains. For example, specifying \"wikipedia.org\" will match en.wikipedia.org, fr.wikipedia.org, de.wikipedia.org, and any other Wikipedia language subdomain.",
+    "run_index": 0,
+    "tokens_in": 4734,
+    "tokens_out": 54
+  },
+  {
+    "pair_index": 2,
+    "answer": "The maximum number of domains allowed in a single `search_domain_filter` request is 20, while the 'Tech News Sources' example uses 4 domains. The difference is 16 domains. This difference matters because using fewer, highly relevant domains often produces better results than maximizing the 20-domain limit.",
+    "run_index": 0,
+    "tokens_in": 4748,
+    "tokens_out": 62
+  },
+  {
+    "pair_index": 3,
+    "answer": "The filter works in either allowlist mode (include only) or denylist mode (exclude), but not both simultaneously.",
+    "run_index": 0,
+    "tokens_in": 4741,
+    "tokens_out": 25
+  },
+  {
+    "pair_index": 4,
+    "answer": "You cannot use both allowlist (limiting to academic sources) and denylist (excluding social media domains) modes simultaneously in the `search_domain_filter` parameter; you must choose one mode per request. The potential issue is that you cannot both exclude social media domains and limit results to academic sources in a single request using `search_domain_filter`.",
+    "run_index": 0,
+    "tokens_in": 4754,
+    "tokens_out": 70
+  }
+]

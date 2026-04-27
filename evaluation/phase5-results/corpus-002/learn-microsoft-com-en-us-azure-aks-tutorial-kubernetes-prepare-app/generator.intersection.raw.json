@@ -1,0 +1,41 @@
+```json
+[
+    {
+        "question": "What is the purpose of the tutorial described in the document?",
+        "answer": "The tutorial prepares a multi-container application to use in Kubernetes.",
+        "supporting_sentences": [
+            "In this tutorial, you prepare a multi-container application to use in Kubernetes."
+        ]
+    },
+    {
+        "question": "What tool is recommended for locally building and testing the application in this tutorial?",
+        "answer": "Docker Compose is used for locally building and testing the application.",
+        "supporting_sentences": [
+            "You use existing development tools like Docker Compose to locally build and test the application."
+        ]
+    },
+    {
+        "question": "What is the GitHub repository URL for the sample application used in the tutorial?",
+        "answer": "The GitHub repository URL is https://github.com/Azure-Samples/aks-store-demo.git.",
+        "supporting_sentences": [
+            "git clone https://github.com/Azure-Samples/aks-store-demo.git"
+        ]
+    },
+    {
+        "question": "What are the default RabbitMQ credentials specified in the document?",
+        "answer": "The default RabbitMQ credentials are username: 'username' and password: 'password'.",
+        "supporting_sentences": [
+            "- \"RABBITMQ_DEFAULT_USER=username\"",
+            "- \"RABBITMQ_DEFAULT_PASS=password\""
+        ]
+    },
+    {
+        "question": "What command is used to create container images and run the application in the tutorial?",
+        "answer": "The command used is `docker compose -f docker-compose-quickstart.yml up -d`.",
+        "supporting_sentences": [
+            "Create container images and run application",
+            "docker compose -f docker-compose-quickstart.yml up -d"
+        ]
+    }
+]
+```

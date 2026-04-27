@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the restrictions on the SNOWFLAKE_SAMPLE_DATA database and the exception where they behave identically to user-created databases.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 701,
+    "tokens_out": 44
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "unparseable judge verdict: 'COR'",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 763,
+    "tokens_out": 512
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, describing two methods for querying a table or view in the SNOWFLAKE_SAMPLE_DATA database.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 651,
+    "tokens_out": 38
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the retention time and the limitation on Time Travel operations.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 645,
+    "tokens_out": 31
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer states that the information is not in the document, rather than attempting to provide an answer based on the document's content.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 600,
+    "tokens_out": 32
+  }
+]

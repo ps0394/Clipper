@@ -1,0 +1,43 @@
+Returns either the number of non-NULL records for the specified columns, or the total number of records.
+
+The following examples use the COUNT function on data with NULL values.
+
+Create a table and insert values:
+
++-----+-------+---------+-------+----------------+-------+----------------+
+
+| All | ILIKE | EXCLUDE | i_col | DISTINCT i_col | j_col | DISTINCT j_col |
+
+|-----+-------+---------+-------+----------------+-------+----------------|
+
+for COUNT, the function returns the total number of rows in the table, including rows with NULL values.
+
+columns in the output show that when a column or a wildcard with filtering is specified, the function excludes
+
+The next query uses the COUNT function with the GROUP BY clause:
+
++-------+----------+--------------+
+
+| I_COL | COUNT(*) | COUNT(J_COL) |
+
+|-------+----------+--------------|
+
+Create the table and insert data that contains both SQL NULL and JSON null values:
+
+In this SQL code, note the following:
+
+The first INSERT INTO statement inserts a SQL NULL for both a VARIANT column and a non-VARIANT column.
+
+The second INSERT INTO statement inserts a JSON null (VARIANT NULL).
+
+The last two INSERT INTO statements insert non-NULL VARIANT values.
+
++-------+-------+-----------------+---------+
+
+|-------+-------+-----------------+---------|
+
+Show that the COUNT function treats both the NULL and the JSON null (VARIANT NULL) values
+
+There are four rows in the table.
+
+One has a SQL NULL and the other has a

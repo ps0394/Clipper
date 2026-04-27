@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "The `order-service` container will start only when the `rabbitmq` service is healthy. If the `rabbitmq` service is not healthy, the `order-service` container will not start.",
+    "run_index": 0,
+    "tokens_in": 3016,
+    "tokens_out": 41
+  },
+  {
+    "pair_index": 1,
+    "answer": "Four distinct health checks are defined. Their common parameters are: test, interval, timeout, and retries.",
+    "run_index": 0,
+    "tokens_in": 3010,
+    "tokens_out": 22
+  },
+  {
+    "pair_index": 2,
+    "answer": "The default infrastructure provider is Terraform, and the alternative provider is Bicep. This configuration is specified in the `azure.yaml` file.",
+    "run_index": 0,
+    "tokens_in": 3018,
+    "tokens_out": 29
+  },
+  {
+    "pair_index": 3,
+    "answer": "The `store-front` container would fail to start if the `product-service` and `order-service` containers are not running, as it depends on both of them. These dependencies must be satisfied first.",
+    "run_index": 0,
+    "tokens_in": 3012,
+    "tokens_out": 42
+  },
+  {
+    "pair_index": 4,
+    "answer": "1. Create a directory on your computer and switch to that directory in your terminal session (e.g., using Bash).\n2. Use git to clone the sample application to your development environment:\n   ```\n   git clone https://github.com/Azure-Samples/aks-store-demo.git\n   ```\n3. Change into the cloned directory:\n   ```\n   cd aks-store-demo\n   ```\n4. Use Docker Compose to build the container images, download the RabbitMQ image, and start the application:\n   ```\n   docker compose -f docker-compose-quickstart.yml up -d\n   ```\n5. View the created images using:\n   ```\n   docker images\n   ```\n6. View the running containers using:\n   ```\n   docker ps\n   ```\n7. Navigate to `http://localhost:8080` in a local web browser to validate the running application.\n\nTools used: git, Docker Compose, web browser.",
+    "run_index": 0,
+    "tokens_in": 3025,
+    "tokens_out": 185
+  }
+]

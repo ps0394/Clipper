@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 6195,
+    "tokens_out": 4
+  },
+  {
+    "pair_index": 1,
+    "answer": "Bulk loading relies on user-provided virtual warehouses, which are specified in the COPY statement. Users are required to size the warehouse appropriately to accommodate expected loads.\n\nSnowpipe uses compute resources provided by Snowflake (i.e. a serverless compute model). These Snowflake-provided resources are automatically resized and scaled up or down as required, and are charged and itemized using per-second billing. Data ingestion is charged based upon the actual workloads.",
+    "run_index": 0,
+    "tokens_in": 6180,
+    "tokens_out": 89
+  },
+  {
+    "pair_index": 2,
+    "answer": "The default behavior is that the DML operation ends and the changes made by the DML statement are rolled back when an error occurs. When DML error logging is enabled for a table, the operation continues to execute the rest of the DML statements and logs the error that occurred in an associated error table.",
+    "run_index": 0,
+    "tokens_in": 6187,
+    "tokens_out": 63
+  },
+  {
+    "pair_index": 3,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 6177,
+    "tokens_out": 4
+  },
+  {
+    "pair_index": 4,
+    "answer": "The three main types of errors logged by DML error logging are:\n1. NOT NULL table constraint violations.\n2. Type conversion errors that occur when attempting to convert a value to the base table column.\n3. Incompatible precision and scale values, incompatible length for string and binary types, and some expression evaluation failures (such as division by zero or PARSE_JSON function failures).\n\nA DML error would not be logged even if error logging is enabled if the error is not supported by DML error logging, or if a SQL statement results in a compilation error. In these cases, the operation ends and no errors are logged in the error table.",
+    "run_index": 0,
+    "tokens_in": 6192,
+    "tokens_out": 131
+  }
+]

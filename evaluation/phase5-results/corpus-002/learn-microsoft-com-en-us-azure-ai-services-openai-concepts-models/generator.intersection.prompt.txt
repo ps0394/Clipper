@@ -1,0 +1,120 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: learn-microsoft-com-en-us-azure-ai-services-openai-concepts-models
+Document URL: https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models
+Document profile: article
+
+Document text:
+---
+Models sold directly by Azure include all Azure OpenAI models and specific, selected models from top providers.
+
+These models are billed through your Azure subscription, covered by Azure service-level agreements, and supported by Microsoft.
+
+Azure OpenAI in Microsoft Foundry models
+
+Azure OpenAI is powered by a diverse set of models with different capabilities and price points.
+
+Model availability varies by region and cloud.
+
+An experimental model trained for use with the Responses API computer use tool.
+
+We don't recommend using preview models in production.
+
+We'll upgrade all deployments of preview models to either future preview versions or to the latest stable, generally available version.
+
+Models that are designated preview don't follow the standard Azure OpenAI model lifecycle.
+
+This upgrade integrates specialized datasets and refined response strategies to improve the model's ability to:
+
+These improvements aim to make GPT-5-chat more context-aware, human-centric, and reliable in scenarios where emotional tone and well-being considerations are critical.
+
+az cognitiveservices account deployment create \
+
+--name "Foundry-project-resource" \
+
+--deployment-name "gpt-oss-120b" \
+
+A known issue is affecting all GPT 4.1 series models.
+
+Large tool or function call definitions that exceed 300,000 tokens will result in failures, even though the 1 million token context limit of the models wasn't reached.
+
+The errors can vary based on API call and underlying payload characteristics.
+
+Here are the error messages for the Chat Completions API:
+
+Error code: 400 - {'error': {'message': "This model's maximum context length is 300000 tokens.
+
+However, your messages resulted in 350564 tokens (100 in the messages, 350464 in the functions).
+
+Please reduce the length of the messages or functions.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+
+Error code: 400 - {'error': {'message': "Invalid 'tools[0].function.description': string too long.
+
+Expected a string with maximum length 1048576, but got a string with length 2778531 instead.", 'type': 'invalid_request_error', 'param': 'tools[0].function.description', 'code': 'string_above_max_length'}}
+
+Here's the error message for the Responses API:
+
+Error code: 500 - {'error': {'message': 'The server had an error processing your request.
+
+You can retry your request, or contact us through an Azure support request at: https://go.microsoft.com/fwlink/?linkid=2213926 if you keep seeing this error. (Please include the request ID d2008353-291d-428f-adc1-defb5d9fb109 in your email.)', 'type': 'server_error', 'param': None, 'code': None}}
+
+It can be used with third-party libraries to allow the model to control mouse and keyboard input, while getting context from screenshots of the current environment.
+
+Access is granted based on Microsoft's eligibility criteria.
+
+Customers who have access to other limited access models still need to request access for this model.
+
+When access is granted, you need to create a deployment for the model.
+
+The Azure OpenAI o-series models are designed to tackle reasoning and problem-solving tasks with increased focus and capability.
+
+These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math, compared to previous iterations.
+
+GPT-4o integrates text and images in a single model, which enables it to handle multiple data types simultaneously.
+
+This multimodal approach enhances accuracy and responsiveness in human-computer interactions.
+
+GPT-4o matches GPT-4 Turbo in English text and coding tasks while offering superior performance in non-English language tasks and vision tasks, setting new benchmarks for AI capabilities.
+
+These models can be used only with the Chat Completions API.
+
+We don't recommend that you use preview models in production.
+
+You can't upgrade between embeddings models.
+
+Typically, larger embeddings are more expensive from a compute, memory, and storage perspective.
+
+When you can adjust the number of dimensions, you gain more control over overall cost and performance.
+
+The image generation models generate images from text prompts that the user provides.
+
+Sora is an AI model from OpenAI that can create realistic and imaginative video scenes from text instructions.
+
+Details about maximum request tokens and training data are available in the following table:
+
+Text-to-speech models (preview)
+
+Model summary table and region availability
+
+Azure OpenAI provides customers with choices on the hosting structure that fits their business and usage patterns.
+
+The service offers two main types of deployment:
+
+All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different.
+
+Global Standard model availability
+
+[document truncated for prompt size]
+---

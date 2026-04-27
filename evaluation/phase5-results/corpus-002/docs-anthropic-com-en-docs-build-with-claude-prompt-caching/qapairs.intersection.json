@@ -1,0 +1,43 @@
+[
+  {
+    "question": "What is the primary benefit of using prompt caching in the Claude API?",
+    "answer": "Prompt caching optimizes API usage by allowing resuming from specific prefixes in prompts, significantly reducing processing time and costs for repetitive tasks or prompts with consistent elements.",
+    "supporting_sentences": [
+      "Prompt caching optimizes your API usage by allowing resuming from specific prefixes in your prompts.",
+      "This significantly reduces processing time and costs for repetitive tasks or prompts with consistent elements."
+    ]
+  },
+  {
+    "question": "What are the two ways to enable prompt caching?",
+    "answer": "The two ways to enable prompt caching are: 1) Automatic caching, where the system applies the cache breakpoint to the last cacheable block, and 2) Explicit block-level caching with manual breakpoints.",
+    "supporting_sentences": [
+      "There are two ways to enable prompt caching:",
+      "The system automatically applies the cache breakpoint to the last cacheable block and moves it forward as conversations grow.",
+      "This lets you combine both approaches."
+    ]
+  },
+  {
+    "question": "What is the default cache lifetime for prompt caching?",
+    "answer": "By default, the cache has a 5-minute lifetime.",
+    "supporting_sentences": [
+      "By default, the cache has a 5-minute lifetime.",
+      "By default, automatic caching uses a 5-minute TTL."
+    ]
+  },
+  {
+    "question": "What is the minimum cacheable prompt length for Claude Sonnet 4.6?",
+    "answer": "The minimum cacheable prompt length for Claude Sonnet 4.6 is 2048 tokens.",
+    "supporting_sentences": [
+      "The minimum cacheable prompt length is:",
+      "2048 tokens for Claude Sonnet 4.6"
+    ]
+  },
+  {
+    "question": "How does workspace-level isolation affect prompt caching starting February 5, 2026?",
+    "answer": "Starting February 5, 2026, prompt caching will use workspace-level isolation instead of organization-level isolation, ensuring data separation between workspaces within the same organization.",
+    "supporting_sentences": [
+      "Starting February 5, 2026, prompt caching will use workspace-level isolation instead of organization-level isolation.",
+      "Caches will be isolated per workspace, ensuring data separation between workspaces within the same organization."
+    ]
+  }
+]

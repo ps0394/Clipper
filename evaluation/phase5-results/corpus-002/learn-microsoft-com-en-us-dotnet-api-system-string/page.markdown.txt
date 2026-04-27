@@ -1,0 +1,511 @@
+---
+layout: Reference
+monikers:
+- dotnet-uwp-10.0
+- netstandard-1.0
+- netcore-1.0
+- netcore-1.1
+- netstandard-1.1
+- netframework-1.1
+- netstandard-1.2
+- netstandard-1.3
+- netstandard-1.4
+- netstandard-1.5
+- netstandard-1.6
+- netcore-2.0
+- netstandard-2.0
+- netframework-2.0
+- netcore-2.1
+- netstandard-2.1
+- netcore-2.2
+- netcore-3.0
+- netframework-3.0
+- netframework-3.5
+- netframework-4.0
+- netframework-4.5
+- netframework-4.5.1
+- netframework-4.5.2
+- netframework-4.6
+- netframework-4.6.1
+- netframework-4.6.2
+- netframework-4.7
+- netframework-4.7.1
+- netframework-4.7.2
+- netframework-4.8
+- netframework-4.8.1
+- netcore-3.1
+- net-5.0
+- net-6.0
+- net-7.0
+- net-8.0
+- net-9.0
+- net-10.0
+- net-11.0
+defaultMoniker: net-10.0
+versioningType: Ranged
+title: String Class (System) | Microsoft Learn
+canonicalUrl: https://learn.microsoft.com/en-us/dotnet/api/system.string?view=net-10.0
+uid: System.String
+namespace: System
+breadcrumb_path: /dotnet/breadcrumb/toc.json
+recommendations: true
+author: dotnet-bot
+ms.author: dotnetcontent
+ms.date: 2025-07-01T00:00:00.0000000Z
+show_latex: true
+uhfHeaderId: MSDocsHeader-DotNet
+apiPlatform: dotnet
+ms.topic: reference
+ms.service: dotnet-api
+products:
+- https://authoring-docs-microsoft.poolparty.biz/devrel/7696cda6-0510-47f6-8302-71bb5d2e28cf
+feedback_system: OpenSource
+feedback_product_url: https://aka.ms/feedback/report?space=61
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/97/dotnet
+feedback_help_link_type: get-help-at-qna
+ms.subservice: system
+api_name:
+- System.String
+api_location:
+- System.Runtime.dll
+- mscorlib.dll
+- netstandard.dll
+topic_type:
+- apiref
+api_type:
+- Assembly
+locale: en-us
+document_id: 7eb81599-a548-5d41-4013-812d9148b09d
+document_version_independent_id: de28387f-e401-9ecd-1fc0-a9e37d55d6ea
+updated_at: 2026-04-25T11:16:00.0000000Z
+original_content_git_url: https://github.com/dotnet/dotnet-api-docs/blob/live/xml/System/String.xml
+gitcommit: https://github.com/dotnet/dotnet-api-docs/blob/f31dadfd36cdfbfb416987813c0307422152a067/xml/System/String.xml
+git_commit_id: f31dadfd36cdfbfb416987813c0307422152a067
+default_moniker: net-10.0
+site_name: Docs
+depot_name: VS.dotnet-api-docs
+page_type: dotnet
+page_kind: class
+ms.assetid: System.String
+description: 'Represents text as a sequence of UTF-16 code units. '
+toc_rel: _splitted/system/toc.json
+search.mshattr.devlang: csharp vb fsharp cpp
+asset_id: api/system.string
+moniker_range_name: f9012738b8c424b4dd2d6afed8279361
+monikers:
+- dotnet-uwp-10.0
+- netstandard-1.0
+- netcore-1.0
+- netcore-1.1
+- netstandard-1.1
+- netframework-1.1
+- netstandard-1.2
+- netstandard-1.3
+- netstandard-1.4
+- netstandard-1.5
+- netstandard-1.6
+- netcore-2.0
+- netstandard-2.0
+- netframework-2.0
+- netcore-2.1
+- netstandard-2.1
+- netcore-2.2
+- netcore-3.0
+- netframework-3.0
+- netframework-3.5
+- netframework-4.0
+- netframework-4.5
+- netframework-4.5.1
+- netframework-4.5.2
+- netframework-4.6
+- netframework-4.6.1
+- netframework-4.6.2
+- netframework-4.7
+- netframework-4.7.1
+- netframework-4.7.2
+- netframework-4.8
+- netframework-4.8.1
+- netcore-3.1
+- net-5.0
+- net-6.0
+- net-7.0
+- net-8.0
+- net-9.0
+- net-10.0
+- net-11.0
+item_type: Content
+source_path: xml/System/String.xml
+cmProducts:
+- https://authoring-docs-microsoft.poolparty.biz/devrel/7696cda6-0510-47f6-8302-71bb5d2e28cf
+spProducts:
+- https://authoring-docs-microsoft.poolparty.biz/devrel/69c76c32-967e-4c65-b89a-74cc527db725
+platformId: ea5ee17b-a431-9cf9-8b95-ec61e38a8fd3
+---
+
+# String Class
+
+## Definition
+
+- Namespace:
+    - [System](system)
+
+- Assemblies:
+    - mscorlib.dll, System.Runtime.dll
+
+- Assemblies:
+    - netstandard.dll, System.Runtime.dll
+
+- Assembly:
+    - System.Runtime.dll
+
+- Assembly:
+    - mscorlib.dll
+
+- Assembly:
+    - netstandard.dll
+
+- Source:
+    - [String.cs](https://github.com/dotnet/dotnet/blob/b0f34d51fccc69fd334253924abd8d6853fad7aa/src/runtime/src/libraries/System.Private.CoreLib/src/System/String.cs)
+
+- Source:
+    - [String.cs](https://github.com/dotnet/dotnet/blob/a8b33e7593686eaee701cd124daaabff2311634f/src/runtime/src/libraries/System.Private.CoreLib/src/System/String.cs)
+
+- Source:
+    - [String.cs](https://github.com/dotnet/runtime/blob/d099f075e45d2aa6007a22b71b45a08758559f80/src/libraries/System.Private.CoreLib/src/System/String.cs)
+
+- Source:
+    - [String.cs](https://github.com/dotnet/runtime/blob/5535e31a712343a63f5d7d796cd874e563e5ac14/src/libraries/System.Private.CoreLib/src/System/String.cs)
+
+- Source:
+    - [String.cs](https://github.com/dotnet/runtime/blob/1d1bf92fcf43aa6981804dc53c5174445069c9e4/src/libraries/System.Private.CoreLib/src/System/String.cs)
+
+Represents text as a sequence of UTF-16 code units.
+
+```cpp
+public ref class System::String sealed : IComparable, IComparable<System::String ^>, IConvertible, IEquatable<System::String ^>, System::Collections::Generic::IEnumerable<char>
+```
+
+```cpp
+public ref class System::String sealed : ICloneable, IComparable, IComparable<System::String ^>, IConvertible, IEquatable<System::String ^>, IParsable<System::String ^>, ISpanParsable<System::String ^>, System::Collections::Generic::IEnumerable<char>
+```
+
+```cpp
+public ref class System::String sealed : ICloneable, IComparable, IComparable<System::String ^>, IConvertible, IEquatable<System::String ^>, System::Collections::Generic::IEnumerable<char>
+```
+
+```cpp
+public ref class System::String sealed : ICloneable, IComparable, IConvertible, System::Collections::IEnumerable
+```
+
+```cpp
+public ref class System::String sealed : IComparable, IComparable<System::String ^>, IEquatable<System::String ^>, System::Collections::IEnumerable
+```
+
+```cpp
+public ref class System::String sealed : IComparable, IComparable<System::String ^>, IEquatable<System::String ^>, System::Collections::Generic::IEnumerable<char>
+```
+
+```csharp
+public sealed class String : IComparable, IComparable<string>, IConvertible, IEquatable<string>, System.Collections.Generic.IEnumerable<char>
+```
+
+```csharp
+public sealed class String : ICloneable, IComparable, IComparable<string>, IConvertible, IEquatable<string>, IParsable<string>, ISpanParsable<string>, System.Collections.Generic.IEnumerable<char>
+```
+
+```csharp
+public sealed class String : ICloneable, IComparable, IComparable<string>, IConvertible, IEquatable<string>, System.Collections.Generic.IEnumerable<char>
+```
+
+```csharp
+[System.Serializable]
+public sealed class String : ICloneable, IComparable, IConvertible, System.Collections.IEnumerable
+```
+
+```csharp
+[System.Serializable]
+[System.Runtime.InteropServices.ComVisible(true)]
+public sealed class String : ICloneable, IComparable, IComparable<string>, IConvertible, IEquatable<string>, System.Collections.Generic.IEnumerable<char>
+```
+
+```csharp
+public sealed class String : IComparable, IComparable<string>, IEquatable<string>, System.Collections.IEnumerable
+```
+
+```csharp
+public sealed class String : IComparable, IComparable<string>, IEquatable<string>, System.Collections.Generic.IEnumerable<char>
+```
+
+```fsharp
+type string = class
+    interface seq<char>
+    interface IEnumerable
+    interface IComparable
+    interface IComparable<string>
+    interface IConvertible
+    interface IEquatable<string>
+```
+
+```fsharp
+type string = class
+    interface seq<char>
+    interface IEnumerable
+    interface ICloneable
+    interface IComparable
+    interface IComparable<string>
+    interface IConvertible
+    interface IEquatable<string>
+    interface IParsable<string>
+    interface ISpanParsable<string>
+```
+
+```fsharp
+type string = class
+    interface seq<char>
+    interface IEnumerable
+    interface ICloneable
+    interface IComparable
+    interface IComparable<string>
+    interface IConvertible
+    interface IEquatable<string>
+```
+
+```fsharp
+type string = class
+    interface seq<char>
+    interface IEnumerable
+    interface IComparable
+    interface IComparable<string>
+    interface IConvertible
+    interface IEquatable<string>
+    interface ICloneable
+```
+
+```fsharp
+[<System.Serializable>]
+type string = class
+    interface IComparable
+    interface ICloneable
+    interface IConvertible
+    interface IEnumerable
+```
+
+```fsharp
+[<System.Serializable>]
+[<System.Runtime.InteropServices.ComVisible(true)>]
+type string = class
+    interface IComparable
+    interface ICloneable
+    interface IConvertible
+    interface IComparable<string>
+    interface seq<char>
+    interface IEnumerable
+    interface IEquatable<string>
+```
+
+```fsharp
+[<System.Serializable>]
+[<System.Runtime.InteropServices.ComVisible(true)>]
+type string = class
+    interface IComparable
+    interface ICloneable
+    interface IConvertible
+    interface IEnumerable
+    interface IComparable<string>
+    interface seq<char>
+    interface IEquatable<string>
+```
+
+```fsharp
+type string = class
+    interface IEnumerable
+    interface IComparable
+    interface IComparable<string>
+    interface IEquatable<string>
+```
+
+```fsharp
+type string = class
+    interface IComparable
+    interface IComparable<string>
+    interface IEquatable<string>
+    interface seq<char>
+    interface IEnumerable
+```
+
+```vb
+Public NotInheritable Class String
+Implements IComparable, IComparable(Of String), IConvertible, IEnumerable(Of Char), IEquatable(Of String)
+```
+
+```vb
+Public NotInheritable Class String
+Implements ICloneable, IComparable, IComparable(Of String), IConvertible, IEnumerable(Of Char), IEquatable(Of String), IParsable(Of String), ISpanParsable(Of String)
+```
+
+```vb
+Public NotInheritable Class String
+Implements ICloneable, IComparable, IComparable(Of String), IConvertible, IEnumerable(Of Char), IEquatable(Of String)
+```
+
+```vb
+Public NotInheritable Class String
+Implements ICloneable, IComparable, IConvertible, IEnumerable
+```
+
+```vb
+Public NotInheritable Class String
+Implements IComparable, IComparable(Of String), IEnumerable, IEquatable(Of String)
+```
+
+```vb
+Public NotInheritable Class String
+Implements IComparable, IComparable(Of String), IEnumerable(Of Char), IEquatable(Of String)
+```
+
+- Inheritance
+    - [Object](system.object)
+String
+
+- Attributes
+    - [SerializableAttribute](system.serializableattribute)[ComVisibleAttribute](system.runtime.interopservices.comvisibleattribute)
+
+- Implements
+    - [IEnumerable](system.collections.generic.ienumerable-1)&lt;[Char](system.char)&gt;[IEnumerable](system.collections.ienumerable)[IComparable](system.icomparable)[IComparable](system.icomparable-1)&lt;[String](system.string)&gt;[IConvertible](system.iconvertible)[IEquatable](system.iequatable-1)&lt;[String](system.string)&gt;[ICloneable](system.icloneable)[IParsable](system.iparsable-1)&lt;[String](system.string)&gt;[IParsable&lt;TSelf&gt;](system.iparsable-1)[ISpanParsable](system.ispanparsable-1)&lt;[String](system.string)&gt;
+
+## Remarks
+
+For more information about this API, see [Supplemental API remarks for String](/en-us/dotnet/fundamentals/runtime-libraries/system-string).
+
+## Constructors
+
+| Name | Description |
+| --- | --- |
+| [String(Char, Int32)](system.string.-ctor#system-string-ctor%28system-char-system-int32%29) | Initializes a new instance of the [String](system.string) class to the value indicated by a specified Unicode character repeated a specified number of times. |
+| [String(Char\[\], Int32, Int32)](system.string.-ctor#system-string-ctor%28system-char%28%29-system-int32-system-int32%29) | Initializes a new instance of the [String](system.string) class to the value indicated by an array of Unicode characters, a starting character position within that array, and a length. |
+| [String(Char\[\])](system.string.-ctor#system-string-ctor%28system-char%28%29%29) | Initializes a new instance of the [String](system.string) class to the Unicode characters indicated in the specified character array. |
+| [String(Char*, Int32, Int32)](system.string.-ctor#system-string-ctor%28system-char*-system-int32-system-int32%29) | Initializes a new instance of the [String](system.string) class to the value indicated by a specified pointer to an array of Unicode characters, a starting character position within that array, and a length. |
+| [String(Char*)](system.string.-ctor#system-string-ctor%28system-char*%29) | Initializes a new instance of the [String](system.string) class to the value indicated by a specified pointer to an array of Unicode characters. |
+| [String(ReadOnlySpan&lt;Char&gt;)](system.string.-ctor#system-string-ctor%28system-readonlyspan%28%28system-char%29%29%29) | Initializes a new instance of the [String](system.string) class to the Unicode characters indicated in the specified read-only span. |
+| [String(SByte*, Int32, Int32, Encoding)](system.string.-ctor#system-string-ctor%28system-sbyte*-system-int32-system-int32-system-text-encoding%29) | Initializes a new instance of the [String](system.string) class to the value indicated by a specified pointer to an array of 8-bit signed integers, a starting position within that array, a length, and an [Encoding](system.text.encoding) object. |
+| [String(SByte*, Int32, Int32)](system.string.-ctor#system-string-ctor%28system-sbyte*-system-int32-system-int32%29) | Initializes a new instance of the [String](system.string) class to the value indicated by a specified pointer to an array of 8-bit signed integers, a starting position within that array, and a length. |
+| [String(SByte*)](system.string.-ctor#system-string-ctor%28system-sbyte*%29) | Initializes a new instance of the [String](system.string) class to the value indicated by a pointer to an array of 8-bit signed integers. |
+
+## Fields
+
+| Name | Description |
+| --- | --- |
+| [Empty](system.string.empty#system-string-empty) | Represents the empty string. This field is read-only. |
+
+## Properties
+
+| Name | Description |
+| --- | --- |
+| [Chars\[Int32\]](system.string.chars#system-string-chars%28system-int32%29) | Gets the [Char](system.char) object at a specified position in the current [String](system.string) object. |
+| [Length](system.string.length#system-string-length) | Gets the number of characters in the current [String](system.string) object. |
+
+## Methods
+
+| Name | Description |
+| --- | --- |
+| [Clone()](system.string.clone#system-string-clone) | Returns a reference to this instance of [String](system.string). |
+| [Compare(String, Int32, String, Int32, Int32, Boolean, CultureInfo)](system.string.compare#system-string-compare%28system-string-system-int32-system-string-system-int32-system-int32-system-boolean-system-globalization-cultureinfo%29) | Compares substrings of two specified [String](system.string) objects, ignoring or honoring their case and using culture-specific information to influence the comparison, and returns an integer that indicates their relative position in the sort order. |
+| [Compare(String, Int32, String, Int32, Int32, Boolean)](system.string.compare#system-string-compare%28system-string-system-int32-system-string-system-int32-system-int32-system-boolean%29) | Compares substrings of two specified [String](system.string) objects, ignoring or honoring their case, and returns an integer that indicates their relative position in the sort order. |
+| [Compare(String, Int32, String, Int32, Int32, CultureInfo, CompareOptions)](system.string.compare#system-string-compare%28system-string-system-int32-system-string-system-int32-system-int32-system-globalization-cultureinfo-system-globalization-compareoptions%29) | Compares substrings of two specified [String](system.string) objects using the specified comparison options and culture-specific information to influence the comparison, and returns an integer that indicates the relationship of the two substrings to each other in the sort order. |
+| [Compare(String, Int32, String, Int32, Int32, StringComparison)](system.string.compare#system-string-compare%28system-string-system-int32-system-string-system-int32-system-int32-system-stringcomparison%29) | Compares substrings of two specified [String](system.string) objects using the specified rules, and returns an integer that indicates their relative position in the sort order. |
+| [Compare(String, Int32, String, Int32, Int32)](system.string.compare#system-string-compare%28system-string-system-int32-system-string-system-int32-system-int32%29) | Compares substrings of two specified [String](system.string) objects and returns an integer that indicates their relative position in the sort order. |
+| [Compare(String, String, Boolean, CultureInfo)](system.string.compare#system-string-compare%28system-string-system-string-system-boolean-system-globalization-cultureinfo%29) | Compares two specified [String](system.string) objects, ignoring or honoring their case, and using culture-specific information to influence the comparison, and returns an integer that indicates their relative position in the sort order. |
+| [Compare(String, String, Boolean)](system.string.compare#system-string-compare%28system-string-system-string-system-boolean%29) | Compares two specified [String](system.string) objects, ignoring or honoring their case, and returns an integer that indicates their relative position in the sort order. |
+| [Compare(String, String, CultureInfo, CompareOptions)](system.string.compare#system-string-compare%28system-string-system-string-system-globalization-cultureinfo-system-globalization-compareoptions%29) | Compares two specified [String](system.string) objects using the specified comparison options and culture-specific information to influence the comparison, and returns an integer that indicates the relationship of the two strings to each other in the sort order. |
+| [Compare(String, String, StringComparison)](system.string.compare#system-string-compare%28system-string-system-string-system-stringcomparison%29) | Compares two specified [String](system.string) objects using the specified rules, and returns an integer that indicates their relative position in the sort order. |
+| [Compare(String, String)](system.string.compare#system-string-compare%28system-string-system-string%29) | Compares two specified [String](system.string) objects and returns an integer that indicates their relative position in the sort order. |
+| [CompareOrdinal(String, Int32, String, Int32, Int32)](system.string.compareordinal#system-string-compareordinal%28system-string-system-int32-system-string-system-int32-system-int32%29) | Compares substrings of two specified [String](system.string) objects by evaluating the numeric values of the corresponding [Char](system.char) objects in each substring. |
+| [CompareOrdinal(String, String)](system.string.compareordinal#system-string-compareordinal%28system-string-system-string%29) | Compares two specified [String](system.string) objects by evaluating the numeric values of the corresponding [Char](system.char) objects in each string. |
+| [CompareTo(Object)](system.string.compareto#system-string-compareto%28system-object%29) | Compares this instance with a specified [Object](system.object) and indicates whether this instance precedes, follows, or appears in the same position in the sort order as the specified [Object](system.object). |
+| [CompareTo(String)](system.string.compareto#system-string-compareto%28system-string%29) | Compares this instance with a specified [String](system.string) object and indicates whether this instance precedes, follows, or appears in the same position in the sort order as the specified string. |
+| [Concat(IEnumerable&lt;String&gt;)](system.string.concat#system-string-concat%28system-collections-generic-ienumerable%28%28system-string%29%29%29) | Concatenates the members of a constructed [IEnumerable&lt;T&gt;](system.collections.generic.ienumerable-1) collection of type [String](system.string). |
+| [Concat(Object, Object, Object, Object)](system.string.concat#system-string-concat%28system-object-system-object-system-object-system-object%29) | Concatenates the string representations of four specified objects and any objects specified in an optional variable length parameter list. |
+| [Concat(Object, Object, Object)](system.string.concat#system-string-concat%28system-object-system-object-system-object%29) | Concatenates the string representations of three specified objects. |
+| [Concat(Object, Object)](system.string.concat#system-string-concat%28system-object-system-object%29) | Concatenates the string representations of two specified objects. |
+| [Concat(Object)](system.string.concat#system-string-concat%28system-object%29) | Creates the string representation of a specified object. |
+| [Concat(Object\[\])](system.string.concat#system-string-concat%28system-object%28%29%29) | Concatenates the string representations of the elements in a specified [Object](system.object) array. |
+| [Concat(ReadOnlySpan&lt;Char&gt;, ReadOnlySpan&lt;Char&gt;, ReadOnlySpan&lt;Char&gt;, ReadOnlySpan&lt;Char&gt;)](system.string.concat#system-string-concat%28system-readonlyspan%28%28system-char%29%29-system-readonlyspan%28%28system-char%29%29-system-readonlyspan%28%28system-char%29%29-system-readonlyspan%28%28system-char%29%29%29) | Concatenates the string representations of four specified read-only character spans. |
+| [Concat(ReadOnlySpan&lt;Char&gt;, ReadOnlySpan&lt;Char&gt;, ReadOnlySpan&lt;Char&gt;)](system.string.concat#system-string-concat%28system-readonlyspan%28%28system-char%29%29-system-readonlyspan%28%28system-char%29%29-system-readonlyspan%28%28system-char%29%29%29) | Concatenates the string representations of three specified read-only character spans. |
+| [Concat(ReadOnlySpan&lt;Char&gt;, ReadOnlySpan&lt;Char&gt;)](system.string.concat#system-string-concat%28system-readonlyspan%28%28system-char%29%29-system-readonlyspan%28%28system-char%29%29%29) | Concatenates the string representations of two specified read-only character spans. |
+| [Concat(ReadOnlySpan&lt;Object&gt;)](system.string.concat#system-string-concat%28system-readonlyspan%28%28system-object%29%29%29) | Concatenates the string representations of the elements in a specified span of objects. |
+| [Concat(ReadOnlySpan&lt;String&gt;)](system.string.concat#system-string-concat%28system-readonlyspan%28%28system-string%29%29%29) | Concatenates the elements of a specified span of [String](system.string). |
+| [Concat(String, String, String, String)](system.string.concat#system-string-concat%28system-string-system-string-system-string-system-string%29) | Concatenates four specified instances of [String](system.string). |
+| [Concat(String, String, String)](system.string.concat#system-string-concat%28system-string-system-string-system-string%29) | Concatenates three specified instances of [String](system.string). |
+| [Concat(String, String)](system.string.concat#system-string-concat%28system-string-system-string%29) | Concatenates two specified instances of [String](system.string). |
+| [Concat(String\[\])](system.string.concat#system-string-concat%28system-string%28%29%29) | Concatenates the elements of a specified [String](system.string) array. |
+| [Concat&lt;T&gt;(IEnumerable&lt;T&gt;)](system.string.concat#system-string-concat-1%28system-collections-generic-ienumerable%28%28-0%29%29%29) | Concatenates the members of an [IEnumerable&lt;T&gt;](system.collections.generic.ienumerable-1) implementation. |
+| [Contains(Char, StringComparison)](system.string.contains#system-string-contains%28system-char-system-stringcomparison%29) | Returns a value indicating whether a specified character occurs within this string, using the specified comparison rules. |
+| [Contains(Char)](system.string.contains#system-string-contains%28system-char%29) | Returns a value indicating whether a specified character occurs within this string. |
+| [Contains(Rune, StringComparison)](system.string.contains#system-string-contains%28system-text-rune-system-stringcomparison%29) |
+| [Contains(Rune)](system.string.contains#system-string-contains%28system-text-rune%29) |
+| [Contains(String, StringComparison)](system.string.contains#system-string-contains%28system-string-system-stringcomparison%29) | Returns a value indicating whether a specified string occurs within this string, using the specified comparison rules. |
+| [Contains(String)](system.string.contains#system-string-contains%28system-string%29) | Returns a value indicating whether a specified substring occurs within this string. |
+| [Copy(String)](system.string.copy#system-string-copy%28system-string%29) | ::: moniker range=" net-10.0 net-11.0 net-5.0 net-6.0 net-7.0 net-8.0 net-9.0 netcore-3.0 netcore-3.1 "<br>**Obsolete.**<br><br>::: moniker-end<br><br>Creates a new instance of [String](system.string) with the same value as a specified [String](system.string). |
+| [CopyTo(Int32, Char\[\], Int32, Int32)](system.string.copyto#system-string-copyto%28system-int32-system-char%28%29-system-int32-system-int32%29) | Copies a specified number of characters from a specified position in this instance to a specified position in an array of Unicode characters. |
+| [CopyTo(Span&lt;Char&gt;)](system.string.copyto#system-string-copyto%28system-span%28%28system-char%29%29%29) | Copies the contents of this string into the destination span. |
+| [Create(IFormatProvider, DefaultInterpolatedStringHandler)](system.string.create#system-string-create%28system-iformatprovider-system-runtime-compilerservices-defaultinterpolatedstringhandler@%29) | Creates a new string by using the specified provider to control the formatting of the specified interpolated string. |
+| [Create(IFormatProvider, Span&lt;Char&gt;, DefaultInterpolatedStringHandler)](system.string.create#system-string-create%28system-iformatprovider-system-span%28%28system-char%29%29-system-runtime-compilerservices-defaultinterpolatedstringhandler@%29) | Creates a new string by using the specified provider to control the formatting of the specified interpolated string. |
+| [Create&lt;TState&gt;(Int32, TState, SpanAction&lt;Char,TState&gt;)](system.string.create#system-string-create-1%28system-int32-0-system-buffers-spanaction%28%28system-char-0%29%29%29) | Creates a new string with a specific length and initializes it after creation by using the specified callback. |
+| [EndsWith(Char, StringComparison)](system.string.endswith#system-string-endswith%28system-char-system-stringcomparison%29) |
+| [EndsWith(Char)](system.string.endswith#system-string-endswith%28system-char%29) | Determines whether the end of this string instance matches the specified character. |
+| [EndsWith(Rune, StringComparison)](system.string.endswith#system-string-endswith%28system-text-rune-system-stringcomparison%29) |
+| [EndsWith(Rune)](system.string.endswith#system-string-endswith%28system-text-rune%29) |
+| [EndsWith(String, Boolean, CultureInfo)](system.string.endswith#system-string-endswith%28system-string-system-boolean-system-globalization-cultureinfo%29) | Determines whether the end of this string instance matches the specified string when compared using the specified culture. |
+| [EndsWith(String, StringComparison)](system.string.endswith#system-string-endswith%28system-string-system-stringcomparison%29) | Determines whether the end of this string instance matches the specified string when compared using the specified comparison option. |
+| [EndsWith(String)](system.string.endswith#system-string-endswith%28system-string%29) | Determines whether the end of this string instance matches the specified string. |
+| [EnumerateRunes()](system.string.enumeraterunes#system-string-enumeraterunes) | Returns an enumeration of [Rune](system.text.rune) from this string. |
+| [Equals(Object)](system.string.equals#system-string-equals%28system-object%29) | Determines whether this instance and a specified object, which must also be a [String](system.string) object, have the same value. |
+| [Equals(String, String, StringComparison)](system.string.equals#system-string-equals%28system-string-system-string-system-stringcomparison%29) | Determines whether two specified [String](system.string) objects have the same value. A parameter specifies the culture, case, and sort rules used in the comparison. |
+| [Equals(String, String)](system.string.equals#system-string-equals%28system-string-system-string%29) | Determines whether two specified [String](system.string) objects have the same value. |
+| [Equals(String, StringComparison)](system.string.equals#system-string-equals%28system-string-system-stringcomparison%29) | Determines whether this string and a specified [String](system.string) object have the same value. A parameter specifies the culture, case, and sort rules used in the comparison. |
+| [Equals(String)](system.string.equals#system-string-equals%28system-string%29) | Determines whether this instance and another specified [String](system.string) object have the same value. |
+| [Format(IFormatProvider, CompositeFormat, Object\[\])](system.string.format#system-string-format%28system-iformatprovider-system-text-compositeformat-system-object%28%29%29) | Replaces the format item or items in a [CompositeFormat](system.text.compositeformat) with the string representation of the corresponding objects in the specified format. |
+| [Format(IFormatProvider, CompositeFormat, ReadOnlySpan&lt;Object&gt;)](system.string.format#system-string-format%28system-iformatprovider-system-text-compositeformat-system-readonlyspan%28%28system-object%29%29%29) | Replaces the format item or items in a [CompositeFormat](system.text.compositeformat) with the string representation of the corresponding objects in the specified format. |
+| [Format(IFormatProvider, String, Object, Object, Object)](system.string.format#system-string-format%28system-iformatprovider-system-string-system-object-system-object-system-object%29) | Replaces the format items in a string with the string representation of three specified objects. A parameter supplies culture-specific formatting information. |
+| [Format(IFormatProvider, String, Object, Object)](system.string.format#system-string-format%28system-iformatprovider-system-string-system-object-system-object%29) | Replaces the format items in a string with the string representation of two specified objects. A parameter supplies culture-specific formatting information. |
+| [Format(IFormatProvider, String, Object)](system.string.format#system-string-format%28system-iformatprovider-system-string-system-object%29) | Replaces the format item or items in a specified string with the string representation of the corresponding object. A parameter supplies culture-specific formatting information. |
+| [Format(IFormatProvider, String, Object\[\])](system.string.format#system-string-format%28system-iformatprovider-system-string-system-object%28%29%29) | Replaces the format items in a string with the string representations of corresponding objects in a specified array. A parameter supplies culture-specific formatting information. |
+| [Format(IFormatProvider, String, ReadOnlySpan&lt;Object&gt;)](system.string.format#system-string-format%28system-iformatprovider-system-string-system-readonlyspan%28%28system-object%29%29%29) | Replaces the format items in a string with the string representations of corresponding objects in a specified span. A parameter supplies culture-specific formatting information. |
+| [Format(String, Object, Object, Object)](system.string.format#system-string-format%28system-string-system-object-system-object-system-object%29) | Replaces the format items in a string with the string representation of three specified objects. |
+| [Format(String, Object, Object)](system.string.format#system-string-format%28system-string-system-object-system-object%29) | Replaces the format items in a string with the string representation of two specified objects. |
+| [Format(String, Object)](system.string.format#system-string-format%28system-string-system-object%29) | Replaces one or more format items in a string with the string representation of a specified object. |
+| [Format(String, Object\[\])](system.string.format#system-string-format%28system-string-system-object%28%29%29) | Replaces the format item in a specified string with the string representation of a corresponding object in a specified array. |
+| [Format(String, ReadOnlySpan&lt;Object&gt;)](system.string.format#system-string-format%28system-string-system-readonlyspan%28%28system-object%29%29%29) | Replaces the format item in a specified string with the string representation of a corresponding object in a specified span. |
+| [Format&lt;TArg0,TArg1,TArg2&gt;(IFormatProvider, CompositeFormat, TArg0, TArg1, TArg2)](system.string.format#system-string-format-3%28system-iformatprovider-system-text-compositeformat-0-1-2%29) | Replaces the format item or items in a [CompositeFormat](system.text.compositeformat) with the string representation of the corresponding objects in the specified format. |
+| [Format&lt;TArg0,TArg1&gt;(IFormatProvider, CompositeFormat, TArg0, TArg1)](system.string.format#system-string-format-2%28system-iformatprovider-system-text-compositeformat-0-1%29) | Replaces the format item or items in a [CompositeFormat](system.text.compositeformat) with the string representation of the corresponding objects in the specified format. |
+| [Format&lt;TArg0&gt;(IFormatProvider, CompositeFormat, TArg0)](system.string.format#system-string-format-1%28system-iformatprovider-system-text-compositeformat-0%29) | Replaces the format item or items in a [CompositeFormat](system.text.compositeformat) with the string representation of the corresponding objects in the specified format. |
+| [GetEnumerator()](system.string.getenumerator#system-string-getenumerator) | Retrieves an object that can iterate through the individual characters in this string. |
+| [GetHashCode()](system.string.gethashcode#system-string-gethashcode) | Returns the hash code for this string. |
+| [GetHashCode(ReadOnlySpan&lt;Char&gt;, StringComparison)](system.string.gethashcode#system-string-gethashcode%28system-readonlyspan%28%28system-char%29%29-system-stringcomparison%29) | Returns the hash code for the provided read-only character span using the specified rules. |
+| [GetHashCode(ReadOnlySpan&lt;Char&gt;)](system.string.gethashcode#system-string-gethashcode%28system-readonlyspan%28%28system-char%29%29%29) | Returns the hash code for the provided read-only character span. |
+| [GetHashCode(StringComparison)](system.string.gethashcode#system-string-gethashcode%28system-stringcomparison%29) | Returns the hash code for this string using the specified rules. |
+| [GetPinnableReference()](system.string.getpinnablereference#system-string-getpinnablereference) | Returns a reference to the element of the string at index zero.<br><br>This method is intended to support .NET compilers and is not intended to be called by user code. |
+| [GetType()](system.object.gettype#system-object-gettype) | Gets the [Type](system.type) of the current instance.<br> (Inherited from [Object](system.object)) |
+| [GetTypeCode()](system.string.gettypecode#system-string-gettypecode) | Returns the [TypeCode](system.typecode) for the [String](system.string) class. |
+| [IndexOf(Char, Int32, Int32, StringComparison)](system.string.indexof#system-string-indexof%28system-char-system-int32-system-int32-system-stringcomparison%29) |
+| [IndexOf(Char, Int32, Int32)](system.string.indexof#system-string-indexof%28system-char-system-int32-system-int32%29) | Reports the zero-based index of the first occurrence of the specified character in this instance. The search starts at a specified character position and examines a specified number of character positions. |
+| [IndexOf(Char, Int32, StringComparison)](system.string.indexof#system-string-indexof%28system-char-system-int32-system-stringcomparison%29) |
+| [IndexOf(Char, Int32)](system.string.indexof#system-string-indexof%28system-char-system-int32%29) | Reports the zero-based index of the first occurrence of the specified Unicode character in this string. The search starts at a specified character position. |
+| [IndexOf(Char, StringComparison)](system.string.indexof#system-string-indexof%28system-char-system-stringcomparison%29) | Reports the zero-based index of the first occurrence of the specified Unicode character in this string. A parameter specifies the type of search to use for the specified character. |
+| [IndexOf(Char)](system.string.indexof#system-string-indexof%28system-char%29) | Reports the zero-based index of the first occurrence of the specified Unicode character in this string. |
+| [IndexOf(Rune, Int32, Int32, StringComparison)](system.string.indexof#system-string-indexof%28system-text-rune-system-int32-system-int32-system-stringcomparison%29) |
+| [IndexOf(Rune, Int32, Int32)](system.string.indexof#system-string-indexof%28system-text-rune-system-int32-system-int32%29) |
+| [IndexOf(Rune, Int32, StringComparison)](system.string.indexof#system-string-indexof%28system-text-rune-system-int32-system-stringcomparison%29) |
+| [IndexOf(Rune, Int32)](system.string.indexof#system-string-indexof%28system-text-rune-system-int32%29) |
+| [IndexOf(Rune, StringComparison)](system.string.indexof#system-string-indexof%28system-text-rune-system-stringcomparison%29) |
+| [IndexOf(Rune)](system.string.indexof#system-string-indexof%28system-text-rune%29) |
+| [IndexOf(String, Int32, Int32, StringComparison)](system.string.indexof#system-string-indexof%28system-string-system-int32-system-int32-system-stringcomparison%29) | Reports the zero-based index of the first occurrence of the specified string in the current [String](system.string) object. Parameters specify the starting search position in the current string, the number of characters in the current string to search, and the type of search to use for the specified string. |
+| [IndexOf(String, Int32, Int32)](system.string.indexof#system-string-indexof%28system-string-system-int32-system-int32%29) | Reports the zero-based index of the first occurrence of the specified string in this instance. The search starts at a specified character position and examines a specified number of character positions. |
+| [IndexOf(String, Int32, StringComparison)](system.string.indexof#system-string-indexof%28system-string-system-int32-system-stringcomparison%29) | Reports the zero-based index of the first occurrence of the specified string in the current [String](system.string) object. Parameters specify the starting search position in the current string and the type of search to use for the specified string. |
+| [IndexOf(String, Int32)](system.string.indexof#system-string-indexof%28system-string-system-int32%29) | Reports the zero-based index of the first occurrence of the specified string in this instance. The search starts at a specified character position. |
+| [IndexOf(String, StringComparison)](system.string.indexof#system-string-indexof%28system-string-system-stringcomparison%29) | Reports the zero-based index of the first occurrence of the specified string in the current [String](system.string) object. A parameter specifies the type of search to use for the specified string. |
+| [IndexOf(String)](system.string.indexof#system-string-indexof%28system-string%29) | Reports the zero-based index of the first occurrence of the specified string in this instance. |
+| [IndexOfAny(Char\[\], Int32, Int32)](system.string.indexofany#system-string-indexofany%28system-char%28%29-system-int32-system-int32%29) | Reports the zero-based index of the first occurrence in this instance of any character in a specified array of Unicode characters. The search starts at a specified character position and examines a specified number of character positions. |
+| [IndexOfAny(Char\[\], Int32)](system.string.indexofany#system-string-indexofany%28system-char%28%29-system-int32%29) | Reports the zero-based index of the first occurrence in this instance of any character in a specified array of Unicode characters. The s
+
+[document truncated for prompt size]

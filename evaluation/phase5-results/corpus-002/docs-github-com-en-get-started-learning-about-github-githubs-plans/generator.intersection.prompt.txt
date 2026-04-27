@@ -1,0 +1,118 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: docs-github-com-en-get-started-learning-about-github-githubs-plans
+Document URL: https://docs.github.com/en/get-started/learning-about-github/githubs-plans
+Document profile: landing
+
+Document text:
+---
+GitHub offers free and paid plans for storing and collaborating on code.
+
+Some plans are available only to personal accounts, while other plans are available only to organization and enterprise accounts.
+
+When you read GitHub Docs, make sure to select the version that reflects your plan.
+
+With GitHub Free for personal accounts, you can work with unlimited collaborators on unlimited public repositories with a full feature set, and on unlimited private repositories with a limited feature set.
+
+With GitHub Free, your personal account includes:
+
+Deployment protection rules for public repositories
+
+Two-factor authentication enforcement
+
+500 MB GitHub Packages storage
+
+120 GitHub Codespaces core hours per month
+
+15 GB GitHub Codespaces storage per month
+
+GitHub Pages in public repositories
+
+In addition to the features available with GitHub Free for personal accounts, GitHub Pro includes:
+
+3,000 GitHub Actions minutes per month
+
+180 GitHub Codespaces core hours per month
+
+20 GB GitHub Codespaces storage per month
+
+Advanced tools and insights in private repositories:
+
+Required pull request reviewers
+
+Multiple pull request reviewers
+
+To publish a GitHub Pages site privately, you need to have an organization account.
+
+Additionally, your organization must use GitHub Enterprise Cloud.
+
+Repository insights graphs: Pulse, contributors, traffic, commits, code frequency, network, and forks
+
+Certain contributor, commit, and code frequency insights are only available for repositories that have fewer than 10,000 commits.
+
+With GitHub Free for organizations, you can work with unlimited collaborators on unlimited public repositories with a full feature set, or unlimited private repositories with a limited feature set.
+
+In addition to the features available with GitHub Free for personal accounts, GitHub Free for organizations includes:
+
+Team access controls for managing groups
+
+2,000 GitHub Actions minutes per month
+
+In addition to the features available with GitHub Free for organizations, GitHub Team includes:
+
+The option to purchase GitHub Advanced Security products:
+
+The option to enable or disable GitHub Codespaces
+
+GitHub bills for GitHub Team on a per-user basis.
+
+GitHub Actions usage is free for standard GitHub-hosted runners in public repositories, and for self-hosted runners.
+
+For private repositories, each GitHub account receives a quota of free minutes and storage for use with GitHub-hosted runners, depending on the account's plan.
+
+Any usage beyond the included amounts is billed to your account.
+
+GitHub Enterprise includes two deployment options: GitHub Enterprise Cloud, which is hosted by GitHub in the cloud, and GitHub Enterprise Server, which is self-hosted.
+
+In addition to the features available with GitHub Team, GitHub Enterprise includes:
+
+Additional security, compliance, and deployment controls
+
+Authentication with SAML single sign-on
+
+Access provisioning with SAML or SCIM
+
+Deployment protection rules with GitHub Actions for private or internal repositories
+
+Additional features such as internal repositories and repository rules.
+
+GitHub Enterprise Cloud specifically includes:
+
+50,000 GitHub Actions minutes per month
+
+Included minutes can be used with standard GitHub-hosted runners only.
+
+A service level agreement for 99.9% monthly uptime
+
+The option to centrally manage policy and billing for multiple GitHub organizations with an enterprise account.
+
+The option to provision and manage the user accounts for your developers, by using Enterprise Managed Users.
+
+Additional features such as audit log streaming and IP allow list.
+
+The option to host your company's data in a specific region, on a unique subdomain
+
+You can set up trials to evaluate GitHub Enterprise Cloud and GitHub Enterprise Server.
+---

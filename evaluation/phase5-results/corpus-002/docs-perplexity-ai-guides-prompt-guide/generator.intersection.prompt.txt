@@ -1,0 +1,162 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: docs-perplexity-ai-guides-prompt-guide
+Document URL: https://docs.perplexity.ai/guides/prompt-guide
+Document profile: article
+
+Document text:
+---
+The real-time search component of our models does not attend to the system prompt.
+
+You are a helpful AI assistant.
+
+It is important that you do not include any explanation on the steps below.
+
+Do not show the intermediate steps information.
+
+Decide if the answer should be a brief sentence or a list of suggestions.
+
+If it is a list of suggestions, first, write a brief and natural introduction based on the original query.
+
+Followed by a list of suggestions, each suggestion should be split by two newlines.
+
+The input will be used to kick off a real-time web search to make sure the answer has the latest and the most relevant information needed.
+
+What are the best sushi restaurants in the world currently?
+
+Provide concise, well-researched answers."
+
+Web Search Models: General Prompting Guidelines
+
+Our web search-powered models combine the capabilities of LLMs with real-time web searches.
+
+Understanding how they differ from traditional LLMs will help you craft more effective prompts.
+
+Best Practices for Prompting Web Search Models
+
+Unlike traditional LLMs, our web search models require specificity to retrieve relevant search results.
+
+Adding just 2-3 extra words of context can dramatically improve performance.
+
+While few-shot prompting works well for traditional LLMs, it confuses web search models by triggering searches for your examples rather than your actual query.
+
+Craft prompts with search-friendly terms that would appear on relevant web pages.
+
+Consider how experts in the field would describe the topic online.
+
+Include critical context to guide the web search toward the most relevant content, but keep prompts concise and focused.
+
+Web Search Model Pitfalls to Avoid
+
+Generic prompts lead to scattered web search results and unfocused responses.
+
+Adapt your approach accordingly.
+
+Complex prompts with multiple unrelated questions can confuse the search component.
+
+Be explicit about exactly what information you need.
+
+Handling URLs and Source Information
+
+The Right Way to Access Sources
+
+This field contains accurate information about the sources used, including:
+
+Example of incorrect prompting:
+
+❌ BAD: "From the past 5 days, identify high-potential Canadian news stories...
+
+✅ GOOD: "From the past 5 days, identify high-potential Canadian news stories...
+
+- Why it matters from a thought-leadership perspective"
+
+// Then parse URLs from the search_results field in the API response
+
+The web search and language generation components work differently:
+
+When you ask for URLs in your prompt, the language model will attempt to generate them based on patterns it has seen, but these will not be the actual URLs that were searched.
+
+Preventing Hallucination in Search Results
+
+Understanding the Helpfulness Problem
+
+This tendency can be problematic when:
+
+You request information from sources that Sonar cannot access (e.g., LinkedIn posts, private documents, paywalled content)
+
+You ask for very recent information that may not be indexed yet
+
+Common Scenarios That Lead to Hallucination
+
+❌ PROBLEMATIC: "What did the CEO of XYZ company post on LinkedIn yesterday about their new product launch?"
+
+Sonar may not be able to access LinkedIn content, but the model might still attempt to provide an answer based on general knowledge or patterns.
+
+❌ PROBLEMATIC: "What was discussed in the closed-door meeting between Company A and Company B last week?"
+
+✅ GOOD: "Search for recent developments in quantum computing breakthroughs.
+
+If you are not able to get search results or find relevant information,
+
+please state that clearly rather than providing speculative information."
+
+✅ GOOD: "Based on publicly available sources from the past week, what are the latest policy changes in Canadian healthcare?
+
+If no recent information is found, please indicate that no recent updates were discovered."
+
+✅ GOOD: "Find information about Tesla's latest earnings report.
+
+Only provide information that you can verify from your search results,
+
+and clearly state if certain details are not available."
+
+Best Practices for Reliable Results
+
+Always instruct the model to acknowledge when it cannot find information rather than guessing.
+
+Stick to information that is likely to be publicly indexed and searchable.
+
+For critical information, consider breaking complex requests into smaller, more specific queries to verify consistency.
+
+Use Built-in Search Parameters, Not Prompts
+
+Why Built-in Parameters Are Better
+
+The search component processes these parameters directly, ensuring reliable and consistent results.
+
+Common Mistakes: Prompt-Based Control
+
+❌ Ineffective - Trying to control via prompts:
+
+Make sure to only look at sources from the past month."
+
+Correct Approach: Use API Parameters
+
+✅ Effective - Using built-in parameters:
+
+Benefits of Using Built-in Parameters
+
+Parameters filter results before they reach the language model, leading to more focused and relevant responses.
+
+Keep your prompts focused on what you want the model to generate, not how to search.
+
+API parameters provide predictable behavior across different queries and use cases.
+
+Adjust model parameters based on your specific needs:
+
+Example configuration for technical documentation:
+
+Tips for Different Query Types
+---

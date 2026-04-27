@@ -1,0 +1,44 @@
+[
+  {
+    "question": "What are the five high-level steps in the tool calling flow described in the OpenAI function calling guide?",
+    "answer": "The tool calling flow has five high-level steps: 1) Make a request to the model with tools it could call, 2) Receive a tool call from the model, 3) Execute code on the application side with input from the tool call, 4) Make a second request to the model with the tool output, and 5) Receive a final response from the model (or more tool calls).",
+    "supporting_sentences": [
+      "The tool calling flow has five high level steps:",
+      "Make a request to the model with tools it could call",
+      "Receive a tool call from the model",
+      "Execute code on the application side with input from the tool call",
+      "Make a second request to the model with the tool output",
+      "Receive a final response from the model (or more tool calls)"
+    ]
+  },
+  {
+    "question": "What is the purpose of namespaces in function definitions according to the OpenAI function calling guide?",
+    "answer": "Namespaces help organize similar tools and are especially useful when the model must choose between tools that serve different systems or purposes, such as one search tool for your CRM and another for your support ticketing system.",
+    "supporting_sentences": [
+      "Namespaces help organize similar tools and are especially useful when the model must choose between tools that serve different systems or purposes, such as one search tool for your CRM and another for your support ticketing system."
+    ]
+  },
+  {
+    "question": "What happens if a function call is made by the model in the OpenAI function calling process?",
+    "answer": "When the model calls a function, you must execute it and return the result.",
+    "supporting_sentences": [
+      "When the model calls a function, you must execute it and return the result."
+    ]
+  },
+  {
+    "question": "What is the recommended setting for 'strict mode' in the OpenAI function calling guide?",
+    "answer": "It is recommended to always enable strict mode.",
+    "supporting_sentences": [
+      "We recommend always enabling strict mode."
+    ]
+  },
+  {
+    "question": "What is the effect of using the `tool_choice` parameter with `{\"type\": \"function\", \"name\": \"get_weather\"}` in an OpenAI API request?",
+    "answer": "The `tool_choice` parameter constrains the model to use the specified function (`get_weather`) among the tools available to it.",
+    "supporting_sentences": [
+      "tool_choice: {\"type\": \"function\", \"name\": \"get_weather\"}",
+      "the tools available to the model.",
+      "This is most useful after you load a subset of tools and want to constrain the model to that subset."
+    ]
+  }
+]

@@ -1,0 +1,104 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: learn-microsoft-com-en-us-azure-aks-tutorial-kubernetes-prepare-app
+Document URL: https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-prepare-app
+Document profile: tutorial
+
+Document text:
+---
+In this tutorial, you prepare a multi-container application to use in Kubernetes.
+
+You use existing development tools like Docker Compose to locally build and test the application.
+
+Clone a sample application source from GitHub.
+
+Create a container image from the sample application source.
+
+Test the multi-container application in a local Docker environment.
+
+Once completed, the following application runs in your local development environment:
+
+In later tutorials, you upload the container image to an Azure Container Registry (ACR), and then deploy it into an AKS cluster.
+
+To complete this tutorial, you need a local Docker development environment running Linux containers.
+
+Azure Cloud Shell doesn't include the Docker components required to complete every step in these tutorials.
+
+Therefore, we recommend using a full Docker development environment.
+
+Create a directory on your computer and switch to that directory in your terminal session, like Bash.
+
+git clone https://github.com/Azure-Samples/aks-store-demo.git
+
+Change into the cloned directory.
+
+Change into the new directory to load all the files from the azd template.
+
+azd init --template aks-store-demo
+
+image: rabbitmq:3.13.2-management-alpine
+
+- "RABBITMQ_DEFAULT_USER=username"
+
+- "RABBITMQ_DEFAULT_PASS=password"
+
+test: ["CMD", "rabbitmqctl", "status"]
+
+- ./rabbitmq_enabled_plugins:/etc/rabbitmq/enabled_plugins
+
+container_name: 'order-service'
+
+test: ["CMD", "wget", "-O", "/dev/null", "-q", "http://order-service:3000/health"]
+
+container_name: 'product-service'
+
+test: ["CMD", "wget", "-O", "/dev/null", "-q", "http://product-service:3002/health"]
+
+- AI_SERVICE_URL=http://ai-service:5001/
+
+test: ["CMD", "wget", "-O", "/dev/null", "-q", "http://store-front:80/health"]
+
+- VUE_APP_PRODUCT_SERVICE_URL=http://product-service:3002/
+
+- VUE_APP_ORDER_SERVICE_URL=http://order-service:3000/
+
+Create container images and run application
+
+docker compose -f docker-compose-quickstart.yml up -d
+
+The following condensed example output shows the created images:
+
+aks-store-demo-product-service    latest                       72f5cd7e6b84
+
+aks-store-demo-order-service      latest                       54ad5de546f9
+
+aks-store-demo-store-front        latest                       1125f85632ae
+
+The following condensed example output shows four running containers:
+
+f27fe74cfd0a        aks-store-demo-product-service
+
+df1eaa137885        aks-store-demo-order-service
+
+b3ce9e496e96        aks-store-demo-store-front
+
+31df28627ffa        rabbitmq:3.13.2-management-alpine
+
+The sample application loads, as shown in the following example:
+
+On this page, you can view products, add them to your cart, and then place an order.
+
+By default, this project uses Terraform:
+---

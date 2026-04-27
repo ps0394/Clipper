@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "COUNT(*) differs from COUNT(column_name) when there are NULL values in the specified column. COUNT(*) returns the total number of rows, including rows with NULL values, while COUNT(column_name) returns the number of rows where the specified column is not NULL. In the first example's output, the 'All' column (COUNT(*)) is 6, counting all rows, and the 'i_col' column (COUNT(i_col)) is 4, counting only rows where 'i_col' is not NULL.",
+    "run_index": 0,
+    "tokens_in": 2684,
+    "tokens_out": 104
+  },
+  {
+    "pair_index": 1,
+    "answer": "COUNT(alias.*) returns the number of records that don\u2019t contain any NULL values, while COUNT(*) returns the total number of records, including records with NULL values. In the provided example, COUNT(n.*) returns 3.",
+    "run_index": 0,
+    "tokens_in": 2684,
+    "tokens_out": 47
+  },
+  {
+    "pair_index": 2,
+    "answer": "0; both have 2 distinct values because each column contains two unique non-NULL values.",
+    "run_index": 0,
+    "tokens_in": 2680,
+    "tokens_out": 20
+  },
+  {
+    "pair_index": 3,
+    "answer": "The COUNT function treats JSON null (VARIANT NULL) as SQL NULL, and the count of non-NULL 'v:Title' values in the VARIANT example is 2.",
+    "run_index": 0,
+    "tokens_in": 2687,
+    "tokens_out": 38
+  },
+  {
+    "pair_index": 4,
+    "answer": "The counts returned by COUNT(*) and COUNT(j_col) for the group where 'i_col' is NULL are equal (both are 2) because, in that group, there are no NULL values in the 'j_col' column.",
+    "run_index": 0,
+    "tokens_in": 2688,
+    "tokens_out": 49
+  }
+]

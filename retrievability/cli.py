@@ -330,6 +330,32 @@ def main():
              'costs down when a quick lift estimate is sufficient.',
     )
 
+    phase5_regrade_int_parser = phase5_sub.add_parser(
+        'regrade-intersection',
+        help='F4.2 Track B paired grading: generate fresh Q/A from the '
+             'rendered-vs-markdown content intersection and grade BOTH '
+             'versions against them. Corrects the HTML-source bias of '
+             'regrade-markdown.',
+    )
+    phase5_regrade_int_parser.add_argument(
+        'pilot_dir',
+        help='Path to an existing pilot output directory that already has '
+             'page.rendered.txt and page.markdown.txt for each page (run '
+             'regrade-markdown first to populate page.markdown.txt).',
+    )
+    phase5_regrade_int_parser.add_argument(
+        '--no-judge',
+        action='store_true',
+        help='Skip LLM-judge grading (substring grading only).',
+    )
+    phase5_regrade_int_parser.add_argument(
+        '--min-chars',
+        type=int,
+        default=1500,
+        help='Minimum intersection char length to attempt Q/A generation '
+             '(default 1500; matches MIN_DOCUMENT_CHARS).',
+    )
+
     args = parser.parse_args()
     
     if args.command is None:

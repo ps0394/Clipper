@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer states that the information is not in the document, rather than providing an actual answer to the question.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 570,
+    "tokens_out": 28
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer states that the information is not in the document, which is an acceptable response if the information cannot be found.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 578,
+    "tokens_out": 30
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, with no differences in factual content.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 583,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, which is that only one private IP address can be designated as primary.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 572,
+    "tokens_out": 33
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, which is that base64 encoding is required for user data.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 569,
+    "tokens_out": 31
+  }
+]

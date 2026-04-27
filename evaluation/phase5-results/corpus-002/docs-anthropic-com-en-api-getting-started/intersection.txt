@@ -1,0 +1,49 @@
+To use the Claude API, you'll need:
+
+The Claude API includes the following APIs:
+
+For the complete API reference with all endpoints, parameters, and response schemas, explore the API reference pages listed in the navigation.
+
+All requests to the Claude API must include these headers:
+
+Anthropic provides official SDKs that simplify API integration by handling authentication, request formatting, error handling, and more.
+
+Automatic header management (x-api-key, anthropic-version, content-type)
+
+Type-safe request and response handling
+
+Built-in retry logic and error handling
+
+Request timeouts and connection management
+
+Availability on partner platforms
+
+Claude is available through the direct Claude API and through partner platforms.
+
+Choose based on your infrastructure, compliance requirements, and pricing preferences.
+
+Access Claude through AWS, Google Cloud, or Microsoft Azure:
+
+Claude Managed Agents is available only through the direct Claude API.
+
+Third-party platforms have their own request size limits: Vertex AI limits requests to 30 MB, and Amazon Bedrock limits requests to 20 MB.
+
+Consult your platform's documentation for current values.
+
+The Claude API includes the following headers in every response:
+
+The API enforces rate limits and spend limits to prevent misuse and manage capacity.
+
+Limits are organized into usage tiers that increase automatically as you use the API.
+
+For higher limits or Priority Tier (enhanced service levels with committed spend), contact sales through the Console.
+
+Check the supported regions page to confirm availability in your location.
+
+Complete API specification for direct model interactions
+
+Agents, Sessions, and Environments endpoints
+
+Python, TypeScript, Java, Go, C#, Ruby, and PHP
+
+Usage tiers, spend limits, and token bucket algorithm

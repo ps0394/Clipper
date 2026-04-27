@@ -1,0 +1,35 @@
+The sample database, SNOWFLAKE_SAMPLE_DATA, is identical to the databases that you create in your account, except that it is read-only.
+
+As such, the following operations are not allowed:
+
+No DDL can be performed on the data set schemas (i.e. tables and other database objects cannot be added, dropped, or altered).
+
+No DML can be performed on the tables in the schemas.
+
+No cloning or Time Travel can be performed on the database or any schemas/tables in the database.
+
+However, you can use all the same commands and syntax to view the sample database, schemas, and tables, as well as execute queries on the tables.
+
+The sample database is created by default for newer accounts.
+
+If the database has not been created for your account and you want
+
+access to it, execute the following SQL statements with the ACCOUNTADMIN role active:
+
+You can view the sample database and its contents either in Snowsight or using SQL:
+
+| created_on                    | name                  | is_default | is_current | origin                  | owner        | comment | options | retention_time |
+
+|-------------------------------+-----------------------+------------+------------+-------------------------+--------------+---------+---------+----------------|
+
+| 2016-07-14 14:30:21.711 -0700 | SNOWFLAKE_SAMPLE_DATA | N          | N          | SFC_SAMPLES.SAMPLE_DATA | ACCOUNTADMIN |         |         | 1              |
+
+database, SFC_SAMPLES.SAMPLE_DATA, indicating it originated from the SFC_SAMPLES account (used by Snowflake to share the sample data).
+
+Query tables and views in the sample database
+
+To use a table or view in the sample database, you can either:
+
+You must have a running, current warehouse in your session to perform queries.
+
+command (or within the Worksheet in the web interface.)

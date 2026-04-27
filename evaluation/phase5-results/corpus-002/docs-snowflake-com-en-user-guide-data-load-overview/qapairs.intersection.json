@@ -1,0 +1,41 @@
+[
+  {
+    "question": "What are the three main archival cloud storage classes mentioned that require restoration before data can be retrieved?",
+    "answer": "Amazon S3 Glacier Flexible Retrieval, Glacier Deep Archive, and Microsoft Azure Archive Storage.",
+    "supporting_sentences": [
+      "These archival storage classes include, for example, the Amazon S3 Glacier Flexible Retrieval or Glacier Deep Archive storage class, or Microsoft Azure Archive Storage."
+    ]
+  },
+  {
+    "question": "What are the three types of stages maintained by Snowflake in a user's account?",
+    "answer": "User stages, table stages, and named stages.",
+    "supporting_sentences": [
+      "Snowflake maintains the following stage types in your account:",
+      "This stage type is designed to store files that are staged and managed by a single user but can be loaded into multiple tables.",
+      "This stage type is designed to store files that are staged and managed by one or more users but only loaded into a single table.",
+      "This stage type can store files that are staged and managed by one or more users and loaded into one or more tables."
+    ]
+  },
+  {
+    "question": "Which Snowflake data loading solution uses a serverless compute model and charges based on per-second billing?",
+    "answer": "Snowpipe.",
+    "supporting_sentences": [
+      "Snowpipe uses compute resources provided by Snowflake (i.e. a serverless compute model).",
+      "These Snowflake-provided resources are automatically resized and scaled up or down as required, and are charged and itemized using per-second billing."
+    ]
+  },
+  {
+    "question": "What SQL command is used to turn on or off DML error logging for a Snowflake table?",
+    "answer": "The `ERROR_LOGGING` parameter in the `CREATE TABLE` or `ALTER TABLE` SQL commands.",
+    "supporting_sentences": [
+      "To turn on or turn off error logging for a table, use the following SQL commands to set the ERROR_LOGGING"
+    ]
+  },
+  {
+    "question": "Which file formats are supported by Snowflake's schema detection feature for semi-structured data?",
+    "answer": "Apache Parquet, Apache Avro, ORC, JSON, and CSV files.",
+    "supporting_sentences": [
+      "This feature supports Apache Parquet, Apache Avro, ORC, JSON, and CSV files."
+    ]
+  }
+]

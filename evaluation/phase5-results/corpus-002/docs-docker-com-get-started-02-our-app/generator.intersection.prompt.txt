@@ -1,0 +1,86 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: docs-docker-com-get-started-02-our-app
+Document URL: https://docs.docker.com/get-started/02_our_app/
+Document profile: tutorial
+
+Document text:
+---
+For the rest of this guide, you'll be working with a simple todo
+
+list manager that runs on Node.js.
+
+If you're not familiar with Node.js,
+
+This guide doesn't require any prior experience with JavaScript.
+
+Before you can run the application, you need to get the application source code onto your machine.
+
+View the contents of the cloned repository.
+
+You should see the following files and sub-directories.
+
+To build the image, you'll need to use a Dockerfile.
+
+A Dockerfile is simply a text-based file with no file extension that contains a script of instructions.
+
+Docker uses this script to build a container image.
+
+This Dockerfile does the following:
+
+Copies source code into the image
+
+Installs the necessary dependencies
+
+Specifies the command to start the application
+
+Documents that the app listens on port 3000
+
+Build the image using the following commands:
+
+You might have noticed that Docker downloaded a lot of "layers".
+
+But, since you didn't have that on your machine, Docker needed to download the image.
+
+Think of this as a human-readable name for the final image.
+
+This means that Docker starts your container and returns you to the terminal
+
+Also, it does not display logs in the terminal.
+
+The command publishes the container's port
+
+mapping, you wouldn't be able to access the application from the host.
+
+Add an item or two and see that it works as you expect.
+
+You can mark items as complete and remove them.
+
+Your frontend is successfully storing items in the backend.
+
+At this point, you have a running todo list manager with a few items.
+
+To see your containers, you can use the CLI or Docker Desktop's graphical interface.
+
+Output similar to the following should appear.
+
+In this section, you learned the basics about creating a Dockerfile to build an image.
+
+Once you built an image, you started a container and saw the running app.
+
+Next, you're going to make a modification to your app and learn how to update your running application with a new image.
+
+Along the way, you'll learn a few other useful commands.
+---

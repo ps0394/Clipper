@@ -1,0 +1,38 @@
+[
+  {
+    "question": "What is the default Linux operating system (OS) for AKS in Kubernetes versions 1.35 and above?",
+    "answer": "The default Linux operating system (OS) for AKS in Kubernetes versions 1.35+ is Ubuntu 24.04.",
+    "supporting_sentences": [
+      "AKS defaults to Ubuntu 24.04 in Kubernetes versions 1.35+."
+    ]
+  },
+  {
+    "question": "Can you move an AKS cluster between Azure tenants?",
+    "answer": "No, moving your AKS cluster between tenants is currently unsupported.",
+    "supporting_sentences": [
+      "Moving your AKS cluster between tenants is currently unsupported."
+    ]
+  },
+  {
+    "question": "Are Azure reservation discounts applicable to AKS agent nodes?",
+    "answer": "Yes, Azure reservation discounts can be applied to AKS agent nodes because they are billed as standard Azure virtual machines (VMs).",
+    "supporting_sentences": [
+      "AKS agent nodes are billed as standard Azure virtual machines (VMs).",
+      "For example, you can use most Azure VM types directly with AKS, and you can use Azure Reservations to receive discounts on those resources automatically."
+    ]
+  },
+  {
+    "question": "What happens to the node resource group when an AKS cluster is deleted?",
+    "answer": "The node resource group and all its resources are also deleted when the AKS cluster is deleted.",
+    "supporting_sentences": [
+      "When you delete your cluster, the node resource group and all its resources are also deleted."
+    ]
+  },
+  {
+    "question": "Which Windows Server version will be deprecated on AKS starting March 1, 2026?",
+    "answer": "Starting on March 1, 2026, Windows Server 2019 node pools will no longer be supported on AKS.",
+    "supporting_sentences": [
+      "Starting on March 01, 2026, Azure Kubernetes Service (AKS) no longer supports Windows Server 2019 node pools."
+    ]
+  }
+]

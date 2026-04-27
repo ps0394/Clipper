@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "Copies in your application and uses `npm` to install your application's dependencies, in that order.",
+    "run_index": 0,
+    "tokens_in": 1608,
+    "tokens_out": 20
+  },
+  {
+    "pair_index": 1,
+    "answer": "If the port mapping is not specified, the application running in the container would not be accessible from the host machine. The specific flag in the `docker run` command that prevents this is the `-p` flag.",
+    "run_index": 0,
+    "tokens_in": 1607,
+    "tokens_out": 45
+  },
+  {
+    "pair_index": 2,
+    "answer": "One port, 3000, is explicitly mentioned as being involved in running the application. It is the port the app listens on in the container and is mapped to 127.0.0.1:3000 on the host for access.",
+    "run_index": 0,
+    "tokens_in": 1598,
+    "tokens_out": 51
+  },
+  {
+    "pair_index": 3,
+    "answer": "The `-d` flag runs the container in the background and does not display logs in the terminal. The `-p` flag creates a port mapping between the host and the container, allowing access to the application from the host. If `-d` is omitted, the container runs in the foreground and logs are displayed in the terminal. If `-p` is omitted, you wouldn't be able to access the application from the host.",
+    "run_index": 0,
+    "tokens_in": 1607,
+    "tokens_out": 90
+  },
+  {
+    "pair_index": 4,
+    "answer": "not in document",
+    "run_index": 0,
+    "tokens_in": 1624,
+    "tokens_out": 4
+  }
+]

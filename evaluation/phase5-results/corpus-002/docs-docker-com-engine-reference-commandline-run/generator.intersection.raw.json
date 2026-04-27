@@ -1,0 +1,42 @@
+```json
+[
+    {
+        "question": "What benefit does assigning a custom-defined name to a Docker container provide?",
+        "answer": "A custom-defined name provides the benefit of having an easy-to-remember ID for a container.",
+        "supporting_sentences": [
+            "custom-defined name provides the benefit of having an easy-to-remember ID for a"
+        ]
+    },
+    {
+        "question": "Under what condition can other containers on the same network refer to a Docker container by name via DNS?",
+        "answer": "Other containers on the same network can refer to a container by name via DNS if the container is connected to a user-defined bridge network.",
+        "supporting_sentences": [
+            "Moreover, if you connect the container to a user-defined bridge network, other containers on the same network can refer to the container by name via DNS."
+        ]
+    },
+    {
+        "question": "What happens if the file specified for Docker to write the container ID to already exists?",
+        "answer": "If the file exists already, Docker returns an error.",
+        "supporting_sentences": [
+            "If the file exists already, Docker returns an error."
+        ]
+    },
+    {
+        "question": "What is the purpose of the UTS namespace in Docker containers?",
+        "answer": "The UTS namespace is for setting the hostname and the domain that's visible to running processes in that namespace.",
+        "supporting_sentences": [
+            "The UTS namespace is for setting the hostname and the domain that's visible to running processes in that namespace."
+        ]
+    },
+    {
+        "question": "What does enabling the `--privileged` flag in Docker allow a container to do?",
+        "answer": "The `--privileged` flag enables all Linux kernel capabilities, grants access to all host devices, and makes cgroups mounts read-write, allowing the container to do almost everything that the host can do.",
+        "supporting_sentences": [
+            "Enables all Linux kernel capabilities",
+            "Grants access to all host devices",
+            "Makes cgroups mounts read-write",
+            "In other words, the container can then do almost everything that the host can"
+        ]
+    }
+]
+```

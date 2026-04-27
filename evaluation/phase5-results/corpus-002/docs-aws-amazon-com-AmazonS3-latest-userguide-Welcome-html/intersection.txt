@@ -1,0 +1,121 @@
+Amazon S3 offers a range of storage classes designed for different use cases.
+
+Access management and security
+
+By default, S3 buckets and the objects in them are private.
+
+Policies are a simplified and more flexible access control option.
+
+Storage logging and monitoring
+
+Amazon S3 data consistency model
+
+Amazon S3 is an object storage service that stores data as objects, hierarchical data, or tabular data within buckets.
+
+Then, you upload your data to that bucket as objects in Amazon S3.
+
+S3 provides features that you can configure to support your specific use case.
+
+Amazon S3 supports four types of buckets—general purpose buckets, directory buckets, table buckets, and vector buckets.
+
+Each type of bucket provides a unique set of features for different use cases.
+
+By default, general purpose buckets exist in a global namespace, which means that each bucket name must be unique across all AWS accounts in all the AWS Regions within a partition.
+
+A partition is a grouping of Regions.
+
+When you create a general purpose bucket, you can choose to create a bucket in the shared global namespace or you can choose to create a bucket in your account regional namespace.
+
+Your account regional namespace is a subdivision of the global namespace that only your account can create buckets in.
+
+New general purpose buckets created in your account regional namespace are unique to your account and can never be re-created by another account.
+
+By default, all general purpose buckets are private.
+
+However, you can grant public access to general purpose buckets.
+
+You can control access to general purpose buckets at the bucket, prefix (folder), or object tag level.
+
+This bucket type has no prefix limits and individual directories can scale horizontally.
+
+For low-latency use cases, you can create a directory bucket in a single AWS Availability Zone to store data.
+
+With S3 Express One Zone, your data is redundantly stored on multiple devices within a single Availability Zone.
+
+For data-residency use cases, you can create a directory bucket in a single AWS Dedicated Local Zone (DLZ) to store data.
+
+Directory buckets in Local Zones support the S3 One Zone-Infrequent Access (S3 One Zone-IA; Z-IA) storage class.
+
+Directory buckets have all public access disabled by default.
+
+This behavior can't be changed.
+
+You can't grant access to objects stored in directory buckets.
+
+Tabular data represents data in columns and rows, like in a database table.
+
+All table buckets and tables are private and can't be made public.
+
+These resources can only be accessed by users who are explicitly granted access.
+
+Vector buckets use dedicated API operations to write and query vector data efficiently.
+
+With S3 vector buckets, you can store vector embeddings for machine learning models, perform similarity searches, and integrate with services like Amazon Bedrock and Amazon OpenSearch.
+
+S3 vector buckets organize data using vector indexes, which are resources within a bucket that store and organize vector data for efficient similarity search.
+
+Each vector index can be configured with specific dimensions, distance metrics (like cosine similarity), and metadata configurations to optimize for your specific use case.
+
+Additional information about all bucket types
+
+Bucket names must follow the following bucket naming rules:
+
+Organize the Amazon S3 namespace at the highest level.
+
+Serve as the unit of aggregation for usage reporting.
+
+Objects are the fundamental entities stored in Amazon S3.
+
+Every object is contained in a bucket.
+
+Each access point has its own access point policy.
+
+ACLs are an access control mechanism that predates IAM.
+
+A majority of modern use cases in Amazon S3 no longer require the use of ACLs.
+
+Updates to a single key are atomic.
+
+If a PUT request is successful, your data is safely stored.
+
+The new object appears in the list.
+
+A process replaces an existing object and immediately tries to read it.
+
+A process deletes an existing object and immediately tries to read it.
+
+The object does not appear in the listing.
+
+Amazon S3 does not support object locking for concurrent writers.
+
+There is no way to make atomic updates across keys.
+
+Bucket configurations have an eventual consistency model.
+
+In the next example, W2 does not finish before the start of R1.
+
+In the last example, W2 begins before W1 has received an acknowledgment.
+
+Therefore, these writes are considered concurrent.
+
+After you load your data into Amazon S3, you can use it with other AWS services.
+
+You can work with Amazon S3 in any of the following ways:
+
+The console is a web-based user interface for managing Amazon S3 and AWS resources.
+
+Every interaction with Amazon S3 is either authenticated or anonymous.
+
+To use the REST API, you can use any toolkit that supports HTTP.
+
+Newer Amazon S3 features are not supported for SOAP.

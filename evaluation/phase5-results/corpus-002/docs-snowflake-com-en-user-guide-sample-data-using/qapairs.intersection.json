@@ -1,0 +1,40 @@
+[
+  {
+    "question": "What is the name of the sample database provided by Snowflake?",
+    "answer": "SNOWFLAKE_SAMPLE_DATA",
+    "supporting_sentences": [
+      "The sample database, SNOWFLAKE_SAMPLE_DATA, is identical to the databases that you create in your account, except that it is read-only.",
+      "| 2016-07-14 14:30:21.711 -0700 | SNOWFLAKE_SAMPLE_DATA | N          | N          | SFC_SAMPLES.SAMPLE_DATA | ACCOUNTADMIN |         |         | 1              |"
+    ]
+  },
+  {
+    "question": "What operations are not allowed on the SNOWFLAKE_SAMPLE_DATA database?",
+    "answer": "DDL, DML, cloning, and Time Travel",
+    "supporting_sentences": [
+      "No DDL can be performed on the data set schemas (i.e. tables and other database objects cannot be added, dropped, or altered).",
+      "No DML can be performed on the tables in the schemas.",
+      "No cloning or Time Travel can be performed on the database or any schemas/tables in the database."
+    ]
+  },
+  {
+    "question": "Which role must be active to execute SQL statements to create the SNOWFLAKE_SAMPLE_DATA database if it is not already available?",
+    "answer": "ACCOUNTADMIN",
+    "supporting_sentences": [
+      "If the database has not been created for your account and you want access to it, execute the following SQL statements with the ACCOUNTADMIN role active:"
+    ]
+  },
+  {
+    "question": "What is the origin of the SNOWFLAKE_SAMPLE_DATA database?",
+    "answer": "SFC_SAMPLES.SAMPLE_DATA",
+    "supporting_sentences": [
+      "database, SFC_SAMPLES.SAMPLE_DATA, indicating it originated from the SFC_SAMPLES account (used by Snowflake to share the sample data)."
+    ]
+  },
+  {
+    "question": "What is required in your session to perform queries on tables or views in the SNOWFLAKE_SAMPLE_DATA database?",
+    "answer": "A running, current warehouse",
+    "supporting_sentences": [
+      "You must have a running, current warehouse in your session to perform queries."
+    ]
+  }
+]

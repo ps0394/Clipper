@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the condition for using the host's UTS namespace and the limitations imposed by Docker.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 684,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer states that the information is not in the document, which is incorrect because the ground-truth answer provides a clear explanation of the interaction between the `--restart` policy and the `--rm` flag.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 616,
+    "tokens_out": 49
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, describing the behavior of each pull policy and their appropriate use cases, despite some differences in wording and additional details.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 783,
+    "tokens_out": 41
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same key facts as the ground-truth answer, including the difference in syntax and the recommendation to use `--mount` over `--volume`, despite some differences in wording and detail.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 707,
+    "tokens_out": 47
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including how Docker prioritizes block I/O and the valid range for the weights, despite minor differences in wording.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 735,
+    "tokens_out": 41
+  }
+]

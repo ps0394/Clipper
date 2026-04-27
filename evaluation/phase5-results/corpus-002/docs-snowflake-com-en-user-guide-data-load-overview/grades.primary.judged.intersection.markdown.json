@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, with only minor wording differences.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 596,
+    "tokens_out": 25
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer introduces the term \"internal\" which is not present in the ground-truth answer, and also changes the plural form of \"stage\" to singular in two instances, altering the factual content.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 577,
+    "tokens_out": 46
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer matches the ground-truth answer, stating that Snowpipe is the Snowflake data loading solution that uses a serverless compute model and charges based on per-second billing.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 566,
+    "tokens_out": 40
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, omitting only the parameter name which is not required to identify the SQL commands.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 587,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer lists the same file formats as the ground-truth answer.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 593,
+    "tokens_out": 19
+  }
+]

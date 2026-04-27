@@ -1,0 +1,301 @@
+Prompt caching optimizes your API usage by allowing resuming from specific prefixes in your prompts.
+
+This significantly reduces processing time and costs for repetitive tasks or prompts with consistent elements.
+
+When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+
+There are two ways to enable prompt caching:
+
+The system automatically applies the cache breakpoint to the last cacheable block and moves it forward as conversations grow.
+
+Best for multi-turn conversations where the growing message history should be cached automatically.
+
+The simplest way to start is with automatic caching:
+
+"You are an AI assistant tasked with analyzing literary works.
+
+Your goal is to provide insightful commentary on themes, characters, and writing style."
+
+With automatic caching, the system caches all content up to and including the last cacheable block.
+
+On subsequent requests with the same prefix, cached content is reused automatically.
+
+When you send a request with prompt caching enabled:
+
+The system checks if a prompt prefix, up to a specified cache breakpoint, is already cached from a recent query.
+
+If found, it uses the cached version, reducing processing time and costs.
+
+Otherwise, it processes the full prompt and caches the prefix once the response begins.
+
+Large amounts of context or background information
+
+Repetitive tasks with consistent instructions
+
+By default, the cache has a 5-minute lifetime.
+
+The cache is refreshed for no additional cost each time the cached content is used.
+
+Prompt caching caches the full prefix
+
+Prompt caching introduces a new pricing structure.
+
+The table below shows the price per million tokens for each supported model:
+
+The table above reflects the following pricing multipliers for prompt caching:
+
+5-minute cache write tokens are 1.25 times the base input tokens price
+
+1-hour cache write tokens are 2 times the base input tokens price
+
+Cache read tokens are 0.1 times the base input tokens price
+
+These multipliers stack with other pricing modifiers such as the Batch API discount and data residency.
+
+Automatic caching is the simplest way to enable prompt caching.
+
+The system automatically applies the cache breakpoint to the last cacheable block.
+
+How can I help with your ML work today?"
+
+How automatic caching works in multi-turn conversations
+
+With automatic caching, the cache point moves forward automatically as conversations grow.
+
+Each new request caches everything up to the last cacheable block, and previous content is read from cache.
+
+By default, automatic caching uses a 5-minute TTL.
+
+You can specify a 1-hour TTL at 2x the base input token price:
+
+Combining with block-level caching
+
+When used together, the automatic cache breakpoint uses one of the 4 available breakpoint slots.
+
+This lets you combine both approaches.
+
+For example, use explicit breakpoints to cache your system prompt and tools independently, while automatic caching handles the conversation:
+
+Automatic caching uses the same underlying caching infrastructure.
+
+Pricing, minimum token thresholds, context ordering requirements, and the 20-block lookback window all apply the same as with explicit breakpoints.
+
+If 4 explicit block-level breakpoints already exist, the API returns a 400 error (no slots left for automatic caching).
+
+If the last block is not eligible as an automatic cache breakpoint target, the system silently walks backwards to find the nearest eligible block.
+
+If none is found, caching is skipped.
+
+Automatic caching is available on the Claude API and Azure AI Foundry (preview).
+
+Support for Amazon Bedrock and Google Vertex AI is coming later.
+
+This is useful when you need to cache different sections that change at different frequencies, or need fine-grained control over exactly what gets cached.
+
+Place static content (tool definitions, system instructions, context, examples) at the beginning of your prompt.
+
+This order forms a hierarchy where each level builds upon the previous ones.
+
+How automatic prefix checking works
+
+You can use just one cache breakpoint at the end of your static content, and the system will automatically find the longest prefix that a prior request already wrote to the cache.
+
+Understanding how this works helps you optimize your caching strategy.
+
+The system does not write entries for any earlier position.
+
+Because the hash is cumulative, covering everything up to and including the breakpoint, changing any block at or before the breakpoint produces a different hash on the next request.
+
+If none exists, it walks backward one block at a time, checking whether the prefix hash at each earlier position matches something already in the cache.
+
+It is looking for prior writes, not for stable content.
+
+If the system finds no matching entry in that window, checking stops (or resumes from the next explicit breakpoint, if any).
+
+Example: Lookback in a growing conversation
+
+The system writes an entry at block 10.
+
+Block 15 has no entry, so the system walks back to block 10 and finds the turn-1 entry.
+
+Cache hit at block 10; the system processes only blocks 11 through 15 fresh and writes a new entry at block 15.
+
+The system checks 20 positions (blocks 35 through 16) and finds nothing.
+
+The turn-2 entry at block 15 is one position outside the window, so there is no cache hit.
+
+Adding a second breakpoint at block 15 starts a second lookback window there, which finds the turn-2 entry.
+
+Common mistake: Breakpoint on content that changes every request
+
+Your prompt has a large static system context (blocks 1 through 5) followed by a per-request block containing a timestamp and the user message (block 6).
+
+The hash includes the timestamp.
+
+The lookback walks through blocks 5, 4, 3, 2, and 1, but the system never wrote an entry at any of those positions.
+
+You pay for a fresh cache write on every request and never get a read.
+
+The lookback does not find stable content behind your breakpoint and cache it.
+
+It finds entries that prior requests already wrote, and writes happen only at breakpoints.
+
+In a growing conversation the final block works as long as each turn adds fewer than 20 blocks: earlier content never changes, so the next request's lookback finds the prior write.
+
+For a prompt with a varying suffix (timestamps, per-request context, the incoming message), place the breakpoint at the end of the static prefix, not on the varying block.
+
+When to use multiple breakpoints
+
+You can define up to 4 cache breakpoints if you want to:
+
+Cache different sections that change at different frequencies (for example, tools rarely change, but context updates daily)
+
+Have more control over exactly what gets cached
+
+Ensure a cache hit when a growing conversation pushes your breakpoint 20 or more blocks past the last cache write
+
+If a growing conversation pushes your breakpoint 20 or more blocks past the last write, the lookback window misses it.
+
+Add a second breakpoint closer to that position from the start so a write accumulates there before you need it.
+
+Understanding cache breakpoint costs
+
+The breakpoints simply give you control over what sections can be cached independently.
+
+Caching strategies and considerations
+
+The minimum cacheable prompt length is:
+
+2048 tokens for Claude Sonnet 4.6
+
+4096 tokens for Claude Haiku 4.5
+
+Any requests to cache fewer than this number of tokens will be processed without caching, and no error is returned.
+
+If your prompt falls just short of the minimum for the model you are using, expanding the cached content to reach the threshold is often worthwhile.
+
+Cache reads cost significantly less than uncached input tokens, so reaching the minimum can reduce costs for frequently reused prompts.
+
+For concurrent requests, note that a cache entry only becomes available after the first response begins.
+
+If you need cache hits for parallel requests, wait for the first response before sending subsequent requests.
+
+Currently, "ephemeral" is the only supported cache type, which by default has a 5-minute lifetime.
+
+Most blocks in the request can be cached.
+
+While most request blocks can be cached, there are some exceptions:
+
+However, thinking blocks CAN be cached alongside other content when they appear in previous assistant turns.
+
+When cached this way, they DO count as input tokens when read from cache.
+
+Instead, cache the top-level block.
+
+In the case of citations, the top-level document content blocks that serve as the source material for citations can be cached.
+
+This allows you to use prompt caching with citations effectively by caching the documents that citations will reference.
+
+Empty text blocks cannot be cached.
+
+Modifications to cached content can invalidate some or all of the cache.
+
+Changes at each level invalidate that level and all subsequent levels.
+
+The following table shows which parts of the cache are invalidated by different types of changes. ✘ indicates that the cache is invalidated, while ✓ indicates that the cache remains valid.
+
+Understanding the token breakdown
+
+To calculate total input tokens:
+
+total_input_tokens = cache_read_input_tokens + cache_creation_input_tokens + input_tokens
+
+This commonly happens during tool use when you pass thinking blocks back to continue the conversation.
+
+This is important for cost calculation and token budgeting.
+
+Cache remains valid when only tool results are provided as user messages
+
+Cache gets invalidated when non-tool-result user content is added, causing all previous thinking blocks to be stripped
+
+Request 1: User: "What's the weather in Paris?"
+
+Response: [thinking_block_1] + [tool_use block 1]
+
+User: ["What's the weather in Paris?"],
+
+Assistant: [thinking_block_1] + [tool_use block 1],
+
+User: [tool_result_1, cache=True]
+
+Response: [thinking_block_2] + [text block 2]
+
+# Request 2 caches its request content (not the response)
+
+# The cache includes: user message, thinking_block_1, tool_use block 1, and tool_result_1
+
+Assistant: [thinking_block_2] + [text block 2],
+
+User: [Text response, cache=True]
+
+# Non-tool-result user block causes all thinking blocks to be ignored
+
+# This request is processed as if thinking blocks were never present
+
+When a non-tool-result user block is included, it designates a new assistant loop and all previous thinking blocks are removed from context.
+
+Starting February 5, 2026, prompt caching will use workspace-level isolation instead of organization-level isolation.
+
+Caches will be isolated per workspace, ensuring data separation between workspaces within the same organization.
+
+This change applies to the Claude API and Azure AI Foundry (preview); Amazon Bedrock and Google Vertex AI will maintain organization-level cache isolation.
+
+If you use multiple workspaces, review your caching strategy to account for this change.
+
+Different organizations never share caches, even if they use identical prompts.
+
+The response you receive will be identical to what you would get if prompt caching was not used.
+
+Best practices for effective caching
+
+To optimize prompt caching performance:
+
+It handles breakpoint management automatically.
+
+Cache stable, reusable content like system instructions, background information, large contexts, or frequent tool definitions.
+
+Place cached content at the prompt's beginning for best performance.
+
+Use cache breakpoints strategically to separate different cacheable prefix sections.
+
+Place the breakpoint on the last block that stays identical across requests.
+
+For a prompt with a static prefix and a varying suffix (timestamps, per-request context, the incoming message), that is the end of the prefix, not the varying block.
+
+Regularly analyze cache hit rates and adjust your strategy as needed.
+
+Optimizing for different use cases
+
+Tailor your prompt caching strategy to your scenario:
+
+Conversational agents: Reduce cost and latency for extended conversations, especially those with long instructions or uploaded documents.
+
+Coding assistants: Improve autocomplete and codebase Q&A by keeping relevant sections or a summarized version of the codebase in the prompt.
+
+Large document processing: Incorporate complete long-form material including images in your prompt without increasing response latency.
+
+Detailed instruction sets: Share extensive lists of instructions, procedures, and examples to fine-tune Claude's responses.
+
+Developers often include an example or two in the prompt, but with prompt caching you can get even better performance by including 20+ diverse examples of high quality answers.
+
+Agentic tool use: Enhance performance for scenarios involving multiple tool calls and iterative code changes, where each step typically requires a new API call.
+
+Talk to books, papers, documentation, podcast transcripts, and other longform content:  Bring any knowledge base alive by embedding the entire document(s) into the prompt, and letting users ask it questions.
+
+If experiencing unexpected behavior:
+
+Ensure cached sections are identical across calls.
+
+Check that calls are made within the cache lifetime (5 minutes by default)
+
+Confirm your breakpoint is on a block that stays identical across requests.

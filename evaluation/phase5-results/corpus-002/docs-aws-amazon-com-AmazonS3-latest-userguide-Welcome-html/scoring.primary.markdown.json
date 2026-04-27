@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "You would choose S3 Express One Zone over S3 Standard for a latency-sensitive application if your application is performance sensitive and benefits from single-digit millisecond PUT and GET latencies, as S3 Express One Zone is the lowest latency cloud object storage class available today with data access speeds up to 10x faster and with request costs 50 percent lower than S3 Standard. The trade-offs to consider are that S3 Express One Zone stores data in a single Availability Zone, so it does not provide the multi-AZ redundancy of S3 Standard, and is recommended only for use cases where the highest possible access speed is required and where you can accept the risk of data being stored in a single Availability Zone.",
+    "run_index": 0,
+    "tokens_in": 8581,
+    "tokens_out": 143
+  },
+  {
+    "pair_index": 1,
+    "answer": "S3 Intelligent-Tiering optimizes storage costs by automatically moving your data between four access tiers when your access patterns change. These four access tiers include two low-latency access tiers optimized for frequent and infrequent access, and two opt-in archive access tiers designed for asynchronous access for rarely accessed data.",
+    "run_index": 0,
+    "tokens_in": 8570,
+    "tokens_out": 61
+  },
+  {
+    "pair_index": 2,
+    "answer": "The maximum number of directory buckets you can create per AWS account is 100, while the maximum number of table buckets is 10 per AWS account per AWS Region. Directory buckets are recommended for low-latency use cases and data-residency use cases, while table buckets are recommended for storing tabular data, such as daily purchase transactions, streaming sensor data, or ad impressions, and are optimized for analytics and machine learning workloads.",
+    "run_index": 0,
+    "tokens_in": 8578,
+    "tokens_out": 88
+  },
+  {
+    "pair_index": 3,
+    "answer": "Objects that already existed in the bucket at the time that you enable versioning have a version ID of `null`.",
+    "run_index": 0,
+    "tokens_in": 8574,
+    "tokens_out": 24
+  },
+  {
+    "pair_index": 4,
+    "answer": "Bucket configurations have an eventual consistency model. Specifically, if you enable versioning on a bucket for the first time, it might take a short amount of time for the change to be fully propagated. We recommend that you wait for 15 minutes after enabling versioning before issuing write operations (PUT or DELETE requests) on objects in the bucket.",
+    "run_index": 0,
+    "tokens_in": 8576,
+    "tokens_out": 69
+  }
+]

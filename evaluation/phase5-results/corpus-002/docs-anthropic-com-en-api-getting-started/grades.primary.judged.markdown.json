@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the specific request size limits for different endpoints on the direct Claude API and the stricter limits imposed by third-party platforms.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 782,
+    "tokens_out": 43
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the cost reduction and asynchronous processing trade-off.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 655,
+    "tokens_out": 29
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, covering the key differences and use cases for direct API access and third-party platforms, despite some minor wording and formatting differences.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 725,
+    "tokens_out": 43
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the endpoints with the smallest limit, the limit value, the largest limit, and the numerical difference between them.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 665,
+    "tokens_out": 42
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the reason why Claude Managed Agents cannot be used through third-party platforms and the consequence of attempting to do so, which are essential parts of the ground-truth answer.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 607,
+    "tokens_out": 43
+  }
+]

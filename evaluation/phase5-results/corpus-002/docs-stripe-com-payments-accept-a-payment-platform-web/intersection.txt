@@ -1,0 +1,31 @@
+A Checkout Session is the programmatic representation of what your customer sees when they’re redirected to the payment form.
+
+You can configure it with options such as:
+
+Checkout Sessions expire 24 hours after creation by default.
+
+By default, Stripe enables cards and other common payment methods.
+
+In Checkout, Stripe evaluates the currency and any restrictions, then dynamically presents the supported payment methods to the customer.
+
+To see how your payment methods appear to customers, enter a transaction ID or set an order amount and currency in the Dashboard.
+
+By default, Apple Pay is enabled and Google Pay is disabled.
+
+However, in some cases Stripe filters them out even when they’re enabled.
+
+Checkout’s Stripe-hosted pages don’t need integration changes to enable Apple Pay or Google Pay.
+
+Stripe handles these payments the same way as other card payments.
+
+You should see a response in your terminal that looks like this:
+
+You should now have a working checkout button that redirects your customer to Stripe Checkout.
+
+You’re redirected to the Stripe Checkout payment form.
+
+If your integration isn’t working:
+
+Open the Network tab in your browser’s developer tools.
+
+Verify the request is returning a 200 status.

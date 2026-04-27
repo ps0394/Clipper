@@ -1,0 +1,190 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: docs-aws-amazon-com-AWSEC2-latest-APIReference-API-RunInstances-html
+Document URL: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html
+Document profile: reference
+
+Document text:
+---
+You can specify a number of options, or leave the default options.
+
+Not all instance types support IPv6 addresses.
+
+To ensure faster instance launches, break up large requests into smaller batches.
+
+Linux instances have access to the public key of the key pair at boot.
+
+The following parameters are for this specific action.
+
+CapacityReservationSpecification
+
+Information about the Capacity Reservation targeting option.
+
+Constraints: Maximum 64 ASCII characters
+
+The CPU options for the instance.
+
+The credit option for CPU usage of the burstable performance instance.
+
+Indicates whether an instance is enabled for stop protection.
+
+Indicates whether termination protection is enabled for the instance.
+
+Indicates whether the instance is optimized for Amazon EBS I/O.
+
+This parameter has been deprecated.
+
+An elastic GPU to associate with the instance.
+
+Amazon Elastic Graphics reached end of life on January 8, 2024.
+
+An elastic inference accelerator to associate with the instance.
+
+Amazon Elastic Inference is no longer available.
+
+Indicates whether the instance is enabled for AWS Nitro Enclaves.
+
+Indicates whether an instance is enabled for hibernation.
+
+InstanceInitiatedShutdownBehavior
+
+The market (purchasing) option for the instances.
+
+Amazon EC2 chooses the IPv6 addresses from the range of your subnet.
+
+We recommend that you use PV-GRUB instead of kernels and RAM disks.
+
+The maintenance and recovery options for the instance.
+
+The maximum number of instances to launch.
+
+Constraints: Between 1 and the quota for the specified instance type for your account for this Region.
+
+The metadata options for the instance.
+
+The minimum number of instances to launch.
+
+Specifies whether detailed monitoring is enabled for the instance.
+
+The network interfaces to associate with the instance.
+
+Contains settings for the network performance options for the instance.
+
+The placement for the instance.
+
+The options for the instance hostname.
+
+The default values are inherited from the subnet.
+
+Applies only if creating a network interface, not attaching an existing one.
+
+Only one private IP address can be designated as primary.
+
+The ID of the RAM disk to select.
+
+Some kernels require additional drivers at launch.
+
+The secondary interfaces to associate with the instance.
+
+[Default VPC] The names of the security groups.
+
+Default: Amazon EC2 uses the default security group.
+
+The IDs of the security groups.
+
+The ID of the subnet to launch the instance into.
+
+The tags to apply to the resources that are created during instance launch.
+
+You can specify tags for the following resources only:
+
+The user data to make available to the instance.
+
+User data must be base64-encoded.
+
+Depending on the tool or SDK that you're using, the base64-encoding might be performed for you.
+
+The following elements are returned by the service.
+
+The ID of the AWS account that owns the reservation.
+
+This example launches three instances using the specified AMI.
+
+https://ec2.amazonaws.com/?Action=RunInstances
+
+&SecurityGroupId.1=sg-0598c7d3
+
+&Placement.AvailabilityZone=us-east-1d
+
+This example launches an instance into the specified subnet.
+
+&NetworkInterface.1.DeviceIndex=0
+
+&NetworkInterface.1.PrivateIpAddresses.1.Primary=true
+
+&NetworkInterface.1.PrivateIpAddresses.1.PrivateIpAddress=10.0.2.106
+
+&NetworkInterface.1.PrivateIpAddresses.2.Primary=false
+
+&NetworkInterface.1.PrivateIpAddresses.2.PrivateIpAddress=10.0.2.107
+
+&NetworkInterface.1.PrivateIpAddresses.3.Primary=false
+
+&NetworkInterface.1.PrivateIpAddresses.3.PrivateIpAddress=10.0.2.108
+
+&NetworkInterface.1.SubnetId=subnet-a61dafcf
+
+This example launches a Dedicated Instance into the specified subnet.
+
+&NetworkInterface.1.AssociatePublicIpAddress=true
+
+&NetworkInterface.1.SubnetId=subnet-1a2b3c4d
+
+This request launches an instance with a block device mapping.
+
+&BlockDeviceMapping.1.DeviceName=%2Fdev%2Fsdc
+
+&BlockDeviceMapping.1.VirtualName=ephemeral0
+
+&BlockDeviceMapping.2.DeviceName=%2Fdev%2Fsdd
+
+&BlockDeviceMapping.2.VirtualName=ephemeral1
+
+&BlockDeviceMapping.3.DeviceName=%2Fdev%2Fsdf
+
+&BlockDeviceMapping.3.Ebs.DeleteOnTermination=false
+
+&BlockDeviceMapping.3.Ebs.VolumeSize=100
+
+&BlockDeviceMapping.3.Ebs.Encrypted=true
+
+&BlockDeviceMapping.3.Ebs.KmsKeyId=arn%3Aaws%3Akms%3Aus-east-1%3A009400881653%3Akey%2Fa48a521f-3aff-4b34-a159-376ac5d37812
+
+&TagSpecification.1.ResourceType=instance
+
+&TagSpecification.1.Tag.1.Key=webserver
+
+&TagSpecification.1.Tag.1.Value=production
+
+&TagSpecification.2.ResourceType=volume
+
+&TagSpecification.2.Tag.1.Key=cost-center
+
+&TagSpecification.2.Tag.1.Value=cc123
+
+&CreditSpecification.CpuCredits=unlimited
+
+[document truncated for prompt size]
+---

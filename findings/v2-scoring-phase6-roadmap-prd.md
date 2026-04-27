@@ -230,14 +230,31 @@ If cross-judge agreement on any judge pair is below 0.60 on > 10% of pages, v2 w
 **F4.1 — Extend dual-fetcher to tri-fetcher.** [E3, High]
 In `retrievability/phase5/`, add a third fetcher path with resolution order: `Accept: text/markdown` content negotiation → `<link rel="alternate" type="text/markdown">` href → sibling `.md` path probe. Fall-through on each step. Record which path succeeded per page.
 
-**F4.2 — Paired grading on vendors with markdown alternates.** [E3, High]
+**F4.2 — Paired grading on vendors with markdown alternates.** [E3, High] **— COMPLETE (Session 4 + Session 5)**
 For each page where the tri-fetcher succeeds on any markdown path, run the same harder-Q/A Q/A generation and grading pipeline against the markdown content. Produce paired `accuracy_html` and `accuracy_markdown` per page.
 
-**F4.3 — Publish served-markdown lift analysis.** [E1, High]
+Execution notes:
+- **Track A (Session 4):** Q/A generated from rendered HTML, graded against both rendered extract and served markdown. n=25, mean delta = −0.064. **Methodologically biased**: HTML-anchored Q/A penalizes markdown for content it legitimately omits.
+- **Track B (Session 5, bias-corrected):** new module `retrievability/phase5/intersection.py` computes sentence-level content intersection of rendered extract and served markdown; Q/A generated from intersection text only. n=17 survivors of the 25 markdown-resolved pages (8 dropped on intersection < 1500 chars). **Mean delta = −0.012; 16/17 pages produced identical scores.**
+- Track A − Track B = +0.052 = the size of the HTML-source bias removed.
+
+**F4.3 — Publish served-markdown lift analysis.** [E1, High] **— COMPLETE (Session 5)**
 Per-page delta, per-vendor delta, and overall delta. Include the null-result case explicitly if served-markdown does not provide lift — that is valuable evidence.
 
-**F4.4 — v3 pillar-design input.** [E2, Medium]
+Published in:
+- `findings/phase-5-corpus-002-findings.md` Addendum F (Sections F.2 / F.3 / F.6)
+- `findings/phase-5/04-served-markdown-experiment.md` (focused topical doc)
+- `findings/phase-5/05-token-efficiency.md` (companion non-LLM probe)
+- Artifacts: `evaluation/phase5-results/corpus-002/<page>/intersection*.json`, `evaluation/phase5-results/corpus-002-analysis/intersection-lift.json`, `evaluation/phase5-results/corpus-002-analysis/token-efficiency.json`.
+
+**F4.4 — v3 pillar-design input.** [E2, Medium] **— COMPLETE (Session 5): `keep_as_diagnostic_only`**
 If the served-markdown lift is consistently > +0.10 on vendors that ship it, document a v3 recommendation to promote page-level markdown detection from a diagnostic to a pillar contribution.
+
+Verdict: **`keep_as_diagnostic_only`**. Rule (mean lift > +0.10 AND ≥2 vendors above threshold) fails decisively under Track B (mean −0.012, no vendor positive). The bias-corrected null is a *positive finding of format equivalence* for in-context comprehension on this corpus, not a measurement failure. v3 is **not** authorized to promote served-markdown to a scored pillar on corpus-002 evidence.
+
+A naïve binary "serves markdown" signal is also disauthorized: Stripe ships markdown 6.29× larger than its HTML→clean extract; AWS ships clamped markdown of unknown true size. Any future served-markdown signal must be *conditional* (`tokens(md) ≤ tokens(HTML→clean)` AND `content(md) ⊇ content(HTML→clean)`), not binary on presence.
+
+The finding does not cover retrieval-mode (RAG); a Phase 7 retrieval-mode benchmark is the next gate for the served-markdown pillar question.
 
 ### 7.5 Session 5 — Temporal Replication
 
@@ -297,9 +314,9 @@ Binary pass/fail criteria per session. Sessions do not ship until all their crit
 ### Session 4
 
 - [ ] Tri-fetcher implemented with documented resolution order per F4.1.
-- [ ] ≥ 1 vendor from corpus-002 successfully produces paired `accuracy_html` and `accuracy_markdown` values per F4.2.
-- [ ] Lift analysis published per F4.3.
-- [ ] v3 design input captured per F4.4, even if the result is a null finding.
+- [x] ≥ 1 vendor from corpus-002 successfully produces paired `accuracy_html` and `accuracy_markdown` values per F4.2. *(Session 4: Track A on 25 pages × 9 vendors. Session 5: Track B intersection-Q/A on 17 pages × 8 vendors.)*
+- [x] Lift analysis published per F4.3. *(Addendum F + `findings/phase-5/` directory.)*
+- [x] v3 design input captured per F4.4, even if the result is a null finding. *(Verdict: `keep_as_diagnostic_only`; Phase 7 retrieval-mode benchmark is the next gate.)*
 
 ### Session 5
 
