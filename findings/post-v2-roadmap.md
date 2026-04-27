@@ -6,7 +6,161 @@
 
 ---
 
-## 1. Problem Statement
+## 1. Current Scoring Model — `v2-evidence-partial`
+
+This section is the authoritative summary of what v2 scores and how. The implementation lives in [retrievability/access_gate_evaluator.py](../retrievability/access_gate_evaluator.py). The version string is declared in [retrievability/profiles.py](../retrievability/profiles.py) as `CLIPPER_SCORING_VERSION = 'v2-evidence-partial'`.
+
+### 1.1 Headline composite
+
+```
+parseability_score = 0.50 × content_extractability + 0.50 × http_compliance
+universal_score    = parseability_score   (equal by construction in v2)
+```
+
+The two contributing pillars are the only ones with a single-pillar Pearson r ≥ +0.24 against `accuracy_rendered` on corpus-002 (n=43). The four other pillars are still computed and reported in `component_scores`, but multiplied by 0 in the headline. The v1 profile-weighted composite is preserved in `audit_trail._content_type.v1_weights_for_reference` for back-compat A/B work.
+
+### 1.2 The six pillars — what each one measures and how
+
+Every pillar produces a 0-100 sub-score and an audit-trail dict. The pillars run in parallel against a single rendered HTML snapshot per URL.
+
+#### Content Extractability — 50% headline weight
+
+- **Standard:** Mozilla Readability (the algorithm that powers Firefox Reader View).
+- **Library:** [`readability-lxml`](https://pypi.org/project/readability-lxml/).
+- **Implementation:** `_evaluate_content_extractability` ([retrievability/access_gate_evaluator.py](../retrievability/access_gate_evaluator.py)).
+- **Sub-scores (sum to 100):**
+  - **Signal-to-noise ratio (0-40)** — `len(extracted_text) / len(raw_page_text)`. Optimal range is 0.15-0.85; below 5% means Readability couldn't find content; above 85% means the page is mostly content (still good).
+  - **Structure preservation (0-30)** — fraction of `<h1>`-`<h6>`, `<ul>`/`<ol>`, and `<pre>`/`<code>` elements that survive extraction (10 pts each). Pages with no original headings/lists/code get neutral credit (5/10 each).
+  - **Boundary detection (0-30)** — does the algorithm produce a non-empty title (10), > 100 chars of content (10), and meaningful overlap between the extracted text and any `<main>`/`<article>` region in the source (10)?
+- **corpus-002 single-pillar r:** **+0.484**.
+- **Why it predicts retrieval:** if Readability can cleanly extract a page, an LLM agent using the same heuristics for chunking/summarization gets a clean input. Pages that fail Readability are typically chrome-heavy, dialog-heavy, or JS-rendered with low static signal.
+
+#### HTTP Compliance — 50% headline weight
+
+- **Standard:** RFC 7231 + robots.txt + cache-header semantics.
+- **Library:** `httpx` (live HTTP) + `BeautifulSoup` (in-page declarations).
+- **Implementation:** `_evaluate_http_compliance_enhanced` ([retrievability/access_gate_evaluator.py](../retrievability/access_gate_evaluator.py)).
+- **Sub-scores (sum capped at 100):**
+  - **HTML reachability (0-15)** — `GET <url>` with `Accept: text/html`. 200 → 15; 3xx → 11; other 2xx → 8; 4xx/5xx → 0.
+  - **Redirect efficiency (0-25)** — measured from `crawl_data['redirect_chain']`. 0-1 hops = full credit; degrades with chain length and cross-origin hops.
+  - **Crawl permissions (0-20)** — `<meta name="robots">` parsed for `noindex`/`nofollow` (12 pts permissive, 10 with nofollow, 0 with noindex), plus `robots.txt` allow/deny check for the page's path (+8 if allowed).
+  - **Cache headers (0-20)** — `HEAD` request inspects `ETag` (+8), `Last-Modified` (+8), and `Cache-Control` (+4 unless `no-store`).
+  - **Agent content hints (0 — diagnostic-only in v2)** — detects markdown alternates, `llms.txt` references, and `data-llm-hint` attributes. Recorded with `scoring_contribution: 0` and `diagnostic_only: true`. Phase 4.4 fix; explicitly does *not* contribute to the headline pending Phase 7 retrieval-mode evidence.
+- **corpus-002 single-pillar r:** **+0.242**.
+- **Why it predicts retrieval:** clean HTTP semantics correlate with reproducible fetches across agent runs. Pages with broken redirect chains, missing cache validators, or noindex-but-publicly-listed contradictions are operationally unreliable for an agent.
+
+#### Semantic HTML — 0% headline weight (diagnostic-only)
+
+- **Standard:** W3C HTML5 semantic elements + ARIA landmarks.
+- **Library:** `BeautifulSoup` with `html5lib` parser.
+- **Implementation:** `_evaluate_semantic_html` ([retrievability/access_gate_evaluator.py](../retrievability/access_gate_evaluator.py)).
+- **Sub-scores (sum to 100):**
+  - **Semantic coverage (0-60)** — fraction of HTML5 semantic elements present out of 11 candidates: `header`, `nav`, `main`, `article`, `section`, `aside`, `footer`, `figure`, `figcaption`, `time`, `mark`. Each element also gets a "proper usage" check (e.g., exactly one `<main>`, `<nav>` inside `<header>`, etc.).
+  - **ARIA bonus (0-20)** — 5 pts per element with a `role=` attribute, capped at 20.
+  - **Heading bonus (0-20)** — 2 pts per `<h1>`-`<h6>`, capped at 20.
+- **corpus-002 single-pillar r:** **−0.301** (negative).
+- **Why it's diagnostic-only:** the negative correlation indicates that pages with more "semantic markup" on corpus-002 tend to score *worse* on agent retrieval. Suspected mechanism: heavy semantic markup correlates with template-driven CMS pages that are chrome-dense rather than content-dense. The pillar still runs because semantic markup is a documented W3C standard worth measuring; it just doesn't earn headline points until corpus-003 gives a clean signal.
+
+#### Structured Data — 0% headline weight (diagnostic-only)
+
+- **Standard:** Schema.org (Google/Microsoft/Yahoo consortium).
+- **Library:** [`extruct`](https://pypi.org/project/extruct/) — extracts JSON-LD, microdata, RDFa, Open Graph in one pass.
+- **Implementation:** `_evaluate_structured_data` ([retrievability/access_gate_evaluator.py](../retrievability/access_gate_evaluator.py)).
+- **Sub-scores (sum to 100):**
+  - **Type appropriateness (0-20)** — does the declared `@type` match the detected content profile? `Article`/`TechArticle` for `article`, `FAQPage` for `faq`, `HowTo` for `tutorial`, `SoftwareSourceCode` for `sample`, etc.
+  - **Field completeness (0-30)** — required fields per type are populated (e.g., `Article` requires `headline`, `author`, `datePublished`; `FAQPage` requires non-empty `mainEntity` of `Question`/`Answer` pairs). Phase 4.1 added per-type validation.
+  - **Multiple formats bonus (0-20)** — pages declaring structured data in ≥ 2 formats (e.g., JSON-LD + microdata) earn full credit.
+  - **Schema validation (0-30)** — basic shape validation: required properties present, expected value types, no obviously broken declarations.
+- **corpus-002 single-pillar r:** **+0.036** (near-zero).
+- **Why it's diagnostic-only:** the corpus-002 signal is too weak to authorize headline weight. Many high-accuracy pages have no structured data; many low-accuracy pages have rich JSON-LD. Either the metric is poorly calibrated to retrieval, or structured data is genuinely orthogonal to comprehension-mode accuracy. Phase 7 retrieval-mode benchmark is where this pillar most plausibly recovers signal (structured data should help retrieval where it doesn't help comprehension).
+
+#### DOM Navigability — 0% headline weight (diagnostic-only)
+
+- **Standard:** WCAG 2.1 AA via axe-core (Deque Systems).
+- **Library:** [`axe-selenium-python`](https://pypi.org/project/axe-selenium-python/) injects axe-core JavaScript into a headless Chrome session and runs the standard rule set.
+- **Implementation:** `_evaluate_wcag_accessibility` ([retrievability/access_gate_evaluator.py](../retrievability/access_gate_evaluator.py) line 364) with `_evaluate_static_accessibility` fallback when Selenium is unavailable.
+- **Sub-scores:**
+  - axe-core returns counts of violations, passes, incompletes, and inapplicables across ~90 WCAG rules. The score is a normalized function of `passes / (passes + violations)` weighted by rule severity (`critical` × 4, `serious` × 3, `moderate` × 2, `minor` × 1).
+  - When the live browser path fails, the static fallback uses BeautifulSoup to count `aria-*` attributes, `<label>` associations, alt text on images, and tab-index hygiene.
+- **corpus-002 single-pillar r:** **−0.189** (negative).
+- **Why it's diagnostic-only:** strict WCAG compliance penalizes the rendered HTML differently than agents care about. axe-core flags missing alt text, low contrast, and aria-label gaps that an LLM doesn't experience. The negative correlation suggests pages with *more* WCAG violations are sometimes *easier* for LLMs (because they're plain HTML rather than complex SPA scaffolding). This pillar may need outright redefinition in v3.
+- **Operational note:** WCAG evaluation requires Chrome and ChromeDriver. CI installs both via `copilot-setup-steps.yml`. Each WCAG run takes ~3-5 seconds per URL. The Phase 5 dual-fetcher captures separate `accuracy_raw` (no JS) and `accuracy_rendered` (Selenium-rendered) values; only `accuracy_rendered` is used as the v2 calibration target.
+
+#### Metadata Completeness — 0% headline weight (diagnostic-only)
+
+- **Standard:** Dublin Core + Schema.org + OpenGraph.
+- **Library:** `BeautifulSoup` + JSON-LD parsing.
+- **Implementation:** `_evaluate_metadata_completeness` ([retrievability/access_gate_evaluator.py](../retrievability/access_gate_evaluator.py) line 1258).
+- **Sub-scores (sum to 100):** seven required fields, each worth 15 points (plus a 10-point language field):
+  - **title (15)** — `<title>` element OR `<meta property="og:title">` OR Schema.org `name`/`headline`.
+  - **description (15)** — `<meta name="description">` OR `<meta property="og:description">` OR Schema.org `description`.
+  - **author (15)** — `<meta name="author">` OR Schema.org `author` OR `publisher`.
+  - **date (15)** — `<meta name="*date*">` OR `<time datetime="…">` OR Schema.org `datePublished`/`dateModified`.
+  - **topic (15)** — `<meta name="topic">` / `<meta name="category">` OR Schema.org `articleSection` OR `<meta name="keywords">`. **`ms.topic` is explicitly excluded** (Phase 4.4 commit `3c71ce2`, April 22 2026): it's a Microsoft Learn CMS template signal consumed by the classifier in `profiles.py`, not a semantic topic declaration. Accepting it here gave Learn a vendor-specific 15-point credit no other doc system could earn.
+  - **language (10)** — `<html lang="…">` OR `<meta http-equiv="Content-Language">` OR Schema.org `inLanguage`.
+  - **canonical (15)** — `<link rel="canonical">` href.
+- **corpus-002 single-pillar r:** **+0.224** (just below the +0.24 ship threshold).
+- **Why it's diagnostic-only:** corpus-002 r = +0.224 is a strong candidate to promote into the v3 headline if corpus-003 confirms it. It missed the v2 cut by 0.016. Several of these fields (canonical, date, language) plausibly do help agent retrieval; corpus-002 just wasn't large enough to separate that signal from noise above the ship gate.
+
+### 1.3 Content-type profile detection (active, but not weighted in v2)
+
+`detect_content_type()` ([retrievability/profiles.py](../retrievability/profiles.py)) classifies every page as one of `article` / `landing` / `reference` / `sample` / `faq` / `tutorial`. Detection still runs and the label is reported in `content_type.profile`, but profile-specific weight tables are inactive in v2 — every profile collapses to the same 50/50 composite.
+
+The classifier consults signals in this order, stopping at the first hit:
+
+1. **`<meta name="ms.topic">`** — authoritative on Microsoft Learn (`overview` → landing, `quickstart`/`tutorial` → tutorial, `reference`/`api-reference` → reference, etc.). Phase 4.4 made `ms.topic` *classifier-only*; it no longer earns metadata-pillar points.
+2. **JSON-LD `@type`** — `FAQPage` → faq, `HowTo` → tutorial, `SoftwareSourceCode` → sample.
+3. **URL path heuristics** — `/samples/`, `/api/`, `/reference/`, `/quickstart/`, `/faq/`, etc.
+4. **DOM heuristics** — large `<dl>` lists → reference; dense `<Question>`/`<Answer>` pairs → faq.
+5. **Default** — `article`.
+
+The full detection trace (winning signal, matched value) is recorded in `audit_trail._content_type.detection`. Classifier output is locked against `tests/fixtures/classifier_corpus_golden.json`; CI's `tests/test_classifier_lockdown.py` fails the build on any drift.
+
+### 1.4 Calibration evidence (corpus-002, n=43)
+
+| Metric | Value | Source |
+|---|---|---|
+| v2 composite vs `accuracy_rendered` | **r = +0.6181** | [evaluation/phase5-results/corpus-002-analysis/v2-regression.json](../evaluation/phase5-results/corpus-002-analysis/v2-regression.json) |
+| Llama-3.3-70B mean accuracy | 0.698 | Addendum D §D.4 |
+| GPT-4o mean accuracy | 0.595 | Addendum G §G.1 |
+| DeepSeek-V3.2 mean accuracy | 0.591 | Addendum G §G.1 |
+| Pooled cross-judge κ | 0.706-0.817 | Addendum G §G.2 |
+| Per-judge composite r (cross-judge robustness) | +0.440 / +0.497 / +0.618 | [evaluation/phase5-results/corpus-002-analysis/v2-gate-cross-judge.json](../evaluation/phase5-results/corpus-002-analysis/v2-gate-cross-judge.json) |
+| Single-judge 90% CI on accuracy | [0.633, 0.758] | Addendum D §D.4 |
+| Cross-judge union 90% CI on accuracy | [0.530, 0.758] | Addendum G §G.4 |
+| Majority-vote 90% CI on accuracy | [0.567, 0.688] | Addendum G §G.4 |
+| Ship gate (PRD F2.6) | r ≥ +0.35 — **passes under all three judges** | F3.5 / Addendum G §G.5 |
+
+The `confidence_range` field on every `ScoreResult` carries: scoring version, evidence tier (`partial`), the `V2_WEIGHTS` dict, the calibration-corpus pointer, and the caveats listed in `retrievability/access_gate_evaluator.py` (single-corpus / four-pillar diagnostic-only / cross-judge variance / no temporal variance).
+
+### 1.5 What v2 explicitly does not measure
+
+- **Served markdown / `llms.txt`** — detected and recorded as agent content hints with `scoring_contribution: 0`. Phase 4.4 / F4.4 verdict: `keep_as_diagnostic_only` until Phase 7 retrieval-mode evidence is available. The conventional "markdown is more token-efficient" claim does not survive corpus-002 (median 1.4× more tokens than a Readability extract).
+- **Fetch Integrity** — server `Accept` honour, redirect determinism under agent UAs, cache consistency across fetches. Scoped for v3 if corpus-003 produces signal.
+- **Cross-agent variance** — `accuracy_rendered` is single-evaluator ground truth on corpus-002. Generalization to other agents/prompting modes/long-horizon tasks is open.
+- **Profile-specific weighting** — collapsed in v2 by design. v1 weights are recorded in audit trails for back-compat and A/B work.
+
+### 1.6 Five-second runbook
+
+```bash
+# Single URL, structured output
+python main.py express --urls https://example.com --out results --quiet
+
+# Multi-URL
+python main.py express urls/clipper-demo-urls.txt --out results --name eval-name --quiet
+
+# Outputs:
+# results/<name>_scores.json — structured per-URL results (use parseability_score
+#                              for same-content-type comparisons; use
+#                              universal_score for cross-vendor or cross-corpus)
+# results/<name>.md          — human-readable report
+```
+
+For cross-vendor, cross-corpus, or cross-content-type comparisons, **always use `universal_score`** and disclose the per-page profile, the detection source, and the cross-judge CI. Methodology rules in [.github/copilot-instructions.md](../.github/copilot-instructions.md) → *When Asked to Write a Comparison or Analysis Report*.
+
+---
+
+## 2. Problem Statement
 
 Clipper's v2 scoring model ships under the tag `v2-evidence-partial` because the evidence base is a single corpus (corpus-002, n=43, curated). As of Phase 6 Session 6, four of the five validation axes that gate the `-evidence-partial` qualifier have been settled:
 
@@ -34,7 +188,7 @@ This document defines the work that closes axes 5 and 6 and moves Clipper from `
 
 ---
 
-## 2. Objective
+## 3. Objective
 
 Move the v2 scoring model from internally-validated to externally-validated by:
 
@@ -50,7 +204,7 @@ The end state is:
 
 ---
 
-## 3. Acceptance Criteria
+## 4. Acceptance Criteria
 
 ### Block A — Corpus-003 Generalization
 
@@ -83,7 +237,7 @@ The end state is:
 
 ---
 
-## 4. Session-Level Breakdown
+## 5. Session-Level Breakdown
 
 Sessions are dependency-ordered, not time-boxed. Entry and exit criteria below; do not start a session before its entry criteria pass.
 
@@ -188,7 +342,7 @@ Sessions are dependency-ordered, not time-boxed. Entry and exit criteria below; 
 
 ---
 
-## 5. Sequencing Diagram
+## 6. Sequencing Diagram
 
 ```
 Now ────► Session 7 (corpus-003 spec)
@@ -221,7 +375,7 @@ Now ────► Session 7 (corpus-003 spec)
 
 ---
 
-## 6. What This Roadmap Explicitly Does Not Do
+## 7. What This Roadmap Explicitly Does Not Do
 
 - **No more corpus-002 polish.** Per-vendor cross-judge CIs, second-order κ analyses, additional judges beyond the existing 3 — all rounding error. Corpus-002 is closed evidence.
 - **No 4th judge on corpus-002.** The Llama / GPT-4o / DeepSeek panel already represents three model families and three severity calibrations. A 4th would reduce the per-judge CI by ~0.02.
@@ -231,7 +385,7 @@ Now ────► Session 7 (corpus-003 spec)
 
 ---
 
-## 7. Decision Points Worth Flagging Now
+## 8. Decision Points Worth Flagging Now
 
 These are choices that should be made deliberately, not by default:
 
@@ -242,7 +396,7 @@ These are choices that should be made deliberately, not by default:
 
 ---
 
-## 8. Cross-References
+## 9. Cross-References
 
 - v2 specification and weight table: [`docs/scoring.md`](../docs/scoring.md)
 - v2 calibration evidence: [`findings/phase-5-corpus-002-findings.md`](phase-5-corpus-002-findings.md)
