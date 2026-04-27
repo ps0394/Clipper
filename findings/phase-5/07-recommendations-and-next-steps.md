@@ -88,7 +88,7 @@ These are not scoring changes but they protect the scoring credibility:
 - **Every Clipper report quoting corpus-002 numbers must include the 90% CI.** Means alone are not publishable.
 - **Cross-vendor reports must follow the rules** in [03-judge-confidence-intervals.md](03-judge-confidence-intervals.md): use `universal_score`, disclose per-page profile + detection source, match sample sizes, do not mix exemplars into competitor averages, project symmetric fixes.
 - **Findings in this directory are summaries.** Audit-trail evidence sits in [phase-5-corpus-002-findings.md](../phase-5-corpus-002-findings.md). Reviewers should land there, not here.
-- **Phase 4.4 (metadata-pillar `ms.topic` neutrality audit) is in flight** and affects any cross-vendor metadata-pillar comparison. Until it lands, qualifying language is required when reporting metadata-pillar deltas between Microsoft Learn and other vendors.
+- **Phase 4.4 (metadata-pillar `ms.topic` neutrality) landed** in commit `3c71ce2` (April 22 2026). corpus-002 scores captured on or after April 23 2026 already reflect the fix; pre-fix Learn metadata numbers are not directly comparable. The corpus-002 `metadata_completeness` correlation (r=+0.224) was computed post-fix and stands.
 
 ---
 

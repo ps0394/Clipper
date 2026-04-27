@@ -39,7 +39,7 @@ If a claim is on this list, it is **not** corpus-002 evidence. Some are plausibl
 ### Cross-vendor "competitive" framings
 
 - **"Vendor X beats Vendor Y" without published intervals.** Methodology error.
-- **"Learn's metadata pillar leads because of CMS template quality."** Phase 4.4 is in flight: the metadata pillar accepts `ms.topic` as a topic-field signal in a way that may inflate Learn metadata scores. Until Phase 4.4 lands, attributing Learn's metadata lead entirely to template quality is not authorized.
+- **"Learn's metadata pillar leads because of CMS template quality"** — to the extent it is supported at all, the supporting numbers must come from Phase 4.4-corrected scoring (commit `3c71ce2`, April 22 2026). Pre-fix Learn metadata scores included a 15-point `ms.topic` topic-field credit no other vendor could earn from a comparable internal signal; offline measurement on the v3 corpora showed 14 of 16 Learn pages lost that credit (mean metadata Δ −13.12), 0 of 6 competitor pages affected. Reports that cite Learn metadata numbers from before April 23 2026 must qualify the comparison.
 - **"Agent-ready" / "needs improvement" bands** without stating which score (`parseability_score` vs `universal_score`) the band is applied to.
 - **Vendor template fixes recommended from a single-run evaluation** without reporting variance or confidence.
 

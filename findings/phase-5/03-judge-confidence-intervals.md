@@ -69,7 +69,7 @@ For any Clipper report or analysis that compares vendors using corpus-002 number
 1. **Quote the 90% CI alongside the mean.** Means without intervals are not publishable.
 2. **State n.** n=2 cells are diagnostic-only. n=1 has no interval and should be marked as such.
 3. **Use `universal_score`, not `parseability_score`, for cross-vendor headline deltas.** Profile-weighted scores apply different weights to different pages and are not on a common scale.
-4. **Disclose the per-page profile assignment and detection source** (`ms.topic` / `schema_type` / `url` / `dom` / `default`). Asymmetric detection signals are a known confound (Phase 4.4).
+4. **Disclose the per-page profile assignment and detection source** (`ms.topic` / `schema_type` / `url` / `dom` / `default`). Asymmetric *classifier* signals are still informative metadata to disclose; the corresponding asymmetric *scoring* confound was fixed in Phase 4.4 (commit `3c71ce2`).
 5. **Match sample sizes or disclose the asymmetry.** 16 vs 6 is not a comparable baseline.
 6. **Do not mix exemplars into competitor averages.** A page is one or the other.
 7. **Symmetric projections.** If projecting fixes on the primary subject, project equivalent fixes on the comparison set with the same assumptions.

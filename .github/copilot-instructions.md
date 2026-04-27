@@ -101,7 +101,7 @@ Every comparison report must disclose:
 1. **Which headline score is used** (`parseability_score` vs `universal_score`) and **why**.
 2. **Per-page profile assignment** — in the appendix table, add a column showing the profile each page was scored under. Different profiles mean different weights; readers cannot interpret deltas without this.
 3. **Detection source** — whether each page's profile came from `ms.topic`, `schema_type`, URL heuristic, DOM heuristic, or default. Pages typed via `ms.topic` get a vendor-specific signal; pages typed via the other sources get universal signals. This asymmetry matters for cross-vendor comparisons.
-4. **Methodology caveats section** — link to known biases and in-flight phases that affect the numbers (see `docs/improvement-plan.md`). Currently relevant: Phase 4.4 (metadata-pillar vendor-neutrality audit — `ms.topic` accepted in the metadata topic-field check in a way that may inflate Learn metadata scores). If a report's findings depend on a pillar with an in-flight neutrality fix, say so.
+4. **Methodology caveats section** — link to known biases and methodology limits (see `docs/improvement-plan.md`). Phase 4.4 (metadata-pillar `ms.topic` neutrality) **landed** in commit `3c71ce2` (April 2026): `ms.topic` is no longer accepted in the metadata pillar's topic-field check. corpus-002 scores captured on or after April 23, 2026 already reflect the fix; older score artifacts may not. If a report quotes pre-fix Learn metadata numbers, say so.
 
 ### Required rules for cross-vendor / cross-corpus comparisons
 
@@ -114,7 +114,7 @@ Every comparison report must disclose:
 ### Forbidden framings
 
 - Presenting `parseability_score` deltas across different profiles as a like-for-like comparison.
-- Attributing a metadata-pillar lead entirely to "CMS template quality" without acknowledging the `ms.topic` signal-acceptance asymmetry (until Phase 4.4 lands).
+- Attributing a metadata-pillar lead entirely to "CMS template quality" without distinguishing the pre-fix Learn `ms.topic` 15-point credit (now removed in Phase 4.4) from genuine template-driven metadata signals.
 - Using "agent-ready" / "needs improvement" bands without stating which score (`parseability_score` or `universal_score`) the band is applied to.
 - Recommending vendor template fixes based on a single-run evaluation without reporting variance or confidence.
 
