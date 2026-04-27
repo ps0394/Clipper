@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately states both required conditions: access without beta header for Opus 4.6 and Sonnet 4.6, and the error for Sonnet 4.5 after April 30, 2026.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 743,
+    "tokens_out": 51
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes both the pricing multiplier (1.1x) and the model eligibility date (after February 1, 2026), matching all facts in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 589,
+    "tokens_out": 41
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer explicitly states \"not in document,\" which matches the defined condition for this judgment.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 623,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly lists both required models and states they are available, matching all facts in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 617,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states that requests will return an error and recommends migrating to Claude Haiku 4.5, matching the factual content of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 607,
+    "tokens_out": 36
+  }
+]

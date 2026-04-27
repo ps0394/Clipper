@@ -1,489 +1,1387 @@
 {
   "n_pages": 43,
   "judges_found": [
+    "deepseek",
+    "gpt4o",
     "primary"
   ],
   "pooled_per_judge": {
+    "deepseek": {
+      "n_items": 215,
+      "accuracy": 0.5907
+    },
+    "gpt4o": {
+      "n_items": 215,
+      "accuracy": 0.5953
+    },
     "primary": {
       "n_items": 215,
       "accuracy": 0.6977
     }
   },
-  "pooled_kappa": {},
-  "warning": "Only one judge found in corpus-002 grades. Cross-judge kappa is not computable until F3.2 runs (regrade corpus-002 with 2 additional judges). This script will emit kappa numbers automatically on the next run once those files exist.",
+  "pooled_kappa": {
+    "deepseek__vs__gpt4o": {
+      "kappa_pooled": 0.8166,
+      "n_items": 215,
+      "per_page_kappa_below_0.60": {
+        "count": 12,
+        "of_total": 41,
+        "fraction": 0.2927
+      }
+    },
+    "deepseek__vs__primary": {
+      "kappa_pooled": 0.7609,
+      "n_items": 215,
+      "per_page_kappa_below_0.60": {
+        "count": 14,
+        "of_total": 38,
+        "fraction": 0.3684
+      }
+    },
+    "gpt4o__vs__primary": {
+      "kappa_pooled": 0.7063,
+      "n_items": 215,
+      "per_page_kappa_below_0.60": {
+        "count": 16,
+        "of_total": 41,
+        "fraction": 0.3902
+      }
+    }
+  },
+  "warning": null,
   "per_page": [
     {
       "slug": "cloud-google-com-bigquery-docs-samples",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.4,
+        "gpt4o": 0.4,
         "primary": 0.6
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.6875,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.6875,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     },
     {
       "slug": "developer-mozilla-org-en-US-docs-Learn-Forms-Your-first-form",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.6,
+        "gpt4o": 0.6,
         "primary": 0.6
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "developer-mozilla-org-en-US-docs-Web-HTTP-CORS",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.8,
+        "gpt4o": 0.8,
         "primary": 0.8
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "docs-anthropic-com-en-api-getting-started",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.6,
+        "gpt4o": 0.6,
         "primary": 0.6
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "docs-anthropic-com-en-docs-about-claude-models-overview",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.4,
+        "gpt4o": 0.4,
         "primary": 0.6
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.6875,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.6875,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     },
     {
       "slug": "docs-anthropic-com-en-docs-build-with-claude-prompt-caching",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.8,
+        "gpt4o": 0.8,
         "primary": 1.0
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": -0.25,
+          "n_items": 5,
+          "pct_agree": 0.6
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.0,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.0,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     },
     {
       "slug": "docs-anthropic-com-en-docs-welcome",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.4,
+        "gpt4o": 0.4,
         "primary": 0.6
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.6667,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.6667,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     },
     {
       "slug": "docs-anthropic-com-en-release-notes-api",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.8,
+        "gpt4o": 0.8,
         "primary": 0.8
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "docs-aws-amazon-com-AmazonS3-latest-userguide-Welcome-html",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.6,
+        "gpt4o": 0.4,
         "primary": 1.0
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 0.6154,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.0,
+          "n_items": 5,
+          "pct_agree": 0.6
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.0,
+          "n_items": 5,
+          "pct_agree": 0.4
+        }
+      }
     },
     {
       "slug": "docs-aws-amazon-com-AWSEC2-latest-APIReference-API-RunInstances-html",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.8,
+        "gpt4o": 0.8,
         "primary": 1.0
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.0,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.0,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     },
     {
       "slug": "docs-docker-com-engine-reference-commandline-run",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.8,
+        "gpt4o": 0.4,
         "primary": 0.8
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 0.375,
+          "n_items": 5,
+          "pct_agree": 0.6
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.375,
+          "n_items": 5,
+          "pct_agree": 0.6
+        }
+      }
     },
     {
       "slug": "docs-docker-com-get-started",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.6,
+        "gpt4o": 0.6,
         "primary": 0.8
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.5455,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.5455,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     },
     {
       "slug": "docs-docker-com-get-started-02-our-app",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.6,
+        "gpt4o": 0.6,
         "primary": 0.6
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "docs-github-com-en-get-started-learning-about-github-githubs-plans",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.2,
+        "gpt4o": 0.2,
         "primary": 0.6
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.2857,
+          "n_items": 5,
+          "pct_agree": 0.6
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.2857,
+          "n_items": 5,
+          "pct_agree": 0.6
+        }
+      }
     },
     {
       "slug": "docs-github-com-en-get-started-start-your-journey-hello-world",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.4,
+        "gpt4o": 0.4,
         "primary": 0.6
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.6667,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.6667,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     },
     {
       "slug": "docs-github-com-en-rest-repos-repos",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.0,
+        "gpt4o": 0.0,
         "primary": 0.0
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "docs-perplexity-ai-guides-prompt-guide",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.6,
+        "gpt4o": 0.8,
         "primary": 0.8
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 0.5455,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.5455,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "docs-perplexity-ai-guides-search-domain-filter-guide",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.6,
+        "gpt4o": 0.8,
         "primary": 0.8
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 0.5455,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.5455,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "docs-python-org-3-faq-general-html",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.6,
+        "gpt4o": 0.8,
         "primary": 1.0
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 0.5455,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.0,
+          "n_items": 5,
+          "pct_agree": 0.6
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.0,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     },
     {
       "slug": "docs-python-org-3-faq-programming-html",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.8,
+        "gpt4o": 0.8,
         "primary": 0.8
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "docs-python-org-3-library-functions-html",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.6,
+        "gpt4o": 0.4,
         "primary": 0.8
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 0.6154,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.5455,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.2857,
+          "n_items": 5,
+          "pct_agree": 0.6
+        }
+      }
     },
     {
       "slug": "docs-python-org-3-library-os-html",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.2,
+        "gpt4o": 0.4,
         "primary": 0.8
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 0.2857,
+          "n_items": 5,
+          "pct_agree": 0.6
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.25,
+          "n_items": 5,
+          "pct_agree": 0.4
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.1176,
+          "n_items": 5,
+          "pct_agree": 0.4
+        }
+      }
     },
     {
       "slug": "docs-python-org-3-tutorial-introduction-html",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.6,
+        "gpt4o": 0.6,
         "primary": 0.6
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "docs-snowflake-com-en-sql-reference-functions-count",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 1.0,
+        "gpt4o": 1.0,
         "primary": 1.0
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": null,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": null,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": null,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "docs-snowflake-com-en-user-guide-data-load-overview",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.4,
+        "gpt4o": 0.2,
         "primary": 0.4
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 0.7059,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.7059,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     },
     {
       "slug": "docs-snowflake-com-en-user-guide-sample-data-using",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.8,
+        "gpt4o": 0.8,
         "primary": 0.8
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "docs-stripe-com-api-charges",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.0,
+        "gpt4o": 0.0,
         "primary": 0.0
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "docs-stripe-com-payments-accept-a-payment-platform-web",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.6,
+        "gpt4o": 0.6,
         "primary": 0.6
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "docs-stripe-com-payments-quickstart",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.6,
+        "gpt4o": 0.6,
         "primary": 0.8
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.5455,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.5455,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     },
     {
       "slug": "en-wikipedia-org-wiki-Cloud-computing",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.4,
+        "gpt4o": 0.8,
         "primary": 0.0
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 0.2857,
+          "n_items": 5,
+          "pct_agree": 0.6
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.0,
+          "n_items": 5,
+          "pct_agree": 0.6
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.0,
+          "n_items": 5,
+          "pct_agree": 0.2
+        }
+      }
     },
     {
       "slug": "en-wikipedia-org-wiki-Large-language-model",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.4,
+        "gpt4o": 0.6,
         "primary": 0.6
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 0.6154,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.6154,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "help-github-com-en-github-site-policy-github-terms-of-service",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.4,
+        "gpt4o": 0.8,
         "primary": 0.6
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 0.375,
+          "n_items": 5,
+          "pct_agree": 0.6
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.6875,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.5833,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     },
     {
       "slug": "kubernetes-io-docs-reference-kubectl",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.6,
+        "gpt4o": 0.8,
         "primary": 0.8
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 0.5455,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.5455,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "kubernetes-io-docs-tutorials-hello-minikube",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.8,
+        "gpt4o": 0.8,
         "primary": 0.8
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "learn-microsoft-com-en-us-azure-ai-services-openai-concepts-models",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 1.0,
+        "gpt4o": 0.8,
         "primary": 1.0
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 0.0,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "deepseek__vs__primary": {
+          "kappa": null,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.0,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     },
     {
       "slug": "learn-microsoft-com-en-us-azure-aks-faq",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 1.0,
+        "gpt4o": 1.0,
         "primary": 1.0
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": null,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": null,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": null,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "learn-microsoft-com-en-us-azure-aks-tutorial-kubernetes-prepare-app",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.6,
+        "gpt4o": 0.6,
         "primary": 0.6
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "learn-microsoft-com-en-us-dotnet-api-system-string",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.4,
+        "gpt4o": 0.4,
         "primary": 0.6
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.6875,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.6875,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     },
     {
       "slug": "nodejs-org-api-fs-html",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.6,
+        "gpt4o": 0.6,
         "primary": 0.8
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 0.5455,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.5455,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     },
     {
       "slug": "nodejs-org-en-about",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.6,
+        "gpt4o": 0.6,
         "primary": 0.6
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        }
+      }
     },
     {
       "slug": "platform-openai-com-docs-guides-function-calling",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 1.0,
+        "gpt4o": 0.8,
         "primary": 1.0
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 0.0,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "deepseek__vs__primary": {
+          "kappa": null,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.0,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     },
     {
       "slug": "platform-openai-com-docs-quickstart",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 0.4,
+        "gpt4o": 0.2,
         "primary": 0.4
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 0.7059,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "deepseek__vs__primary": {
+          "kappa": 1.0,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.7059,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     },
     {
       "slug": "www-postgresql-org-docs-current-sql-select-html",
       "judges": [
+        "deepseek",
+        "gpt4o",
         "primary"
       ],
       "n_items": 5,
       "per_judge_accuracy": {
+        "deepseek": 1.0,
+        "gpt4o": 0.8,
         "primary": 1.0
       },
-      "pairwise_kappa": {}
+      "pairwise_kappa": {
+        "deepseek__vs__gpt4o": {
+          "kappa": 0.0,
+          "n_items": 5,
+          "pct_agree": 0.8
+        },
+        "deepseek__vs__primary": {
+          "kappa": null,
+          "n_items": 5,
+          "pct_agree": 1.0
+        },
+        "gpt4o__vs__primary": {
+          "kappa": 0.0,
+          "n_items": 5,
+          "pct_agree": 0.8
+        }
+      }
     }
   ]
 }

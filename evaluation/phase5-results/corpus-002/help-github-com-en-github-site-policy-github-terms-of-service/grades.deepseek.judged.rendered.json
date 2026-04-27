@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the specific conditions under which GitHub can access private repositories that are listed in the ground truth (e.g., security purposes, support matters, maintaining integrity, user consent).",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 695,
+    "tokens_out": 43
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys all key points from the ground truth regarding licensing for public and private repositories and the specific rights GitHub grants itself, with no contradictions.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 922,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer explicitly states \"not in document,\" which matches the specified condition for this judgment.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 621,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys the same key responsibilities regarding administrative control and liability as the ground truth, covering both account types and the Organization owner's specific responsibility.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 676,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the restriction on using the API to develop/train commercial AI systems without waiving restrictions, which is a required element of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 727,
+    "tokens_out": 38
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer covers all key facts from the ground truth: the computational/data constraints of early statistical models, the efficiency and parallelizability of transformers, the specific cost examples (GPT-2 and PaLM), and the trade-off between scalability and financial/resource accessibility.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 908,
+    "tokens_out": 57
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys all key facts from the ground truth: the training objectives (next token vs. masked token prediction), the practical applications (generation vs. understanding tasks), and how the designs influence use in chatbots/code completion.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 864,
+    "tokens_out": 52
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer lists only three methods and omits two (RAG and tool use) that are part of the ground truth's required five.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 683,
+    "tokens_out": 34
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the specific loss formula and the detailed explanation of diminishing returns from the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 751,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the second part of the ground truth about how this exception challenges the scaling assumption.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 669,
+    "tokens_out": 26
+  }
+]

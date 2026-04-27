@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the dependency on the health of the `rabbitmq` container and the consequence of it not being healthy.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 628,
+    "tokens_out": 40
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer incorrectly includes \"test\" as a common parameter, which is not mentioned in the ground-truth answer.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 602,
+    "tokens_out": 29
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, covering both providers, their configuration locations, and where the configuration is specified.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 614,
+    "tokens_out": 33
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the dependency of `order-service` on `rabbitmq`, which is a required part of the ground-truth answer.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 635,
+    "tokens_out": 34
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys all the required facts from the ground-truth answer, including the sequence of steps and tools used, while adding extra details that do not contradict the ground truth.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 833,
+    "tokens_out": 40
+  }
+]

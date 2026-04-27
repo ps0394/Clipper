@@ -1,0 +1,60 @@
+{
+  "n_pages": 43,
+  "judges": [
+    "deepseek",
+    "gpt4o",
+    "primary"
+  ],
+  "n_bootstrap": 10000,
+  "alpha": 0.1,
+  "per_judge": {
+    "deepseek": {
+      "n": 43,
+      "mean": 0.5907,
+      "ci_low": 0.5302,
+      "ci_high": 0.6512,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "gpt4o": {
+      "n": 43,
+      "mean": 0.5953,
+      "ci_low": 0.5349,
+      "ci_high": 0.6558,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    },
+    "primary": {
+      "n": 43,
+      "mean": 0.6977,
+      "ci_low": 0.6326,
+      "ci_high": 0.7581,
+      "alpha": 0.1,
+      "n_bootstrap": 10000
+    }
+  },
+  "majority_vote": {
+    "n": 43,
+    "mean": 0.6279,
+    "ci_low": 0.5674,
+    "ci_high": 0.6884,
+    "alpha": 0.1,
+    "n_bootstrap": 10000
+  },
+  "any_judge_correct": {
+    "n": 43,
+    "mean": 0.7209,
+    "ci_low": 0.6605,
+    "ci_high": 0.7767,
+    "alpha": 0.1,
+    "n_bootstrap": 10000
+  },
+  "all_judges_correct": {
+    "n": 43,
+    "mean": 0.5349,
+    "ci_low": 0.4744,
+    "ci_high": 0.5953,
+    "alpha": 0.1,
+    "n_bootstrap": 10000
+  }
+}

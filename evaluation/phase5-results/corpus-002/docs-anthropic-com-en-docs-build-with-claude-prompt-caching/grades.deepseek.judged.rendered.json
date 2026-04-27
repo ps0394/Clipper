@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys the conditions and token count split described in the ground truth, matching all factual content.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 783,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states that on the third turn, the prior cache entry is outside the 20-block lookback window, resulting in no cache hit, which matches the factual content of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 692,
+    "tokens_out": 45
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer incorrectly includes Claude Opus 3, which is not part of the ground truth's correct pair of models.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 645,
+    "tokens_out": 30
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states that enabling web search invalidates the system and messages cache while leaving the tools cache intact, matching all facts in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 607,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer provides all the same numerical values and labels as the ground truth, covering every required element.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 684,
+    "tokens_out": 25
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys both primary ways form data can be used and the circumstances for choosing each, matching the factual content of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 695,
+    "tokens_out": 33
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes all key facts: email field enforces email format and validates input, unlike text field, and on mobile it provides a more appropriate keyboard layout with the @ symbol.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 672,
+    "tokens_out": 41
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes all three button types and correctly describes the behavior and UX considerations for each as stated in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 764,
+    "tokens_out": 29
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer incorrectly replaces \"single-line text fields\" and \"multi-line text fields\" with the generic \"text fields\" and adds an incorrect \"buttons\" not in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 592,
+    "tokens_out": 43
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer explicitly states \"not in document,\" which matches the specified condition for this classification.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 602,
+    "tokens_out": 26
+  }
+]

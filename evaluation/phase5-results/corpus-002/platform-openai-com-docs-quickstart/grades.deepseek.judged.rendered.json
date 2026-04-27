@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states that JavaScript, Python, .NET, and Java read the key from the environment variable, while Go requires explicit passing in the code, matching all facts in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 698,
+    "tokens_out": 44
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer states the information is not found in the document, which matches the required response for this case.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 600,
+    "tokens_out": 29
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer explicitly states \"not in document\", which matches the specified condition for this judgment.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 578,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer incorrectly adds \"gpt-5\" as compatible with file_search, which is not in the ground truth, and states an extra configuration requirement for web_search.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 680,
+    "tokens_out": 40
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly lists all three agents and accurately describes each role, matching the ground truth in factual content.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 631,
+    "tokens_out": 26
+  }
+]

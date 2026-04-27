@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys all key differences and the exception as stated in the ground truth, with no missing or contradictory facts.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 681,
+    "tokens_out": 29
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys both the circumstance (sample database not created by default) and the two required steps (create database from share, grant imported privileges to PUBLIC), matching the ground truth in factual content despite minor wording differences.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 724,
+    "tokens_out": 49
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states both methods described in the ground truth, with only minor wording differences.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 631,
+    "tokens_out": 23
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states the 1-day retention time and the limitation that Time Travel cannot be performed on the database or its schemas/tables, matching the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 622,
+    "tokens_out": 39
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer explicitly states \"not in document,\" which matches the specified condition for this judgment.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 574,
+    "tokens_out": 26
+  }
+]

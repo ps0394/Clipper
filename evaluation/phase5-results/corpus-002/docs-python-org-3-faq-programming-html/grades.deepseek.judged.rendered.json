@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly explains the cause (assignment makes variable local, shadowing outer) and the solution (global or nonlocal keywords), matching all facts in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 708,
+    "tokens_out": 39
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys both the cause (single creation at definition time leading to shared mutable state) and the workaround (use None and create a new object inside the function), matching all factual content of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 712,
+    "tokens_out": 49
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys both the behavioral difference and the underlying reason, matching all factual content of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 661,
+    "tokens_out": 27
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly identifies all four methods and the recommended approach as stated in the ground truth, with only minor wording variations.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 642,
+    "tokens_out": 29
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer incorrectly states that moving imports out of the top level can reduce initialization time, which contradicts the ground truth that it increases initialization time.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 720,
+    "tokens_out": 34
+  }
+]

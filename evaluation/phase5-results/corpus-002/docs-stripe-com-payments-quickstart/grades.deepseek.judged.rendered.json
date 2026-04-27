@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the second security measure (use of a test API key) and its role in creating a secure, isolated testing environment.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 711,
+    "tokens_out": 34
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the condition under which the error message is displayed (when the error type *is* \"card_error\" or \"validation_error\"), which is a required part of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 649,
+    "tokens_out": 46
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes all steps from the ground truth, matching the factual sequence and key actions, despite additional detail.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 828,
+    "tokens_out": 27
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer lists all three statuses with the correct icons and colors as specified in the ground truth, despite minor formatting differences.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 647,
+    "tokens_out": 30
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states that the table is hidden when the payment intent is missing, which occurs if the client secret is missing from the URL or the payment intent cannot be retrieved, matching all key conditions from the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 635,
+    "tokens_out": 49
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same factual requirements regarding copyrights and commercial use as the ground truth, with no contradictions or omissions.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 673,
+    "tokens_out": 29
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly conveys all facts from the ground truth: the version numbering scheme, the meaning of each component for feature and bugfix releases, the suffixes for development releases, and the complete order of precedence.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 798,
+    "tokens_out": 46
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the historical frequency range (roughly every 6 to 18 months) for bugfix releases, which is a required element of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 658,
+    "tokens_out": 40
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the specific advantage of the standard library teaching code reuse and enabling students to test language features interactively, which are explicitly stated in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 735,
+    "tokens_out": 39
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes all required facts: backward-incompatible changes require a gradual upgrade path, and the procedure is described in PEP 5.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 622,
+    "tokens_out": 33
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer explicitly states \"not in document,\" which matches the defined condition for this classification.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 596,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys that bulk loading uses user-provided virtual warehouses requiring sizing and incurs costs based on usage, while Snowpipe uses serverless Snowflake compute that is auto-scaled and billed per-second based on actual workloads, matching all facts in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 674,
+    "tokens_out": 60
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately captures both the default rollback behavior and the error logging/continued execution behavior described in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 641,
+    "tokens_out": 29
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer explicitly states \"not in document,\" which matches the specified condition for this verdict.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 584,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer lists different error types (incompatible precision and scale instead of expression evaluation failures) and gives an incorrect circumstance for when errors are not logged.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 650,
+    "tokens_out": 37
+  }
+]

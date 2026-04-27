@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the specific example of a direct prompt given in the ground truth (\"Summarize the current research on mRNA vaccine technology.\"), which is a required element of the complete answer.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 644,
+    "tokens_out": 44
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys both the relationship (search retrieves content from URLs, language generation processes content without URL access) and the limitation (users cannot request URLs in prompts due to hallucination, must use search_results field), matching all factual content of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 690,
+    "tokens_out": 58
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer describes different recommended and discouraged approaches than the ground truth, focusing on API parameters versus prompt control, not on explicit boundaries versus private queries.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 779,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states the number and names the two scenarios exactly as in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 585,
+    "tokens_out": 23
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys that search behavior will not be reliably applied via prompts and correctly states the justification that built-in parameters are processed directly by the search engine for consistent results, matching all factual content of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 698,
+    "tokens_out": 48
+  }
+]

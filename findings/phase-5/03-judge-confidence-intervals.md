@@ -1,8 +1,8 @@
 # 03 — Confidence intervals & the cross-vendor comparison rule
 
-> **Key point.** Corpus-002 accuracy numbers come with wide intervals. The overall mean is 0.698 with a **90% CI of [0.633, 0.758]**. Per-vendor intervals overlap for almost every pair. Cross-vendor "X beats Y" claims published without intervals are a methodology error.
+> **Key point.** Corpus-002 accuracy numbers come with wide intervals. The single-judge mean is 0.698 with a **90% CI of [0.633, 0.758]** under Llama-3.3-70B. Under a three-judge panel (Llama-3.3 + GPT-4o + DeepSeek-V3.2) the **per-judge union 90% CI widens to [0.530, 0.758]**, and the **majority-vote 90% CI is [0.567, 0.688]**. Per-vendor intervals overlap for almost every pair. Cross-vendor "X beats Y" claims published without intervals are a methodology error.
 
-These intervals are computed on a **single judge** (Llama-3.3-70B, κ = 0.773 vs human). They under-state true uncertainty: cross-grader variance is not yet captured. F3.2 (cross-judge κ with two additional judges) is the gating work to tighten these.
+The single-judge intervals below are computed on Llama-3.3-70B (κ = 0.773 vs human on corpus-001). F3.2 has now landed: cross-judge κ between Llama, GPT-4o, and DeepSeek-V3.2 on corpus-002 is **0.706 / 0.761 / 0.817** (substantial-to-almost-perfect agreement), with a ~10-point severity gap between Llama (0.698) and the two stricter judges (0.595, 0.591). Full numbers and the corresponding wider CI table are in [findings/phase-5-corpus-002-findings.md](../phase-5-corpus-002-findings.md) Addendum G. **For external comparisons, quote the cross-judge union CI [0.530, 0.758] or the majority-vote CI [0.567, 0.688], not the single-judge band.**
 
 ---
 
@@ -80,8 +80,8 @@ These are the same rules in [.github/copilot-instructions.md](../../.github/copi
 
 ## What these intervals are NOT
 
-1. **Cross-judge variance is not captured.** A single judge produced these labels. The true uncertainty is the union of page-level sampling variance + cross-judge grader variance. F3.2 lands the second variance term.
-2. **Temporal variance is not captured.** Corpus-002 was graded once, in one window. Pages drift. T+30d replication is Session 5 work.
+1. **Cross-judge variance is captured for the headline only, not for per-vendor cells.** F3.2 has landed (3-judge panel) and the corpus-level cross-judge band is reported in Addendum G. Per-vendor and per-profile cross-judge bands have not been computed; the per-vendor numbers above remain *single-judge* and should be treated as Llama-specific.
+2. **Temporal variance is not captured.** Corpus-002 was graded once, in one window. Pages drift. T+30d replication remains future work (corpus captured 2026-04-23; T+30d window opens 2026-05-23).
 3. **Population generalization is not supported.** These intervals assume the 43 pages are representative of "the population of interest." They are a *curated* Phase 5 corpus. Generalization to the open web is not authorized; generalization to "developer documentation pages from the 14 sampled vendors" is cautiously authorized.
 
 ---

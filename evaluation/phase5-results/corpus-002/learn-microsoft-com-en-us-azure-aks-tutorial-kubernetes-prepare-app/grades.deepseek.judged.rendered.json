@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states that order-service starts only if rabbitmq is healthy and will not start if rabbitmq is unhealthy, matching all facts in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 638,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the specific services listed in the ground truth and incorrectly adds \"test\" as a common parameter.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 611,
+    "tokens_out": 29
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states that Terraform is the default provider, Bicep is the alternative, and the configuration is in the `infra` section of `azure.yaml`, matching all facts in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 627,
+    "tokens_out": 48
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the indirect dependency on rabbitmq via order-service, which is part of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 642,
+    "tokens_out": 28
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes all required steps and tools from the ground truth, with additional correct details that do not contradict the standard.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 854,
+    "tokens_out": 29
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the conditions under which COUNT(*) differs from COUNT(column_name) and the specific difference in the example's output.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 699,
+    "tokens_out": 41
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the behavior of COUNT(alias.*) and COUNT(*) with respect to NULL values, and the count returned by COUNT(n.*) in the example.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 647,
+    "tokens_out": 48
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same factual content as the ground-truth answer, including the difference being 0 and the reason for it.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 619,
+    "tokens_out": 31
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same factual content as the ground-truth answer, with no missing or contradictory information.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 626,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the counts being equal (both 2) and the explanation that no rows are excluded due to NULL values in 'j_col'.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 653,
+    "tokens_out": 45
+  }
+]

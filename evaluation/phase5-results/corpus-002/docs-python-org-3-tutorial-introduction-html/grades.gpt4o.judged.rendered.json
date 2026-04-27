@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate explicitly states that the answer cannot be found in the document.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 583,
+    "tokens_out": 19
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, with additional clarification about using the + operator, which does not contradict the ground truth.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 614,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the behavior of out-of-range indices for indexing and slicing, and the error raised for indexing.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 612,
+    "tokens_out": 38
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits \"complex,\" which is part of the ground-truth answer.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 564,
+    "tokens_out": 23
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the behavior of list assignment and the method to create a separate copy using slicing.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 638,
+    "tokens_out": 35
+  }
+]

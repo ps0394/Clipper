@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys both conditions for auto-upgrade (n-3 version about to drop to n-4) and the target version (n-2), matching the factual content of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 637,
+    "tokens_out": 46
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states the default Ubuntu versions for the specified Kubernetes version ranges and notes that FIPS-enabled node pools may have different defaults, matching all facts in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 676,
+    "tokens_out": 40
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes all limitations listed in the ground truth: no existing resource group, no different subscription, no name change after creation, no specifying names for managed resources, and no modifying/deleting Azure-created tags.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 666,
+    "tokens_out": 49
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states both the number of supported Linux operating systems (four) and the default OS (Ubuntu Linux), matching the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 590,
+    "tokens_out": 34
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states that modifying or deleting Azure-created tags is unsupported, breaks the SLO, and may cause unexpected scaling and upgrading errors, matching all facts in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 651,
+    "tokens_out": 43
+  }
+]

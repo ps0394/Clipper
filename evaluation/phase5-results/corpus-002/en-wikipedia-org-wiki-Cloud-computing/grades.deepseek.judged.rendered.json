@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the specific details about customer responsibilities in each service model (IaaS, PaaS, SaaS) that are required in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 759,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer correctly lists the three challenges but omits the specific broader adoption barriers (cost overruns, security concerns, lack of expertise) mentioned in the ground truth, substituting a different list.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 686,
+    "tokens_out": 45
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys all key facts from the ground truth: the definitions of rapid elasticity and measured service, and their combined practical implications of dynamic scaling, pay-per-use, and transparency.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 694,
+    "tokens_out": 42
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer covers all key points from the ground truth: the circumstances (balancing scalability, cost, control; sensitive data/regulations; variable/temporary workloads), the advantages (public cloud for temporary capacity, maintaining private for sensitive workloads), and the trade-offs (increased complexity, security risks, need for careful planning), with no contradictions.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 757,
+    "tokens_out": 74
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer correctly lists the three threats and their percentages, but it does not explicitly state how they intersect with data privacy and legal compliance as specified in the ground truth (e.g., insecure interfaces leading to regulatory violations, hardware failures compromising integrity/availability).",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 794,
+    "tokens_out": 56
+  }
+]

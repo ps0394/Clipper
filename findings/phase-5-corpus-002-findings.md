@@ -831,4 +831,109 @@ The slogan does several jobs at once and they should be separated.
 - **Corpus-003 (deferred).** Re-running F4.2 / token-efficiency on a larger corpus with ≥5 pages per markdown-serving vendor would tighten the per-vendor cells. Lower priority given the corpus-002 result is decisive on the comprehension question.
 
 
+---
+
+## Addendum G — Session 6: F3.2 cross-judge κ on corpus-002 (executed)
+
+**Scope:** F3.2 was scaffolded in Session 3 (Addendum D) but blocked on Foundry deployment access. This session ran the rejudge pass against the corpus-002 saved candidate answers using two additional judges, computed pooled and per-page Cohen's κ across all three judges, and re-derived the corpus-002 headline accuracy CIs under cross-judge uncertainty. The single-judge CIs published in §D.4 are now superseded for any claim whose scope extends beyond "the Llama 3.3 70B grader specifically."
+
+### G.1 Execution
+
+Three judges ran the same 215 candidate answers (43 pages × 5 Q/A) from `scoring.primary.rendered.json`:
+
+| judge_id   | model                          | role                       | mean accuracy |
+|------------|--------------------------------|----------------------------|---------------|
+| `primary`  | Llama-3.3-70B-Instruct         | original (Phase 5 baseline) | 0.698         |
+| `gpt4o`    | GPT-4o                         | rejudge                    | 0.595         |
+| `deepseek` | DeepSeek-V3.2                  | rejudge                    | 0.591         |
+
+All three deployments are served from the same Foundry endpoint
+(`ai-model-for-clipper.services.ai.azure.com`). Sonnet and Gemini were not
+available on this tenant; DeepSeek-V3.2 was substituted as the third judge
+based on diversity of model family (Anthropic-style ↔ OpenAI ↔ open-weights
+DeepSeek) and prior precedent of DeepSeek as an LLM-as-judge.
+
+Per-page artifacts: `evaluation/phase5-results/corpus-002/<slug>/grades.{primary|gpt4o|deepseek}.judged.rendered.json`.
+Per-judge summaries: `rejudge-summary.{gpt4o,deepseek}.json` at corpus root.
+Aggregate: [`evaluation/phase5-results/corpus-002-analysis/cross-judge-kappa.json`](../evaluation/phase5-results/corpus-002-analysis/cross-judge-kappa.json),
+[`evaluation/phase5-results/corpus-002-analysis/cross-judge-cis.json`](../evaluation/phase5-results/corpus-002-analysis/cross-judge-cis.json).
+
+### G.2 Cross-judge agreement (Cohen's κ)
+
+Pooled κ across all 215 grades, per pair:
+
+| pair                    | κ (pooled, n=215) | per-page κ < 0.60 |
+|-------------------------|-------------------|-------------------|
+| deepseek ↔ gpt4o        | **+0.817**        | 12/41 (29%)       |
+| deepseek ↔ primary      | **+0.761**        | 14/38 (37%)       |
+| gpt4o    ↔ primary      | **+0.706**        | 16/41 (39%)       |
+
+All three pairs land in the **substantial-agreement** band of Landis & Koch
+(κ ∈ [0.61, 0.80]) or **almost-perfect** (≥ 0.81 for the deepseek ↔ gpt4o
+pair). The κ between Llama (`primary`) and the original human-labelled
+calibration set on corpus-001 was 0.773 (pre-existing finding). The new
+cross-judge κ values bracket that: machine ↔ machine agreement on
+corpus-002 is in the same range as machine ↔ human agreement on
+corpus-001.
+
+Per-page κ < 0.60 occurs on 29-39% of pages depending on the pair. Some
+of that is mechanical (per-page n=5 makes κ unstable when one judge marks
+all 5 the same), some is real disagreement on borderline answers. The
+denominator is < 43 because pages where one judge marked all 5 identically
+yield undefined κ.
+
+### G.3 Severity ordering and judge bias
+
+GPT-4o (0.595) and DeepSeek-V3.2 (0.591) are noticeably stricter than
+Llama-3.3 (0.698) — a ~10-point gap. The two stricter judges agree with
+each other (κ = 0.817) more than either agrees with Llama (κ = 0.761,
+0.706). This is consistent with Llama being more lenient in granting
+"correct" verdicts to candidate answers that GPT-4o and DeepSeek mark
+"incorrect" for omission or precision reasons. It is **not** evidence
+that Llama is wrong: a third party (human re-adjudication) would be
+needed to settle which severity profile is calibrated to ground truth.
+For corpus-002 reporting the practical implication is that the
+single-judge headline number is sensitive to grader choice.
+
+### G.4 Cross-judge confidence intervals (90% bootstrap, n=43 pages)
+
+Re-derives the §D.4 headline. Bootstraps over pages, not over questions.
+
+| accuracy estimator         | mean   | 90% CI            |
+|----------------------------|--------|-------------------|
+| Llama (`primary`) only     | 0.698  | [0.633, 0.758]    |
+| GPT-4o only                | 0.595  | [0.535, 0.656]    |
+| DeepSeek-V3.2 only         | 0.591  | [0.530, 0.651]    |
+| **Per-judge union**        | —      | **[0.530, 0.758]** |
+| Majority-vote (≥ 2 of 3)   | 0.628  | [0.567, 0.688]    |
+| Any-judge correct (upper)  | 0.721  | [0.661, 0.777]    |
+| All-judges correct (lower) | 0.535  | [0.474, 0.595]    |
+
+The majority-vote CI [0.567, 0.688] is the most defensible single number
+to report when "headline accuracy on corpus-002" is needed and the audience
+will not see the per-judge breakdown. The per-judge union [0.530, 0.758]
+is the honest uncertainty band: it is wider than the single-judge
+[0.633, 0.758] published in §D.4 by ~10 points on the low end, almost
+entirely because of the severity gap between Llama and the other two.
+
+### G.5 F3.5 — Weight-range widening decision (resolved)
+
+The Session 3 acceptance criterion (§D.6) was: *widen the v2 weight range if any pair's per-page κ < 0.60 on > 10% of pages.* All three pairs exceed that bar (29-39%). However, Phase 5 / 6 ships v2 as the coarse 50/50 composite, so there is no fractional-weight claim to widen on the scoring side. The criterion translates into a **caveat amendment** rather than a weight change:
+
+- Append to the `caveats` list in `ScoreResult.confidence_range` (Session 2 F2.8): `"cross-judge accuracy variance: per-judge corpus-002 means span 0.591-0.698; report majority-vote or per-judge union when comparing across studies."`
+- The scoring weights themselves remain 50/50; the v2 composite was deliberately coarse to insulate against exactly this class of grader-induced variance.
+
+### G.6 What this session authorizes (and supersedes)
+
+- **Authorizes:** the F3.2 rejudge runner ([retrievability/phase5/cli.py](retrievability/phase5/cli.py) `_rejudge` + [retrievability/phase5/runner.py](retrievability/phase5/runner.py) `rejudge_pilot`); the κ analysis script ([scripts/phase6-cross-judge-kappa.py](scripts/phase6-cross-judge-kappa.py)); the new cross-judge CI script ([scripts/phase6-cross-judge-cis.py](scripts/phase6-cross-judge-cis.py)); the rejudge artifacts and aggregate JSON files listed in G.1; the F3.4 caveat-amendment text in G.5.
+- **Authorizes (new claim):** *"on corpus-002, three independent LLM judges (Llama-3.3-70B, GPT-4o, DeepSeek-V3.2) agree at the substantial-to-almost-perfect level (pooled κ between 0.71 and 0.82) but differ in calibrated severity by ~10 points of accuracy; the cross-judge union 90% CI for corpus-002 headline accuracy is [0.53, 0.76]."*
+- **Supersedes:** §D.4's single-judge CI [0.633, 0.758] for any external comparison or competitor-claim use. §D.4 remains accurate as *the Llama-3.3 single-judge result*, but should not be quoted as *"corpus-002 accuracy"* without the cross-judge band.
+- **Does not authorize:** a claim that any one of the three judges is the "correct" grader. Re-adjudication against fresh human labels remains the only way to settle severity calibration; that is out of scope for Phase 6.
+
+### G.7 What this does not change
+
+- The **Phase 5 ranking** of pages within corpus-002 is robust across judges. The pages with mean accuracy ≥ 0.80 (8 pages on Llama) are still in the top quartile under GPT-4o and DeepSeek; the pages at 0.0-0.2 (e.g. github REST API, stripe API, snowflake data-load) are bottom-quartile across all three. Cross-judge variance is in the *band* of accuracy, not the *order* of pages.
+- The **Track B markdown null result** (Addendum F) is unaffected: that comparison is paired *within* a judge, so cross-judge severity cancels.
+- The **F4.4 verdict** (`keep_as_diagnostic_only`, Session 5) is unaffected for the same paired-within-judge reason.
+
 

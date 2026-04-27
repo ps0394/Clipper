@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states that multiple function calls are allowed by default and that disabling parallel_tool_calls prevents it, matching the ground truth's factual content.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 602,
+    "tokens_out": 36
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys both facts: tool_choice applies to callable tools in the turn, and only gpt-5.4 and later models support tool_search.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 611,
+    "tokens_out": 39
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately restates both schema requirements and the consequence of not meeting them, matching the ground truth in factual content.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 644,
+    "tokens_out": 29
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes all steps from the ground truth, correctly describes the role of the call_id, and adds extra correct details without contradiction.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 915,
+    "tokens_out": 32
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states that Responses API defaults to strict mode (normalizing schemas) while Chat Completions API defaults to non-strict, and correctly specifies that setting strict: false opts out of strict mode in Responses API, matching all facts in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 667,
+    "tokens_out": 59
+  }
+]

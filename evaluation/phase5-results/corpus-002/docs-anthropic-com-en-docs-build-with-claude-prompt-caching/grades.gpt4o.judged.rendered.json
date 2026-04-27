@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer introduces conditions not present in the ground truth (e.g., \"both 1-hour and 5-minute cache controls are included in the request\") and misrepresents the token count split by referring to \"cache_control blocks\" instead of cache breakpoints.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 773,
+    "tokens_out": 59
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, explaining the lack of a cache hit due to the lookback window and the single breakpoint.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 683,
+    "tokens_out": 36
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes all the required facts from the ground truth and adds extra correct details without contradicting the ground truth.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 640,
+    "tokens_out": 28
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the invalidation of the system and messages cache while leaving the tools cache intact.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 601,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same factual content as the ground-truth answer, with all values matching correctly.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 665,
+    "tokens_out": 25
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the specific detail that when no seed is provided, the first element of the sequence is used as the initial accumulator value, which is a required fact in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 680,
+    "tokens_out": 44
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer explicitly states \"not in document,\" which matches the defined condition for this verdict.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 627,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states the number of distinct numeric types (5), lists them all, and confirms that all have nullable variants, matching the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 604,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys both conditions under which SingleOrDefault throws an exception and correctly states the difference from FirstOrDefault and LastOrDefault.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 653,
+    "tokens_out": 30
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer lists specific method overloads but omits the explicit step-by-step sequence described in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 743,
+    "tokens_out": 28
+  }
+]

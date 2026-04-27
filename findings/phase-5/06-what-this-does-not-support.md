@@ -34,7 +34,7 @@ If a claim is on this list, it is **not** corpus-002 evidence. Some are plausibl
 
 ### Cross-judge
 
-- **"Validated cross-judge agreement" on corpus-002.** The published CIs are single-judge. F3.2 (cross-judge κ with 2 additional judges) is the gating work. Until it lands, cross-judge variance is *not* in the intervals — which means published intervals are **under-estimates**.
+- **"Validated cross-judge agreement" on corpus-002.** F3.2 has now landed (Addendum G): three judges (Llama-3.3-70B, GPT-4o, DeepSeek-V3.2) achieve substantial-to-almost-perfect pooled κ (0.706 / 0.761 / 0.817), but with a ~10-point severity gap. The cross-judge union 90% CI is [0.530, 0.758] — wider than the single-judge band by ~10 points on the low end. **The single-judge CIs published in §D.4 are now superseded for any external comparison; quote the union CI or the majority-vote CI [0.567, 0.688] instead.** What is *still* not authorized: a claim that any one of the three judges is the calibrated grader (re-adjudication against fresh human labels would be needed).
 
 ### Cross-vendor "competitive" framings
 

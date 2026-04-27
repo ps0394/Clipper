@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly identifies both actions (copying application source code and using npm to install dependencies) and implies the correct order.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 585,
+    "tokens_out": 30
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states that the application is inaccessible without port mapping and identifies the `-p` flag, matching all factual content of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 623,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer incorrectly states only one port is mentioned, while the ground truth specifies two distinct ports (container port 3000 and host port 3000).",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 611,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states that -d runs the container in the background and -p enables port mapping, and accurately describes the consequences of omitting each flag, matching the factual content of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 665,
+    "tokens_out": 45
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer explicitly states the information is not found in the document.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 607,
+    "tokens_out": 21
+  }
+]

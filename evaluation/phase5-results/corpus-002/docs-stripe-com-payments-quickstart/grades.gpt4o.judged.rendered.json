@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the second security measure, which is the use of a test API key to ensure no real data is exposed during testing.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 706,
+    "tokens_out": 34
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the fact that the payment flow checks for errors of type `card_error` or `validation_error` during `confirmPayment` and displays the error message for those specific errors.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 641,
+    "tokens_out": 45
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys all the required steps from the ground-truth answer, with additional details that do not contradict the ground truth.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 814,
+    "tokens_out": 30
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the payment statuses, icons, and colors, even though the wording differs slightly.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 639,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, covering both conditions and their triggers, even though the wording differs slightly.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 630,
+    "tokens_out": 32
+  }
+]

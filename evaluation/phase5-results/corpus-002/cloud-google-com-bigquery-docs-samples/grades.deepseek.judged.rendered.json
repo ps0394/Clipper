@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states both required conditions: deletion only when no child reservations exist, and the responsible API is the BigQuery Reservation API.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 587,
+    "tokens_out": 32
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer lists five APIs, including \"BigQuery\" which is not one of the distinct management APIs referenced, and omits the correct count of four.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 591,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer explicitly states \"not in document\", which matches the specified condition for this judgment.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 596,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer matches the ground truth in stating that deleting a configuration stops future runs and does not remove already transferred data.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 577,
+    "tokens_out": 28
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits several supported languages listed in the ground truth and adds an unsupported step.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 666,
+    "tokens_out": 25
+  }
+]

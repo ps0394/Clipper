@@ -43,7 +43,7 @@ Live regression on the shipping code: **r = +0.618** vs `accuracy_rendered`. Abo
 
 | ID | Work | Gates |
 |---|---|---|
-| F3.2 | Cross-judge re-grading with 2 additional judges (Claude-3.5-Sonnet, GPT-4o, or Gemini-1.5-Pro) | Tightens single-judge CIs; produces κ vs Llama; required before any "validated agreement" claim. |
+| F3.2 | ~~Cross-judge re-grading with 2 additional judges~~ **Landed Session 6 (Addendum G).** Three-judge panel: Llama-3.3-70B + GPT-4o + DeepSeek-V3.2. Pooled κ 0.706 / 0.761 / 0.817 (substantial-to-almost-perfect). Union 90% CI on corpus-002 widened from [0.633, 0.758] (single-judge) to [0.530, 0.758] (cross-judge union) / [0.567, 0.688] (majority-vote). | Done. |
 | F3.5 | Weight-range widening based on cross-judge κ | Conditional on F3.2. Currently no fractional-weight claim to widen (50/50 is coarse). |
 | F4.4 | Promote/demote decision for served-markdown lift | **Settled in Session 5: `keep_as_diagnostic_only`** (Track B null). |
 | Session 5 (T+30d) | Temporal replication of corpus-002 | Page-level \|Δ\| > 0.10 without content changes widens v2 weight ranges. |
