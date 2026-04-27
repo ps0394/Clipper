@@ -222,8 +222,8 @@ Produce per-page and overall κ for each judge pair. Also produce mean-accuracy 
 **F3.4 — Publish CIs on corpus-002 accuracy.** [E1, High] **— COMPLETE (Session 6)**
 Single-judge CIs published in Addendum D §D.4. Cross-judge CIs published in Addendum G §G.4: per-judge union [0.530, 0.758], majority-vote [0.567, 0.688]. See [`scripts/phase6-cross-judge-cis.py`](../scripts/phase6-cross-judge-cis.py).
 
-**F3.5 — Adjust v2 weight ranges if κ < 0.60.** [E1, High] **— RESOLVED AS CAVEAT-AMENDMENT (Session 6)**
-The “> 10% of pages with per-page κ < 0.60” trigger fired for all three pairs (29-39%). Because v2 ships as the coarse 50/50 composite (no fractional weights to widen), the trigger translates into a caveat amendment to `ScoreResult.confidence_range`: "cross-judge accuracy variance: per-judge corpus-002 means span 0.591-0.698; report majority-vote or per-judge union when comparing across studies." See Addendum G §G.5.
+**F3.5 — Adjust v2 weight ranges if κ < 0.60.** [E1, High] **— RESOLVED AS CAVEAT-AMENDMENT (Session 6, with rigorous backing)**
+The strict per-page κ trigger (> 10% of pages with κ < 0.60) fired for all three pairs (29-39%), but pooled κ is 0.706-0.817 (substantial-to-almost-perfect) and per-page κ at n=5 questions is mechanically unstable. The substantive test is whether the v2 ship gate survives judge replacement. Re-running the F2.6 regression (v2 composite vs per-judge accuracy on the same 43 pages) yields r = +0.618 (Llama) / +0.440 (GPT-4o) / +0.497 (DeepSeek) — all clearing the +0.35 ship gate. The v2 50/50 weights are judge-robust on corpus-002. F3.5 closes as a caveat amendment to `ScoreResult.confidence_range`. See Addendum G §G.5 and [`scripts/phase6-v2-gate-cross-judge.py`](../scripts/phase6-v2-gate-cross-judge.py).
 
 ### 7.4 Session 4 — Phase 6 Experiment 2 (Tri-Fetcher Served-Markdown A/B)
 

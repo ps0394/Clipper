@@ -282,7 +282,7 @@ class AccessGateEvaluator:
                 'Single corpus, single grader architecture, single run.',
                 'Four pillars carry zero headline weight in v2; still reported as diagnostics.',
                 'Profile-specific weights collapse to the same 2-pillar composite pending corpus-003.',
-                'Cross-judge accuracy variance: per-judge corpus-002 means span 0.591-0.698 across Llama-3.3-70B, GPT-4o, and DeepSeek-V3.2 (pooled kappa 0.706-0.817). Report majority-vote CI [0.567, 0.688] or per-judge union CI [0.530, 0.758] when comparing across studies.',
+                'Cross-judge accuracy variance: per-judge corpus-002 means span 0.591-0.698 across Llama-3.3-70B, GPT-4o, and DeepSeek-V3.2 (pooled kappa 0.706-0.817). The v2 composite-vs-accuracy Pearson r ranges from +0.440 to +0.618 across judges (all above the +0.35 ship gate). Report majority-vote CI [0.567, 0.688] or per-judge union CI [0.530, 0.758] when comparing across studies.',
                 'No temporal variance measured yet.',
             ],
         }

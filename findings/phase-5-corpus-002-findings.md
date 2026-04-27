@@ -918,10 +918,24 @@ entirely because of the severity gap between Llama and the other two.
 
 ### G.5 F3.5 — Weight-range widening decision (resolved)
 
-The Session 3 acceptance criterion (§D.6) was: *widen the v2 weight range if any pair's per-page κ < 0.60 on > 10% of pages.* All three pairs exceed that bar (29-39%). However, Phase 5 / 6 ships v2 as the coarse 50/50 composite, so there is no fractional-weight claim to widen on the scoring side. The criterion translates into a **caveat amendment** rather than a weight change:
+The Session 3 acceptance criterion (§D.6) was: *widen the v2 weight range if any pair's per-page κ < 0.60 on > 10% of pages.* By the strict reading, all three pairs exceed that bar (per-page κ < 0.60 on 29-39% of pages). Pooled κ, however, is 0.706-0.817 across all pairs — well above 0.60 — and per-page κ at n=5 questions is mechanically unstable (one judge marking all 5 the same yields undefined κ even when accuracy agrees). The substantive question is therefore not the per-page-κ trigger but: **does the v2 ship gate (Pearson r ≥ +0.35 between the v2 composite and accuracy_rendered) survive judge replacement?**
 
-- Append to the `caveats` list in `ScoreResult.confidence_range` (Session 2 F2.8): `"cross-judge accuracy variance: per-judge corpus-002 means span 0.591-0.698; report majority-vote or per-judge union when comparing across studies."`
-- The scoring weights themselves remain 50/50; the v2 composite was deliberately coarse to insulate against exactly this class of grader-induced variance.
+It does. Re-running the F2.6 regression against per-judge accuracy on the same 43 pages:
+
+| judge                   | mean accuracy | Pearson r (v2 composite vs accuracy) | passes +0.35 gate |
+|-------------------------|---------------|--------------------------------------|-------------------|
+| Llama-3.3-70B (`primary`) | 0.698       | **+0.618**                           | ✓                 |
+| GPT-4o                    | 0.595       | **+0.440**                           | ✓                 |
+| DeepSeek-V3.2             | 0.591       | **+0.497**                           | ✓                 |
+
+Source: [`scripts/phase6-v2-gate-cross-judge.py`](../scripts/phase6-v2-gate-cross-judge.py),
+[`evaluation/phase5-results/corpus-002-analysis/v2-gate-cross-judge.json`](../evaluation/phase5-results/corpus-002-analysis/v2-gate-cross-judge.json).
+
+The composite-vs-accuracy correlation is sensitive to grader severity (r drops by 0.12-0.18 points under the stricter judges), but the v2 composite still cleanly clears the ship gate under every judge. **The v2 50/50 weight choice is therefore judge-robust on corpus-002**; the gate is not an artifact of Llama-specific calibration. F3.5 closes as a **caveat amendment** to `ScoreResult.confidence_range`:
+
+> *"cross-judge accuracy variance: per-judge corpus-002 means span 0.591-0.698 (Llama-3.3-70B / GPT-4o / DeepSeek-V3.2). The v2 composite-vs-accuracy Pearson r ranges from +0.440 to +0.618 across judges (all above the +0.35 ship gate). Report majority-vote CI [0.567, 0.688] or per-judge union CI [0.530, 0.758] when comparing across studies."*
+
+The scoring weights themselves remain 50/50; the v2 composite was deliberately coarse to insulate against exactly this class of grader-induced variance, and the cross-judge regression confirms that design choice held.
 
 ### G.6 What this session authorizes (and supersedes)
 
