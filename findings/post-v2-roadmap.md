@@ -213,6 +213,7 @@ The end state is:
 - [ ] **A3.** Cross-judge regression check: pooled per-judge mean **r ≥ +0.35** between v2 composite and `accuracy_rendered`, computed under at least 2 judges (Llama + one other). 3 judges if Foundry budget permits.
 - [ ] **A4.** Cross-corpus stability table published: per-pillar r on corpus-002 vs corpus-003. Identifies any pillar whose correlation flips sign or drops > 0.20 between corpora.
 - [ ] **A5.** If A3 passes, drop `-evidence-partial` from the release tag. If A3 fails, do not ship v3; diagnose first (which pillar, which vendor distribution, which profile).
+- [ ] **A6.** *(Added April 28, 2026 after Session 9.)* If the Session 9 A3 failure is diagnosed as range-restriction in the dependent variable rather than a v2 generalization failure, run a Session 9.5 retry on a corpus engineered to produce wider accuracy variance, and reuse A3/A4 as the acceptance gate. A6 is satisfied when one of: (a) A3 passes on the variance-producing retry, (b) A3 fails on the retry and a v3-redesign sub-session is opened, or (c) A3 retry data shows v2 is uncorrelated with accuracy under any tested generator, in which case v2 is downgraded to a static-quality score with no comprehension claim and the roadmap fork to Block D bypasses Block C.
 
 ### Block B — Temporal Hygiene (Parallel, Lower Priority)
 
@@ -276,6 +277,20 @@ Sessions are dependency-ordered, not time-boxed. Entry and exit criteria below; 
 - **Exit:** Block A acceptance criteria A3 and A4 either pass or fail.
   - **A3 passes** → strip `-evidence-partial`; release v2 as `v2`.
   - **A3 fails** → do not strip the suffix; open a diagnosis sub-session before continuing to Block C.
+- **Outcome (Apr 28, 2026, commit `ba7d832`):** **A3 FAILED on all three judges** (Llama r=+0.10, GPT-4o r=-0.03, DeepSeek r=+0.06; all below the +0.35 ship gate). Diagnosis: range restriction in the dependent variable, not a v2 generalization failure. corpus-003 accuracy std collapsed to 0.10–0.15 (vs corpus-002 std 0.25) because (a) 99/271 pages dropped under `MIN_DOCUMENT_CHARS` were exactly the pages most likely to produce poor answers and (b) Mistral-Large-3 hits ~95% accuracy on extractable text regardless of page quality. v2 composite spread is essentially unchanged (std ~7.4 vs 7.8). Three-judge per-Q/A unanimity is 91.6% (783/855); judge fitness is not the issue. corpus-003 **neither confirms nor refutes** v2 generalization. Remediation deferred to Session 9.5 below. Full report: [evaluation/phase5-results/corpus-003-analysis/session-9-report.md](../evaluation/phase5-results/corpus-003-analysis/session-9-report.md).
+
+### Session 9.5 — A3 Retry on a Variance-Producing Corpus (A6)
+
+- **Entry:** Session 9 closed with A3 failure diagnosed as range restriction (current state).
+- **Goal:** produce a regression dataset where `accuracy_rendered` has std ≥ 0.20 so the F2.6 gate is statistically meaningful.
+- **Approach (Option A):** swap the Phase 5 generator from Mistral-Large-3 to a weaker model (Llama-3.1-8B or GPT-3.5-turbo equivalent on Foundry). Reuse the existing 271 corpus-003 fetches and Q/A pairs on disk; rerun only the scoring + judging stages. No new corpus, no new sampling design, no fetcher changes.
+- **Acceptance:** before computing the F2.6 gate, verify accuracy std ≥ 0.20 on at least one judge. If std stays under 0.20 even with a weaker generator, escalate to Option B (sparse-content corpus with relaxed `MIN_DOCUMENT_CHARS`) before declaring v2 untestable.
+- **Work:**
+  - Pick a weaker generator deployment available in Foundry; pre-register the choice.
+  - Re-run generator + scoring stages against existing corpus-003 fetches.
+  - Re-run the 3-judge panel.
+  - Re-run Session 9's regression and stability scripts ([scripts/phase8-session9-regression.py](../scripts/phase8-session9-regression.py), [scripts/phase8-session9-variance.py](../scripts/phase8-session9-variance.py)).
+- **Exit:** A3 / A4 either pass or fail on the variance-producing dataset; A6 closes accordingly.
 
 ### Session 10 — Temporal Replication Pass (B1, B2, B3)
 
@@ -290,7 +305,7 @@ Sessions are dependency-ordered, not time-boxed. Entry and exit criteria below; 
 
 ### Session 11 — Phase 7 Design Doc (C1)
 
-- **Entry:** Session 9 closed (Block A passes).
+- **Entry:** Block A closed with A3 PASS (via Session 9 or Session 9.5).
 - **Work:**
   - Pick chunker (proposal: `langchain.text_splitter.RecursiveCharacterTextSplitter`, chunk_size=1000, overlap=100).
   - Pick embedder (proposal: a single fixed embedding model, `text-embedding-3-small` or equivalent on Foundry).
@@ -354,6 +369,10 @@ Now ────► Session 7 (corpus-003 spec)
             │
             ▼
          Session 9 (regression + stability)
+            │
+            ▼  [A3 fails → Session 9.5; A3 passes → skip 9.5]
+            │
+         Session 9.5 (A3 retry on variance-producing corpus)
             │
             ▼  [A3 passes → strip -evidence-partial]
             │
