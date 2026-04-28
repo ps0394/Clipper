@@ -197,6 +197,19 @@ def main():
             "ScoreResults per URL plus a parseability delta in the report."
         ),
     )
+    express_parser.add_argument(
+        '--diagnostic-mode',
+        action='store_true',
+        help=(
+            'Suppress composite headline scores (parseability_score / '
+            'universal_score) in the JSON output and emit pillar-level '
+            'data only. The composite did not generalize on corpus-003 '
+            '(see findings/post-v2-roadmap.md); diagnostic mode is the '
+            'recommended setting for cross-page comparison. Pillar '
+            'scores in component_scores are unchanged. The methodology '
+            'disclosure block is always emitted regardless of this flag.'
+        ),
+    )
 
     # History command - trend view across prior evaluations (Phase 4.2)
     history_parser = subparsers.add_parser(
@@ -343,6 +356,14 @@ def main():
         default='rendered',
         help='Comma-separated fetch modes to rescore (subset of '
              '{rendered,raw}). Default "rendered" (canonical, matches F2.6).',
+    )
+    phase5_rescore_parser.add_argument(
+        '--concurrency',
+        type=int,
+        default=4,
+        help='Number of pages to process in parallel (each page is sequential '
+             'within itself). Default 4. Raise to 6-8 if Foundry tolerates it; '
+             'drop to 1 to debug serially.',
     )
 
     phase5_kappa_parser = phase5_sub.add_parser(
@@ -523,9 +544,13 @@ def main():
                         str(parse_file), str(score_file), api_key=api_key,
                         use_performance_mode=True,
                         render_mode=getattr(args, 'render_mode', 'rendered'),
+                        diagnostic_mode=getattr(args, 'diagnostic_mode', False),
                     )
                 else:
-                    score_parse_results(str(parse_file), str(score_file), api_key=api_key)
+                    score_parse_results(
+                        str(parse_file), str(score_file), api_key=api_key,
+                        diagnostic_mode=getattr(args, 'diagnostic_mode', False),
+                    )
                 
                 if not args.quiet:
                     print(f"4️⃣ Generating report...")

@@ -2,6 +2,8 @@
 
 Clipper evaluates whether agents can reliably access, extract, and use web page content. Pages are scored 0–100 across six industry-standard pillars, entirely API-free.
 
+> **Calibration & Generalization (v2.1, April 2026).** The v2 composite headline scores documented below were calibrated on corpus-002 (n=43) and clear that corpus's ship gate (Pearson r = +0.62 vs. judged QA accuracy). Sessions 8 / 9 / 9.5 ran the same model on a held-out corpus-003 (n=172) and found the composite **does not generalize** — Pearson r ≈ +0.10 against the same +0.35 ship gate. The per-pillar measurements are unchanged and remain real signals against published standards. **For cross-page comparison, prefer the pillar-level data in `component_scores` over the composites.** Pass `--diagnostic-mode` to suppress the composites in the JSON output. Every score result also carries a `methodology` block with this status. See [findings/post-v2-roadmap.md](../findings/post-v2-roadmap.md) and [findings/v2.1-release-scope.md](../findings/v2.1-release-scope.md).
+
 This document describes the **v2 (`v2-evidence-partial`) scoring model**. v2 narrows the **headline score** to the two pillars for which Clipper has published retrieval-relevance evidence on the corpus-002 benchmark (n=43, rendered HTML, two-shot retrieval QA). The other four pillars are still evaluated, still reported, and still audited — they just carry **zero weight in the headline composite** until their retrieval-relevance is measured. The old six-pillar weighted composite is preserved in `audit_trail._content_type.v1_weights_for_reference` for back-compat and A/B work.
 
 The current version is declared at module load:

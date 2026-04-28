@@ -6,6 +6,8 @@ HTTP crawlers build search indexes. Copilot training pipelines ingest documentat
 
 Clipper measures that foundational layer. It evaluates live URLs against six industry-standard pillars (W3C Semantic HTML, Mozilla Readability, Schema.org, WCAG/axe-core, Dublin Core/OpenGraph, RFC 7231) and returns a score with a complete audit trail — no APIs, no credentials, no external dependencies.
 
+> **Status note (v2.1, April 2026).** Clipper's per-pillar measurements are real signals against published standards. The composite *headline* scores (`parseability_score`, `universal_score`) were calibrated on corpus-002 and **do not generalize** to a held-out corpus-003 (Pearson r ≈ +0.10 vs. ship-gate target +0.35). Use pillar-level data in `component_scores` for cross-page comparison. Pass `--diagnostic-mode` to suppress the composites in the JSON output. See [Scoring System](#scoring-system), [findings/post-v2-roadmap.md](findings/post-v2-roadmap.md), and [findings/v2.1-release-scope.md](findings/v2.1-release-scope.md) for the full result.
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -326,6 +328,8 @@ Clipper generates comprehensive audit documentation:
 
 ## Scoring System
 
+> **⚠️ Calibration & Generalization (v2.1, April 2026).** The composite headline scores below (`parseability_score` and `universal_score`) were calibrated on Clipper's corpus-002 (n=43, single grader architecture). On a held-out corpus-003 (n=172) the composite **does not generalize**: Pearson r between composite and judged QA accuracy is approximately **+0.10**, against a ship-gate target of r ≥ +0.35. The per-pillar measurements that feed the composite remain real signals against published standards (W3C, Schema.org, Mozilla, WCAG, RFC 7231) and are unchanged. **For cross-page comparison, prefer the pillar-level data in `component_scores` over the composites.** Pass `--diagnostic-mode` to suppress the composites in the JSON output and emit pillar-level data only. The "Access Gate Classification" bands below remain useful as internal-consistency diagnostics on corpus-002 but are **not validated** to predict retrieval or AI-citation behavior on arbitrary pages. See [findings/post-v2-roadmap.md](findings/post-v2-roadmap.md) for the full result and [findings/v2.1-release-scope.md](findings/v2.1-release-scope.md) for the v2.1 release scope.
+
 Clipper reports two 0–100 numbers for every page:
 
 - **`parseability_score`** *(primary)* — the type-adjusted score. Clipper detects whether the page is an article, landing page, tutorial, FAQ, reference, or code sample, and reweights the six pillars accordingly. Compare this number against peers of the same content type.
@@ -333,7 +337,19 @@ Clipper reports two 0–100 numbers for every page:
 
 The content type, detection signal, and full weight table used for each page are recorded under `audit_trail._content_type`. See [docs/scoring.md#content-type-profiles](docs/scoring.md#content-type-profiles) for the profile table and detection precedence.
 
-### **Access Gate Classification**
+Every result also carries a `methodology` block (always present, in default and diagnostic mode) stating the calibration corpus, generalization status, and recommended use:
+
+```json
+"methodology": {
+  "scoring_version": "v2-evidence-partial",
+  "calibration_corpus": "corpus-002",
+  "generalization_status": "fails on corpus-003 (Pearson r ≈ +0.10 vs ship gate +0.35); see findings/post-v2-roadmap.md",
+  "recommended_use": "pillar-level diagnostics; not validated for ranking pages against each other",
+  "release": "v2.1"
+}
+```
+
+### **Access Gate Classification** *(internal-consistency diagnostic on corpus-002 — see calibration note above)*
 - **90-100**: `clean` - Fully agent-ready
 - **75-89**: `minor_issues` - Nearly agent-ready  
 - **60-74**: `moderate_issues` - Improvements needed

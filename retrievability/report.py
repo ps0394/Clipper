@@ -142,7 +142,7 @@ def _format_profile_impact_section(results: List[Dict]) -> List[str]:
         profile = _profile_of(r)
         if profile != 'article':
             non_default_seen = True
-        parseability = float(r.get('parseability_score', 0.0))
+        parseability = float(r.get('parseability_score') or 0.0)
         universal = float(universal)
         rows.append({
             'url': r.get('url') or r.get('html_path') or '',
@@ -261,7 +261,7 @@ def _detect_render_deltas(score_results: List[Dict]) -> List[Dict]:
         mode = r.get('render_mode', 'rendered')
         if not url:
             continue
-        by_url.setdefault(url, {})[mode] = float(r.get('parseability_score', 0.0))
+        by_url.setdefault(url, {})[mode] = float(r.get('parseability_score') or 0.0)
 
     deltas: List[Dict] = []
     for url, by_mode in by_url.items():
@@ -388,11 +388,32 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
     structure_missing = sum(1 for result in summary_results if result['failure_mode'] == 'structure-missing')
     extraction_noisy = sum(1 for result in summary_results if result['failure_mode'] == 'extraction-noisy')
 
-    avg_score = sum(result['parseability_score'] for result in summary_results) / total_pages if total_pages > 0 else 0
+    avg_score = sum((result.get('parseability_score') or 0.0) for result in summary_results) / total_pages if total_pages > 0 else 0
     
     # Build report sections
     report_lines = []
-    
+
+    # v2.1 — Methodology disclosure banner. Always emit when present in
+    # input; flag diagnostic mode prominently when composites are nulled.
+    diagnostic_mode = any(bool(r.get('diagnostic_mode')) for r in score_results)
+    methodology = next(
+        (r.get('methodology') for r in score_results if isinstance(r.get('methodology'), dict)),
+        None,
+    )
+    if diagnostic_mode or methodology:
+        report_lines.append("> **Methodology disclosure (v2.1):** "
+                            + (methodology or {}).get('generalization_status',
+                                                      'see findings/post-v2-roadmap.md'))
+        if diagnostic_mode:
+            report_lines.append("> ")
+            report_lines.append("> **Diagnostic mode is ON.** "
+                                "Composite scores (`parseability_score`, "
+                                "`universal_score`) are suppressed in the "
+                                "JSON output. Pillar-level scores below "
+                                "remain valid and are the recommended "
+                                "basis for comparison.")
+        report_lines.append("")
+
     # Header
     report_lines.extend([
         "# Retrievability Evaluation Report",
@@ -463,10 +484,10 @@ def _generate_markdown_report(score_results: List[Dict]) -> str:
 
     # Sort by score (lowest first - most problematic)
     indexed_results = list(enumerate(summary_results))
-    sorted_results = sorted(indexed_results, key=lambda x: x[1]['parseability_score'])
+    sorted_results = sorted(indexed_results, key=lambda x: (x[1].get('parseability_score') or 0.0))
 
     for display_index, (original_idx, result) in enumerate(sorted_results, 1):
-        score = result['parseability_score']
+        score = result.get('parseability_score') or 0.0
         failure_mode = result['failure_mode']
         # Use correct field names from Clipper format
         component_scores = result.get('component_scores', result.get('subscores', {}))

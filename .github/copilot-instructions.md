@@ -77,10 +77,12 @@ Profile-specific weights (`landing`, `reference`, `sample`, `faq`, `tutorial`) r
 
 ### Score interpretation
 
-- **90+** — Agent-ready (clean)
-- **70–89** — Minor issues
-- **40–69** — Needs improvement (moderate issues)
-- **Below 40** — Critical issues
+The bands below are **internal-consistency diagnostics calibrated on corpus-002** and are not validated to predict retrieval or AI-citation behavior on arbitrary pages. The composite they apply to (`parseability_score` / `universal_score`) failed the held-out corpus-003 ship gate (Pearson r ≈ +0.10 vs. target +0.35). When reporting bands, always state which score they were applied to **and** that the band is corpus-002-calibrated. Prefer the per-pillar data in `component_scores` for cross-page comparison. See [findings/post-v2-roadmap.md](../findings/post-v2-roadmap.md) and [findings/v2.1-release-scope.md](../findings/v2.1-release-scope.md).
+
+- **90+** — Agent-ready (clean) *(corpus-002 calibration)*
+- **70–89** — Minor issues *(corpus-002 calibration)*
+- **40–69** — Needs improvement (moderate issues) *(corpus-002 calibration)*
+- **Below 40** — Critical issues *(corpus-002 calibration)*
 
 ## When Asked to Evaluate URLs
 

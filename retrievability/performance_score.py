@@ -15,11 +15,13 @@ from concurrent.futures import ThreadPoolExecutor
 from .performance_evaluator import get_performance_evaluator, PerformanceOptimizedEvaluator
 from .access_gate_evaluator import AccessGateEvaluator
 from .score import _load_crawl_data_for_scoring
+from .schemas import apply_methodology_disclosure
 
 
 def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optional[str] = None, 
                             use_performance_mode: bool = True,
-                            render_mode: str = 'rendered') -> None:
+                            render_mode: str = 'rendered',
+                            diagnostic_mode: bool = False) -> None:
     """Performance-optimized version of score_parse_results.
     
     Provides 2-3x speed improvement over standard scoring while maintaining accuracy.
@@ -34,6 +36,10 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
             browser/axe) and one with the browser-axe pass — so consumers
             can compute a parseability delta between what JS-rendering
             agents see vs. what raw-HTML agents see.
+        diagnostic_mode: When True, suppress composite headline scores
+            (``parseability_score`` / ``universal_score``) in the JSON
+            output. Pillar-level data in ``component_scores`` is unchanged.
+            See findings/v2.1-release-scope.md.
     """
     if api_key:
         print("[WARN] API key parameter is deprecated in Clipper")
@@ -81,8 +87,12 @@ def score_parse_results_fast(parse_file: str, output_file: str, api_key: Optiona
     output_path = Path(output_file)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     
+    payload = apply_methodology_disclosure(
+        [result.to_dict() for result in score_results],
+        diagnostic_mode=diagnostic_mode,
+    )
     with open(output_path, 'w', encoding='utf-8') as f:
-        json.dump([result.to_dict() for result in score_results], f, indent=2)
+        json.dump(payload, f, indent=2)
     
     evaluation_time = time.time() - start_time
     print(f"[DONE] Performance-optimized evaluation completed in {evaluation_time:.1f}s!")

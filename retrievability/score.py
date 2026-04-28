@@ -10,15 +10,25 @@ from pathlib import Path
 from typing import Optional
 
 from .access_gate_evaluator import AccessGateEvaluator
+from .schemas import apply_methodology_disclosure
 
 
-def score_parse_results(parse_file: str, output_file: str, api_key: Optional[str] = None) -> None:
+def score_parse_results(
+    parse_file: str,
+    output_file: str,
+    api_key: Optional[str] = None,
+    diagnostic_mode: bool = False,
+) -> None:
     """Score parse results using Clipper standards-based methodology.
-    
+
     Args:
         parse_file: JSON file with parse results
         output_file: JSON file to save score results
         api_key: Deprecated parameter (Clipper is API-free)
+        diagnostic_mode: When True, suppress composite scores
+            (``parseability_score`` / ``universal_score``) in the JSON
+            output. Pillar-level (``component_scores``) data is unchanged.
+            See findings/v2.1-release-scope.md.
     """
     # Clipper deprecation notice for API key
     if api_key:
@@ -67,9 +77,13 @@ def score_parse_results(parse_file: str, output_file: str, api_key: Optional[str
     output_path = Path(output_file)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     
+    payload = apply_methodology_disclosure(
+        [result.to_dict() for result in score_results],
+        diagnostic_mode=diagnostic_mode,
+    )
     with open(output_path, 'w', encoding='utf-8') as f:
-        json.dump([result.to_dict() for result in score_results], f, indent=2, ensure_ascii=False)
-    
+        json.dump(payload, f, indent=2, ensure_ascii=False)
+
     print(f"[DONE] Standards-based evaluation completed!")
     print(f"   Results saved: {output_file}")
     print(f"   Methodology: Industry standards (API-free)")

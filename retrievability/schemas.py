@@ -122,6 +122,58 @@ class ScoreResult:
         return result
 
 
+# ---------------------------------------------------------------------------
+# v2.1 — Methodology disclosure (always-on) + diagnostic-mode composite null
+# ---------------------------------------------------------------------------
+#
+# Sessions 8 / 9 / 9.5 (April 2026) established that the v2-evidence-partial
+# composite (`parseability_score` / `universal_score`) was calibrated on
+# corpus-002 and does not generalize to the held-out corpus-003 set
+# (Pearson r vs judged QA accuracy ≈ +0.10 against ship gate r ≥ +0.35).
+#
+# Per-pillar measurements are still real signals against published standards
+# and remain populated in `component_scores`. v2.1 surfaces this status
+# directly in the score JSON so tools parsing the output cannot miss it.
+#
+# See findings/post-v2-roadmap.md and findings/v2.1-release-scope.md.
+
+V2_1_METHODOLOGY_DISCLOSURE: Dict[str, Any] = {
+    "scoring_version": "v2-evidence-partial",
+    "calibration_corpus": "corpus-002",
+    "generalization_status": (
+        "fails on corpus-003 (Pearson r ≈ +0.10 vs ship gate +0.35); "
+        "see findings/post-v2-roadmap.md"
+    ),
+    "recommended_use": "pillar-level diagnostics; not validated for ranking pages against each other",
+    "release": "v2.1",
+}
+
+
+def apply_methodology_disclosure(
+    results: List[Dict[str, Any]],
+    diagnostic_mode: bool = False,
+) -> List[Dict[str, Any]]:
+    """Annotate each ScoreResult dict with the v2.1 methodology block.
+
+    When ``diagnostic_mode`` is True, the composite headline scores
+    (``parseability_score`` and ``universal_score``) are set to None and a
+    ``diagnostic_mode: True`` marker is added. Component (pillar) scores
+    remain populated — those are the measurements that did not fail to
+    generalize. ``methodology`` is added in both modes; the only thing
+    ``--diagnostic-mode`` toggles is whether the composite numbers are
+    reported.
+
+    This function mutates and returns the list it was given.
+    """
+    for result in results:
+        result["methodology"] = dict(V2_1_METHODOLOGY_DISCLOSURE)
+        result["diagnostic_mode"] = bool(diagnostic_mode)
+        if diagnostic_mode:
+            result["parseability_score"] = None
+            result["universal_score"] = None
+    return results
+
+
 @dataclass
 class ReportResult:
     """Final report schema combining all stages."""
