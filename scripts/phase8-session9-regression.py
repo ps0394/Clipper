@@ -54,6 +54,22 @@ JUDGE_FILES = {
     "gpt4o": "grades.gpt4o.judged.rendered.json",
     "deepseek": "grades.deepseek.judged.rendered.json",
 }
+
+
+def judge_files_for_tag(answers_tag: str) -> Dict[str, str]:
+    """Resolve the judge filenames for a given answers tag.
+
+    Default tag "primary" reads the original gpt-4.1-answer judged files.
+    Other tags (e.g. "weak" from Session 9.5 Phi-4-mini rescore) read
+    grades.<tag>.<judge>.judged.rendered.json — written by
+    `phase5 rejudge --answers-tag <tag> --grade-tag <tag>.<judge>`.
+    """
+    if answers_tag == "primary":
+        return dict(JUDGE_FILES)
+    return {
+        jid: f"grades.{answers_tag}.{jid}.judged.rendered.json"
+        for jid in JUDGE_FILES
+    }
 JUDGE_DISPLAY = {
     "primary": "Llama-3.3-70B",
     "gpt4o": "GPT-4o",
@@ -84,7 +100,7 @@ def judged_accuracy(grades: List[dict]) -> Optional[float]:
     return correct / len(run0)
 
 
-def collect(pilot_dir: Path) -> List[dict]:
+def collect(pilot_dir: Path, judge_files: Dict[str, str]) -> List[dict]:
     """Per-page records with v2 composite, pillar scores, and per-judge accuracy."""
     out: List[dict] = []
     for d in sorted(pilot_dir.iterdir()):
@@ -106,7 +122,7 @@ def collect(pilot_dir: Path) -> List[dict]:
             "judges": {},
         }
         # per-judge accuracy
-        for jid, fname in JUDGE_FILES.items():
+        for jid, fname in judge_files.items():
             p = d / fname
             if not p.is_file():
                 continue
@@ -123,9 +139,9 @@ def collect(pilot_dir: Path) -> List[dict]:
     return out
 
 
-def per_judge_regression(records: List[dict]) -> Dict[str, dict]:
+def per_judge_regression(records: List[dict], judge_ids: List[str]) -> Dict[str, dict]:
     summary: Dict[str, dict] = {}
-    for jid in JUDGE_FILES:
+    for jid in judge_ids:
         sub = [r for r in records if jid in r["judges"]]
         n = len(sub)
         accs = [r["judges"][jid] for r in sub]
@@ -320,15 +336,31 @@ def main() -> int:
         type=Path,
         default=Path("evaluation/phase5-results/corpus-003-analysis"),
     )
+    parser.add_argument(
+        "--answers-tag",
+        default="primary",
+        help="Which scorer-primary's judged grades to read. 'primary' (default) "
+             "reads grades.<judge>.judged.rendered.json (gpt-4.1 baseline). "
+             "Other tags (e.g. 'weak' from Session 9.5 Phi-4-mini rescore) "
+             "read grades.<tag>.<judge>.judged.rendered.json.",
+    )
+    parser.add_argument(
+        "--report-name",
+        default=None,
+        help="Output filename stem (without extension). Defaults to "
+             "'session-9-report' for primary, 'session-9.5-report' for weak.",
+    )
     args = parser.parse_args()
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"Collecting from {args.pilot_dir}...")
-    records = collect(args.pilot_dir)
+    judge_files = judge_files_for_tag(args.answers_tag)
+    print(f"Collecting from {args.pilot_dir} (answers_tag={args.answers_tag!r})...")
+    print(f"  reading: {list(judge_files.values())[0]} (and 2 others)")
+    records = collect(args.pilot_dir, judge_files)
     print(f"  {len(records)} pages with at least one judge accuracy")
 
-    per_judge = per_judge_regression(records)
+    per_judge = per_judge_regression(records, list(judge_files.keys()))
 
     corpus_002_pillar_r = load_corpus_002_pillar_r(args.corpus_002_gamma)
     if not corpus_002_pillar_r:
@@ -338,6 +370,7 @@ def main() -> int:
 
     report = {
         "pilot_dir": str(args.pilot_dir),
+        "answers_tag": args.answers_tag,
         "gate_threshold": GATE,
         "n_pages_evaluable": len(records),
         "per_judge": per_judge,
@@ -345,8 +378,14 @@ def main() -> int:
         "per_pillar_cross_corpus": cross,
     }
 
-    out_json = args.out_dir / "session-9-report.json"
-    out_md = args.out_dir / "session-9-report.md"
+    if args.report_name:
+        stem = args.report_name
+    elif args.answers_tag == "primary":
+        stem = "session-9-report"
+    else:
+        stem = f"session-9-report.{args.answers_tag}"
+    out_json = args.out_dir / f"{stem}.json"
+    out_md = args.out_dir / f"{stem}.md"
     out_json.write_text(json.dumps(report, indent=2), encoding="utf-8")
     render_md(report, out_md)
 

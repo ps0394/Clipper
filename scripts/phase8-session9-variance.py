@@ -31,6 +31,12 @@ JUDGE_FILES = {
 }
 
 
+def judge_files_for_tag(tag: str):
+    if tag == "primary":
+        return dict(JUDGE_FILES)
+    return {jid: f"grades.{tag}.{jid}.judged.rendered.json" for jid in JUDGE_FILES}
+
+
 def stats(xs):
     if not xs:
         return None
@@ -77,9 +83,10 @@ def corpus_002():
     show("corpus-002 (Llama judge, per-page.csv)", accs, comps, ces)
 
 
-def corpus_003_per_judge():
+def corpus_003_per_judge(answers_tag: str = "primary"):
     pilot = Path("evaluation/phase5-results/corpus-003")
-    for jid, fname in JUDGE_FILES.items():
+    judge_files = judge_files_for_tag(answers_tag)
+    for jid, fname in judge_files.items():
         accs, comps, ces = [], [], []
         for d in sorted(pilot.iterdir()):
             if not d.is_dir():
@@ -98,9 +105,13 @@ def corpus_003_per_judge():
             accs.append(acc)
             comps.append(v2["headline_v2"])
             ces.append(sj["component_scores"]["content_extractability"])
-        show(f"corpus-003 ({jid})", accs, comps, ces)
+        show(f"corpus-003 ({jid}, tag={answers_tag})", accs, comps, ces)
 
 
 if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--answers-tag", default="primary")
+    args = parser.parse_args()
     corpus_002()
-    corpus_003_per_judge()
+    corpus_003_per_judge(args.answers_tag)
