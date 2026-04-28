@@ -299,6 +299,51 @@ def main():
              'here. The referenced deployment still resolves through the '
              'same Foundry endpoint + API key in .env.',
     )
+    phase5_rejudge_parser.add_argument(
+        '--answers-tag',
+        default='primary',
+        help='Tag of the scoring file to grade: scoring.<answers-tag>.rendered.json. '
+             'Default "primary" reads gpt-4.1 answers from the pilot run. '
+             'Use e.g. "weak" with a Session 9.5 weak-reader rescore to '
+             'judge Phi-4-mini answers.',
+    )
+    phase5_rejudge_parser.add_argument(
+        '--grade-tag',
+        default=None,
+        help='Tag for output files: grades.<grade-tag>.judged.{rendered,}.json. '
+             'Defaults to "<judge-id>" (back-compat). Override when judging '
+             'alt-scorer answers, e.g. --answers-tag weak --judge-id gpt4o '
+             '--grade-tag weak.gpt4o gives grades.weak.gpt4o.judged.rendered.json.',
+    )
+
+    phase5_rescore_parser = phase5_sub.add_parser(
+        'rescore',
+        help='Re-answer existing Q/A pairs with an alternative scorer-primary '
+             '(Session 9.5: weak-reader variance-floor diagnostic).',
+    )
+    phase5_rescore_parser.add_argument(
+        'pilot_dir',
+        help='Path to an existing pilot output directory with qapairs.json + '
+             'page.{rendered,raw}.txt per page subdir.',
+    )
+    phase5_rescore_parser.add_argument(
+        '--scorer-env',
+        default='PHASE5_SCORER_WEAK_DEPLOYMENT',
+        help='Env var holding the Foundry deployment name for the alt scorer. '
+             'Default PHASE5_SCORER_WEAK_DEPLOYMENT (Session 9.5 Phi-4-mini).',
+    )
+    phase5_rescore_parser.add_argument(
+        '--tag',
+        default='weak',
+        help='Tag for output files: scoring.<tag>.<mode>.json + '
+             'grades.<tag>.<mode>.json. Default "weak".',
+    )
+    phase5_rescore_parser.add_argument(
+        '--modes',
+        default='rendered',
+        help='Comma-separated fetch modes to rescore (subset of '
+             '{rendered,raw}). Default "rendered" (canonical, matches F2.6).',
+    )
 
     phase5_kappa_parser = phase5_sub.add_parser(
         'kappa',

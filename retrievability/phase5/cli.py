@@ -24,6 +24,8 @@ def dispatch(args: argparse.Namespace) -> int:
         return _regrade_markdown(args)
     if cmd == "regrade-intersection":
         return _regrade_intersection(args)
+    if cmd == "rescore":
+        return _rescore(args)
     print(f"Unknown phase5 subcommand: {args.phase5_command}")
     return 2
 
@@ -166,13 +168,26 @@ def _rejudge(args: argparse.Namespace) -> int:
         return 1
 
     print(f"Rejudging {pilot_dir} with judge_id={judge_id!r} (deployment={deployment!r} via {env_var})")
+    answers_tag = getattr(args, "answers_tag", "primary")
+    grade_tag = getattr(args, "grade_tag", None)
+    if answers_tag != "primary":
+        print(f"  reading answers from scoring.{answers_tag}.rendered.json")
+    if grade_tag:
+        print(f"  writing grades.{grade_tag}.judged.rendered.json")
     result = rejudge_pilot(
         pilot_dir=pilot_dir,
         config=config,
         judge_id=judge_id,
         judge_deployment=deployment,
+        answers_tag=answers_tag,
+        grade_tag=grade_tag,
     )
-    summary_name = "rejudge-summary.json" if judge_id == "primary" else f"rejudge-summary.{judge_id}.json"
+    effective_tag = grade_tag if grade_tag is not None else judge_id
+    summary_name = (
+        "rejudge-summary.json"
+        if judge_id == "primary" and effective_tag == "primary"
+        else f"rejudge-summary.{effective_tag}.json"
+    )
     print()
     print("Rejudge summary")
     print("-" * 40)
@@ -180,6 +195,66 @@ def _rejudge(args: argparse.Namespace) -> int:
         print(f"  {p['judged_accuracy']:>5.0%}  {p['num_pairs']} pairs  {p['slug']}")
     print(f"  mean judged accuracy: {result['mean_judged_accuracy']:.0%}")
     print(f"  results: {pilot_dir / summary_name}")
+    return 0
+
+
+def _rescore(args: argparse.Namespace) -> int:
+    import os
+    from .clients import FoundryConfig
+    from .runner import rescore_pilot
+
+    config = FoundryConfig.from_env()
+    missing = config.check()
+    if missing:
+        print(f"[!] Cannot rescore — missing env vars: {', '.join(missing)}")
+        return 1
+    pilot_dir = Path(args.pilot_dir)
+    if not pilot_dir.is_dir():
+        print(f"Pilot dir not found: {pilot_dir}")
+        return 1
+
+    env_var = getattr(args, "scorer_env", "PHASE5_SCORER_WEAK_DEPLOYMENT")
+    deployment = os.environ.get(env_var, "")
+    if not deployment:
+        print(f"[!] Cannot rescore — env var {env_var} is not set or empty.")
+        print(f"    Set {env_var} in .env to the Foundry deployment name "
+              f"of the alt scorer-primary.")
+        return 1
+
+    tag = getattr(args, "tag", "weak")
+    modes_arg = getattr(args, "modes", "rendered")
+    modes = tuple(m.strip() for m in modes_arg.split(",") if m.strip())
+    valid = {"rendered", "raw"}
+    bad = [m for m in modes if m not in valid]
+    if bad:
+        print(f"[!] Invalid mode(s): {bad}. Allowed: {sorted(valid)}")
+        return 1
+
+    print(f"Rescoring {pilot_dir} with tag={tag!r} "
+          f"(deployment={deployment!r} via {env_var}, modes={list(modes)})")
+    result = rescore_pilot(
+        pilot_dir=pilot_dir,
+        config=config,
+        scorer_deployment=deployment,
+        tag=tag,
+        modes=modes,
+    )
+    print()
+    print("Rescore summary")
+    print("-" * 40)
+    head = modes[0]
+    for p in result["pages"]:
+        m = p.get("modes", {}).get(head)
+        if m is None:
+            continue
+        print(f"  {m['substring_accuracy']:>5.0%}  {p['num_pairs']} pairs  {p['slug']}")
+    print(f"  mean substring accuracy ({head}): {result['mean_substring_accuracy']:.0%}")
+    print(f"  results: {pilot_dir / f'rescore-summary.{tag}.json'}")
+    print()
+    print(f"  Next: python main.py phase5 rejudge {pilot_dir} \\")
+    print(f"          --answers-tag {tag} --judge-id primary \\")
+    print(f"          --grade-tag {tag}.primary")
+    print(f"          (repeat for gpt4o + deepseek with --judge-deployment-env)")
     return 0
 
 

@@ -550,12 +550,155 @@ def run_pilot(
     return summaries
 
 
+def rescore_pilot(
+    *,
+    pilot_dir: Path,
+    config: FoundryConfig,
+    scorer_deployment: str,
+    tag: str = "weak",
+    modes: Tuple[str, ...] = ("rendered",),
+    resume: bool = True,
+) -> dict:
+    """Re-answer existing Q/A pairs with an alternative scorer-primary.
+
+    Used by Session 9.5 Option A: keep the same Mistral-Large-3 Q/A
+    pairs and the same fetched page text, but swap the comprehension
+    model that answers them. Lets us widen the dependent-variable
+    spread (page-level accuracy std) without disturbing anything else
+    in the F2.6 regression setup.
+
+    For each page subdir of `pilot_dir` that has `qapairs.json` and a
+    `page.<mode>.txt` (mode ∈ {rendered, raw}), runs the alt scorer
+    once per question and writes:
+
+        scoring.<tag>.<mode>.json   alt-scorer raw answers
+        grades.<tag>.<mode>.json    substring grades (cheap sanity)
+
+    Per-question failures (timeouts, content filter, transient 5xx)
+    are caught and recorded as empty answers — the page still
+    contributes its successful answers rather than being lost
+    entirely. Pages that already have a non-empty
+    `scoring.<tag>.<mode>.json` are skipped when `resume=True`.
+
+    Judges are NOT run here — pair this with `phase5 rejudge
+    --answers-tag <tag>` once per judge (primary / gpt4o / deepseek).
+    """
+    if not scorer_deployment:
+        raise RuntimeError("rescore_pilot requires a non-empty scorer_deployment")
+    from .scorer import build_scoring_prompt
+
+    client = FoundryScoringClient(config, deployment=scorer_deployment)
+    out: dict = {
+        "tag": tag,
+        "scorer_model": client.model_id,
+        "scorer_deployment": scorer_deployment,
+        "modes": list(modes),
+        "pages": [],
+    }
+
+    for page_dir in sorted(p for p in pilot_dir.iterdir() if p.is_dir() and not p.name.startswith("_")):
+        qapath = page_dir / "qapairs.json"
+        if not qapath.is_file():
+            continue
+        ground_truth = [QAPair.from_dict(d) for d in json.loads(qapath.read_text(encoding="utf-8"))]
+        if not ground_truth:
+            continue
+
+        page_record = {"slug": page_dir.name, "num_pairs": len(ground_truth), "modes": {}}
+        for mode in modes:
+            text_path = page_dir / f"page.{mode}.txt"
+            if not text_path.is_file():
+                continue
+            scoring_out = page_dir / f"scoring.{tag}.{mode}.json"
+            if resume and scoring_out.is_file():
+                try:
+                    existing = json.loads(scoring_out.read_text(encoding="utf-8"))
+                    if isinstance(existing, list) and len(existing) >= len(ground_truth):
+                        # Already complete; recompute substring grades anyway
+                        # (cheap, ensures consistency if grading code changed).
+                        ans = [ScoringAnswer.from_dict(d) for d in existing]
+                        grades = grade_page(ground_truth=ground_truth, answers=ans)
+                        persist_grades(grades, page_dir / f"grades.{tag}.{mode}.json")
+                        substring_acc = page_accuracy(grades)
+                        page_record["modes"][mode] = {
+                            "substring_accuracy": substring_acc,
+                            "tokens_in": sum(a.tokens_in for a in ans),
+                            "tokens_out": sum(a.tokens_out for a in ans),
+                            "errors": 0,
+                            "skipped_resume": True,
+                        }
+                        print(f"  resume {page_dir.name} ({mode}): {len(ans)} answers on disk, substring={substring_acc:.0%}")
+                        continue
+                except Exception:
+                    pass  # malformed; fall through and re-score
+
+            doc_text = text_path.read_text(encoding="utf-8")
+            if len(doc_text) > MAX_DOCUMENT_CHARS:
+                doc_text = doc_text[:MAX_DOCUMENT_CHARS] + "\n\n[document truncated for prompt size]"
+            print(f"  rescoring {page_dir.name} ({mode}, {tag}={scorer_deployment})")
+
+            answers: List[ScoringAnswer] = []
+            errors = 0
+            for i, pair in enumerate(ground_truth):
+                prompt = build_scoring_prompt(document_text=doc_text, question=pair.question)
+                try:
+                    text, tin, tout = client.answer(prompt)
+                except Exception as exc:
+                    errors += 1
+                    print(f"    [Q{i}] {type(exc).__name__}: {str(exc)[:100]}")
+                    answers.append(ScoringAnswer(
+                        pair_index=i, answer="", run_index=0, tokens_in=0, tokens_out=0,
+                    ))
+                    continue
+                answers.append(ScoringAnswer(
+                    pair_index=i, answer=text.strip(), run_index=0,
+                    tokens_in=tin, tokens_out=tout,
+                ))
+
+            persist_scores(answers, scoring_out)
+            grades = grade_page(ground_truth=ground_truth, answers=answers)
+            persist_grades(grades, page_dir / f"grades.{tag}.{mode}.json")
+            substring_acc = page_accuracy(grades)
+            tag_str = f" [{errors} errors]" if errors else ""
+            print(f"    substring={substring_acc:.0%}{tag_str}")
+            page_record["modes"][mode] = {
+                "substring_accuracy": substring_acc,
+                "tokens_in": sum(a.tokens_in for a in answers),
+                "tokens_out": sum(a.tokens_out for a in answers),
+                "errors": errors,
+                "skipped_resume": False,
+            }
+        out["pages"].append(page_record)
+
+    if out["pages"]:
+        # Mean substring accuracy on the headline mode (first in `modes`).
+        head_mode = modes[0]
+        accs = [
+            p["modes"][head_mode]["substring_accuracy"]
+            for p in out["pages"]
+            if head_mode in p["modes"]
+        ]
+        out["mean_substring_accuracy"] = sum(accs) / len(accs) if accs else 0.0
+        out["total_errors"] = sum(
+            p["modes"].get(head_mode, {}).get("errors", 0) for p in out["pages"]
+        )
+    else:
+        out["mean_substring_accuracy"] = 0.0
+        out["total_errors"] = 0
+    (pilot_dir / f"rescore-summary.{tag}.json").write_text(
+        json.dumps(out, indent=2), encoding="utf-8"
+    )
+    return out
+
+
 def rejudge_pilot(
     *,
     pilot_dir: Path,
     config: FoundryConfig,
     judge_id: str = "primary",
     judge_deployment: str | None = None,
+    answers_tag: str = "primary",
+    grade_tag: str | None = None,
 ) -> dict:
     """Re-grade an existing pilot directory with an LLM judge.
 
@@ -593,16 +736,20 @@ def rejudge_pilot(
 
     # Output filename infix. `judge_id="primary"` preserves the existing
     # `grades.primary.judged.*.json` naming so pre-Session-3 callers are
-    # unaffected.
-    grade_tag = judge_id
+    # unaffected. Callers can override via `grade_tag` when judging
+    # alt-scorer answers (e.g. Session 9.5 weak-reader rescore).
+    if grade_tag is None:
+        grade_tag = judge_id
 
     for page_dir in sorted(p for p in pilot_dir.iterdir() if p.is_dir() and not p.name.startswith("_")):
         qapath = page_dir / "qapairs.json"
         # Prefer the new dual-fetch rendered file; fall back to the legacy
         # single-mode file so older pilot directories still re-judge cleanly.
-        scpath = page_dir / "scoring.primary.rendered.json"
+        # `answers_tag` lets callers point this at an alt-scorer's answers
+        # (e.g. `scoring.weak.rendered.json` from a `phase5 rescore` pass).
+        scpath = page_dir / f"scoring.{answers_tag}.rendered.json"
         if not scpath.is_file():
-            scpath = page_dir / "scoring.primary.json"
+            scpath = page_dir / f"scoring.{answers_tag}.json"
         if not qapath.is_file() or not scpath.is_file():
             continue
         qa_raw = json.loads(qapath.read_text(encoding="utf-8"))
@@ -627,8 +774,8 @@ def rejudge_pilot(
         out["mean_judged_accuracy"] = 0.0
     summary_name = (
         "rejudge-summary.json"
-        if judge_id == "primary"
-        else f"rejudge-summary.{judge_id}.json"
+        if judge_id == "primary" and grade_tag == "primary"
+        else f"rejudge-summary.{grade_tag}.json"
     )
     (pilot_dir / summary_name).write_text(json.dumps(out, indent=2), encoding="utf-8")
     return out
