@@ -361,15 +361,34 @@ def run_pilot(
             gen_title = raw_title
             gen_source = "raw"
         print(f"  generating Q/A (Mistral) from {gen_source} text")
-        pairs = generate_for_page(
-            client=generator,
-            title=gen_title,
-            url=url,
-            profile=profile,
-            document_text=gen_text,
-            out_dir=page_dir,
-            prompt_name=generator_prompt,
-        )
+        try:
+            pairs = generate_for_page(
+                client=generator,
+                title=gen_title,
+                url=url,
+                profile=profile,
+                document_text=gen_text,
+                out_dir=page_dir,
+                prompt_name=generator_prompt,
+            )
+        except Exception as exc:
+            # Malformed generator output (e.g. unterminated JSON string from
+            # Mistral) used to crash the entire pilot. Now: log, leave no
+            # summary.json so the page is retried on rerun, and move on.
+            print(f"  [SKIP] Q/A generation failed: {type(exc).__name__}: {str(exc)[:120]}")
+            (page_dir / "page_failed.json").write_text(
+                json.dumps(
+                    {
+                        "stage": "generator",
+                        "error_type": type(exc).__name__,
+                        "error": str(exc),
+                        "timestamp": datetime.now(timezone.utc).isoformat(),
+                    },
+                    indent=2,
+                ),
+                encoding="utf-8",
+            )
+            continue
         print(f"    generated {len(pairs)} pairs")
 
         if review:
@@ -386,99 +405,119 @@ def run_pilot(
         # ----- Score the primary LLM against EACH extraction independently --
         # This is the core dual-fetcher measurement: same questions, same
         # ground truth, two different "what the agent saw" inputs.
-        accuracy_raw: Optional[float] = None
-        accuracy_rendered: Optional[float] = None
-        all_answers: List[ScoringAnswer] = []  # for token totals
+        # Wrapped in try/except so that scoring/judging API failures don't
+        # kill the whole multi-hundred-page pilot run.
+        try:
+            accuracy_raw: Optional[float] = None
+            accuracy_rendered: Optional[float] = None
+            all_answers: List[ScoringAnswer] = []  # for token totals
 
-        for mode, mode_text, mode_status in [
-            ("raw", raw_text, raw_status),
-            ("rendered", rendered_text, rendered_status),
-        ]:
-            if mode_status != "ok":
-                print(f"  scoring ({mode}): SKIPPED ({mode_status})")
-                continue
-            print(f"  scoring ({mode}, primary={config.scorer_primary_deployment})")
-            answers = score_page(
-                client=primary,
-                document_text=mode_text,
-                ground_truth=ground_truth,
-                runs_per_question=1,
+            for mode, mode_text, mode_status in [
+                ("raw", raw_text, raw_status),
+                ("rendered", rendered_text, rendered_status),
+            ]:
+                if mode_status != "ok":
+                    print(f"  scoring ({mode}): SKIPPED ({mode_status})")
+                    continue
+                print(f"  scoring ({mode}, primary={config.scorer_primary_deployment})")
+                answers = score_page(
+                    client=primary,
+                    document_text=mode_text,
+                    ground_truth=ground_truth,
+                    runs_per_question=1,
+                )
+                persist_scores(answers, page_dir / f"scoring.primary.{mode}.json")
+                grades = grade_page(ground_truth=ground_truth, answers=answers)
+                persist_grades(grades, page_dir / f"grades.primary.{mode}.json")
+                substring_acc = page_accuracy(grades)
+                mode_judged_acc: Optional[float] = None
+                if judge_client is not None:
+                    judged = judge_page(
+                        client=judge_client, ground_truth=ground_truth, answers=answers
+                    )
+                    persist_judged_grades(judged, page_dir / f"grades.primary.judged.{mode}.json")
+                    mode_judged_acc = judged_page_accuracy(judged)
+                    print(f"    substring={substring_acc:.0%}  judged={mode_judged_acc:.0%}")
+                else:
+                    print(f"    substring={substring_acc:.0%}")
+                mode_acc = mode_judged_acc if mode_judged_acc is not None else substring_acc
+                if mode == "raw":
+                    accuracy_raw = mode_acc
+                else:
+                    accuracy_rendered = mode_acc
+                all_answers.extend(answers)
+
+                # Optional: secondary-scorer pass on the rendered extraction only
+                # (cheaper than 2x; secondary's role is cross-LLM agreement, not
+                # raw-vs-rendered comparison, so once is enough).
+                if secondary is not None and mode == "rendered":
+                    print(f"  scoring (secondary={config.scorer_secondary_deployment})")
+                    sec_answers = score_page(
+                        client=secondary, document_text=mode_text,
+                        ground_truth=ground_truth, runs_per_question=1,
+                    )
+                    persist_scores(sec_answers, page_dir / "scoring.secondary.rendered.json")
+                    sec_grades = grade_page(ground_truth=ground_truth, answers=sec_answers)
+                    persist_grades(sec_grades, page_dir / "grades.secondary.rendered.json")
+
+            # Headline accuracy = rendered-mode (canonical). If rendered didn't
+            # run, fall back to raw so the field is non-null.
+            headline = accuracy_rendered if accuracy_rendered is not None else accuracy_raw
+            if headline is None:
+                headline = 0.0  # both modes failed to score; data point lost
+            delta = (
+                (accuracy_rendered - accuracy_raw)
+                if (accuracy_raw is not None and accuracy_rendered is not None)
+                else None
             )
-            persist_scores(answers, page_dir / f"scoring.primary.{mode}.json")
-            grades = grade_page(ground_truth=ground_truth, answers=answers)
-            persist_grades(grades, page_dir / f"grades.primary.{mode}.json")
-            substring_acc = page_accuracy(grades)
-            mode_judged_acc: Optional[float] = None
-            if judge_client is not None:
-                judged = judge_page(
-                    client=judge_client, ground_truth=ground_truth, answers=answers
-                )
-                persist_judged_grades(judged, page_dir / f"grades.primary.judged.{mode}.json")
-                mode_judged_acc = judged_page_accuracy(judged)
-                print(f"    substring={substring_acc:.0%}  judged={mode_judged_acc:.0%}")
-            else:
-                print(f"    substring={substring_acc:.0%}")
-            mode_acc = mode_judged_acc if mode_judged_acc is not None else substring_acc
-            if mode == "raw":
-                accuracy_raw = mode_acc
-            else:
-                accuracy_rendered = mode_acc
-            all_answers.extend(answers)
 
-            # Optional: secondary-scorer pass on the rendered extraction only
-            # (cheaper than 2x; secondary's role is cross-LLM agreement, not
-            # raw-vs-rendered comparison, so once is enough).
-            if secondary is not None and mode == "rendered":
-                print(f"  scoring (secondary={config.scorer_secondary_deployment})")
-                sec_answers = score_page(
-                    client=secondary, document_text=mode_text,
-                    ground_truth=ground_truth, runs_per_question=1,
-                )
-                persist_scores(sec_answers, page_dir / "scoring.secondary.rendered.json")
-                sec_grades = grade_page(ground_truth=ground_truth, answers=sec_answers)
-                persist_grades(sec_grades, page_dir / "grades.secondary.rendered.json")
-
-        # Headline accuracy = rendered-mode (canonical). If rendered didn't
-        # run, fall back to raw so the field is non-null.
-        headline = accuracy_rendered if accuracy_rendered is not None else accuracy_raw
-        if headline is None:
-            headline = 0.0  # both modes failed to score; data point lost
-        delta = (
-            (accuracy_rendered - accuracy_raw)
-            if (accuracy_raw is not None and accuracy_rendered is not None)
-            else None
-        )
-
-        tokens_in = sum(a.tokens_in for a in all_answers)
-        tokens_out = sum(a.tokens_out for a in all_answers)
-        # Content type: prefer rendered, fall back to raw.
-        ct = (clipper_rendered or {}).get("content_type") or (clipper_raw or {}).get("content_type")
-        summary = PilotPageSummary(
-            slug=slug,
-            url=url,
-            profile=profile,
-            num_pairs=len(ground_truth),
-            accuracy=headline,
-            tokens_in_total=tokens_in,
-            tokens_out_total=tokens_out,
-            accuracy_raw=accuracy_raw,
-            accuracy_rendered=accuracy_rendered,
-            accuracy_delta=delta,
-            raw_fetch_status=raw_status,
-            rendered_fetch_status=rendered_status,
-            parseability_score_raw=(clipper_raw or {}).get("parseability_score"),
-            parseability_score_rendered=(clipper_rendered or {}).get("parseability_score"),
-            universal_score_raw=(clipper_raw or {}).get("universal_score"),
-            universal_score_rendered=(clipper_rendered or {}).get("universal_score"),
-            content_type=ct,
-            component_scores_raw=(clipper_raw or {}).get("component_scores", {}),
-            component_scores_rendered=(clipper_rendered or {}).get("component_scores", {}),
-        )
-        (page_dir / "summary.json").write_text(json.dumps(asdict(summary), indent=2), encoding="utf-8")
-        summaries.append(summary)
-        dt = time.time() - t0
-        delta_str = f"  delta={delta:+.0%}" if delta is not None else ""
-        print(f"  done: rendered_acc={headline:.0%}  raw_acc={accuracy_raw if accuracy_raw is not None else 'n/a'}{delta_str}  {dt:.1f}s")
+            tokens_in = sum(a.tokens_in for a in all_answers)
+            tokens_out = sum(a.tokens_out for a in all_answers)
+            # Content type: prefer rendered, fall back to raw.
+            ct = (clipper_rendered or {}).get("content_type") or (clipper_raw or {}).get("content_type")
+            summary = PilotPageSummary(
+                slug=slug,
+                url=url,
+                profile=profile,
+                num_pairs=len(ground_truth),
+                accuracy=headline,
+                tokens_in_total=tokens_in,
+                tokens_out_total=tokens_out,
+                accuracy_raw=accuracy_raw,
+                accuracy_rendered=accuracy_rendered,
+                accuracy_delta=delta,
+                raw_fetch_status=raw_status,
+                rendered_fetch_status=rendered_status,
+                parseability_score_raw=(clipper_raw or {}).get("parseability_score"),
+                parseability_score_rendered=(clipper_rendered or {}).get("parseability_score"),
+                universal_score_raw=(clipper_raw or {}).get("universal_score"),
+                universal_score_rendered=(clipper_rendered or {}).get("universal_score"),
+                content_type=ct,
+                component_scores_raw=(clipper_raw or {}).get("component_scores", {}),
+                component_scores_rendered=(clipper_rendered or {}).get("component_scores", {}),
+            )
+            (page_dir / "summary.json").write_text(json.dumps(asdict(summary), indent=2), encoding="utf-8")
+            summaries.append(summary)
+            dt = time.time() - t0
+            delta_str = f"  delta={delta:+.0%}" if delta is not None else ""
+            print(f"  done: rendered_acc={headline:.0%}  raw_acc={accuracy_raw if accuracy_raw is not None else 'n/a'}{delta_str}  {dt:.1f}s")
+        except Exception as exc:
+            # Scoring/judging failure on this page. Log and continue. No
+            # summary.json is written so the page is retried on rerun.
+            print(f"  [SKIP] scoring failed: {type(exc).__name__}: {str(exc)[:120]}")
+            (page_dir / "page_failed.json").write_text(
+                json.dumps(
+                    {
+                        "stage": "scoring",
+                        "error_type": type(exc).__name__,
+                        "error": str(exc),
+                        "timestamp": datetime.now(timezone.utc).isoformat(),
+                    },
+                    indent=2,
+                ),
+                encoding="utf-8",
+            )
+            continue
 
     manifest = {
         "started_at": started_at,
