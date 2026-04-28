@@ -423,3 +423,40 @@ These are choices that should be made deliberately, not by default:
 - v2 ship gate (cross-judge): [`evaluation/phase5-results/corpus-002-analysis/v2-gate-cross-judge.json`](../evaluation/phase5-results/corpus-002-analysis/v2-gate-cross-judge.json)
 - Original PRD this roadmap supersedes (Blocks 5+): [`findings/v2-scoring-phase6-roadmap-prd.md`](v2-scoring-phase6-roadmap-prd.md)
 - Phase 5 topical findings index: [`findings/phase-5/README.md`](phase-5/README.md)
+
+---
+
+## 10. External Literature Anchors
+
+This roadmap was originally written from internal Clipper evidence only. The following external sources were verified during Session 9.5 (April 28, 2026) by direct fetch of each URL — abstract, authors, and headline numbers were confirmed before citation. They are the defensible reference set for any Clipper-next ("post-v3") direction discussion. **Practitioner sources not on this list (Ahrefs/BrightEdge/SimilarWeb/iPullRank/etc.) were considered but not included because they could not be confirmed against a stable URL with verified findings.**
+
+### 10.1 Verified citation set
+
+| Ref | Source | URL | Relevance to Clipper |
+|-----|--------|-----|----------------------|
+| L1 | Liu et al. 2023 — *Lost in the Middle: How Language Models Use Long Contexts* (TACL) | https://arxiv.org/abs/2307.03172 | LM attention degrades for relevant info in middle of long contexts. Implies page-level scoring is the wrong unit; the first ~N tokens dominate what gets used. |
+| L2 | Aggarwal et al. 2024 — *GEO: Generative Engine Optimization* (KDD) | https://arxiv.org/abs/2311.09735 | Introduces GEO-bench and demonstrates content-side interventions can boost generative-engine visibility by up to **40%**. Domain-specific. Frames AI-citation-share as a tractable, manipulable DV. |
+| L3 | Liu, Zhang, Liang 2023 — *Evaluating Verifiability in Generative Search Engines* (EMNLP Findings) | https://arxiv.org/abs/2304.09848 | Across Bing Chat / NeevaAI / Perplexity / YouChat: only **51.5%** of generated sentences are fully supported by their citations; only **74.5%** of citations support their associated sentence. Establishes the noise floor for any "AI citation" outcome variable. |
+| L4 | Bevendorff, Wiegmann, Potthast, Stein 2024 — *Is Google Getting Worse? A Longitudinal Investigation of SEO Spam in Search Engines* (ECIR) | https://downloads.webis.de/publications/papers/bevendorff_2024a.pdf · https://dl.acm.org/doi/10.1007/978-3-031-56063-7_4 | One-year longitudinal monitoring of Google/Bing/DuckDuckGo on 7,392 product-review queries against ClueWeb22 baseline. SEO-optimized affiliate content over-represented in all three engines. Cautions that any "structure correlates with retrieval" result must be separated from "structure correlates with SEO optimization." |
+| L5 | Thakur et al. 2021 — *BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of Information Retrieval Models* (NeurIPS Datasets & Benchmarks) | https://arxiv.org/abs/2104.08663 | 18 datasets, 10 retrieval architectures. Headline finding: **BM25 is a robust zero-shot baseline**; dense retrievers often underperform out-of-distribution. Important sanity check before Clipper-next adopts dense retrieval as default. |
+| L6 | Bajaj et al. 2016/2018 — *MS MARCO: A Human Generated MAchine Reading COmprehension Dataset* | https://arxiv.org/abs/1611.09268 | Foundational passage-level QA dataset (1M+ Bing queries, 8.8M passages, 3.5M docs). Reference template for any passage-granularity retrieval benchmark Clipper-next builds. |
+| L7 | Petroni et al. 2021 — *KILT: a Benchmark for Knowledge Intensive Language Tasks* (NAACL) | https://arxiv.org/abs/2009.02252 | Wikipedia-grounded benchmark that explicitly evaluates **provenance** (does the model point to the supporting span). Methodological template for a Track-B "groundedness" diagnostic. |
+| L8 | Liang et al. 2023 — *Holistic Evaluation of Language Models (HELM)* (TMLR) | https://arxiv.org/abs/2211.09110 | 7 metrics × 16 core scenarios × 30 models. Methodologically the closest existing template for what Clipper-next's evaluation harness should look like: multi-metric, no single composite, full prompt/completion logging. |
+| P1 | Semrush 2026 — *How We Built a Content Optimization Tool for AI Search [Study]* | https://www.semrush.com/blog/content-optimization-ai-search-study/ | 11,882 prompts × 304k LLM-cited URLs vs 922k Google-ranked-but-not-cited URLs. Content-side correlations with AI citation: clarity/summarization +33%, E-E-A-T +31%, Q&A format +25%, section structure +23%, structured-data text signals +22%. Practitioner study, not peer-reviewed, but largest published sample on this DV. |
+
+### 10.2 Implications already adopted by this roadmap
+
+None of the above changes the v2 ship plan or the Phase 7 / corpus-003 design. The implications matter only for what comes *after* the corpus-003 retest is complete (i.e., post-v3 direction).
+
+### 10.3 Implications to evaluate at the Session 9.5 / 11 decision point
+
+If A3 still fails the r ≥ +0.35 ship gate after Session 9.5 (currently in flight: weak-scorer rescore on corpus-003), the literature above suggests the post-v3 redesign should consider:
+
+1. **Outcome-variable reframe.** Reader-comprehension-accuracy (the corpus-002/003 DV) measures whether a model can answer questions given a page. The commercially relevant DV — and the one Semrush (P1) and GEO (L2) measure at scale — is **whether the page gets cited when an AI search system answers a relevant prompt**. These are different outcomes; Clipper has been measuring the harder, less-actionable one. Track A of any rewrite should consider citation-as-DV as the primary measurement, with comprehension as a secondary "quality of citation" diagnostic.
+2. **Sub-page unit of analysis.** L1 ("Lost in the Middle") implies that scoring whole pages obscures the part of the page that actually drives retrieval. A first-N-tokens diagnostic and a per-section self-containedness diagnostic are both supported by L1 + L6 (MS MARCO passage granularity).
+3. **Groundedness as a separate axis.** L3 quantifies how often production generative search engines fail at attribution (~50% sentence support, ~75% citation support). L7 (KILT) provides the methodological template for measuring provenance directly. Worth a Track-B diagnostic.
+4. **No single composite.** L8 (HELM) is the most credible existing precedent for evaluation harness design and explicitly argues against collapsing multiple desiderata into one number. v2's `parseability_score` already moved this way (50/50 of two pillars rather than 6-pillar weighted sum); Clipper-next should make the no-composite stance explicit.
+5. **Confound with SEO optimization.** L4 (Webis) shows SEO-optimized content is over-represented in retrieval baselines beyond what its share of the web justifies. Any Clipper-next finding of the form "structured pages get cited more" must control for "structured pages also get SEO-optimized more" before being reported as a structure effect.
+6. **GEO manipulability ceiling.** L2 demonstrates content-side interventions can move citation share by ~40% in published experiments. This is the ceiling Clipper-next's recommendations could plausibly target — and also the noise floor below which any observed structural effect is plausibly a GEO-style surface manipulation rather than a substance-of-content effect.
+
+These six points are **inputs for the Session 11 decision**, not commitments. They will be revisited if A3 passes (in which case v2-evidence-partial holds and Clipper-next is deferred) or restated as a rewrite spec if A3 fails again.
