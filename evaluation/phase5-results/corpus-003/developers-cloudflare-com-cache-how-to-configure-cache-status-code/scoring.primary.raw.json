@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "120m",
+    "run_index": 0,
+    "tokens_in": 992,
+    "tokens_out": 3
+  },
+  {
+    "pair_index": 1,
+    "answer": "512 MB per file",
+    "run_index": 0,
+    "tokens_in": 980,
+    "tokens_out": 5
+  },
+  {
+    "pair_index": 2,
+    "answer": "An integer value that defines the duration an asset is valid in seconds or one of the following strings: no-store (equivalent to -1), no-cache (equivalent to 0).",
+    "run_index": 0,
+    "tokens_in": 986,
+    "tokens_out": 39
+  },
+  {
+    "pair_index": 3,
+    "answer": "If a TTL is not explicitly set for status code 304, we automatically set it to match the TTL of status code 200 (if the user has defined one for 200).",
+    "run_index": 0,
+    "tokens_in": 983,
+    "tokens_out": 38
+  },
+  {
+    "pair_index": 4,
+    "answer": "If a user specifies a TTL of one hour for status 200 and 0 seconds (cache and always revalidate) for status 304, the asset will be cached for 1 hour. After it expires, we revalidate with the origin. If the origin returns a 304, each subsequent request will trigger revalidation. If the origin continues to return 304, this cycle will persist.",
+    "run_index": 0,
+    "tokens_in": 988,
+    "tokens_out": 81
+  }
+]

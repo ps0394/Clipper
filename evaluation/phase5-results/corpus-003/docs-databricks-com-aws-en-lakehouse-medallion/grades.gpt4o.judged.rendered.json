@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, naming the three layers correctly.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 546,
+    "tokens_out": 24
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the ingestion of raw, unvalidated data, even though it adds extra details about preserving fidelity and serving as a source of truth.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 595,
+    "tokens_out": 45
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits \"data cleansing\" and \"normalization\" from the ground-truth answer, and includes additional operations like \"resolution of out-of-order and late-arriving data issues,\" \"schema evolution,\" and \"type casting,\" which are not in the ground truth.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 593,
+    "tokens_out": 61
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, covering the purpose of the gold layer as refined, aggregated data for analytics, reporting, machine learning, and business applications, while adding extra detail without contradiction.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 594,
+    "tokens_out": 49
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits other required examples from the ground-truth answer.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 549,
+    "tokens_out": 20
+  }
+]

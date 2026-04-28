@@ -1,0 +1,41 @@
+```json
+[
+    {
+        "question": "What is the purpose of expressions in MongoDB Query Language (MQL)?",
+        "answer": "Expressions are MQL components that resolve to a value. They are stateless, meaning they return a value without mutating any of the values used to build the expression.",
+        "supporting_sentences": [
+            "Expressions are MQL components that resolve to a value.",
+            "Expressions are stateless, meaning they return a value without mutating any of the values used to build the expression."
+        ]
+    },
+    {
+        "question": "What is the general form of an expression operator in MongoDB?",
+        "answer": "Expression operators generally take an array of arguments and have the form: `{ <operator>: [ <argument1>, <argument2> ... ] }`. If an operator accepts a single argument, you can omit the outer array: `{ <operator>: <argument> }`.",
+        "supporting_sentences": [
+            "Expression operators are similar to functions that take arguments. In general, these operators take an array of arguments and have the following form: { <operator>: [ <argument1>, <argument2> ... ] }",
+            "If an operator accepts a single argument, you can omit the outer array designating the argument list: { <operator>: <argument> }"
+        ]
+    },
+    {
+        "question": "Which arithmetic operator in MongoDB returns the smallest integer greater than or equal to a specified number?",
+        "answer": "The `$ceil` operator returns the smallest integer greater than or equal to the specified number.",
+        "supporting_sentences": [
+            "Returns the smallest integer greater than or equal to the specified number."
+        ]
+    },
+    {
+        "question": "What does the `$concatArrays` array operator do in MongoDB?",
+        "answer": "The `$concatArrays` operator concatenates arrays to return the concatenated array.",
+        "supporting_sentences": [
+            "Concatenates arrays to return the concatenated array."
+        ]
+    },
+    {
+        "question": "How does the `$dateToString` date operator format its output?",
+        "answer": "The `$dateToString` operator returns the date as a formatted string.",
+        "supporting_sentences": [
+            "Returns the date as a formatted string."
+        ]
+    }
+]
+```

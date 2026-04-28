@@ -1,0 +1,110 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of the Azure Kubernetes Service (AKS) quickstart described in the document?",
+      "answer": "The quickstart teaches how to deploy an AKS cluster with default settings using the Azure CLI and deploy a sample multi-container application with a group of microservices and web front ends that simulate a retail scenario.",
+      "supporting_sentences": [
+        "Azure Kubernetes Service (AKS) is a managed Kubernetes service that lets you quickly deploy and manage clusters. In this quickstart, you learn how to:",
+        "Deploy an AKS cluster with default settings using the Azure CLI.",
+        "Deploy a sample multi-container application with a group of microservices and web front ends that simulate a retail scenario."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of the Azure Kubernetes Service (AKS) quickstart described in the document?",
+      "answer": "The quickstart teaches how to deploy an AKS cluster with default settings using the Azure CLI and deploy a sample multi-container application with a group of microservices and web front ends that simulate a retail scenario.",
+      "supporting_sentences": [
+        "Azure Kubernetes Service (AKS) is a managed Kubernetes service that lets you quickly deploy and manage clusters. In this quickstart, you learn how to:",
+        "Deploy an AKS cluster with default settings using the Azure CLI.",
+        "Deploy a sample multi-container application with a group of microservices and web front ends that simulate a retail scenario."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which resource provider must be registered in an Azure subscription to deploy an AKS cluster?",
+      "answer": "Microsoft.ContainerService",
+      "supporting_sentences": [
+        "You might need to register resource providers in your Azure subscription. For example, Microsoft.ContainerService is required."
+      ]
+    },
+    "edited_pair": {
+      "question": "Which resource provider must be registered in an Azure subscription to deploy an AKS cluster?",
+      "answer": "Microsoft.ContainerService",
+      "supporting_sentences": [
+        "You might need to register resource providers in your Azure subscription. For example, Microsoft.ContainerService is required."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the default node count for an AKS cluster if no node count is specified during creation?",
+      "answer": "Three nodes",
+      "supporting_sentences": [
+        "The cluster in this example specifies a node count of one to save time and resources. In a production environment, the recommendation is a node count of threee or more nodes. The az aks create defaults to three nodes if you don't specify a node count."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the default node count for an AKS cluster if no node count is specified during creation?",
+      "answer": "Three nodes",
+      "supporting_sentences": [
+        "The cluster in this example specifies a node count of one to save time and resources. In a production environment, the recommendation is a node count of threee or more nodes. The az aks create defaults to three nodes if you don't specify a node count."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the two types of node pools mentioned in the document, and what is their purpose?",
+      "answer": "System node pools and user node pools. System node pools are for system workloads, while user node pools provide better isolation and flexibility for application workloads.",
+      "supporting_sentences": [
+        "Applications should run on user mode node pools instead of the default system mode node pool. User node pools provide better isolation and flexibility for application workloads.",
+        "There are two nodes, nodepool1 is the system node pool created with the cluster and userpool1 is the user node pool added to the cluster."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the two types of node pools mentioned in the document, and what is their purpose?",
+      "answer": "System node pools and user node pools. System node pools are for system workloads, while user node pools provide better isolation and flexibility for application workloads.",
+      "supporting_sentences": [
+        "Applications should run on user mode node pools instead of the default system mode node pool. User node pools provide better isolation and flexibility for application workloads.",
+        "There are two nodes, nodepool1 is the system node pool created with the cluster and userpool1 is the user node pool added to the cluster."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What command is used to deploy the sample application defined in the aks-store-quickstart.yaml manifest file?",
+      "answer": "`kubectl apply -f aks-store-quickstart.yaml`",
+      "supporting_sentences": [
+        "Deploy the application using the kubectl apply command and specify the name of your YAML manifest.",
+        "kubectl apply -f aks-store-quickstart.yaml"
+      ]
+    },
+    "edited_pair": {
+      "question": "What command is used to deploy the sample application defined in the aks-store-quickstart.yaml manifest file?",
+      "answer": "`kubectl apply -f aks-store-quickstart.yaml`",
+      "supporting_sentences": [
+        "Deploy the application using the kubectl apply command and specify the name of your YAML manifest.",
+        "kubectl apply -f aks-store-quickstart.yaml"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

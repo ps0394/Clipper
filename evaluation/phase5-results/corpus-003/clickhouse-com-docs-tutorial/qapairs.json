@@ -1,0 +1,37 @@
+[
+  {
+    "question": "What is the data type of the `trip_id` column in the NYC taxi trips dataset used in the ClickHouse tutorial?",
+    "answer": "UInt32",
+    "supporting_sentences": [
+      "`trip_id` UInt32,"
+    ]
+  },
+  {
+    "question": "How many distinct vendor IDs are explicitly listed in the `vendor_id` column definition for the NYC taxi trips dataset?",
+    "answer": "11",
+    "supporting_sentences": [
+      "`vendor_id` Enum8('1' = 1, '2' = 2, '3' = 3, '4' = 4, 'CMT' = 5, 'VTS' = 6, 'DDS' = 7, 'B02512' = 10, 'B02598' = 11, 'B02617' = 12, 'B02682' = 13, 'B02764' = 14, '' = 15)"
+    ]
+  },
+  {
+    "question": "What are the three possible values for the `cab_type` column in the NYC taxi trips dataset?",
+    "answer": "yellow, green, uber",
+    "supporting_sentences": [
+      "`cab_type` Enum8('yellow' = 1, 'green' = 2, 'uber' = 3)"
+    ]
+  },
+  {
+    "question": "What setting is explicitly disabled when importing the NYC taxi trips dataset in the ClickHouse tutorial?",
+    "answer": "input_format_try_infer_datetimes",
+    "supporting_sentences": [
+      "SETTINGS input_format_try_infer_datetimes = 0"
+    ]
+  },
+  {
+    "question": "What is the data format used to import the NYC taxi trips dataset in the ClickHouse tutorial?",
+    "answer": "TabSeparatedWithNames",
+    "supporting_sentences": [
+      "SELECT * FROM s3(    'https://datasets-documentation.s3.eu-west-3.amazonaws.com/nyc-taxi/trips_{1..2}.gz',    'TabSeparatedWithNames',"
+    ]
+  }
+]

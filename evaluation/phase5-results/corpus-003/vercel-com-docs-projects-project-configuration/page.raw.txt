@@ -1,0 +1,137 @@
+Vercel automatically detects your framework and sets sensible defaults for builds, deployments, and routing. Project configuration lets you override these defaults to control builds, routing rules, function behavior, scheduled tasks, image optimization, and more.
+
+In addition to configuring your project through 
+Project Settings
+, you have the following options:
+
+Static file-based configuration
+ - Static JSON configuration in your repository
+
+Programmatic file-based configuration
+ - Dynamic TypeScript configuration that runs at build time
+
+Global CLI configuration
+ - System-wide Vercel CLI settings
+
+Each method lets you control different aspects of your project.
+
+File-based configuration lives in your repository and gets version-controlled with your code. You can use either 
+vercel.json
+ for static configuration or 
+vercel.ts
+ for programmatic configuration that runs at build time. Both support the same properties, but 
+vercel.ts
+ lets you generate configuration dynamically using environment variables, API calls, or other build-time logic. You can only use one configuration file per project.
+
+The table below shows all available configuration properties:
+
+Property
+vercel.json
+vercel.ts
+Description
+$schema
+View
+View
+Enable IDE autocomplete and validation
+buildCommand
+View
+View
+Override the build command for your project
+bunVersion
+View
+View
+Specify which Bun version to use
+cleanUrls
+View
+View
+Remove 
+.html
+ extensions from URLs
+crons
+View
+View
+Schedule functions to run at specific times
+devCommand
+View
+View
+Override the development command
+fluid
+View
+View
+Enable fluid compute for functions
+framework
+View
+View
+Specify the framework preset
+functions
+View
+View
+Configure function memory, duration, and runtime
+headers
+View
+View
+Add custom HTTP headers to responses
+ignoreCommand
+View
+View
+Skip builds based on custom logic
+images
+View
+View
+Configure image optimization
+installCommand
+View
+View
+Override the package install command
+outputDirectory
+View
+View
+Specify the build output directory
+public
+View
+View
+Make deployment logs and source publicly accessible
+redirects
+View
+View
+Redirect requests to different URLs
+bulkRedirectsPath
+View
+View
+Point to a file with bulk redirects
+regions
+View
+View
+Deploy functions to specific regions
+functionFailoverRegions
+View
+View
+Set failover regions for functions
+rewrites
+View
+View
+Route requests to different paths or external URLs
+trailingSlash
+View
+View
+Add or remove trailing slashes from URLs
+
+Global Configuration
+ affects how Vercel CLI behaves on your machine. These settings are stored in your user directory and apply across all projects.
+
+For detailed information about specific configuration areas, see:
+
+General Settings
+ - Project name, Node.js version, build settings, and Vercel Toolbar
+
+Project Settings
+ - Overview of all project settings in the dashboard
+
+Git Configuration
+ - Configure Git through vercel.json and vercel.ts
+
+Git Settings
+ - Manage Git connection, LFS, and deploy hooks
+
+Security settings
+ - Attack Challenge Mode, logs protection, fork protection, OIDC, and retention policies

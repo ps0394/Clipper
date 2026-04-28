@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What is the purpose of the `Response.redirect()` method in Cloudflare Workers?",
+    "answer": "The `Response.redirect()` method is used to redirect all requests to a specified URL.",
+    "supporting_sentences": [
+      "Redirect all requests to one URL",
+      "return Response.redirect(destinationURL, statusCode);"
+    ]
+  },
+  {
+    "question": "In the JavaScript example for redirecting all requests, what variable holds the destination URL?",
+    "answer": "The variable `destinationURL` holds the destination URL.",
+    "supporting_sentences": [
+      "const destinationURL = \"https://example.com\";",
+      "return Response.redirect(destinationURL, statusCode);"
+    ]
+  },
+  {
+    "question": "How does the Python example in Cloudflare Workers construct the destination URL when redirecting from one domain to another?",
+    "answer": "The Python example constructs the destination URL using an f-string that combines the `base` URL, the `path` from the parsed request URL, and the `query` from the parsed request URL.",
+    "supporting_sentences": [
+      "base = \"https://example.com\"",
+      "url = urlparse(request.url)",
+      "destinationURL = f'{base}{url.path}{url.query}'"
+    ]
+  },
+  {
+    "question": "What method is used in the Rust example to redirect requests with a specific status code?",
+    "answer": "The `Response::redirect_with_status()` method is used in the Rust example.",
+    "supporting_sentences": [
+      "Response::redirect_with_status(base, status_code)"
+    ]
+  },
+  {
+    "question": "In the Hono framework example, what parts of the original request URL are preserved when redirecting to a new domain?",
+    "answer": "The `pathname` and `search` parts of the original request URL are preserved when redirecting to a new domain.",
+    "supporting_sentences": [
+      "const { pathname, search } = new URL(c.req.url);",
+      "const destinationURL = `${base}${pathname}${search}`;"
+    ]
+  }
+]

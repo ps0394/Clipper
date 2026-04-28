@@ -1,0 +1,80 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Databricks on AWS
+Document URL: https://docs.databricks.com/aws/en/structured-streaming/
+Document profile: article
+
+Document text:
+---
+Structured Streaming concepts
+
+Apache Spark Structured Streaming is a near real-time processing engine that offers end-to-end fault tolerance with exactly-once processing guarantees using familiar Spark APIs. Structured Streaming lets you express computation on streaming data in the same way you express a batch computation on static data. The Structured Streaming engine performs the computation incrementally and continuously updates the result as streaming data arrives.
+
+For a step-by-step tutorial, see 
+Run your first Structured Streaming workload
+.
+
+Read from a data stream
+​
+
+Use Structured Streaming to incrementally ingest data from supported data sources.
+
+Auto Loader
+
+Incrementally and efficiently process new data files as they arrive in cloud storage.
+
+Standard connectors
+
+Connect to message buses, queues, and enterprise applications using standard connectors.
+
+Micro-batch size
+
+Limit input rates to maintain consistent batch sizes and prevent processing delays.
+
+Write to a data sink
+​
+
+Configure how Structured Streaming delivers data to target systems.
+
+Checkpoints
+
+Store processing state to enable fault tolerance and exactly-once delivery semantics.
+
+Output mode
+
+Choose between append, update, and complete modes for stateful streaming queries.
+
+Trigger intervals
+
+Set trigger intervals to balance latency and cost for your processing requirements.
+
+Stateful and stateless processing
+​
+
+Stateless queries process rows without retaining state. Stateful queries maintain intermediate state for aggregations, joins, and deduplication.
+
+Watermarks
+
+Control how long Structured Streaming waits for late-arriving data in stateful operations.
+
+Stateful streaming
+
+Manage aggregations, stream-stream joins, and deduplication using stateful operators.
+
+Monitor and manage
+​
+
+Track query performance, apply optimizations, and govern data access for production Structured Streaming workloads.
+---

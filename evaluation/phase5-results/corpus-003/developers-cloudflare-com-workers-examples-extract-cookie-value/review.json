@@ -1,0 +1,114 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the name of the cookie used in the Cloudflare Workers example for extracting a cookie value?",
+      "answer": "__uid",
+      "supporting_sentences": [
+        "const COOKIE_NAME = \"__uid\";",
+        "const COOKIE_NAME = \"__uid\";",
+        "const COOKIE_NAME = \"__uid\";"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the name of the cookie used in the Cloudflare Workers example for extracting a cookie value?",
+      "answer": "__uid",
+      "supporting_sentences": [
+        "const COOKIE_NAME = \"__uid\";",
+        "const COOKIE_NAME = \"__uid\";",
+        "const COOKIE_NAME = \"__uid\";"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which npm package is required for the JavaScript example in the Cloudflare Workers cookie parsing documentation?",
+      "answer": "cookie",
+      "supporting_sentences": [
+        "This example requires the npm package cookie \u2197 to be installed in your JavaScript project."
+      ]
+    },
+    "edited_pair": {
+      "question": "Which npm package is required for the JavaScript example in the Cloudflare Workers cookie parsing documentation?",
+      "answer": "cookie",
+      "supporting_sentences": [
+        "This example requires the npm package cookie \u2197 to be installed in your JavaScript project."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What does the Cloudflare Workers example return if the specified cookie is not found?",
+      "answer": "No cookie with name: [cookie name]",
+      "supporting_sentences": [
+        "return new Response(\"No cookie with name: \" + COOKIE_NAME);",
+        "return Response(\"No cookie with name: \" + cookie_name);",
+        "return c.text(\"No cookie with name: \" + COOKIE_NAME);"
+      ]
+    },
+    "edited_pair": {
+      "question": "What does the Cloudflare Workers example return if the specified cookie is not found?",
+      "answer": "No cookie with name: [cookie name]",
+      "supporting_sentences": [
+        "return new Response(\"No cookie with name: \" + COOKIE_NAME);",
+        "return Response(\"No cookie with name: \" + cookie_name);",
+        "return c.text(\"No cookie with name: \" + COOKIE_NAME);"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which utility does the Hono example use to get the cookie value in the Cloudflare Workers documentation?",
+      "answer": "getCookie from 'hono/cookie'",
+      "supporting_sentences": [
+        "import { getCookie } from 'hono/cookie';",
+        "const cookieValue = getCookie(c, COOKIE_NAME);"
+      ]
+    },
+    "edited_pair": {
+      "question": "Which utility does the Hono example use to get the cookie value in the Cloudflare Workers documentation?",
+      "answer": "getCookie from 'hono/cookie'",
+      "supporting_sentences": [
+        "import { getCookie } from 'hono/cookie';",
+        "const cookieValue = getCookie(c, COOKIE_NAME);"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the Python class used for the Worker entry point in the Cloudflare Workers cookie parsing example?",
+      "answer": "WorkerEntrypoint",
+      "supporting_sentences": [
+        "from workers import WorkerEntrypoint, Response",
+        "class Default(WorkerEntrypoint):"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the Python class used for the Worker entry point in the Cloudflare Workers cookie parsing example?",
+      "answer": "WorkerEntrypoint",
+      "supporting_sentences": [
+        "from workers import WorkerEntrypoint, Response",
+        "class Default(WorkerEntrypoint):"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

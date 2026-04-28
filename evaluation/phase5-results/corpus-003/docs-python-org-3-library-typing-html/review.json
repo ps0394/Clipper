@@ -1,0 +1,108 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of the `typing` module in Python?",
+      "answer": "The `typing` module provides runtime support for type hints.",
+      "supporting_sentences": [
+        "This module provides runtime support for type hints."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of the `typing` module in Python?",
+      "answer": "The `typing` module provides runtime support for type hints.",
+      "supporting_sentences": [
+        "This module provides runtime support for type hints."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does Python's runtime treat function and variable type annotations?",
+      "answer": "The Python runtime does not enforce function and variable type annotations. They can be used by third party tools such as type checkers, IDEs, linters, etc.",
+      "supporting_sentences": [
+        "The Python runtime does not enforce function and variable type annotations.",
+        "They can be used by third party tools such as type checkers, IDEs, linters, etc."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does Python's runtime treat function and variable type annotations?",
+      "answer": "The Python runtime does not enforce function and variable type annotations. They can be used by third party tools such as type checkers, IDEs, linters, etc.",
+      "supporting_sentences": [
+        "The Python runtime does not enforce function and variable type annotations.",
+        "They can be used by third party tools such as type checkers, IDEs, linters, etc."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the difference between a type alias and `NewType` in Python's typing system?",
+      "answer": "A type alias declares two types to be equivalent, while `NewType` declares one type to be a subtype of another. Using a type alias means the static type checker treats the alias as exactly equivalent to the original type, whereas `NewType` treats the derived type as a subclass of the original type.",
+      "supporting_sentences": [
+        "Note that, the use of a type alias declares two types to be equivalent to one another. Doing `type Alias = Original` will make the static type checker treat `Alias` as being exactly equivalent to `Original` in all cases.",
+        "In contrast, `NewType` declares one type to be a subtype of another. Doing `Derived = NewType('Derived', Original)` will make the static type checker treat `Derived` as a subclass of `Original`, which means a value of type `Original` cannot be used in places where a value of type `Derived` is expected."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the difference between a type alias and `NewType` in Python's typing system?",
+      "answer": "A type alias declares two types to be equivalent, while `NewType` declares one type to be a subtype of another. Using a type alias means the static type checker treats the alias as exactly equivalent to the original type, whereas `NewType` treats the derived type as a subclass of the original type.",
+      "supporting_sentences": [
+        "Note that, the use of a type alias declares two types to be equivalent to one another. Doing `type Alias = Original` will make the static type checker treat `Alias` as being exactly equivalent to `Original` in all cases.",
+        "In contrast, `NewType` declares one type to be a subtype of another. Doing `Derived = NewType('Derived', Original)` will make the static type checker treat `Derived` as a subclass of `Original`, which means a value of type `Original` cannot be used in places where a value of type `Derived` is expected."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What syntax is used to define a generic function in Python 3.12 and later?",
+      "answer": "Generic functions can be parameterized by using type parameter syntax, such as `def first[T](l: Sequence[T]) -> T:`.",
+      "supporting_sentences": [
+        "Generic functions and classes can be parameterized by using type parameter syntax:",
+        "Copy\nfrom collections.abc import Sequence\n\ndef first[T](l: Sequence[T]) -> T:\n    # Function is generic over the TypeVar \"T\"\n    return l[0]"
+      ]
+    },
+    "edited_pair": {
+      "question": "What syntax is used to define a generic function in Python 3.12 and later?",
+      "answer": "Generic functions can be parameterized by using type parameter syntax, such as `def first[T](l: Sequence[T]) -> T:`.",
+      "supporting_sentences": [
+        "Generic functions and classes can be parameterized by using type parameter syntax:",
+        "Copy\nfrom collections.abc import Sequence\n\ndef first[T](l: Sequence[T]) -> T:\n    # Function is generic over the TypeVar \"T\"\n    return l[0]"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What does the `Any` type in Python's typing system represent?",
+      "answer": "`Any` is a special type indicating an unconstrained type. A static type checker will treat every type as being compatible with `Any` and `Any` as being compatible with every type.",
+      "supporting_sentences": [
+        "A special kind of type is `Any`. A static type checker will treat every type as being compatible with `Any` and `Any` as being compatible with every type."
+      ]
+    },
+    "edited_pair": {
+      "question": "What does the `Any` type in Python's typing system represent?",
+      "answer": "`Any` is a special type indicating an unconstrained type. A static type checker will treat every type as being compatible with `Any` and `Any` as being compatible with every type.",
+      "supporting_sentences": [
+        "A special kind of type is `Any`. A static type checker will treat every type as being compatible with `Any` and `Any` as being compatible with every type."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

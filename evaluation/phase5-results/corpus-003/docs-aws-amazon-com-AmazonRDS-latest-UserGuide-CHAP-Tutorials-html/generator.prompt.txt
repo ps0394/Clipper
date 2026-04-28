@@ -1,0 +1,123 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Amazon RDS tutorials and sample code
+Document URL: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.html
+Document profile: tutorial
+
+Document text:
+---
+Amazon RDS tutorials
+ and sample code
+The AWS documentation includes several tutorials that guide you through common 
+
+Amazon RDS
+
+        use cases. Many of these tutorials show you how to use 
+
+Amazon RDS
+
+        with other AWS services. In addition, you can access sample code in .
+
+Tutorials in this guide
+
+The following tutorials in this guide show you how to perform common tasks with 
+
+Amazon RDS
+:
+
+Tutorials in other AWS guides
+
+The following tutorials in other AWS guides show you how to perform common tasks with 
+
+Amazon RDS
+:
+
+Tutorials and sample code in GitHub
+
+The following tutorials and sample code in GitHub show you how to perform common tasks with 
+
+Amazon RDS
+:
+
+AWS Database Cookbook
+
+The 
+AWS DB Cookbook
+ is a comprehensive database guide that teaches you how to build, deploy, and manage high-performing, cost-effective database solutions on AWS. Step-by-step tutorials guide you through creating production-ready applications and deploying the apps with CloudFormation templates. You'll learn essential AWS services as you build infrastructure, implement networking, develop serverless architectures, manage databases, and integrate generative AI. Learn AWS best practices that help you create secure, scalable solutions while optimizing costs. Whether you're new to AWS or an experienced professional, the AWS DB Cookbook helps you develop skills to solve common database challenges and implement enterprise-ready solutions. The cookbook includes the following sections:
+
+Getting started with AWS for DB applications
+ – Learn AWS fundamentals like how to set up your account and Jupyter Notebook environment.
+
+Database fundamentals
+ – Explore essential database concepts and compare AWS database services to choose the right solution for your workloads.
+
+Serverless web app with Amazon Aurora
+ – Build an end-to-end retail application with Amazon Aurora PostgreSQL that handles inventory, orders, and customer data.
+
+Monitoring and observability
+ – Set up performance tracking and configure alerts to identify potential database issues before they impact your applications.
+
+Scaling with Amazon Aurora
+ – Learn to build resilient multi-Region deployments with Aurora DSQL, and how to scale your databases up for more processing power or out across multiple instances for greater capacity.
+
+Optimization performance and cost
+ – Optimize your database performance and reduce costs with proven tuning strategies.
+
+Journey to AWS purpose-built databases
+ – Build a secure, reliable infrastructure that scales your generative AI solutions and data-driven applications from prototype to enterprise deployment.
+
+GenAI applications with RAG
+ – Build an intelligent search system for insurance and healthcare documents that uses Retrieval Augmented Generation (RAG) to deliver accurate, context-aware results.
+
+AWS workshop and lab content portal for 
+Amazon RDS
+ PostgreSQL
+
+The following collection of workshops and other hands-on content helps you to gain an understanding of the 
+
+Amazon RDS
+ PostgreSQL features and capabilities:
+
+                    Creating a DB instance
+
+Learn how to create the DB instance.
+
+                    Performance Monitoring with RDS Tools
+
+Learn how to use AWS and SQL tools(Cloudwatch, Enhanced Monitoring, Slow Query Logs, Performance Insights, PostgreSQL Catalog Views) 
+                    to understand performance issues and identify ways to improve performance of your database.
+
+AWS workshop and lab content portal for 
+Amazon RDS
+ MySQL
+
+The following collection of workshops and other hands-on content helps you to gain an understanding of the 
+
+Amazon RDS
+ MySQL features and capabilities:
+
+Using this service with an AWS SDK
+
+AWS software development kits (SDKs) are available for many popular programming languages. Each SDK provides an API, code examples, and documentation that 
+        make it easier for developers to build applications in their preferred language.
+
+For examples specific to this service, see 
+Code examples for Amazon RDS using AWS SDKs
+.
+
+Can't find what you need? Request a code example by using the 
+Provide feedback
+ link at the bottom of this page.
+---

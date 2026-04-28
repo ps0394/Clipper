@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer exactly matches the ground-truth answer in factual content.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 583,
+    "tokens_out": 18
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer lists exactly the same four Cache-Control header values that prevent caching as the ground truth, with no missing or contradictory information.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 588,
+    "tokens_out": 31
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer lists the same HTTP status codes and corresponding TTLs as the ground truth, with only formatting differences.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 631,
+    "tokens_out": 28
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states the default size (5 GB) and the method to increase it (contacting the account team), matching the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 583,
+    "tokens_out": 34
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer accurately conveys all key facts from the ground truth: the use of a cache lock, only the first request goes to the origin, and the remaining requests wait for the response to be streamed to them.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 627,
+    "tokens_out": 48
+  }
+]

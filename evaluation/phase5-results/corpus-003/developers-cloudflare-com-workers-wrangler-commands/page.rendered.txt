@@ -1,0 +1,47 @@
+Wrangler
+ offers a number of commands to manage your Cloudflare Workers.
+
+The core Wrangler commands for creating, developing, and deploying Workers are on the 
+Workers commands page
+. This includes 
+wrangler dev
+, 
+wrangler deploy
+, 
+wrangler versions
+, and more.
+
+How to run Wrangler commands
+
+wrangler <COMMAND> <SUBCOMMAND> [PARAMETERS] [OPTIONS]
+
+Since Cloudflare recommends 
+installing Wrangler locally
+ in your project (rather than globally), the way to run Wrangler will depend on your specific setup and package manager.
+
+ npm 
+ yarn 
+ pnpm 
+
+npx
+ wrangler <COMMAND> <SUBCOMMAND> [PARAMETERS] [OPTIONS]
+
+yarn
+ wrangler <COMMAND> <SUBCOMMAND> [PARAMETERS] [OPTIONS]
+
+pnpm
+ wrangler <COMMAND> <SUBCOMMAND> [PARAMETERS] [OPTIONS]
+
+You can add Wrangler commands that you use often as scripts in your project's 
+package.json
+ file:
+
+"
+deploy
+"
+:
+
+"wrangler deploy"
+,
+
+You can then run them using your package manager of choice:

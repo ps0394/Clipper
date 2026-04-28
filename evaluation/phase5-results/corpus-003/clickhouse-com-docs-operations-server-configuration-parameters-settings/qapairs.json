@@ -1,0 +1,38 @@
+[
+  {
+    "question": "What is the default value for the setting 'on_cluster_queries_require_cluster_grant' in ClickHouse server configuration?",
+    "answer": "true",
+    "supporting_sentences": [
+      "on_cluster_queries_require_cluster_grant | Sets whether ON CLUSTER queries require the CLUSTER grant. | true"
+    ]
+  },
+  {
+    "question": "What action does the 'abort_on_logical_error' setting perform in ClickHouse?",
+    "answer": "Crash the server on LOGICAL_ERROR exceptions.",
+    "supporting_sentences": [
+      "abort_on_logical_error | Crash the server on LOGICAL_ERROR exceptions. Only for experts."
+    ]
+  },
+  {
+    "question": "What is the default expiration time in seconds for a role stored in the Role Cache in ClickHouse?",
+    "answer": "600",
+    "supporting_sentences": [
+      "role_cache_expiration_time_seconds | Sets the number of seconds since last access, that a role is stored in the Role Cache. | 600"
+    ]
+  },
+  {
+    "question": "What is the default behavior when 'users_without_row_policies_can_read_rows' is set to true in ClickHouse?",
+    "answer": "Users without permissive row policies can still read rows using a SELECT query.",
+    "supporting_sentences": [
+      "users_without_row_policies_can_read_rows | Sets whether users without permissive row policies can still read rows using a SELECT query. For example, if there are two users A and B and a row policy is defined only for A, then if this setting is true, user B will see all rows. If this setting is false, user B will see no rows. | true"
+    ]
+  },
+  {
+    "question": "What is the default value for 'allow_feature_tier' in ClickHouse, and what does a value of 0 mean?",
+    "answer": "The default value is 0, which means that all settings can be changed (experimental, beta, production).",
+    "supporting_sentences": [
+      "allow_feature_tier | 0 - Changes to any setting are allowed (experimental, beta, production).",
+      "Note | A value of 0 means that all settings can be changed."
+    ]
+  }
+]

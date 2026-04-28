@@ -1,0 +1,161 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Replica Set Deployment Architectures
+Document URL: https://www.mongodb.com/docs/manual/core/replica-set-architectures/
+Document profile: article
+
+Document text:
+---
+The architecture of a 
+replica set
+ affects the
+set's capacity and capability. This document provides strategies for
+replica set deployments and describes common architectures.
+The standard replica set deployment for a production system is a
+three-member replica set. These sets provide redundancy and fault
+tolerance. Avoid complexity when possible, but let your application
+requirements dictate the architecture.
+Note
+Outside of a rolling upgrade, all 
+mongod
+ members of
+a 
+replica set
+ should use the same major version of
+MongoDB.
+Add members in a replica set according to these strategies.
+Ensure that the replica set has an odd number of voting members. A
+replica set can have up to 7 voting members. If you have an 
+even
+
+number of voting members, deploy another data bearing voting member or,
+if constraints prohibit against another data bearing voting member, an
+
+arbiter.
+An 
+arbiter
+ does not store a copy of the data and
+requires fewer resources. As a result, you may run an arbiter on an
+application server or other shared resource. With no copy of the data,
+it may be possible to place an arbiter into environments that you would
+not place other members of the replica set. Consult your security
+policies.
+To add an arbiter to an existing replica set:
+Typically, if there are two or fewer data-bearing members in the
+replica set, you might need to first set the 
+cluster wide write
+concern
+ for the replica set.
+See 
+cluster wide write concern
+ for more information on why you
+might need to set the cluster wide write concern.
+You do not need to change the cluster wide write concern before starting
+a new replica set with an arbiter.
+Fault tolerance
+ for a replica set is the number of members that can
+become unavailable and still leave enough members in the set to elect a
+primary. In other words, it is the difference between the number of
+members in the set and the 
+majority
+ of voting members needed to
+elect a primary. Without a primary, a replica set cannot accept write
+operations. Fault tolerance is an effect of replica set size, but the
+relationship is not direct. See the following table:
+Majority Required to Elect a New Primary
+Adding a member to the replica set does not 
+always
+ increase the
+fault tolerance. However, in these cases, additional members can
+provide support for dedicated functions, such as backups or reporting.
+rs.status()
+ returns 
+majorityVoteCount
+
+for the replica set.
+Add 
+hidden
+ or 
+delayed
+ members to support dedicated functions,
+such as backup or reporting.
+A replica set is designed for high availability and redundancy. In most
+cases secondary members operate under similar loads as the primary. You
+should not direct reads to secondaries.
+If you have a read-heavy application, consider using 
+Mongosync
+ to
+replicate data to another cluster for reading.
+For more information on secondary read modes, see: 
+secondary
+
+and 
+secondaryPreferred
+.
+The existing members of a replica set must have spare capacity to
+support adding a new member. Always add new members before the
+current demand saturates the capacity of the set.
+To protect your data in case of a data center failure, keep at least
+one member in an alternate data center. If possible, use an odd number
+of data centers, and choose a distribution of members that maximizes
+the likelihood that even with a loss of a data center, the remaining
+replica set members can form a majority or at minimum, provide a copy
+of your data.
+Note
+For production deployments, we recommend deplying config server and shard replica
+sets on at least three data centers. This configuration provides high availability in case
+a single data center goes down.
+To ensure that the members in your main data center be elected primary
+before the members in the alternate data center, set the
+
+members[n].priority
+ of the members in the alternate data
+center to be lower than that of the members in the primary data center.
+For more information, see
+
+Replica Sets Distributed Across Two or More Data Centers
+Use 
+replica set tag sets
+ to
+target read operations to specific members or to customize write
+concern to request acknowledgment from specific members.
+MongoDB enables 
+journaling
+ by default.
+Journaling protects against data loss in the event of service
+interruptions, such as power failures and unexpected reboots.
+Important
+To avoid configuration updates due to IP address changes, use DNS
+hostnames instead of IP addresses. It is particularly important to
+use a DNS hostname instead of an IP address when configuring replica
+set members or sharded cluster members.
+Use hostnames instead of IP addresses to configure clusters across a
+split network horizon. Starting in MongoDB 5.0, nodes that are only
+configured with an IP address fail startup validation and do not start.
+If your application connects to more than one replica set, each set must
+have a distinct name. Some drivers group replica set connections by
+replica set name.
+The following documents describe common replica set deployment
+patterns. Other patterns are possible and effective depending on
+the application's requirements. If needed, combine features of each
+architecture in your own deployment:
+Three Member Replica Sets
+Three-member replica sets provide the minimum recommended
+architecture for a replica set.
+Replica Sets Distributed Across Two or More Data Centers
+Geographically distributed sets include members in multiple
+locations to protect against facility-specific failures, such as
+power outages.
+---

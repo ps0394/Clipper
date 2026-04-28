@@ -1,0 +1,44 @@
+[
+  {
+    "question": "What are the three end-of-line sequences that Python recognizes for physical lines?",
+    "answer": "The Unix form using ASCII LF (linefeed), the Windows form using the ASCII sequence CR LF (return followed by linefeed), and the Classic Mac OS form using the ASCII CR (return) character.",
+    "supporting_sentences": [
+      "A physical line is a sequence of characters terminated by one the following end-of-line sequences:",
+      "the Unix form using ASCII LF (linefeed),",
+      "the Windows form using the ASCII sequence CR LF (return followed by linefeed),",
+      "the \u2018Classic Mac OS\u2019 form using the ASCII CR (return) character."
+    ]
+  },
+  {
+    "question": "What is the default encoding for a Python source file if no encoding declaration is found?",
+    "answer": "The default encoding is UTF-8.",
+    "supporting_sentences": [
+      "If no encoding declaration is found, the default encoding is UTF-8."
+    ]
+  },
+  {
+    "question": "How can two or more physical lines be joined into a single logical line in Python?",
+    "answer": "Two or more physical lines may be joined into logical lines using backslash characters (`\\`), as long as the backslash is not part of a string literal or comment.",
+    "supporting_sentences": [
+      "Two or more physical lines may be joined into logical lines using backslash characters (`\\`), as follows: when a physical line ends in a backslash that is not part of a string literal or comment, it is joined with the following forming a single logical line, deleting the backslash and the following end-of-line character."
+    ]
+  },
+  {
+    "question": "Which characters can be used to compose a Python identifier (name)?",
+    "answer": "Uppercase and lowercase letters (A-Z and a-z), the underscore (_), digits (0 through 9, which cannot appear as the first character), and non-ASCII characters that are considered 'letter-like' or 'digit-like'.",
+    "supporting_sentences": [
+      "Names are composed of the following characters:",
+      "uppercase and lowercase letters (A-Z and a-z),",
+      "the underscore (_),",
+      "digits (0 through 9), which cannot appear as the first character, and",
+      "non-ASCII characters. Valid names may only contain \u201cletter-like\u201d and \u201cdigit-like\u201d characters; see Non-ASCII characters in names for details."
+    ]
+  },
+  {
+    "question": "What happens to unrecognized escape sequences in a Python string literal that is not marked as raw?",
+    "answer": "All unrecognized escape sequences are left in the string unchanged, meaning the backslash is left in the result.",
+    "supporting_sentences": [
+      "Unlike in Standard C, all unrecognized escape sequences are left in the string unchanged, that is, the backslash is left in the result:"
+    ]
+  }
+]

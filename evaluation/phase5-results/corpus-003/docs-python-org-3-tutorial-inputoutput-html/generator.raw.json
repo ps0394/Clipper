@@ -1,0 +1,39 @@
+```json
+[
+    {
+        "question": "What are the three ways mentioned in the document to write values in Python?",
+        "answer": "Expression statements, the `print()` function, and the `write()` method of file objects.",
+        "supporting_sentences": [
+            "So far we’ve encountered two ways of writing values: expression statements and the `print()` function. (A third way is using the `write()` method of file objects; the standard output file can be referenced as `sys.stdout`.)"
+        ]
+    },
+    {
+        "question": "What prefix is used to create a formatted string literal (f-string) in Python?",
+        "answer": "The prefix `f` or `F` is used before the opening quotation mark.",
+        "supporting_sentences": [
+            "To use formatted string literals, begin a string with `f` or `F` before the opening quotation mark or triple quotation mark."
+        ]
+    },
+    {
+        "question": "What is the purpose of the `str.rjust()` method in Python?",
+        "answer": "The `str.rjust()` method right-justifies a string in a field of a given width by padding it with spaces on the left.",
+        "supporting_sentences": [
+            "The `str.rjust()` method of string objects right-justifies a string in a field of a given width by padding it with spaces on the left."
+        ]
+    },
+    {
+        "question": "What are the possible modes for opening a file using the `open()` function in Python?",
+        "answer": "The possible modes are `'r'` (read), `'w'` (write), `'a'` (append), and `'r+'` (read and write).",
+        "supporting_sentences": [
+            "`mode` can be `'r'` when the file will only be read, `'w'` for only writing (an existing file with the same name will be erased), and `'a'` opens the file for appending; any data written to the file is automatically added to the end. `'r+'` opens the file for both reading and writing."
+        ]
+    },
+    {
+        "question": "What Python module is recommended for saving structured data like nested lists and dictionaries?",
+        "answer": "The `json` module is recommended for saving structured data like nested lists and dictionaries.",
+        "supporting_sentences": [
+            "Rather than having users constantly writing and debugging code to save complicated data types to files, Python allows you to use the popular data interchange format called JSON (JavaScript Object Notation). The standard module called `json` can take Python data hierarchies, and convert them to string representations; this process is called serializing."
+        ]
+    }
+]
+```

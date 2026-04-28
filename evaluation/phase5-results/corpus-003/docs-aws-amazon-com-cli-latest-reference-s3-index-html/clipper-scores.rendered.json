@@ -1,0 +1,3003 @@
+{
+  "parseability_score": 75.72828638497653,
+  "failure_mode": "minor_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-003\\docs-aws-amazon-com-cli-latest-reference-s3-index-html\\page.rendered.html",
+  "url": "https://docs.aws.amazon.com/cli/latest/reference/s3/index.html",
+  "component_scores": {
+    "semantic_html": 35.0,
+    "content_extractability": 71.45657276995306,
+    "structured_data": 0,
+    "dom_navigability": 15,
+    "metadata_completeness": 40,
+    "http_compliance": 80.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [],
+      "aria_elements_count": 3,
+      "heading_elements_count": 16,
+      "scoring_breakdown": {
+        "semantic_coverage": 0.0,
+        "aria_bonus": 15,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 8552,
+        "extracted_text_length": 7420,
+        "extracted_chars": 7420,
+        "extraction_ratio": 0.868,
+        "extracted_title": "AWS CLI 2.34.38 Command Reference",
+        "extracted_preview": "Description This section explains prominent concepts and notations in the set of high-level S3 commands provided. If you are looking for the low level S3 commands for the CLI, please see the s3api command reference page . Path Argument Type Whenever using a command, at least one path argument must b...",
+        "original_headings": 16,
+        "extracted_headings": 6,
+        "original_lists": 12,
+        "extracted_lists": 1,
+        "original_code_blocks": 71,
+        "extracted_code_blocks": 63,
+        "has_main_element": false,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 35,
+        "structure_preservation": 13.456572769953052,
+        "boundary_detection": 23
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 0,
+        "microdata_items": 0,
+        "opengraph_items": 0,
+        "microformat_items": 0
+      },
+      "schema_types_found": [],
+      "key_fields_found": [],
+      "formats_present": 0,
+      "score_breakdown": {
+        "type_appropriateness": 0,
+        "field_completeness": 0,
+        "multiple_formats": 0,
+        "schema_validation": 0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": []
+      },
+      "sample_structured_data": {}
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensure the autocomplete attribute is correct and suitable for the form field",
+          "help": "autocomplete attribute must be used correctly",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/autocomplete-valid?application=axeAPI",
+          "id": "autocomplete-valid",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": null,
+                  "id": "autocomplete-appropriate",
+                  "impact": "serious",
+                  "message": "the autocomplete value is inappropriate for this type of input",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  the autocomplete value is inappropriate for this type of input",
+              "html": "<input id=\"searchbox\" type=\"search\" name=\"q\" style=\"width: 105px\" class=\"input-small search-query\" autocomplete=\"off\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".input-small"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.forms",
+            "wcag21aa",
+            "wcag135"
+          ]
+        },
+        {
+          "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+          "help": "Elements must have sufficient color contrast",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f5f5",
+                    "contrastRatio": 3.23,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4e9a06",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<pre><span></span><span class=\"o\">--</span><span class=\"n\">exclude</span> <span class=\"s2\">\"*\"</span> <span class=\"o\">--</span><span class=\"n\">include</span> <span class=\"s2\">\"*.txt\"</span>\n</pre>",
+                      "target": [
+                        ".highlight-default:nth-child(5) > .highlight > pre"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"s2\">\"*\"</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".highlight-default:nth-child(5) > .highlight > pre > .s2:nth-child(4)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f5f5",
+                    "contrastRatio": 3.23,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4e9a06",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<pre><span></span><span class=\"o\">--</span><span class=\"n\">exclude</span> <span class=\"s2\">\"*\"</span> <span class=\"o\">--</span><span class=\"n\">include</span> <span class=\"s2\">\"*.txt\"</span>\n</pre>",
+                      "target": [
+                        ".highlight-default:nth-child(5) > .highlight > pre"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"s2\">\"*.txt\"</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".highlight-default:nth-child(5) > .highlight > pre > .s2:nth-child(7)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f5f5",
+                    "contrastRatio": 3.23,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4e9a06",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<pre><span></span><span class=\"o\">--</span><span class=\"n\">include</span> <span class=\"s2\">\"*.txt\"</span> <span class=\"o\">--</span><span class=\"n\">exclude</span> <span class=\"s2\">\"*\"</span>\n</pre>",
+                      "target": [
+                        ".highlight-default:nth-child(7) > .highlight > pre"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"s2\">\"*.txt\"</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".highlight-default:nth-child(7) > .highlight > pre > .s2:nth-child(4)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f5f5",
+                    "contrastRatio": 3.23,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4e9a06",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<pre><span></span><span class=\"o\">--</span><span class=\"n\">include</span> <span class=\"s2\">\"*.txt\"</span> <span class=\"o\">--</span><span class=\"n\">exclude</span> <span class=\"s2\">\"*\"</span>\n</pre>",
+                      "target": [
+                        ".highlight-default:nth-child(7) > .highlight > pre"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"s2\">\"*\"</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".highlight-default:nth-child(7) > .highlight > pre > .s2:nth-child(7)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f5f5",
+                    "contrastRatio": 3.23,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4e9a06",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<pre>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"s2\">\"*\"</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".highlight-default:nth-child(17) > .highlight > pre > .s2:nth-child(19)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f5f5",
+                    "contrastRatio": 3.23,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4e9a06",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<pre>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"s2\">\"*.jpg\"</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".highlight-default:nth-child(17) > .highlight > pre > .s2:nth-child(22)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f5f5",
+                    "contrastRatio": 3.23,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4e9a06",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<pre>",
+                      "target": [
+                        ".highlight-default:nth-child(19) > .highlight > pre"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"s2\">\"*\"</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".highlight-default:nth-child(19) > .highlight > pre > .s2:nth-child(19)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f5f5",
+                    "contrastRatio": 3.23,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4e9a06",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<pre>",
+                      "target": [
+                        ".highlight-default:nth-child(19) > .highlight > pre"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"s2\">\"*.jpg\"</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".highlight-default:nth-child(19) > .highlight > pre > .s2:nth-child(22)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#f5f5f5",
+                    "contrastRatio": 3.23,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#4e9a06",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<pre>",
+                      "target": [
+                        ".highlight-default:nth-child(19) > .highlight > pre"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #4e9a06, background color: #f5f5f5, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"s2\">\"*.txt\"</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".s2:nth-child(25)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.54,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#888888",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.54 (foreground color: #888888, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body>",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.54 (foreground color: #888888, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"footer container\">\n    © Copyright 2026, Amazon Web Services. Created using <a href=\"https://www.sphinx-doc.org/\">Sphinx</a>.\n  </div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".footer"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 3.54,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#888888",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.54 (foreground color: #888888, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body>",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.54 (foreground color: #888888, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"https://www.sphinx-doc.org/\">Sphinx</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"sphinx-doc.org/\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value used in ARIA and in labels is unique",
+          "help": "IDs used in ARIA and labels must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id-aria?application=axeAPI",
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "searchbox",
+                  "id": "duplicate-id-aria",
+                  "impact": "critical",
+                  "message": "Document has multiple elements referenced with ARIA with the same id attribute: searchbox",
+                  "relatedNodes": [
+                    {
+                      "html": "<input id=\"searchbox\" type=\"search\" name=\"q\" style=\"width: 105px\" class=\"input-small search-query\" autocomplete=\"off\">",
+                      "target": [
+                        ".input-small"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: searchbox",
+              "html": "<div id=\"searchbox\" style=\"display: block;\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                ".sphinxsidebarwrapper > div:nth-child(3)"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures the page has only one main landmark and each iframe in the page has at most one main landmark",
+          "help": "Page must have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/landmark-one-main?application=axeAPI",
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": null,
+                  "id": "page-has-main",
+                  "impact": "moderate",
+                  "message": "Page does not have a main landmark",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Page does not have a main landmark",
+              "html": "<html lang=\"en\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures all page content is contained by landmarks",
+          "help": "All page content must be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/region?application=axeAPI",
+          "id": "region",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "region",
+                  "impact": "moderate",
+                  "message": "Some page content is not contained by landmarks",
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"brand\" href=\"../../index.html\">AWS CLI Command Reference</a>",
+                      "target": [
+                        ".brand"
+                      ]
+                    },
+                    {
+                      "html": "<a class=\"nav-link\" href=\"../../index.html\">Home</a>",
+                      "target": [
+                        ".nav-link[href=\"../../index.html\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a class=\"nav-link\" href=\"https://docs.aws.amazon.com/cli/latest/userguide/\">User Guide</a>",
+                      "target": [
+                        "li:nth-child(2) > .nav-link"
+                      ]
+                    },
+                    {
+                      "html": "<a class=\"nav-link\" href=\"https://forums.aws.amazon.com/forum.jspa?forumID=150\">Forum</a>",
+                      "target": [
+                        "li:nth-child(3) > .nav-link"
+                      ]
+                    },
+                    {
+                      "html": "<a class=\"nav-link\" href=\"https://github.com/aws/aws-cli\">GitHub</a>",
+                      "target": [
+                        "a[href$=\"aws-cli\"]"
+                      ]
+                    },
+                    {
+                      "html": "<iframe src=\"https://ghbtns.com/github-btn.html?user=aws&amp;repo=aws-cli&amp;type=watch&amp;count=true&amp;size=small\" allowtransparency=\"true\" frameborder=\"0\" scrolling=\"0\" width=\"110px\" height=\"20px\" sandbox=\"allow-scripts\" title=\"GitHub button showing the number of project stars.\"></iframe>",
+                      "target": [
+                        "iframe"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"../rum/update-rum-metric-definition.html\" title=\"previous chapter (use the left arrow)\">← update-rum-metric-definition</a>",
+                      "target": [
+                        ".top-links > .breadcrumb.pull-right > li:nth-child(1) > a"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"divider\">/</span>",
+                      "target": [
+                        ".top-links > .breadcrumb.pull-right > li:nth-child(1) > .divider"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"cp.html\" title=\"next chapter (use the right arrow)\">cp →</a>",
+                      "target": [
+                        ".top-links > .breadcrumb.pull-right > li:nth-child(2) > a[href$=\"cp.html\"]"
+                      ]
+                    },
+                    {
+                      "html": "<p>[ <a class=\"reference internal\" href=\"../index.html#cli-aws\"><span class=\"std std-ref\">aws</span></a> ]</p>",
+                      "target": [
+                        ".body > p"
+                      ]
+                    },
+                    {
+                      "html": "<h1>s3<a class=\"headerlink\" href=\"#s3\" title=\"Permalink to this heading\">¶</a></h1>",
+                      "target": [
+                        "h1"
+                      ]
+                    },
+                    {
+                      "html": "<h2>Description<a class=\"headerlink\" href=\"#description\" title=\"Permalink to this heading\">¶</a></h2>",
+                      "target": [
+                        "#description > h2"
+                      ]
+                    },
+                    {
+                      "html": "<p>This section explains prominent concepts and notations in the set of high-level S3 commands provided.</p>",
+                      "target": [
+                        "#description > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<p>If you are looking for the low level S3 commands for the CLI, please see the\n<code class=\"docutils literal notranslate\"><span class=\"pre\">s3api</span></code> command <a class=\"reference external\" href=\"https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html\">reference page</a>.</p>",
+                      "target": [
+                        "#description > p:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<h3>Path Argument Type<a class=\"headerlink\" href=\"#path-argument-type\" title=\"Permalink to this heading\">¶</a></h3>",
+                      "target": [
+                        "#path-argument-type > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>Whenever using a command, at least one path argument must be specified.  There\nare two types of path arguments: <code class=\"docutils literal notranslate\"><span class=\"pre\">LocalPath</span></code> and <code class=\"docutils literal notranslate\"><span class=\"pre\">S3Uri</span></code>.</p>",
+                      "target": [
+                        "#path-argument-type > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<p><code class=\"docutils literal notranslate\"><span class=\"pre\">LocalPath</span></code>: represents the path of a local file or directory.  It can be\nwritten as an absolute path or relative path.</p>",
+                      "target": [
+                        "#path-argument-type > p:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#path-argument-type > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#path-argument-type > p:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<h3>Order of Path Arguments<a class=\"headerlink\" href=\"#order-of-path-arguments\" title=\"Permalink to this heading\">¶</a></h3>",
+                      "target": [
+                        "#order-of-path-arguments > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#order-of-path-arguments > p"
+                      ]
+                    },
+                    {
+                      "html": "<h3>Single Local File and S3 Object Operations<a class=\"headerlink\" href=\"#single-local-file-and-s3-object-operations\" title=\"Permalink to this heading\">¶</a></h3>",
+                      "target": [
+                        "#single-local-file-and-s3-object-operations > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>Some commands perform operations only on single files and S3 objects.  The\nfollowing commands are single file/object operations if no <code class=\"docutils literal notranslate\"><span class=\"pre\">--recursive</span></code>\nflag is provided.</p>",
+                      "target": [
+                        "#single-local-file-and-s3-object-operations > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"pre\">cp</span>",
+                      "target": [
+                        "#single-local-file-and-s3-object-operations > blockquote > div > .simple > li:nth-child(1) > code > .pre"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"pre\">mv</span>",
+                      "target": [
+                        "#single-local-file-and-s3-object-operations > blockquote > div > .simple > li:nth-child(2) > code > .pre"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"pre\">rm</span>",
+                      "target": [
+                        "#single-local-file-and-s3-object-operations > blockquote > div > .simple > li:nth-child(3) > code > .pre"
+                      ]
+                    },
+                    {
+                      "html": "<p>For this type of operation, the first path argument, the source, must exist\nand be a local file or S3 object.  The second path argument, the destination,\ncan be the name of a local file, local directory, S3 object, S3 prefix,\nor S3 bucket.</p>",
+                      "target": [
+                        "#single-local-file-and-s3-object-operations > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#single-local-file-and-s3-object-operations > p:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<h3>Directory and S3 Prefix Operations<a class=\"headerlink\" href=\"#directory-and-s3-prefix-operations\" title=\"Permalink to this heading\">¶</a></h3>",
+                      "target": [
+                        "#directory-and-s3-prefix-operations > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#directory-and-s3-prefix-operations > p"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"pre\">sync</span>",
+                      "target": [
+                        "#directory-and-s3-prefix-operations > .simple > li:nth-child(1) > code > .pre"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"pre\">mb</span>",
+                      "target": [
+                        "#directory-and-s3-prefix-operations > .simple > li:nth-child(2) > code > .pre"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"pre\">rb</span>",
+                      "target": [
+                        "#directory-and-s3-prefix-operations > .simple > li:nth-child(3) > code > .pre"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"pre\">ls</span>",
+                      "target": [
+                        "#directory-and-s3-prefix-operations > .simple > li:nth-child(4) > code > .pre"
+                      ]
+                    },
+                    {
+                      "html": "<h3>Use of Exclude and Include Filters<a class=\"headerlink\" href=\"#use-of-exclude-and-include-filters\" title=\"Permalink to this heading\">¶</a></h3>",
+                      "target": [
+                        "#use-of-exclude-and-include-filters > h3"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#use-of-exclude-and-include-filters > p:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<li><code class=\"docutils literal notranslate\"><span class=\"pre\">*</span></code>: Matches everything</li>",
+                      "target": [
+                        "#use-of-exclude-and-include-filters > blockquote > div > .simple > li:nth-child(1)"
+                      ]
+                    },
+                    {
+                      "html": "<li><code class=\"docutils literal notranslate\"><span class=\"pre\">?</span></code>: Matches any single character</li>",
+                      "target": [
+                        "#use-of-exclude-and-include-filters > blockquote > div > .simple > li:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<li><code class=\"docutils literal notranslate\"><span class=\"pre\">[sequence]</span></code>: Matches any character in <code class=\"docutils literal notranslate\"><span class=\"pre\">sequence</span></code></li>",
+                      "target": [
+                        "#use-of-exclude-and-include-filters > blockquote > div > .simple > li:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<li><code class=\"docutils literal notranslate\"><span class=\"pre\">[!sequence]</span></code>: Matches any character not in <code class=\"docutils literal notranslate\"><span class=\"pre\">sequence</span></code></li>",
+                      "target": [
+                        "blockquote > div > .simple > li:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "#use-of-exclude-and-include-filters > p:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">--</span>",
+                      "target": [
+                        ".highlight-default:nth-child(5) > .highlight > pre > .o:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">exclude</span>",
+                      "target": [
+                        ".highlight-default:nth-child(5) > .highlight > pre > .n:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"s2\">\"*\"</span>",
+                      "target": [
+                        ".highlight-default:nth-child(5) > .highlight > pre > .s2:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">--</span>",
+                      "target": [
+                        ".highlight-default:nth-child(5) > .highlight > pre > .o:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">include</span>",
+                      "target": [
+                        ".highlight-default:nth-child(5) > .highlight > pre > .n:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"s2\">\"*.txt\"</span>",
+                      "target": [
+                        ".highlight-default:nth-child(5) > .highlight > pre > .s2:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<p>All files will be excluded from the command except for files ending with\n<code class=\"docutils literal notranslate\"><span class=\"pre\">.txt</span></code>  However, if the order of the filter parameters was changed to</p>",
+                      "target": [
+                        "p:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">--</span>",
+                      "target": [
+                        ".highlight-default:nth-child(7) > .highlight > pre > .o:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">include</span>",
+                      "target": [
+                        ".highlight-default:nth-child(7) > .highlight > pre > .n:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"s2\">\"*.txt\"</span>",
+                      "target": [
+                        ".highlight-default:nth-child(7) > .highlight > pre > .s2:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">--</span>",
+                      "target": [
+                        ".highlight-default:nth-child(7) > .highlight > pre > .o:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">exclude</span>",
+                      "target": [
+                        ".highlight-default:nth-child(7) > .highlight > pre > .n:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"s2\">\"*\"</span>",
+                      "target": [
+                        ".highlight-default:nth-child(7) > .highlight > pre > .s2:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<p>All files will be excluded from the command.</p>",
+                      "target": [
+                        "p:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<p>Each filter is evaluated against the <strong>source directory</strong>.  If the source\nlocation is a file instead of a directory, the directory containing the file is\nused as the source directory.  For example, suppose you had the following\ndirectory structure:</p>",
+                      "target": [
+                        "p:nth-child(9)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .o:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .n:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .o:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .n:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .o:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">.</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .o:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">git</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .n:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .o:nth-child(9)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">|---</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .o:nth-child(10)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">config</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .n:nth-child(11)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">|---</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .o:nth-child(12)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">description</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .n:nth-child(13)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".n:nth-child(14)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">.</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .o:nth-child(15)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">txt</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .n:nth-child(16)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">bar</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .n:nth-child(17)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">.</span>",
+                      "target": [
+                        ".o:nth-child(18)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">txt</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .n:nth-child(19)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">baz</span>",
+                      "target": [
+                        ".n:nth-child(20)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">.</span>",
+                      "target": [
+                        ".o:nth-child(21)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">jpg</span>",
+                      "target": [
+                        ".highlight-default:nth-child(10) > .highlight > pre > .n:nth-child(22)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "p:nth-child(11)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "p:nth-child(12)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/.</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">git</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/*</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">-&gt;</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(9)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(10)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(11)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(12)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(13)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/.</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(14)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">git</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(15)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(16)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">config</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(17)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">(</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .p:nth-child(18)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">matches</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(19)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">,</span>",
+                      "target": [
+                        ".p:nth-child(20)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">should</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(21)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">exclude</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(22)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">)</span>",
+                      "target": [
+                        ".p:nth-child(23)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".o:nth-child(24)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".n:nth-child(25)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(26)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(27)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/.</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(28)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">git</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(29)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/*</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(30)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">-&gt;</span>",
+                      "target": [
+                        ".o:nth-child(31)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(32)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".n:nth-child(33)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(34)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(35)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/.</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(36)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">git</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(37)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(38)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">description</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(39)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">(</span>",
+                      "target": [
+                        ".p:nth-child(40)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">matches</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(41)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">,</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .p:nth-child(42)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">should</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(43)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">exclude</span>",
+                      "target": [
+                        ".n:nth-child(44)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">)</span>",
+                      "target": [
+                        ".p:nth-child(45)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".o:nth-child(46)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(47)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".o:nth-child(48)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".n:nth-child(49)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/.</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(50)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">git</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(51)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/*</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(52)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">-&gt;</span>",
+                      "target": [
+                        ".o:nth-child(53)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(54)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(55)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(56)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".n:nth-child(57)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(58)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(59)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">.</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(60)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">txt</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(61)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">(</span>",
+                      "target": [
+                        ".p:nth-child(62)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">does</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(63)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"ow\">not</span>",
+                      "target": [
+                        ".ow:nth-child(64)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">match</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(65)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">,</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .p:nth-child(66)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">should</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(67)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">include</span>",
+                      "target": [
+                        ".n:nth-child(68)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">)</span>",
+                      "target": [
+                        ".p:nth-child(69)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".o:nth-child(70)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(71)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".o:nth-child(72)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".n:nth-child(73)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/.</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(74)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">git</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(75)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/*</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(76)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">-&gt;</span>",
+                      "target": [
+                        ".o:nth-child(77)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(78)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(79)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(80)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".n:nth-child(81)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(82)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">bar</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(83)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">.</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(84)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">txt</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(85)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">(</span>",
+                      "target": [
+                        ".p:nth-child(86)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">does</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(87)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"ow\">not</span>",
+                      "target": [
+                        ".ow:nth-child(88)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">match</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(89)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">,</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .p:nth-child(90)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">should</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(91)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">include</span>",
+                      "target": [
+                        ".n:nth-child(92)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">)</span>",
+                      "target": [
+                        ".p:nth-child(93)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".o:nth-child(94)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".n:nth-child(95)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(96)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(97)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/.</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(98)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">git</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(99)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/*</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(100)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">-&gt;</span>",
+                      "target": [
+                        ".o:nth-child(101)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(102)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".n:nth-child(103)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(104)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(105)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(106)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">baz</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(107)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">.</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .o:nth-child(108)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">jpg</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(109)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">(</span>",
+                      "target": [
+                        ".p:nth-child(110)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">does</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(111)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"ow\">not</span>",
+                      "target": [
+                        ".ow:nth-child(112)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">match</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(113)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">,</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .p:nth-child(114)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">should</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(115)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">include</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .n:nth-child(116)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">)</span>",
+                      "target": [
+                        ".highlight-default:nth-child(13) > .highlight > pre > .p:nth-child(117)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "p:nth-child(14)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">ba</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">*</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">-&gt;</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(9)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(10)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(11)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(12)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(13)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/.</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(14)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">git</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(15)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(16)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">config</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(17)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">(</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .p:nth-child(18)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">does</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(19)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"ow\">not</span>",
+                      "target": [
+                        ".ow:nth-child(20)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">match</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(21)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">,</span>",
+                      "target": [
+                        ".p:nth-child(22)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">should</span>",
+                      "target": [
+                        ".n:nth-child(23)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">include</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(24)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">)</span>",
+                      "target": [
+                        ".p:nth-child(25)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(26)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(27)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(28)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(29)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(30)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">ba</span>",
+                      "target": [
+                        ".n:nth-child(31)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">*</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(32)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">-&gt;</span>",
+                      "target": [
+                        ".o:nth-child(33)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(34)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(35)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(36)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(37)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/.</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(38)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">git</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(39)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".o:nth-child(40)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">description</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(41)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">(</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .p:nth-child(42)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">does</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(43)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"ow\">not</span>",
+                      "target": [
+                        ".ow:nth-child(44)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">match</span>",
+                      "target": [
+                        ".n:nth-child(45)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">,</span>",
+                      "target": [
+                        ".p:nth-child(46)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">should</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(47)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">include</span>",
+                      "target": [
+                        ".n:nth-child(48)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">)</span>",
+                      "target": [
+                        ".p:nth-child(49)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(50)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(51)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(52)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".n:nth-child(53)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(54)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">ba</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(55)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">*</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(56)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">-&gt;</span>",
+                      "target": [
+                        ".o:nth-child(57)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(58)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(59)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(60)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(61)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".o:nth-child(62)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(63)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">.</span>",
+                      "target": [
+                        ".o:nth-child(64)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">txt</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(65)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">(</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .p:nth-child(66)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">does</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(67)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"ow\">not</span>",
+                      "target": [
+                        ".ow:nth-child(68)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">match</span>",
+                      "target": [
+                        ".n:nth-child(69)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">,</span>",
+                      "target": [
+                        ".p:nth-child(70)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">should</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(71)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">include</span>",
+                      "target": [
+                        ".n:nth-child(72)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">)</span>",
+                      "target": [
+                        ".p:nth-child(73)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(74)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(75)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(76)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".n:nth-child(77)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(78)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">ba</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(79)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">*</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(80)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">-&gt;</span>",
+                      "target": [
+                        ".o:nth-child(81)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(82)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(83)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(84)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(85)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".o:nth-child(86)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">bar</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(87)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">.</span>",
+                      "target": [
+                        ".o:nth-child(88)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">txt</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(89)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">(</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .p:nth-child(90)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">matches</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(91)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">,</span>",
+                      "target": [
+                        ".p:nth-child(92)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">should</span>",
+                      "target": [
+                        ".n:nth-child(93)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">exclude</span>",
+                      "target": [
+                        ".n:nth-child(94)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">)</span>",
+                      "target": [
+                        ".p:nth-child(95)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(96)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(97)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(98)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(99)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(100)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">ba</span>",
+                      "target": [
+                        ".n:nth-child(101)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">*</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(102)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">-&gt;</span>",
+                      "target": [
+                        ".o:nth-child(103)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(104)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(105)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(106)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(107)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .o:nth-child(108)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">baz</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(109)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">.</span>",
+                      "target": [
+                        ".o:nth-child(110)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">jpg</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(111)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">(</span>",
+                      "target": [
+                        ".p:nth-child(112)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">matches</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(113)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">,</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .p:nth-child(114)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">should</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(115)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">exclude</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .n:nth-child(116)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">)</span>",
+                      "target": [
+                        ".highlight-default:nth-child(15) > .highlight > pre > .p:nth-child(117)"
+                      ]
+                    },
+                    {
+                      "html": "<p>",
+                      "target": [
+                        "p:nth-child(16)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">aws</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .n:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">s3</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .n:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">cp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .n:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .o:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">tmp</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .n:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .o:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">foo</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .n:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .o:nth-child(9)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">s3</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .n:nth-child(10)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">:</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .p"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">//</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .o:nth-child(12)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">bucket</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .n:nth-child(13)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">/</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .o:nth-child(14)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">--</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .o:nth-child(15)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">recursive</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .n:nth-child(16)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">--</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .o:nth-child(17)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">exclude</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .n:nth-child(18)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"s2\">\"*\"</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .s2:nth-child(19)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">--</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .o:nth-child(20)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">include</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .n:nth-child(21)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"s2\">\"*.jpg\"</span>",
+                      "target": [
+                        ".highlight-default:nth-child(17) > .highlight > pre > .s2:nth-child(22)"
+                      ]
+                    },
+                    {
+                      "html": "<p>If you wanted to include both <code class=\"docutils literal notranslate\"><span class=\"pre\">.jpg</span></code> files as well as <code class=\"docutils literal notranslate\"><span class=\"pre\">.txt</span></code> files you\ncan run:</p>",
+                      "target": [
+                        "p:nth-child(18)"
+                      ]
+                    },
+                    {
+                      "html": "<pre>",
+                      "target": [
+                        ".highlight-default:nth-child(19) > .highlight > pre"
+                      ]
+                    },
+                    {
+                      "html": "<h2>Synopsis<a class=\"headerlink\" href=\"#synopsis\" title=\"Permalink to this heading\">¶</a></h2>",
+                      "target": [
+                        "#synopsis > h2"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">aws</span>",
+                      "target": [
+                        "#synopsis > .highlight-default > .highlight > pre > .n:nth-child(2)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">s3</span>",
+                      "target": [
+                        "#synopsis > .highlight-default > .highlight > pre > .n:nth-child(3)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">&lt;</span>",
+                      "target": [
+                        "#synopsis > .highlight-default > .highlight > pre > .o:nth-child(4)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">Command</span>",
+                      "target": [
+                        "#synopsis > .highlight-default > .highlight > pre > .n:nth-child(5)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">&gt;</span>",
+                      "target": [
+                        "#synopsis > .highlight-default > .highlight > pre > .o:nth-child(6)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">[</span>",
+                      "target": [
+                        ".p:nth-child(7)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">&lt;</span>",
+                      "target": [
+                        "#synopsis > .highlight-default > .highlight > pre > .o:nth-child(8)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"n\">Arg</span>",
+                      "target": [
+                        ".n:nth-child(9)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">&gt;</span>",
+                      "target": [
+                        "#synopsis > .highlight-default > .highlight > pre > .o:nth-child(10)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"o\">...</span>",
+                      "target": [
+                        ".o:nth-child(11)"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"p\">]</span>",
+                      "target": [
+                        ".p:nth-child(12)"
+                      ]
+                    },
+                    {
+                      "html": "<h2>Options<a class=\"headerlink\" href=\"#options\" title=\"Permalink to this heading\">¶</a></h2>",
+                      "target": [
+                        "#options > h2"
+                      ]
+                    },
+                    {
+                      "html": "<em>None</em>",
+                      "target": [
+                        "#options > p > em"
+                      ]
+                    },
+                    {
+                      "html": "<h2>Available Commands<a class=\"headerlink\" href=\"#available-commands\" title=\"Permalink to this heading\">¶</a></h2>",
+                      "target": [
+                        "#available-commands > h2"
+                      ]
+                    },
+                    {
+                      "html": "<a class=\"reference internal\" href=\"cp.html\">cp</a>",
+                      "target": [
+                        ".internal.reference[href$=\"cp.html\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a class=\"reference internal\" href=\"ls.html\">ls</a>",
+                      "target": [
+                        "a[href$=\"ls.html\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a class=\"reference internal\" href=\"mb.html\">mb</a>",
+                      "target": [
+                        "a[href$=\"mb.html\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a class=\"reference internal\" href=\"mv.html\">mv</a>",
+                      "target": [
+                        "a[href$=\"mv.html\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a class=\"reference internal\" href=\"presign.html\">presign</a>",
+                      "target": [
+                        "a[href$=\"presign.html\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a class=\"reference internal\" href=\"rb.html\">rb</a>",
+                      "target": [
+                        "a[href$=\"rb.html\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a class=\"reference internal\" href=\"rm.html\">rm</a>",
+                      "target": [
+                        "a[href$=\"rm.html\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a class=\"reference internal\" href=\"sync.html\">sync</a>",
+                      "target": [
+                        "a[href$=\"sync.html\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a class=\"reference internal\" href=\"website.html\">website</a>",
+                      "target": [
+                        "a[href$=\"website.html\"]"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"../rum/update-rum-metric-definition.html\" title=\"previous chapter (use the left arrow)\">← update-rum-metric-definition</a>",
+                      "target": [
+                        ".footer-links > .breadcrumb.pull-right > li:nth-child(1) > a"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"divider\">/</span>",
+                      "target": [
+                        ".footer-links > .breadcrumb.pull-right > li:nth-child(1) > .divider"
+                      ]
+                    },
+                    {
+                      "html": "<a href=\"cp.html\" title=\"next chapter (use the right arrow)\">cp →</a>",
+                      "target": [
+                        ".footer-links > .breadcrumb.pull-right > li:nth-child(2) > a[href$=\"cp.html\"]"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"footer container\">\n    © Copyright 2026, Amazon Web Services. Created using <a href=\"https://www.sphinx-doc.org/\">Sphinx</a>.\n  </div>",
+                      "target": [
+                        ".footer"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks",
+              "html": "<html lang=\"en\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.keyboard",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 5,
+      "passes_count": 33,
+      "total_penalty": 85,
+      "penalty_per_rule": {
+        "autocomplete-valid": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "color-contrast": {
+          "impact": "serious",
+          "node_count": 11,
+          "raw_penalty": 165,
+          "capped_penalty": 25
+        },
+        "duplicate-id-aria": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "landmark-one-main": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        },
+        "region": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        }
+      },
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 0,
+        "date": 0,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 0
+      },
+      "field_sources": {
+        "title": [
+          "title_tag"
+        ],
+        "description": [
+          "meta:description"
+        ],
+        "author": [],
+        "date": [],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": []
+      },
+      "fields_present": 3,
+      "fields_total": 7,
+      "json_ld_type": "none"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "\"yn++XEgE/Vk0N9cq0RQwg4nW81A=-gzip\"",
+        "last_modified": "Mon, 27 Apr 2026 20:08:52 GMT",
+        "cache_control": "max-age=300"
+      },
+      "agent_content_hints": {
+        "scoring_contribution": 0,
+        "diagnostic_only": true,
+        "rationale": "PRD F2.2/F2.3: retrieval-lift evidence deferred to Phase 6",
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 20,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "reference",
+      "detection": {
+        "source": "url",
+        "matched_value": "/reference/"
+      },
+      "weights": {
+        "semantic_html": 0.0,
+        "content_extractability": 0.5,
+        "structured_data": 0.0,
+        "dom_navigability": 0.0,
+        "metadata_completeness": 0.0,
+        "http_compliance": 0.5
+      },
+      "v1_weights_for_reference": {
+        "semantic_html": 0.3,
+        "content_extractability": 0.1,
+        "structured_data": 0.2,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.15,
+        "http_compliance": 0.1
+      },
+      "scoring_version": "v2-evidence-partial"
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "reference",
+  "universal_score": 75.72828638497653,
+  "render_mode": "rendered",
+  "confidence_range": {
+    "scoring_version": "v2-evidence-partial",
+    "evidence_tier": "partial",
+    "headline_weights": {
+      "semantic_html": 0.0,
+      "content_extractability": 0.5,
+      "structured_data": 0.0,
+      "dom_navigability": 0.0,
+      "metadata_completeness": 0.0,
+      "http_compliance": 0.5
+    },
+    "calibration_corpus": {
+      "name": "corpus-002",
+      "n": 43,
+      "pearson_r_vs_accuracy_rendered": 0.548,
+      "gate_threshold": 0.35,
+      "source": "findings/phase-5-corpus-002-findings.md Addendum B"
+    },
+    "caveats": [
+      "Single corpus, single grader architecture, single run.",
+      "Four pillars carry zero headline weight in v2; still reported as diagnostics.",
+      "Profile-specific weights collapse to the same 2-pillar composite pending corpus-003.",
+      "Cross-judge accuracy variance: per-judge corpus-002 means span 0.591-0.698 across Llama-3.3-70B, GPT-4o, and DeepSeek-V3.2 (pooled kappa 0.706-0.817). The v2 composite-vs-accuracy Pearson r ranges from +0.440 to +0.618 across judges (all above the +0.35 ship gate). Report majority-vote CI [0.567, 0.688] or per-judge union CI [0.530, 0.758] when comparing across studies.",
+      "No temporal variance measured yet."
+    ]
+  },
+  "subscores": {
+    "semantic_html": 35.0,
+    "content_extractability": 71.45657276995306,
+    "structured_data": 0,
+    "dom_navigability": 15,
+    "metadata_completeness": 40,
+    "http_compliance": 80.0
+  },
+  "evidence_references": null
+}

@@ -1,0 +1,1534 @@
+This section contains descriptions of server settings. These are settings which
+cannot be changed at the session or query level.
+
+For more information on configuration files in ClickHouse see 
+""Configuration Files""
+.
+
+Other settings are described in the ""
+Settings
+"" section.
+Before studying the settings, we recommend reading the 
+Configuration files
+
+section and note the use of substitutions (the 
+incl
+ and 
+optional
+ attributes).
+
+abort_on_logical_error
+​
+
+Crash the server on LOGICAL_ERROR exceptions. Only for experts.
+
+access_control_improvements
+​
+
+Settings for optional improvements in the access control system.
+
+Setting
+Description
+Default
+on_cluster_queries_require_cluster_grant
+Sets whether 
+ON CLUSTER
+ queries require the 
+CLUSTER
+ grant.
+true
+role_cache_expiration_time_seconds
+Sets the number of seconds since last access, that a role is stored in the Role Cache.
+600
+select_from_information_schema_requires_grant
+Sets whether 
+SELECT * FROM information_schema.<table>
+ requires any grants and can be executed by any user. If set to true, then this query requires 
+GRANT SELECT ON information_schema.<table>
+, just as for ordinary tables.
+true
+select_from_system_db_requires_grant
+Sets whether 
+SELECT * FROM system.<table>
+ requires any grants and can be executed by any user. If set to true then this query requires 
+GRANT SELECT ON system.<table>
+ just as for non-system tables. Exceptions: a few system tables (
+tables
+, 
+columns
+, 
+databases
+, and some constant tables like 
+one
+, 
+contributors
+) are still accessible for everyone; and if there is a 
+SHOW
+ privilege (e.g. 
+SHOW USERS
+) granted then the corresponding system table (i.e. 
+system.users
+) will be accessible.
+true
+settings_constraints_replace_previous
+Sets whether a constraint in a settings profile for some setting will cancel actions of the previous constraint (defined in other profiles) for that setting, including fields which are not set by the new constraint. It also enables the 
+changeable_in_readonly
+ constraint type.
+true
+table_engines_require_grant
+Sets whether creating a table with a specific table engine requires a grant.
+false
+throw_on_unmatched_row_policies
+Sets whether reading from a table should throw an exception if the table has row policies, but none of them are for the current user
+false
+users_without_row_policies_can_read_rows
+Sets whether users without permissive row policies can still read rows using a 
+SELECT
+ query. For example, if there are two users A and B and a row policy is defined only for A, then if this setting is true, user B will see all rows. If this setting is false, user B will see no rows.
+true
+
+Example:
+
+<access_control_improvements>
+    <throw_on_unmatched_row_policies>true</throw_on_unmatched_row_policies>
+    <users_without_row_policies_can_read_rows>true</users_without_row_policies_can_read_rows>
+    <on_cluster_queries_require_cluster_grant>true</on_cluster_queries_require_cluster_grant>
+    <select_from_system_db_requires_grant>true</select_from_system_db_requires_grant>
+    <select_from_information_schema_requires_grant>true</select_from_information_schema_requires_grant>
+    <settings_constraints_replace_previous>true</settings_constraints_replace_previous>
+    <table_engines_require_grant>false</table_engines_require_grant>
+    <role_cache_expiration_time_seconds>600</role_cache_expiration_time_seconds>
+</access_control_improvements>
+
+access_control_path
+​
+
+Path to a folder where a ClickHouse server stores user and role configurations created by SQL commands.
+
+See also
+
+aggregate_function_group_array_action_when_limit_is_reached
+​
+
+Action to execute when max array element size is exceeded in groupArray: 
+throw
+ exception, or 
+discard
+ extra values
+
+aggregate_function_group_array_max_element_size
+​
+
+Max array element size in bytes for groupArray function. This limit is checked at serialization and help to avoid large state size.
+
+allow_experimental_webassembly_udf
+​
+
+Enable experimental support for WebAssembly UDFs
+
+allow_feature_tier
+​
+
+Controls if the user can change settings related to the different feature tiers.
+
+0
+ - Changes to any setting are allowed (experimental, beta, production).
+
+1
+ - Only changes to beta and production feature settings are allowed. Changes to experimental settings are rejected.
+
+2
+ - Only changes to production settings are allowed. Changes to experimental or beta settings are rejected.
+
+This is equivalent to setting a readonly constraint on all 
+EXPERIMENTAL
+ / 
+BETA
+ features.
+
+Note
+A value of 
+0
+ means that all settings can be changed.
+
+allow_impersonate_user
+​
+
+Enable/disable the IMPERSONATE feature (EXECUTE AS target_user). The setting is deprecated.
+
+allow_implicit_no_password
+​
+
+Forbids creating a user with no password unless 'IDENTIFIED WITH no_password' is explicitly specified.
+
+<allow_implicit_no_password>1</allow_implicit_no_password>
+
+allow_no_password
+​
+
+Sets whether an insecure password type of no_password is allowed or not.
+
+<allow_no_password>1</allow_no_password>
+
+allow_plaintext_password
+​
+
+Sets whether plaintext-password types (insecure) are allowed or not.
+
+<allow_plaintext_password>1</allow_plaintext_password>
+
+allow_use_jemalloc_memory
+​
+
+Allows to use jemalloc memory.
+
+allowed_disks_for_table_engines
+​
+
+List of disks allowed for use with Iceberg
+
+async_insert_queue_flush_on_shutdown
+​
+
+If true queue of asynchronous inserts is flushed on graceful shutdown
+
+async_insert_threads
+​
+
+Maximum number of threads to actually parse and insert data in background. Zero means asynchronous mode is disabled
+
+async_load_databases
+​
+
+Asynchronous loading of databases and tables.
+
+If 
+true
+ all non-system databases with 
+Ordinary
+, 
+Atomic
+ and 
+Replicated
+ engine will be loaded asynchronously after the ClickHouse server start up. See 
+system.asynchronous_loader
+ table, 
+tables_loader_background_pool_size
+ and 
+tables_loader_foreground_pool_size
+ server settings. Any query that tries to access a table, that is not yet loaded, will wait for exactly this table to be started up. If load job fails, query will rethrow an error (instead of shutting down the whole server in case of 
+async_load_databases = false
+). The table that is waited for by at least one query will be loaded with higher priority. DDL queries on a database will wait for exactly that database to be started up. Also consider setting a limit 
+max_waiting_queries
+ for the total number of waiting queries.
+
+If 
+false
+, all databases are loaded when the server starts.
+
+Example
+
+<async_load_databases>true</async_load_databases>
+
+async_load_system_database
+​
+
+Asynchronous loading of system tables. Helpful if there is a high amount of log tables and parts in the 
+system
+ database. Independent of the 
+async_load_databases
+ setting.
+
+If set to 
+true
+, all system databases with 
+Ordinary
+, 
+Atomic
+, and 
+Replicated
+ engines will be loaded asynchronously after the ClickHouse server starts. See 
+system.asynchronous_loader
+ table, 
+tables_loader_background_pool_size
+ and 
+tables_loader_foreground_pool_size
+ server settings. Any query that tries to access a system table, that is not yet loaded, will wait for exactly this table to be started up. The table that is waited for by at least one query will be loaded with higher priority. Also consider setting the 
+max_waiting_queries
+ setting to limit the total number of waiting queries.
+
+If set to 
+false
+, system database loads before server start.
+
+Example
+
+<async_load_system_database>true</async_load_system_database>
+
+asynchronous_heavy_metrics_update_period_s
+​
+
+Period in seconds for updating heavy asynchronous metrics.
+
+asynchronous_insert_log
+​
+
+Settings for the 
+asynchronous_insert_log
+ system table for logging async inserts.
+
+The following settings can be configured by sub-tags:
+
+Setting
+Description
+Default
+Note
+database
+Name of the database.
+table
+Name of the system table.
+engine
+MergeTree Engine Definition
+ for a system table.
+Cannot be used if 
+partition_by
+ or 
+order_by
+ defined. If not specified 
+MergeTree
+ is selected by default
+partition_by
+Custom partitioning key
+ for a system table.
+If 
+engine
+ is specified for system table, 
+partition_by
+ parameter should be specified directly inside 'engine'
+ttl
+Specifies the table 
+TTL
+.
+If 
+engine
+ is specified for system table, 
+ttl
+ parameter should be specified directly inside 'engine'
+order_by
+Custom sorting key
+ for a system table. Can't be used if 
+engine
+ defined.
+If 
+engine
+ is specified for system table, 
+order_by
+ parameter should be specified directly inside 'engine'
+storage_policy
+Name of the storage policy to use for the table (optional).
+If 
+engine
+ is specified for system table, 
+storage_policy
+ parameter should be specified directly inside 'engine'
+settings
+Additional parameters
+ that control the behavior of the MergeTree (optional).
+If 
+engine
+ is specified for system table, 
+settings
+ parameter should be specified directly inside 'engine'
+flush_interval_milliseconds
+Interval for flushing data from the buffer in memory to the table.
+7500
+max_size_rows
+Maximal size in lines for the logs. When the amount of non-flushed logs reaches the max_size, logs are dumped to the disk.
+1048576
+reserved_size_rows
+Pre-allocated memory size in lines for the logs.
+8192
+buffer_size_rows_flush_threshold
+Threshold for amount of lines. If the threshold is reached, flushing logs to the disk is launched in background.
+max_size_rows / 2
+flush_on_crash
+Sets whether logs should be dumped to the disk in case of a crash.
+false
+
+Additionally, the following server-level setting controls the default flush policy for all system log tables:
+
+<default_system_log_flush_policy>
+    <skip_alias_columns>true</skip_alias_columns>
+</default_system_log_flush_policy>
+
+Setting
+Description
+Default
+skip_alias_columns
+When 
+true
+, ALIAS columns are omitted from system log table schemas. Required for S3-backed system logs.
+false
+
+Example
+
+<clickhouse>
+    <asynchronous_insert_log>
+        <database>system</database>
+        <table>asynchronous_insert_log</table>
+        <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+        <partition_by>toYYYYMM(event_date)</partition_by>
+        <max_size_rows>1048576</max_size_rows>
+        <reserved_size_rows>8192</reserved_size_rows>
+        <buffer_size_rows_flush_threshold>524288</buffer_size_rows_flush_threshold>
+        <flush_on_crash>false</flush_on_crash>
+        <!-- <engine>Engine = MergeTree PARTITION BY event_date ORDER BY event_time TTL event_date + INTERVAL 30 day</engine> -->
+    </asynchronous_insert_log>
+</clickhouse>
+
+asynchronous_metric_log
+​
+
+Enabled by default on ClickHouse Cloud deployments.
+
+If the setting is not enabled by default on your environment, depending on how ClickHouse was installed, you can follow the instruction below to enable or disable it.
+
+Enabling
+
+To manually turn on asynchronous metric logs history collection 
+system.asynchronous_metric_log
+, create 
+/etc/clickhouse-server/config.d/asynchronous_metric_log.xml
+ with the following content:
+
+<clickhouse>
+     <asynchronous_metric_log>
+        <database>system</database>
+        <table>asynchronous_metric_log</table>
+        <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+        <collect_interval_milliseconds>1000</collect_interval_milliseconds>
+        <max_size_rows>1048576</max_size_rows>
+        <reserved_size_rows>8192</reserved_size_rows>
+        <buffer_size_rows_flush_threshold>524288</buffer_size_rows_flush_threshold>
+        <flush_on_crash>false</flush_on_crash>
+    </asynchronous_metric_log>
+</clickhouse>
+
+Disabling
+
+To disable 
+asynchronous_metric_log
+ setting, you should create the following file 
+/etc/clickhouse-server/config.d/disable_asynchronous_metric_log.xml
+ with the following content:
+
+<clickhouse><asynchronous_metric_log remove="1" /></clickhouse>
+
+The following settings can be configured by sub-tags:
+
+Setting
+Description
+Default
+Note
+database
+Name of the database.
+table
+Name of the system table.
+engine
+MergeTree Engine Definition
+ for a system table.
+Cannot be used if 
+partition_by
+ or 
+order_by
+ defined. If not specified 
+MergeTree
+ is selected by default
+partition_by
+Custom partitioning key
+ for a system table.
+If 
+engine
+ is specified for system table, 
+partition_by
+ parameter should be specified directly inside 'engine'
+ttl
+Specifies the table 
+TTL
+.
+If 
+engine
+ is specified for system table, 
+ttl
+ parameter should be specified directly inside 'engine'
+order_by
+Custom sorting key
+ for a system table. Can't be used if 
+engine
+ defined.
+If 
+engine
+ is specified for system table, 
+order_by
+ parameter should be specified directly inside 'engine'
+storage_policy
+Name of the storage policy to use for the table (optional).
+If 
+engine
+ is specified for system table, 
+storage_policy
+ parameter should be specified directly inside 'engine'
+settings
+Additional parameters
+ that control the behavior of the MergeTree (optional).
+If 
+engine
+ is specified for system table, 
+settings
+ parameter should be specified directly inside 'engine'
+flush_interval_milliseconds
+Interval for flushing data from the buffer in memory to the table.
+7500
+max_size_rows
+Maximal size in lines for the logs. When the amount of non-flushed logs reaches the max_size, logs are dumped to the disk.
+1048576
+reserved_size_rows
+Pre-allocated memory size in lines for the logs.
+8192
+buffer_size_rows_flush_threshold
+Threshold for amount of lines. If the threshold is reached, flushing logs to the disk is launched in background.
+max_size_rows / 2
+flush_on_crash
+Sets whether logs should be dumped to the disk in case of a crash.
+false
+
+Additionally, the following server-level setting controls the default flush policy for all system log tables:
+
+<default_system_log_flush_policy>
+    <skip_alias_columns>true</skip_alias_columns>
+</default_system_log_flush_policy>
+
+Setting
+Description
+Default
+skip_alias_columns
+When 
+true
+, ALIAS columns are omitted from system log table schemas. Required for S3-backed system logs.
+false
+
+asynchronous_metrics_enable_heavy_metrics
+​
+
+Enable the calculation of heavy asynchronous metrics.
+
+asynchronous_metrics_keeper_metrics_only
+​
+
+Make asynchronous metrics calculate the keeper-related metrics only.
+
+asynchronous_metrics_update_period_s
+​
+
+Period in seconds for updating asynchronous metrics.
+
+auth_use_forwarded_address
+​
+
+Use originating address for authentication for clients connected through proxy.
+
+Note
+This setting should be used with extra caution since forwarded addresses can be easily spoofed - servers accepting such authentication should not be accessed directly but rather exclusively through a trusted proxy.
+
+background_buffer_flush_schedule_pool_size
+​
+
+The maximum number of threads that will be used for performing flush operations for 
+Buffer-engine tables
+ in the background.
+
+background_common_pool_size
+​
+
+The maximum number of threads that will be used for performing a variety of operations (mostly garbage collection) for 
+*MergeTree-engine
+ tables in the background.
+
+background_distributed_schedule_pool_size
+​
+
+The maximum number of threads that will be used for executing distributed sends.
+
+background_fetches_pool_size
+​
+
+The maximum number of threads that will be used for fetching data parts from another replica for 
+*MergeTree-engine
+ tables in the background.
+
+background_merges_mutations_concurrency_ratio
+​
+
+Sets a ratio between the number of threads and the number of background merges and mutations that can be executed concurrently.
+
+For example, if the ratio equals to 2 and 
+background_pool_size
+ is set to 16 then ClickHouse can execute 32 background merges concurrently. This is possible, because background operations could be suspended and postponed. This is needed to give small merges more execution priority.
+
+background_merges_mutations_scheduling_policy
+​
+
+The policy on how to perform a scheduling for background merges and mutations. Possible values are: 
+round_robin
+ and 
+shortest_task_first
+.
+
+Algorithm used to select next merge or mutation to be executed by background thread pool. Policy may be changed at runtime without server restart.
+Could be applied from the 
+default
+ profile for backward compatibility.
+
+Possible values:
+
+round_robin
+ — Every concurrent merge and mutation is executed in round-robin order to ensure starvation-free operation. Smaller merges are completed faster than bigger ones just because they have fewer blocks to merge.
+
+shortest_task_first
+ — Always execute smaller merge or mutation. Merges and mutations are assigned priorities based on their resulting size. Merges with smaller sizes are strictly preferred over bigger ones. This policy ensures the fastest possible merge of small parts but can lead to indefinite starvation of big merges in partitions heavily overloaded by 
+INSERT
+s.
+
+background_message_broker_schedule_pool_size
+​
+
+The maximum number of threads that will be used for executing background operations for message streaming.
+
+background_move_pool_size
+​
+
+The maximum number of threads that will be used for moving data parts to another disk or volume for *MergeTree-engine tables in a background.
+
+background_pool_size
+​
+
+Sets the number of threads performing background merges and mutations for tables with MergeTree engines.
+
+Note
+
+This setting could also be applied at server startup from the 
+default
+ profile configuration for backward compatibility at the ClickHouse server start.
+
+You can only increase the number of threads at runtime.
+
+To lower the number of threads you have to restart the server.
+
+By adjusting this setting, you manage CPU and disk load.
+
+Danger
+Smaller pool size utilizes less CPU and disk resources, but background processes advance slower which might eventually impact query performance.
+
+Before changing it, please also take a look at related MergeTree settings, such as:
+
+Example
+
+<background_pool_size>16</background_pool_size>
+
+background_schedule_pool_log
+​
+
+Contains information about all background tasks that are executed via various background pools.
+
+<background_schedule_pool_log>
+    <database>system</database>
+    <table>background_schedule_pool_log</table>
+    <partition_by>toYYYYMM(event_date)</partition_by>
+    <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+    <max_size_rows>1048576</max_size_rows>
+    <reserved_size_rows>8192</reserved_size_rows>
+    <buffer_size_rows_flush_threshold>524288</buffer_size_rows_flush_threshold>
+    <flush_on_crash>false</flush_on_crash>
+    <!-- Only tasks longer than duration_threshold_milliseconds will be logged. Zero means log everything -->
+    <duration_threshold_milliseconds>0</duration_threshold_milliseconds>
+</background_schedule_pool_log>
+
+background_schedule_pool_max_parallel_tasks_per_type_ratio
+​
+
+The maximum ratio of threads in the pool that can execute tasks of the same type simultaneously.
+
+background_schedule_pool_size
+​
+
+The maximum number of threads that will be used for constantly executing some lightweight periodic operations for replicated tables, Kafka streaming, and DNS cache updates.
+
+backup_log
+​
+
+Settings for the 
+backup_log
+ system table for logging 
+BACKUP
+ and 
+RESTORE
+ operations.
+
+The following settings can be configured by sub-tags:
+
+Setting
+Description
+Default
+Note
+database
+Name of the database.
+table
+Name of the system table.
+engine
+MergeTree Engine Definition
+ for a system table.
+Cannot be used if 
+partition_by
+ or 
+order_by
+ defined. If not specified 
+MergeTree
+ is selected by default
+partition_by
+Custom partitioning key
+ for a system table.
+If 
+engine
+ is specified for system table, 
+partition_by
+ parameter should be specified directly inside 'engine'
+ttl
+Specifies the table 
+TTL
+.
+If 
+engine
+ is specified for system table, 
+ttl
+ parameter should be specified directly inside 'engine'
+order_by
+Custom sorting key
+ for a system table. Can't be used if 
+engine
+ defined.
+If 
+engine
+ is specified for system table, 
+order_by
+ parameter should be specified directly inside 'engine'
+storage_policy
+Name of the storage policy to use for the table (optional).
+If 
+engine
+ is specified for system table, 
+storage_policy
+ parameter should be specified directly inside 'engine'
+settings
+Additional parameters
+ that control the behavior of the MergeTree (optional).
+If 
+engine
+ is specified for system table, 
+settings
+ parameter should be specified directly inside 'engine'
+flush_interval_milliseconds
+Interval for flushing data from the buffer in memory to the table.
+7500
+max_size_rows
+Maximal size in lines for the logs. When the amount of non-flushed logs reaches the max_size, logs are dumped to the disk.
+1048576
+reserved_size_rows
+Pre-allocated memory size in lines for the logs.
+8192
+buffer_size_rows_flush_threshold
+Threshold for amount of lines. If the threshold is reached, flushing logs to the disk is launched in background.
+max_size_rows / 2
+flush_on_crash
+Sets whether logs should be dumped to the disk in case of a crash.
+false
+
+Additionally, the following server-level setting controls the default flush policy for all system log tables:
+
+<default_system_log_flush_policy>
+    <skip_alias_columns>true</skip_alias_columns>
+</default_system_log_flush_policy>
+
+Setting
+Description
+Default
+skip_alias_columns
+When 
+true
+, ALIAS columns are omitted from system log table schemas. Required for S3-backed system logs.
+false
+
+Example
+
+<clickhouse>
+    <backup_log>
+        <database>system</database>
+        <table>backup_log</table>
+        <flush_interval_milliseconds>1000</flush_interval_milliseconds>
+        <partition_by>toYYYYMM(event_date)</partition_by>
+        <max_size_rows>1048576</max_size_rows>
+        <reserved_size_rows>8192</reserved_size_rows>
+        <buffer_size_rows_flush_threshold>524288</buffer_size_rows_flush_threshold>
+        <flush_on_crash>false</flush_on_crash>
+        <!-- <engine>Engine = MergeTree PARTITION BY event_date ORDER BY event_time TTL event_date + INTERVAL 30 day</engine> -->
+    </backup_log>
+</clickhouse>
+
+backup_threads
+​
+
+The maximum number of threads to execute 
+BACKUP
+ requests.
+
+backups
+​
+
+Settings for backups, used when executing the 
+BACKUP
+ and 
+RESTORE
+ statements.
+
+The following settings can be configured by sub-tags:
+
+Setting
+Type
+Description
+Default
+allow_concurrent_backups
+Bool
+Determines whether multiple backup operations can run concurrently on the same host.
+true
+allow_concurrent_restores
+Bool
+Determines whether multiple restore operations can run concurrently on the same host.
+true
+allowed_disk
+String
+Disk to backup to when using 
+File()
+. This setting must be set in order to use 
+File
+.
+``
+allowed_path
+String
+Path to backup to when using 
+File()
+. This setting must be set in order to use 
+File
+.
+``
+attempts_to_collect_metadata_before_sleep
+UInt
+Number of attempts to collect metadata before sleeping in case of inconsistency after comparing collected metadata.
+2
+collect_metadata_timeout
+UInt64
+Timeout in milliseconds for collecting metadata during backup.
+600000
+compare_collected_metadata
+Bool
+If true, compares the collected metadata with the existing metadata to ensure they are not changed during backup .
+true
+create_table_timeout
+UInt64
+Timeout in milliseconds for creating tables during restore.
+300000
+max_attempts_after_bad_version
+UInt64
+Maximum number of attempts to retry after encountering a bad version error during coordinated backup/restore.
+3
+max_sleep_before_next_attempt_to_collect_metadata
+UInt64
+Maximum sleep time in milliseconds before the next attempt to collect metadata.
+100
+min_sleep_before_next_attempt_to_collect_metadata
+UInt64
+Minimum sleep time in milliseconds before the next attempt to collect metadata.
+5000
+remove_backup_files_after_failure
+Bool
+If the 
+BACKUP
+ command fails, ClickHouse will try to remove the files already copied to the backup before the failure,  otherwise it will leave the copied files as they are.
+true
+sync_period_ms
+UInt64
+Synchronization period in milliseconds for coordinated backup/restore.
+5000
+test_inject_sleep
+Bool
+Testing related sleep
+false
+test_randomize_order
+Bool
+If true, randomizes the order of certain operations for testing purposes.
+false
+zookeeper_path
+String
+Path in ZooKeeper where backup and restore metadata is stored when using 
+ON CLUSTER
+ clause.
+/clickhouse/backups
+
+This setting is configured by default as:
+
+<backups>
+    ....
+</backups>
+
+backups_io_thread_pool_queue_size
+​
+
+The maximum number of jobs that can be scheduled on the Backups IO Thread pool. It is recommended to keep this queue unlimited due to the current S3 backup logic.
+
+Note
+A value of 
+0
+ (default) means unlimited.
+
+bcrypt_workfactor
+​
+
+Work factor for the 
+bcrypt_password
+ authentication type which uses the 
+Bcrypt algorithm
+.
+The work factor defines the amount of computations and time needed to compute the hash and verify the password.
+
+<bcrypt_workfactor>12</bcrypt_workfactor>
+
+Note
+For applications with high-frequency authentication,
+consider alternative authentication methods due to
+bcrypt's computational overhead at higher work factors.
+
+blob_storage_log
+​
+
+Settings for the 
+blob_storage_log
+ system table.
+
+The following settings can be configured by sub-tags:
+
+Setting
+Description
+Default
+Note
+database
+Name of the database.
+table
+Name of the system table.
+engine
+MergeTree Engine Definition
+ for a system table.
+Cannot be used if 
+partition_by
+ or 
+order_by
+ defined. If not specified 
+MergeTree
+ is selected by default
+partition_by
+Custom partitioning key
+ for a system table.
+If 
+engine
+ is specified for system table, 
+partition_by
+ parameter should be specified directly inside 'engine'
+ttl
+Specifies the table 
+TTL
+.
+If 
+engine
+ is specified for system table, 
+ttl
+ parameter should be specified directly inside 'engine'
+order_by
+Custom sorting key
+ for a system table. Can't be used if 
+engine
+ defined.
+If 
+engine
+ is specified for system table, 
+order_by
+ parameter should be specified directly inside 'engine'
+storage_policy
+Name of the storage policy to use for the table (optional).
+If 
+engine
+ is specified for system table, 
+storage_policy
+ parameter should be specified directly inside 'engine'
+settings
+Additional parameters
+ that control the behavior of the MergeTree (optional).
+If 
+engine
+ is specified for system table, 
+settings
+ parameter should be specified directly inside 'engine'
+flush_interval_milliseconds
+Interval for flushing data from the buffer in memory to the table.
+7500
+max_size_rows
+Maximal size in lines for the logs. When the amount of non-flushed logs reaches the max_size, logs are dumped to the disk.
+1048576
+reserved_size_rows
+Pre-allocated memory size in lines for the logs.
+8192
+buffer_size_rows_flush_threshold
+Threshold for amount of lines. If the threshold is reached, flushing logs to the disk is launched in background.
+max_size_rows / 2
+flush_on_crash
+Sets whether logs should be dumped to the disk in case of a crash.
+false
+
+Additionally, the following server-level setting controls the default flush policy for all system log tables:
+
+<default_system_log_flush_policy>
+    <skip_alias_columns>true</skip_alias_columns>
+</default_system_log_flush_policy>
+
+Setting
+Description
+Default
+skip_alias_columns
+When 
+true
+, ALIAS columns are omitted from system log table schemas. Required for S3-backed system logs.
+false
+
+Example:
+
+<blob_storage_log>
+    <database>system</database
+    <table>blob_storage_log</table
+    <partition_by>toYYYYMM(event_date)</partition_by>
+    <flush_interval_milliseconds>7500</flush_interval_milliseconds
+    <ttl>event_date + INTERVAL 30 DAY</ttl>
+</blob_storage_log>
+
+builtin_dictionaries_reload_interval
+​
+
+The interval in seconds before reloading built-in dictionaries.
+
+ClickHouse reloads built-in dictionaries every x seconds. This makes it possible to edit dictionaries "on the fly" without restarting the server.
+
+Example
+
+<builtin_dictionaries_reload_interval>3600</builtin_dictionaries_reload_interval>
+
+cache_size_to_ram_max_ratio
+​
+
+Set cache size to RAM max ratio. Allows lowering the cache size on low-memory systems.
+
+cannot_allocate_thread_fault_injection_probability
+​
+
+For testing purposes.
+
+cgroups_memory_usage_observer_wait_time
+​
+
+Interval in seconds during which the server's maximum allowed memory consumption is adjusted by the corresponding threshold in cgroups.
+
+To disable the cgroup observer, set this value to 
+0
+.
+
+compiled_expression_cache_elements_size
+​
+
+Sets the cache size (in elements) for 
+compiled expressions
+.
+
+compiled_expression_cache_size
+​
+
+Sets the cache size (in bytes) for 
+compiled expressions
+.
+
+compression
+​
+
+Data compression settings for 
+MergeTree
+-engine tables.
+
+Note
+We recommend not changing this if you have just started using ClickHouse.
+
+Configuration template
+:
+
+<compression>
+    <case>
+      <min_part_size>...</min_part_size>
+      <min_part_size_ratio>...</min_part_size_ratio>
+      <method>...</method>
+      <level>...</level>
+    </case>
+    ...
+</compression>
+
+<case>
+ fields
+:
+
+min_part_size
+ – The minimum size of a data part.
+
+min_part_size_ratio
+ – The ratio of the data part size to the table size.
+
+method
+ – Compression method. Acceptable values: 
+lz4
+, 
+lz4hc
+, 
+zstd
+,
+deflate_qpl
+.
+
+level
+ – Compression level. See 
+Codecs
+.
+
+Note
+You can configure multiple 
+<case>
+ sections.
+
+Actions when conditions are met
+:
+
+If a data part matches a condition set, ClickHouse uses the specified compression method.
+
+If a data part matches multiple condition sets, ClickHouse uses the first matched condition set.
+
+Note
+If no conditions are met for a data part, ClickHouse uses the 
+lz4
+ compression.
+
+Example
+
+<compression incl="clickhouse_compression">
+    <case>
+        <min_part_size>10000000000</min_part_size>
+        <min_part_size_ratio>0.01</min_part_size_ratio>
+        <method>zstd</method>
+        <level>1</level>
+    </case>
+</compression>
+
+concurrent_threads_scheduler
+​
+
+The policy on how to perform a scheduling of CPU slots specified by 
+concurrent_threads_soft_limit_num
+ and 
+concurrent_threads_soft_limit_ratio_to_cores
+. Algorithm used to govern how limited number of CPU slots are distributed among concurrent queries. Scheduler may be changed at runtime without server restart.
+
+Possible values:
+
+round_robin
+ — Every query with setting 
+use_concurrency_control
+ = 1 allocates up to 
+max_threads
+ CPU slots. One slot per thread. On contention CPU slot are granted to queries using round-robin. Note that the first slot is granted unconditionally, which could lead to unfairness and increased latency of queries having high 
+max_threads
+ in presence of high number of queries with 
+max_threads
+ = 1.
+
+fair_round_robin
+ — Every query with setting 
+use_concurrency_control
+ = 1 allocates up to 
+max_threads - 1
+ CPU slots. Variation of 
+round_robin
+ that does not require a CPU slot for the first thread of every query. This way queries having 
+max_threads
+ = 1 do not require any slot and could not unfairly allocate all slots. There are no slots granted unconditionally.
+
+max_min_fair
+ — Every query with setting 
+use_concurrency_control
+ = 1 allocates up to 
+max_threads - 1
+ CPU slots. Similar to 
+fair_round_robin
+, but released slots are always granted to the query with the minimum number of currently allocated slots. This provides better fairness under high oversubscription, where many queries compete for limited CPU slots. Short-running queries are not penalized by long-running queries that have accumulated more slots over time.
+
+concurrent_threads_soft_limit_num
+​
+
+The maximum number of query processing threads, excluding threads for retrieving data from remote servers, allowed to run all queries. This is not a hard limit. In case if the limit is reached the query will still get at least one thread to run. Query can upscale to desired number of threads during execution if more threads become available.
+
+Note
+A value of 
+0
+ (default) means unlimited.
+
+concurrent_threads_soft_limit_ratio_to_cores
+​
+
+Same as 
+concurrent_threads_soft_limit_num
+, but with ratio to cores.
+
+config-file
+​
+
+Points to the server config file.
+
+config_reload_interval_ms
+​
+
+How often clickhouse will reload config and check for new changes
+
+core_dump
+​
+
+Configures soft limit for core dump file size.
+
+Note
+Hard limit is configured via system tools
+
+Example
+
+<core_dump>
+     <size_limit>1073741824</size_limit>
+</core_dump>
+
+cpu_slot_preemption
+​
+
+Defines how workload scheduling for CPU resources (MASTER THREAD and WORKER THREAD) is done.
+
+If 
+true
+ (default), accounting is done based on actual CPU time consumed. A fair number of CPU time would be allocated to competing workloads. Slots are allocated for a limited amount of time and re-requested after expiry. Slot requesting may block thread execution in case of CPU resource overload, i.e., preemption may happen. This ensures CPU-time fairness.
+
+If 
+false
+, accounting is based on the number of CPU slots allocated. A fair number of CPU slots would be allocated to competing workloads. A slot is allocated when a thread starts, held continuously, and released when the thread ends execution. The number of threads allocated for query execution may only increase from 1 to 
+max_threads
+ and never decrease. This is more favorable to long-running queries and may lead to CPU starvation of short queries.
+
+Example
+
+<cpu_slot_preemption>true</cpu_slot_preemption>
+
+See Also
+
+cpu_slot_preemption_timeout_ms
+​
+
+It defines how many milliseconds could a worker thread wait during preemption, i.e. while waiting for another CPU slot to be granted. After this timeout, if thread was unable to acquire a new CPU slot it will exit and the query is scaled down to a lower number of concurrently executing threads dynamically. Note that master thread never downscaled, but could be preempted indefinitely. Makes sense only when 
+cpu_slot_preemption
+ is enabled and CPU resource is defined for WORKER THREAD.
+
+Example
+
+<cpu_slot_preemption_timeout_ms>1000</cpu_slot_preemption_timeout_ms>
+
+See Also
+
+cpu_slot_quantum_ns
+​
+
+It defines how many CPU nanoseconds a thread is allowed to consume after acquired a CPU slot and before it should request another CPU slot. Makes sense only if 
+cpu_slot_preemption
+ is enabled and CPU resource is defined for MASTER THREAD or WORKER THREAD.
+
+Example
+
+<cpu_slot_quantum_ns>10000000</cpu_slot_quantum_ns>
+
+See Also
+
+crash_log
+​
+
+Settings for the 
+crash_log
+ system table operation.
+
+The following settings can be configured by sub-tags:
+
+Setting
+Description
+Default
+Note
+buffer_size_rows_flush_threshold
+Threshold for amount of lines. If the threshold is reached, flushing logs to the disk is launched in background.
+max_size_rows / 2
+database
+Name of the database.
+engine
+MergeTree Engine Definition
+ for a system table.
+Cannot be used if 
+partition_by
+ or 
+order_by
+ defined. If not specified 
+MergeTree
+ is selected by default
+flush_interval_milliseconds
+Interval for flushing data from the buffer in memory to the table.
+7500
+flush_on_crash
+Sets whether logs should be dumped to the disk in case of a crash.
+false
+max_size_rows
+Maximal size in lines for the logs. When the amount of non-flushed logs reaches the max_size, logs are dumped to the disk.
+1024
+order_by
+Custom sorting key
+ for a system table. Can't be used if 
+engine
+ defined.
+If 
+engine
+ is specified for system table, 
+order_by
+ parameter should be specified directly inside 'engine'
+partition_by
+Custom partitioning key
+ for a system table.
+If 
+engine
+ is specified for system table, 
+partition_by
+ parameter should be specified directly inside 'engine'
+reserved_size_rows
+Pre-allocated memory size in lines for the logs.
+1024
+settings
+Additional parameters
+ that control the behavior of the MergeTree (optional).
+If 
+engine
+ is specified for system table, 
+settings
+ parameter should be specified directly inside 'engine'
+storage_policy
+Name of the storage policy to use for the table (optional).
+If 
+engine
+ is specified for system table, 
+storage_policy
+ parameter should be specified directly inside 'engine'
+table
+Name of the system table.
+ttl
+Specifies the table 
+TTL
+.
+If 
+engine
+ is specified for system table, 
+ttl
+ parameter should be specified directly inside 'engine'
+
+The default server configuration file 
+config.xml
+ contains the following settings section:
+
+<crash_log>
+    <database>system</database>
+    <table>crash_log</table>
+    <partition_by>toYYYYMM(event_date)</partition_by>
+    <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+    <max_size_rows>1024</max_size_rows>
+    <reserved_size_rows>1024</reserved_size_rows>
+    <buffer_size_rows_flush_threshold>512</buffer_size_rows_flush_threshold>
+    <flush_on_crash>false</flush_on_crash>
+</crash_log>
+
+custom_cached_disks_base_directory
+​
+
+This setting specifies the cache path for custom (created from SQL) cached disks.
+
+custom_cached_disks_base_directory
+ has higher priority for custom disks over 
+filesystem_caches_path
+ (found in 
+filesystem_caches_path.xml
+),
+which is used if the former one is absent.
+The filesystem cache setting path must lie inside that directory,
+otherwise an exception will be thrown preventing the disk from being created.
+
+Note
+This will not affect disks created on an older version for which the server was upgraded.
+In this case, an exception will not be thrown, to allow the server to successfully start.
+
+Example:
+
+<custom_cached_disks_base_directory>/var/lib/clickhouse/caches/</custom_cached_disks_base_directory>
+
+custom_settings_prefixes
+​
+
+List of prefixes used for 
+custom settings
+.
+Multiple prefixes should be separated by commas.
+
+Example
+
+<custom_settings_prefixes>SQL_</custom_settings_prefixes>
+
+See Also
+
+database_atomic_delay_before_drop_table_sec
+​
+
+The delay during which a dropped table can be restored using the 
+UNDROP
+ statement. If 
+DROP TABLE
+ ran with a 
+SYNC
+ modifier, the setting is ignored.
+The default for this setting is 
+480
+ (8 minutes).
+
+database_catalog_drop_error_cooldown_sec
+​
+
+In case of a failed table drop, ClickHouse will wait for this time-out before retrying the operation.
+
+database_catalog_drop_table_concurrency
+​
+
+The size of the threadpool used for dropping tables.
+
+database_catalog_unused_dir_cleanup_period_sec
+​
+
+Parameter of a task that cleans up garbage from 
+store/
+ directory.
+Sets scheduling period of the task.
+
+Note
+A value of 
+0
+ means "never". The default value corresponds to 1 day.
+
+database_catalog_unused_dir_hide_timeout_sec
+​
+
+Parameter of a task that cleans up garbage from 
+store/
+ directory.
+If some subdirectory is not used by clickhouse-server and this directory was not modified for last
+
+database_catalog_unused_dir_hide_timeout_sec
+ seconds, the task will "hide" this directory by
+removing all access rights. It also works for directories that clickhouse-server does not
+expect to see inside 
+store/
+.
+
+Note
+A value of 
+0
+ means "immediately".
+
+database_catalog_unused_dir_rm_timeout_sec
+​
+
+Parameter of a task that cleans up garbage from 
+store/
+ directory.
+If some subdirectory is not used by clickhouse-server and it was previously "hidden"
+(see 
+database_catalog_unused_dir_hide_timeout_sec
+)
+and this directory was not modified for last
+[
+database_catalog_unused_dir_rm_timeout_sec
+]/operations/server-configuration-parameters/settings#database_catalog_unused_dir_rm_timeout_sec) seconds, the task will remove this directory.
+It also works for directories that clickhouse-server does not
+expect to see inside 
+store/
+.
+
+Note
+A value of 
+0
+ means "never". The default value corresponds to 30 days.
+
+database_replicated_allow_detach_permanently
+​
+
+Allow detaching tables permanently in Replicated databases
+
+database_replicated_drop_broken_tables
+​
+
+Drop unexpected tables from Replicated databases instead of moving them to a separate local database
+
+dead_letter_queue
+​
+
+Setting for the 'dead_letter_queue' system table.
+
+The following settings can be configured by sub-tags:
+
+Setting
+Description
+Default
+Note
+database
+Name of the database.
+table
+Name of the system table.
+engine
+MergeTree Engine Definition
+ for a system table.
+Cannot be used if 
+partition_by
+ or 
+order_by
+ defined. If not specified 
+MergeTree
+ is selected by default
+partitio
+
+[document truncated for prompt size]

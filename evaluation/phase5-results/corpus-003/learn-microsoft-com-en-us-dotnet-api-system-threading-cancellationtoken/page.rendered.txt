@@ -1,0 +1,305 @@
+Cancellation
+Token Struct
+
+In this article
+
+									Definition
+
+									Examples
+
+									Remarks
+
+									Constructors
+
+									Properties
+
+									Methods
+
+									Operators
+
+									Applies to
+
+									Thread Safety
+
+									See also
+
+Show 6 more
+
+ Important
+
+Some information relates to prerelease product that may be substantially modified before it’s released. Microsoft makes no warranties, express or implied, with respect to the information provided here.
+
+Propagates notification that operations should be canceled.
+
+public value class CancellationToken
+
+public value class CancellationToken : IEquatable<System::Threading::CancellationToken>
+
+public struct CancellationToken
+
+public readonly struct CancellationToken : IEquatable<System.Threading.CancellationToken>
+
+public readonly struct CancellationToken
+
+[System.Runtime.InteropServices.ComVisible(false)]
+public struct CancellationToken
+
+type CancellationToken = struct
+
+[<System.Runtime.InteropServices.ComVisible(false)>]
+type CancellationToken = struct
+
+Public Structure CancellationToken
+
+Public Structure CancellationToken
+Implements IEquatable(Of CancellationToken)
+
+Inheritance
+
+Attributes
+
+Implements
+
+The following example uses a random number generator to emulate a data collection application that reads 10 integral values from eleven different instruments. A value of zero indicates that the measurement has failed for one instrument, in which case the operation should be cancelled and no overall mean should be computed.
+
+To handle the possible cancellation of the operation, the example instantiates a 
+CancellationTokenSource
+ object that generates a cancellation token that's passed to a 
+TaskFactory
+ object. In turn, the 
+TaskFactory
+ object passes the cancellation token to each of the tasks responsible for collecting readings for a particular instrument. The 
+TaskFactory.ContinueWhenAll<TAntecedentResult,TResult>(Task<TAntecedentResult>[], Func<Task<TAntecedentResult>[],TResult>, CancellationToken)
+ method is called to ensure that the mean is computed only after all readings have been gathered successfully. If a task has not completed because it was cancelled, the 
+TaskFactory.ContinueWhenAll
+ method throws an exception.
+
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+
+public class Example
+{
+   public static void Main()
+   {
+      // Define the cancellation token.
+      CancellationTokenSource source = new CancellationTokenSource();
+      CancellationToken token = source.Token;
+
+      Random rnd = new Random();
+      Object lockObj = new Object();
+
+      List<Task<int[]>> tasks = new List<Task<int[]>>();
+      TaskFactory factory = new TaskFactory(token);
+      for (int taskCtr = 0; taskCtr <= 10; taskCtr++) {
+         int iteration = taskCtr + 1;
+         tasks.Add(factory.StartNew( () => {
+           int value;
+           int[] values = new int[10];
+           for (int ctr = 1; ctr <= 10; ctr++) {
+              lock (lockObj) {
+                 value = rnd.Next(0,101);
+              }
+              if (value == 0) { 
+                 source.Cancel();
+                 Console.WriteLine("Cancelling at task {0}", iteration);
+                 break;
+              }   
+              values[ctr-1] = value; 
+           }
+           return values;
+        }, token));   
+      }
+      try {
+         Task<double> fTask = factory.ContinueWhenAll(tasks.ToArray(), 
+         (results) => {
+            Console.WriteLine("Calculating overall mean...");
+            long sum = 0;
+            int n = 0; 
+            foreach (var t in results) {
+               foreach (var r in t.Result) {
+                  sum += r;
+                  n++;
+               }
+            }
+            return sum/(double) n;
+         } , token);
+         Console.WriteLine("The mean is {0}.", fTask.Result);
+      }   
+      catch (AggregateException ae) {
+         foreach (Exception e in ae.InnerExceptions) {
+            if (e is TaskCanceledException)
+               Console.WriteLine("Unable to compute mean: {0}", 
+                  ((TaskCanceledException) e).Message);
+            else
+               Console.WriteLine("Exception: " + e.GetType().Name);
+         }
+      }
+      finally {
+         source.Dispose();
+      }
+   }
+}
+// Repeated execution of the example produces output like the following:
+//       Cancelling at task 5
+//       Unable to compute mean: A task was canceled.
+//       
+//       Cancelling at task 10
+//       Unable to compute mean: A task was canceled.
+//       
+//       Calculating overall mean...
+//       The mean is 5.29545454545455.
+//       
+//       Cancelling at task 4
+//       Unable to compute mean: A task was canceled.
+//       
+//       Cancelling at task 5
+//       Unable to compute mean: A task was canceled.
+//       
+//       Cancelling at task 6
+//       Unable to compute mean: A task was canceled.
+//       
+//       Calculating overall mean...
+//       The mean is 4.97363636363636.
+//       
+//       Cancelling at task 4
+//       Unable to compute mean: A task was canceled.
+//       
+//       Cancelling at task 5
+//       Unable to compute mean: A task was canceled.
+//       
+//       Cancelling at task 4
+//       Unable to compute mean: A task was canceled.
+//       
+//       Calculating overall mean...
+//       The mean is 4.86545454545455.
+
+Imports System.Collections.Generic
+Imports System.Threading
+Imports System.Threading.Tasks
+
+Module Example
+   Public Sub Main()
+      ' Define the cancellation token.
+      Dim source As New CancellationTokenSource()
+      Dim token As CancellationToken = source.Token
+
+      Dim lockObj As New Object()
+      Dim rnd As New Random
+
+      Dim tasks As New List(Of Task(Of Integer()))
+      Dim factory As New TaskFactory(token)
+      For taskCtr As Integer = 0 To 10
+         Dim iteration As Integer = taskCtr + 1
+         tasks.Add(factory.StartNew(Function()
+                                       Dim value, values(9) As Integer
+                                       For ctr As Integer = 1 To 10
+                                          SyncLock lockObj
+                                             value = rnd.Next(0,101)
+                                          End SyncLock
+                                          If value = 0 Then 
+                                             source.Cancel
+                                             Console.WriteLine("Cancelling at task {0}", iteration)
+                                             Exit For
+                                          End If   
+                                          values(ctr-1) = value 
+                                       Next
+                                       Return values
+                                    End Function, token))   
+
+      Next
+      Try
+         Dim fTask As Task(Of Double) = factory.ContinueWhenAll(tasks.ToArray(), 
+                                                         Function(results)
+                                                            Console.WriteLine("Calculating overall mean...")
+                                                            Dim sum As Long
+                                                            Dim n As Integer 
+                                                            For Each t In results
+                                                               For Each r In t.Result
+                                                                  sum += r
+                                                                  n+= 1
+                                                               Next
+                                                            Next
+                                                            Return sum/n
+                                                         End Function, token)
+         Console.WriteLine("The mean is {0}.", fTask.Result)
+      Catch ae As AggregateException
+         For Each e In ae.InnerExceptions
+            If TypeOf e Is TaskCanceledException
+               Console.WriteLine("Unable to compute mean: {0}", 
+                                 CType(e, TaskCanceledException).Message)
+            Else
+               Console.WriteLine("Exception: " + e.GetType().Name)
+            End If   
+         Next
+      Finally
+         source.Dispose()
+      End Try                                                          
+   End Sub
+End Module
+' Repeated execution of the example produces output like the following:
+'       Cancelling at task 5
+'       Unable to compute mean: A task was canceled.
+'       
+'       Cancelling at task 10
+'       Unable to compute mean: A task was canceled.
+'       
+'       Calculating overall mean...
+'       The mean is 5.29545454545455.
+'       
+'       Cancelling at task 4
+'       Unable to compute mean: A task was canceled.
+'       
+'       Cancelling at task 5
+'       Unable to compute mean: A task was canceled.
+'       
+'       Cancelling at task 6
+'       Unable to compute mean: A task was canceled.
+'       
+'       Calculating overall mean...
+'       The mean is 4.97363636363636.
+'       
+'       Cancelling at task 4
+'       Unable to compute mean: A task was canceled.
+'       
+'       Cancelling at task 5
+'       Unable to compute mean: A task was canceled.
+'       
+'       Cancelling at task 4
+'       Unable to compute mean: A task was canceled.
+'       
+'       Calculating overall mean...
+'       The mean is 4.86545454545455.
+
+A 
+CancellationToken
+ enables cooperative cancellation between threads, thread pool work items, or 
+Task
+ objects. You create a cancellation token by instantiating a 
+CancellationTokenSource
+ object, which manages cancellation tokens retrieved from its 
+CancellationTokenSource.Token
+ property. You then  pass the cancellation token to any number of threads, tasks, or operations that should receive notice of cancellation. The token cannot be used to initiate cancellation. When the owning object calls 
+CancellationTokenSource.Cancel
+, the 
+IsCancellationRequested
+ property on every copy of the cancellation token is set to 
+true
+. The objects that receive the notification can respond in whatever manner is appropriate.
+
+For more information and code examples see 
+Cancellation in Managed Threads
+.
+
+Expand table
+
+Expand table
+
+Expand table
+
+Expand table
+
+All public and protected members of 
+CancellationToken
+ are thread-safe and may be used concurrently from multiple threads.

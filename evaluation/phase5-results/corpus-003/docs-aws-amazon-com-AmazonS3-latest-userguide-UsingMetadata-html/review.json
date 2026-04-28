@@ -1,0 +1,124 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the two types of object metadata in Amazon S3?",
+      "answer": "System-defined metadata and user-defined metadata.",
+      "supporting_sentences": [
+        "There are two kinds of object metadata in Amazon S3: system-defined metadata and user-defined metadata."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the two types of object metadata in Amazon S3?",
+      "answer": "System-defined metadata and user-defined metadata.",
+      "supporting_sentences": [
+        "There are two kinds of object metadata in Amazon S3: system-defined metadata and user-defined metadata."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Can user-defined metadata be modified after an object is uploaded to Amazon S3?",
+      "answer": "No, the only way to modify user-defined metadata is to make a copy of the object and set the metadata.",
+      "supporting_sentences": [
+        "After you upload the object, you can't modify this user-defined metadata. The only way to modify this metadata is to make a copy of the object and set the metadata."
+      ]
+    },
+    "edited_pair": {
+      "question": "Can user-defined metadata be modified after an object is uploaded to Amazon S3?",
+      "answer": "No, the only way to modify user-defined metadata is to make a copy of the object and set the metadata.",
+      "supporting_sentences": [
+        "After you upload the object, you can't modify this user-defined metadata. The only way to modify this metadata is to make a copy of the object and set the metadata."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of S3 Metadata in Amazon S3?",
+      "answer": "S3 Metadata accelerates data discovery by automatically capturing metadata for objects in general purpose buckets and storing it in read-only, fully managed Apache Iceberg tables that you can query.",
+      "supporting_sentences": [
+        "S3 Metadata accelerates data discovery by automatically capturing metadata for the objects in your general purpose buckets and storing it in read-only, fully managed Apache Iceberg tables that you can query."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of S3 Metadata in Amazon S3?",
+      "answer": "S3 Metadata accelerates data discovery by automatically capturing metadata for objects in general purpose buckets and storing it in read-only, fully managed Apache Iceberg tables that you can query.",
+      "supporting_sentences": [
+        "S3 Metadata accelerates data discovery by automatically capturing metadata for the objects in your general purpose buckets and storing it in read-only, fully managed Apache Iceberg tables that you can query."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which system-defined metadata in Amazon S3 can users modify?",
+      "answer": "Users can modify system metadata such as Cache-Control, Content-Disposition, Content-Encoding, Content-Type, x-amz-server-side-encryption, x-amz-checksum-type, x-amz-storage-class, x-amz-website-redirect-location, x-amz-server-side-encryption-aws-kms-key-id, and x-amz-server-side-encryption-customer-algorithm.",
+      "supporting_sentences": [
+        "User controlled \u2013 Other system metadata, such as the storage class configured for the object and whether the object has server-side encryption enabled, are examples of system metadata whose values you control.",
+        "The following table provides a list of system-defined metadata and whether you can update it.",
+        "Cache-Control: Yes",
+        "Content-Disposition: Yes",
+        "Content-Encoding: Yes",
+        "Content-Type: Yes",
+        "x-amz-server-side-encryption: Yes",
+        "x-amz-checksum-type: Yes",
+        "x-amz-storage-class: Yes",
+        "x-amz-website-redirect-location: Yes",
+        "x-amz-server-side-encryption-aws-kms-key-id: Yes",
+        "x-amz-server-side-encryption-customer-algorithm: Yes"
+      ]
+    },
+    "edited_pair": {
+      "question": "Which system-defined metadata in Amazon S3 can users modify?",
+      "answer": "Users can modify system metadata such as Cache-Control, Content-Disposition, Content-Encoding, Content-Type, x-amz-server-side-encryption, x-amz-checksum-type, x-amz-storage-class, x-amz-website-redirect-location, x-amz-server-side-encryption-aws-kms-key-id, and x-amz-server-side-encryption-customer-algorithm.",
+      "supporting_sentences": [
+        "User controlled \u2013 Other system metadata, such as the storage class configured for the object and whether the object has server-side encryption enabled, are examples of system metadata whose values you control.",
+        "The following table provides a list of system-defined metadata and whether you can update it.",
+        "Cache-Control: Yes",
+        "Content-Disposition: Yes",
+        "Content-Encoding: Yes",
+        "Content-Type: Yes",
+        "x-amz-server-side-encryption: Yes",
+        "x-amz-checksum-type: Yes",
+        "x-amz-storage-class: Yes",
+        "x-amz-website-redirect-location: Yes",
+        "x-amz-server-side-encryption-aws-kms-key-id: Yes",
+        "x-amz-server-side-encryption-customer-algorithm: Yes"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What prefix must user-defined metadata names begin with when uploading objects using the REST API in Amazon S3?",
+      "answer": "User-defined metadata names must begin with 'x-amz-meta-'.",
+      "supporting_sentences": [
+        "When you upload objects using the REST API, the optional user-defined metadata names must begin with x-amz-meta- to distinguish them from other HTTP headers."
+      ]
+    },
+    "edited_pair": {
+      "question": "What prefix must user-defined metadata names begin with when uploading objects using the REST API in Amazon S3?",
+      "answer": "User-defined metadata names must begin with 'x-amz-meta-'.",
+      "supporting_sentences": [
+        "When you upload objects using the REST API, the optional user-defined metadata names must begin with x-amz-meta- to distinguish them from other HTTP headers."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the specific binary values (1 for attend, 0 for padded) and the purpose regarding padded indices in batching, which are required facts in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 596,
+    "tokens_out": 43
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer exactly matches the ground truth in factual content.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 605,
+    "tokens_out": 16
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes both key facts from the ground truth: CTC calculates the distribution of possible outputs and selects the most likely, and it allows learning without exact alignment.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 621,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes the complete factual content of the ground truth, defining input IDs as token indices and numerical representations of tokens for model input sequences.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 587,
+    "tokens_out": 33
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states that token type IDs identify the two sequence types using a binary mask (0 for the first sequence, 1 for the second), matching all factual content of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 620,
+    "tokens_out": 44
+  }
+]

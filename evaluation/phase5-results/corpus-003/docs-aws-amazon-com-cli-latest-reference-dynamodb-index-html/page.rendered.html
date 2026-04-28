@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta content="Learn about the AWS CLI 2.34.38 dynamodb commands." name="description">
+
+  
+    <title>dynamodb — AWS CLI 2.34.38 Command Reference</title>
+  <link rel="stylesheet" type="text/css" href="../../_static/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../../_static/override.css">
+  <script src="/SdkStatic/sdk-priv.js" async="true"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css">
+    <link rel="stylesheet" type="text/css" href="../../_static/guzzle.css">
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html">
+    <link rel="search" title="Search" href="../../search.html">
+    <link rel="next" title="batch-execute-statement" href="batch-execute-statement.html">
+    <link rel="prev" title="cluster-not-exists" href="../dsql/wait/cluster-not-exists.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-responsive.min.css">
+  
+   
+
+  </head><body>
+  <div class="navbar navbar-fixed-top ">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="../../index.html">AWS CLI Command Reference</a>
+        <ul class="nav">
+<li><a class="nav-link" href="../../index.html">Home</a></li>
+<li><a class="nav-link" href="https://docs.aws.amazon.com/cli/latest/userguide/">User Guide</a></li>
+<li><a class="nav-link" href="https://forums.aws.amazon.com/forum.jspa?forumID=150">Forum</a></li>
+<li><a class="nav-link" href="https://github.com/aws/aws-cli">GitHub</a></li>
+        </ul>
+        <div class="pull-right" id="github-stars">
+          <iframe src="https://ghbtns.com/github-btn.html?user=aws&amp;repo=aws-cli&amp;type=watch&amp;count=true&amp;size=small" allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px" sandbox="allow-scripts" title="GitHub button showing the number of project stars."></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--REGION_DISCLAIMER_DO_NOT_REMOVE-->
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="batch-execute-statement.html" title="batch-execute-statement" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="../dsql/wait/cluster-not-exists.html" title="cluster-not-exists" accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">AWS CLI 2.34.38 Command Reference</a> »</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">aws</a> »</li>
+        <li class="nav-item nav-item-this"><a href="">dynamodb</a></li> 
+      </ul>
+    </div>
+    <div class="container">
+        
+    <div class="top-links">
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a href="../dsql/wait/cluster-not-exists.html" title="previous chapter (use the left arrow)">← cluster-not-exists</a>
+          <span class="divider">/</span>
+          
+        </li>
+          <li><a href="batch-execute-statement.html" title="next chapter (use the right arrow)">batch-execute-statement →</a></li>
+      </ul>
+    </div>
+  
+        <div class="document clearer">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo left-bar-other">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Amazon Web Services logo" height="63">
+  </a>
+</p>
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">dynamodb</a><ul>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#available-commands">Available Commands</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+<div id="searchbox" style="display: block;">
+    <h3>Quick search</h3>
+    <form class="form-search margin-top-1em" action="../../search.html" method="get">
+        <label for="searchbox">Search box</label>
+        <input id="searchbox" type="search" name="q" style="width: 105px" class="input-small search-query" autocomplete="off">
+        <button type="submit" class="btn btn-small">Search</button>
+        <input type="hidden" name="check_keywords" value="yes">
+        <input type="hidden" name="area" value="default">
+    </form>
+</div>
+<script src="../../_static/searchbox.js"></script><div class="left-bar-other">
+  <h3>Feedback</h3>
+  <p class="feedback">Did you find this page useful? Do you have a suggestion to improve the documentation? <a href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=AWS%20Command%20Line%20Interface&amp;hidden_guide_name=Reference&amp;topic_url=https%3A%2F%2Fdocs.aws.amazon.com%2Fcli%2Flatest%2Freference/dynamodb/index.html">Give us feedback</a>.
+    <br>
+    If you would like to suggest an improvement or fix for the AWS CLI, check out our <a href="https://github.com/aws/aws-cli/blob/develop/CONTRIBUTING.md">contributing guide</a> on GitHub.</p>
+</div><div class="left-bar-other">
+  <h3>User Guide</h3>
+  <p>First time using the AWS CLI? See the
+  <a href="https://docs.aws.amazon.com/cli/latest/userguide/">User Guide</a> for
+  help getting started.</p>
+</div>
+        </div>
+      </div>
+            <div class="body">
+              
+  <p>[ <a class="reference internal" href="../index.html#cli-aws"><span class="std std-ref">aws</span></a> ]</p>
+<div class="section" id="dynamodb">
+<span id="cli-aws-dynamodb"></span><h1>dynamodb<a class="headerlink" href="#dynamodb" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<p>Amazon DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. DynamoDB lets you offload the administrative burdens of operating and scaling a distributed database, so that you don’t have to worry about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling.</p>
+<p>With DynamoDB, you can create database tables that can store and retrieve any amount of data, and serve any level of request traffic. You can scale up or scale down your tables’ throughput capacity without downtime or performance degradation, and use the Amazon Web Services Management Console to monitor resource utilization and performance metrics.</p>
+<p>DynamoDB automatically spreads the data and traffic for your tables over a sufficient number of servers to handle your throughput and storage requirements, while maintaining consistent and fast performance. All of your data is stored on solid state disks (SSDs) and automatically replicated across multiple Availability Zones in an Amazon Web Services Region, providing built-in high availability and data durability.</p>
+</div>
+<div class="section" id="available-commands">
+<h2>Available Commands<a class="headerlink" href="#available-commands" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="batch-execute-statement.html">batch-execute-statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-get-item.html">batch-get-item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-write-item.html">batch-write-item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-backup.html">create-backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-global-table.html">create-global-table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-table.html">create-table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-backup.html">delete-backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-item.html">delete-item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-resource-policy.html">delete-resource-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-table.html">delete-table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-backup.html">describe-backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-continuous-backups.html">describe-continuous-backups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-contributor-insights.html">describe-contributor-insights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-endpoints.html">describe-endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-export.html">describe-export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-global-table.html">describe-global-table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-global-table-settings.html">describe-global-table-settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-import.html">describe-import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-kinesis-streaming-destination.html">describe-kinesis-streaming-destination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-limits.html">describe-limits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-table.html">describe-table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-table-replica-auto-scaling.html">describe-table-replica-auto-scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-time-to-live.html">describe-time-to-live</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disable-kinesis-streaming-destination.html">disable-kinesis-streaming-destination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enable-kinesis-streaming-destination.html">enable-kinesis-streaming-destination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="execute-statement.html">execute-statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="execute-transaction.html">execute-transaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export-table-to-point-in-time.html">export-table-to-point-in-time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-item.html">get-item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-resource-policy.html">get-resource-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import-table.html">import-table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-backups.html">list-backups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-contributor-insights.html">list-contributor-insights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-exports.html">list-exports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-global-tables.html">list-global-tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-imports.html">list-imports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-tables.html">list-tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-tags-of-resource.html">list-tags-of-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-item.html">put-item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-resource-policy.html">put-resource-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="query.html">query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restore-table-from-backup.html">restore-table-from-backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restore-table-to-point-in-time.html">restore-table-to-point-in-time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scan.html">scan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tag-resource.html">tag-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transact-get-items.html">transact-get-items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transact-write-items.html">transact-write-items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untag-resource.html">untag-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-continuous-backups.html">update-continuous-backups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-contributor-insights.html">update-contributor-insights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-global-table.html">update-global-table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-global-table-settings.html">update-global-table-settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-item.html">update-item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-kinesis-streaming-destination.html">update-kinesis-streaming-destination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-table.html">update-table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-table-replica-auto-scaling.html">update-table-replica-auto-scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-time-to-live.html">update-time-to-live</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wait/index.html">wait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wizard/index.html">wizard</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+            </div>
+          <div class="clearfix"></div>
+        </div>
+        
+    <div class="footer-links">
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a href="../dsql/wait/cluster-not-exists.html" title="previous chapter (use the left arrow)">← cluster-not-exists</a>
+          <span class="divider">/</span>
+          
+        </li>
+          <li><a href="batch-execute-statement.html" title="next chapter (use the right arrow)">batch-execute-statement →</a></li>
+      </ul>
+    </div>
+  
+
+    </div>
+  <script type="text/javascript" src="https://media.amazonwebservices.com/js/sitecatalyst/s_code.min.js"></script>
+  <script type="text/javascript" src="../../_static/analytics.js"></script>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="batch-execute-statement.html" title="batch-execute-statement">next</a> |</li>
+        <li class="right">
+          <a href="../dsql/wait/cluster-not-exists.html" title="cluster-not-exists">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">AWS CLI 2.34.38 Command Reference</a> »</li>
+          <li class="nav-item nav-item-1"><a href="../index.html">aws</a> »</li>
+        <li class="nav-item nav-item-this"><a href="">dynamodb</a></li> 
+      </ul>
+    </div>
+  <div class="footer container">
+    © Copyright 2026, Amazon Web Services. Created using <a href="https://www.sphinx-doc.org/">Sphinx</a>.
+  </div>
+
+
+
+  
+    
+  
+  
+</body></html>

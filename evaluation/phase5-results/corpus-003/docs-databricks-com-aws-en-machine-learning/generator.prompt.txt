@@ -1,0 +1,162 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: AI and machine learning on Databricks
+Document URL: https://docs.databricks.com/aws/en/machine-learning/
+Document profile: landing
+
+Document text:
+---
+AI and machine learning on Databricks
+
+Build, deploy, and manage AI and machine learning applications with Mosaic AI, an integrated platform that unifies the entire AI lifecycle from data preparation to production monitoring.
+
+For a set of tutorials to get you started, see 
+AI and machine learning tutorials
+.
+
+ Build generative AI applications
+​
+
+Develop and deploy enterprise-grade generative AI applications such as fine-tuned LLMs, AI agents, and retrieval-augmented generation.
+
+AI Playground
+
+Prototype and test generative AI models with no-code prompt engineering and parameter tuning.
+
+Foundation Models
+
+Serve state-of-the-art LLMs including Meta Llama, Anthropic Claude, and OpenAI GPT through secure, scalable APIs.
+
+Knowledge Assistant
+
+Simple approach to build and optimize domain-specific, high-quality QA agent chatbots.
+
+Agent Framework
+
+Build and deploy production-quality agents including RAG applications and multi-agent systems with Python.
+
+MLflow for GenAI
+
+Measure, improve, and monitor quality throughout the GenAI application lifecycle using AI-powered metrics and comprehensive trace observability.
+
+Vector Search
+
+Store and query embedding vectors with automatic syncing to your knowledge base for RAG applications.
+
+AI Runtime
+
+Customize single and multi-node deep learning workloads for training and fine-tuning custom models using your favorite frameworks and get state-of-the-art efficiency, performance, and quality.
+
+ Train classic machine learning models
+​
+
+Create machine learning models with automated tools and collaborative development environments.
+
+AutoML
+
+Automatically build high-quality models with minimal code using automated feature engineering and hyperparameter tuning.
+
+Databricks Runtime for ML
+
+Pre-configured clusters with TensorFlow, PyTorch, Keras, and GPU support for deep learning development.
+
+MLflow tracking
+
+Track experiments, compare model performance, and manage the complete model development lifecycle.
+
+Feature engineering
+
+Create, manage, and serve features with automated data pipelines and feature discovery.
+
+Databricks notebooks
+
+Collaborative development environment with support for Python, R, Scala, and SQL for ML workflows.
+
+ Train deep learning models
+​
+
+Use built-in frameworks to develop deep learning models.
+
+Distributed training
+
+Examples of distributed deep learning using Ray, TorchDistributor, and DeepSpeed.
+
+PyTorch
+
+Single-node and distributed training using PyTorch.
+
+TensorFlow
+
+Single-node and distributed training using TensorFlow and TensorBoard.
+
+Deploy and serve models
+​
+
+Deploy models to production with scalable endpoints, real-time inference, and enterprise-grade monitoring.
+
+Model Serving
+
+Deploy custom models and LLMs as scalable REST endpoints with automatic scaling and GPU support.
+
+AI Gateway
+
+Govern and monitor access to generative AI models with usage tracking, payload logging, and security controls.
+
+External models
+
+Integrate third-party models hosted outside Databricks with unified governance and monitoring.
+
+Monitor and govern ML systems
+​
+
+Ensure model quality, data integrity, and compliance with comprehensive monitoring and governance tools.
+
+Unity Catalog
+
+Govern data, features, models, and functions with unified access control, lineage tracking, and discovery.
+
+Data profiling
+
+Monitor data quality, model performance, and prediction drift with automated alerts and root cause analysis.
+
+MLflow for Models
+
+Track, evaluate, and monitor generative AI applications throughout the development lifecycle.
+
+Productionize ML workflows
+​
+
+Scale machine learning operations with automated workflows, CI/CD integration, and production-ready pipelines.
+
+Models in Unity Catalog
+
+Use the model registry in Unity Catalog for centralized governance and to manage the model lifecycle, including deployments.
+
+Lakeflow Jobs
+
+Build automated workflows and production-ready ETL pipelines for ML data processing.
+
+Ray on Databricks
+
+Scale ML workloads with distributed computing for large-scale model training and inference.
+
+MLOps workflows
+
+Implement end-to-end MLOps with automated training, testing, and deployment pipelines.
+
+Git integration
+
+Version control ML code and notebooks with seamless Git integration and collaborative development.
+---

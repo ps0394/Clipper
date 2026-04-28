@@ -1,0 +1,66 @@
+Note
+Starting in MongoDB 8.0, LDAP authentication and authorization is
+deprecated. LDAP is available and will continue to operate without
+changes throughout the lifetime of MongoDB 8. LDAP will be removed in a
+future major release.
+For details, see 
+LDAP Deprecation.
+Authentication is the process of verifying the identity of a client.
+When access control (
+authorization
+) is
+enabled, MongoDB requires all clients to authenticate themselves in
+order to determine their access.
+Although authentication and 
+authorization
+
+are closely connected, authentication is distinct from authorization:
+To get started using access control, follow these tutorials:
+MongoDB Atlas (M10 and above)
+MongoDB Atlas (Free and Flex Tiers)
+MongoDB supports 
+X.509 certificate authentication
+ for client authentication and internal
+authentication of the members of replica sets and sharded clusters.
+X.509 certificate authentication requires a secure 
+TLS/SSL
+connection.
+To use MongoDB with X.509, you must use valid certificates generated and
+signed by a certificate authority. The client X.509 certificates
+must meet the 
+client certificate requirements.
+For more information on X.509 and MongoDB, see:
+MongoDB Enterprise
+
+supports 
+Kerberos Authentication
+. Kerberos is
+an industry standard authentication protocol for large client/server
+systems that provides authentication using short-lived tokens that are
+called tickets.
+To use MongoDB with Kerberos, you must have a properly configured
+Kerberos deployment, configured 
+Kerberos service principals
+ for MongoDB, and a 
+Kerberos user
+principal
+ added to MongoDB.
+For more information on Kerberos and MongoDB, see:
+MongoDB Enterprise
+
+and 
+MongoDB Atlas
+ support
+
+LDAP Proxy Authentication
+ proxy
+authentication through a Lightweight Directory Access Protocol (LDAP)
+service.
+For more information on Kerberos and MongoDB, see:
+These mechanisms allow MongoDB to integrate into your
+existing authentication system.
+MongoDB Enterprise supports OpenID Connect authentication. OpenID
+Connect is an authentication layer built on top of OAuth2. You can use OpenID
+Connect to configure single sign-on between your MongoDB database and a third-party
+identity provider.
+For more information on OpenID Connect and MongoDB, see:

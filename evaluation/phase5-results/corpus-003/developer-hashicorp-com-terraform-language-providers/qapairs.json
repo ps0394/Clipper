@@ -1,0 +1,37 @@
+[
+  {
+    "question": "What are providers in Terraform used for?",
+    "answer": "Providers are plugins that Terraform relies on to interact with cloud providers, SaaS providers, and other APIs.",
+    "supporting_sentences": [
+      "Terraform relies on plugins called providers to interact with cloud providers, SaaS providers, and other APIs."
+    ]
+  },
+  {
+    "question": "Where can you find publicly available Terraform providers?",
+    "answer": "The Terraform Registry is the main directory of publicly available Terraform providers.",
+    "supporting_sentences": [
+      "The Terraform Registry is the main directory of publicly available Terraform providers, and hosts providers for most major infrastructure platforms."
+    ]
+  },
+  {
+    "question": "How can you ensure Terraform always installs the same provider versions for a given configuration?",
+    "answer": "You can use Terraform CLI to create a dependency lock file and commit it to version control along with your configuration.",
+    "supporting_sentences": [
+      "To ensure Terraform always installs the same provider versions for a given configuration, you can use Terraform CLI to create a dependency lock file and commit it to version control along with your configuration."
+    ]
+  },
+  {
+    "question": "What file can be used to provide additional credentials for follow-up requests to external registries?",
+    "answer": "You can use a .netrc file to provide additional credentials for follow-up requests.",
+    "supporting_sentences": [
+      "If your registry does require additional credentials for follow-up requests, you can use a .netrc file to provide those credentials."
+    ]
+  },
+  {
+    "question": "What programming language are Terraform providers written in?",
+    "answer": "Providers are written in Go.",
+    "supporting_sentences": [
+      "Providers are written in Go, using the Terraform Plugin SDK."
+    ]
+  }
+]

@@ -1,0 +1,104 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the default value for the `head_sampling_rate` setting in Cloudflare Workers Logs?",
+      "answer": "The default value for `head_sampling_rate` is 1.",
+      "supporting_sentences": [
+        "`head_sampling_rate`: 1 // optional. default = 1.",
+        "If `head_sampling_rate` is unspecified, it is configured to a default value of 1 (100%)."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the default value for the `head_sampling_rate` setting in Cloudflare Workers Logs?",
+      "answer": "The default value for `head_sampling_rate` is 1.",
+      "supporting_sentences": [
+        "`head_sampling_rate`: 1 // optional. default = 1.",
+        "If `head_sampling_rate` is unspecified, it is configured to a default value of 1 (100%)."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How long are logs retained for users on the Workers Free plan?",
+      "answer": "Logs are retained for 3 days for users on the Workers Free plan.",
+      "supporting_sentences": [
+        "Workers Free: 200,000 per day, 3 Days"
+      ]
+    },
+    "edited_pair": {
+      "question": "How long are logs retained for users on the Workers Free plan?",
+      "answer": "Logs are retained for 3 days for users on the Workers Free plan.",
+      "supporting_sentences": [
+        "Workers Free: 200,000 per day, 3 Days"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the maximum log size limit for a single log in Cloudflare Workers Logs?",
+      "answer": "The maximum log size limit for a single log is 256 KB.",
+      "supporting_sentences": [
+        "A single log has a maximum size limit of 256 KB."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the maximum log size limit for a single log in Cloudflare Workers Logs?",
+      "answer": "The maximum log size limit for a single log is 256 KB.",
+      "supporting_sentences": [
+        "A single log has a maximum size limit of 256 KB."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What field identifies an invocation log in Workers Logs?",
+      "answer": "The field `$cloudflare.$metadata.type = \"cf-worker-event\"` identifies an invocation log.",
+      "supporting_sentences": [
+        "These invocation logs can be identified by the field `$cloudflare.$metadata.type = \"cf-worker-event\"`."
+      ]
+    },
+    "edited_pair": {
+      "question": "What field identifies an invocation log in Workers Logs?",
+      "answer": "The field `$cloudflare.$metadata.type = \"cf-worker-event\"` identifies an invocation log.",
+      "supporting_sentences": [
+        "These invocation logs can be identified by the field `$cloudflare.$metadata.type = \"cf-worker-event\"`."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens if a Worker exceeds the daily log limit of 5 billion logs per account?",
+      "answer": "After the limit is exceeded, a 1% head-based sample will be applied for the remainder of the day.",
+      "supporting_sentences": [
+        "There is a daily limit of 5 billion logs per account per day. After the limit is exceed, a 1% head-based sample will be applied for the remainder of the day."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens if a Worker exceeds the daily log limit of 5 billion logs per account?",
+      "answer": "After the limit is exceeded, a 1% head-based sample will be applied for the remainder of the day.",
+      "supporting_sentences": [
+        "There is a daily limit of 5 billion logs per account per day. After the limit is exceed, a 1% head-based sample will be applied for the remainder of the day."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

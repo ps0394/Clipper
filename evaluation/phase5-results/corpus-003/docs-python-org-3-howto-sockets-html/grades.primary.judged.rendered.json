@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer discusses specific protocol types, whereas the ground truth mentions client and server sockets as the main types.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 594,
+    "tokens_out": 27
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, identifying the \"bind\" function as the one used for binding a server socket to a host and port.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 577,
+    "tokens_out": 40
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, with only minor wording differences and additional emphasis.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 637,
+    "tokens_out": 28
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, which is that the `listen` method queues up connect requests before refusing outside connections, although it provides an example maximum value.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 628,
+    "tokens_out": 44
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, describing the shutdown function's purpose and possible arguments.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 674,
+    "tokens_out": 29
+  }
+]

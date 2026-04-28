@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same factual content as the ground-truth answer, differing only in wording.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 594,
+    "tokens_out": 25
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer matches the ground-truth answer exactly, conveying the same factual content.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 570,
+    "tokens_out": 21
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, only omitting the \"npm\" prefix which is implied by the context of the question.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 605,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer includes an extra technology, Cloudflare Workers, that is not mentioned in the ground-truth answer, and does not change the fact that the ground truth lists specific technologies that are not fully matched by the candidate.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 610,
+    "tokens_out": 50
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer exactly matches the ground-truth answer, conveying the same factual content.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 569,
+    "tokens_out": 21
+  }
+]

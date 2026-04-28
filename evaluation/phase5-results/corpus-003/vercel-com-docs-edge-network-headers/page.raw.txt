@@ -1,0 +1,31 @@
+Headers are small pieces of information that are sent between the client (usually a web browser) and the server. They contain metadata about the request and response, such as the content type, cache-control directives, and authentication tokens. 
+HTTP headers
+ can be found in both the HTTP Request and HTTP Response.
+
+By using headers effectively, you can optimize the performance and security of your application on Vercel's global network. Here are some tips for using headers on Vercel:
+
+Use caching headers
+: Caching headers instruct the client and server to cache resources like images, CSS files, and JavaScript files, so they don't need to be reloaded every time a user visits your site. By using caching headers, you can significantly reduce the time it takes for your site to load.
+
+Use compression headers
+: Use the 
+Accept-Encoding
+ header to tell the client and server to compress data before it's sent over the network. By using compression, you can reduce the amount of data that needs to be sent, resulting in faster load times.
+
+Use custom headers: You can also use custom headers in your 
+vercel.json
+ file to add metadata specific to your application. For example, you could add a header that indicates the user's preferred language or the version of your application. See 
+Project Configuration
+ docs for more information.
+
+To learn about the request headers sent to each Vercel deployment and how to use them to process requests before sending a response, see 
+Request headers
+.
+
+To learn about the response headers included in Vercel deployment responses and how to use them to process responses before sending a response, see 
+Response headers
+.
+
+To learn about the cache-control headers sent to each Vercel deployment and how to use them to control the caching behavior of your application, see 
+Cache-Control headers
+.

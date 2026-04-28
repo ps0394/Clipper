@@ -1,0 +1,41 @@
+[
+  {
+    "question": "What are the main kinds of named values available in Terraform?",
+    "answer": "The main kinds of named values available in Terraform are: Resources, Input variables, Local values, Child module outputs, Data sources, Filesystem and workspace info, and Block-local values.",
+    "supporting_sentences": [
+      "Terraform makes several kinds of named values available. Each of these names is an expression that references the associated value.",
+      "The main kinds of named values available in Terraform are: Resources, Input variables, Local values, Child module outputs, Data sources, Filesystem and workspace info, Block-local values."
+    ]
+  },
+  {
+    "question": "How does Terraform interpret a reference to a managed resource if the resource does not use `count` or `for_each`?",
+    "answer": "If the resource doesn't use `count` or `for_each`, the reference's value is an object. The resource's attributes are elements of the object, and you can access them using dot or square bracket notation.",
+    "supporting_sentences": [
+      "If the resource doesn't use `count` or `for_each`, the reference's value is an object. The resource's attributes are elements of the object, and you can access them using dot or square bracket notation."
+    ]
+  },
+  {
+    "question": "What is the purpose of `path.module` in Terraform?",
+    "answer": "`path.module` is the filesystem path of the module where the expression is placed.",
+    "supporting_sentences": [
+      "`path.module` is the filesystem path of the module where the expression is placed."
+    ]
+  },
+  {
+    "question": "How does Terraform handle unknown values during the plan phase?",
+    "answer": "Terraform uses special unknown value placeholders for information that it cannot predict during the plan phase. The Terraform language automatically handles unknown values in expressions, but some situations, like the `count` meta-argument, cannot be unknown.",
+    "supporting_sentences": [
+      "Terraform uses special unknown value placeholders for information that it cannot predict during the plan phase.",
+      "The Terraform language automatically handles unknown values in expressions.",
+      "The `count` meta-argument for resources cannot be unknown, since it must be evaluated during the plan phase to determine how many instances are to be created."
+    ]
+  },
+  {
+    "question": "What happens if a resource attribute is marked as `sensitive` in Terraform?",
+    "answer": "If a resource attribute is marked as `sensitive`, Terraform will show a placeholder marker `(sensitive value)` instead of the actual value when rendering a plan involving that attribute. It will also hide any other values derived from it as sensitive.",
+    "supporting_sentences": [
+      "When defining the schema for a resource type, a provider developer can mark certain attributes as `sensitive`, in which case Terraform will show a placeholder marker `(sensitive value)` instead of the actual value when rendering a plan involving that attribute.",
+      "A provider attribute marked as sensitive behaves similarly to an input variable declared as sensitive, where Terraform will hide the value in the plan and apply messages and will also hide any other values you derive from it as sensitive."
+    ]
+  }
+]

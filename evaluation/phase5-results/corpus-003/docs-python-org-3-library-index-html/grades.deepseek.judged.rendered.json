@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes all key points from the ground truth: it is distributed with Python, provides standardized solutions for everyday programming problems, and includes built-in modules.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 604,
+    "tokens_out": 36
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes both built-in modules written in C and modules written in Python, matching all factual elements of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 574,
+    "tokens_out": 30
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground truth, stating Python is provided as a collection of packages and that OS packaging tools may be needed for optional components.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 599,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer adds extra types not in the ground truth and omits none, but the ground truth is a partial list (\"some of\") and the candidate's additions do not contradict it; however, the rule states the candidate must cover every listed item from the ground truth, which it does, so this should be CORRECT. Wait, re-reading: The candidate does cover every item in the ground truth list (int, float, complex, bool, list, tuple, range, str, bytes, bytearray, set, frozenset, dict). The extra items (memoryview, Generic Alias, Union) are additional correct facts beyond the ground truth, which is allowed. Therefore, the candidate is CORRECT.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 604,
+    "tokens_out": 151
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly identifies the Python Package Index as the resource mentioned, matching the key fact in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 554,
+    "tokens_out": 27
+  }
+]

@@ -1,0 +1,2204 @@
+<!DOCTYPE html><html class="layout layout-holy-grail show-table-of-contents faq show-breadcrumb default-focus theme-light" lang="en-us" dir="ltr" data-authenticated="false" data-auth-status-determined="true" data-target="docs" x-ms-format-detection="none" style="--window-inner-height: 720px !important; --atlas-header-height: 256px !important; --atlas-footer-height: 173px !important; --atlas-header-visible-height: 256px !important; --atlas-footer-visible-height: 0px !important;"><head>
+			<title>Frequently asked questions - Azure Cosmos DB | Microsoft Learn</title>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="color-scheme" content="light dark">
+
+			<meta name="description" content="Get answers to frequently asked questions about Azure Cosmos DB. Learn about capacity, performance levels, and scaling, and service features.">
+			<link rel="canonical" href="https://learn.microsoft.com/en-us/azure/cosmos-db/faq"> 
+
+			<!-- Non-customizable open graph and sharing-related metadata -->
+			<meta name="twitter:card" content="summary_large_image">
+			<meta name="twitter:site" content="@MicrosoftLearn">
+			<meta property="og:type" content="website">
+			<meta property="og:image:alt" content="Microsoft Learn">
+			<meta property="og:image" content="https://learn.microsoft.com/en-us/media/open-graph-image.png">
+			<!-- Page specific open graph and sharing-related metadata -->
+			<meta property="og:title" content="Frequently asked questions - Azure Cosmos DB">
+			<meta property="og:url" content="https://learn.microsoft.com/en-us/azure/cosmos-db/faq">
+			<meta property="og:description" content="Get answers to frequently asked questions about Azure Cosmos DB. Learn about capacity, performance levels, and scaling, and service features.">
+			<meta name="platform_id" content="338bc04c-6112-3ce4-99d5-6758eadeb297"> <meta name="scope" content="Azure,Azure Cosmos DB">
+			<meta name="locale" content="en-us">
+			 
+			<meta name="uhfHeaderId" content="MSDocsHeader-NoSQL">
+
+			<meta name="page_type" content="faq">
+
+			<!--page specific meta tags-->
+			
+
+			<!-- custom meta tags -->
+			
+		<meta name="schema" content="FAQ">
+	
+		<meta name="permissioned-type" content="public">
+	
+		<meta name="recommendations" content="true">
+	
+		<meta name="recommendation_types" content="Training">
+	
+		<meta name="recommendation_types" content="Certification">
+	
+		<meta name="breadcrumb_path" content="../breadcrumb/azure-nosql/toc.json">
+	
+		<meta name="feedback_system" content="Standard">
+	
+		<meta name="feedback_product_url" content="https://learn.microsoft.com/answers/tags/187/azure-cosmos-db">
+	
+		<meta name="feedback_help_link_url" content="/answers/tags/187/azure-cosmos-db/">
+	
+		<meta name="feedback_help_link_type" content="get-help-at-qna">
+	
+		<meta name="adobe-target" content="true">
+	
+		<meta name="ms.service" content="azure-cosmos-db">
+	
+		<meta name="ms.subservice" content="nosql">
+	
+		<meta name="ms.reviewer" content="mjbrown">
+	
+		<meta name="ms.author" content="mjbrown">
+	
+		<meta name="author" content="markjbrown">
+	
+		<meta name="ms.topic" content="faq">
+	
+		<meta name="ms.date" content="2025-12-15T00:00:00Z">
+	
+		<meta name="document_id" content="a48024eb-b7f7-1b8d-176a-7b1c2088b651">
+	
+		<meta name="document_version_independent_id" content="a48024eb-b7f7-1b8d-176a-7b1c2088b651">
+	
+		<meta name="updated_at" content="2026-04-27T13:06:00Z">
+	
+		<meta name="original_content_git_url" content="https://github.com/MicrosoftDocs/nosql-query-docs-pr/blob/live/azure/cosmos-db/faq.yml">
+	
+		<meta name="gitcommit" content="https://github.com/MicrosoftDocs/nosql-query-docs-pr/blob/dc5113c982922833db342676722a746af13c4000/azure/cosmos-db/faq.yml">
+	
+		<meta name="git_commit_id" content="dc5113c982922833db342676722a746af13c4000">
+	
+		<meta name="site_name" content="Docs">
+	
+		<meta name="depot_name" content="Learn.azure-nosql">
+	
+		<meta name="toc_rel" content="toc.json">
+	
+		<meta name="asset_id" content="cosmos-db/faq">
+	
+		<meta name="moniker_range_name" content="">
+	
+		<meta name="item_type" content="Content">
+	
+		<meta name="source_path" content="azure/cosmos-db/faq.yml">
+	
+		<meta name="github_feedback_content_git_url" content="https://github.com/MicrosoftDocs/nosql-query-docs/blob/main/azure/cosmos-db/faq.yml">
+	
+		<meta name="markdown_url" content="https://learn.microsoft.com/en-us/azure/cosmos-db/faq?accept=text/markdown">
+	 
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/cd668c2f-f5b3-4573-8ad1-019570e3e2db" data-source="generated">
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/cc82e69d-afbe-4554-9f4c-6705fc860c42" data-source="generated">
+	
+
+			<!-- assets and js globals -->
+			
+			<link rel="stylesheet" href="/static/assets/0.4.03398.7756-c1512039/styles/site.css">
+			
+			<script src="https://wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js"></script>
+			<script src="https://js.monitor.azure.com/scripts/c/ms.jsll-4.min.js"></script>
+			<script src="/_themes/docs.theme/master/en-us/_themes/global/deprecation.js"></script>
+
+			<!-- msdocs global object -->
+			<script id="msdocs-script">
+		var msDocs = {
+  "environment": {
+    "accessLevel": "online",
+    "azurePortalHostname": "portal.azure.com",
+    "reviewFeatures": false,
+    "supportLevel": "production",
+    "systemContent": true,
+    "siteName": "learn",
+    "legacyHosting": false
+  },
+  "data": {
+    "contentLocale": "en-us",
+    "contentDir": "ltr",
+    "userLocale": "en-us",
+    "userDir": "ltr",
+    "pageTemplate": "FAQ",
+    "brand": "Azure",
+    "context": {},
+    "standardFeedback": true,
+    "showFeedbackReport": false,
+    "feedbackHelpLinkType": "get-help-at-qna",
+    "feedbackHelpLinkUrl": "/answers/tags/187/azure-cosmos-db/",
+    "feedbackSystem": "Standard",
+    "feedbackGitHubRepo": "",
+    "feedbackProductUrl": "https://learn.microsoft.com/answers/tags/187/azure-cosmos-db",
+    "extendBreadcrumb": false,
+    "isEditDisplayable": false,
+    "isPrivateUnauthorized": false,
+    "hideViewSource": false,
+    "isPermissioned": false,
+    "hasRecommendations": true,
+    "contributors": [
+      {
+        "name": "markjbrown",
+        "url": "https://github.com/markjbrown"
+      },
+      {
+        "name": "Saisang",
+        "url": "https://github.com/Saisang"
+      }
+    ]
+  },
+  "functions": {}
+};;
+	</script>
+
+			<!-- base scripts, msdocs global should be before this -->
+			<script src="/static/assets/0.4.03398.7756-c1512039/scripts/en-us/index-docs.js"></script><style></style>
+			
+
+			<!-- json-ld -->
+			
+		<link rel="preload" as="image" href="/en-us/media/ask-learn/meet-ask-learn-base.png"><link rel="preload" as="image" href="/en-us/media/ask-learn/check-for-accuracy-base.png"></head>
+	
+			<body id="body" data-bi-name="body" class="layout-body " lang="en-us" dir="ltr">
+				<header class="layout-body-header">
+		<div class="header-holder has-default-focus">
+			
+		<a href="#main" style="z-index: 1070" class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body">
+			Skip to main content
+		</a>
+	
+		<a href="#" data-skip-to-ask-learn="" style="z-index: 1070" class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body">
+			Skip to Ask Learn chat experience
+		</a>
+	
+
+			<div hidden="" id="cookie-consent-holder" data-test-id="cookie-consent-container"></div><div id="banner-holder" class="has-default-focus has-overflow-hidden display-none-visual-diff theme-light"><!----><section data-bi-name="tier1-event-banner" data-dismissable="disappearing" class="tier1-event-banner position-relative padding-block-md build-banner display-none-visual-diff">
+		<div class="uhf-container display-flex-tablet align-items-center">
+			<div class="has-backdrop-filter-blur margin-right-xxl-tablet padding-right-md padding-right-none-tablet">
+				<h2 class="title is-2 is-responsive text-wrap-pretty margin-bottom-xs"><!---->Microsoft Build 2026<!----></h2>
+				<p class="font-size-sm"><!---->June 2-3, 2026<!----></p>
+			</div>
+			<p class="container is-max-mobile display-none display-block-widescreen has-backdrop-filter-blur font-size-sm margin-left-none margin-right-xxl text-wrap-pretty">
+				Go deep on real code and real systems in San Francisco and online
+			</p>
+			<a data-bi-name="CTA" class="button margin-top-sm margin-bottom-sm-tablet " href="https://aka.ms/MSBuild_FY26_BN_MSLearn_Hero">
+				<span><!---->Learn more<!----></span>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-chevron-right-light"></span>
+				</span>
+			</a>
+		</div>
+		<button type="button" data-dismiss="" data-bi-name="close" class="button delete delete-lg position-absolute top-0 right-0 margin-xs margin-sm-tablet ">
+			<span class="visually-hidden"><!---->Dismiss alert<!----></span>
+		</button>
+	</section><!----></div>
+			<!-- Unsupported browser warning -->
+			<div id="unsupported-browser" style="background-color: white; color: black; padding: 16px; border-bottom: 1px solid grey;" hidden="">
+				<div style="max-width: 800px; margin: 0 auto;">
+					<p style="font-size: 24px">This browser is no longer supported.</p>
+					<p style="font-size: 16px; margin-top: 16px;">
+						Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+					</p>
+					<div style="margin-top: 12px;">
+						<a href="https://go.microsoft.com/fwlink/p/?LinkID=2092881 " style="background-color: #0078d4; border: 1px solid #0078d4; color: white; padding: 6px 12px; border-radius: 2px; display: inline-block;">
+							Download Microsoft Edge
+						</a>
+						<a href="https://learn.microsoft.com/en-us/lifecycle/faq/internet-explorer-microsoft-edge" style="background-color: white; padding: 6px 12px; border: 1px solid #505050; color: #171717; border-radius: 2px; display: inline-block;">
+							More info about Internet Explorer and Microsoft Edge
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- site header -->
+			<div id="ms--site-header" data-test-id="site-header-wrapper" itemscope="itemscope" itemtype="http://schema.org/Organization">
+				<div id="ms--mobile-nav" class="site-header display-none-tablet padding-inline-none gap-none" data-bi-name="mobile-header" data-test-id="mobile-header"><!---->
+		<div id="ms--site-header-hamburger" data-test-id="site-header-hamburger">
+			<button type="button" class="button button-clear inner-focus" data-test-id="mobile-nav-open-button" data-bi-name="mobile-nav-open-button" title="Global navigation" aria-label="Global navigation">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-menu"></span>
+				</span>
+			</button>
+		</div>
+
+		<!-- Brand -->
+		
+		<a class="site-header-brand" itemprop="url" href="/en-us/" data-bi-name="site-header-brand-learn-mobile" data-test-id="site-header-brand-mobile">
+			<span><!---->Learn<!----></span>
+		</a>
+	
+
+		<!-- MS logo -->
+		
+		<a href="https://www.microsoft.com" aria-label="Microsoft" itemprop="url" data-bi-name="site-header-microsoft-logo-mobile" data-test-id="site-header-microsoft-logo-mobile" class="site-header-logo site-header-logo-centered">
+			
+		<svg aria-hidden="true" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" itemprop="logo" itemscope="itemscope">
+			<path d="M11.5216 0.5H0V11.9067H11.5216V0.5Z" fill="#f25022"></path>
+			<path d="M24.2418 0.5H12.7202V11.9067H24.2418V0.5Z" fill="#7fba00"></path>
+			<path d="M11.5216 13.0933H0V24.5H11.5216V13.0933Z" fill="#00a4ef"></path>
+			<path d="M24.2418 13.0933H12.7202V24.5H24.2418V13.0933Z" fill="#ffb900"></path>
+		</svg>
+	
+		</a>
+	
+
+		<!-- Search -->
+		
+		<search-expander data-test-id="site-header-search-mobile" class="display-flex flex-grow-1 justify-content-flex-end">
+			<div hidden="" id="ms--site-header-search-mobile" class="display-flex align-items-center gap-xxs width-full padding-left-xxs">
+				
+		<form class="flex-grow-1" method="GET" role="search" id="ms--site-header-search-form-mobile" data-bi-name="site-header-search-form-mobile" name="site-header-search-form-mobile" aria-label="Search" action="/en-us/search/">
+			<div class="autocomplete display-block" data-bi-name="autocomplete"><!---->
+			<div class="field-body control ">
+				<input role="combobox" maxlength="100" aria-autocomplete="list" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" id="site-header-search-autocomplete-input-mobile" data-test-id="site-header-search-autocomplete-input-mobile" class="autocomplete-input input 
+						
+						width-full" type="search" name="terms" aria-expanded="false" aria-owns="ax-1-listbox" aria-controls="ax-1-listbox" aria-activedescendant="" aria-label="Search" aria-describedby="ms--site-header-search-autocomplete-input-mobile-description" placeholder="Search" data-bi-name="site-header-search-autocomplete-input-mobile" pattern=".*">
+
+				
+				
+
+				<span hidden="" id="ms--site-header-search-autocomplete-input-mobile-description">
+					Suggestions will filter as you type
+				</span>
+			</div>
+
+			<ul role="listbox" id="ax-1-listbox" data-test-id="site-header-search-autocomplete-input-mobile-listbox" class="autocomplete-suggestions is-vertically-scrollable padding-xxs " aria-label="Suggestions" hidden="">
+				
+				
+			</ul>
+		<!----></div>
+			<!-- mobile safari will not dispatch submit event unless there's a submit button that is not display:none -->
+			<button type="submit" class="visually-hidden" tabindex="-1" aria-hidden="true"></button>
+			<input name="category" hidden="" value="">
+			
+			
+		</form>
+	
+				<button data-search-expander-trigger-close="" type="button" class="button button-clear inner-focus" aria-controls="ms--site-header-search-mobile" aria-label="Close search" data-bi-name="site-header-search-close-mobile" data-test-id="site-header-search-close-mobile">
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-navigate-close"></span>
+					</span>
+				</button>
+			</div>
+			<button data-search-expander-trigger-open="" type="button" class="button button-clear inner-focus" aria-controls="ms--site-header-search-mobile" aria-label="Open search" data-bi-name="site-header-search-open-mobile" data-test-id="site-header-search-open-mobile">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-search"></span>
+				</span>
+			</button>
+		</search-expander>
+	
+
+		<!-- User avatar/Sign in -->
+		<!---->
+		<a href="#" data-bi-name="site-header-sign-in-mobile" data-test-id="site-header-sign-in-mobile" class="link-button font-size-sm flex-shrink-0 docs-sign-in auth-status-determined not-authenticated margin-right-xs margin-left-xxs">
+			Sign in
+		</a>
+	 
+		<details data-bi-name="site-header-user-mobile" class="popover popover-right auth-status-determined authenticated margin-right-xs margin-left-xxs">
+			<summary data-bi-name="site-header-user-avatar" aria-label="Your Account" data-test-id="site-header-user-mobile">
+				<div class="persona persona-sm">
+					<figure class="persona-avatar">
+						<img alt="" data-profile-property="avatarThumbnailUrl">
+					</figure>
+				</div>
+			</summary>
+			<div class="popover-content width-auto" data-bi-name="site-header-user-menu">
+				<div class="persona persona-sm">
+					<figure class="persona-avatar">
+						<img alt="" data-profile-property="avatarUrl" aria-labelledby="ms--user-display-name-mobile">
+					</figure>
+					<div class="persona-details" data-test-id="persona-detail-mobile">
+						<p class="persona-name" data-profile-property="displayName" id="ms--user-display-name-mobile"></p>
+						<p data-profile-property="upn"></p>
+					</div>
+				</div>
+				<ul class="padding-block-xs">
+					<li class="padding-bottom-xs">
+						<a data-profile-property="profileUrl" class="font-size-sm" data-bi-name="site-header-user-profile" href="https://learn.microsoft.com/en-us/users/me/activity/">
+							Profile
+						</a>
+					</li>
+					<li class="padding-bottom-xs">
+										<a class="font-size-sm" data-bi-name="site-header-user-analytics" href="https://learn.microsoft.com/en-us/users/me/analytics/">
+											Analytics
+										</a>
+								  </li>
+					<li>
+						<a data-profile-property="settingsUrl" class="font-size-sm" data-bi-name="site-header-user-settings" href="https://learn.microsoft.com/en-us/users/me/settings/">
+							Settings
+						</a>
+					</li>
+				</ul>
+				<div class="border-top padding-top-xs">
+					<a class="docs-sign-out font-size-sm" href="#" data-bi-name="site-header-sign-out-mobile" data-test-id="site-header-user-sign-out-mobile">
+						Sign out
+					</a>
+				</div>
+			</div>
+		</details>
+	<!---->
+	<!----></div>
+				<div id="ms--primary-nav" class="site-header display-none display-flex-tablet" data-bi-name="L1-header" data-test-id="primary-header"><!---->
+		<!-- MS logo -->
+		
+		<a href="https://www.microsoft.com" aria-label="Microsoft" itemprop="url" data-bi-name="site-header-microsoft-logo" data-test-id="site-header-microsoft-logo" class="site-header-logo ">
+			
+		<svg aria-hidden="true" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" itemprop="logo" itemscope="itemscope">
+			<path d="M11.5216 0.5H0V11.9067H11.5216V0.5Z" fill="#f25022"></path>
+			<path d="M24.2418 0.5H12.7202V11.9067H24.2418V0.5Z" fill="#7fba00"></path>
+			<path d="M11.5216 13.0933H0V24.5H11.5216V13.0933Z" fill="#00a4ef"></path>
+			<path d="M24.2418 13.0933H12.7202V24.5H24.2418V13.0933Z" fill="#ffb900"></path>
+		</svg>
+	
+		</a>
+	
+
+		<!-- Divider -->
+		<div class="site-header-divider"></div>
+
+		<!-- Brand -->
+		
+		<a class="site-header-brand" itemprop="url" href="/en-us/" data-bi-name="site-header-brand-learn" data-test-id="site-header-brand">
+			<span><!---->Learn<!----></span>
+		</a>
+	
+
+		<div id="ms--search-expander-wrapper" class="display-flex justify-content-space-between flex-grow-1 align-items-center overflow-x-hidden height-full">
+			<!-- Main Nav -->
+			
+		<overflow-menu class="align-self-stretch" style="display: block; overflow: hidden; width: 100%;">
+			<nav class="site-header-nav" data-bi-name="primary-nav" data-overflow-menu-container="" aria-label="Global" style="visibility: visible; overflow: hidden;">
+				<button type="button" data-overflow-menu-prev-button="" data-bi-name="site-header-btn-prev" class="button button-clear button-sm inner-focus" hidden="" aria-label="Previous">
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-chevron-left-light"></span>
+					</span>
+				</button>
+
+				
+		<ul class="display-flex gap-xxs-desktop">
+			<!---->
+			<li aria-setsize="4" aria-posinset="1">
+				<panel-controller data-bi-name="site-header-btn-1-documentation">
+					<button type="button" aria-expanded="false" class="site-header-button" data-overflow-menu-item="" aria-controls="ms--panel-1" data-test-id="site-header-panel-controller-1" style="white-space: nowrap;">
+						<span><!---->Documentation<!----></span>
+						<span class="icon expanded-indicator" aria-hidden="true">
+							<span class="docon docon-chevron-down-light"></span>
+						</span>
+					</button>
+					<div class="site-header-panel" hidden="" id="ms--panel-1" data-bi-name="panel-1-documentation" data-test-id="site-header-panel-1">
+						
+		<div class="site-header-panel-content">
+			<ul class="site-header-panel-links">
+				<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/docs/" data-bi-name="panel-link-1-all-product-documentation">
+						All product documentation
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/azure/?product=popular" data-bi-name="panel-link-2-azure-documentation">
+						Azure documentation
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/dynamics365/" data-bi-name="panel-link-3-dynamics-365-documentation">
+						Dynamics 365 documentation
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/copilot/" data-bi-name="panel-link-4-microsoft-copilot-documentation">
+						Microsoft Copilot documentation
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/microsoft-365/" data-bi-name="panel-link-5-microsoft-365-documentation">
+						Microsoft 365 documentation
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/power-platform/" data-bi-name="panel-link-6-power-platform-documentation">
+						Power Platform documentation
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/samples/" data-bi-name="panel-link-7-code-samples">
+						Code samples
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/troubleshoot/" data-bi-name="panel-link-8-troubleshooting-documentation">
+						Troubleshooting documentation
+					</a>
+				</li>
+			<!---->
+			</ul>
+			
+		</div>
+		
+			<section class="site-header-panel-featured-content"><!----><!---->
+				<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="featured-card-1-ai-tour">
+					<div class="card-content">
+						<p class="card-supertitle line-clamp-2 line-height-normal"><!---->Free to join. Request to attend.<!----></p>
+						<a class="card-title color-text background-color-transparent stretched-link" href="https://aitour.microsoft.com/?wt.mc_id=itour26_learnmarketingspot_wwl">
+							Microsoft AI Tour
+						</a>
+						<p class="card-content-description line-clamp-2"><!---->Take your business to the AI frontier.<!----></p>
+					</div>
+				</article>
+			<!----><!----></section>
+		
+	
+					</div>
+				</panel-controller>
+			</li>
+		<!---->
+			<li aria-setsize="4" aria-posinset="2">
+				<panel-controller data-bi-name="site-header-btn-2-training">
+					<button type="button" aria-expanded="false" class="site-header-button" data-overflow-menu-item="" aria-controls="ms--panel-2" data-test-id="site-header-panel-controller-2" style="white-space: nowrap;">
+						<span><!---->Training &amp; Labs<!----></span>
+						<span class="icon expanded-indicator" aria-hidden="true">
+							<span class="docon docon-chevron-down-light"></span>
+						</span>
+					</button>
+					<div class="site-header-panel" hidden="" id="ms--panel-2" data-bi-name="panel-2-training" data-test-id="site-header-panel-2">
+						
+		<div class="site-header-panel-content">
+			<ul class="site-header-panel-links">
+				<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/training/" data-bi-name="panel-link-1-training">
+						All training
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/training/browse/?products=azure" data-bi-name="panel-link-2-azure-training">
+						Azure training
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/training/browse/?products=dynamics-365" data-bi-name="panel-link-3-dynamics-365-training">
+						Dynamics 365 training
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/training/browse/?products=ms-copilot" data-bi-name="panel-link-4-microsoft-copilot-training">
+						Microsoft Copilot training
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/training/browse/?products=m365" data-bi-name="panel-link-5-microsoft-365-training">
+						Microsoft 365 training
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/training/browse/?products=power-platform" data-bi-name="panel-link-6-microsoft-power-platform-training">
+						Microsoft Power Platform training
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/labs/" data-bi-name="panel-link-7-labs">
+						Labs
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/credentials/" data-bi-name="panel-link-8-credentials">
+						Credentials
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/training/career-paths/" data-bi-name="panel-link-9-career-paths">
+						Career paths
+					</a>
+				</li>
+			<!---->
+			</ul>
+			
+		</div>
+		
+			<section class="site-header-panel-featured-content"><!----><!---->
+				<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="featured-card-1-ai-tour">
+					<div class="card-content">
+						<p class="card-supertitle line-clamp-2 line-height-normal"><!---->Free to join. Request to attend.<!----></p>
+						<a class="card-title color-text background-color-transparent stretched-link" href="https://aitour.microsoft.com/?wt.mc_id=itour26_learnmarketingspot_wwl">
+							Microsoft AI Tour
+						</a>
+						<p class="card-content-description line-clamp-2"><!---->Take your business to the AI frontier.<!----></p>
+					</div>
+				</article>
+			<!----><!----></section>
+		
+	
+					</div>
+				</panel-controller>
+			</li>
+		<!---->
+			<li aria-setsize="4" aria-posinset="3">
+				<panel-controller data-bi-name="site-header-btn-3-qna">
+					<button type="button" aria-expanded="false" class="site-header-button" data-overflow-menu-item="" aria-controls="ms--panel-3" data-test-id="site-header-panel-controller-3" style="white-space: nowrap;">
+						<span><!---->Q&amp;A<!----></span>
+						<span class="icon expanded-indicator" aria-hidden="true">
+							<span class="docon docon-chevron-down-light"></span>
+						</span>
+					</button>
+					<div class="site-header-panel" hidden="" id="ms--panel-3" data-bi-name="panel-3-qna" data-test-id="site-header-panel-3">
+						
+		<div class="site-header-panel-content">
+			<ul class="site-header-panel-links">
+				<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/answers/questions/ask/" data-bi-name="panel-link-1-ask-a-question">
+						Ask a question
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/answers/tags/133/azure/" data-bi-name="panel-link-2-azure-questions">
+						Azure questions
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/answers/tags/60/windows/" data-bi-name="panel-link-3-windows-questions">
+						Windows questions
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/answers/tags/9/m365/" data-bi-name="panel-link-4-m365-questions">
+						Microsoft 365 questions
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/answers/tags/131/office-outlook/" data-bi-name="panel-link-5-microsoft-outlook-questions">
+						Microsoft Outlook questions
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/answers/tags/108/office-teams/" data-bi-name="panel-link-6-microsoft-teams-questions">
+						Microsoft Teams questions
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/answers/tags/" data-bi-name="panel-link-7-popular-tags">
+						Popular tags
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/answers/questions/" data-bi-name="panel-link-8-all-questions">
+						All questions
+					</a>
+				</li>
+			<!---->
+			</ul>
+			
+		</div>
+		
+			<section class="site-header-panel-featured-content"><!----><!---->
+				<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="featured-card-1-ai-tour">
+					<div class="card-content">
+						<p class="card-supertitle line-clamp-2 line-height-normal"><!---->Free to join. Request to attend.<!----></p>
+						<a class="card-title color-text background-color-transparent stretched-link" href="https://aitour.microsoft.com/?wt.mc_id=itour26_learnmarketingspot_wwl">
+							Microsoft AI Tour
+						</a>
+						<p class="card-content-description line-clamp-2"><!---->Take your business to the AI frontier.<!----></p>
+					</div>
+				</article>
+			<!----><!----></section>
+		
+	
+					</div>
+				</panel-controller>
+			</li>
+		<!---->
+			<li aria-setsize="4" aria-posinset="4">
+				<panel-controller data-bi-name="site-header-btn-4-topics">
+					<button type="button" aria-expanded="false" class="site-header-button" data-overflow-menu-item="" aria-controls="ms--panel-4" data-test-id="site-header-panel-controller-4" style="white-space: nowrap;">
+						<span><!---->Topics<!----></span>
+						<span class="icon expanded-indicator" aria-hidden="true">
+							<span class="docon docon-chevron-down-light"></span>
+						</span>
+					</button>
+					<div class="site-header-panel" hidden="" id="ms--panel-4" data-bi-name="panel-4-topics" data-test-id="site-header-panel-4">
+						
+		<div class="site-header-panel-content">
+			<ul class="site-header-panel-cards">
+				<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-1-agents">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/agents/">
+								Agents
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->Key concepts and resources for agentic computing<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-2-ai">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/ai/">
+								Artificial intelligence
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->Learning hub to build AI skills<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-3-devops">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/devops/">
+								DevOps
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->DevOps practices, Git version control and Agile methods<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-4-microsoft-learn-for-organizations">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/training/organizations/">
+								Learn for Organizations
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->Curated offerings from Microsoft to boost your team’s technical skills<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-5-platform-engineering">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/platform-engineering/">
+								Platform engineering
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->Tools from Microsoft and others to build personalized developer experiences<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-6-security">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/security/">
+								Security
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->Guidance to help you tackle security challenges<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-7-assessments">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/assessments/">
+								Assessments
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->Interactive guidance with custom recommendations<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-8-student-hub">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/training/student-hub/">
+								Student hub
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->Self-paced and interactive training for students<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-9-educator-center">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/training/educator-center/">
+								Educator center
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->Resources for educators to bring technical innovation in their classroom<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+			</ul>
+			
+		</div>
+		
+			<section class="site-header-panel-featured-content"><!----><!---->
+				<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="featured-card-1-ai-tour">
+					<div class="card-content">
+						<p class="card-supertitle line-clamp-2 line-height-normal"><!---->Free to join. Request to attend.<!----></p>
+						<a class="card-title color-text background-color-transparent stretched-link" href="https://aitour.microsoft.com/?wt.mc_id=itour26_learnmarketingspot_wwl">
+							Microsoft AI Tour
+						</a>
+						<p class="card-content-description line-clamp-2"><!---->Take your business to the AI frontier.<!----></p>
+					</div>
+				</article>
+			<!----><!----></section>
+		
+	
+					</div>
+				</panel-controller>
+			</li>
+		<!---->
+		</ul>
+	
+
+				<button type="button" data-overflow-menu-next-button="" data-bi-name="site-header-btn-next" class="button button-clear button-sm inner-focus margin-left-auto" hidden="" aria-label="Next">
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-chevron-right-light"></span>
+					</span>
+				</button>
+			</nav>
+		</overflow-menu>
+	
+
+			<!-- Search -->
+			
+		<search-expander data-test-id="site-header-search" class="flex-grow-1 margin-left-xxs">
+			<div hidden="" id="ms--site-header-search" class="display-flex align-items-center gap-xxs ">
+				
+		<form class="flex-grow-1" method="GET" role="search" id="ms--site-header-search-form" data-bi-name="site-header-search-form" name="site-header-search-form" aria-label="Search" action="/en-us/search/">
+			<div class="autocomplete display-block" data-bi-name="autocomplete"><!---->
+			<div class="field-body control ">
+				<input role="combobox" maxlength="100" aria-autocomplete="list" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" id="site-header-search-autocomplete-input" data-test-id="site-header-search-autocomplete-input" class="autocomplete-input input input-sm
+						
+						width-full" type="search" name="terms" aria-expanded="false" aria-owns="ax-0-listbox" aria-controls="ax-0-listbox" aria-activedescendant="" aria-label="Search" aria-describedby="ms--site-header-search-autocomplete-input-description" placeholder="Search" data-bi-name="site-header-search-autocomplete-input" pattern=".*">
+
+				
+				
+
+				<span hidden="" id="ms--site-header-search-autocomplete-input-description">
+					Suggestions will filter as you type
+				</span>
+			</div>
+
+			<ul role="listbox" id="ax-0-listbox" data-test-id="site-header-search-autocomplete-input-listbox" class="autocomplete-suggestions is-vertically-scrollable padding-xxs " aria-label="Suggestions" hidden="">
+				
+				
+			</ul>
+		<!----></div>
+			<!-- mobile safari will not dispatch submit event unless there's a submit button that is not display:none -->
+			<button type="submit" class="visually-hidden" tabindex="-1" aria-hidden="true"></button>
+			<input name="category" hidden="" value="">
+			
+			
+		</form>
+	
+				<button data-search-expander-trigger-close="" type="button" class="button button-clear inner-focus" aria-controls="ms--site-header-search" aria-label="Close search" data-bi-name="site-header-search-close" data-test-id="site-header-search-close">
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-navigate-close"></span>
+					</span>
+				</button>
+			</div>
+			<button data-search-expander-trigger-open="" type="button" class="button button-clear inner-focus" aria-controls="ms--site-header-search" aria-label="Open search" data-bi-name="site-header-search-open" data-test-id="site-header-search-open">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-search"></span>
+				</span>
+			</button>
+		</search-expander>
+	
+		</div>
+
+		<!-- User avatar/Sign in -->
+		<!---->
+		<a href="#" data-bi-name="site-header-sign-in" data-test-id="site-header-sign-in" class="link-button font-size-sm flex-shrink-0 docs-sign-in auth-status-determined not-authenticated ">
+			Sign in
+		</a>
+	 
+		<details data-bi-name="site-header-user" class="popover popover-right auth-status-determined authenticated ">
+			<summary data-bi-name="site-header-user-avatar" aria-label="Your Account" data-test-id="site-header-user">
+				<div class="persona ">
+					<figure class="persona-avatar">
+						<img alt="" data-profile-property="avatarThumbnailUrl">
+					</figure>
+				</div>
+			</summary>
+			<div class="popover-content width-auto" data-bi-name="site-header-user-menu">
+				<div class="persona ">
+					<figure class="persona-avatar">
+						<img alt="" data-profile-property="avatarUrl" aria-labelledby="ms--user-display-name">
+					</figure>
+					<div class="persona-details" data-test-id="persona-detail">
+						<p class="persona-name" data-profile-property="displayName" id="ms--user-display-name"></p>
+						<p data-profile-property="upn"></p>
+					</div>
+				</div>
+				<ul class="padding-block-xs">
+					<li class="padding-bottom-xs">
+						<a data-profile-property="profileUrl" class="font-size-sm" data-bi-name="site-header-user-profile" href="https://learn.microsoft.com/en-us/users/me/activity/">
+							Profile
+						</a>
+					</li>
+					<li class="padding-bottom-xs">
+										<a class="font-size-sm" data-bi-name="site-header-user-analytics" href="https://learn.microsoft.com/en-us/users/me/analytics/">
+											Analytics
+										</a>
+								  </li>
+					<li>
+						<a data-profile-property="settingsUrl" class="font-size-sm" data-bi-name="site-header-user-settings" href="https://learn.microsoft.com/en-us/users/me/settings/">
+							Settings
+						</a>
+					</li>
+				</ul>
+				<div class="border-top padding-top-xs">
+					<a class="docs-sign-out font-size-sm" href="#" data-bi-name="site-header-sign-out" data-test-id="site-header-user-sign-out">
+						Sign out
+					</a>
+				</div>
+			</div>
+		</details>
+	<!---->
+	<!----></div>
+				<div id="ms--secondary-nav" class="display-none display-flex-tablet" data-bi-name="L2-header" data-test-id="secondary-header"><!----><div class="site-header width-full"><!----> 
+		<a class="site-header-brand font-size-h6 padding-inline-none margin-right-xxs" itemprop="url" href="/en-us/nosql/" data-bi-name="secondary-nav-link-category-nosql">
+			<span>
+				NoSQL
+				
+			</span>
+		</a>
+	 
+		
+		<nav class="site-header-nav width-auto" data-bi-name="secondary-nav" aria-label="Site">
+			<ul class="display-flex">
+				<!---->
+		<li class="dropdown">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  site-header-button-icon-chevron" aria-controls="bx-36" data-bi-name="secondary-nav-btn-1-cosmos-db" value="undefined">
+				<span><!---->Cosmos DB<!----></span>
+				<span aria-hidden="true" class="icon expanded-indicator ">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-36" aria-label="Cosmos DB" data-bi-name="secondary-nav-menu-1-cosmos-db">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/cosmos-db/" data-bi-name="secondary-nav-link-1-1-cosmos-db">
+						<span><!---->Cosmos DB<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/cosmos-db/query/" data-bi-name="secondary-nav-link-1-2-cosmos-db-query-language">
+						<span><!---->Query language for Cosmos DB (in Azure and Fabric)<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/fabric/database/cosmos-db/" data-bi-name="secondary-nav-link-1-3-cosmos-db-in-fabric">
+						<span><!---->Cosmos DB in Microsoft Fabric<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/cosmos-db/" data-bi-name="secondary-nav-link-1-4-azure-cosmos-db">
+						<span><!---->Azure Cosmos DB<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+		<li class="dropdown">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  site-header-button-icon-chevron" aria-controls="bx-37" data-bi-name="secondary-nav-btn-2-documentdb" value="undefined">
+				<span><!---->DocumentDB<!----></span>
+				<span aria-hidden="true" class="icon expanded-indicator ">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-37" aria-label="DocumentDB" data-bi-name="secondary-nav-menu-2-documentdb">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/documentdb/" data-bi-name="secondary-nav-link-2-1-documentdb">
+						<span><!---->DocumentDB<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://documentdb.io" data-bi-name="secondary-nav-link-2-2-documentdb-oss">
+						<span><!---->DocumentDB Open Source (OSS)<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://github.com/documentdb/documentdb" data-bi-name="secondary-nav-link-2-3-documentdb-github">
+						<span><!---->DocumentDB on GitHub<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://documentdb.io/docs/reference" data-bi-name="secondary-nav-link-2-2-documentdb-oss">
+						<span><!---->MongoDB Query Language (MQL) for DocumentDB (in Azure)<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/documentdb/" data-bi-name="secondary-nav-link-2-4-azure-documentdb">
+						<span><!---->Azure DocumentDB<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+		<li class="dropdown">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  site-header-button-icon-chevron" aria-controls="bx-38" data-bi-name="secondary-nav-btn-3-redis" value="undefined">
+				<span><!---->Redis<!----></span>
+				<span aria-hidden="true" class="icon expanded-indicator ">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-38" aria-label="Redis" data-bi-name="secondary-nav-menu-3-redis">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://redis.io" data-bi-name="secondary-nav-link-3-1-redis-oss">
+						<span><!---->Redis Open Source (OSS)<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/redis/" data-bi-name="secondary-nav-link-3-2-azure-managed-redis">
+						<span><!---->Azure Managed Redis<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/azure-cache-for-redis/" data-bi-name="secondary-nav-link-3-3-azure-cache-for-redis">
+						<span><!---->Azure Cache for Redis<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+		<li class="dropdown" hidden="">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  site-header-button-icon-chevron" aria-controls="bx-39" data-bi-name="secondary-nav-btn-more" value="undefined">
+				<span><!---->More<!----></span>
+				<span aria-hidden="true" class="icon expanded-indicator ">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-39" aria-label="More" data-bi-name="secondary-nav-menu-more">
+				<!---->
+		<li class="dropdown" hidden="">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  width-full justify-content-space-between padding-inline-xs padding-block-xxs" aria-controls="bx-40" data-bi-name="secondary-nav-btn-1-cosmos-db" value="undefined">
+				<span><!---->Cosmos DB<!----></span>
+				<span aria-hidden="true" class="icon  margin-left-xs">
+					<span class="docon docon-chevron-right-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-40" aria-label="Cosmos DB" data-bi-name="secondary-nav-menu-1-cosmos-db">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/cosmos-db/" data-bi-name="secondary-nav-link-1-1-cosmos-db">
+						<span><!---->Cosmos DB<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/cosmos-db/query/" data-bi-name="secondary-nav-link-1-2-cosmos-db-query-language">
+						<span><!---->Query language for Cosmos DB (in Azure and Fabric)<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/fabric/database/cosmos-db/" data-bi-name="secondary-nav-link-1-3-cosmos-db-in-fabric">
+						<span><!---->Cosmos DB in Microsoft Fabric<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/cosmos-db/" data-bi-name="secondary-nav-link-1-4-azure-cosmos-db">
+						<span><!---->Azure Cosmos DB<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+		<li class="dropdown" hidden="">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  width-full justify-content-space-between padding-inline-xs padding-block-xxs" aria-controls="bx-41" data-bi-name="secondary-nav-btn-2-documentdb" value="undefined">
+				<span><!---->DocumentDB<!----></span>
+				<span aria-hidden="true" class="icon  margin-left-xs">
+					<span class="docon docon-chevron-right-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-41" aria-label="DocumentDB" data-bi-name="secondary-nav-menu-2-documentdb">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/documentdb/" data-bi-name="secondary-nav-link-2-1-documentdb">
+						<span><!---->DocumentDB<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://documentdb.io" data-bi-name="secondary-nav-link-2-2-documentdb-oss">
+						<span><!---->DocumentDB Open Source (OSS)<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://github.com/documentdb/documentdb" data-bi-name="secondary-nav-link-2-3-documentdb-github">
+						<span><!---->DocumentDB on GitHub<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://documentdb.io/docs/reference" data-bi-name="secondary-nav-link-2-2-documentdb-oss">
+						<span><!---->MongoDB Query Language (MQL) for DocumentDB (in Azure)<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/documentdb/" data-bi-name="secondary-nav-link-2-4-azure-documentdb">
+						<span><!---->Azure DocumentDB<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+		<li class="dropdown" hidden="">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  width-full justify-content-space-between padding-inline-xs padding-block-xxs" aria-controls="bx-42" data-bi-name="secondary-nav-btn-3-redis" value="undefined">
+				<span><!---->Redis<!----></span>
+				<span aria-hidden="true" class="icon  margin-left-xs">
+					<span class="docon docon-chevron-right-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-42" aria-label="Redis" data-bi-name="secondary-nav-menu-3-redis">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://redis.io" data-bi-name="secondary-nav-link-3-1-redis-oss">
+						<span><!---->Redis Open Source (OSS)<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/redis/" data-bi-name="secondary-nav-link-3-2-azure-managed-redis">
+						<span><!---->Azure Managed Redis<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/azure-cache-for-redis/" data-bi-name="secondary-nav-link-3-3-azure-cache-for-redis">
+						<span><!---->Azure Cache for Redis<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+			</ul>
+		</li>
+	<!---->
+			</ul>
+		</nav>
+	
+		<span class="nav-bar-spacer"></span>
+		 
+	 <!----></div><!----></div>
+			</div>
+			
+		<!-- banner -->
+		<div data-banner="">
+			<div id="disclaimer-holder"></div>
+			
+		</div>
+		<!-- banner end -->
+	
+		</div>
+	</header>
+				 <section id="layout-body-menu" class="layout-body-menu border-right display-flex" data-bi-name="menu">
+					
+		<div id="left-container" class="left-container display-none padding-none display-block-tablet width-full" data-toc-container="true" data-toc-collapsed="false">
+			<!-- Regular TOC content (default) -->
+			
+			<!-- Collapsible TOC content (hidden by default) -->
+			<div id="ms--toc-content-collapsible" class="padding-left-sm padding-right-none padding-bottom-sm height-full">
+				<nav id="affixed-left-container" class="margin-top-xxs-tablet position-sticky display-flex flex-direction-column width-full" aria-label="Primary" data-bi-name="left-toc" role="navigation" style="top: 8px; height: calc(-265px + 100vh); max-height: 15335px;">
+					<div id="ms--collapsible-toc-header" class="display-flex flex-direction-row-reverse justify-content-center align-items-center margin-bottom-xxs margin-right-xxs">
+						<button type="button" class="button button-clear inner-focus" data-collapsible-toc-toggle="" aria-expanded="true" aria-controls="ms--collapsible-toc-content" aria-label="Collapse" title="Collapse" data-bi-name="toc-collapse">
+							<span class="icon font-size-md" aria-hidden="true">
+								<span class="docon docon-panel-left-contract"></span>
+							</span>
+						</button>
+						<div id="ms--collapsible-toc-moniker-slot" class="flex-grow-1"></div>
+					</div>
+				</nav>
+			</div>
+		</div>
+	
+			  </section>
+
+				<main id="main" role="main" class="layout-body-main " data-bi-name="content" lang="en-us" dir="ltr">
+					
+			<div id="ms--content-header" class="content-header default-focus border-bottom-none" data-bi-name="content-header">
+		<div class="content-header-controls margin-xxs margin-inline-sm-tablet">
+			<button type="button" class="contents-button button button-sm margin-right-xxs" data-bi-name="contents-expand" aria-haspopup="true" data-contents-button="">
+				<span class="icon" aria-hidden="true"><span class="docon docon-menu"></span></span>
+				<span class="contents-expand-title"> Table of contents </span>
+			</button>
+			<button type="button" class="ap-collapse-behavior ap-expanded button button-sm" data-bi-name="ap-collapse" aria-controls="action-panel">
+				<span class="icon" aria-hidden="true"><span class="docon docon-exit-mode"></span></span>
+				<span>Exit editor mode</span>
+			</button>
+		</div>
+	</div>
+			<div data-main-column="" class="reading-width margin-inline-auto layout-padding padding-top-none padding-top-sm-tablet">
+				<div>
+					
+		<div id="article-header" class="background-color-body margin-bottom-xs display-none-print">
+			<div class="display-flex align-items-center justify-content-space-between">
+				
+		<details id="article-header-breadcrumbs-overflow-popover" class="popover" data-for="article-header-breadcrumbs" hidden="">
+			<summary class="button button-clear button-primary button-sm inner-focus" aria-label="All breadcrumbs">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-more"></span>
+				</span>
+			</summary>
+			<div id="article-header-breadcrumbs-overflow" class="popover-content padding-none"></div>
+		</details>
+
+		<bread-crumbs id="article-header-breadcrumbs" role="group" aria-label="Breadcrumbs" data-test-id="article-header-breadcrumbs" class="overflow-hidden flex-grow-1 margin-right-sm margin-right-md-tablet margin-right-lg-desktop margin-left-negative-xxs padding-left-xxs" style="display: block; white-space: nowrap; overflow: hidden;"></bread-crumbs>
+	 
+		<div id="article-header-page-actions" class="margin-left-auto display-flex flex-wrap-no-wrap align-items-stretch">
+			
+		<button class="button button-sm border-none inner-focus display-none-tablet flex-shrink-0 " data-bi-name="ask-learn-assistant-entry" data-test-id="ask-learn-assistant-modal-entry-mobile" data-ask-learn-modal-entry="" type="button" style="min-width: max-content;" aria-expanded="false" aria-label="Ask Learn">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button class="button button-sm display-none display-inline-flex-tablet display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn " data-bi-name="ask-learn-assistant-entry" data-test-id="ask-learn-assistant-modal-entry-tablet" data-ask-learn-modal-entry="" type="button" style="min-width: max-content;" aria-expanded="false">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn " data-bi-name="ask-learn-assistant-entry" data-test-id="ask-learn-assistant-flyout-entry" data-ask-learn-flyout-entry="" data-flyout-button="toggle" type="button" style="min-width: max-content;" aria-expanded="false" aria-controls="ask-learn-flyout">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	 
+
+			<details class="popover popover-right" id="article-header-page-actions-overflow">
+				<summary class="justify-content-flex-start button button-clear button-sm button-primary inner-focus" aria-label="More actions" title="More actions">
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-more-vertical"></span>
+					</span>
+				</summary>
+				<div class="popover-content">
+					
+		<button type="button" id="ms--focus-mode-button" data-focus-mode="" data-bi-name="focus-mode-entry" data-page-action-item="overflow-all" data-popover-close="" class="button button-clear button-sm button-block justify-content-flex-start text-align-left inner-focus display-none display-inline-flex-tablet">
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-glasses"></span>
+			</span>
+			<span>Reading mode</span>
+		</button>
+	 
+		<button data-page-action-item="overflow-mobile" type="button" class="button-block button-sm inner-focus button button-clear display-none-tablet justify-content-flex-start text-align-left" data-bi-name="contents-expand" data-contents-button="" data-popover-close="">
+			<span class="icon" aria-hidden="true"><span class="docon docon-editor-list-bullet"></span></span>
+			<span class="contents-expand-title">Table of contents</span>
+		</button>
+	 
+		<a id="lang-link-overflow" class="button-sm inner-focus button button-clear button-block justify-content-flex-start text-align-left" data-bi-name="language-toggle" data-page-action-item="overflow-all" data-check-hidden="true" data-read-in-link="" href="https://learn.microsoft.com/en-us/azure/cosmos-db/faq" hidden="" data-bi="{&quot;cN&quot;:&quot;language-toggle&quot;,&quot;value&quot;:&quot;off&quot;}">
+			<span class="icon" aria-hidden="true" data-read-in-link-icon="">
+				<span class="docon docon-locale-globe"></span>
+			</span>
+			<span data-read-in-link-text="">Read in English</span>
+		</a>
+	
+					
+		<button type="button" class="collection button button-clear button-sm button-block justify-content-flex-start text-align-left inner-focus" data-list-type="collection" data-bi-name="collection" data-page-action-item="overflow-all" data-check-hidden="true" data-popover-close="" data-pressed="false" title="Add Frequently asked questions - Azure Cosmos DB | Microsoft Learn to a collection">
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-circle-addition"></span>
+			</span>
+			<span class="collection-status">Add to Collections</span>
+		</button>
+	 
+		<button type="button" class="collection button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus" data-list-type="plan" data-bi-name="plan" data-page-action-item="overflow-all" data-check-hidden="true" data-popover-close="" data-pressed="false" title="Add Frequently asked questions - Azure Cosmos DB | Microsoft Learn to a plan">
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-circle-addition"></span>
+			</span>
+			<span class="plan-status">Add to plan</span>
+		</button>
+	 
+					
+		<a data-contenteditbtn="" class="button button-clear button-block button-sm inner-focus justify-content-flex-start text-align-left text-decoration-none" data-bi-name="edit" data-page-action-item="overflow-all" data-check-hidden="true" hidden="" href="https://github.com/MicrosoftDocs/nosql-query-docs/blob/main/azure/cosmos-db/faq.yml" data-original_content_git_url="https://github.com/MicrosoftDocs/nosql-query-docs-pr/blob/live/azure/cosmos-db/faq.yml" data-original_content_git_url_template="{repo}/blob/{branch}/azure/cosmos-db/faq.yml" data-pr_repo="" data-pr_branch="">
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-edit-outline"></span>
+			</span>
+			<span>Edit</span>
+		</a>
+	  
+		<hr class="margin-block-xxs">
+		
+				<button class="button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus" type="button" data-bi-name="copy-markdown" data-page-action-item="overflow-all" data-copy-markdown="" data-copy-state="idle" data-check-hidden="true">
+					<span class="icon color-primary" aria-hidden="true">
+						<span data-show-when="idle" class="docon docon-code-lang"></span>
+						<span data-show-when="loading" class="loader" hidden=""></span>
+						<span data-show-when="success" class="docon docon-check-mark" hidden=""></span>
+					</span>
+					<span>Copy Markdown</span>
+				</button>
+		   
+				<button class="button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus" type="button" data-bi-name="print" data-page-action-item="overflow-all" data-popover-close="" data-print-page="" data-check-hidden="true">
+					<span class="icon color-primary" aria-hidden="true">
+						<span class="docon docon-print"></span>
+					</span>
+					<span>Print</span>
+				</button>
+		  
+	
+				</div>
+			</details>
+		</div>
+	
+			</div>
+		</div>
+	  
+		<!-- privateUnauthorizedTemplate is hidden by default -->
+		<div unauthorized-private-section="" data-bi-name="permission-content-unauthorized-private" hidden="">
+			<hr class="hr margin-top-xs margin-bottom-sm">
+			<div class="notification notification-info">
+				<div class="notification-content">
+					<p class="margin-top-none notification-title">
+						<span class="icon" aria-hidden="true"><span class="docon docon-exclamation-circle-solid"></span></span>
+						<span>Note</span>
+					</p>
+					<p class="margin-top-none authentication-determined not-authenticated">
+						Access to this page requires authorization. You can try <a class="docs-sign-in" href="#" data-bi-name="permission-content-sign-in">signing in</a> or <a class="docs-change-directory" data-bi-name="permisson-content-change-directory">changing directories</a>.
+					</p>
+					<p class="margin-top-none authentication-determined authenticated">
+						Access to this page requires authorization. You can try <a class="docs-change-directory" data-bi-name="permisson-content-change-directory">changing directories</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	
+					<div class="content"><h1>Frequently asked questions about Azure Cosmos DB</h1></div>
+					
+		<div id="article-metadata" data-bi-name="article-metadata" data-test-id="article-metadata" class="page-metadata-container display-flex gap-xxs justify-content-space-between align-items-center flex-wrap-wrap">
+			
+		<div class="margin-block-xxs">
+			<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+				 <li class="display-inline">Applies to: ✅ NoSQL, ✅ MongoDB, ✅ Apache Cassandra, ✅ Apache Gremlin, ✅ Table</li>
+			</ul>
+		</div>
+	 
+				<div id="user-feedback" class="margin-block-xxs display-none display-none-print" hidden="" data-hide-on-archived="">
+					
+		<button id="user-feedback-button" data-test-id="conceptual-feedback-button" class="button button-sm button-clear button-primary display-none" type="button" data-bi-name="user-feedback-button" data-user-feedback-button="" hidden="">
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-like"></span>
+			</span>
+			<span>Feedback</span>
+		</button>
+	
+				</div>
+		  
+		</div>
+	  
+		<nav id="center-doc-outline" class="doc-outline display-none-desktop display-none-print margin-bottom-sm" data-bi-name="intopic toc" aria-label="In this article"><!---->
+			<h2 id="ms--in-this-article" class="title is-6 margin-block-xs"><!---->In this article<!----></h2>
+			 
+		<ol id="content-well-in-this-article-list" class="border-left padding-left-xxs">
+			<!---->
+					<li class=" ">
+						<a href="#general" class=""><!---->General<!----></a>
+					</li>
+				<!---->
+					<li class=" ">
+						<a href="#api-for-nosql" class=""><!---->API for NoSQL<!----></a>
+					</li>
+				<!---->
+					<li class=" ">
+						<a href="#security" class=""><!---->Security<!----></a>
+					</li>
+				<!---->
+					<li class=" ">
+						<a href="#migrating-azure-cosmos-db-accounts-across-different-resource-groups--subscriptions--and-tenants" class=""><!---->Migrating Azure Cosmos DB Accounts across different resource groups, subscriptions, and tenants<!----></a>
+					</li>
+				<!---->
+					<li class=" expandable">
+						<a href="#migrating-to-continuous-backup-mode" class=""><!---->Migrating to continuous backup mode<!----></a>
+					</li>
+				<!---->
+					<li class=" expandable">
+						<a href="#try-azure-cosmos-db-free" class=""><!---->Try Azure Cosmos DB free<!----></a>
+					</li>
+				<!---->
+					<li class=" expandable">
+						<a href="#get-started-with-azure-cosmos-db" class=""><!---->Get started with Azure Cosmos DB<!----></a>
+					</li>
+				<!---->
+					<li class=" expandable">
+						<a href="#related-content" class=""><!---->Related content<!----></a>
+					</li>
+				<!---->
+		</ol>
+	 
+		<button type="button" aria-expanded="false" data-show-more="" class="link-button font-weight-semibold font-size-sm margin-top-xxs margin-left-xs" aria-controls="content-well-in-this-article-list" data-title="Show 4 more" data-bi-name="show-more-btn">
+			<span class="show-more-text "><!---->Show 4 more<!----></span>
+			
+		</button>
+	 
+		<!----></nav>
+	
+					<div class="content"><article id="faq" class="has-body-background is-full-height">
+	<div class="content margin-top-xs">
+		
+	</div>
+
+	<section id="faq-content-container" class="anchor-headings">
+		<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#general" aria-label="Section titled: General"></a><h2 id="general" class="title is-2 margin-top-sm margin-bottom-xs heading-anchor">General</h2></div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#what-are-the-typical-use-cases-for-azure-cosmos-db-" aria-label="Section titled: What are the typical use cases for Azure Cosmos DB?"></a><h3 id="what-are-the-typical-use-cases-for-azure-cosmos-db-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">What are the typical use cases for Azure Cosmos DB?
+</h3></div>
+			<div class="content"><p>Azure Cosmos DB is well suited for web, mobile, gaming, and IoT use cases. In these use cases; automatic scale, predictable performance, fast order of millisecond response times, and the ability to query over schema-free data is important. Azure Cosmos DB lends itself to rapid development and supporting the continuous iteration of application data models. Applications that manage user-generated content and data often map to <a href="use-cases" data-linktype="relative-path">common use cases for Azure Cosmos DB</a>.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#how-does-azure-cosmos-db-offer-predictable-performance-" aria-label="Section titled: How does Azure Cosmos DB offer predictable performance?"></a><h3 id="how-does-azure-cosmos-db-offer-predictable-performance-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">How does Azure Cosmos DB offer predictable performance?
+</h3></div>
+			<div class="content"><p>A <a href="request-units" data-linktype="relative-path">request unit</a> (RU) is the measure of throughput in Azure Cosmos DB. A single request unit throughput corresponds to the throughput of the <code>GET</code> HTTP action for a 1-kilobite document. Every operation in Azure Cosmos DB; including reads, writes, queries, and stored procedure executions; has a deterministic request unit value based on the throughput required to complete the operation. Instead of being forced to consider CPU, IO, and memory in relation to your application throughput, you can think in terms of request units.</p>
+<p>You can configure each Azure Cosmos DB container with provisioned throughput in terms of request units per second (RU/s). You can benchmark individual requests to measure in request units, and create a container to handle the sum of request units across all requests for that container in a second. You can also scale up or scale down your container's throughput as the needs of your application evolve. For more information on how to measure request units, see the <a href="https://cosmos.azure.com/capacitycalculator" data-linktype="external">throughput calculator</a>.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#how-does-azure-cosmos-db-support-various-data-models-such-as-key-value--columnar--document--and-graph-" aria-label="Section titled: How does Azure Cosmos DB support various data models such as key/value, columnar, document, and graph?"></a><h3 id="how-does-azure-cosmos-db-support-various-data-models-such-as-key-value--columnar--document--and-graph-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">How does Azure Cosmos DB support various data models such as key/value, columnar, document, and graph?
+</h3></div>
+			<div class="content"><p>Key/value (table), columnar, document, and graph data models are all natively supported because of the ARS (atoms, records, and sequences) design that Azure Cosmos DB is built on. Atoms, records, and sequences can be easily mapped and projected to various data models. The APIs for a subset of models are available using the ARS design (MongoDB, NoSQL, Table, Apache Cassandra, and Apache Gremlin). Azure Cosmos DB also supports other APIs.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#what-is-an-azure-cosmos-db-container-" aria-label="Section titled: What is an Azure Cosmos DB container?"></a><h3 id="what-is-an-azure-cosmos-db-container-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">What is an Azure Cosmos DB container?
+</h3></div>
+			<div class="content"><p>A container is a group of items. Containers can span one or more partitions and can scale to handle practically unlimited volumes of storage or throughput.</p>
+<div class="buttons buttons-right margin-bottom-none margin-top-sm"><!----> <button class="button button-clear button-sm display-flex gap-xxs">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-expand color-primary"></span>
+		</span>
+		<span><!---->Expand table<!----></span>
+	</button><!----></div><div class="inner-focus"><table aria-label="Table 1" class="table">
+<thead>
+<tr>
+<th></th>
+<th scope="col">Containers known as</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Azure Cosmos DB for NoSQL</th>
+<td>Container</td>
+</tr>
+<tr>
+<th scope="row">Azure Cosmos DB for MongoDB</th>
+<td>Collection</td>
+</tr>
+<tr>
+<th scope="row">Azure Cosmos DB for Apache Cassandra</th>
+<td>Table</td>
+</tr>
+<tr>
+<th scope="row">Azure Cosmos DB for Apache Gremlin</th>
+<td>Graph</td>
+</tr>
+<tr>
+<th scope="row">Azure Cosmos DB for Table</th>
+<td>Table</td>
+</tr>
+</tbody>
+</table></div>
+<p>A container is a billable entity, where the throughput and used storage determines the cost. Each container is billed hourly, based on the provisioned throughput and used storage space. For more information, see <a href="https://azure.microsoft.com/pricing/details/cosmos-db/" data-linktype="external">Azure Cosmos DB pricing</a>.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#can-i-use-multiple-apis-to-access-my-data-" aria-label="Section titled: Can I use multiple APIs to access my data?"></a><h3 id="can-i-use-multiple-apis-to-access-my-data-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Can I use multiple APIs to access my data?
+</h3></div>
+			<div class="content"><p>Azure Cosmos DB is Microsoft's globally distributed, multi-model database service. Multi-model refers to Azure Cosmos DB's support for multiple APIs and data models. In this paradigm, different APIs use different data formats for storage and wire protocol. For example; NoSQL uses JSON, MongoDB uses binary-encoded JSON (BSON), Table uses Entity Data Model (EDM), Cassandra uses Cassandra Query Language (CQL), Gremlin uses JSON format. As a result, we recommend using the same API for all access to the data in a given account.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#can-i-integrate-azure-cosmos-db-directly-with-other-services-" aria-label="Section titled: Can I integrate Azure Cosmos DB directly with other services?"></a><h3 id="can-i-integrate-azure-cosmos-db-directly-with-other-services-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Can I integrate Azure Cosmos DB directly with other services?
+</h3></div>
+			<div class="content"><p>Yes. Azure Cosmos DB APIs allow direct integration. For example, the Azure Cosmos DB REST APIs can be integrated with Azure API Management for CRUD operations, eliminating the need for intermediate services like Azure Functions.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#is-azure-cosmos-db-hipaa-compliant-" aria-label="Section titled: Is Azure Cosmos DB HIPAA compliant?"></a><h3 id="is-azure-cosmos-db-hipaa-compliant-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Is Azure Cosmos DB HIPAA compliant?
+</h3></div>
+			<div class="content"><p>Yes, Azure Cosmos DB is HIPAA-compliant. HIPAA establishes requirements for the use, disclosure, and safeguarding of individually identifiable health information. For more information, see the <a href="/en-us/compliance/regulatory/offering-hipaa-hitech" data-linktype="absolute-path">Microsoft Trust Center</a>.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#what-are-the-storage-limits-of-azure-cosmos-db-" aria-label="Section titled: What are the storage limits of Azure Cosmos DB?"></a><h3 id="what-are-the-storage-limits-of-azure-cosmos-db-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">What are the storage limits of Azure Cosmos DB?
+</h3></div>
+			<div class="content"><p>There's no limit to the total amount of data that a container can store in Azure Cosmos DB.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#what-are-the-throughput-limits-of-azure-cosmos-db-" aria-label="Section titled: What are the throughput limits of Azure Cosmos DB?"></a><h3 id="what-are-the-throughput-limits-of-azure-cosmos-db-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">What are the throughput limits of Azure Cosmos DB?
+</h3></div>
+			<div class="content"><p>There's no limit to the total amount of throughput that a container can support in Azure Cosmos DB. The key idea is to distribute your workload roughly even among a sufficiently large number of partition keys.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#are-direct-and-gateway-connectivity-modes-encrypted-" aria-label="Section titled: Are direct and gateway connectivity modes encrypted?"></a><h3 id="are-direct-and-gateway-connectivity-modes-encrypted-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Are direct and gateway connectivity modes encrypted?
+</h3></div>
+			<div class="content"><p>Yes both modes are always fully encrypted.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#how-much-does-azure-cosmos-db-cost-" aria-label="Section titled: How much does Azure Cosmos DB cost?"></a><h3 id="how-much-does-azure-cosmos-db-cost-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">How much does Azure Cosmos DB cost?
+</h3></div>
+			<div class="content"><p>The number of provisioned containers, number of hours containers were online, and the provisioned throughput for each container determines Azure Cosmos DB usage charges. For more pricing details, refer to <a href="https://azure.microsoft.com/pricing/details/cosmos-db/" data-linktype="external">Azure Cosmos DB pricing</a>.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#how-can-i-get-extra-help-with-azure-cosmos-db-" aria-label="Section titled: How can I get extra help with Azure Cosmos DB?"></a><h3 id="how-can-i-get-extra-help-with-azure-cosmos-db-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">How can I get extra help with Azure Cosmos DB?
+</h3></div>
+			<div class="content"><p>To ask a technical question, you can post to one of these two question and answer forums:</p>
+<ul>
+<li><a href="/en-us/answers/topics/azure-cosmos-db.html" data-linktype="absolute-path">Microsoft Question &amp; Answers (Q&amp;A)</a></li>
+<li><a href="https://stackoverflow.com/questions/tagged/azure-cosmosdb" data-linktype="external">Stack Overflow</a>. Stack Overflow is best for programming questions. <a href="https://stackoverflow.com/help/how-to-ask" data-linktype="external">Provide as many details as possible, making the question clear and answerable</a>.</li>
+</ul>
+<p>To fix an issue with your account, file a <a href="https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest" data-linktype="external">support request</a> in the Azure portal.</p>
+</div>
+		<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#api-for-nosql" aria-label="Section titled: API for NoSQL"></a><h2 id="api-for-nosql" class="title is-2 margin-top-sm margin-bottom-xs heading-anchor">API for NoSQL</h2></div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#how-do-i-start-developing-against-azure-cosmos-db-for-nosql-" aria-label="Section titled: How do I start developing against Azure Cosmos DB for NoSQL?"></a><h3 id="how-do-i-start-developing-against-azure-cosmos-db-for-nosql-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">How do I start developing against Azure Cosmos DB for NoSQL?
+</h3></div>
+			<div class="content"><p>First you must sign up for an Azure subscription. Once you sign up for an Azure subscription, you can add an API for NoSQL container to your Azure subscription.</p>
+<p><a href="sdk-dotnet-v2" data-linktype="relative-path">Software development kits (SDKs)</a> are available for .NET, Python, Node.js, JavaScript, Go, and Java. Developers can also use the <a href="/en-us/rest/api/cosmos-db/" data-linktype="absolute-path">REST API</a> to interact with Azure Cosmos DB resources from more platforms and languages.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#is-there-azure-cosmos-db-for-nosql-samples-to-get-started-" aria-label="Section titled: Is there Azure Cosmos DB for NoSQL samples to get started?"></a><h3 id="is-there-azure-cosmos-db-for-nosql-samples-to-get-started-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Is there Azure Cosmos DB for NoSQL samples to get started?
+</h3></div>
+			<div class="content"><p>Check out these QuickStart code samples and templates for the API for NoSQL:</p>
+<ul>
+<li><a href="quickstart-dotnet" data-linktype="relative-path">.NET</a></li>
+<li><a href="quickstart-python" data-linktype="relative-path">Python</a></li>
+<li><a href="quickstart-nodejs" data-linktype="relative-path">Node.js/JavaScript</a></li>
+<li><a href="quickstart-java" data-linktype="relative-path">Java/Spring</a></li>
+<li><a href="quickstart-go" data-linktype="relative-path">Go</a></li>
+</ul>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#does-azure-cosmos-db-for-nosql-support-schema-free-data-" aria-label="Section titled: Does Azure Cosmos DB for NoSQL support schema-free data?"></a><h3 id="does-azure-cosmos-db-for-nosql-support-schema-free-data-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Does Azure Cosmos DB for NoSQL support schema-free data?
+</h3></div>
+			<div class="content"><p>Yes, the API for NoSQL allows applications to store arbitrary JSON documents as items without schema definitions or hints. The data is immediately available for query with the Azure Cosmos DB for NoSQL query language.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#does-azure-cosmos-db-for-nosql-support-acid--atomicity--consistency--isolation--durability--transactions-" aria-label="Section titled: Does Azure Cosmos DB for NoSQL support ACID (atomicity, consistency, isolation, durability) transactions?"></a><h3 id="does-azure-cosmos-db-for-nosql-support-acid--atomicity--consistency--isolation--durability--transactions-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Does Azure Cosmos DB for NoSQL support ACID (atomicity, consistency, isolation, durability) transactions?
+</h3></div>
+			<div class="content"><p>Yes, the API for NoSQL supports cross-document transactions expressed using either batches in the SDKs or as JavaScript-stored procedures and triggers. Transactions are scoped to a single partition within each container and executed with ACID semantics as "all or nothing," isolated from other concurrently executing code and user requests. If exceptions occur, the entire transaction is rolled back.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#how-do-i-create-an-azure-cosmos-db-for-nosql-database-" aria-label="Section titled: How do I create an Azure Cosmos DB for NoSQL database?"></a><h3 id="how-do-i-create-an-azure-cosmos-db-for-nosql-database-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">How do I create an Azure Cosmos DB for NoSQL database?
+</h3></div>
+			<div class="content"><p>You can create databases by using one of these tools:</p>
+<ul>
+<li><a href="quickstart-portal#" data-linktype="relative-path">Azure portal</a></li>
+<li>API for NoSQL client (data-plane) SDKs
+<ul>
+<li><a href="quickstart-dotnet" data-linktype="relative-path">.NET</a></li>
+<li><a href="quickstart-python" data-linktype="relative-path">Python</a></li>
+<li><a href="quickstart-nodejs" data-linktype="relative-path">JavaScript</a></li>
+<li><a href="quickstart-java" data-linktype="relative-path">Java</a></li>
+<li><a href="quickstart-go" data-linktype="relative-path">Go</a></li>
+</ul>
+</li>
+<li>API for NoSQL management (control-plane) SDKs
+<ul>
+<li><a href="/en-us/dotnet/api/overview/azure/resourcemanager.cosmosdb-readme" data-linktype="absolute-path">.NET</a></li>
+<li><a href="/en-us/python/api/overview/azure/mgmt-cosmosdb-readme" data-linktype="absolute-path">Python</a></li>
+<li><a href="/en-us/javascript/api/overview/azure/arm-cosmosdb-readme" data-linktype="absolute-path">JavaScript</a></li>
+<li><a href="/en-us/java/api/overview/azure/resourcemanager-cosmos-readme" data-linktype="absolute-path">Java</a></li>
+<li><a href="https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/cosmos/armcosmos" data-linktype="external">Go</a></li>
+</ul>
+</li>
+<li>Azure Resource Manager
+<ul>
+<li><a href="/en-us/azure/templates/microsoft.documentdb/databaseaccounts?pivots=deployment-language-bicep" data-linktype="absolute-path">JSON template</a></li>
+<li><a href="/en-us/azure/templates/microsoft.documentdb/databaseaccounts?pivots=deployment-language-arm-template" data-linktype="absolute-path">Bicep</a></li>
+<li><a href="/en-us/azure/templates/microsoft.documentdb/databaseaccounts?pivots=deployment-language-terraform" data-linktype="absolute-path">Terraform</a></li>
+</ul>
+</li>
+<li><a href="/en-us/rest/api/cosmos-db/" data-linktype="absolute-path">REST API</a></li>
+</ul>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#can-i-authenticate-to-azure-cosmos-db-for-nosql-using-my-existing-microsoft-entra-id-accounts-" aria-label="Section titled: Can I authenticate to Azure Cosmos DB for NoSQL using my existing Microsoft Entra ID accounts?"></a><h3 id="can-i-authenticate-to-azure-cosmos-db-for-nosql-using-my-existing-microsoft-entra-id-accounts-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Can I authenticate to Azure Cosmos DB for NoSQL using my existing Microsoft Entra ID accounts?
+</h3></div>
+			<div class="content"><p>Yes! Azure Cosmos DB supports Microsoft Entra authentication to manage the service and its resources (control-plane) and to execute data, operations, and queries (data-plane).
+Control-plane authentication is performed using the <a href="">role-based access control</a> feature of Azure. You can use a preconfigured built-in role](../../role-based-access-control/built-in-roles.md) or you can <a href="/en-us/azure/role-based-access-control/custom-roles" data-linktype="absolute-path">create a custom role</a>. With Azure role-based access control, you can manage accounts, databases, containers, and metadata. The control-plane includes operations including, but not limited to these examples.</p>
+<ul>
+<li>Creating, replacing, or deleting databases - Creating, replacing, or deleting containers - Reading or replacing database throughput - Reading or replacing container throughput
+Data-plane authentication uses a custom API for NoSQL-native role-based access control implementation. With this native implementation, you can also use preconfigured or custom roles. With native role-based access control, you can execute queries, manage items, or perform other common operations. The data-plane includes operations including, but not limited to these examples.</li>
+<li>Creating, replacing, updating, or deleting items - Patching items - Executing queries</li>
+</ul>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#does-azure-cosmos-db-for-nosql-support-the-sql-query-language-" aria-label="Section titled: Does Azure Cosmos DB for NoSQL support the SQL query language?"></a><h3 id="does-azure-cosmos-db-for-nosql-support-the-sql-query-language-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Does Azure Cosmos DB for NoSQL support the SQL query language?
+</h3></div>
+			<div class="content"><p>Structured Query Language (SQL) is a language typically used to query relational data. The API for NoSQL has a custom <strong>NoSQL</strong> query language derived from SQL. The NoSQL query language includes a subset of the SQL query language typically associated with SQL Server along with various NoSQL-specific enhancements. The NoSQL query language provides rich hierarchical and relational operators and extensibility via JavaScript-based, user-defined functions (UDFs). JSON grammar allows for modeling JSON documents as trees with labeled nodes, which are used by both the Azure Cosmos DB automatic indexing techniques and the SQL query dialect of Azure Cosmos DB. For information about using this query language, see <a href="/en-us/cosmos-db/query" data-linktype="absolute-path">NoSQL Query</a>.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#does-azure-cosmos-db-for-nosql-support-sql-aggregation-functions-" aria-label="Section titled: Does Azure Cosmos DB for NoSQL support SQL aggregation functions?"></a><h3 id="does-azure-cosmos-db-for-nosql-support-sql-aggregation-functions-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Does Azure Cosmos DB for NoSQL support SQL aggregation functions?
+</h3></div>
+			<div class="content"><p>The API for NoSQL supports aggregation via aggregate functions such as: <code>COUNT</code>, <code>MAX</code>, <code>AVG</code>, and <code>SUM</code> via the NoSQL query language.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#how-does-azure-cosmos-db-for-nosql-provide-concurrency-" aria-label="Section titled: How does Azure Cosmos DB for NoSQL provide concurrency?"></a><h3 id="how-does-azure-cosmos-db-for-nosql-provide-concurrency-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">How does Azure Cosmos DB for NoSQL provide concurrency?
+</h3></div>
+			<div class="content"><p>The API for NoSQL supports optimistic concurrency control (OCC) through HTTP entity tags, or <strong>ETags</strong>. Every API for NoSQL resource has an ETag, and the ETag is set on the server every time a document is updated. The ETag header and the current value are included in all response messages. ETags can be used with the <code>If-Match</code> header to allow the server to decide whether a resource should be updated. The If-Match value is the ETag value to be checked against. If the ETag value matches the server ETag value, the resource is updated. If the ETag is no longer current, the server rejects the operation with an "HTTP 412 Precondition failure" response code. The client then refetches the resource to acquire the current ETag value for the resource. In addition, ETags can be used with the <code>If-None-Match</code> header to determine whether its needed to refetch a resource.</p>
+<p>Most of the API for NoSQL SDKs includes classes to manage optimistic concurrency control.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#how-can-i-bulk-insert-documents-into-azure-cosmos-db-for-nosql-" aria-label="Section titled: How can I bulk-insert documents into Azure Cosmos DB for NoSQL?"></a><h3 id="how-can-i-bulk-insert-documents-into-azure-cosmos-db-for-nosql-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">How can I bulk-insert documents into Azure Cosmos DB for NoSQL?
+</h3></div>
+			<div class="content"><p>Use the bulk import feature in the <a href="tutorial-dotnet-bulk-import" data-linktype="relative-path">.NET SDK</a> or the <a href="bulk-executor-java" data-linktype="relative-path">Java SDK</a> for the API for NoSQL to import large sets of data. This feature optimizes provisioned throughput to import large sets of data.</p>
+<p>Alternatively, use <a href="tutorial-spark-connector" data-linktype="relative-path">Apache Spark</a> to import data at scale using Python or Scala.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#does-azure-cosmos-db-for-nosql-support-resource-link-caching-" aria-label="Section titled: Does Azure Cosmos DB for NoSQL support resource link caching?"></a><h3 id="does-azure-cosmos-db-for-nosql-support-resource-link-caching-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Does Azure Cosmos DB for NoSQL support resource link caching?
+</h3></div>
+			<div class="content"><p>Yes, because Azure Cosmos DB for NoSQL is a RESTful service, resource links are immutable and can be cached. API for NoSQL clients can specify an "If-None-Match" header for reads against any resource-like document or container and then update their local copies after the server version changes.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#is-a-local-instance-of-azure-cosmos-db-for-nosql-available-" aria-label="Section titled: Is a local instance of Azure Cosmos DB for NoSQL available?"></a><h3 id="is-a-local-instance-of-azure-cosmos-db-for-nosql-available-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Is a local instance of Azure Cosmos DB for NoSQL available?
+</h3></div>
+			<div class="content"><p>Yes. The <a href="emulator" data-linktype="relative-path">Azure Cosmos DB emulator</a> provides a high-fidelity emulation of the Azure Cosmos DB service. It supports functionality that's identical to Azure Cosmos DB across various APIs. This functionality includes support for creating items, querying items, provisioning containers, and scaling containers. You can develop and test applications by using the emulator's endpoints. You can then deploy the applications to Azure at a global scale by changing the connection string from the emulator to the live service.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#why-are-long-floating-point-values-in-an-azure-cosmos-db-for-nosql-item-rounded-when-using-the-data-explorer-in-the-portal-" aria-label="Section titled: Why are long floating-point values in an Azure Cosmos DB for NoSQL item rounded when using the Data Explorer in the portal?"></a><h3 id="why-are-long-floating-point-values-in-an-azure-cosmos-db-for-nosql-item-rounded-when-using-the-data-explorer-in-the-portal-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Why are long floating-point values in an Azure Cosmos DB for NoSQL item rounded when using the Data Explorer in the portal?
+</h3></div>
+			<div class="content"><p>This Data Explorer limitation is a limitation of JavaScript. JavaScript uses double-precision floating-point format numbers as specified in Institute of Electrical and Electronics Engineers (IEEE) 754. This data type can safely hold numbers between -(2<sup>53</sup> - 1) and 2<sup>53</sup>-1 (that is, 9007199254740991) only.</p>
+</div>
+		<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#security" aria-label="Section titled: Security"></a><h2 id="security" class="title is-2 margin-top-sm margin-bottom-xs heading-anchor">Security</h2></div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#what-is-role-based-access-control--rbac--" aria-label="Section titled: What is role-based access control (RBAC)?"></a><h3 id="what-is-role-based-access-control--rbac--" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">What is role-based access control (RBAC)?
+</h3></div>
+			<div class="content"><p>Role-based access control (RBAC) is a method of regulating access to computer or network resources based on the roles of individual users within an enterprise. In Azure Cosmos DB, RBAC is used to grant data-plane access to users and applications. For more information about various terms in role-based access control, see the <a href="how-to-connect-role-based-access-control" data-linktype="relative-path">security glossary</a>.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#how-do-i-enable-data-plane-role-based-access-control-for-azure-cosmos-db-for-nosql-" aria-label="Section titled: How do I enable data-plane role-based access control for Azure Cosmos DB for NoSQL?"></a><h3 id="how-do-i-enable-data-plane-role-based-access-control-for-azure-cosmos-db-for-nosql-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">How do I enable data-plane role-based access control for Azure Cosmos DB for NoSQL?
+</h3></div>
+			<div class="content"><p>Use the Azure Cosmos DB native role-based access control (RBAC) feature to grant data-plane access to users and applications. For more information, see <a href="how-to-connect-role-based-access-control" data-linktype="relative-path">Grant data-plane role-based access</a>.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#which-azure-cosmos-db-apis-support-data-plane-role-based-access-control-" aria-label="Section titled: Which Azure Cosmos DB APIs support data-plane role-based access control?"></a><h3 id="which-azure-cosmos-db-apis-support-data-plane-role-based-access-control-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Which Azure Cosmos DB APIs support data-plane role-based access control?
+</h3></div>
+			<div class="content"><p>As of now, only the NoSQL API is supported.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#is-it-possible-to-manage-role-definitions-and-role-assignments-from-the-azure-portal-" aria-label="Section titled: Is it possible to manage role definitions and role assignments from the Azure portal?"></a><h3 id="is-it-possible-to-manage-role-definitions-and-role-assignments-from-the-azure-portal-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Is it possible to manage role definitions and role assignments from the Azure portal?
+</h3></div>
+			<div class="content"><p>Azure portal support for role management isn't available yet.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#which-sdks-in-azure-cosmos-db-api-for-nosql-support-role-based-access-control-" aria-label="Section titled: Which SDKs in Azure Cosmos DB API for NoSQL support role-based access control?"></a><h3 id="which-sdks-in-azure-cosmos-db-api-for-nosql-support-role-based-access-control-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Which SDKs in Azure Cosmos DB API for NoSQL support role-based access control?
+</h3></div>
+			<div class="content"><p>The .NET V3, Java V4, JavaScript V3, and Python V4.3+ SDKs are currently supported.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#is-the-microsoft-entra-token-automatically-refreshed-by-the-azure-cosmos-db-sdks-when-it-expires-" aria-label="Section titled: Is the Microsoft Entra token automatically refreshed by the Azure Cosmos DB SDKs when it expires?"></a><h3 id="is-the-microsoft-entra-token-automatically-refreshed-by-the-azure-cosmos-db-sdks-when-it-expires-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Is the Microsoft Entra token automatically refreshed by the Azure Cosmos DB SDKs when it expires?
+</h3></div>
+			<div class="content"><p>Yes.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#is-it-possible-to-disable-the-usage-of-the-account-primary-secondary-keys-when-using-role-based-access-control-" aria-label="Section titled: Is it possible to disable the usage of the account primary/secondary keys when using role-based access control?"></a><h3 id="is-it-possible-to-disable-the-usage-of-the-account-primary-secondary-keys-when-using-role-based-access-control-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Is it possible to disable the usage of the account primary/secondary keys when using role-based access control?
+</h3></div>
+			<div class="content"><p>Yes. For more information, see <a href="how-to-connect-role-based-access-control#disable-key-based-authentication" data-linktype="relative-path">disable key-based authentication</a>.</p>
+</div>
+		<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#migrating-azure-cosmos-db-accounts-across-different-resource-groups--subscriptions--and-tenants" aria-label="Section titled: Migrating Azure Cosmos DB Accounts across different resource groups, subscriptions, and tenants"></a><h2 id="migrating-azure-cosmos-db-accounts-across-different-resource-groups--subscriptions--and-tenants" class="title is-2 margin-top-sm margin-bottom-xs heading-anchor">Migrating Azure Cosmos DB Accounts across different resource groups, subscriptions, and tenants</h2></div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#how-do-i-migrate-an-azure-cosmos-db-account-to-a-different-resource-group-or-to-a-different-subscription-" aria-label="Section titled: How do I migrate an Azure Cosmos DB account to a different resource group or to a different subscription?"></a><h3 id="how-do-i-migrate-an-azure-cosmos-db-account-to-a-different-resource-group-or-to-a-different-subscription-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">How do I migrate an Azure Cosmos DB account to a different resource group or to a different subscription?
+</h3></div>
+			<div class="content"><p>The general guideline to migrate a Cosmos DB account to a different resource group or subscription is described in the <a href="/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription" data-linktype="absolute-path">moving Azure resources to a new resource group or subscription</a> article.</p>
+<p>After you successfully move the Azure Cosmos DB account per the general guideline, any identities (System-Assigned or User-Assigned) associated with the account must be <a href="/en-us/azure/cosmos-db/how-to-setup-managed-identity" data-linktype="absolute-path">reassigned</a>. This reassignment is required in order to ensure that these identities continue to have the necessary permissions to access the Key Vault key.</p>
+<div class="alert is-warning">
+<p class="alert-title"><span class="icon" aria-hidden="true"><span class="docon docon-status-warning-outline"></span></span> Warning</p>
+<p>If your Cosmos DB account has Customer Managed Keys enabled, you can only migrate the account to a different resource group or subscription if it's in an Active state. Accounts in a Revoked state can't be migrated.</p>
+</div>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#how-do-i-migrate-an-azure-cosmos-db-account-to-a-different-tenant-" aria-label="Section titled: How do I migrate an Azure Cosmos DB account to a different tenant?"></a><h3 id="how-do-i-migrate-an-azure-cosmos-db-account-to-a-different-tenant-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">How do I migrate an Azure Cosmos DB account to a different tenant?
+</h3></div>
+			<div class="content"><p>If your Cosmos DB account has Customer Managed Keys enabled, you can only migrate the account if it's a cross-tenant customer-managed key account. For more information, see the guide on <a href="/en-us/azure/cosmos-db/how-to-setup-cross-tenant-customer-managed-keys?tabs=azure-portal" data-linktype="absolute-path">configuring cross-tenant customer-managed keys for your Azure Cosmos DB account with Azure Key Vault</a>.</p>
+<div class="alert is-warning">
+<p class="alert-title"><span class="icon" aria-hidden="true"><span class="docon docon-status-warning-outline"></span></span> Warning</p>
+<p>After migrating, it's crucial to keep the Azure Cosmos DB account and the Azure Key Vault in separate tenants to preserve the original cross-tenant relationship. Ensure the Key Vault key remains in place until the Cosmos DB account migration is complete.</p>
+</div>
+</div>
+		<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#migrating-to-continuous-backup-mode" aria-label="Section titled: Migrating to continuous backup mode"></a><h2 id="migrating-to-continuous-backup-mode" class="title is-2 margin-top-sm margin-bottom-xs heading-anchor">Migrating to continuous backup mode</h2></div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#what-should-i-expect-during-and-after-migration-" aria-label="Section titled: What should I expect during and after migration?"></a><h3 id="what-should-i-expect-during-and-after-migration-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">What should I expect during and after migration?
+</h3></div>
+			<div class="content"><p>When migrating from periodic mode to continuous mode, you can't run any control plane operations that performs account level updates or deletes. For example, operations such as adding or removing regions, account failover, updating backup policy etc. can't be run while the migration is in progress. The time for migration depends on the size of data and the number of regions in your account. Restore action on the migrated accounts only succeeds from the time when migration successfully completes.</p>
+<p>You can restore your account after the migration completes. If the migration completes at 1:00 PM PST, you can do point in time restore starting from 1:00 PM PST.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#does-the-migration-only-happen-at-the-account-level-" aria-label="Section titled: Does the migration only happen at the account level?"></a><h3 id="does-the-migration-only-happen-at-the-account-level-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Does the migration only happen at the account level?
+</h3></div>
+			<div class="content"><p>Yes.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#which-accounts-can-be-targeted-for-backup-migration-for-continuous-backup-" aria-label="Section titled: Which accounts can be targeted for backup migration for continuous backup?"></a><h3 id="which-accounts-can-be-targeted-for-backup-migration-for-continuous-backup-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Which accounts can be targeted for backup migration for continuous backup?
+</h3></div>
+			<div class="content"><p>API for NoSQL, API for Table, Gremlin API, and API for MongoDB accounts that use shared, provisioned, or autoscale provisioned throughput support migration to continuous backup.</p>
+<p>Accounts with Azure Synapse Link enabled, or that had Azure Synapse Link disabled for one or more collections, can't migrate to continuous backup.</p>
+<div class="alert is-primary">
+<p class="alert-title"><span class="icon" aria-hidden="true"><span class="docon docon-status-info-outline"></span></span> Important</p>
+<p>Synapse Link for Cosmos DB is no longer supported for new projects. Don't use this feature.</p>
+<p>Please use Azure Cosmos DB Mirroring for Microsoft Fabric which is now GA. Mirroring provides the same zero-ETL benefits and is fully integrated with Microsoft Fabric. Learn more at <a href="/en-us/fabric/database/mirrored-database/azure-cosmos-db" data-linktype="absolute-path">Cosmos DB Mirroring Overview</a>.</p>
+</div>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#does-the-migration-take-time--what-is-the-typical-time-" aria-label="Section titled: Does the migration take time? What is the typical time?"></a><h3 id="does-the-migration-take-time--what-is-the-typical-time-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Does the migration take time? What is the typical time?
+</h3></div>
+			<div class="content"><p>Migration takes a varying amount of time that largely depends on the size of data and the number of regions in your account. You can get the migration status using Azure CLI or PowerShell commands. For large accounts with tens of terabytes of data, the migration can take up to few days to complete.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#does-the-migration-for-multi-region-write-mrw--account-with-periodic-backup-to-multi-region-write-with-continuous-backup-take-time-" aria-label="Section titled: Does the migration for multi region write(mrw) account with periodic backup to multi region write with continuous backup take time?"></a><h3 id="does-the-migration-for-multi-region-write-mrw--account-with-periodic-backup-to-multi-region-write-with-continuous-backup-take-time-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Does the migration for multi region write(mrw) account with periodic backup to multi region write with continuous backup take time?
+</h3></div>
+			<div class="content"><p>Yes, this migration takes time that largely depends on need to wait for all old tentative writes to get drained during continuous backup migration. You can get the migration status using Azure CLI or PowerShell commands. For large accounts with tens of terabytes of data, the migration can take up to few days to complete.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#does-the-migration-cause-any-availability-downtime-" aria-label="Section titled: Does the migration cause any availability downtime?"></a><h3 id="does-the-migration-cause-any-availability-downtime-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Does the migration cause any availability downtime?
+</h3></div>
+			<div class="content"><p>No, the migration operation takes place in the background. So, client requests aren't affected. However, we need to perform some backend operations during the migration, and it could take extra time if the account is under heavy load.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#what-happens-if-the-migration-fails--do-i-still-get-periodic-backups-or-continuous-backups-" aria-label="Section titled: What happens if the migration fails? Do I still get periodic backups or continuous backups?"></a><h3 id="what-happens-if-the-migration-fails--do-i-still-get-periodic-backups-or-continuous-backups-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">What happens if the migration fails? Do I still get periodic backups or continuous backups?
+</h3></div>
+			<div class="content"><p>Once the migration process is started, the account is enabled in continuous mode. If the migration fails, you must initiate migration again until it succeeds.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#how-do-i-perform-a-restore-to-a-timestamp-before-during-after-the-migration-" aria-label="Section titled: How do I perform a restore to a timestamp before/during/after the migration?"></a><h3 id="how-do-i-perform-a-restore-to-a-timestamp-before-during-after-the-migration-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">How do I perform a restore to a timestamp before/during/after the migration?
+</h3></div>
+			<div class="content"><p>Assume that you started migration at <code>t1</code> and finished at <code>t5</code>, you can't use a restore timestamp between <code>t1</code> and <code>t5</code>.
+Also assume that your account is now in continuous mode. To restore to a time after <code>t5</code>, perform the restore using Azure portal, CLI, or PowerShell like normally with a continuous account. This self-service restore request can only be done after the migration is complete.
+To restore to a time before <code>t1</code>, you can open a support ticket like you normally would with a periodic backup account. After the migration, you have up to 30 days to perform the periodic restore. During these 30 days, you can restore based on the backup retention/interval of your account before the migration. For example, if the backup was configured to retain 24 copies at 1 hour intervals, then you can restore anytime between <code>(t1 – 24 hours)</code> and <code>t1</code>.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#which-account-level-control-plane-operations-are-blocked-during-migration-" aria-label="Section titled: Which account level control plane operations are blocked during migration?"></a><h3 id="which-account-level-control-plane-operations-are-blocked-during-migration-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Which account level control plane operations are blocked during migration?
+</h3></div>
+			<div class="content"><p>Operations such as add/remove region, failover, changing backup policy, and any throughput changes resulting in data movement are blocked during migration.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#if-the-migration-fails-for-some-underlying-issue--does-it-block-the-control-plane-operation-until-you-retry-and-complete-migration-successfully-" aria-label="Section titled: If the migration fails for some underlying issue, does it block the control plane operation until you retry and complete migration successfully?"></a><h3 id="if-the-migration-fails-for-some-underlying-issue--does-it-block-the-control-plane-operation-until-you-retry-and-complete-migration-successfully-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">If the migration fails for some underlying issue, does it block the control plane operation until you retry and complete migration successfully?
+</h3></div>
+			<div class="content"><p>Failed migration doesn't block any control plane operations. If migration fails, retry until it succeeds before performing other control plane operations.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#is-it-possible-to-cancel-the-migration-" aria-label="Section titled: Is it possible to cancel the migration?"></a><h3 id="is-it-possible-to-cancel-the-migration-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Is it possible to cancel the migration?
+</h3></div>
+			<div class="content"><p>It isn't possible to cancel the migration because migrations aren't a reversible operation. Via support call team can cancel temporarily and let the offline operations continue. But one can't move back to periodic backup state.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#is-there-a-tool-that-can-help-estimate-migration-time-based-on-the-data-usage-and-number-of-regions-" aria-label="Section titled: Is there a tool that can help estimate migration time based on the data usage and number of regions?"></a><h3 id="is-there-a-tool-that-can-help-estimate-migration-time-based-on-the-data-usage-and-number-of-regions-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Is there a tool that can help estimate migration time based on the data usage and number of regions?
+</h3></div>
+			<div class="content"><p>There isn't a tool to estimate time. Our testing and scale runs indicate that an account with 1 TB of data takes roughly 90 minutes.
+For multi-region accounts, calculate the total data size as <code>Number_of_regions * Data_in_single_region</code>.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#since-the-continuous-backup-mode-is-now-ga--do-you-still-recommend-restoring-a-copy-of-your-account--would-you-recommend-trying-migration-on-the-copy-before-deciding-to-migrate-the-production-account-" aria-label="Section titled: Since the continuous backup mode is now GA, do you still recommend restoring a copy of your account? Would you recommend trying migration on the copy before deciding to migrate the production account?"></a><h3 id="since-the-continuous-backup-mode-is-now-ga--do-you-still-recommend-restoring-a-copy-of-your-account--would-you-recommend-trying-migration-on-the-copy-before-deciding-to-migrate-the-production-account-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Since the continuous backup mode is now GA, do you still recommend restoring a copy of your account? Would you recommend trying migration on the copy before deciding to migrate the production account?
+</h3></div>
+			<div class="content"><p>Test the continuous backup mode feature to verify it works as expected before migrating production accounts. Migration is a one-way operation and can't be reversed.</p>
+</div>
+		<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#try-azure-cosmos-db-free" aria-label="Section titled: Try Azure Cosmos DB free"></a><h2 id="try-azure-cosmos-db-free" class="title is-2 margin-top-sm margin-bottom-xs heading-anchor">Try Azure Cosmos DB free</h2></div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#is-a-free-account-available-" aria-label="Section titled: Is a free account available?"></a><h3 id="is-a-free-account-available-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Is a free account available?
+</h3></div>
+			<div class="content"><p>Yes, you can sign up for a <a href="free-tier" data-linktype="relative-path">free database account</a> with 1,000 RU/sec and 25GB for free.</p>
+<p>If you're new to Azure, you can sign up for an <a href="https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn_338bc04c-6112-3ce4-99d5-6758eadeb297" data-linktype="external">Azure free account</a>, which gives you 30 days and a credit to try all the Azure services. If you have a Visual Studio subscription, you're also eligible for <a href="https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/" data-linktype="external">free Azure credits</a> to use on any Azure service.</p>
+<p>You can also use the <a href="emulator" data-linktype="relative-path">Azure Cosmos DB Emulator</a> to develop and test your application locally for free, without creating an Azure subscription. When you're satisfied with how your application is working in the Azure Cosmos DB Emulator, you can switch to using an Azure Cosmos DB account in the cloud.</p>
+</div>
+		<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#get-started-with-azure-cosmos-db" aria-label="Section titled: Get started with Azure Cosmos DB"></a><h2 id="get-started-with-azure-cosmos-db" class="title is-2 margin-top-sm margin-bottom-xs heading-anchor">Get started with Azure Cosmos DB</h2></div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#how-do-i-sign-up-for-azure-cosmos-db-" aria-label="Section titled: How do I sign up for Azure Cosmos DB?"></a><h3 id="how-do-i-sign-up-for-azure-cosmos-db-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">How do I sign up for Azure Cosmos DB?
+</h3></div>
+			<div class="content"><p>Azure Cosmos DB is available in the Azure portal. First, sign up for an Azure subscription. After you sign up, add an Azure Cosmos DB account to your Azure subscription.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#how-do-i-authenticate-to-azure-cosmos-db-" aria-label="Section titled: How do I authenticate to Azure Cosmos DB?"></a><h3 id="how-do-i-authenticate-to-azure-cosmos-db-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">How do I authenticate to Azure Cosmos DB?
+</h3></div>
+			<div class="content"><p>Use Microsoft Entra ID to authenticate to Azure Cosmos DB for all APIs that support this method of authentication. For APIs that don't support Microsoft Entra ID authentication, use the keys with caution. Ensure that keys for production accounts are stored securely, such as in Azure Key Vault.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#where-is-azure-cosmos-db-available-" aria-label="Section titled: Where is Azure Cosmos DB available?"></a><h3 id="where-is-azure-cosmos-db-available-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Where is Azure Cosmos DB available?
+</h3></div>
+			<div class="content"><p>For information about regional availability for Azure Cosmos DB, see <a href="https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cosmos-db" data-linktype="external">Azure products available by region</a>. You can account your database to one or more of these regions.</p>
+<p>The software development kits (SDKs) for Azure Cosmos DB allow configuration of the regions they use for connections. In most SDKs, the `PreferredLocations`` value is set to any of the Azure regions in which Azure Cosmos DB is available.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#is-there-anything-i-should-be-aware-of-when-distributing-data-across-the-world-via-the-azure-datacenters-" aria-label="Section titled: Is there anything I should be aware of when distributing data across the world via the Azure datacenters?"></a><h3 id="is-there-anything-i-should-be-aware-of-when-distributing-data-across-the-world-via-the-azure-datacenters-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Is there anything I should be aware of when distributing data across the world via the Azure datacenters?
+</h3></div>
+			<div class="content"><p>Azure Cosmos DB is present across all Azure regions, as specified on the <a href="https://azure.microsoft.com/regions/" data-linktype="external">Azure regions</a> page. Because it's a core Azure service, every new datacenter has an Azure Cosmos DB presence.</p>
+<p>When you set a region, remember that Azure Cosmos DB respects sovereign and government clouds. For example, you can't replicate data out of a <a href="https://azure.microsoft.com/global-infrastructure/" data-linktype="external">sovereign region</a>. Similarly, you can't enable replication into other sovereign locations from an outside account.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#is-it-possible-to-switch-between-container-level-and-database-level-throughput-provisioning-" aria-label="Section titled: Is it possible to switch between container-level and database-level throughput provisioning?"></a><h3 id="is-it-possible-to-switch-between-container-level-and-database-level-throughput-provisioning-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Is it possible to switch between container-level and database-level throughput provisioning?
+</h3></div>
+			<div class="content"><p>Container and database-level throughput provisioning are separate offerings and switching between either of these offerings require migrating data from source to destination. You need to create a new database or container and then migrate data using <a href="bulk-executor-overview" data-linktype="relative-path">bulk executor library</a> or <a href="/en-us/azure/data-factory/connector-azure-cosmos-db" data-linktype="absolute-path">Azure Data Factory</a>.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#does-azure-cosmos-db-support-time-series-analysis-" aria-label="Section titled: Does Azure Cosmos DB support time series analysis?"></a><h3 id="does-azure-cosmos-db-support-time-series-analysis-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">Does Azure Cosmos DB support time series analysis?
+</h3></div>
+			<div class="content"><p>Yes, Azure Cosmos DB supports time series analysis. You can use the change feed to build aggregated views over time series data. You can extend this approach by using Apache Spark streaming or another stream data processor.</p>
+</div>
+			
+			<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#what-are-the-azure-cosmos-db-service-quotas-and-throughput-limits-" aria-label="Section titled: What are the Azure Cosmos DB service quotas and throughput limits?"></a><h3 id="what-are-the-azure-cosmos-db-service-quotas-and-throughput-limits-" class="title is-3 margin-top-sm margin-bottom-xs heading-anchor">What are the Azure Cosmos DB service quotas and throughput limits?
+</h3></div>
+			<div class="content"><p>For information about service quotas and throughput limits, see <a href="concepts-limits" data-linktype="relative-path">service quotas</a> and <a href="set-throughput#comparison-of-models" data-linktype="relative-path">throughout limits</a>.</p>
+</div>
+	<div class="content"><div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#related-content" aria-label="Section titled: Related content"></a><h2 id="related-content" class="heading-anchor">Related content</h2></div>
+<ul>
+<li>Frequently asked questions about <a href="faq" data-linktype="relative-path">Azure Cosmos DB for NoSQL</a></li>
+<li>Frequently asked questions about <a href="mongodb/faq" data-linktype="relative-path">Azure Cosmos DB for MongoDB</a></li>
+<li>Frequently asked questions about <a href="gremlin/faq" data-linktype="relative-path">Azure Cosmos DB for Apache Gremlin</a></li>
+<li>Frequently asked questions about <a href="cassandra/faq" data-linktype="relative-path">Azure Cosmos DB for Apache Cassandra</a></li>
+<li>Frequently asked questions about <a href="table/faq" data-linktype="relative-path">Azure Cosmos DB for Table</a></li>
+</ul>
+</div>
+	</section>
+</article>
+<script type="application/ld+json">
+	{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What are the typical use cases for Azure Cosmos DB?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eAzure Cosmos DB is well suited for web, mobile, gaming, and IoT use cases. In these use cases; automatic scale, predictable performance, fast order of millisecond response times, and the ability to query over schema-free data is important. Azure Cosmos DB lends itself to rapid development and supporting the continuous iteration of application data models. Applications that manage user-generated content and data often map to \u003ca href=\"use-cases\"\u003ecommon use cases for Azure Cosmos DB\u003c/a\u003e.\u003c/p\u003e\n"}},{"@type":"Question","name":"How does Azure Cosmos DB offer predictable performance?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eA \u003ca href=\"request-units\"\u003erequest unit\u003c/a\u003e (RU) is the measure of throughput in Azure Cosmos DB. A single request unit throughput corresponds to the throughput of the \u003ccode\u003eGET\u003c/code\u003e HTTP action for a 1-kilobite document. Every operation in Azure Cosmos DB; including reads, writes, queries, and stored procedure executions; has a deterministic request unit value based on the throughput required to complete the operation. Instead of being forced to consider CPU, IO, and memory in relation to your application throughput, you can think in terms of request units.\u003c/p\u003e\n\u003cp\u003eYou can configure each Azure Cosmos DB container with provisioned throughput in terms of request units per second (RU/s). You can benchmark individual requests to measure in request units, and create a container to handle the sum of request units across all requests for that container in a second. You can also scale up or scale down your container's throughput as the needs of your application evolve. For more information on how to measure request units, see the \u003ca href=\"https://cosmos.azure.com/capacitycalculator\"\u003ethroughput calculator\u003c/a\u003e.\u003c/p\u003e\n"}},{"@type":"Question","name":"How does Azure Cosmos DB support various data models such as key/value, columnar, document, and graph?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eKey/value (table), columnar, document, and graph data models are all natively supported because of the ARS (atoms, records, and sequences) design that Azure Cosmos DB is built on. Atoms, records, and sequences can be easily mapped and projected to various data models. The APIs for a subset of models are available using the ARS design (MongoDB, NoSQL, Table, Apache Cassandra, and Apache Gremlin). Azure Cosmos DB also supports other APIs.\u003c/p\u003e\n"}},{"@type":"Question","name":"What is an Azure Cosmos DB container?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eA container is a group of items. Containers can span one or more partitions and can scale to handle practically unlimited volumes of storage or throughput.\u003c/p\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003c/th\u003e\n\u003cth\u003eContainers known as\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003eAzure Cosmos DB for NoSQL\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003eContainer\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003eAzure Cosmos DB for MongoDB\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003eCollection\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003eAzure Cosmos DB for Apache Cassandra\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003eTable\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003eAzure Cosmos DB for Apache Gremlin\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003eGraph\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003eAzure Cosmos DB for Table\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003eTable\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003cp\u003eA container is a billable entity, where the throughput and used storage determines the cost. Each container is billed hourly, based on the provisioned throughput and used storage space. For more information, see \u003ca href=\"https://azure.microsoft.com/pricing/details/cosmos-db/\"\u003eAzure Cosmos DB pricing\u003c/a\u003e.\u003c/p\u003e\n"}},{"@type":"Question","name":"Can I use multiple APIs to access my data?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eAzure Cosmos DB is Microsoft's globally distributed, multi-model database service. Multi-model refers to Azure Cosmos DB's support for multiple APIs and data models. In this paradigm, different APIs use different data formats for storage and wire protocol. For example; NoSQL uses JSON, MongoDB uses binary-encoded JSON (BSON), Table uses Entity Data Model (EDM), Cassandra uses Cassandra Query Language (CQL), Gremlin uses JSON format. As a result, we recommend using the same API for all access to the data in a given account.\u003c/p\u003e\n"}},{"@type":"Question","name":"Can I integrate Azure Cosmos DB directly with other services?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eYes. Azure Cosmos DB APIs allow direct integration. For example, the Azure Cosmos DB REST APIs can be integrated with Azure API Management for CRUD operations, eliminating the need for intermediate services like Azure Functions.\u003c/p\u003e\n"}},{"@type":"Question","name":"Is Azure Cosmos DB HIPAA compliant?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eYes, Azure Cosmos DB is HIPAA-compliant. HIPAA establishes requirements for the use, disclosure, and safeguarding of individually identifiable health information. For more information, see the \u003ca href=\"/compliance/regulatory/offering-hipaa-hitech\"\u003eMicrosoft Trust Center\u003c/a\u003e.\u003c/p\u003e\n"}},{"@type":"Question","name":"What are the storage limits of Azure Cosmos DB?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eThere's no limit to the total amount of data that a container can store in Azure Cosmos DB.\u003c/p\u003e\n"}},{"@type":"Question","name":"What are the throughput limits of Azure Cosmos DB?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eThere's no limit to the total amount of throughput that a container can support in Azure Cosmos DB. The key idea is to distribute your workload roughly even among a sufficiently large number of partition keys.\u003c/p\u003e\n"}},{"@type":"Question","name":"Are direct and gateway connectivity modes encrypted?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eYes both modes are always fully encrypted.\u003c/p\u003e\n"}},{"@type":"Question","name":"How much does Azure Cosmos DB cost?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eThe number of provisioned containers, number of hours containers were online, and the provisioned throughput for each container determines Azure Cosmos DB usage charges. For more pricing details, refer to \u003ca href=\"https://azure.microsoft.com/pricing/details/cosmos-db/\"\u003eAzure Cosmos DB pricing\u003c/a\u003e.\u003c/p\u003e\n"}},{"@type":"Question","name":"How can I get extra help with Azure Cosmos DB?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eTo ask a technical question, you can post to one of these two question and answer forums:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"/answers/topics/azure-cosmos-db.html\"\u003eMicrosoft Question \u0026amp; Answers (Q\u0026amp;A)\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://stackoverflow.com/questions/tagged/azure-cosmosdb\"\u003eStack Overflow\u003c/a\u003e. Stack Overflow is best for programming questions. \u003ca href=\"https://stackoverflow.com/help/how-to-ask\"\u003eProvide as many details as possible, making the question clear and answerable\u003c/a\u003e.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eTo fix an issue with your account, file a \u003ca href=\"https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest\"\u003esupport request\u003c/a\u003e in the Azure portal.\u003c/p\u003e\n"}},{"@type":"Question","name":"How do I start developing against Azure Cosmos DB for NoSQL?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eFirst you must sign up for an Azure subscription. Once you sign up for an Azure subscription, you can add an API for NoSQL container to your Azure subscription.\u003c/p\u003e\n\u003cp\u003e\u003ca href=\"sdk-dotnet-v2\"\u003eSoftware development kits (SDKs)\u003c/a\u003e are available for .NET, Python, Node.js, JavaScript, Go, and Java. Developers can also use the \u003ca href=\"/rest/api/cosmos-db/\"\u003eREST API\u003c/a\u003e to interact with Azure Cosmos DB resources from more platforms and languages.\u003c/p\u003e\n"}},{"@type":"Question","name":"Is there Azure Cosmos DB for NoSQL samples to get started?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eCheck out these QuickStart code samples and templates for the API for NoSQL:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"quickstart-dotnet\"\u003e.NET\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"quickstart-python\"\u003ePython\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"quickstart-nodejs\"\u003eNode.js/JavaScript\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"quickstart-java\"\u003eJava/Spring\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"quickstart-go\"\u003eGo\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n"}},{"@type":"Question","name":"Does Azure Cosmos DB for NoSQL support schema-free data?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eYes, the API for NoSQL allows applications to store arbitrary JSON documents as items without schema definitions or hints. The data is immediately available for query with the Azure Cosmos DB for NoSQL query language.\u003c/p\u003e\n"}},{"@type":"Question","name":"Does Azure Cosmos DB for NoSQL support ACID (atomicity, consistency, isolation, durability) transactions?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eYes, the API for NoSQL supports cross-document transactions expressed using either batches in the SDKs or as JavaScript-stored procedures and triggers. Transactions are scoped to a single partition within each container and executed with ACID semantics as \u0026quot;all or nothing,\u0026quot; isolated from other concurrently executing code and user requests. If exceptions occur, the entire transaction is rolled back.\u003c/p\u003e\n"}},{"@type":"Question","name":"How do I create an Azure Cosmos DB for NoSQL database?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eYou can create databases by using one of these tools:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"quickstart-portal#\"\u003eAzure portal\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003eAPI for NoSQL client (data-plane) SDKs\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"quickstart-dotnet\"\u003e.NET\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"quickstart-python\"\u003ePython\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"quickstart-nodejs\"\u003eJavaScript\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"quickstart-java\"\u003eJava\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"quickstart-go\"\u003eGo\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eAPI for NoSQL management (control-plane) SDKs\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"/dotnet/api/overview/azure/resourcemanager.cosmosdb-readme\"\u003e.NET\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"/python/api/overview/azure/mgmt-cosmosdb-readme\"\u003ePython\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"/javascript/api/overview/azure/arm-cosmosdb-readme\"\u003eJavaScript\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"/java/api/overview/azure/resourcemanager-cosmos-readme\"\u003eJava\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/cosmos/armcosmos\"\u003eGo\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eAzure Resource Manager\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"/azure/templates/microsoft.documentdb/databaseaccounts?pivots=deployment-language-bicep\"\u003eJSON template\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"/azure/templates/microsoft.documentdb/databaseaccounts?pivots=deployment-language-arm-template\"\u003eBicep\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"/azure/templates/microsoft.documentdb/databaseaccounts?pivots=deployment-language-terraform\"\u003eTerraform\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"/rest/api/cosmos-db/\"\u003eREST API\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n"}},{"@type":"Question","name":"Can I authenticate to Azure Cosmos DB for NoSQL using my existing Microsoft Entra ID accounts?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eYes! Azure Cosmos DB supports Microsoft Entra authentication to manage the service and its resources (control-plane) and to execute data, operations, and queries (data-plane).\nControl-plane authentication is performed using the \u003ca href=\"\"\u003erole-based access control\u003c/a\u003e feature of Azure. You can use a preconfigured built-in role](../../role-based-access-control/built-in-roles.md) or you can \u003ca href=\"/azure/role-based-access-control/custom-roles\"\u003ecreate a custom role\u003c/a\u003e. With Azure role-based access control, you can manage accounts, databases, containers, and metadata. The control-plane includes operations including, but not limited to these examples.\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eCreating, replacing, or deleting databases - Creating, replacing, or deleting containers - Reading or replacing database throughput - Reading or replacing container throughput\nData-plane authentication uses a custom API for NoSQL-native role-based access control implementation. With this native implementation, you can also use preconfigured or custom roles. With native role-based access control, you can execute queries, manage items, or perform other common operations. The data-plane includes operations including, but not limited to these examples.\u003c/li\u003e\n\u003cli\u003eCreating, replacing, updating, or deleting items - Patching items - Executing queries\u003c/li\u003e\n\u003c/ul\u003e\n"}},{"@type":"Question","name":"Does Azure Cosmos DB for NoSQL support the SQL query language?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eStructured Query Language (SQL) is a language typically used to query relational data. The API for NoSQL has a custom \u003cstrong\u003eNoSQL\u003c/strong\u003e query language derived from SQL. The NoSQL query language includes a subset of the SQL query language typically associated with SQL Server along with various NoSQL-specific enhancements. The NoSQL query language provides rich hierarchical and relational operators and extensibility via JavaScript-based, user-defined functions (UDFs). JSON grammar allows for modeling JSON documents as trees with labeled nodes, which are used by both the Azure Cosmos DB automatic indexing techniques and the SQL query dialect of Azure Cosmos DB. For information about using this query language, see \u003ca href=\"/cosmos-db/query\"\u003eNoSQL Query\u003c/a\u003e.\u003c/p\u003e\n"}},{"@type":"Question","name":"Does Azure Cosmos DB for NoSQL support SQL aggregation functions?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eThe API for NoSQL supports aggregation via aggregate functions such as: \u003ccode\u003eCOUNT\u003c/code\u003e, \u003ccode\u003eMAX\u003c/code\u003e, \u003ccode\u003eAVG\u003c/code\u003e, and \u003ccode\u003eSUM\u003c/code\u003e via the NoSQL query language.\u003c/p\u003e\n"}},{"@type":"Question","name":"How does Azure Cosmos DB for NoSQL provide concurrency?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eThe API for NoSQL supports optimistic concurrency control (OCC) through HTTP entity tags, or \u003cstrong\u003eETags\u003c/strong\u003e. Every API for NoSQL resource has an ETag, and the ETag is set on the server every time a document is updated. The ETag header and the current value are included in all response messages. ETags can be used with the \u003ccode\u003eIf-Match\u003c/code\u003e header to allow the server to decide whether a resource should be updated. The If-Match value is the ETag value to be checked against. If the ETag value matches the server ETag value, the resource is updated. If the ETag is no longer current, the server rejects the operation with an \u0026quot;HTTP 412 Precondition failure\u0026quot; response code. The client then refetches the resource to acquire the current ETag value for the resource. In addition, ETags can be used with the \u003ccode\u003eIf-None-Match\u003c/code\u003e header to determine whether its needed to refetch a resource.\u003c/p\u003e\n\u003cp\u003eMost of the API for NoSQL SDKs includes classes to manage optimistic concurrency control.\u003c/p\u003e\n"}},{"@type":"Question","name":"How can I bulk-insert documents into Azure Cosmos DB for NoSQL?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eUse the bulk import feature in the \u003ca href=\"tutorial-dotnet-bulk-import\"\u003e.NET SDK\u003c/a\u003e or the \u003ca href=\"bulk-executor-java\"\u003eJava SDK\u003c/a\u003e for the API for NoSQL to import large sets of data. This feature optimizes provisioned throughput to import large sets of data.\u003c/p\u003e\n\u003cp\u003eAlternatively, use \u003ca href=\"tutorial-spark-connector\"\u003eApache Spark\u003c/a\u003e to import data at scale using Python or Scala.\u003c/p\u003e\n"}},{"@type":"Question","name":"Does Azure Cosmos DB for NoSQL support resource link caching?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eYes, because Azure Cosmos DB for NoSQL is a RESTful service, resource links are immutable and can be cached. API for NoSQL clients can specify an \u0026quot;If-None-Match\u0026quot; header for reads against any resource-like document or container and then update their local copies after the server version changes.\u003c/p\u003e\n"}},{"@type":"Question","name":"Is a local instance of Azure Cosmos DB for NoSQL available?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eYes. The \u003ca href=\"emulator\"\u003eAzure Cosmos DB emulator\u003c/a\u003e provides a high-fidelity emulation of the Azure Cosmos DB service. It supports functionality that's identical to Azure Cosmos DB across various APIs. This functionality includes support for creating items, querying items, provisioning containers, and scaling containers. You can develop and test applications by using the emulator's endpoints. You can then deploy the applications to Azure at a global scale by changing the connection string from the emulator to the live service.\u003c/p\u003e\n"}},{"@type":"Question","name":"Why are long floating-point values in an Azure Cosmos DB for NoSQL item rounded when using the Data Explorer in the portal?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eThis Data Explorer limitation is a limitation of JavaScript. JavaScript uses double-precision floating-point format numbers as specified in Institute of Electrical and Electronics Engineers (IEEE) 754. This data type can safely hold numbers between -(2\u003csup\u003e53\u003c/sup\u003e - 1) and 2\u003csup\u003e53\u003c/sup\u003e-1 (that is, 9007199254740991) only.\u003c/p\u003e\n"}},{"@type":"Question","name":"What is role-based access control (RBAC)?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eRole-based access control (RBAC) is a method of regulating access to computer or network resources based on the roles of individual users within an enterprise. In Azure Cosmos DB, RBAC is used to grant data-plane access to users and applications. For more information about various terms in role-based access control, see the \u003ca href=\"how-to-connect-role-based-access-control\"\u003esecurity glossary\u003c/a\u003e.\u003c/p\u003e\n"}},{"@type":"Question","name":"How do I enable data-plane role-based access control for Azure Cosmos DB for NoSQL?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eUse the Azure Cosmos DB native role-based access control (RBAC) feature to grant data-plane access to users and applications. For more information, see \u003ca href=\"how-to-connect-role-based-access-control\"\u003eGrant data-plane role-based access\u003c/a\u003e.\u003c/p\u003e\n"}},{"@type":"Question","name":"Which Azure Cosmos DB APIs support data-plane role-based access control?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eAs of now, only the NoSQL API is supported.\u003c/p\u003e\n"}},{"@type":"Question","name":"Is it possible to manage role definitions and role assignments from the Azure portal?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eAzure portal support for role management isn't available yet.\u003c/p\u003e\n"}},{"@type":"Question","name":"Which SDKs in Azure Cosmos DB API for NoSQL support role-based access control?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eThe .NET V3, Java V4, JavaScript V3, and Python V4.3+ SDKs are currently supported.\u003c/p\u003e\n"}},{"@type":"Question","name":"Is the Microsoft Entra token automatically refreshed by the Azure Cosmos DB SDKs when it expires?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eYes.\u003c/p\u003e\n"}},{"@type":"Question","name":"Is it possible to disable the usage of the account primary/secondary keys when using role-based access control?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eYes. For more information, see \u003ca href=\"how-to-connect-role-based-access-control#disable-key-based-authentication\"\u003edisable key-based authentication\u003c/a\u003e.\u003c/p\u003e\n"}},{"@type":"Question","name":"How do I migrate an Azure Cosmos DB account to a different resource group or to a different subscription?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eThe general guideline to migrate a Cosmos DB account to a different resource group or subscription is described in the \u003ca href=\"/azure/azure-resource-manager/management/move-resource-group-and-subscription\"\u003emoving Azure resources to a new resource group or subscription\u003c/a\u003e article.\u003c/p\u003e\n\u003cp\u003eAfter you successfully move the Azure Cosmos DB account per the general guideline, any identities (System-Assigned or User-Assigned) associated with the account must be \u003ca href=\"/azure/cosmos-db/how-to-setup-managed-identity\"\u003ereassigned\u003c/a\u003e. This reassignment is required in order to ensure that these identities continue to have the necessary permissions to access the Key Vault key.\u003c/p\u003e\n\u003cdiv class=\"WARNING\"\u003e\n\u003cp\u003eWarning\u003c/p\u003e\n\u003cp\u003eIf your Cosmos DB account has Customer Managed Keys enabled, you can only migrate the account to a different resource group or subscription if it's in an Active state. Accounts in a Revoked state can't be migrated.\u003c/p\u003e\n\u003c/div\u003e\n"}},{"@type":"Question","name":"How do I migrate an Azure Cosmos DB account to a different tenant?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eIf your Cosmos DB account has Customer Managed Keys enabled, you can only migrate the account if it's a cross-tenant customer-managed key account. For more information, see the guide on \u003ca href=\"/azure/cosmos-db/how-to-setup-cross-tenant-customer-managed-keys?tabs=azure-portal\"\u003econfiguring cross-tenant customer-managed keys for your Azure Cosmos DB account with Azure Key Vault\u003c/a\u003e.\u003c/p\u003e\n\u003cdiv class=\"WARNING\"\u003e\n\u003cp\u003eWarning\u003c/p\u003e\n\u003cp\u003eAfter migrating, it's crucial to keep the Azure Cosmos DB account and the Azure Key Vault in separate tenants to preserve the original cross-tenant relationship. Ensure the Key Vault key remains in place until the Cosmos DB account migration is complete.\u003c/p\u003e\n\u003c/div\u003e\n"}},{"@type":"Question","name":"What should I expect during and after migration?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eWhen migrating from periodic mode to continuous mode, you can't run any control plane operations that performs account level updates or deletes. For example, operations such as adding or removing regions, account failover, updating backup policy etc. can't be run while the migration is in progress. The time for migration depends on the size of data and the number of regions in your account. Restore action on the migrated accounts only succeeds from the time when migration successfully completes.\u003c/p\u003e\n\u003cp\u003eYou can restore your account after the migration completes. If the migration completes at 1:00 PM PST, you can do point in time restore starting from 1:00 PM PST.\u003c/p\u003e\n"}},{"@type":"Question","name":"Does the migration only happen at the account level?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eYes.\u003c/p\u003e\n"}},{"@type":"Question","name":"Which accounts can be targeted for backup migration for continuous backup?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eAPI for NoSQL, API for Table, Gremlin API, and API for MongoDB accounts that use shared, provisioned, or autoscale provisioned throughput support migration to continuous backup.\u003c/p\u003e\n\u003cp\u003eAccounts with Azure Synapse Link enabled, or that had Azure Synapse Link disabled for one or more collections, can't migrate to continuous backup.\u003c/p\u003e\n\u003cdiv class=\"IMPORTANT\"\u003e\n\u003cp\u003eImportant\u003c/p\u003e\n\u003cp\u003eSynapse Link for Cosmos DB is no longer supported for new projects. Don't use this feature.\u003c/p\u003e\n\u003cp\u003ePlease use Azure Cosmos DB Mirroring for Microsoft Fabric which is now GA. Mirroring provides the same zero-ETL benefits and is fully integrated with Microsoft Fabric. Learn more at \u003ca href=\"/fabric/database/mirrored-database/azure-cosmos-db\"\u003eCosmos DB Mirroring Overview\u003c/a\u003e.\u003c/p\u003e\n\u003c/div\u003e\n"}},{"@type":"Question","name":"Does the migration take time? What is the typical time?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eMigration takes a varying amount of time that largely depends on the size of data and the number of regions in your account. You can get the migration status using Azure CLI or PowerShell commands. For large accounts with tens of terabytes of data, the migration can take up to few days to complete.\u003c/p\u003e\n"}},{"@type":"Question","name":"Does the migration for multi region write(mrw) account with periodic backup to multi region write with continuous backup take time?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eYes, this migration takes time that largely depends on need to wait for all old tentative writes to get drained during continuous backup migration. You can get the migration status using Azure CLI or PowerShell commands. For large accounts with tens of terabytes of data, the migration can take up to few days to complete.\u003c/p\u003e\n"}},{"@type":"Question","name":"Does the migration cause any availability downtime?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eNo, the migration operation takes place in the background. So, client requests aren't affected. However, we need to perform some backend operations during the migration, and it could take extra time if the account is under heavy load.\u003c/p\u003e\n"}},{"@type":"Question","name":"What happens if the migration fails? Do I still get periodic backups or continuous backups?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eOnce the migration process is started, the account is enabled in continuous mode. If the migration fails, you must initiate migration again until it succeeds.\u003c/p\u003e\n"}},{"@type":"Question","name":"How do I perform a restore to a timestamp before/during/after the migration?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eAssume that you started migration at \u003ccode\u003et1\u003c/code\u003e and finished at \u003ccode\u003et5\u003c/code\u003e, you can't use a restore timestamp between \u003ccode\u003et1\u003c/code\u003e and \u003ccode\u003et5\u003c/code\u003e.\nAlso assume that your account is now in continuous mode. To restore to a time after \u003ccode\u003et5\u003c/code\u003e, perform the restore using Azure portal, CLI, or PowerShell like normally with a continuous account. This self-service restore request can only be done after the migration is complete.\nTo restore to a time before \u003ccode\u003et1\u003c/code\u003e, you can open a support ticket like you normally would with a periodic backup account. After the migration, you have up to 30 days to perform the periodic restore. During these 30 days, you can restore based on the backup retention/interval of your account before the migration. For example, if the backup was configured to retain 24 copies at 1 hour intervals, then you can restore anytime between \u003ccode\u003e(t1 – 24 hours)\u003c/code\u003e and \u003ccode\u003et1\u003c/code\u003e.\u003c/p\u003e\n"}},{"@type":"Question","name":"Which account level control plane operations are blocked during migration?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eOperations such as add/remove region, failover, changing backup policy, and any throughput changes resulting in data movement are blocked during migration.\u003c/p\u003e\n"}},{"@type":"Question","name":"If the migration fails for some underlying issue, does it block the control plane operation until you retry and complete migration successfully?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eFailed migration doesn't block any control plane operations. If migration fails, retry until it succeeds before performing other control plane operations.\u003c/p\u003e\n"}},{"@type":"Question","name":"Is it possible to cancel the migration?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eIt isn't possible to cancel the migration because migrations aren't a reversible operation. Via support call team can cancel temporarily and let the offline operations continue. But one can't move back to periodic backup state.\u003c/p\u003e\n"}},{"@type":"Question","name":"Is there a tool that can help estimate migration time based on the data usage and number of regions?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eThere isn't a tool to estimate time. Our testing and scale runs indicate that an account with 1 TB of data takes roughly 90 minutes.\nFor multi-region accounts, calculate the total data size as \u003ccode\u003eNumber_of_regions * Data_in_single_region\u003c/code\u003e.\u003c/p\u003e\n"}},{"@type":"Question","name":"Since the continuous backup mode is now GA, do you still recommend restoring a copy of your account? Would you recommend trying migration on the copy before deciding to migrate the production account?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eTest the continuous backup mode feature to verify it works as expected before migrating production accounts. Migration is a one-way operation and can't be reversed.\u003c/p\u003e\n"}},{"@type":"Question","name":"Is a free account available?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eYes, you can sign up for a \u003ca href=\"free-tier\"\u003efree database account\u003c/a\u003e with 1,000 RU/sec and 25GB for free.\u003c/p\u003e\n\u003cp\u003eIf you're new to Azure, you can sign up for an \u003ca href=\"https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn\"\u003eAzure free account\u003c/a\u003e, which gives you 30 days and a credit to try all the Azure services. If you have a Visual Studio subscription, you're also eligible for \u003ca href=\"https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/\"\u003efree Azure credits\u003c/a\u003e to use on any Azure service.\u003c/p\u003e\n\u003cp\u003eYou can also use the \u003ca href=\"emulator\"\u003eAzure Cosmos DB Emulator\u003c/a\u003e to develop and test your application locally for free, without creating an Azure subscription. When you're satisfied with how your application is working in the Azure Cosmos DB Emulator, you can switch to using an Azure Cosmos DB account in the cloud.\u003c/p\u003e\n"}},{"@type":"Question","name":"How do I sign up for Azure Cosmos DB?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eAzure Cosmos DB is available in the Azure portal. First, sign up for an Azure subscription. After you sign up, add an Azure Cosmos DB account to your Azure subscription.\u003c/p\u003e\n"}},{"@type":"Question","name":"How do I authenticate to Azure Cosmos DB?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eUse Microsoft Entra ID to authenticate to Azure Cosmos DB for all APIs that support this method of authentication. For APIs that don't support Microsoft Entra ID authentication, use the keys with caution. Ensure that keys for production accounts are stored securely, such as in Azure Key Vault.\u003c/p\u003e\n"}},{"@type":"Question","name":"Where is Azure Cosmos DB available?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eFor information about regional availability for Azure Cosmos DB, see \u003ca href=\"https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cosmos-db\"\u003eAzure products available by region\u003c/a\u003e. You can account your database to one or more of these regions.\u003c/p\u003e\n\u003cp\u003eThe software development kits (SDKs) for Azure Cosmos DB allow configuration of the regions they use for connections. In most SDKs, the `PreferredLocations`` value is set to any of the Azure regions in which Azure Cosmos DB is available.\u003c/p\u003e\n"}},{"@type":"Question","name":"Is there anything I should be aware of when distributing data across the world via the Azure datacenters?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eAzure Cosmos DB is present across all Azure regions, as specified on the \u003ca href=\"https://azure.microsoft.com/regions/\"\u003eAzure regions\u003c/a\u003e page. Because it's a core Azure service, every new datacenter has an Azure Cosmos DB presence.\u003c/p\u003e\n\u003cp\u003eWhen you set a region, remember that Azure Cosmos DB respects sovereign and government clouds. For example, you can't replicate data out of a \u003ca href=\"https://azure.microsoft.com/global-infrastructure/\"\u003esovereign region\u003c/a\u003e. Similarly, you can't enable replication into other sovereign locations from an outside account.\u003c/p\u003e\n"}},{"@type":"Question","name":"Is it possible to switch between container-level and database-level throughput provisioning?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eContainer and database-level throughput provisioning are separate offerings and switching between either of these offerings require migrating data from source to destination. You need to create a new database or container and then migrate data using \u003ca href=\"bulk-executor-overview\"\u003ebulk executor library\u003c/a\u003e or \u003ca href=\"/azure/data-factory/connector-azure-cosmos-db\"\u003eAzure Data Factory\u003c/a\u003e.\u003c/p\u003e\n"}},{"@type":"Question","name":"Does Azure Cosmos DB support time series analysis?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eYes, Azure Cosmos DB supports time series analysis. You can use the change feed to build aggregated views over time series data. You can extend this approach by using Apache Spark streaming or another stream data processor.\u003c/p\u003e\n"}},{"@type":"Question","name":"What are the Azure Cosmos DB service quotas and throughput limits?\n","acceptedAnswer":{"@type":"Answer","text":"\u003cp\u003eFor information about service quotas and throughput limits, see \u003ca href=\"concepts-limits\"\u003eservice quotas\u003c/a\u003e and \u003ca href=\"set-throughput#comparison-of-models\"\u003ethroughout limits\u003c/a\u003e.\u003c/p\u003e\n"}}]}
+</script>
+</div>
+					
+		<div id="ms--inline-notifications" class="margin-block-xs" data-bi-name="inline-notification"></div>
+	 
+		<div id="assertive-live-region" role="alert" aria-live="assertive" class="visually-hidden" aria-relevant="additions" aria-atomic="true"></div>
+		<div id="polite-live-region" role="status" aria-live="polite" class="visually-hidden" aria-relevant="additions" aria-atomic="true"></div>
+	
+					
+		<!-- feedback section -->
+		<section id="site-user-feedback-footer" class="font-size-sm margin-top-md display-none-print display-none-desktop" data-test-id="site-user-feedback-footer" data-bi-name="site-feedback-section">
+			<hr class="hr">
+			<h2 id="ms--feedback" class="title is-3">Feedback</h2>
+			<div class="display-flex flex-wrap-wrap align-items-center">
+				<p class="font-weight-semibold margin-xxs margin-left-none">
+					Was this page helpful?
+				</p>
+				<div class="buttons">
+					<button class="thumb-rating-button like button button-primary button-sm" data-test-id="footer-rating-yes" data-binary-rating-response="rating-yes" type="button" title="This article is helpful" data-bi-name="button-rating-yes" aria-pressed="false">
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-like"></span>
+						</span>
+						<span>Yes</span>
+					</button>
+					<button class="thumb-rating-button dislike button button-primary button-sm" id="standard-rating-no-button" data-test-id="footer-rating-no" data-binary-rating-response="rating-no" type="button" title="This article is not helpful" data-bi-name="button-rating-no" aria-pressed="false">
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-dislike"></span>
+						</span>
+						<span>No</span>
+					</button>
+					<details class="popover popover-top" id="mobile-help-popover" data-test-id="footer-feedback-popover" hidden="">
+						<summary class="thumb-rating-button dislike button button-primary button-sm" data-test-id="details-footer-rating-no" data-binary-rating-response="rating-no" title="This article is not helpful" data-bi-name="button-rating-no" aria-pressed="false" data-bi-an="feedback-unhelpful-popover">
+							<span class="icon" aria-hidden="true">
+								<span class="docon docon-dislike"></span>
+							</span>
+							<span>No</span>
+						</summary>
+						<div class="popover-content width-200 width-300-tablet" role="dialog" aria-labelledby="popover-heading" aria-describedby="popover-description">
+							<p id="popover-heading" class="font-size-lg margin-bottom-xxs font-weight-semibold">
+								Need help with this topic?
+							</p>
+							<p id="popover-description" class="font-size-sm margin-bottom-xs">
+								Want to try using Ask Learn to clarify or guide you through this topic?
+							</p>
+							
+		<div class="buttons flex-direction-row flex-wrap justify-content-center gap-xxs">
+			<div>
+		<button class="button button-sm border inner-focus display-none margin-right-xxs" data-bi-name="ask-learn-assistant-entry-troubleshoot" data-test-id="ask-learn-assistant-modal-entry-mobile-feedback" data-ask-learn-modal-entry-feedback="" data-bi-an="feedback-unhelpful-popover" type="button" style="min-width: max-content;" aria-expanded="false" aria-label="Ask Learn" hidden="">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button class="button button-sm display-inline-flex display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn margin-right-xxs" data-bi-name="ask-learn-assistant-entry-troubleshoot" data-bi-an="feedback-unhelpful-popover" data-test-id="ask-learn-assistant-modal-entry-tablet-feedback" data-ask-learn-modal-entry-feedback="" type="button" style="min-width: max-content;" aria-expanded="false" hidden="">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn margin-right-xxs" data-bi-name="ask-learn-assistant-entry-troubleshoot" data-bi-an="feedback-unhelpful-popover" data-test-id="ask-learn-assistant-flyout-entry-feedback" data-ask-learn-flyout-entry-show-only="" data-flyout-button="toggle" type="button" style="min-width: max-content;" aria-expanded="false" aria-controls="ask-learn-flyout" hidden="">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	</div>
+			<button type="button" class="button button-sm margin-right-xxs" data-help-option="suggest-fix" data-bi-name="feedback-suggest" data-bi-an="feedback-unhelpful-popover" data-test-id="suggest-fix">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-feedback"></span>
+				</span>
+				<span> Suggest a fix? </span>
+			</button>
+		</div>
+	
+						</div>
+					</details>
+				</div>
+			</div>
+		</section>
+		<!-- end feedback section -->
+	
+				</div>
+				
+		<div id="ms--additional-resources-mobile" class="display-none-print">
+			<hr class="hr">
+			<h2 id="ms--additional-resources-mobile-heading" class="title is-3">
+				Additional resources
+			</h2>
+			
+		<section id="right-rail-recommendations-mobile" class="" data-bi-name="recommendations" hidden=""></section>
+	 
+		<section id="right-rail-training-mobile" class="" data-bi-name="learning-resource-card" hidden=""></section>
+	 
+		<section id="right-rail-events-mobile" class="" data-bi-name="events-card"><!---->
+		
+		<article class="margin-top-md margin-top-sm-desktop">
+			
+		<p class="font-weight-semibold font-size-md display-flex align-items-center">
+			<span class="icon margin-right-xxs" aria-hidden="true">
+				<span class="docon docon-special-event"></span>
+			</span>
+			Events
+		</p>
+	
+			<div class="margin-top-xs ">
+				
+		
+		  
+				<p class="line-clamp-3">
+					<a class="display-block inner-focus font-weight-semibold font-size-sm has-line-height-reset " href="https://aka.ms/AIAppsandAgentsLearn">
+						AI Apps &amp; Agents Dev Days
+					</a>
+				</p>
+		   
+		<p class="font-size-sm font-weight-semibold has-line-height-reset margin-top-xs">
+			Apr 27, 6 PM - Apr 27, 6 PM
+		</p>
+		
+		<p class="font-size-sm has-line-height-reset color-text-subtle margin-top-xxs ">
+			Experiment with what's next in AI-driven apps and agent design
+		</p>
+	
+		<a class="font-size-sm font-weight-semibold" href="https://aka.ms/AIAppsandAgentsLearn">
+			Register now
+		</a>
+	
+			</div>
+			
+		</article>
+	<!----></section>
+	
+		</div>
+	 
+			</div>
+			
+		<div id="action-panel" role="region" aria-label="Action Panel" class="action-panel" tabindex="-1"></div>
+	
+		
+				</main>
+				<aside id="layout-body-aside" class="layout-body-aside  " data-bi-name="aside" aria-label="Additional resources">
+					
+		<div id="ms--additional-resources" class="right-container padding-sm display-none display-block-desktop height-full" data-bi-name="pageactions">
+			<div id="affixed-right-container" data-bi-name="right-column" class="position-sticky" style="top: 8px; max-height: 15336px; height: calc(-272px + 100vh);">
+				
+		<nav id="side-doc-outline" class="doc-outline border-bottom padding-bottom-xs margin-bottom-xs" data-bi-name="intopic toc" aria-label="In this article" style="overflow: auto; max-height: calc(100% - 80px);"><!---->
+			<h2 class="title is-6 margin-top-xxs margin-bottom-xs">
+				In this article
+			</h2>
+			
+		<ol id="right-rail-in-this-article-list" class="padding-right-xxs">
+			<!---->
+					<li class="border-left-md padding-left-xxs border-color-primary">
+						<a href="#general" class="font-weight-semibold color-text" aria-current="true"><!---->General<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs ">
+						<a href="#api-for-nosql" class="color-text-subtle"><!---->API for NoSQL<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs ">
+						<a href="#security" class="color-text-subtle"><!---->Security<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs ">
+						<a href="#migrating-azure-cosmos-db-accounts-across-different-resource-groups--subscriptions--and-tenants" class="color-text-subtle"><!---->Migrating Azure Cosmos DB Accounts across different resource groups, subscriptions, and tenants<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs ">
+						<a href="#migrating-to-continuous-backup-mode" class="color-text-subtle"><!---->Migrating to continuous backup mode<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs ">
+						<a href="#try-azure-cosmos-db-free" class="color-text-subtle"><!---->Try Azure Cosmos DB free<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs ">
+						<a href="#get-started-with-azure-cosmos-db" class="color-text-subtle"><!---->Get started with Azure Cosmos DB<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs ">
+						<a href="#related-content" class="color-text-subtle"><!---->Related content<!----></a>
+					</li>
+				<!---->
+		</ol>
+	
+		<!----></nav>
+	
+				<!-- Feedback -->
+				
+		<section id="ms--site-user-feedback-right-rail" class="font-size-sm display-none-print" data-test-id="site-user-feedback-right-rail" data-bi-name="site-feedback-right-rail">
+			<p class="font-weight-semibold margin-bottom-xs">Was this page helpful?</p>
+			<div class="buttons">
+				<button class="thumb-rating-button like button button-primary button-sm" data-test-id="right-rail-rating-yes" data-binary-rating-response="rating-yes" type="button" title="This article is helpful" data-bi-name="button-rating-yes" aria-pressed="false">
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-like"></span>
+					</span>
+					<span>Yes</span>
+				</button>
+				<button class="thumb-rating-button dislike button button-primary button-sm" id="right-rail-no-button" data-test-id="right-rail-rating-no" data-binary-rating-response="rating-no" type="button" title="This article is not helpful" data-bi-name="button-rating-no" aria-pressed="false">
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-dislike"></span>
+					</span>
+					<span>No</span>
+				</button>
+				<details class="popover popover-right" id="help-popover" data-test-id="feedback-popover" hidden="">
+					<summary tabindex="0" class="thumb-rating-button dislike button button-primary button-sm" data-test-id="details-right-rail-rating-no" data-binary-rating-response="rating-no" title="This article is not helpful" data-bi-name="button-rating-no" aria-pressed="false" data-bi-an="feedback-unhelpful-popover">
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-dislike"></span>
+						</span>
+						<span>No</span>
+					</summary>
+					<div class="popover-content width-200 width-300-tablet" role="dialog" aria-labelledby="popover-heading" aria-describedby="popover-description">
+						<p id="popover-heading-right-rail" class="font-size-lg margin-bottom-xxs font-weight-semibold">
+							Need help with this topic?
+						</p>
+						<p id="popover-description-right-rail" class="font-size-sm margin-bottom-xs">
+							Want to try using Ask Learn to clarify or guide you through this topic?
+						</p>
+						
+		<div class="buttons flex-direction-row flex-wrap justify-content-center gap-xxs">
+			<div>
+		<button class="button button-sm border inner-focus display-none margin-right-xxs" data-bi-name="ask-learn-assistant-entry-troubleshoot" data-test-id="ask-learn-assistant-modal-entry-mobile-feedback" data-ask-learn-modal-entry-feedback="" data-bi-an="feedback-unhelpful-popover" type="button" style="min-width: max-content;" aria-expanded="false" aria-label="Ask Learn" hidden="">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button class="button button-sm display-inline-flex display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn margin-right-xxs" data-bi-name="ask-learn-assistant-entry-troubleshoot" data-bi-an="feedback-unhelpful-popover" data-test-id="ask-learn-assistant-modal-entry-tablet-feedback" data-ask-learn-modal-entry-feedback="" type="button" style="min-width: max-content;" aria-expanded="false" hidden="">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn margin-right-xxs" data-bi-name="ask-learn-assistant-entry-troubleshoot" data-bi-an="feedback-unhelpful-popover" data-test-id="ask-learn-assistant-flyout-entry-feedback" data-ask-learn-flyout-entry-show-only="" data-flyout-button="toggle" type="button" style="min-width: max-content;" aria-expanded="false" aria-controls="ask-learn-flyout" hidden="">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	</div>
+			<button type="button" class="button button-sm margin-right-xxs" data-help-option="suggest-fix" data-bi-name="feedback-suggest" data-bi-an="feedback-unhelpful-popover" data-test-id="suggest-fix">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-feedback"></span>
+				</span>
+				<span> Suggest a fix? </span>
+			</button>
+		</div>
+	
+					</div>
+				</details>
+			</div>
+		</section>
+	
+			</div>
+		</div>
+	
+			  </aside> <section id="layout-body-flyout" class="layout-body-flyout " data-bi-name="flyout">
+					 <div class="height-full border-left background-color-body-medium" id="ask-learn-flyout"><!---->
+		<article class="chat-container  position-sticky top-0 " data-chat-container-name="ask-learn-flyout" data-test-id="chat-login-ask-learn-flyout">
+			<div class="chat-container-header">
+				<header class="display-flex justify-content-center align-items-center padding-xs">
+					<h2 class="font-size-md padding-right-xxs"><!---->
+		<div class="font-weight-semibold">
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span><!---->Ask Learn<!----></span>
+		</div>
+	<!----></h2>
+					<span class="badge badge-filled badge-sm"><!---->Preview<!----></span>
+
+					<div class="margin-left-auto display-flex flex-wrap-no-wrap align-items-stretch">
+						
+		<button type="button" class="button button-clear inner-focus modal-close" data-flyout-button="close" data-autofocus="" data-bi-an="ask-learn-assistant" data-bi-name="close-chat" aria-label="Close">
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-navigate-close"></span>
+			</span>
+		</button>
+	
+					</div>
+				</header>
+			</div>
+			<div class="text-align-center padding-top-xl padding-inline-md">
+				<p class="margin-bottom-lg"><!---->Ask Learn is an AI assistant that can answer questions, clarify concepts, and define terms using trusted Microsoft documentation.<!----></p>
+				<p class="margin-bottom-lg"><!---->Please sign in to use Ask Learn.<!----></p>
+				<a href="#" class="docs-sign-in button button-primary button-filled button-sm">
+					Sign in
+				</a>
+			</div>
+		</article>
+	<!----></div>
+			  </section> <div class="layout-body-footer " data-bi-name="layout-footer">
+		<footer id="footer" data-test-id="footer" data-bi-name="footer" class="footer-layout has-padding has-default-focus border-top  uhf-container" role="contentinfo">
+			<div class="display-flex gap-xs flex-wrap-wrap is-full-height padding-right-lg-desktop">
+				
+		<a data-mscc-ic="false" href="/en-us/locale?target=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Fcosmos-db%2Ffaq" data-bi-name="select-locale" class="locale-selector-link flex-shrink-0 button button-sm button-clear external-link-indicator" id="" title="" aria-label="Content language selector. Currently set to English (United States)."><span class="icon" aria-hidden="true"><span class="docon docon-world"></span></span><span class="local-selector-link-text">English (United States)</span></a>
+	 <div class="ccpa-privacy-link" data-ccpa-privacy-link="">
+		
+		<a data-mscc-ic="false" href="https://aka.ms/yourcaliforniaprivacychoices" data-bi-name="your-privacy-choices" class="button button-sm button-clear flex-shrink-0 external-link-indicator" id="" title="">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 14" xml:space="preserve" height="16" width="43" aria-hidden="true" focusable="false">
+			<path d="M7.4 12.8h6.8l3.1-11.6H7.4C4.2 1.2 1.6 3.8 1.6 7s2.6 5.8 5.8 5.8z" style="fill-rule:evenodd;clip-rule:evenodd;fill:#fff"></path>
+			<path d="M22.6 0H7.4c-3.9 0-7 3.1-7 7s3.1 7 7 7h15.2c3.9 0 7-3.1 7-7s-3.2-7-7-7zm-21 7c0-3.2 2.6-5.8 5.8-5.8h9.9l-3.1 11.6H7.4c-3.2 0-5.8-2.6-5.8-5.8z" style="fill-rule:evenodd;clip-rule:evenodd;fill:#06f"></path>
+			<path d="M24.6 4c.2.2.2.6 0 .8L22.5 7l2.2 2.2c.2.2.2.6 0 .8-.2.2-.6.2-.8 0l-2.2-2.2-2.2 2.2c-.2.2-.6.2-.8 0-.2-.2-.2-.6 0-.8L20.8 7l-2.2-2.2c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0l2.2 2.2L23.8 4c.2-.2.6-.2.8 0z" style="fill:#fff"></path>
+			<path d="M12.7 4.1c.2.2.3.6.1.8L8.6 9.8c-.1.1-.2.2-.3.2-.2.1-.5.1-.7-.1L5.4 7.7c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0L8 8.6l3.8-4.5c.2-.2.6-.2.9 0z" style="fill:#06f"></path>
+		</svg>
+	
+			<span>Your Privacy Choices</span></a>
+	
+	</div>
+				<div class="flex-shrink-0">
+		<div class="dropdown has-caret-up">
+			<button data-test-id="theme-selector-button" class="dropdown-trigger button button-clear button-sm inner-focus theme-dropdown-trigger" aria-controls="{{ themeMenuId }}" aria-expanded="false" title="Theme" data-bi-name="theme">
+				<span class="icon" aria-hidden="true"><span class="docon docon-sun"></span></span>
+				<span>Theme</span>
+				<span class="icon expanded-indicator" aria-hidden="true">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<div class="dropdown-menu" id="{{ themeMenuId }}" role="menu">
+				<ul class="theme-selector padding-xxs" data-test-id="theme-dropdown-menu">
+					<li class="theme display-block">
+						<button class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left is-selected" data-theme-to="light" aria-pressed="true">
+							<span class="theme-light margin-right-xxs">
+								<span class="theme-selector-icon border display-inline-block has-body-background" aria-hidden="true">
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background"></rect>
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary"></rect>
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary"></rect>
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary"></rect>
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary"></rect>
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary"></rect>
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> Light </span>
+						</button>
+					</li>
+					<li class="theme display-block">
+						<button class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left" data-theme-to="dark" aria-pressed="false">
+							<span class="theme-dark margin-right-xxs">
+								<span class="border theme-selector-icon display-inline-block has-body-background" aria-hidden="true">
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background"></rect>
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary"></rect>
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary"></rect>
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary"></rect>
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary"></rect>
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary"></rect>
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> Dark </span>
+						</button>
+					</li>
+					<li class="theme display-block">
+						<button class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left" data-theme-to="high-contrast" aria-pressed="false">
+							<span class="theme-high-contrast margin-right-xxs">
+								<span class="border theme-selector-icon display-inline-block has-body-background" aria-hidden="true">
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background"></rect>
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary"></rect>
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary"></rect>
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary"></rect>
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary"></rect>
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary"></rect>
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> High contrast </span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+			</div>
+			<ul class="links" data-bi-name="footerlinks">
+				<li class="manage-cookies-holder" hidden=""></li>
+				<li>
+		
+		<a data-mscc-ic="false" href="https://learn.microsoft.com/en-us/principles-for-ai-generated-content" data-bi-name="aiDisclaimer" class=" external-link-indicator" id="" title="">AI Disclaimer</a>
+	
+	</li><li>
+		
+		<a data-mscc-ic="false" href="https://learn.microsoft.com/en-us/previous-versions/" data-bi-name="archivelink" class=" external-link-indicator" id="" title="">Previous Versions</a>
+	
+	</li> <li>
+		
+		<a data-mscc-ic="false" href="https://techcommunity.microsoft.com/t5/microsoft-learn-blog/bg-p/MicrosoftLearnBlog" data-bi-name="bloglink" class=" external-link-indicator" id="" title="">Blog</a>
+	
+	</li> <li>
+		
+		<a data-mscc-ic="false" href="https://learn.microsoft.com/en-us/contribute" data-bi-name="contributorGuide" class=" external-link-indicator" id="" title="">Contribute</a>
+	
+	</li><li>
+		
+		<a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-bi-name="privacy" class=" external-link-indicator" id="" title="">Privacy</a>
+	
+	</li><li>
+		
+		<a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?linkid=2259814" data-bi-name="consumer-health-privacy" class=" external-link-indicator" id="" title="">Consumer Health Privacy</a>
+	
+	</li><li>
+		
+		<a data-mscc-ic="false" href="https://learn.microsoft.com/en-us/legal/termsofuse" data-bi-name="termsofuse" class=" external-link-indicator" id="" title="">Terms of Use</a>
+	
+	</li><li>
+		
+		<a data-mscc-ic="false" href="https://www.microsoft.com/legal/intellectualproperty/Trademarks/" data-bi-name="trademarks" class=" external-link-indicator" id="" title="">Trademarks</a>
+	
+	</li>
+				<li>© Microsoft 2026</li>
+			</ul>
+		</footer>
+	
+			
+		</div></body></html>

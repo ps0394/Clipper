@@ -1,0 +1,136 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: MongoDB Search Overview
+Document URL: https://www.mongodb.com/docs/atlas/atlas-search/
+Document profile: landing
+
+Document text:
+---
+MongoDB Search is an embedded full-text search that gives you a seamless,
+scalable experience for building relevance-based app features
+and eliminates the need to run a separate search system
+alongside your database.
+You can use MongoDB Search for fine-grained text indexing and querying of
+data on your cluster. MongoDB Search provides several kinds of
+
+text analyzers
+, a rich
+
+query language
+ to create complex search
+logic, customizable score-based results ranking, and advanced search
+features for your applications like autocomplete, pagination, and
+faceting.
+Get Started with MongoDB Search
+The following concepts form the basis of MongoDB Search and are essential to
+optimize your application.
+Search queries consult a search index to return a set of results.
+Search queries differ from traditional database queries, as they
+meet more general information needs. Where a database query must
+follow a strict syntax, you can use search queries for simple text
+matching. You can also search for similar phrases, number or date
+ranges, and regular expressions or wildcards.
+MongoDB Search queries take the form of an 
+aggregation pipeline stage
+. MongoDB Search provides 
+$search
+ and
+
+$searchMeta
+ stages, which you can use with other
+
+aggregation pipeline stages
+ in your query
+pipeline. MongoDB Search provides query 
+operators
+ and
+
+collectors
+ that you can use inside these
+aggregation pipeline stages.
+To learn more, see 
+Queries and Indexes.
+In the context of search, an 
+index
+ is a data structure that
+categorizes data in an easily searchable format. Search indexes enable
+faster retrieval of documents that contain a given term without having
+to scan the entire collection. While both MongoDB Search indexes and
+
+MongoDB Indexes
+ make data retrieval faster,
+they differ. Like the index in the back of a book, a search index
+is a mapping between terms and the documents that contain those
+terms. Search indexes also contain other relevant metadata, such as
+the positions of terms in documents.
+You can create a MongoDB Search index on a single field or on multiple fields by
+using 
+static mappings
+. Alternatively,
+you can enable 
+dynamic mappings
+ to
+automatically index all the dynamically indexable fields in your
+documents. You can create MongoDB Search indexes on polymorphic data and embedded
+documents, or for specific use-cases like search-as-you-type or faceted
+search.
+To learn more, see 
+Supported Clients.
+When you create a search index, Atlas Search transforms your data
+into a sequence of 
+tokens
+ or 
+terms
+. An 
+analyzer
+ facilitates
+this process through steps including:
+Tokenization
+: Breaks words in a string into indexable tokens,
+such as splitting a sentence by whitespace and punctuation.
+Normalization
+: Organizes data for consistent representation and
+easier analysis, such as transforming text to lowercase or
+removing unwanted words called 
+stop words
+.
+Stemming
+: Reduces words to their root form by ignoring suffixes,
+prefixes, and plural word forms.
+The specifics of tokenization are language-specific and can require
+making additional choices. Which analyzer to use depends on your data
+and application.
+MongoDB Search provides some built-in 
+analyzers
+. You can
+also create your own 
+custom analyzer
+. You can
+specify alternate analyzers using 
+multi
+
+analyzer.
+To learn more, see 
+Process Data with Analyzers.
+Each document in the query results receives a relevancy score that
+orders results from highest to lowest relevance. In the simplest
+form of scoring, documents score higher if the query term appears
+frequently in a document and lower if the query term appears across
+many documents in the collection. You can also customize scoring
+to tailor search to a specific domain by boosting, decaying, or
+modifying the relevance-based default score.
+To learn more, see 
+Score Documents.
+---

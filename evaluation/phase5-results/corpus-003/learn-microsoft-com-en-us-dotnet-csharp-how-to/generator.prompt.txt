@@ -1,0 +1,62 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: How to articles - C#
+Document URL: https://learn.microsoft.com/en-us/dotnet/csharp/how-to/
+Document profile: tutorial
+
+Document text:
+---
+In the How to section of the C# Guide, you can find quick answers to common questions. In some cases, articles may be listed in multiple sections. We wanted to make them easy to find for multiple search paths.
+
+There are several tips and tricks that are common C# developer practices:
+
+Class, record, and struct members
+
+You create classes, records, and structs to implement your program. These techniques are commonly used when writing classes, records, or structs.
+
+These articles help you work with collections of data.
+
+Strings are the fundamental data type used to display or manipulate text. These articles demonstrate common practices with strings.
+
+You may need to convert an object to a different type.
+
+Equality and ordering comparisons
+
+You may create types that define their own rules for equality or define a
+natural ordering among objects of that type.
+
+.NET programs report that methods did not
+successfully complete their work by throwing exceptions. In these articles you'll learn to work
+with exceptions.
+
+Delegates and events provide a capability for strategies that involve
+loosely coupled blocks of code.
+
+Events provide a mechanism to publish or subscribe to notifications.
+
+LINQ enables you to write code to query any data source that supports the
+LINQ query expression pattern. These articles help you understand the pattern
+and work with different data sources.
+
+Multiple threads and async processing
+
+Modern programs often use asynchronous operations. These articles will help you learn
+to use these techniques.
+
+Command line args to your program
+
+Typically, C# programs have command line arguments. These articles teach you to access and process
+those command line arguments.
+---

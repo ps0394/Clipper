@@ -1,0 +1,43 @@
+[
+  {
+    "question": "What are the four main programming paradigms mentioned in the document?",
+    "answer": "The four main programming paradigms mentioned are procedural, declarative, object-oriented, and functional programming.",
+    "supporting_sentences": [
+      "Most programming languages are procedural: programs are lists of instructions that tell the computer what to do with the program\u2019s input. C, Pascal, and even Unix shells are procedural languages.",
+      "In declarative languages, you write a specification that describes the problem to be solved, and the language implementation figures out how to perform the computation efficiently.",
+      "Object-oriented programs manipulate collections of objects. Objects have internal state and support methods that query or modify this internal state in some way.",
+      "Functional programming decomposes a problem into a set of functions. Ideally, functions only take inputs and produce outputs, and don\u2019t have any internal state that affects the output produced for a given input."
+    ]
+  },
+  {
+    "question": "What is the purpose of the `iter()` function in Python?",
+    "answer": "The `iter()` function takes an arbitrary object and tries to return an iterator that will return the object\u2019s contents or elements, raising `TypeError` if the object doesn\u2019t support iteration.",
+    "supporting_sentences": [
+      "The built-in `iter()` function takes an arbitrary object and tries to return an iterator that will return the object\u2019s contents or elements, raising `TypeError` if the object doesn\u2019t support iteration."
+    ]
+  },
+  {
+    "question": "What is the difference between a generator expression and a list comprehension?",
+    "answer": "A generator expression returns an iterator that computes values as necessary, while a list comprehension returns a list containing all the resulting values at once.",
+    "supporting_sentences": [
+      "With a list comprehension, you get back a Python list; `stripped_list` is a list containing the resulting lines, not an iterator.",
+      "Generator expressions return an iterator that computes the values as necessary, not needing to materialize all the values at once."
+    ]
+  },
+  {
+    "question": "What does the `yield` keyword do in a Python generator function?",
+    "answer": "The `yield` keyword outputs the value of a variable and suspends the generator\u2019s state of execution, preserving local variables until the next call to the generator\u2019s `__next__()` method.",
+    "supporting_sentences": [
+      "On executing the `yield` expression, the generator outputs the value of `i`, similar to a `return` statement.",
+      "The big difference between `yield` and a `return` statement is that on reaching a `yield` the generator\u2019s state of execution is suspended and local variables are preserved."
+    ]
+  },
+  {
+    "question": "What is the role of the `functools.partial()` function?",
+    "answer": "The `functools.partial()` function constructs variants of existing functions by filling in some of their parameters, creating a new callable object with the specified arguments pre-filled.",
+    "supporting_sentences": [
+      "The constructor for `partial()` takes the arguments `(function, arg1, arg2, ..., kwarg1=value1, kwarg2=value2)`. The resulting object is callable, so you can just call it to invoke `function` with the filled-in arguments.",
+      "For programs written in a functional style, you\u2019ll sometimes want to construct variants of existing functions that have some of the parameters filled in."
+    ]
+  }
+]

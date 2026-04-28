@@ -1,0 +1,44 @@
+```json
+[
+    {
+        "question": "What is streaming in the context of web applications?",
+        "answer": "Streaming sends data to the client in small pieces, called chunks, as soon as they're ready, allowing users to start seeing and using content sooner instead of waiting for the entire response.",
+        "supporting_sentences": [
+            "Streaming sends data to the client in small pieces, called chunks, as soon as they're ready.",
+            "Unlike traditional methods that wait for the entire response, streaming lets users start seeing and using content sooner."
+        ]
+    },
+    {
+        "question": "What are two common use-cases for streaming in web applications?",
+        "answer": "Ecommerce and AI applications are two common use-cases for streaming in web applications.",
+        "supporting_sentences": [
+            "Common use-cases include:",
+            "Ecommerce: Render the most important product and account data early, letting customers shop sooner",
+            "AI applications: Streaming responses from AIs powered by LLMs lets you display response text as it arrives rather than waiting for the full result"
+        ]
+    },
+    {
+        "question": "What is backpressure in the context of web streams?",
+        "answer": "Backpressure occurs when chunks are streamed from the server faster than they can be processed in the client, causing a backup of data.",
+        "supporting_sentences": [
+            "Handle backpressure: Backpressure occurs when chunks are streamed from the server faster than they can be processed in the client, causing a backup of data"
+        ]
+    },
+    {
+        "question": "What types of data can chunks in web streams represent?",
+        "answer": "Chunks in web streams can be of various types, such as strings, ArrayBuffers, or typed arrays (e.g., String for text or Uint8Array for binary data).",
+        "supporting_sentences": [
+            "Chunks in web streams are fundamental data units that can be of various types, such as strings, ArrayBuffers, or typed arrays, depending on the content (for example, String for text or Uint8Array for binary data)."
+        ]
+    },
+    {
+        "question": "How does the Vercel AI SDK handle backpressure in streaming AI applications?",
+        "answer": "The Vercel AI SDK handles backpressure automatically by pausing the stream if the client can't process chunks as quickly as the AI generates them, preventing memory buildup and ensuring smooth data flow.",
+        "supporting_sentences": [
+            "The AI SDK handles backpressure automatically.",
+            "If the client can't process chunks as quickly as the AI generates them, the SDK pauses the stream until the client is ready.",
+            "This prevents memory buildup and ensures smooth data flow."
+        ]
+    }
+]
+```

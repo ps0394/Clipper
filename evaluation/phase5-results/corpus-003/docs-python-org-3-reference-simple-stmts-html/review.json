@@ -1,0 +1,102 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of an expression statement in Python?",
+      "answer": "Expression statements are used (mostly interactively) to compute and write a value, or (usually) to call a procedure (a function that returns no meaningful result; in Python, procedures return the value None). Other uses of expression statements are allowed and occasionally useful.",
+      "supporting_sentences": [
+        "Expression statements are used (mostly interactively) to compute and write a value, or (usually) to call a procedure (a function that returns no meaningful result; in Python, procedures return the value None).  Other uses of expression statements are allowed and occasionally useful."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of an expression statement in Python?",
+      "answer": "Expression statements are used (mostly interactively) to compute and write a value, or (usually) to call a procedure (a function that returns no meaningful result; in Python, procedures return the value None). Other uses of expression statements are allowed and occasionally useful.",
+      "supporting_sentences": [
+        "Expression statements are used (mostly interactively) to compute and write a value, or (usually) to call a procedure (a function that returns no meaningful result; in Python, procedures return the value None).  Other uses of expression statements are allowed and occasionally useful."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does an assignment statement handle multiple targets in Python?",
+      "answer": "An assignment statement evaluates the expression list and assigns the single resulting object to each of the target lists, from left to right.",
+      "supporting_sentences": [
+        "An assignment statement evaluates the expression list (remember that this can be a single expression or a comma-separated list, the latter yielding a tuple) and assigns the single resulting object to each of the target lists, from left to right."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does an assignment statement handle multiple targets in Python?",
+      "answer": "An assignment statement evaluates the expression list and assigns the single resulting object to each of the target lists, from left to right.",
+      "supporting_sentences": [
+        "An assignment statement evaluates the expression list (remember that this can be a single expression or a comma-separated list, the latter yielding a tuple) and assigns the single resulting object to each of the target lists, from left to right."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens when an `assert` statement is executed in Python with optimization enabled?",
+      "answer": "The current code generator emits no code for an `assert` statement when optimization is requested at compile time.",
+      "supporting_sentences": [
+        "In the current implementation, the built-in variable __debug__ is True under normal circumstances, False when optimization is requested (command line option -O).  The current code generator emits no code for an assert statement when optimization is requested at compile time."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens when an `assert` statement is executed in Python with optimization enabled?",
+      "answer": "The current code generator emits no code for an `assert` statement when optimization is requested at compile time.",
+      "supporting_sentences": [
+        "In the current implementation, the built-in variable __debug__ is True under normal circumstances, False when optimization is requested (command line option -O).  The current code generator emits no code for an assert statement when optimization is requested at compile time."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the effect of the `pass` statement in Python?",
+      "answer": "`pass` is a null operation \u2014 when it is executed, nothing happens.",
+      "supporting_sentences": [
+        "pass is a null operation \u2014 when it is executed, nothing happens."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the effect of the `pass` statement in Python?",
+      "answer": "`pass` is a null operation \u2014 when it is executed, nothing happens.",
+      "supporting_sentences": [
+        "pass is a null operation \u2014 when it is executed, nothing happens."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of the `from` clause in a `raise` statement?",
+      "answer": "The `from` clause is used for exception chaining: if given, the second expression must be another exception class or instance, which will be attached to the raised exception as the `__cause__` attribute.",
+      "supporting_sentences": [
+        "The from clause is used for exception chaining: if given, the second expression must be another exception class or instance. If the second expression is an exception instance, it will be attached to the raised exception as the __cause__ attribute (which is writable)."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of the `from` clause in a `raise` statement?",
+      "answer": "The `from` clause is used for exception chaining: if given, the second expression must be another exception class or instance, which will be attached to the raised exception as the `__cause__` attribute.",
+      "supporting_sentences": [
+        "The from clause is used for exception chaining: if given, the second expression must be another exception class or instance. If the second expression is an exception instance, it will be attached to the raised exception as the __cause__ attribute (which is writable)."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

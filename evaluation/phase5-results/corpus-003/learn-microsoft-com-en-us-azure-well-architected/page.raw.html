@@ -1,0 +1,964 @@
+ <!DOCTYPE html>
+		<html
+			class="layout layout-single    marketing show-breadcrumb default-focus"
+			lang="en-us"
+			dir="ltr"
+			data-authenticated="false"
+			data-auth-status-determined="false"
+			data-target="docs"
+			x-ms-format-detection="none"
+		>
+			
+		<head>
+			<title>Azure Well-Architected Framework - Microsoft Azure Well-Architected Framework | Microsoft Learn</title>
+			<meta charset="utf-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="color-scheme" content="light dark" />
+
+			<meta name="description" content="Azure Well-Architected Framework is a set of quality-driven tenets, architectural decision points, and review tools that help solution architects build a technical foundation for their workloads." />
+			<link rel="canonical" href="https://learn.microsoft.com/en-us/azure/well-architected/" /> 
+
+			<!-- Non-customizable open graph and sharing-related metadata -->
+			<meta name="twitter:card" content="summary_large_image" />
+			<meta name="twitter:site" content="@MicrosoftLearn" />
+			<meta property="og:type" content="website" />
+			<meta property="og:image:alt" content="Microsoft Learn" />
+			<meta property="og:image" content="https://learn.microsoft.com/en-us/media/open-graph-image.png" />
+			<!-- Page specific open graph and sharing-related metadata -->
+			<meta property="og:title" content="Azure Well-Architected Framework - Microsoft Azure Well-Architected Framework" />
+			<meta property="og:url" content="https://learn.microsoft.com/en-us/azure/well-architected/" />
+			<meta property="og:description" content="Azure Well-Architected Framework is a set of quality-driven tenets, architectural decision points, and review tools that help solution architects build a technical foundation for their workloads." />
+			<meta name="platform_id" content="6694e21f-3dc6-31b5-5be2-9b605889cfd9" /> <meta name="scope" content="Azure,Microsoft Azure Well-Architected Framework" />
+			<meta name="locale" content="en-us" />
+			 
+			<meta name="uhfHeaderId" content="azure" />
+
+			<meta name="page_type" content="marketing" />
+
+			<!--page specific meta tags-->
+			
+
+			<!-- custom meta tags -->
+			
+		<meta name="schema" content="Marketing" />
+	
+		<meta name="breadcrumb_path" content="/azure/well-architected/breadcrumb/toc.json" />
+	
+		<meta name="feedback_system" content="Standard" />
+	
+		<meta name="ms.service" content="azure-waf" />
+	
+		<meta name="services" content="azure-resource-manager" />
+	
+		<meta name="ms.topic" content="hub-page" />
+	
+		<meta name="author" content="PageWriter-MSFT" />
+	
+		<meta name="ms.author" content="prwilk" />
+	
+		<meta name="ms.date" content="2025-07-14T00:00:00Z" />
+	
+		<meta name="ai-usage" content="ai-assisted" />
+	
+		<meta name="document_id" content="953cd3b7-f664-44f5-04bb-046a0f1079fe" />
+	
+		<meta name="document_version_independent_id" content="953cd3b7-f664-44f5-04bb-046a0f1079fe" />
+	
+		<meta name="updated_at" content="2026-04-23T22:02:00Z" />
+	
+		<meta name="original_content_git_url" content="https://github.com/MicrosoftDocs/well-architected-pr/blob/live/well-architected/index.yml" />
+	
+		<meta name="gitcommit" content="https://github.com/MicrosoftDocs/well-architected-pr/blob/d8d915720b379e2c28a8fbec4b5a7f325027ed19/well-architected/index.yml" />
+	
+		<meta name="git_commit_id" content="d8d915720b379e2c28a8fbec4b5a7f325027ed19" />
+	
+		<meta name="site_name" content="Docs" />
+	
+		<meta name="depot_name" content="MSDN.well-architected" />
+	
+		<meta name="feedback_product_url" content="" />
+	
+		<meta name="feedback_help_link_type" content="" />
+	
+		<meta name="feedback_help_link_url" content="" />
+	
+		<meta name="asset_id" content="index" />
+	
+		<meta name="moniker_range_name" content="" />
+	
+		<meta name="item_type" content="Content" />
+	
+		<meta name="source_path" content="well-architected/index.yml" />
+	
+		<meta name="github_feedback_content_git_url" content="https://github.com/MicrosoftDocs/well-architected/blob/main/well-architected/index.yml" />
+	
+		<meta name="markdown_url" content="https://learn.microsoft.com/en-us/azure/well-architected/?accept=text/markdown" />
+	 
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/68ec7f3a-2bc6-459f-b959-19beb729907d" data-source="generated" />
+	
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/d9dfd2a0-aa13-46ef-a37d-ed697b490607" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/90370425-aca4-4a39-9533-d52e5e002a5d" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/06404839-4766-4799-8cab-c0e1c3b55e48" data-source="generated" />
+	
+
+			<!-- assets and js globals -->
+			
+			<link rel="stylesheet" href="/static/assets/0.4.03398.7756-c1512039/styles/site.css" />
+			
+			<script src="https://wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js"></script>
+			<script src="https://js.monitor.azure.com/scripts/c/ms.jsll-4.min.js"></script>
+			<script src="/_themes/docs.theme/master/en-us/_themes/global/deprecation.js"></script>
+
+			<!-- msdocs global object -->
+			<script id="msdocs-script">
+		var msDocs = {
+  "environment": {
+    "accessLevel": "online",
+    "azurePortalHostname": "portal.azure.com",
+    "reviewFeatures": false,
+    "supportLevel": "production",
+    "systemContent": true,
+    "siteName": "learn",
+    "legacyHosting": false
+  },
+  "data": {
+    "contentLocale": "en-us",
+    "contentDir": "ltr",
+    "userLocale": "en-us",
+    "userDir": "ltr",
+    "pageTemplate": "Marketing",
+    "brand": "azure",
+    "context": {},
+    "standardFeedback": false,
+    "showFeedbackReport": false,
+    "feedbackHelpLinkType": "",
+    "feedbackHelpLinkUrl": "",
+    "feedbackSystem": "Standard",
+    "feedbackGitHubRepo": "MicrosoftDocs/well-architected",
+    "feedbackProductUrl": "",
+    "extendBreadcrumb": false,
+    "isEditDisplayable": true,
+    "isPrivateUnauthorized": false,
+    "hideViewSource": false,
+    "isPermissioned": false,
+    "hasRecommendations": false,
+    "contributors": [
+      {
+        "name": "jmart1428",
+        "url": "https://github.com/jmart1428"
+      },
+      {
+        "name": "Padmalathas",
+        "url": "https://github.com/Padmalathas"
+      },
+      {
+        "name": "v-stsavell",
+        "url": "https://github.com/v-stsavell"
+      },
+      {
+        "name": "v-regandowner",
+        "url": "https://github.com/v-regandowner"
+      },
+      {
+        "name": "JillGrant615",
+        "url": "https://github.com/JillGrant615"
+      },
+      {
+        "name": "prmerger-automator[bot]",
+        "url": "https://github.com/prmerger-automator[bot]"
+      },
+      {
+        "name": "ShannonLeavitt",
+        "url": "https://github.com/ShannonLeavitt"
+      },
+      {
+        "name": "AnnaMHuff",
+        "url": "https://github.com/AnnaMHuff"
+      },
+      {
+        "name": "Court72",
+        "url": "https://github.com/Court72"
+      },
+      {
+        "name": "denrea",
+        "url": "https://github.com/denrea"
+      },
+      {
+        "name": "v-dirichards",
+        "url": "https://github.com/v-dirichards"
+      },
+      {
+        "name": "JKirsch1",
+        "url": "https://github.com/JKirsch1"
+      },
+      {
+        "name": "ckittel",
+        "url": "https://github.com/ckittel"
+      },
+      {
+        "name": "v-thepet",
+        "url": "https://github.com/v-thepet"
+      }
+    ]
+  },
+  "functions": {}
+};;
+	</script>
+
+			<!-- base scripts, msdocs global should be before this -->
+			<script src="/static/assets/0.4.03398.7756-c1512039/scripts/en-us/index-docs.js"></script>
+			
+
+			<!-- json-ld -->
+			
+		</head>
+	
+			<body
+				id="body"
+				data-bi-name="body"
+				class="layout-body "
+				lang="en-us"
+				dir="ltr"
+			>
+				<header class="layout-body-header">
+		<div class="header-holder has-default-focus">
+			
+		<a
+			href="#main"
+			
+			style="z-index: 1070"
+			class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body"
+			
+		>
+			Skip to main content
+		</a>
+	
+
+			<div hidden id="cookie-consent-holder" data-test-id="cookie-consent-container"></div>
+			<!-- Unsupported browser warning -->
+			<div
+				id="unsupported-browser"
+				style="background-color: white; color: black; padding: 16px; border-bottom: 1px solid grey;"
+				hidden
+			>
+				<div style="max-width: 800px; margin: 0 auto;">
+					<p style="font-size: 24px">This browser is no longer supported.</p>
+					<p style="font-size: 16px; margin-top: 16px;">
+						Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+					</p>
+					<div style="margin-top: 12px;">
+						<a
+							href="https://go.microsoft.com/fwlink/p/?LinkID=2092881 "
+							style="background-color: #0078d4; border: 1px solid #0078d4; color: white; padding: 6px 12px; border-radius: 2px; display: inline-block;"
+						>
+							Download Microsoft Edge
+						</a>
+						<a
+							href="https://learn.microsoft.com/en-us/lifecycle/faq/internet-explorer-microsoft-edge"
+							style="background-color: white; padding: 6px 12px; border: 1px solid #505050; color: #171717; border-radius: 2px; display: inline-block;"
+						>
+							More info about Internet Explorer and Microsoft Edge
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- site header -->
+			<div
+				id="ms--site-header"
+				data-test-id="site-header-wrapper"
+				itemscope="itemscope"
+				itemtype="http://schema.org/Organization"
+			>
+				<div
+					id="ms--mobile-nav"
+					class="site-header display-none-tablet padding-inline-none gap-none"
+					data-bi-name="mobile-header"
+					data-test-id="mobile-header"
+				></div>
+				<div
+					id="ms--primary-nav"
+					class="site-header display-none display-flex-tablet"
+					data-bi-name="L1-header"
+					data-test-id="primary-header"
+				></div>
+				<div
+					id="ms--secondary-nav"
+					class="site-header display-none display-flex-tablet"
+					data-bi-name="L2-header"
+					data-test-id="secondary-header"
+					
+				></div>
+			</div>
+			
+		<!-- banner -->
+		<div data-banner>
+			<div id="disclaimer-holder"></div>
+			
+		</div>
+		<!-- banner end -->
+	
+		</div>
+	</header>
+				 
+
+				<main
+					id="main"
+					role="main"
+					class="layout-body-main "
+					data-bi-name="content"
+					lang="en-us"
+					dir="ltr"
+				>
+					
+			<div data-main-column class=" ">
+				 <div id="Marketing" class="has-overflow-hidden">
+<div id="text-section-0" class="padding-block-lg">
+	<div class="uhf-container">
+		<div class="is-reading-width">
+		<h1 id="azure-well-architected-framework" class="title is-1 is-responsive">Azure Well-Architected Framework</h1>
+
+				<div>
+					<p class="margin-top-xs">The Azure Well-Architected Framework is a set of quality-driven tenets, architectural decision points, and review tools intended to help solution architects build a technical foundation for their workloads.</p>
+				</div>
+
+
+				<div class="margin-top-xs">
+	<div class="buttons margin-top-xxs">
+			<a href="what-is-well-architected-framework" class="button" data-linktype="relative-path">Explore the Framework</a>
+	</div>
+				</div>
+		</div>
+	</div>
+</div>
+<div id="navigation-section-1" class="padding-block-md">
+	<div class="uhf-container">
+		<nav id="navigation-section-1-nav" class="buttons buttons-centered">
+<a href="whats-new" class="button button-clear button-lg" data-linktype="relative-path">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-book-open"></span>
+		</span>
+	<span>
+		What's new
+	</span>
+</a><a href="pillars" class="button button-clear button-lg" data-linktype="relative-path">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-book-open"></span>
+		</span>
+	<span>
+		Pillars
+	</span>
+</a><a href="workloads" class="button button-clear button-lg" data-linktype="relative-path">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-book-open"></span>
+		</span>
+	<span>
+		Workloads
+	</span>
+</a><a href="service-guides/" class="button button-clear button-lg" data-linktype="relative-path">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-book-open"></span>
+		</span>
+	<span>
+		Azure service guides
+	</span>
+</a><a href="design" class="button button-clear button-lg" data-linktype="relative-path">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-book-open"></span>
+		</span>
+	<span>
+		Design essentials
+	</span>
+</a><a href="/en-us/training/paths/azure-well-architected-framework/" class="button button-clear button-lg" data-linktype="absolute-path">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-topic-learn"></span>
+		</span>
+	<span>
+		Training
+	</span>
+</a><a href="/en-us/assessments/azure-architecture-review/" class="button button-clear button-lg" data-linktype="absolute-path">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-developer-tools"></span>
+		</span>
+	<span>
+		Assessment tool
+	</span>
+</a><a href="/en-us/azure/architecture/browse/" class="button button-clear button-lg" data-linktype="absolute-path">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-topic-architecture"></span>
+		</span>
+	<span>
+		Azure Architecture Center
+	</span>
+</a>		</nav>
+	</div>
+</div>
+<div id="hero-section-2" class="hero is-small has-linear-gradient-background-docs has-text-docs-invert ">
+	<div class="hero-body">
+			
+				<div class="columns is-gapless is-multiline is-flipped-touch">
+					<div class="column is-full-tablet is-half-desktop">
+						<div class="display-flex is-full-width flex-direction-column justify-content-center is-full-height">
+								<p class="supertitle is-spaced font-size-sm letter-spacing-wide is-uppercase">Azure Well-Architected Framework</p>
+
+		<h2 id="design-workloads-that-achieve-business-value-over-time" class="title is-2 is-responsive">Design workloads that achieve business value over time.</h2>
+
+								<p class="font-size-md margin-top-lg is-reading-width">As solution architects, you want to build reliable, secure, and performant workloads that maximize the value of investment in Azure infrastructure. Start with the Pillars, and align your design choices with the principles. Then, build a strong foundation for your workload based on technical design areas. Finally, use review tools to assess your readiness in deploying to production.</p>
+						</div>
+					</div>
+
+					<div class="column is-full-tablet is-half-desktop">
+						<div class="padding-xs">
+							<figure class="image   ">
+								<img src="_images/well-architected-hub.png" aria-hidden="true" data-linktype="relative-path">
+							</figure>
+						</div>
+					</div>
+				</div>
+			
+	</div>
+</div>
+<div id="bifold-section-3">
+	<div class="uhf-container padding-block-lg">
+		<div class="columns is-gapless-mobile has-large-gaps  ">
+				<div class="column is-half display-flex">
+					<div class="is-full-width display-flex flex-direction-column flex-grow-1 justify-content-center  padding-block-xs">
+<figure class="image  ">
+	<img src="_images/ai-operations.png" alt="Diagram that shows AI opportunities in the maturity model." data-linktype="relative-path">
+</figure>
+					</div>
+				</div>
+				<div class="column is-half display-flex">
+					<div class="is-full-width display-flex flex-direction-column flex-grow-1 justify-content-center  padding-block-xs">
+		<h2 id="featured-update-boost-your-operations-by-using-ai" class="title is-2 is-responsive">Featured update - Boost your operations by using AI</h2>
+
+							<p class="font-size-lg">Apply AI opportunities across the Operational Excellence pillar by aligning AI adoption with the full maturity journey—from foundational practices and standardization through production operations and optimization at scale. Use AI to automate and optimize deployment, monitoring, testing, and operational workflows. Evaluate where AI fits at each maturity level by balancing potential ROI with security, reliability, and operational trade‑offs.</p>
+
+
+							<div class="margin-top-xs">
+	<div class="buttons margin-top-xxs">
+			<a href="operational-excellence/maturity-model" class="button" data-linktype="relative-path">Operational Excellence maturity model</a>
+	</div>
+							</div>
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
+<div id="grid-section-4" class="padding-block-md">
+	<div class="uhf-container">
+		<h2 id="pillars" class="title is-2 is-responsive">Pillars</h2>
+		<ul class="grid is-fibonacci">
+				<li class="grid-item">
+<article class="card position-relative" data-bi-name="icon-card">
+    <div class="card-content display-flex">
+        <div class="media align-items-stretch">
+				<div class="media-left">
+<figure class="image is-64x64 ">
+	<img src="_images/reliability.svg" alt="" aria-hidden="true" data-linktype="relative-path">
+</figure>
+				</div>
+            <div class="media-content">
+				<a href="reliability/" class="has-external-link-indicator card-title stretched-link" data-linktype="relative-path">Reliability</a>
+					<p class="card-content-description margin-top-xxs">
+						Ensures that the workload meets the uptime and recovery targets by building redundancy and resiliency at scale.
+					</p>
+            </div>
+        </div>
+    </div>
+</article>
+				</li>
+				<li class="grid-item">
+<article class="card position-relative" data-bi-name="icon-card">
+    <div class="card-content display-flex">
+        <div class="media align-items-stretch">
+				<div class="media-left">
+<figure class="image is-64x64 ">
+	<img src="_images/security.svg" alt="" aria-hidden="true" data-linktype="relative-path">
+</figure>
+				</div>
+            <div class="media-content">
+				<a href="security/" class="has-external-link-indicator card-title stretched-link" data-linktype="relative-path">Security</a>
+					<p class="card-content-description margin-top-xxs">
+						Protect the workload from attacks by maintaining confidentiality and data integrity.
+					</p>
+            </div>
+        </div>
+    </div>
+</article>
+				</li>
+				<li class="grid-item">
+<article class="card position-relative" data-bi-name="icon-card">
+    <div class="card-content display-flex">
+        <div class="media align-items-stretch">
+				<div class="media-left">
+<figure class="image is-64x64 ">
+	<img src="_images/cost-optimization.svg" alt="" aria-hidden="true" data-linktype="relative-path">
+</figure>
+				</div>
+            <div class="media-content">
+				<a href="cost-optimization/" class="has-external-link-indicator card-title stretched-link" data-linktype="relative-path">Cost Optimization</a>
+					<p class="card-content-description margin-top-xxs">
+						Adopt an optimization mindset by at organizational, architectural, and tactical levels to keep your spending within budget.
+					</p>
+            </div>
+        </div>
+    </div>
+</article>
+				</li>
+				<li class="grid-item">
+<article class="card position-relative" data-bi-name="icon-card">
+    <div class="card-content display-flex">
+        <div class="media align-items-stretch">
+				<div class="media-left">
+<figure class="image is-64x64 ">
+	<img src="_images/operational-excellence.svg" alt="" aria-hidden="true" data-linktype="relative-path">
+</figure>
+				</div>
+            <div class="media-content">
+				<a href="operational-excellence/" class="has-external-link-indicator card-title stretched-link" data-linktype="relative-path">Operational Excellence</a>
+					<p class="card-content-description margin-top-xxs">
+						Reduce issues in production by building holistic observability and automated systems.
+					</p>
+            </div>
+        </div>
+    </div>
+</article>
+				</li>
+				<li class="grid-item">
+<article class="card position-relative" data-bi-name="icon-card">
+    <div class="card-content display-flex">
+        <div class="media align-items-stretch">
+				<div class="media-left">
+<figure class="image is-64x64 ">
+	<img src="_images/performance-efficiency.svg" alt="" aria-hidden="true" data-linktype="relative-path">
+</figure>
+				</div>
+            <div class="media-content">
+				<a href="performance-efficiency/" class="has-external-link-indicator card-title stretched-link" data-linktype="relative-path">Performance Efficiency</a>
+					<p class="card-content-description margin-top-xxs">
+						Adjust to changes in demands placed on the workload by through horizontal scaling and testing changes before deploying to production.
+					</p>
+            </div>
+        </div>
+    </div>
+</article>
+				</li>
+		</ul>
+	</div>
+</div>
+<div id="grid-section-5" class="padding-block-md">
+	<div class="uhf-container">
+		<h2 id="workloads" class="title is-2 is-responsive">Workloads</h2>
+		<ul class="grid is-fibonacci">
+				<li class="grid-item">
+<article class="card position-relative border-left-lg border-left-color-accent" data-bi-name="summary-card">
+    <div class="card-content">
+        <a href="ai/" class="has-external-link-indicator card-title stretched-link" data-linktype="relative-path">Artificial Intelligence (AI)</a>
+        <p class="card-content-description margin-top-xxs">
+            Incorporate discriminative or generative AI models in your workload for predictive analysis, generating content, and other AI use cases.
+        </p>
+    </div>
+</article>
+				</li>
+				<li class="grid-item">
+<article class="card position-relative border-left-lg border-left-color-accent" data-bi-name="summary-card">
+    <div class="card-content">
+        <a href="saas/" class="has-external-link-indicator card-title stretched-link" data-linktype="relative-path">Software as a service (SaaS)</a>
+        <p class="card-content-description margin-top-xxs">
+            Key insights for Startups and mature independent software vendors (ISVs) to build scalable, performant, reliable, and secure SaaS solutions.
+        </p>
+    </div>
+</article>
+				</li>
+				<li class="grid-item">
+<article class="card position-relative border-left-lg border-left-color-accent" data-bi-name="summary-card">
+    <div class="card-content">
+        <a href="oracle-iaas/overview" class="has-external-link-indicator card-title stretched-link" data-linktype="relative-path">Oracle on IaaS</a>
+        <p class="card-content-description margin-top-xxs">
+            Host Oracle workloads on Azure, which includes not only Oracle Databases, but also applications such as Siebel, Peoplesoft, JD Edwards.
+        </p>
+    </div>
+</article>
+				</li>
+				<li class="grid-item">
+<article class="card position-relative border-left-lg border-left-color-accent" data-bi-name="summary-card">
+    <div class="card-content">
+        <a href="sap/quick-links" class="has-external-link-indicator card-title stretched-link" data-linktype="relative-path">SAP</a>
+        <p class="card-content-description margin-top-xxs">
+            Evaluate, design, and optimize an SAP workload from premigration to operations.
+        </p>
+    </div>
+</article>
+				</li>
+				<li class="grid-item">
+<article class="card position-relative border-left-lg border-left-color-accent" data-bi-name="summary-card">
+    <div class="card-content">
+        <a href="mission-critical/" class="has-external-link-indicator card-title stretched-link" data-linktype="relative-path">Mission-critical</a>
+        <p class="card-content-description margin-top-xxs">
+            Design and operationalize workloads that are expected to be always available and resilient to failures.
+        </p>
+    </div>
+</article>
+				</li>
+				<li class="grid-item">
+<article class="card position-relative border-left-lg border-left-color-accent" data-bi-name="summary-card">
+    <div class="card-content">
+        <a href="hpc/" class="has-external-link-indicator card-title stretched-link" data-linktype="relative-path">HPC</a>
+        <p class="card-content-description margin-top-xxs">
+            Design strategies for all the characteristics of HPC workloads.
+        </p>
+    </div>
+</article>
+				</li>
+				<li class="grid-item">
+<article class="card position-relative border-left-lg border-left-color-accent" data-bi-name="summary-card">
+    <div class="card-content">
+        <a href="sustainability/" class="has-external-link-indicator card-title stretched-link" data-linktype="relative-path">Sustainability</a>
+        <p class="card-content-description margin-top-xxs">
+            Plan your path forward, improve your sustainability posture, and create new business value while reducing your operational footprint.
+        </p>
+    </div>
+</article>
+				</li>
+				<li class="grid-item">
+<article class="card position-relative border-left-lg border-left-color-accent" data-bi-name="summary-card">
+    <div class="card-content">
+        <a href="azure-vmware/" class="has-external-link-indicator card-title stretched-link" data-linktype="relative-path">Azure VMware Solution</a>
+        <p class="card-content-description margin-top-xxs">
+            Relocate legacy application virtual machines to Azure VMware Solution as a staging area for the first phase of your migration and modernization strategy.
+        </p>
+    </div>
+</article>
+				</li>
+				<li class="grid-item">
+<article class="card position-relative border-left-lg border-left-color-accent" data-bi-name="summary-card">
+    <div class="card-content">
+        <a href="azure-virtual-desktop/" class="has-external-link-indicator card-title stretched-link" data-linktype="relative-path">Azure Virtual Desktop</a>
+        <p class="card-content-description margin-top-xxs">
+            Run Windows desktops and applications on Azure from any device and location.
+        </p>
+    </div>
+</article>
+				</li>
+		</ul>
+			<p class="margin-top-xs">See example workloads that apply Well-Architected tenets in the <a href="/en-us/azure/architecture/browse/" class="font-weight-semibold" data-linktype="absolute-path">Azure Architecture Center</a></p>
+	</div>
+</div>
+<div id="text-section-6" class="padding-block-lg">
+	<div class="uhf-container">
+		<div class="is-reading-width">
+		<h2 id="service-guides" class="title is-2 is-responsive">Service guides</h2>
+
+
+
+				<div class="margin-top-xs">
+	<div class="buttons margin-top-xxs">
+			<a href="./service-guides/" class="button" data-linktype="relative-path">Browse the service guides</a>
+	</div>
+				</div>
+		</div>
+	</div>
+</div>
+<div id="social-section-7" class="border-high-contrast padding-block-sm">
+	<div class="uhf-container">
+		<div class="level">
+			<div class="level-left flex-shrink-1">
+				<div class="level-item flex-shrink-1">
+					<div class="padding-right-lg-tablet">
+		<h2 id="follow-us-on-the-web" class="title is-2 is-responsive">Follow us on the web</h2>
+					</div>
+				</div>
+			</div>
+				<div class="level-right flex-shrink-1">
+					<div class="level-item flex-shrink-1">
+						<div class="buttons">
+								<a class="button button-lg" href="/en-us/azure/architecture/browse/" title="Website" data-linktype="absolute-path">
+									<span class="docon docon-website"></span>
+									<span class="visually-hidden">Website</span>
+								</a>
+								<a class="button button-lg" href="https://techcommunity.microsoft.com/t5/azure-architecture-blog/bg-p/AzureArchitectureBlog/label-name/Well%20Architected" title="Blog" data-linktype="external">
+									<span class="docon docon-blog"></span>
+									<span class="visually-hidden">Blog</span>
+								</a>
+								<a class="button button-lg" href="https://www.youtube.com/watch?v=xDhaHSK7mgM" title="YouTube" data-linktype="external">
+									<span class="docon docon-brand-youtube"></span>
+									<span class="visually-hidden">YouTube</span>
+								</a>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
+</div>
+
+			</div>
+		
+				</main>
+				  <div class="layout-body-footer " data-bi-name="layout-footer">
+		<footer
+			id="footer"
+			data-test-id="footer"
+			data-bi-name="footer"
+			class="footer-layout has-padding has-default-focus border-top  uhf-container"
+			role="contentinfo"
+		>
+			<div class="display-flex gap-xs flex-wrap-wrap is-full-height padding-right-lg-desktop">
+				
+		<a
+			data-mscc-ic="false"
+			href="#"
+			data-bi-name="select-locale"
+			class="locale-selector-link flex-shrink-0 button button-sm button-clear external-link-indicator"
+			id=""
+			title=""
+			><span class="icon" aria-hidden="true"
+				><span class="docon docon-world"></span></span
+			><span class="local-selector-link-text">en-us</span></a
+		>
+	 <div class="ccpa-privacy-link" data-ccpa-privacy-link hidden>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://aka.ms/yourcaliforniaprivacychoices"
+			data-bi-name="your-privacy-choices"
+			class="button button-sm button-clear flex-shrink-0 external-link-indicator"
+			id=""
+			title=""
+			>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 30 14"
+			xml:space="preserve"
+			height="16"
+			width="43"
+			aria-hidden="true"
+			focusable="false"
+		>
+			<path
+				d="M7.4 12.8h6.8l3.1-11.6H7.4C4.2 1.2 1.6 3.8 1.6 7s2.6 5.8 5.8 5.8z"
+				style="fill-rule:evenodd;clip-rule:evenodd;fill:#fff"
+			></path>
+			<path
+				d="M22.6 0H7.4c-3.9 0-7 3.1-7 7s3.1 7 7 7h15.2c3.9 0 7-3.1 7-7s-3.2-7-7-7zm-21 7c0-3.2 2.6-5.8 5.8-5.8h9.9l-3.1 11.6H7.4c-3.2 0-5.8-2.6-5.8-5.8z"
+				style="fill-rule:evenodd;clip-rule:evenodd;fill:#06f"
+			></path>
+			<path
+				d="M24.6 4c.2.2.2.6 0 .8L22.5 7l2.2 2.2c.2.2.2.6 0 .8-.2.2-.6.2-.8 0l-2.2-2.2-2.2 2.2c-.2.2-.6.2-.8 0-.2-.2-.2-.6 0-.8L20.8 7l-2.2-2.2c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0l2.2 2.2L23.8 4c.2-.2.6-.2.8 0z"
+				style="fill:#fff"
+			></path>
+			<path
+				d="M12.7 4.1c.2.2.3.6.1.8L8.6 9.8c-.1.1-.2.2-.3.2-.2.1-.5.1-.7-.1L5.4 7.7c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0L8 8.6l3.8-4.5c.2-.2.6-.2.9 0z"
+				style="fill:#06f"
+			></path>
+		</svg>
+	
+			<span>Your Privacy Choices</span></a
+		>
+	
+	</div>
+				<div class="flex-shrink-0">
+		<div class="dropdown has-caret-up">
+			<button
+				data-test-id="theme-selector-button"
+				class="dropdown-trigger button button-clear button-sm inner-focus theme-dropdown-trigger"
+				aria-controls="{{ themeMenuId }}"
+				aria-expanded="false"
+				title="Theme"
+				data-bi-name="theme"
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-sun"></span></span>
+				<span>Theme</span>
+				<span class="icon expanded-indicator" aria-hidden="true">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<div class="dropdown-menu" id="{{ themeMenuId }}" role="menu">
+				<ul class="theme-selector padding-xxs" data-test-id="theme-dropdown-menu">
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="light"
+						>
+							<span class="theme-light margin-right-xxs">
+								<span
+									class="theme-selector-icon border display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> Light </span>
+						</button>
+					</li>
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="dark"
+						>
+							<span class="theme-dark margin-right-xxs">
+								<span
+									class="border theme-selector-icon display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> Dark </span>
+						</button>
+					</li>
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="high-contrast"
+						>
+							<span class="theme-high-contrast margin-right-xxs">
+								<span
+									class="border theme-selector-icon display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> High contrast </span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+			</div>
+			<ul class="links" data-bi-name="footerlinks">
+				<li class="manage-cookies-holder" hidden=""></li>
+				<li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/principles-for-ai-generated-content"
+			data-bi-name="aiDisclaimer"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>AI Disclaimer</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/previous-versions/"
+			data-bi-name="archivelink"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Previous Versions</a
+		>
+	
+	</li> <li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://techcommunity.microsoft.com/t5/microsoft-learn-blog/bg-p/MicrosoftLearnBlog"
+			data-bi-name="bloglink"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Blog</a
+		>
+	
+	</li> <li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/contribute"
+			data-bi-name="contributorGuide"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Contribute</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://go.microsoft.com/fwlink/?LinkId=521839"
+			data-bi-name="privacy"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Privacy</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://go.microsoft.com/fwlink/?linkid=2259814"
+			data-bi-name="consumer-health-privacy"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Consumer Health Privacy</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/legal/termsofuse"
+			data-bi-name="termsofuse"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Terms of Use</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://www.microsoft.com/legal/intellectualproperty/Trademarks/"
+			data-bi-name="trademarks"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Trademarks</a
+		>
+	
+	</li>
+				<li>&copy; Microsoft 2026</li>
+			</ul>
+		</footer>
+	</footer>
+			</body>
+		</html>

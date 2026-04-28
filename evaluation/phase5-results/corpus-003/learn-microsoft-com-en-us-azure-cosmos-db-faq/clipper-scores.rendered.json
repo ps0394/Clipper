@@ -1,0 +1,1081 @@
+{
+  "parseability_score": 81.85365853658536,
+  "failure_mode": "minor_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-003\\learn-microsoft-com-en-us-azure-cosmos-db-faq\\page.rendered.html",
+  "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/faq",
+  "component_scores": {
+    "semantic_html": 83.63636363636364,
+    "content_extractability": 83.70731707317073,
+    "structured_data": 97.0,
+    "dom_navigability": 35,
+    "metadata_completeness": 85,
+    "http_compliance": 80.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 5,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "article",
+          "count": 16,
+          "proper_usage": true
+        },
+        {
+          "element": "section",
+          "count": 13,
+          "proper_usage": true
+        },
+        {
+          "element": "aside",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "figure",
+          "count": 4,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 19,
+      "heading_elements_count": 70,
+      "scoring_breakdown": {
+        "semantic_coverage": 43.63636363636364,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 28239,
+        "extracted_text_length": 22620,
+        "extracted_chars": 22620,
+        "extraction_ratio": 0.801,
+        "extracted_title": "Frequently asked questions - Azure Cosmos DB",
+        "extracted_preview": "What are the typical use cases for Azure Cosmos DB? Azure Cosmos DB is well suited for web, mobile, gaming, and IoT use cases. In these use cases; automatic scale, predictable performance, fast order of millisecond response times, and the ability to query over schema-free data is important. Azure Co...",
+        "original_headings": 70,
+        "extracted_headings": 56,
+        "original_lists": 30,
+        "extracted_lists": 2,
+        "original_code_blocks": 16,
+        "extracted_code_blocks": 16,
+        "has_main_element": true,
+        "has_article_element": true
+      },
+      "score_breakdown": {
+        "signal_to_noise": 40.0,
+        "structure_preservation": 18.666666666666664,
+        "boundary_detection": 25.040650406504064
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 1,
+        "microdata_items": 1,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [
+        "FAQPage"
+      ],
+      "key_fields_found": [],
+      "formats_present": 3,
+      "score_breakdown": {
+        "type_appropriateness": 20.0,
+        "field_completeness": 30.0,
+        "multiple_formats": 17,
+        "schema_validation": 30.0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [
+          {
+            "index": 0,
+            "type": "FAQPage",
+            "present": 1,
+            "expected": 1,
+            "ratio": 1.0,
+            "missing": [],
+            "invalid": []
+          }
+        ],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": [],
+        "average_ratio": 1.0
+      },
+      "sample_structured_data": {
+        "microdata": [
+          {
+            "type": "http://schema.org/Organization",
+            "properties": {
+              "url": [
+                "https://learn.microsoft.com/en-us/",
+                "https://www.microsoft.com",
+                "https://www.microsoft.com",
+                "https://learn.microsoft.com/en-us/",
+                "https://learn.microsoft.com/en-us/nosql/"
+              ],
+              "logo": [
+                {
+                  "value": ""
+                },
+                {
+                  "value": ""
+                }
+              ]
+            }
+          }
+        ],
+        "json-ld": [
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What are the typical use cases for Azure Cosmos DB?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Azure Cosmos DB is well suited for web, mobile, gaming, and IoT use cases. In these use cases; automatic scale, predictable performance, fast order of millisecond response times, and the ability to query over schema-free data is important. Azure Cosmos DB lends itself to rapid development and supporting the continuous iteration of application data models. Applications that manage user-generated content and data often map to <a href=\"use-cases\">common use cases for Azure Cosmos DB</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does Azure Cosmos DB offer predictable performance?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>A <a href=\"request-units\">request unit</a> (RU) is the measure of throughput in Azure Cosmos DB. A single request unit throughput corresponds to the throughput of the <code>GET</code> HTTP action for a 1-kilobite document. Every operation in Azure Cosmos DB; including reads, writes, queries, and stored procedure executions; has a deterministic request unit value based on the throughput required to complete the operation. Instead of being forced to consider CPU, IO, and memory in relation to your application throughput, you can think in terms of request units.</p>\n<p>You can configure each Azure Cosmos DB container with provisioned throughput in terms of request units per second (RU/s). You can benchmark individual requests to measure in request units, and create a container to handle the sum of request units across all requests for that container in a second. You can also scale up or scale down your container's throughput as the needs of your application evolve. For more information on how to measure request units, see the <a href=\"https://cosmos.azure.com/capacitycalculator\">throughput calculator</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does Azure Cosmos DB support various data models such as key/value, columnar, document, and graph?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Key/value (table), columnar, document, and graph data models are all natively supported because of the ARS (atoms, records, and sequences) design that Azure Cosmos DB is built on. Atoms, records, and sequences can be easily mapped and projected to various data models. The APIs for a subset of models are available using the ARS design (MongoDB, NoSQL, Table, Apache Cassandra, and Apache Gremlin). Azure Cosmos DB also supports other APIs.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is an Azure Cosmos DB container?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>A container is a group of items. Containers can span one or more partitions and can scale to handle practically unlimited volumes of storage or throughput.</p>\n<table>\n<thead>\n<tr>\n<th></th>\n<th>Containers known as</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><strong>Azure Cosmos DB for NoSQL</strong></td>\n<td>Container</td>\n</tr>\n<tr>\n<td><strong>Azure Cosmos DB for MongoDB</strong></td>\n<td>Collection</td>\n</tr>\n<tr>\n<td><strong>Azure Cosmos DB for Apache Cassandra</strong></td>\n<td>Table</td>\n</tr>\n<tr>\n<td><strong>Azure Cosmos DB for Apache Gremlin</strong></td>\n<td>Graph</td>\n</tr>\n<tr>\n<td><strong>Azure Cosmos DB for Table</strong></td>\n<td>Table</td>\n</tr>\n</tbody>\n</table>\n<p>A container is a billable entity, where the throughput and used storage determines the cost. Each container is billed hourly, based on the provisioned throughput and used storage space. For more information, see <a href=\"https://azure.microsoft.com/pricing/details/cosmos-db/\">Azure Cosmos DB pricing</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I use multiple APIs to access my data?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Azure Cosmos DB is Microsoft's globally distributed, multi-model database service. Multi-model refers to Azure Cosmos DB's support for multiple APIs and data models. In this paradigm, different APIs use different data formats for storage and wire protocol. For example; NoSQL uses JSON, MongoDB uses binary-encoded JSON (BSON), Table uses Entity Data Model (EDM), Cassandra uses Cassandra Query Language (CQL), Gremlin uses JSON format. As a result, we recommend using the same API for all access to the data in a given account.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I integrate Azure Cosmos DB directly with other services?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes. Azure Cosmos DB APIs allow direct integration. For example, the Azure Cosmos DB REST APIs can be integrated with Azure API Management for CRUD operations, eliminating the need for intermediate services like Azure Functions.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is Azure Cosmos DB HIPAA compliant?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes, Azure Cosmos DB is HIPAA-compliant. HIPAA establishes requirements for the use, disclosure, and safeguarding of individually identifiable health information. For more information, see the <a href=\"/compliance/regulatory/offering-hipaa-hitech\">Microsoft Trust Center</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are the storage limits of Azure Cosmos DB?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>There's no limit to the total amount of data that a container can store in Azure Cosmos DB.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are the throughput limits of Azure Cosmos DB?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>There's no limit to the total amount of throughput that a container can support in Azure Cosmos DB. The key idea is to distribute your workload roughly even among a sufficiently large number of partition keys.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Are direct and gateway connectivity modes encrypted?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes both modes are always fully encrypted.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How much does Azure Cosmos DB cost?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>The number of provisioned containers, number of hours containers were online, and the provisioned throughput for each container determines Azure Cosmos DB usage charges. For more pricing details, refer to <a href=\"https://azure.microsoft.com/pricing/details/cosmos-db/\">Azure Cosmos DB pricing</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How can I get extra help with Azure Cosmos DB?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>To ask a technical question, you can post to one of these two question and answer forums:</p>\n<ul>\n<li><a href=\"/answers/topics/azure-cosmos-db.html\">Microsoft Question &amp; Answers (Q&amp;A)</a></li>\n<li><a href=\"https://stackoverflow.com/questions/tagged/azure-cosmosdb\">Stack Overflow</a>. Stack Overflow is best for programming questions. <a href=\"https://stackoverflow.com/help/how-to-ask\">Provide as many details as possible, making the question clear and answerable</a>.</li>\n</ul>\n<p>To fix an issue with your account, file a <a href=\"https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest\">support request</a> in the Azure portal.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I start developing against Azure Cosmos DB for NoSQL?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>First you must sign up for an Azure subscription. Once you sign up for an Azure subscription, you can add an API for NoSQL container to your Azure subscription.</p>\n<p><a href=\"sdk-dotnet-v2\">Software development kits (SDKs)</a> are available for .NET, Python, Node.js, JavaScript, Go, and Java. Developers can also use the <a href=\"/rest/api/cosmos-db/\">REST API</a> to interact with Azure Cosmos DB resources from more platforms and languages.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is there Azure Cosmos DB for NoSQL samples to get started?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Check out these QuickStart code samples and templates for the API for NoSQL:</p>\n<ul>\n<li><a href=\"quickstart-dotnet\">.NET</a></li>\n<li><a href=\"quickstart-python\">Python</a></li>\n<li><a href=\"quickstart-nodejs\">Node.js/JavaScript</a></li>\n<li><a href=\"quickstart-java\">Java/Spring</a></li>\n<li><a href=\"quickstart-go\">Go</a></li>\n</ul>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does Azure Cosmos DB for NoSQL support schema-free data?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes, the API for NoSQL allows applications to store arbitrary JSON documents as items without schema definitions or hints. The data is immediately available for query with the Azure Cosmos DB for NoSQL query language.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does Azure Cosmos DB for NoSQL support ACID (atomicity, consistency, isolation, durability) transactions?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes, the API for NoSQL supports cross-document transactions expressed using either batches in the SDKs or as JavaScript-stored procedures and triggers. Transactions are scoped to a single partition within each container and executed with ACID semantics as &quot;all or nothing,&quot; isolated from other concurrently executing code and user requests. If exceptions occur, the entire transaction is rolled back.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I create an Azure Cosmos DB for NoSQL database?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>You can create databases by using one of these tools:</p>\n<ul>\n<li><a href=\"quickstart-portal#\">Azure portal</a></li>\n<li>API for NoSQL client (data-plane) SDKs\n<ul>\n<li><a href=\"quickstart-dotnet\">.NET</a></li>\n<li><a href=\"quickstart-python\">Python</a></li>\n<li><a href=\"quickstart-nodejs\">JavaScript</a></li>\n<li><a href=\"quickstart-java\">Java</a></li>\n<li><a href=\"quickstart-go\">Go</a></li>\n</ul>\n</li>\n<li>API for NoSQL management (control-plane) SDKs\n<ul>\n<li><a href=\"/dotnet/api/overview/azure/resourcemanager.cosmosdb-readme\">.NET</a></li>\n<li><a href=\"/python/api/overview/azure/mgmt-cosmosdb-readme\">Python</a></li>\n<li><a href=\"/javascript/api/overview/azure/arm-cosmosdb-readme\">JavaScript</a></li>\n<li><a href=\"/java/api/overview/azure/resourcemanager-cosmos-readme\">Java</a></li>\n<li><a href=\"https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/cosmos/armcosmos\">Go</a></li>\n</ul>\n</li>\n<li>Azure Resource Manager\n<ul>\n<li><a href=\"/azure/templates/microsoft.documentdb/databaseaccounts?pivots=deployment-language-bicep\">JSON template</a></li>\n<li><a href=\"/azure/templates/microsoft.documentdb/databaseaccounts?pivots=deployment-language-arm-template\">Bicep</a></li>\n<li><a href=\"/azure/templates/microsoft.documentdb/databaseaccounts?pivots=deployment-language-terraform\">Terraform</a></li>\n</ul>\n</li>\n<li><a href=\"/rest/api/cosmos-db/\">REST API</a></li>\n</ul>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I authenticate to Azure Cosmos DB for NoSQL using my existing Microsoft Entra ID accounts?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes! Azure Cosmos DB supports Microsoft Entra authentication to manage the service and its resources (control-plane) and to execute data, operations, and queries (data-plane).\nControl-plane authentication is performed using the <a href=\"\">role-based access control</a> feature of Azure. You can use a preconfigured built-in role](../../role-based-access-control/built-in-roles.md) or you can <a href=\"/azure/role-based-access-control/custom-roles\">create a custom role</a>. With Azure role-based access control, you can manage accounts, databases, containers, and metadata. The control-plane includes operations including, but not limited to these examples.</p>\n<ul>\n<li>Creating, replacing, or deleting databases - Creating, replacing, or deleting containers - Reading or replacing database throughput - Reading or replacing container throughput\nData-plane authentication uses a custom API for NoSQL-native role-based access control implementation. With this native implementation, you can also use preconfigured or custom roles. With native role-based access control, you can execute queries, manage items, or perform other common operations. The data-plane includes operations including, but not limited to these examples.</li>\n<li>Creating, replacing, updating, or deleting items - Patching items - Executing queries</li>\n</ul>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does Azure Cosmos DB for NoSQL support the SQL query language?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Structured Query Language (SQL) is a language typically used to query relational data. The API for NoSQL has a custom <strong>NoSQL</strong> query language derived from SQL. The NoSQL query language includes a subset of the SQL query language typically associated with SQL Server along with various NoSQL-specific enhancements. The NoSQL query language provides rich hierarchical and relational operators and extensibility via JavaScript-based, user-defined functions (UDFs). JSON grammar allows for modeling JSON documents as trees with labeled nodes, which are used by both the Azure Cosmos DB automatic indexing techniques and the SQL query dialect of Azure Cosmos DB. For information about using this query language, see <a href=\"/cosmos-db/query\">NoSQL Query</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does Azure Cosmos DB for NoSQL support SQL aggregation functions?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>The API for NoSQL supports aggregation via aggregate functions such as: <code>COUNT</code>, <code>MAX</code>, <code>AVG</code>, and <code>SUM</code> via the NoSQL query language.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does Azure Cosmos DB for NoSQL provide concurrency?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>The API for NoSQL supports optimistic concurrency control (OCC) through HTTP entity tags, or <strong>ETags</strong>. Every API for NoSQL resource has an ETag, and the ETag is set on the server every time a document is updated. The ETag header and the current value are included in all response messages. ETags can be used with the <code>If-Match</code> header to allow the server to decide whether a resource should be updated. The If-Match value is the ETag value to be checked against. If the ETag value matches the server ETag value, the resource is updated. If the ETag is no longer current, the server rejects the operation with an &quot;HTTP 412 Precondition failure&quot; response code. The client then refetches the resource to acquire the current ETag value for the resource. In addition, ETags can be used with the <code>If-None-Match</code> header to determine whether its needed to refetch a resource.</p>\n<p>Most of the API for NoSQL SDKs includes classes to manage optimistic concurrency control.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How can I bulk-insert documents into Azure Cosmos DB for NoSQL?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Use the bulk import feature in the <a href=\"tutorial-dotnet-bulk-import\">.NET SDK</a> or the <a href=\"bulk-executor-java\">Java SDK</a> for the API for NoSQL to import large sets of data. This feature optimizes provisioned throughput to import large sets of data.</p>\n<p>Alternatively, use <a href=\"tutorial-spark-connector\">Apache Spark</a> to import data at scale using Python or Scala.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does Azure Cosmos DB for NoSQL support resource link caching?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes, because Azure Cosmos DB for NoSQL is a RESTful service, resource links are immutable and can be cached. API for NoSQL clients can specify an &quot;If-None-Match&quot; header for reads against any resource-like document or container and then update their local copies after the server version changes.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is a local instance of Azure Cosmos DB for NoSQL available?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes. The <a href=\"emulator\">Azure Cosmos DB emulator</a> provides a high-fidelity emulation of the Azure Cosmos DB service. It supports functionality that's identical to Azure Cosmos DB across various APIs. This functionality includes support for creating items, querying items, provisioning containers, and scaling containers. You can develop and test applications by using the emulator's endpoints. You can then deploy the applications to Azure at a global scale by changing the connection string from the emulator to the live service.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why are long floating-point values in an Azure Cosmos DB for NoSQL item rounded when using the Data Explorer in the portal?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>This Data Explorer limitation is a limitation of JavaScript. JavaScript uses double-precision floating-point format numbers as specified in Institute of Electrical and Electronics Engineers (IEEE) 754. This data type can safely hold numbers between -(2<sup>53</sup> - 1) and 2<sup>53</sup>-1 (that is, 9007199254740991) only.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is role-based access control (RBAC)?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Role-based access control (RBAC) is a method of regulating access to computer or network resources based on the roles of individual users within an enterprise. In Azure Cosmos DB, RBAC is used to grant data-plane access to users and applications. For more information about various terms in role-based access control, see the <a href=\"how-to-connect-role-based-access-control\">security glossary</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I enable data-plane role-based access control for Azure Cosmos DB for NoSQL?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Use the Azure Cosmos DB native role-based access control (RBAC) feature to grant data-plane access to users and applications. For more information, see <a href=\"how-to-connect-role-based-access-control\">Grant data-plane role-based access</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which Azure Cosmos DB APIs support data-plane role-based access control?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>As of now, only the NoSQL API is supported.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is it possible to manage role definitions and role assignments from the Azure portal?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Azure portal support for role management isn't available yet.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which SDKs in Azure Cosmos DB API for NoSQL support role-based access control?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>The .NET V3, Java V4, JavaScript V3, and Python V4.3+ SDKs are currently supported.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is the Microsoft Entra token automatically refreshed by the Azure Cosmos DB SDKs when it expires?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is it possible to disable the usage of the account primary/secondary keys when using role-based access control?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes. For more information, see <a href=\"how-to-connect-role-based-access-control#disable-key-based-authentication\">disable key-based authentication</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I migrate an Azure Cosmos DB account to a different resource group or to a different subscription?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>The general guideline to migrate a Cosmos DB account to a different resource group or subscription is described in the <a href=\"/azure/azure-resource-manager/management/move-resource-group-and-subscription\">moving Azure resources to a new resource group or subscription</a> article.</p>\n<p>After you successfully move the Azure Cosmos DB account per the general guideline, any identities (System-Assigned or User-Assigned) associated with the account must be <a href=\"/azure/cosmos-db/how-to-setup-managed-identity\">reassigned</a>. This reassignment is required in order to ensure that these identities continue to have the necessary permissions to access the Key Vault key.</p>\n<div class=\"WARNING\">\n<p>Warning</p>\n<p>If your Cosmos DB account has Customer Managed Keys enabled, you can only migrate the account to a different resource group or subscription if it's in an Active state. Accounts in a Revoked state can't be migrated.</p>\n</div>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I migrate an Azure Cosmos DB account to a different tenant?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>If your Cosmos DB account has Customer Managed Keys enabled, you can only migrate the account if it's a cross-tenant customer-managed key account. For more information, see the guide on <a href=\"/azure/cosmos-db/how-to-setup-cross-tenant-customer-managed-keys?tabs=azure-portal\">configuring cross-tenant customer-managed keys for your Azure Cosmos DB account with Azure Key Vault</a>.</p>\n<div class=\"WARNING\">\n<p>Warning</p>\n<p>After migrating, it's crucial to keep the Azure Cosmos DB account and the Azure Key Vault in separate tenants to preserve the original cross-tenant relationship. Ensure the Key Vault key remains in place until the Cosmos DB account migration is complete.</p>\n</div>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What should I expect during and after migration?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>When migrating from periodic mode to continuous mode, you can't run any control plane operations that performs account level updates or deletes. For example, operations such as adding or removing regions, account failover, updating backup policy etc. can't be run while the migration is in progress. The time for migration depends on the size of data and the number of regions in your account. Restore action on the migrated accounts only succeeds from the time when migration successfully completes.</p>\n<p>You can restore your account after the migration completes. If the migration completes at 1:00 PM PST, you can do point in time restore starting from 1:00 PM PST.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does the migration only happen at the account level?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which accounts can be targeted for backup migration for continuous backup?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>API for NoSQL, API for Table, Gremlin API, and API for MongoDB accounts that use shared, provisioned, or autoscale provisioned throughput support migration to continuous backup.</p>\n<p>Accounts with Azure Synapse Link enabled, or that had Azure Synapse Link disabled for one or more collections, can't migrate to continuous backup.</p>\n<div class=\"IMPORTANT\">\n<p>Important</p>\n<p>Synapse Link for Cosmos DB is no longer supported for new projects. Don't use this feature.</p>\n<p>Please use Azure Cosmos DB Mirroring for Microsoft Fabric which is now GA. Mirroring provides the same zero-ETL benefits and is fully integrated with Microsoft Fabric. Learn more at <a href=\"/fabric/database/mirrored-database/azure-cosmos-db\">Cosmos DB Mirroring Overview</a>.</p>\n</div>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does the migration take time? What is the typical time?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Migration takes a varying amount of time that largely depends on the size of data and the number of regions in your account. You can get the migration status using Azure CLI or PowerShell commands. For large accounts with tens of terabytes of data, the migration can take up to few days to complete.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does the migration for multi region write(mrw) account with periodic backup to multi region write with continuous backup take time?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes, this migration takes time that largely depends on need to wait for all old tentative writes to get drained during continuous backup migration. You can get the migration status using Azure CLI or PowerShell commands. For large accounts with tens of terabytes of data, the migration can take up to few days to complete.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does the migration cause any availability downtime?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>No, the migration operation takes place in the background. So, client requests aren't affected. However, we need to perform some backend operations during the migration, and it could take extra time if the account is under heavy load.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What happens if the migration fails? Do I still get periodic backups or continuous backups?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Once the migration process is started, the account is enabled in continuous mode. If the migration fails, you must initiate migration again until it succeeds.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I perform a restore to a timestamp before/during/after the migration?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Assume that you started migration at <code>t1</code> and finished at <code>t5</code>, you can't use a restore timestamp between <code>t1</code> and <code>t5</code>.\nAlso assume that your account is now in continuous mode. To restore to a time after <code>t5</code>, perform the restore using Azure portal, CLI, or PowerShell like normally with a continuous account. This self-service restore request can only be done after the migration is complete.\nTo restore to a time before <code>t1</code>, you can open a support ticket like you normally would with a periodic backup account. After the migration, you have up to 30 days to perform the periodic restore. During these 30 days, you can restore based on the backup retention/interval of your account before the migration. For example, if the backup was configured to retain 24 copies at 1 hour intervals, then you can restore anytime between <code>(t1 – 24 hours)</code> and <code>t1</code>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which account level control plane operations are blocked during migration?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Operations such as add/remove region, failover, changing backup policy, and any throughput changes resulting in data movement are blocked during migration.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "If the migration fails for some underlying issue, does it block the control plane operation until you retry and complete migration successfully?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Failed migration doesn't block any control plane operations. If migration fails, retry until it succeeds before performing other control plane operations.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is it possible to cancel the migration?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>It isn't possible to cancel the migration because migrations aren't a reversible operation. Via support call team can cancel temporarily and let the offline operations continue. But one can't move back to periodic backup state.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is there a tool that can help estimate migration time based on the data usage and number of regions?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>There isn't a tool to estimate time. Our testing and scale runs indicate that an account with 1 TB of data takes roughly 90 minutes.\nFor multi-region accounts, calculate the total data size as <code>Number_of_regions * Data_in_single_region</code>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Since the continuous backup mode is now GA, do you still recommend restoring a copy of your account? Would you recommend trying migration on the copy before deciding to migrate the production account?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Test the continuous backup mode feature to verify it works as expected before migrating production accounts. Migration is a one-way operation and can't be reversed.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is a free account available?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes, you can sign up for a <a href=\"free-tier\">free database account</a> with 1,000 RU/sec and 25GB for free.</p>\n<p>If you're new to Azure, you can sign up for an <a href=\"https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn\">Azure free account</a>, which gives you 30 days and a credit to try all the Azure services. If you have a Visual Studio subscription, you're also eligible for <a href=\"https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/\">free Azure credits</a> to use on any Azure service.</p>\n<p>You can also use the <a href=\"emulator\">Azure Cosmos DB Emulator</a> to develop and test your application locally for free, without creating an Azure subscription. When you're satisfied with how your application is working in the Azure Cosmos DB Emulator, you can switch to using an Azure Cosmos DB account in the cloud.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I sign up for Azure Cosmos DB?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Azure Cosmos DB is available in the Azure portal. First, sign up for an Azure subscription. After you sign up, add an Azure Cosmos DB account to your Azure subscription.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I authenticate to Azure Cosmos DB?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Use Microsoft Entra ID to authenticate to Azure Cosmos DB for all APIs that support this method of authentication. For APIs that don't support Microsoft Entra ID authentication, use the keys with caution. Ensure that keys for production accounts are stored securely, such as in Azure Key Vault.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Where is Azure Cosmos DB available?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>For information about regional availability for Azure Cosmos DB, see <a href=\"https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cosmos-db\">Azure products available by region</a>. You can account your database to one or more of these regions.</p>\n<p>The software development kits (SDKs) for Azure Cosmos DB allow configuration of the regions they use for connections. In most SDKs, the `PreferredLocations`` value is set to any of the Azure regions in which Azure Cosmos DB is available.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is there anything I should be aware of when distributing data across the world via the Azure datacenters?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Azure Cosmos DB is present across all Azure regions, as specified on the <a href=\"https://azure.microsoft.com/regions/\">Azure regions</a> page. Because it's a core Azure service, every new datacenter has an Azure Cosmos DB presence.</p>\n<p>When you set a region, remember that Azure Cosmos DB respects sovereign and government clouds. For example, you can't replicate data out of a <a href=\"https://azure.microsoft.com/global-infrastructure/\">sovereign region</a>. Similarly, you can't enable replication into other sovereign locations from an outside account.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is it possible to switch between container-level and database-level throughput provisioning?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Container and database-level throughput provisioning are separate offerings and switching between either of these offerings require migrating data from source to destination. You need to create a new database or container and then migrate data using <a href=\"bulk-executor-overview\">bulk executor library</a> or <a href=\"/azure/data-factory/connector-azure-cosmos-db\">Azure Data Factory</a>.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does Azure Cosmos DB support time series analysis?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Yes, Azure Cosmos DB supports time series analysis. You can use the change feed to build aggregated views over time series data. You can extend this approach by using Apache Spark streaming or another stream data processor.</p>\n"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are the Azure Cosmos DB service quotas and throughput limits?\n",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>For information about service quotas and throughput limits, see <a href=\"concepts-limits\">service quotas</a> and <a href=\"set-throughput#comparison-of-models\">throughout limits</a>.</p>\n"
+                }
+              }
+            ]
+          }
+        ],
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:type",
+                "website"
+              ],
+              [
+                "og:image:alt",
+                "Microsoft Learn"
+              ],
+              [
+                "og:image",
+                "https://learn.microsoft.com/en-us/media/open-graph-image.png"
+              ],
+              [
+                "og:title",
+                "Frequently asked questions - Azure Cosmos DB"
+              ],
+              [
+                "og:url",
+                "https://learn.microsoft.com/en-us/azure/cosmos-db/faq"
+              ],
+              [
+                "og:description",
+                "Get answers to frequently asked questions about Azure Cosmos DB. Learn about capacity, performance levels, and scaling, and service features."
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures role attribute has an appropriate value for the element",
+          "help": "ARIA role must be appropriate for the element",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+          "id": "aria-allowed-role",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "combobox"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role combobox  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role combobox  is not allowed for given element",
+              "html": "<input role=\"combobox\" maxlength=\"100\" aria-autocomplete=\"list\" autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\" id=\"site-header-search-autocomplete-input-mobile\" data-test-id=\"site-header-search-autocomplete-input-mobile\" class=\"autocomplete-input input \n\t\t\t\t\t\t\n\t\t\t\t\t\twidth-full\" type=\"search\" name=\"terms\" aria-expanded=\"false\" aria-owns=\"ax-1-listbox\" aria-controls=\"ax-1-listbox\" aria-activedescendant=\"\" aria-label=\"Search\" aria-describedby=\"ms--site-header-search-autocomplete-input-mobile-description\" placeholder=\"Search\" data-bi-name=\"site-header-search-autocomplete-input-mobile\" pattern=\".*\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#site-header-search-autocomplete-input-mobile"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "combobox"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role combobox  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role combobox  is not allowed for given element",
+              "html": "<input role=\"combobox\" maxlength=\"100\" aria-autocomplete=\"list\" autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\" id=\"site-header-search-autocomplete-input\" data-test-id=\"site-header-search-autocomplete-input\" class=\"autocomplete-input input input-sm\n\t\t\t\t\t\t\n\t\t\t\t\t\twidth-full\" type=\"search\" name=\"terms\" aria-expanded=\"false\" aria-owns=\"ax-0-listbox\" aria-controls=\"ax-0-listbox\" aria-activedescendant=\"\" aria-label=\"Search\" aria-describedby=\"ms--site-header-search-autocomplete-input-description\" placeholder=\"Search\" data-bi-name=\"site-header-search-autocomplete-input\" pattern=\".*\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#site-header-search-autocomplete-input"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "navigation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role navigation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role navigation  is not allowed for given element",
+              "html": "<nav id=\"affixed-left-container\" class=\"margin-top-xxs-tablet position-sticky display-flex flex-direction-column width-full\" aria-label=\"Primary\" data-bi-name=\"left-toc\" role=\"navigation\" style=\"top: 8px; height: calc(-89.1562px + 100vh); max-height: 15273.5px;\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#affixed-left-container"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "combobox"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role combobox  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role combobox  is not allowed for given element",
+              "html": "<input role=\"combobox\" maxlength=\"100\" aria-autocomplete=\"list\" autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\" id=\"ax-2\" data-test-id=\"ax-2\" class=\"autocomplete-input input input-sm\n\t\t\t\t\t\tcontrol has-icons-left\n\t\t\t\t\t\twidth-full\" type=\"text\" aria-expanded=\"false\" aria-owns=\"ax-3-listbox\" aria-controls=\"ax-3-listbox\" aria-activedescendant=\"\" aria-describedby=\"ms--ax-2-description\" placeholder=\"Find by title\" pattern=\".*\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#ax-2"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "main"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role main  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role main  is not allowed for given element",
+              "html": "<main id=\"main\" role=\"main\" class=\"layout-body-main \" data-bi-name=\"content\" lang=\"en-us\" dir=\"ltr\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#main"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "contentinfo"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role contentinfo  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role contentinfo  is not allowed for given element",
+              "html": "<footer id=\"footer\" data-test-id=\"footer\" data-bi-name=\"footer\" class=\"footer-layout has-padding has-default-focus border-top  uhf-container\" role=\"contentinfo\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#footer"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-valid-attr-value?application=axeAPI",
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": [
+                    "aria-controls=\"ms--collapsible-toc-content\""
+                  ],
+                  "id": "aria-valid-attr-value",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute value: aria-controls=\"ms--collapsible-toc-content\"",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"ms--collapsible-toc-content\"",
+              "html": "<button type=\"button\" class=\"button button-clear inner-focus\" data-collapsible-toc-toggle=\"\" aria-expanded=\"true\" aria-controls=\"ms--collapsible-toc-content\" aria-label=\"Collapse\" title=\"Collapse\" data-bi-name=\"toc-collapse\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "button[data-collapsible-toc-toggle=\"\"]"
+              ]
+            },
+            {
+              "all": [
+                {
+                  "data": [
+                    "aria-controls=\"{{ themeMenuId }}\""
+                  ],
+                  "id": "aria-valid-attr-value",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute value: aria-controls=\"{{ themeMenuId }}\"",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"{{ themeMenuId }}\"",
+              "html": "<button data-test-id=\"theme-selector-button\" class=\"dropdown-trigger button button-clear button-sm inner-focus theme-dropdown-trigger\" aria-controls=\"{{ themeMenuId }}\" aria-expanded=\"false\" title=\"Theme\" data-bi-name=\"theme\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                ".theme-dropdown-trigger"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+          ]
+        },
+        {
+          "description": "Ensures every form element has a label",
+          "help": "Form elements must have labels",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/label?application=axeAPI",
+          "id": "label",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Form element has explicit <label> that is hidden",
+              "html": "<input role=\"combobox\" maxlength=\"100\" aria-autocomplete=\"list\" autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\" id=\"ax-2\" data-test-id=\"ax-2\" class=\"autocomplete-input input input-sm\n\t\t\t\t\t\tcontrol has-icons-left\n\t\t\t\t\t\twidth-full\" type=\"text\" aria-expanded=\"false\" aria-owns=\"ax-3-listbox\" aria-controls=\"ax-3-listbox\" aria-activedescendant=\"\" aria-describedby=\"ms--ax-2-description\" placeholder=\"Find by title\" pattern=\".*\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "hidden-explicit-label",
+                  "impact": "critical",
+                  "message": "Form element has explicit <label> that is hidden",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "#ax-2"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.forms",
+            "wcag2a",
+            "wcag332",
+            "wcag131",
+            "section508",
+            "section508.22.n"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 3,
+      "passes_count": 43,
+      "total_penalty": 65,
+      "penalty_per_rule": {
+        "aria-allowed-role": {
+          "impact": "minor",
+          "node_count": 6,
+          "raw_penalty": 30,
+          "capped_penalty": 15
+        },
+        "aria-valid-attr-value": {
+          "impact": "critical",
+          "node_count": 2,
+          "raw_penalty": 50,
+          "capped_penalty": 25
+        },
+        "label": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        }
+      },
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 15,
+        "date": 15,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [
+          "meta:description",
+          "og:description"
+        ],
+        "author": [
+          "meta:author"
+        ],
+        "date": [
+          "meta:date"
+        ],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 6,
+      "fields_total": 7,
+      "json_ld_type": "FAQPage"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "\"PQKVEiQy6HIlFlJiF0CAPhecs+Y=\"",
+        "last_modified": "Mon, 27 Apr 2026 13:07:49 GMT",
+        "cache_control": "public, max-age=569"
+      },
+      "agent_content_hints": {
+        "scoring_contribution": 0,
+        "diagnostic_only": true,
+        "rationale": "PRD F2.2/F2.3: retrieval-lift evidence deferred to Phase 6",
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": true,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": [
+            "meta markdown_url: https://learn.microsoft.com/en-us/azure/cosmos-db/faq?accept=text/markdown"
+          ]
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 20,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "faq",
+      "detection": {
+        "ms_topic_raw": "faq",
+        "source": "ms_topic",
+        "matched_value": "faq"
+      },
+      "weights": {
+        "semantic_html": 0.0,
+        "content_extractability": 0.5,
+        "structured_data": 0.0,
+        "dom_navigability": 0.0,
+        "metadata_completeness": 0.0,
+        "http_compliance": 0.5
+      },
+      "v1_weights_for_reference": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.15,
+        "structured_data": 0.3,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.05,
+        "http_compliance": 0.1
+      },
+      "scoring_version": "v2-evidence-partial"
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "faq",
+  "universal_score": 81.85365853658536,
+  "render_mode": "rendered",
+  "confidence_range": {
+    "scoring_version": "v2-evidence-partial",
+    "evidence_tier": "partial",
+    "headline_weights": {
+      "semantic_html": 0.0,
+      "content_extractability": 0.5,
+      "structured_data": 0.0,
+      "dom_navigability": 0.0,
+      "metadata_completeness": 0.0,
+      "http_compliance": 0.5
+    },
+    "calibration_corpus": {
+      "name": "corpus-002",
+      "n": 43,
+      "pearson_r_vs_accuracy_rendered": 0.548,
+      "gate_threshold": 0.35,
+      "source": "findings/phase-5-corpus-002-findings.md Addendum B"
+    },
+    "caveats": [
+      "Single corpus, single grader architecture, single run.",
+      "Four pillars carry zero headline weight in v2; still reported as diagnostics.",
+      "Profile-specific weights collapse to the same 2-pillar composite pending corpus-003.",
+      "Cross-judge accuracy variance: per-judge corpus-002 means span 0.591-0.698 across Llama-3.3-70B, GPT-4o, and DeepSeek-V3.2 (pooled kappa 0.706-0.817). The v2 composite-vs-accuracy Pearson r ranges from +0.440 to +0.618 across judges (all above the +0.35 ship gate). Report majority-vote CI [0.567, 0.688] or per-judge union CI [0.530, 0.758] when comparing across studies.",
+      "No temporal variance measured yet."
+    ]
+  },
+  "subscores": {
+    "semantic_html": 83.63636363636364,
+    "content_extractability": 83.70731707317073,
+    "structured_data": 97.0,
+    "dom_navigability": 35,
+    "metadata_completeness": 85,
+    "http_compliance": 80.0
+  },
+  "evidence_references": null
+}

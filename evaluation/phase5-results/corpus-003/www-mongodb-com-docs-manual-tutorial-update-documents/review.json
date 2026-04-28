@@ -1,0 +1,102 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the quantity of the item 'canvas' in the inventory collection?",
+      "answer": "100",
+      "supporting_sentences": [
+        "\"item\", BCON_UTF8 (\"canvas\"), \"qty\", BCON_INT64 (100),"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the quantity of the item 'canvas' in the inventory collection?",
+      "answer": "100",
+      "supporting_sentences": [
+        "\"item\", BCON_UTF8 (\"canvas\"), \"qty\", BCON_INT64 (100),"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the height and width of the 'notebook' item in the inventory collection?",
+      "answer": "The height is 8.5 and the width is 11, measured in inches.",
+      "supporting_sentences": [
+        "\"item\", BCON_UTF8 (\"notebook\"), \"qty\", BCON_INT64 (50), \"size\", \"{\", \"h\", BCON_DOUBLE (8.5), \"w\", BCON_DOUBLE (11), \"uom\", BCON_UTF8 (\"in\"), \"}\""
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the height and width of the 'notebook' item in the inventory collection?",
+      "answer": "The height is 8.5 and the width is 11, measured in inches.",
+      "supporting_sentences": [
+        "\"item\", BCON_UTF8 (\"notebook\"), \"qty\", BCON_INT64 (50), \"size\", \"{\", \"h\", BCON_DOUBLE (8.5), \"w\", BCON_DOUBLE (11), \"uom\", BCON_UTF8 (\"in\"), \"}\""
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the status of the 'mousepad' item in the inventory collection?",
+      "answer": "P",
+      "supporting_sentences": [
+        "\"item\", BCON_UTF8 (\"mousepad\"), \"status\", BCON_UTF8 (\"P\")"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the status of the 'mousepad' item in the inventory collection?",
+      "answer": "P",
+      "supporting_sentences": [
+        "\"item\", BCON_UTF8 (\"mousepad\"), \"status\", BCON_UTF8 (\"P\")"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What unit of measurement is used for the dimensions of the 'planner' item?",
+      "answer": "cm",
+      "supporting_sentences": [
+        "\"item\", BCON_UTF8 (\"planner\"), \"size\", \"{\", \"h\", BCON_DOUBLE (22.85), \"w\", BCON_DOUBLE (30), \"uom\", BCON_UTF8 (\"cm\"), \"}\""
+      ]
+    },
+    "edited_pair": {
+      "question": "What unit of measurement is used for the dimensions of the 'planner' item?",
+      "answer": "cm",
+      "supporting_sentences": [
+        "\"item\", BCON_UTF8 (\"planner\"), \"size\", \"{\", \"h\", BCON_DOUBLE (22.85), \"w\", BCON_DOUBLE (30), \"uom\", BCON_UTF8 (\"cm\"), \"}\""
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How many items in the inventory collection have a status of 'A'?",
+      "answer": "6",
+      "supporting_sentences": [
+        "\"status\", BCON_UTF8 (\"A\") appears for the items: canvas, journal, mat, postcard, sketchbook, and sketch pad."
+      ]
+    },
+    "edited_pair": {
+      "question": "How many items in the inventory collection have a status of 'A'?",
+      "answer": "6",
+      "supporting_sentences": [
+        "\"status\", BCON_UTF8 (\"A\") appears for the items: canvas, journal, mat, postcard, sketchbook, and sketch pad."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

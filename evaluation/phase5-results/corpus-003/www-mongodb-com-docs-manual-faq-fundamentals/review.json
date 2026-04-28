@@ -1,0 +1,108 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the basic units of data storage in a MongoDB database instead of tables?",
+      "answer": "Collections and BSON documents.",
+      "supporting_sentences": [
+        "Instead of tables, a MongoDB database stores its data in collections.",
+        "A collection holds one or more BSON documents."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the basic units of data storage in a MongoDB database instead of tables?",
+      "answer": "Collections and BSON documents.",
+      "supporting_sentences": [
+        "Instead of tables, a MongoDB database stores its data in collections.",
+        "A collection holds one or more BSON documents."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens when you attempt to store data in a MongoDB database or collection that does not exist?",
+      "answer": "MongoDB creates the database or collection when you first store data for it.",
+      "supporting_sentences": [
+        "If a database does not exist, MongoDB creates the database when you first store data for that database.",
+        "If a collection does not exist, MongoDB creates the collection when you first store data for that collection."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens when you attempt to store data in a MongoDB database or collection that does not exist?",
+      "answer": "MongoDB creates the database or collection when you first store data for it.",
+      "supporting_sentences": [
+        "If a database does not exist, MongoDB creates the database when you first store data for that database.",
+        "If a collection does not exist, MongoDB creates the collection when you first store data for that collection."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Is it required to specify a schema for a collection in MongoDB?",
+      "answer": "No, you do not need to specify a schema for a collection in MongoDB.",
+      "supporting_sentences": [
+        "You do not need to specify a schema for a collection in MongoDB."
+      ]
+    },
+    "edited_pair": {
+      "question": "Is it required to specify a schema for a collection in MongoDB?",
+      "answer": "No, you do not need to specify a schema for a collection in MongoDB.",
+      "supporting_sentences": [
+        "You do not need to specify a schema for a collection in MongoDB."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Does MongoDB support SQL queries directly?",
+      "answer": "No, MongoDB does not support SQL queries directly, but it supports a rich query language of its own and can be queried with SQL using the MongoDB Connector for BI.",
+      "supporting_sentences": [
+        "Not directly, no. However, MongoDB does support a rich query language of its own.",
+        "You can also use the MongoDB Connector for BI to query MongoDB collections with SQL."
+      ]
+    },
+    "edited_pair": {
+      "question": "Does MongoDB support SQL queries directly?",
+      "answer": "No, MongoDB does not support SQL queries directly, but it supports a rich query language of its own and can be queried with SQL using the MongoDB Connector for BI.",
+      "supporting_sentences": [
+        "Not directly, no. However, MongoDB does support a rich query language of its own.",
+        "You can also use the MongoDB Connector for BI to query MongoDB collections with SQL."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does MongoDB handle traditional SQL injection attacks?",
+      "answer": "MongoDB is not vulnerable to traditional SQL injection attacks because it builds queries as BSON objects, not strings.",
+      "supporting_sentences": [
+        "As a client program assembles a query in MongoDB, it builds a BSON object, not a string. Thus traditional SQL injection attacks are not a problem."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does MongoDB handle traditional SQL injection attacks?",
+      "answer": "MongoDB is not vulnerable to traditional SQL injection attacks because it builds queries as BSON objects, not strings.",
+      "supporting_sentences": [
+        "As a client program assembles a query in MongoDB, it builds a BSON object, not a string. Thus traditional SQL injection attacks are not a problem."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

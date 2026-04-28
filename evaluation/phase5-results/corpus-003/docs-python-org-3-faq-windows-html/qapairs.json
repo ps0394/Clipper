@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What command should you enter in a Windows command prompt to start the Python interpreter?",
+    "answer": "The command `py` should be entered to start the Python interpreter.",
+    "supporting_sentences": [
+      "First, you need to make sure that your command window recognises the word \u201cpy\u201d as an instruction to start the interpreter.",
+      "If you have opened a command window, you should try entering the command `py` and hitting return:"
+    ]
+  },
+  {
+    "question": "What is the purpose of the `.pyd` file extension in Python on Windows?",
+    "answer": "A `.pyd` file is a DLL that must have a function called `PyInit_foo()` (where `foo` is the module name) to allow Python to import it as a module.",
+    "supporting_sentences": [
+      "Yes, .pyd files are dll\u2019s, but there are a few differences.",
+      "If you have a DLL named `foo.pyd`, then it must have a function `PyInit_foo()`.",
+      "You can then write Python \u201cimport foo\u201d, and Python will search for foo.pyd (as well as foo.py, foo.pyc) and if it finds it, will attempt to call `PyInit_foo()` to initialize it."
+    ]
+  },
+  {
+    "question": "How can you execute a Python script named `hello.py` located on the desktop from the home directory in the command prompt?",
+    "answer": "You can execute it by typing `py Desktop\\hello.py` in the command prompt.",
+    "supporting_sentences": [
+      "So now you\u2019ll ask the `py` command to give your script to Python by typing `py` followed by your script path:",
+      "C:\\Users\\YourName> py Desktop\\hello.py"
+    ]
+  },
+  {
+    "question": "What are the two ways to link to Python in a Windows application?",
+    "answer": "The two ways are load-time linking (against `pythonNN.lib`) and run-time linking (against `pythonNN.dll`).",
+    "supporting_sentences": [
+      "You can link to Python in two different ways. Load-time linking means linking against `pythonNN.lib`, while run-time linking means linking against `pythonNN.dll`."
+    ]
+  },
+  {
+    "question": "Which Python module can be used to check for keyboard input without echoing it in a Windows application?",
+    "answer": "The `msvcrt` module can be used for this purpose.",
+    "supporting_sentences": [
+      "Use the `msvcrt` module.",
+      "It defines a function `kbhit()` which checks whether a keyboard hit is present, and `getch()` which gets one character without echoing it."
+    ]
+  }
+]

@@ -1,0 +1,110 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the three default environments provided by Vercel?",
+      "answer": "Local, Preview, and Production",
+      "supporting_sentences": [
+        "Vercel provides three default environments\u2014Local, Preview, and Production:"
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the three default environments provided by Vercel?",
+      "answer": "Local, Preview, and Production",
+      "supporting_sentences": [
+        "Vercel provides three default environments\u2014Local, Preview, and Production:"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What file is populated in your application directory when you pull environment variables locally using the Vercel CLI?",
+      "answer": ".env.local",
+      "supporting_sentences": [
+        "This will populate the .env.local file in your application directory."
+      ]
+    },
+    "edited_pair": {
+      "question": "What file is populated in your application directory when you pull environment variables locally using the Vercel CLI?",
+      "answer": ".env.local",
+      "supporting_sentences": [
+        "This will populate the .env.local file in your application directory."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Under what conditions does Vercel create a preview deployment by default?",
+      "answer": "When you push a commit to a branch that is not your production branch, create a pull request on GitHub, GitLab, or Bitbucket, or deploy using the CLI without the -prod flag",
+      "supporting_sentences": [
+        "By default, Vercel creates a preview deployment when you:",
+        "Push a commit to a branch that is not your production branch (commonly main)",
+        "Create a pull request (PR) on GitHub, GitLab, or Bitbucket",
+        "Deploy using the CLI without the -prod flag, for example just vercel"
+      ]
+    },
+    "edited_pair": {
+      "question": "Under what conditions does Vercel create a preview deployment by default?",
+      "answer": "When you push a commit to a branch that is not your production branch, create a pull request on GitHub, GitLab, or Bitbucket, or deploy using the CLI without the -prod flag",
+      "supporting_sentences": [
+        "By default, Vercel creates a preview deployment when you:",
+        "Push a commit to a branch that is not your production branch (commonly main)",
+        "Create a pull request (PR) on GitHub, GitLab, or Bitbucket",
+        "Deploy using the CLI without the -prod flag, for example just vercel"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How many custom environments can you create per project on the Vercel Pro plan?",
+      "answer": "1 custom environment per project",
+      "supporting_sentences": [
+        "Pro: 1 custom environment per project"
+      ]
+    },
+    "edited_pair": {
+      "question": "How many custom environments can you create per project on the Vercel Pro plan?",
+      "answer": "1 custom environment per project",
+      "supporting_sentences": [
+        "Pro: 1 custom environment per project"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What command is used to deploy to a custom environment named 'staging' using the Vercel CLI?",
+      "answer": "vercel deploy --target=staging",
+      "supporting_sentences": [
+        "# Deploy to a custom environment named \"staging\":",
+        "vercel deploy --target=staging"
+      ]
+    },
+    "edited_pair": {
+      "question": "What command is used to deploy to a custom environment named 'staging' using the Vercel CLI?",
+      "answer": "vercel deploy --target=staging",
+      "supporting_sentences": [
+        "# Deploy to a custom environment named \"staging\":",
+        "vercel deploy --target=staging"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

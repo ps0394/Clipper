@@ -1,0 +1,1826 @@
+ <!DOCTYPE html>
+		<html
+			class="layout layout-holy-grail   show-table-of-contents conceptual show-breadcrumb default-focus"
+			lang="en-us"
+			dir="ltr"
+			data-authenticated="false"
+			data-auth-status-determined="false"
+			data-target="docs"
+			x-ms-format-detection="none"
+		>
+			
+		<head>
+			<title>Kubernetes on Azure tutorial - Create an Azure Kubernetes Service (AKS) cluster - Azure Kubernetes Service | Microsoft Learn</title>
+			<meta charset="utf-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="color-scheme" content="light dark" />
+
+			<meta name="description" content="In this Azure Kubernetes Service (AKS) tutorial, you learn how to create an AKS cluster and use kubectl to connect to the Kubernetes main node." />
+			<link rel="canonical" href="https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-deploy-cluster" /> 
+
+			<!-- Non-customizable open graph and sharing-related metadata -->
+			<meta name="twitter:card" content="summary_large_image" />
+			<meta name="twitter:site" content="@MicrosoftLearn" />
+			<meta property="og:type" content="website" />
+			<meta property="og:image:alt" content="Microsoft Learn" />
+			<meta property="og:image" content="https://learn.microsoft.com/en-us/media/open-graph-image.png" />
+			<!-- Page specific open graph and sharing-related metadata -->
+			<meta property="og:title" content="Kubernetes on Azure tutorial - Create an Azure Kubernetes Service (AKS) cluster - Azure Kubernetes Service" />
+			<meta property="og:url" content="https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-deploy-cluster" />
+			<meta property="og:description" content="In this Azure Kubernetes Service (AKS) tutorial, you learn how to create an AKS cluster and use kubectl to connect to the Kubernetes main node." />
+			<meta name="platform_id" content="c6e06eb1-d406-d2e3-e4ab-00109f9995c6" /> <meta name="scope" content="Azure,Azure Kubernetes Service" />
+			<meta name="locale" content="en-us" />
+			 
+			<meta name="uhfHeaderId" content="azure" />
+
+			<meta name="page_type" content="conceptual" />
+
+			<!--page specific meta tags-->
+			
+
+			<!-- custom meta tags -->
+			
+		<meta name="breadcrumb_path" content="/azure/breadcrumb/azure-aks/toc.json" />
+	
+		<meta name="feedback_help_link_url" content="https://learn.microsoft.com/answers/tags/200/azure-kubernetes-service/" />
+	
+		<meta name="feedback_help_link_type" content="get-help-at-qna" />
+	
+		<meta name="feedback_product_url" content="https://feedback.azure.com/d365community/forum/aabe212a-f724-ec11-b6e6-000d3a4f0da0" />
+	
+		<meta name="feedback_system" content="Standard" />
+	
+		<meta name="permissioned-type" content="public" />
+	
+		<meta name="recommendations" content="true" />
+	
+		<meta name="recommendation_types" content="Training" />
+	
+		<meta name="recommendation_types" content="Certification" />
+	
+		<meta name="ms.suite" content="office" />
+	
+		<meta name="adobe-target" content="true" />
+	
+		<meta name="manager" content="rayoflores" />
+	
+		<meta name="learn_banner_products" content="azure" />
+	
+		<meta name="ms.service" content="azure-kubernetes-service" />
+	
+		<meta name="ms.topic" content="tutorial" />
+	
+		<meta name="ms.date" content="2025-03-05T00:00:00Z" />
+	
+		<meta name="author" content="schaffererin" />
+	
+		<meta name="ms.author" content="schaffererin" />
+	
+		<meta name="ms.custom" content="mvc, devx-track-azurecli, devx-track-azurepowershell, devx-track-extended-azdevcli" />
+	
+		<meta name="document_id" content="b1ea7f7e-7f8c-c3a7-c64b-22dc94189490" />
+	
+		<meta name="document_version_independent_id" content="67964e9a-4397-a951-d049-06b9015bbefa" />
+	
+		<meta name="updated_at" content="2026-04-23T06:10:00Z" />
+	
+		<meta name="original_content_git_url" content="https://github.com/MicrosoftDocs/azure-aks-docs-pr/blob/live/articles/aks/tutorial-kubernetes-deploy-cluster.md" />
+	
+		<meta name="gitcommit" content="https://github.com/MicrosoftDocs/azure-aks-docs-pr/blob/486b0ca52fb49e7c55f4336a364a8170985c90bb/articles/aks/tutorial-kubernetes-deploy-cluster.md" />
+	
+		<meta name="git_commit_id" content="486b0ca52fb49e7c55f4336a364a8170985c90bb" />
+	
+		<meta name="site_name" content="Docs" />
+	
+		<meta name="depot_name" content="Learn.azure-aks" />
+	
+		<meta name="schema" content="Conceptual" />
+	
+		<meta name="interactive_type" content="azurecli,azurepowershell" />
+	
+		<meta name="toc_rel" content="toc.json" />
+	
+		<meta name="word_count" content="1721" />
+	
+		<meta name="asset_id" content="aks/tutorial-kubernetes-deploy-cluster" />
+	
+		<meta name="moniker_range_name" content="" />
+	
+		<meta name="item_type" content="Content" />
+	
+		<meta name="source_path" content="articles/aks/tutorial-kubernetes-deploy-cluster.md" />
+	
+		<meta name="previous_tlsh_hash" content="B3B71B12761CE700FED31F252A7A9150F1FAC58A1DA01FC90563769AC39D2E528B297D8BEF3BA3858333EF4222E56D0E51F17B2AC01F521546D9997ED40C22A3B69D7334C6" />
+	
+		<meta name="github_feedback_content_git_url" content="https://github.com/MicrosoftDocs/azure-aks-docs/blob/main/articles/aks/tutorial-kubernetes-deploy-cluster.md" />
+	
+		<meta name="markdown_url" content="https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-deploy-cluster?accept=text/markdown" />
+	 
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/d44a5346-5de4-439c-b804-7b2a536cbb55" data-source="generated" />
+	
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/68ec7f3a-2bc6-459f-b959-19beb729907d" data-source="generated" />
+	
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/089c8ba6-d135-43ff-bfaf-b8197fb72fb9" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/da41a22b-b7a0-42d3-9c35-50da1c2b7b87" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/90370425-aca4-4a39-9533-d52e5e002a5d" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/32516e21-6665-416f-be21-413febe47d91" data-source="generated" />
+	
+
+			<!-- assets and js globals -->
+			
+			<link rel="stylesheet" href="/static/assets/0.4.03398.7756-c1512039/styles/site.css" />
+			
+			<script src="https://wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js"></script>
+			<script src="https://js.monitor.azure.com/scripts/c/ms.jsll-4.min.js"></script>
+			<script src="/_themes/docs.theme/master/en-us/_themes/global/deprecation.js"></script>
+
+			<!-- msdocs global object -->
+			<script id="msdocs-script">
+		var msDocs = {
+  "environment": {
+    "accessLevel": "online",
+    "azurePortalHostname": "portal.azure.com",
+    "reviewFeatures": false,
+    "supportLevel": "production",
+    "systemContent": true,
+    "siteName": "learn",
+    "legacyHosting": false
+  },
+  "data": {
+    "contentLocale": "en-us",
+    "contentDir": "ltr",
+    "userLocale": "en-us",
+    "userDir": "ltr",
+    "pageTemplate": "Conceptual",
+    "brand": "azure",
+    "context": {},
+    "standardFeedback": true,
+    "showFeedbackReport": false,
+    "feedbackHelpLinkType": "get-help-at-qna",
+    "feedbackHelpLinkUrl": "https://learn.microsoft.com/answers/tags/200/azure-kubernetes-service/",
+    "feedbackSystem": "Standard",
+    "feedbackGitHubRepo": "",
+    "feedbackProductUrl": "https://feedback.azure.com/d365community/forum/aabe212a-f724-ec11-b6e6-000d3a4f0da0",
+    "extendBreadcrumb": false,
+    "isEditDisplayable": true,
+    "isPrivateUnauthorized": false,
+    "hideViewSource": false,
+    "isPermissioned": false,
+    "hasRecommendations": true,
+    "contributors": [
+      {
+        "name": "schaffererin",
+        "url": "https://github.com/schaffererin"
+      },
+      {
+        "name": "shashankbarsin",
+        "url": "https://github.com/shashankbarsin"
+      },
+      {
+        "name": "khdownie",
+        "url": "https://github.com/khdownie"
+      },
+      {
+        "name": "asw101",
+        "url": "https://github.com/asw101"
+      },
+      {
+        "name": "davidsmatlak",
+        "url": "https://github.com/davidsmatlak"
+      },
+      {
+        "name": "cynthn",
+        "url": "https://github.com/cynthn"
+      },
+      {
+        "name": "pjlewisuk",
+        "url": "https://github.com/pjlewisuk"
+      },
+      {
+        "name": "tamram",
+        "url": "https://github.com/tamram"
+      },
+      {
+        "name": "nathaniel-msft",
+        "url": "https://github.com/nathaniel-msft"
+      },
+      {
+        "name": "Stacyrch140",
+        "url": "https://github.com/Stacyrch140"
+      },
+      {
+        "name": "alexwolfmsft",
+        "url": "https://github.com/alexwolfmsft"
+      },
+      {
+        "name": "Nickomang",
+        "url": "https://github.com/Nickomang"
+      },
+      {
+        "name": "xfz11",
+        "url": "https://github.com/xfz11"
+      },
+      {
+        "name": "pritamso",
+        "url": "https://github.com/pritamso"
+      },
+      {
+        "name": "MGoedtel",
+        "url": "https://github.com/MGoedtel"
+      },
+      {
+        "name": "zr-msft",
+        "url": "https://github.com/zr-msft"
+      },
+      {
+        "name": "mikefrobbins",
+        "url": "https://github.com/mikefrobbins"
+      },
+      {
+        "name": "v-kents",
+        "url": "https://github.com/v-kents"
+      },
+      {
+        "name": "rolyon",
+        "url": "https://github.com/rolyon"
+      },
+      {
+        "name": "laurenhughes",
+        "url": "https://github.com/laurenhughes"
+      },
+      {
+        "name": "Karishma-Tiwari-MSFT",
+        "url": "https://github.com/Karishma-Tiwari-MSFT"
+      },
+      {
+        "name": "andynava",
+        "url": "https://github.com/andynava"
+      },
+      {
+        "name": "mimckitt",
+        "url": "https://github.com/mimckitt"
+      },
+      {
+        "name": "dlepow",
+        "url": "https://github.com/dlepow"
+      },
+      {
+        "name": "mlhoop",
+        "url": "https://github.com/mlhoop"
+      },
+      {
+        "name": "iainfoulds",
+        "url": "https://github.com/iainfoulds"
+      },
+      {
+        "name": "neilpeterson",
+        "url": "https://github.com/neilpeterson"
+      },
+      {
+        "name": "DaveVoyles",
+        "url": "https://github.com/DaveVoyles"
+      },
+      {
+        "name": "JamesEarle",
+        "url": "https://github.com/JamesEarle"
+      },
+      {
+        "name": "paulkel",
+        "url": "https://github.com/paulkel"
+      },
+      {
+        "name": "mmacy",
+        "url": "https://github.com/mmacy"
+      },
+      {
+        "name": "chlowell",
+        "url": "https://github.com/chlowell"
+      },
+      {
+        "name": "seanknox",
+        "url": "https://github.com/seanknox"
+      }
+    ]
+  },
+  "functions": {}
+};;
+	</script>
+
+			<!-- base scripts, msdocs global should be before this -->
+			<script src="/static/assets/0.4.03398.7756-c1512039/scripts/en-us/index-docs.js"></script>
+			
+
+			<!-- json-ld -->
+			
+		</head>
+	
+			<body
+				id="body"
+				data-bi-name="body"
+				class="layout-body "
+				lang="en-us"
+				dir="ltr"
+			>
+				<header class="layout-body-header">
+		<div class="header-holder has-default-focus">
+			
+		<a
+			href="#main"
+			
+			style="z-index: 1070"
+			class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body"
+			
+		>
+			Skip to main content
+		</a>
+	
+		<a
+			href="#"
+			data-skip-to-ask-learn
+			style="z-index: 1070"
+			class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body"
+			hidden
+		>
+			Skip to Ask Learn chat experience
+		</a>
+	
+
+			<div hidden id="cookie-consent-holder" data-test-id="cookie-consent-container"></div>
+			<!-- Unsupported browser warning -->
+			<div
+				id="unsupported-browser"
+				style="background-color: white; color: black; padding: 16px; border-bottom: 1px solid grey;"
+				hidden
+			>
+				<div style="max-width: 800px; margin: 0 auto;">
+					<p style="font-size: 24px">This browser is no longer supported.</p>
+					<p style="font-size: 16px; margin-top: 16px;">
+						Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+					</p>
+					<div style="margin-top: 12px;">
+						<a
+							href="https://go.microsoft.com/fwlink/p/?LinkID=2092881 "
+							style="background-color: #0078d4; border: 1px solid #0078d4; color: white; padding: 6px 12px; border-radius: 2px; display: inline-block;"
+						>
+							Download Microsoft Edge
+						</a>
+						<a
+							href="https://learn.microsoft.com/en-us/lifecycle/faq/internet-explorer-microsoft-edge"
+							style="background-color: white; padding: 6px 12px; border: 1px solid #505050; color: #171717; border-radius: 2px; display: inline-block;"
+						>
+							More info about Internet Explorer and Microsoft Edge
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- site header -->
+			<div
+				id="ms--site-header"
+				data-test-id="site-header-wrapper"
+				itemscope="itemscope"
+				itemtype="http://schema.org/Organization"
+			>
+				<div
+					id="ms--mobile-nav"
+					class="site-header display-none-tablet padding-inline-none gap-none"
+					data-bi-name="mobile-header"
+					data-test-id="mobile-header"
+				></div>
+				<div
+					id="ms--primary-nav"
+					class="site-header display-none display-flex-tablet"
+					data-bi-name="L1-header"
+					data-test-id="primary-header"
+				></div>
+				<div
+					id="ms--secondary-nav"
+					class="site-header display-none display-flex-tablet"
+					data-bi-name="L2-header"
+					data-test-id="secondary-header"
+					
+				></div>
+			</div>
+			
+		<!-- banner -->
+		<div data-banner>
+			<div id="disclaimer-holder"></div>
+			
+		</div>
+		<!-- banner end -->
+	
+		</div>
+	</header>
+				 <section
+					id="layout-body-menu"
+					class="layout-body-menu border-right display-flex"
+					data-bi-name="menu"
+			  >
+					
+		<div
+			id="left-container"
+			class="left-container display-none padding-none display-block-tablet width-full"
+			data-toc-container="true"
+		>
+			<!-- Regular TOC content (default) -->
+			<div
+				id="ms--toc-content"
+				class="height-full padding-left-sm padding-right-none padding-bottom-sm"
+			>
+				<nav
+					id="affixed-left-container"
+					class="margin-top-xxs-tablet position-sticky display-flex flex-direction-column"
+					aria-label="Primary"
+					data-bi-name="left-toc"
+					role="navigation"
+				></nav>
+			</div>
+			<!-- Collapsible TOC content (hidden by default) -->
+			<div
+				id="ms--toc-content-collapsible"
+				class="padding-left-sm padding-right-none padding-bottom-sm height-full"
+				hidden
+			>
+				<nav
+					id="affixed-left-container"
+					class="margin-top-xxs-tablet position-sticky display-flex flex-direction-column width-full"
+					aria-label="Primary"
+					data-bi-name="left-toc"
+					role="navigation"
+				>
+					<div
+						id="ms--collapsible-toc-header"
+						class="display-flex flex-direction-row-reverse justify-content-center align-items-center margin-bottom-xxs margin-right-xxs"
+					>
+						<button
+							type="button"
+							class="button button-clear inner-focus"
+							data-collapsible-toc-toggle
+							aria-expanded="true"
+							aria-controls="ms--collapsible-toc-content"
+							aria-label="Table of contents"
+						>
+							<span class="icon font-size-md" aria-hidden="true">
+								<span class="docon docon-panel-left-contract"></span>
+							</span>
+						</button>
+						<div id="ms--collapsible-toc-moniker-slot" class="flex-grow-1"></div>
+					</div>
+				</nav>
+			</div>
+		</div>
+	
+			  </section>
+
+				<main
+					id="main"
+					role="main"
+					class="layout-body-main "
+					data-bi-name="content"
+					lang="en-us"
+					dir="ltr"
+				>
+					
+			<div
+		id="ms--content-header"
+		class="content-header default-focus border-bottom-none"
+		data-bi-name="content-header"
+	>
+		<div class="content-header-controls margin-xxs margin-inline-sm-tablet">
+			<button
+				type="button"
+				class="contents-button button button-sm margin-right-xxs"
+				data-bi-name="contents-expand"
+				aria-haspopup="true"
+				data-contents-button
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-menu"></span></span>
+				<span class="contents-expand-title"> Table of contents </span>
+			</button>
+			<button
+				type="button"
+				class="ap-collapse-behavior ap-expanded button button-sm"
+				data-bi-name="ap-collapse"
+				aria-controls="action-panel"
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-exit-mode"></span></span>
+				<span>Exit editor mode</span>
+			</button>
+		</div>
+	</div>
+			<div
+				data-main-column
+				class="reading-width margin-inline-auto layout-padding padding-top-none padding-top-sm-tablet"
+			>
+				<div>
+					
+		<div id="article-header" class="background-color-body margin-bottom-xs display-none-print">
+			<div class="display-flex align-items-center justify-content-space-between">
+				
+		<details
+			id="article-header-breadcrumbs-overflow-popover"
+			class="popover"
+			data-for="article-header-breadcrumbs"
+		>
+			<summary
+				class="button button-clear button-primary button-sm inner-focus"
+				aria-label="All breadcrumbs"
+			>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-more"></span>
+				</span>
+			</summary>
+			<div id="article-header-breadcrumbs-overflow" class="popover-content padding-none"></div>
+		</details>
+
+		<bread-crumbs
+			id="article-header-breadcrumbs"
+			role="group"
+			aria-label="Breadcrumbs"
+			data-test-id="article-header-breadcrumbs"
+			class="overflow-hidden flex-grow-1 margin-right-sm margin-right-md-tablet margin-right-lg-desktop margin-left-negative-xxs padding-left-xxs"
+		></bread-crumbs>
+	 
+		<div
+			id="article-header-page-actions"
+			class="opacity-none margin-left-auto display-flex flex-wrap-no-wrap align-items-stretch"
+		>
+			
+		<button
+			class="button button-sm border-none inner-focus display-none-tablet flex-shrink-0 "
+			data-bi-name="ask-learn-assistant-entry"
+			data-test-id="ask-learn-assistant-modal-entry-mobile"
+			data-ask-learn-modal-entry
+			
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-label="Ask Learn"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button
+			class="button button-sm display-none display-inline-flex-tablet display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn "
+			data-bi-name="ask-learn-assistant-entry"
+			
+			data-test-id="ask-learn-assistant-modal-entry-tablet"
+			data-ask-learn-modal-entry
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button
+			class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn "
+			data-bi-name="ask-learn-assistant-entry"
+			
+			data-test-id="ask-learn-assistant-flyout-entry"
+			data-ask-learn-flyout-entry
+			data-flyout-button="toggle"
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-controls="ask-learn-flyout"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	 
+
+			<details class="popover popover-right" id="article-header-page-actions-overflow">
+				<summary
+					class="justify-content-flex-start button button-clear button-sm button-primary inner-focus"
+					aria-label="More actions"
+					title="More actions"
+				>
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-more-vertical"></span>
+					</span>
+				</summary>
+				<div class="popover-content">
+					
+		<button
+			type="button"
+			id="ms--focus-mode-button"
+			data-focus-mode
+			data-bi-name="focus-mode-entry"
+			data-page-action-item="overflow-all"
+			data-popover-close
+			class="button button-clear button-sm button-block justify-content-flex-start text-align-left inner-focus display-none display-inline-flex-tablet"
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-glasses"></span>
+			</span>
+			<span>Reading mode</span>
+		</button>
+	 
+		<button
+			data-page-action-item="overflow-mobile"
+			type="button"
+			class="button-block button-sm inner-focus button button-clear display-none-tablet justify-content-flex-start text-align-left"
+			data-bi-name="contents-expand"
+			data-contents-button
+			data-popover-close
+		>
+			<span class="icon" aria-hidden="true"
+				><span class="docon docon-editor-list-bullet"></span
+			></span>
+			<span class="contents-expand-title">Table of contents</span>
+		</button>
+	 
+		<a
+			id="lang-link-overflow"
+			class="button-sm inner-focus button button-clear button-block justify-content-flex-start text-align-left"
+			data-bi-name="language-toggle"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			data-read-in-link
+			href="#"
+			hidden
+		>
+			<span class="icon" aria-hidden="true" data-read-in-link-icon>
+				<span class="docon docon-locale-globe"></span>
+			</span>
+			<span data-read-in-link-text>Read in English</span>
+		</a>
+	
+					
+		<button
+			type="button"
+			class="collection button button-clear button-sm button-block justify-content-flex-start text-align-left inner-focus"
+			data-list-type="collection"
+			data-bi-name="collection"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			data-popover-close
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-circle-addition"></span>
+			</span>
+			<span class="collection-status">Add</span>
+		</button>
+	 
+		<button
+			type="button"
+			class="collection button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus"
+			data-list-type="plan"
+			data-bi-name="plan"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			data-popover-close
+			hidden
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-circle-addition"></span>
+			</span>
+			<span class="plan-status">Add to plan</span>
+		</button>
+	 
+					
+		<a
+			data-contenteditbtn
+			class="button button-clear button-block button-sm inner-focus justify-content-flex-start text-align-left text-decoration-none"
+			data-bi-name="edit"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			
+			href="https://github.com/MicrosoftDocs/azure-aks-docs/blob/main/articles/aks/tutorial-kubernetes-deploy-cluster.md"
+			data-original_content_git_url="https://github.com/MicrosoftDocs/azure-aks-docs-pr/blob/live/articles/aks/tutorial-kubernetes-deploy-cluster.md"
+			data-original_content_git_url_template="{repo}/blob/{branch}/articles/aks/tutorial-kubernetes-deploy-cluster.md"
+			data-pr_repo=""
+			data-pr_branch=""
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-edit-outline"></span>
+			</span>
+			<span>Edit</span>
+		</a>
+	  
+		<hr class="margin-block-xxs" />
+		
+				<button
+					class="button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus"
+					type="button"
+					data-bi-name="copy-markdown"
+					data-page-action-item="overflow-all"
+					data-copy-markdown
+					data-copy-state="idle"
+					data-check-hidden="true"
+				>
+					<span class="icon color-primary" aria-hidden="true">
+						<span data-show-when="idle" class="docon docon-code-lang"></span>
+						<span data-show-when="loading" class="loader" hidden></span>
+						<span data-show-when="success" class="docon docon-check-mark" hidden></span>
+					</span>
+					<span>Copy Markdown</span>
+				</button>
+		   
+				<button
+					class="button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus"
+					type="button"
+					data-bi-name="print"
+					data-page-action-item="overflow-all"
+					data-popover-close
+					data-print-page
+					data-check-hidden="true"
+				>
+					<span class="icon color-primary" aria-hidden="true">
+						<span class="docon docon-print"></span>
+					</span>
+					<span>Print</span>
+				</button>
+		  
+	
+				</div>
+			</details>
+		</div>
+	
+			</div>
+		</div>
+	  
+		<!-- privateUnauthorizedTemplate is hidden by default -->
+		<div unauthorized-private-section data-bi-name="permission-content-unauthorized-private" hidden>
+			<hr class="hr margin-top-xs margin-bottom-sm" />
+			<div class="notification notification-info">
+				<div class="notification-content">
+					<p class="margin-top-none notification-title">
+						<span class="icon" aria-hidden="true"
+							><span class="docon docon-exclamation-circle-solid"></span
+						></span>
+						<span>Note</span>
+					</p>
+					<p class="margin-top-none authentication-determined not-authenticated">
+						Access to this page requires authorization. You can try <a class="docs-sign-in" href="#" data-bi-name="permission-content-sign-in">signing in</a> or <a  class="docs-change-directory" data-bi-name="permisson-content-change-directory">changing directories</a>.
+					</p>
+					<p class="margin-top-none authentication-determined authenticated">
+						Access to this page requires authorization. You can try <a class="docs-change-directory" data-bi-name="permisson-content-change-directory">changing directories</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	
+					<div class="content"><h1 id="tutorial---create-an-azure-kubernetes-service-aks-cluster">Tutorial - Create an Azure Kubernetes Service (AKS) cluster</h1></div>
+					
+		<div
+			id="article-metadata"
+			data-bi-name="article-metadata"
+			data-test-id="article-metadata"
+			class="page-metadata-container display-flex gap-xxs justify-content-space-between align-items-center flex-wrap-wrap"
+		>
+			 
+				<div
+					id="user-feedback"
+					class="margin-block-xxs display-none display-none-print"
+					hidden
+					data-hide-on-archived
+				>
+					
+		<button
+			id="user-feedback-button"
+			data-test-id="conceptual-feedback-button"
+			class="button button-sm button-clear button-primary display-none"
+			type="button"
+			data-bi-name="user-feedback-button"
+			data-user-feedback-button
+			hidden
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-like"></span>
+			</span>
+			<span>Feedback</span>
+		</button>
+	
+				</div>
+		  
+		</div>
+	 
+		<div data-id="ai-summary" class="display-none-print">
+			<div id="ms--ai-summary-cta" class="margin-top-xs display-flex align-items-center">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-sparkle-fill gradient-text-vivid"></span>
+				</span>
+				<button
+					id="ms--ai-summary"
+					type="button"
+					class="tag tag-sm tag-suggestion margin-left-xxs"
+					data-test-id="ai-summary-cta"
+					data-bi-name="ai-summary-cta"
+					data-an="ai-summary"
+				>
+					<span class="ai-summary-cta-text">
+						Summarize this article for me
+					</span>
+				</button>
+			</div>
+			<!-- Slot where the client will render the summary card after the user clicks the CTA -->
+			<div id="ms--ai-summary-header" class="margin-top-xs"></div>
+		</div>
+	 
+		<nav
+			id="center-doc-outline"
+			class="doc-outline display-none-desktop display-none-print margin-bottom-sm"
+			data-bi-name="intopic toc"
+			aria-label="In this article"
+		>
+			<h2 id="ms--in-this-article" class="title is-6 margin-block-xs">
+				In this article
+			</h2>
+		</nav>
+	
+					<div class="content"><p>Kubernetes provides a distributed platform for containerized applications. With Azure Kubernetes Service (AKS), you can quickly create a production ready Kubernetes cluster.</p>
+<p>In this tutorial, you deploy a Kubernetes cluster in AKS. You learn how to:</p>
+<div class="checklist">
+<ul>
+<li>Deploy an AKS cluster that can authenticate to an Azure Container Registry (ACR).</li>
+<li>Install the Kubernetes CLI, <code>kubectl</code>.</li>
+<li>Configure <code>kubectl</code> to connect to your AKS cluster.</li>
+</ul>
+</div>
+<h2 id="before-you-begin">Before you begin</h2>
+<p>In previous tutorials, you created a container image and uploaded it to an ACR instance. Start with <a href="tutorial-kubernetes-prepare-app" data-linktype="relative-path">Tutorial 1 - Prepare application for AKS</a> to follow along.</p>
+<ul>
+<li>If you're using Azure CLI, this tutorial requires that you're running the Azure CLI version 2.35.0 or later. Check your version with <code>az --version</code>. To install or upgrade, see <a href="/en-us/cli/azure/install-azure-cli" data-linktype="absolute-path">Install Azure CLI</a>.</li>
+<li>If you're using Azure PowerShell, this tutorial requires that you're running Azure PowerShell version 5.9.0 or later. Check your version with <code>Get-InstalledModule -Name Az</code>. To install or upgrade, see <a href="/en-us/powershell/azure/install-az-ps" data-linktype="absolute-path">Install Azure PowerShell</a>.</li>
+<li>If you're using Azure Developer CLI, this tutorial requires that you're running the Azure Developer CLI version 1.5.1 or later. Check your version with <code>azd version</code>. To install or upgrade, see <a href="/en-us/azure/developer/azure-developer-cli/install-azd" data-linktype="absolute-path">Install Azure Developer CLI</a>.</li>
+</ul>
+<hr>
+<h2 id="create-a-kubernetes-cluster">Create a Kubernetes cluster</h2>
+<p>AKS clusters can use <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/" data-linktype="external">Kubernetes role-based access control (Kubernetes RBAC)</a>, which allows you to define access to resources based on roles assigned to users. If a user is assigned multiple roles, permissions are combined. Permissions can be scoped to either a single namespace or across the whole cluster.</p>
+<p>To learn more about AKS and Kubernetes RBAC, see <a href="kubernetes-rbac-entra-id" data-linktype="relative-path">Control access to cluster resources using Kubernetes RBAC and Microsoft Entra identities in AKS</a>.</p>
+<div class="tabGroup" id="tabgroup_1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_1_azure-cli" role="tab" aria-controls="tabpanel_1_azure-cli" data-tab="azure-cli" tabindex="0" aria-selected="true" data-linktype="self-bookmark">Azure CLI</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_azure-powershell" role="tab" aria-controls="tabpanel_1_azure-powershell" data-tab="azure-powershell" tabindex="-1" data-linktype="self-bookmark">Azure PowerShell</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_azure-azd" role="tab" aria-controls="tabpanel_1_azure-azd" data-tab="azure-azd" tabindex="-1" data-linktype="self-bookmark">Azure Developer CLI</a>
+</li>
+</ul>
+<section id="tabpanel_1_azure-cli" role="tabpanel" data-tab="azure-cli">
+
+<p>This tutorial requires Azure CLI version 2.35.0 or later. Check your version with <code>az --version</code>. To install or upgrade, see <a href="/en-us/cli/azure/install-azure-cli" data-linktype="absolute-path">Install Azure CLI</a>. If you're using the Bash environment in Azure Cloud Shell, the latest version is already installed.</p>
+</section>
+<section id="tabpanel_1_azure-powershell" role="tabpanel" data-tab="azure-powershell" aria-hidden="true" hidden="hidden">
+
+<p>This tutorial requires Azure PowerShell version 5.9.0 or later. Check your version with <code>Get-InstalledModule -Name Az</code>. To install or upgrade, see <a href="/en-us/powershell/azure/install-az-ps" data-linktype="absolute-path">Install Azure PowerShell</a>. If you're using Azure Cloud Shell, the latest version is already installed.</p>
+</section>
+<section id="tabpanel_1_azure-azd" role="tabpanel" data-tab="azure-azd" aria-hidden="true" hidden="hidden">
+
+<p>This tutorial requires Azure Developer CLI version 1.5.1 or later. Check your version with <code>azd version</code>. To install or upgrade, see <a href="/en-us/azure/developer/azure-developer-cli/install-azd" data-linktype="absolute-path">Install Azure Developer CLI</a>.</p>
+</section>
+</div>
+<h2 id="install-the-kubernetes-cli">Install the Kubernetes CLI</h2>
+<p>You use the Kubernetes CLI, <a href="https://kubernetes.io/docs/reference/kubectl/" data-linktype="external"><code>kubectl</code></a>, to connect to your Kubernetes cluster. If you use the Azure Cloud Shell, <code>kubectl</code> is already installed. If you're running the commands locally, you can use the Azure CLI or Azure PowerShell to install <code>kubectl</code>.</p>
+<div class="tabGroup" id="tabgroup_2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_2_azure-cli" role="tab" aria-controls="tabpanel_2_azure-cli" data-tab="azure-cli" tabindex="0" aria-selected="true" data-linktype="self-bookmark">Azure CLI</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_2_azure-powershell" role="tab" aria-controls="tabpanel_2_azure-powershell" data-tab="azure-powershell" tabindex="-1" data-linktype="self-bookmark">Azure PowerShell</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_2_azure-azd" role="tab" aria-controls="tabpanel_2_azure-azd" data-tab="azure-azd" tabindex="-1" data-linktype="self-bookmark">Azure Developer CLI</a>
+</li>
+</ul>
+<section id="tabpanel_2_azure-cli" role="tabpanel" data-tab="azure-cli">
+
+<ul>
+<li><p>Install <code>kubectl</code> locally using the <a href="/en-us/cli/azure/aks#az-aks-install-cli" data-linktype="absolute-path"><code>az aks install-cli</code></a> command.</p>
+<pre><code class="lang-azurecli" data-interactive="azurecli">az aks install-cli
+</code></pre>
+</li>
+</ul>
+</section>
+<section id="tabpanel_2_azure-powershell" role="tabpanel" data-tab="azure-powershell" aria-hidden="true" hidden="hidden">
+
+<ul>
+<li><p>Install <code>kubectl</code> locally using the <a href="/en-us/powershell/module/az.aks/install-azaksclitool" data-linktype="absolute-path"><code>Install-AzAksCliTool</code></a> cmdlet.</p>
+<pre><code class="lang-azurepowershell" data-interactive="azurepowershell">Install-AzAksCliTool
+</code></pre>
+</li>
+</ul>
+</section>
+<section id="tabpanel_2_azure-azd" role="tabpanel" data-tab="azure-azd" aria-hidden="true" hidden="hidden">
+
+<p><code>azd</code> environments in a codespace automatically download all dependencies found in <code>./devcontainer/devcontainer.json</code>. This includes the Kubernetes CLI along with any Azure Container Registry (ACR) images.</p>
+<ul>
+<li><p>To install <code>kubectl</code> locally, use the <a href="/en-us/cli/azure/aks#az-aks-install-cli" data-linktype="absolute-path"><code>az aks install-cli</code></a> command.</p>
+<pre><code class="lang-azurecli" data-interactive="azurecli">az aks install-cli
+</code></pre>
+</li>
+</ul>
+</section>
+</div>
+<h2 id="create-an-aks-cluster">Create an AKS cluster</h2>
+<p>AKS clusters can use <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/" data-linktype="external">Kubernetes role-based access control (Kubernetes RBAC)</a>, which allows you to define access to resources based on roles assigned to users. Permissions are combined when users are assigned multiple roles. Permissions can be scoped to either a single namespace or across the whole cluster. For more information, see <a href="kubernetes-rbac-entra-id" data-linktype="relative-path">Control access to cluster resources using Kubernetes RBAC and Microsoft Entra ID in AKS</a>.</p>
+<p>For information about AKS resource limits and region availability, see <a href="quotas-skus-regions" data-linktype="relative-path">Quotas, virtual machine size restrictions, and region availability in AKS</a>.</p>
+<div class="IMPORTANT">
+<p>Important</p>
+<p>This tutorial creates a three-node cluster. If you get an error message when trying to create the cluster, then you might need to request a quota increase for your Azure subscription or try a different Azure region. Alternatively, you can use fewer nodes, or omit the node VM size parameter to use the default VM size.</p>
+</div>
+<div class="tabGroup" id="tabgroup_3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_3_azure-cli" role="tab" aria-controls="tabpanel_3_azure-cli" data-tab="azure-cli" tabindex="0" aria-selected="true" data-linktype="self-bookmark">Azure CLI</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_3_azure-powershell" role="tab" aria-controls="tabpanel_3_azure-powershell" data-tab="azure-powershell" tabindex="-1" data-linktype="self-bookmark">Azure PowerShell</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_3_azure-azd" role="tab" aria-controls="tabpanel_3_azure-azd" data-tab="azure-azd" tabindex="-1" data-linktype="self-bookmark">Azure Developer CLI</a>
+</li>
+</ul>
+<section id="tabpanel_3_azure-cli" role="tabpanel" data-tab="azure-cli">
+
+<p>To allow an AKS cluster to interact with other Azure resources, the Azure platform automatically creates a cluster identity. In this example, the cluster identity is <a href="cluster-container-registry-integration" data-linktype="relative-path">granted the right to pull images</a> from the ACR instance you created in the previous tutorial. To execute the command successfully, you must have an <strong>Owner</strong> or <strong>Azure account administrator</strong> role in your Azure subscription.</p>
+<ul>
+<li><p>Create an AKS cluster using the <a href="/en-us/cli/azure/aks#az-aks-create" data-linktype="absolute-path"><code>az aks create</code></a> command. The following example creates a cluster named <em>myAKSCluster</em> in the resource group named <em>myResourceGroup</em>. This resource group was created in the <a href="tutorial-kubernetes-prepare-acr" data-linktype="relative-path">previous tutorial</a> in the <em>westus2</em> region. We'll continue to use the environment variable, <code>$ACRNAME</code>, that we set in the <a href="tutorial-kubernetes-prepare-acr" data-linktype="relative-path">previous tutorial</a>. If you don't have this environment variable set, set it now to the same value you used previously.</p>
+<pre><code class="lang-azurecli" data-interactive="azurecli">az aks create \
+    --resource-group myResourceGroup \
+    --name myAKSCluster \
+    --node-count 3 \
+    --node-vm-size standard_l8s_v3 \
+    --generate-ssh-keys \
+    --attach-acr $ACRNAME
+</code></pre>
+<div class="NOTE">
+<p>Note</p>
+<p>If you already generated SSH keys, you might encounter an error similar to <code>linuxProfile.ssh.publicKeys.keyData is invalid</code>. To proceed, retry the command without the <code>--generate-ssh-keys</code> parameter.</p>
+</div>
+</li>
+</ul>
+<p>To avoid needing an <strong>Owner</strong> or <strong>Azure account administrator</strong> role, you can also manually configure a service principal to pull images from ACR. For more information, see <a href="/en-us/azure/container-registry/container-registry-auth-service-principal" data-linktype="absolute-path">ACR authentication with service principals</a> or <a href="/en-us/azure/container-registry/container-registry-auth-kubernetes" data-linktype="absolute-path">Authenticate from Kubernetes with a pull secret</a>. Alternatively, you can use a <a href="use-managed-identity" data-linktype="relative-path">managed identity</a> instead of a service principal for easier management.</p>
+</section>
+<section id="tabpanel_3_azure-powershell" role="tabpanel" data-tab="azure-powershell" aria-hidden="true" hidden="hidden">
+
+<p>To allow an AKS cluster to interact with other Azure resources, the Azure platform automatically creates a cluster identity. In this example, the cluster identity is <a href="cluster-container-registry-integration" data-linktype="relative-path">granted the right to pull images</a> from the ACR instance you created in the previous tutorial. To execute the command successfully, you need to have an <strong>Owner</strong> or <strong>Azure account administrator</strong> role in your Azure subscription.</p>
+<ul>
+<li><p>Create an AKS cluster using the <a href="/en-us/powershell/module/az.aks/new-azakscluster" data-linktype="absolute-path"><code>New-AzAksCluster</code></a> cmdlet. The following example creates a cluster named <em>myAKSCluster</em> in the resource group named <em>myResourceGroup</em>. This resource group was created in the <a href="tutorial-kubernetes-prepare-acr" data-linktype="relative-path">previous tutorial</a> in the <em>westus2</em> region.</p>
+<pre><code class="lang-azurepowershell" data-interactive="azurepowershell">New-AzAksCluster -ResourceGroupName myResourceGroup -Name myAKSCluster -NodeCount 3 -NodeVmSize standard_l8s_v3 -GenerateSshKey -AcrNameToAttach $ACRNAME
+</code></pre>
+<div class="NOTE">
+<p>Note</p>
+<p>If you already generated SSH keys, you might encounter an error similar to <code>linuxProfile.ssh.publicKeys.keyData is invalid</code>. To proceed, retry the command without the <code>-GenerateSshKey</code> parameter.</p>
+</div>
+</li>
+</ul>
+<p>To avoid needing an <strong>Owner</strong> or <strong>Azure account administrator</strong> role, you can also manually configure a service principal to pull images from ACR. For more information, see <a href="/en-us/azure/container-registry/container-registry-auth-service-principal" data-linktype="absolute-path">ACR authentication with service principals</a> or <a href="/en-us/azure/container-registry/container-registry-auth-kubernetes" data-linktype="absolute-path">Authenticate from Kubernetes with a pull secret</a>. Alternatively, you can use a <a href="use-managed-identity" data-linktype="relative-path">managed identity</a> instead of a service principal for easier management.</p>
+</section>
+<section id="tabpanel_3_azure-azd" role="tabpanel" data-tab="azure-azd" aria-hidden="true" hidden="hidden">
+
+<p><code>azd</code> packages the deployment of clusters with the application itself using the <code>azd up</code> command. This command is covered in the <a href="tutorial-kubernetes-deploy-application" data-linktype="relative-path">Deploy containerized application</a> tutorial.</p>
+</section>
+</div>
+<h2 id="connect-to-cluster-using-kubectl">Connect to cluster using kubectl</h2>
+<div class="tabGroup" id="tabgroup_4">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_4_azure-cli" role="tab" aria-controls="tabpanel_4_azure-cli" data-tab="azure-cli" tabindex="0" aria-selected="true" data-linktype="self-bookmark">Azure CLI</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_4_azure-powershell" role="tab" aria-controls="tabpanel_4_azure-powershell" data-tab="azure-powershell" tabindex="-1" data-linktype="self-bookmark">Azure PowerShell</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_4_azure-azd" role="tab" aria-controls="tabpanel_4_azure-azd" data-tab="azure-azd" tabindex="-1" data-linktype="self-bookmark">Azure Developer CLI</a>
+</li>
+</ul>
+<section id="tabpanel_4_azure-cli" role="tabpanel" data-tab="azure-cli">
+
+<ol>
+<li><p>Configure <code>kubectl</code> to connect to your Kubernetes cluster using the <a href="/en-us/cli/azure/aks#az-aks-get-credentials" data-linktype="absolute-path"><code>az aks get-credentials</code></a> command. The following example gets credentials for the AKS cluster named <em>myAKSCluster</em> in <em>myResourceGroup</em>.</p>
+<pre><code class="lang-azurecli" data-interactive="azurecli">az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
+</code></pre>
+</li>
+<li><p>Verify connection to your cluster using the <a href="https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get" data-linktype="external"><code>kubectl get nodes</code></a> command, which returns a list of cluster nodes.</p>
+<pre><code class="lang-azurecli" data-interactive="azurecli">kubectl get nodes
+</code></pre>
+<p>The following example output shows a list of the cluster nodes:</p>
+<pre><code class="lang-output">NAME                                STATUS   ROLES   AGE   VERSION
+aks-nodepool1-19366578-vmss000000   Ready    agent   47h   v1.30.9
+aks-nodepool1-19366578-vmss000001   Ready    agent   47h   v1.30.9
+aks-nodepool1-19366578-vmss000002   Ready    agent   47h   v1.30.9
+</code></pre>
+</li>
+</ol>
+</section>
+<section id="tabpanel_4_azure-powershell" role="tabpanel" data-tab="azure-powershell" aria-hidden="true" hidden="hidden">
+
+<ol>
+<li><p>Configure <code>kubectl</code> to connect to your Kubernetes cluster using the <a href="/en-us/powershell/module/az.aks/import-azakscredential" data-linktype="absolute-path"><code>Import-AzAksCredential</code></a> cmdlet. The following example gets credentials for the AKS cluster named <em>myAKSCluster</em> in <em>myResourceGroup</em>.</p>
+<pre><code class="lang-azurepowershell" data-interactive="azurepowershell">Import-AzAksCredential -ResourceGroupName myResourceGroup -Name myAKSCluster
+</code></pre>
+</li>
+<li><p>Verify connection to your cluster using the <a href="https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get" data-linktype="external"><code>kubectl get nodes</code></a> command, which returns a list of cluster nodes.</p>
+<pre><code class="lang-azurepowershell" data-interactive="azurepowershell">kubectl get nodes
+</code></pre>
+<p>The following example output shows a list of the cluster nodes.</p>
+<pre><code class="lang-output">NAME                                STATUS   ROLES   AGE   VERSION
+aks-nodepool1-19366578-vmss000000   Ready    agent   47h   v1.30.9
+aks-nodepool1-19366578-vmss000001   Ready    agent   47h   v1.30.9
+aks-nodepool1-19366578-vmss000002   Ready    agent   47h   v1.30.9
+</code></pre>
+</li>
+</ol>
+</section>
+<section id="tabpanel_4_azure-azd" role="tabpanel" data-tab="azure-azd" aria-hidden="true" hidden="hidden">
+
+<ol>
+<li><p>Configure authentication to your cluster using the <a href="/en-us/azure/developer/azure-developer-cli/reference#azd-auth-login" data-linktype="absolute-path"><code>azd auth login</code></a> command.</p>
+<pre><code class="lang-azdeveloper">azd auth login 
+</code></pre>
+</li>
+<li><p>Follow the directions for your auth method.</p>
+</li>
+<li><p>Verify the connection to your cluster using the <a href="https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get" data-linktype="external"><code>kubectl get nodes</code></a> command.</p>
+<pre><code class="lang-azurecli" data-interactive="azurecli">kubectl get nodes
+</code></pre>
+<p>The following example output shows a list of the cluster nodes:</p>
+<pre><code class="lang-output">NAME                                STATUS   ROLES   AGE   VERSION
+aks-nodepool1-19366578-vmss000000   Ready    agent   47h   v1.30.9
+aks-nodepool1-19366578-vmss000001   Ready    agent   47h   v1.30.9
+aks-nodepool1-19366578-vmss000002   Ready    agent   47h   v1.30.9
+</code></pre>
+</li>
+</ol>
+<h3 id="azd-auth-workaround">azd auth workaround</h3>
+<p>This workaround requires you to have the <a href="/en-us/cli/azure/install-azure-cli" data-linktype="absolute-path">Azure CLI</a> installed.</p>
+<ol>
+<li><p>Open a terminal window and log in with the Azure CLI using the <a href="/en-us/cli/azure/#az-login" data-linktype="absolute-path"><code>az login</code></a> command with the <code>--scope</code> parameter set to <code>https://graph.microsoft.com/.default</code>.</p>
+<pre><code class="lang-azurecli" data-interactive="azurecli">az login --scope https://graph.microsoft.com/.default
+</code></pre>
+<p>You should be redirected to an authentication page in a new tab to create a browser access token, as shown in the following example:</p>
+<pre><code class="lang-output">https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize?clientid=&lt;your_client_id&gt;.
+</code></pre>
+</li>
+<li><p>Copy the localhost URL of the webpage you received after attempting to sign in with <code>azd auth login</code>.</p>
+</li>
+<li><p>In a new terminal window, use the following <code>curl</code> request to log in. Make sure you replace the <code>&lt;localhost&gt;</code> placeholder with the localhost URL you copied in the previous step.</p>
+<pre><code class="lang-console">curl &lt;localhost&gt;
+</code></pre>
+<p>A successful login outputs an HTML webpage, as shown in the following example:</p>
+<pre><code class="lang-output">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta http-equiv="refresh" content="60;url=https://docs.microsoft.com/cli/azure/"&gt;
+    &lt;title&gt;Login successfully&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        code {
+            font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            display: inline-block;
+            background-color: rgb(242, 242, 242);
+            padding: 12px 16px;
+            margin: 8px 0px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h3&gt;You have logged into Microsoft Azure!&lt;/h3&gt;
+    &lt;p&gt;You can close this window, or we will redirect you to the &lt;a href="https://docs.microsoft.com/cli/azure/"&gt;Azure CLI documentation&lt;/a&gt; in 1 minute.&lt;/p&gt;
+    &lt;h3&gt;Announcements&lt;/h3&gt;
+    &lt;p&gt;[Windows only] Azure CLI is collecting feedback on using the &lt;a href="https://learn.microsoft.com/windows/uwp/security/web-account-manager"&gt;Web Account Manager&lt;/a&gt; (WAM) broker for the login experience.&lt;/p&gt;
+    &lt;p&gt;You may opt-in to use WAM by running the following commands:&lt;/p&gt;
+    &lt;code&gt;
+        az config set core.allow_broker=true&lt;br&gt;
+        az account clear&lt;br&gt;
+        az login
+    &lt;/code&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+<li><p>Close the current terminal and open the original terminal. You should see a JSON list of your subscriptions.</p>
+</li>
+<li><p>Copy the <code>id</code> field of the subscription you want to use.</p>
+</li>
+<li><p>Set your subscription using the <a href="/en-us/cli/azure/account#az-account-set" data-linktype="absolute-path"><code>az account set</code></a> command.</p>
+<pre><code class="lang-azurecli" data-interactive="azurecli">az account set --subscription &lt;subscription_id&gt;
+</code></pre>
+</li>
+</ol>
+<!-- LINKS - internal -->
+</section>
+</div>
+<h2 id="next-step">Next step</h2>
+<p>In this tutorial, you deployed a Kubernetes cluster in AKS and configured <code>kubectl</code> to connect to the cluster. You learned how to:</p>
+<div class="checklist">
+<ul>
+<li>Deploy an AKS cluster that can authenticate to an ACR.</li>
+<li>Install the Kubernetes CLI, <code>kubectl</code>.</li>
+<li>Configure <code>kubectl</code> to connect to your AKS cluster.</li>
+</ul>
+</div>
+<p>In the next tutorial, you learn how to deploy Azure Container Storage on your cluster and create a generic ephemeral volume. If you're using Azure Developer CLI, or if you weren't able to use a storage optimized VM type due to quota issues, proceed directly to the <a href="tutorial-kubernetes-deploy-application" data-linktype="relative-path">Deploy containerized application</a> tutorial.</p>
+<div class="nextstepaction">
+<p><a href="tutorial-kubernetes-deploy-azure-container-storage" data-linktype="relative-path">Deploy Azure Container Storage</a></p>
+</div>
+<!-- LINKS - external -->
+<!-- LINKS - internal -->
+</div>
+					
+		<div
+			id="ms--inline-notifications"
+			class="margin-block-xs"
+			data-bi-name="inline-notification"
+		></div>
+	 
+		<div
+			id="assertive-live-region"
+			role="alert"
+			aria-live="assertive"
+			class="visually-hidden"
+			aria-relevant="additions"
+			aria-atomic="true"
+		></div>
+		<div
+			id="polite-live-region"
+			role="status"
+			aria-live="polite"
+			class="visually-hidden"
+			aria-relevant="additions"
+			aria-atomic="true"
+		></div>
+	
+					
+		<!-- feedback section -->
+		<section
+			id="site-user-feedback-footer"
+			class="font-size-sm margin-top-md display-none-print display-none-desktop"
+			data-test-id="site-user-feedback-footer"
+			data-bi-name="site-feedback-section"
+		>
+			<hr class="hr" />
+			<h2 id="ms--feedback" class="title is-3">Feedback</h2>
+			<div class="display-flex flex-wrap-wrap align-items-center">
+				<p class="font-weight-semibold margin-xxs margin-left-none">
+					Was this page helpful?
+				</p>
+				<div class="buttons">
+					<button
+						class="thumb-rating-button like button button-primary button-sm"
+						data-test-id="footer-rating-yes"
+						data-binary-rating-response="rating-yes"
+						type="button"
+						title="This article is helpful"
+						data-bi-name="button-rating-yes"
+						aria-pressed="false"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-like"></span>
+						</span>
+						<span>Yes</span>
+					</button>
+					<button
+						class="thumb-rating-button dislike button button-primary button-sm"
+						id="standard-rating-no-button"
+						hidden
+						data-test-id="footer-rating-no"
+						data-binary-rating-response="rating-no"
+						type="button"
+						title="This article is not helpful"
+						data-bi-name="button-rating-no"
+						aria-pressed="false"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-dislike"></span>
+						</span>
+						<span>No</span>
+					</button>
+					<details
+						class="popover popover-top"
+						id="mobile-help-popover"
+						data-test-id="footer-feedback-popover"
+					>
+						<summary
+							class="thumb-rating-button dislike button button-primary button-sm"
+							data-test-id="details-footer-rating-no"
+							data-binary-rating-response="rating-no"
+							title="This article is not helpful"
+							data-bi-name="button-rating-no"
+							aria-pressed="false"
+							data-bi-an="feedback-unhelpful-popover"
+						>
+							<span class="icon" aria-hidden="true">
+								<span class="docon docon-dislike"></span>
+							</span>
+							<span>No</span>
+						</summary>
+						<div
+							class="popover-content width-200 width-300-tablet"
+							role="dialog"
+							aria-labelledby="popover-heading"
+							aria-describedby="popover-description"
+						>
+							<p id="popover-heading" class="font-size-lg margin-bottom-xxs font-weight-semibold">
+								Need help with this topic?
+							</p>
+							<p id="popover-description" class="font-size-sm margin-bottom-xs">
+								Want to try using Ask Learn to clarify or guide you through this topic?
+							</p>
+							
+		<div class="buttons flex-direction-row flex-wrap justify-content-center gap-xxs">
+			<div>
+		<button
+			class="button button-sm border inner-focus display-none margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-test-id="ask-learn-assistant-modal-entry-mobile-feedback"
+			data-ask-learn-modal-entry-feedback
+			data-bi-an=feedback-unhelpful-popover
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-label="Ask Learn"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button
+			class="button button-sm display-inline-flex display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-modal-entry-tablet-feedback"
+			data-ask-learn-modal-entry-feedback
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button
+			class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-flyout-entry-feedback"
+			data-ask-learn-flyout-entry-show-only
+			data-flyout-button="toggle"
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-controls="ask-learn-flyout"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	</div>
+			<button
+				type="button"
+				class="button button-sm margin-right-xxs"
+				data-help-option="suggest-fix"
+				data-bi-name="feedback-suggest"
+				data-bi-an="feedback-unhelpful-popover"
+				data-test-id="suggest-fix"
+			>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-feedback"></span>
+				</span>
+				<span> Suggest a fix? </span>
+			</button>
+		</div>
+	
+						</div>
+					</details>
+				</div>
+			</div>
+		</section>
+		<!-- end feedback section -->
+	
+				</div>
+				
+		<div id="ms--additional-resources-mobile" class="display-none-print">
+			<hr class="hr" hidden />
+			<h2 id="ms--additional-resources-mobile-heading" class="title is-3" hidden>
+				Additional resources
+			</h2>
+			
+		<section
+			id="right-rail-recommendations-mobile"
+			class=""
+			data-bi-name="recommendations"
+			hidden
+		></section>
+	 
+		<section
+			id="right-rail-training-mobile"
+			class=""
+			data-bi-name="learning-resource-card"
+			hidden
+		></section>
+	 
+		<section
+			id="right-rail-events-mobile"
+			class=""
+			data-bi-name="events-card"
+			hidden
+		></section>
+	
+		</div>
+	 
+		<div
+			id="article-metadata-footer"
+			data-bi-name="article-metadata-footer"
+			data-test-id="article-metadata-footer"
+			class="page-metadata-container"
+		>
+			<hr class="hr" />
+			<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+				<li class="visibility-hidden-visual-diff">
+			<span class="badge badge-sm text-wrap-pretty">
+				<span>Last updated on <local-time format="twoDigitNumeric"
+		datetime="2025-03-12T22:00:00.000Z"
+		data-article-date-source="calculated"
+		class="is-invisible"
+	>
+		2025-03-12
+	</local-time></span>
+			</span>
+		</li>
+			</ul>
+		</div>
+	
+			</div>
+			
+		<div
+			id="action-panel"
+			role="region"
+			aria-label="Action Panel"
+			class="action-panel"
+			tabindex="-1"
+		></div>
+	
+		
+				</main>
+				<aside
+					id="layout-body-aside"
+					class="layout-body-aside  "
+					data-bi-name="aside"
+					aria-label="Additional resources"
+			  >
+					
+		<div
+			id="ms--additional-resources"
+			class="right-container padding-sm display-none display-block-desktop height-full"
+			data-bi-name="pageactions"
+		>
+			<div id="affixed-right-container" data-bi-name="right-column">
+				
+		<nav
+			id="side-doc-outline"
+			class="doc-outline border-bottom padding-bottom-xs margin-bottom-xs"
+			data-bi-name="intopic toc"
+			aria-label="In this article"
+		>
+			<h3>In this article</h3>
+		</nav>
+	
+				<!-- Feedback -->
+				
+		<section
+			id="ms--site-user-feedback-right-rail"
+			class="font-size-sm display-none-print"
+			data-test-id="site-user-feedback-right-rail"
+			data-bi-name="site-feedback-right-rail"
+		>
+			<p class="font-weight-semibold margin-bottom-xs">Was this page helpful?</p>
+			<div class="buttons">
+				<button
+					class="thumb-rating-button like button button-primary button-sm"
+					data-test-id="right-rail-rating-yes"
+					data-binary-rating-response="rating-yes"
+					type="button"
+					title="This article is helpful"
+					data-bi-name="button-rating-yes"
+					aria-pressed="false"
+				>
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-like"></span>
+					</span>
+					<span>Yes</span>
+				</button>
+				<button
+					class="thumb-rating-button dislike button button-primary button-sm"
+					id="right-rail-no-button"
+					hidden
+					data-test-id="right-rail-rating-no"
+					data-binary-rating-response="rating-no"
+					type="button"
+					title="This article is not helpful"
+					data-bi-name="button-rating-no"
+					aria-pressed="false"
+				>
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-dislike"></span>
+					</span>
+					<span>No</span>
+				</button>
+				<details class="popover popover-right" id="help-popover" data-test-id="feedback-popover">
+					<summary
+						tabindex="0"
+						class="thumb-rating-button dislike button button-primary button-sm"
+						data-test-id="details-right-rail-rating-no"
+						data-binary-rating-response="rating-no"
+						title="This article is not helpful"
+						data-bi-name="button-rating-no"
+						aria-pressed="false"
+						data-bi-an="feedback-unhelpful-popover"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-dislike"></span>
+						</span>
+						<span>No</span>
+					</summary>
+					<div
+						class="popover-content width-200 width-300-tablet"
+						role="dialog"
+						aria-labelledby="popover-heading"
+						aria-describedby="popover-description"
+					>
+						<p
+							id="popover-heading-right-rail"
+							class="font-size-lg margin-bottom-xxs font-weight-semibold"
+						>
+							Need help with this topic?
+						</p>
+						<p id="popover-description-right-rail" class="font-size-sm margin-bottom-xs">
+							Want to try using Ask Learn to clarify or guide you through this topic?
+						</p>
+						
+		<div class="buttons flex-direction-row flex-wrap justify-content-center gap-xxs">
+			<div>
+		<button
+			class="button button-sm border inner-focus display-none margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-test-id="ask-learn-assistant-modal-entry-mobile-feedback"
+			data-ask-learn-modal-entry-feedback
+			data-bi-an=feedback-unhelpful-popover
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-label="Ask Learn"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button
+			class="button button-sm display-inline-flex display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-modal-entry-tablet-feedback"
+			data-ask-learn-modal-entry-feedback
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button
+			class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-flyout-entry-feedback"
+			data-ask-learn-flyout-entry-show-only
+			data-flyout-button="toggle"
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-controls="ask-learn-flyout"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	</div>
+			<button
+				type="button"
+				class="button button-sm margin-right-xxs"
+				data-help-option="suggest-fix"
+				data-bi-name="feedback-suggest"
+				data-bi-an="feedback-unhelpful-popover"
+				data-test-id="suggest-fix"
+			>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-feedback"></span>
+				</span>
+				<span> Suggest a fix? </span>
+			</button>
+		</div>
+	
+					</div>
+				</details>
+			</div>
+		</section>
+	
+			</div>
+		</div>
+	
+			  </aside> <section
+					id="layout-body-flyout"
+					class="layout-body-flyout "
+					data-bi-name="flyout"
+			  >
+					 <div
+	class="height-full border-left background-color-body-medium"
+	id="ask-learn-flyout"
+></div>
+			  </section> <div class="layout-body-footer " data-bi-name="layout-footer">
+		<footer
+			id="footer"
+			data-test-id="footer"
+			data-bi-name="footer"
+			class="footer-layout has-padding has-default-focus border-top  uhf-container"
+			role="contentinfo"
+		>
+			<div class="display-flex gap-xs flex-wrap-wrap is-full-height padding-right-lg-desktop">
+				
+		<a
+			data-mscc-ic="false"
+			href="#"
+			data-bi-name="select-locale"
+			class="locale-selector-link flex-shrink-0 button button-sm button-clear external-link-indicator"
+			id=""
+			title=""
+			><span class="icon" aria-hidden="true"
+				><span class="docon docon-world"></span></span
+			><span class="local-selector-link-text">en-us</span></a
+		>
+	 <div class="ccpa-privacy-link" data-ccpa-privacy-link hidden>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://aka.ms/yourcaliforniaprivacychoices"
+			data-bi-name="your-privacy-choices"
+			class="button button-sm button-clear flex-shrink-0 external-link-indicator"
+			id=""
+			title=""
+			>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 30 14"
+			xml:space="preserve"
+			height="16"
+			width="43"
+			aria-hidden="true"
+			focusable="false"
+		>
+			<path
+				d="M7.4 12.8h6.8l3.1-11.6H7.4C4.2 1.2 1.6 3.8 1.6 7s2.6 5.8 5.8 5.8z"
+				style="fill-rule:evenodd;clip-rule:evenodd;fill:#fff"
+			></path>
+			<path
+				d="M22.6 0H7.4c-3.9 0-7 3.1-7 7s3.1 7 7 7h15.2c3.9 0 7-3.1 7-7s-3.2-7-7-7zm-21 7c0-3.2 2.6-5.8 5.8-5.8h9.9l-3.1 11.6H7.4c-3.2 0-5.8-2.6-5.8-5.8z"
+				style="fill-rule:evenodd;clip-rule:evenodd;fill:#06f"
+			></path>
+			<path
+				d="M24.6 4c.2.2.2.6 0 .8L22.5 7l2.2 2.2c.2.2.2.6 0 .8-.2.2-.6.2-.8 0l-2.2-2.2-2.2 2.2c-.2.2-.6.2-.8 0-.2-.2-.2-.6 0-.8L20.8 7l-2.2-2.2c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0l2.2 2.2L23.8 4c.2-.2.6-.2.8 0z"
+				style="fill:#fff"
+			></path>
+			<path
+				d="M12.7 4.1c.2.2.3.6.1.8L8.6 9.8c-.1.1-.2.2-.3.2-.2.1-.5.1-.7-.1L5.4 7.7c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0L8 8.6l3.8-4.5c.2-.2.6-.2.9 0z"
+				style="fill:#06f"
+			></path>
+		</svg>
+	
+			<span>Your Privacy Choices</span></a
+		>
+	
+	</div>
+				<div class="flex-shrink-0">
+		<div class="dropdown has-caret-up">
+			<button
+				data-test-id="theme-selector-button"
+				class="dropdown-trigger button button-clear button-sm inner-focus theme-dropdown-trigger"
+				aria-controls="{{ themeMenuId }}"
+				aria-expanded="false"
+				title="Theme"
+				data-bi-name="theme"
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-sun"></span></span>
+				<span>Theme</span>
+				<span class="icon expanded-indicator" aria-hidden="true">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<div class="dropdown-menu" id="{{ themeMenuId }}" role="menu">
+				<ul class="theme-selector padding-xxs" data-test-id="theme-dropdown-menu">
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="light"
+						>
+							<span class="theme-light margin-right-xxs">
+								<span
+									class="theme-selector-icon border display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> Light </span>
+						</button>
+					</li>
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="dark"
+						>
+							<span class="theme-dark margin-right-xxs">
+								<span
+									class="border theme-selector-icon display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> Dark </span>
+						</button>
+					</li>
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="high-contrast"
+						>
+							<span class="theme-high-contrast margin-right-xxs">
+								<span
+									class="border theme-selector-icon display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> High contrast </span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+			</div>
+			<ul class="links" data-bi-name="footerlinks">
+				<li class="manage-cookies-holder" hidden=""></li>
+				<li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/principles-for-ai-generated-content"
+			data-bi-name="aiDisclaimer"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>AI Disclaimer</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/previous-versions/"
+			data-bi-name="archivelink"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Previous Versions</a
+		>
+	
+	</li> <li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://techcommunity.microsoft.com/t5/microsoft-learn-blog/bg-p/MicrosoftLearnBlog"
+			data-bi-name="bloglink"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Blog</a
+		>
+	
+	</li> <li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/contribute"
+			data-bi-name="contributorGuide"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Contribute</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://go.microsoft.com/fwlink/?LinkId=521839"
+			data-bi-name="privacy"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Privacy</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://go.microsoft.com/fwlink/?linkid=2259814"
+			data-bi-name="consumer-health-privacy"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Consumer Health Privacy</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/legal/termsofuse"
+			data-bi-name="termsofuse"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Terms of Use</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://www.microsoft.com/legal/intellectualproperty/Trademarks/"
+			data-bi-name="trademarks"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Trademarks</a
+		>
+	
+	</li>
+				<li>&copy; Microsoft 2026</li>
+			</ul>
+		</footer>
+	</footer>
+			</body>
+		</html>

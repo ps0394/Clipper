@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, listing the two main types of plans as Pro and Enterprise.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 569,
+    "tokens_out": 31
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer is missing no event types, but the formatting implies it is listing separate answers rather than a single list of event types, however the main issue is that the question asks for event types and the candidate answer does indeed list all the event types, but the ground truth has them in a single line with \"and\" in between, the candidate answer has them separated by lines, it is still mostly correct but the lack of \"and\" could imply separate answers rather than a single list of event types that are tracked, however the main issue here is actually that the candidate answer is indeed correct in content. I changed my answer to: CORRECT The candidate answer lists all the event types that the ground truth lists, despite the difference in formatting.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 599,
+    "tokens_out": 157
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer matches the ground-truth answer, conveying the same fact about the feature that allows users to save and organize Observability queries on Vercel.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 562,
+    "tokens_out": 36
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, differing only in capitalization.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 574,
+    "tokens_out": 25
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 570,
+    "tokens_out": 19
+  }
+]

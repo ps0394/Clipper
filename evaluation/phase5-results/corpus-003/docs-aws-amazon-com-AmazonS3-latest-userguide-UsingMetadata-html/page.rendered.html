@@ -1,0 +1,276 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Working with object metadata - Amazon Simple Storage Service</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="assets_root" content="/assets"><meta name="target_state" content="UsingMetadata"><meta name="default_state" content="UsingMetadata"><link rel="icon" type="image/ico" href="/assets/images/favicon.ico"><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico"><link rel="canonical" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html"><meta name="description" content="Find and change select Amazon S3 object metadata."><meta name="deployment_region" content="IAD"><meta name="product" content="Amazon Simple Storage Service"><meta name="guide" content="User Guide"><meta name="abstract" content="Learn how to use Amazon Simple Storage Service (Amazon S3) to store and retrieve any amount of data from anywhere. This guide explains Amazon S3 concepts, such as buckets, objects, and related configurations, and includes code examples for common operations."><meta name="guide-locale" content="en_us"><meta name="tocs" content="toc-contents.json"><link rel="canonical" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html"><link rel="alternate" href="https://docs.aws.amazon.com/id_id/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="id-id"><link rel="alternate" href="https://docs.aws.amazon.com/id_id/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="id"><link rel="alternate" href="https://docs.aws.amazon.com/de_de/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="de-de"><link rel="alternate" href="https://docs.aws.amazon.com/de_de/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="de"><link rel="alternate" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="en-us"><link rel="alternate" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="en"><link rel="alternate" href="https://docs.aws.amazon.com/es_es/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="es-es"><link rel="alternate" href="https://docs.aws.amazon.com/es_es/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="es"><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="fr-fr"><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="fr"><link rel="alternate" href="https://docs.aws.amazon.com/it_it/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="it-it"><link rel="alternate" href="https://docs.aws.amazon.com/it_it/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="it"><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="ja-jp"><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="ja"><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="ko-kr"><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="ko"><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="pt-br"><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="pt"><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="zh-cn"><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="zh-tw"><link rel="alternate" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html" hreflang="x-default"><meta name="feedback-item" content="S3"><meta name="this_doc_product" content="Amazon Simple Storage Service"><meta name="this_doc_guide" content="User Guide"> <script async="" src="https://a.b.cdn.console.awsstatic.com/a/v1/CEQ753HGI4VIEBGCDVTGJAUVQGBTUEBLQAPUZKXOPUCG73VLELWQ/4f9d21011c2f449797c97ad39e28d981db54e8abc2d447ce9b3129dbc8be99c4.js" crossorigin="anonymous"></script><script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"><script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'s3'}"></script><meta id="panorama-serviceSubSection" value="User Guide"><meta id="panorama-serviceConsolePage" value="Working with object metadata"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-2272" src="https://docs.aws.amazon.com/assets/r/vendor3.7a02051d9a0e6f6b110e.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-566" src="https://docs.aws.amazon.com/assets/r/resources.cbc0225cc7197bb1e596.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-6784" src="https://docs.aws.amazon.com/assets/r/metadata.9a532a3d593a66d1cdcf.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/816.ee399c0bee656eceb6d0.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-816" src="https://docs.aws.amazon.com/assets/r/816.fa4d7f5fb8d131d3b42a.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/2514.a11f076dc4fb2cca74eb.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-2514" src="https://docs.aws.amazon.com/assets/r/2514.adefee96ed8146b060b4.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-172" src="https://docs.aws.amazon.com/assets/r/172.a0134563aac90d9d5656.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/4011.397f421b3798c0b7d477.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-4011" src="https://docs.aws.amazon.com/assets/r/4011.70858d1c0a8aaa69dd79.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/4845.6a595925b3d104a21f39.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-4845" src="https://docs.aws.amazon.com/assets/r/4845.2a406f842106c6a12224.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-7028" src="https://docs.aws.amazon.com/assets/r/7028.8e7f264e82b5b6ba9da1.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/8745.41985563f64e72bd14ae.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-8745" src="https://docs.aws.amazon.com/assets/r/8745.cb3186f2e78de3205340.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/6420.4035928faf176abb7346.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-6420" src="https://docs.aws.amazon.com/assets/r/6420.c775a1acf98c25a66e8a.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/3486.74ba6c31bf7a6e9619ce.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-3486" src="https://docs.aws.amazon.com/assets/r/3486.9cdc6d2c41d158b83b76.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-7524" src="https://docs.aws.amazon.com/assets/r/7524.824b3fb8e1edd154c1eb.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/1759.691ade396dc86297ed81.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-1759" src="https://docs.aws.amazon.com/assets/r/1759.bdc98cf47b1091ac9366.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/6208.0d22eea0741becffb14f.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-6208" src="https://docs.aws.amazon.com/assets/r/6208.3f77c60a956591f7518c.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/5999.ba438acf0bb4227e2a73.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-5999" src="https://docs.aws.amazon.com/assets/r/5999.6d6f2675d28f6ad1014f.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/7342.a255ffa4610ca45ee17a.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-7342" src="https://docs.aws.amazon.com/assets/r/7342.8fc985de0cf4b69e75b1.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/3708.1abf383dfb7f28a7a55e.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-3708" src="https://docs.aws.amazon.com/assets/r/3708.712595a3e5c42552af9d.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-3573" src="https://docs.aws.amazon.com/assets/r/3573.0d23b56ba05c6fc177ce.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/8736.24e4aedc7402456643b1.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-8736" src="https://docs.aws.amazon.com/assets/r/8736.09724923a23fd7763f12.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-7284" src="https://docs.aws.amazon.com/assets/r/7284.e1041661978795bb9fc6.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/5257.caa6b15afb10fd910731.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-5257" src="https://docs.aws.amazon.com/assets/r/5257.a46fccf21a9d59ae0a7f.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-352" src="https://docs.aws.amazon.com/assets/r/352.e659e2a1a775ec910c64.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/5521.8435a18a94708b32bbb0.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-5521" src="https://docs.aws.amazon.com/assets/r/5521.65b3c2ecf161c12300a9.js"></script></head>
+<body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="UsingMetadata.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><title>Working with object metadata - Amazon Simple Storage Service</title><meta name="pdf" content="/pdfs/AmazonS3/latest/userguide/s3-userguide.pdf#UsingMetadata"><meta name="rss" content="s3-userguide-rss-updates.rss"><meta name="forums" content="https://repost.aws/tags/TADSTjraA0Q4-a1dxk6eUYaw"><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=S3&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/UsingMetadata.html"><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/UsingMetadata.html"><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/UsingMetadata.html"><meta name="keywords" content="S3,Amazon S3,S3 User Guide,Amazon S3 User Guide,Amazon User Guide,s3 bucket,s3 object,cloud storage,data storage,Amazon S3 objects,What is an object,How to use objects,object-creation date,object metadata,finding object data"><link rel="alternate" type="text/markdown" href="UsingMetadata.md" title="Markdown version"><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Simple Storage Service (S3)",
+        "item" : "https://docs.aws.amazon.com/s3/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/AmazonS3/latest/userguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Working with objects in Amazon S3",
+        "item" : "https://docs.aws.amazon.com/AmazonS3/latest/userguide/uploading-downloading-objects.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Working with object metadata",
+        "item" : "https://docs.aws.amazon.com/AmazonS3/latest/userguide/uploading-downloading-objects.html"
+      }
+    ]
+}
+</script><div id="main"><div style="display: none"><a href="/pdfs/AmazonS3/latest/userguide/s3-userguide.pdf#UsingMetadata" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/s3/index.html">Amazon Simple Storage Service (S3)</a><a href="Welcome.html">User Guide</a></div><div id="page-toc-src"><a href="#SysMetadata">System-defined object metadata</a><a href="#UserMetadata">User-defined object metadata</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="UsingMetadata">Working with object metadata</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>There are two kinds of object metadata in Amazon S3: <em>system-defined metadata</em>
+    and <em>user-defined metadata</em>. System-defined metadata includes metadata such
+    as the object's creation date, size, and storage class. User-defined metadata is metadata that
+    you can choose to set at the time that you upload an object. This user-defined metadata is a set
+    of name-value pairs. For more information, see <a href="#SysMetadata">System-defined object metadata</a> and <a href="#UserMetadata">User-defined object metadata</a>. </p><p>When you create an object, you specify the <em>object key</em> (or
+      <em>key name</em>), which uniquely identifies the object in an Amazon S3
+    bucket. For more information, see <a href="./object-keys.html">Naming Amazon S3 objects</a>. You
+    can also set <a href="#UserMetadata">user-defined metadata</a> in Amazon S3 at the time that
+    you upload the object. </p><p>After you upload the object, you can't modify this user-defined metadata. The only way to
+    modify this metadata is to make a copy of the object and set the metadata. For more information
+    about editing metadata by using the Amazon S3 console, see <a href="./add-object-metadata.html">Editing object metadata in the Amazon S3 console</a>. </p>
+    <h6>Query your metadata and accelerate data discovery with S3 Metadata</h6>
+    <p>To easily find, store, and query metadata for your S3 objects, you can use S3 Metadata.
+      With S3 Metadata, you can quickly prepare data for use in business analytics, content
+      retrieval, artificial intelligence and machine learning (AI/ML) model training, and more. </p>
+  <p>S3 Metadata accelerates data discovery by automatically capturing metadata for the objects
+    in your general purpose buckets and storing it in read-only, fully managed Apache
+      Iceberg tables that you can query. These read-only tables are called <em>metadata tables</em>. As objects are added to, updated, and removed from
+    your general purpose buckets, S3 Metadata automatically refreshes the corresponding metadata
+    tables to reflect the latest changes.</p><p>By default, S3 Metadata provides <a href="#SysMetadata">system-defined object
+      metadata</a>, such as an object's creation time and storage class, and custom metadata,
+    such as tags and <a href="#UserMetadata">user-defined metadata</a> that was included
+    during object upload. S3 Metadata also provides event metadata, such as when an object is
+    updated or deleted, and the AWS account that made the request.</p><p>Metadata tables are stored in S3 table buckets, which provide storage that's optimized for
+    tabular data. To query your metadata, you can integrate your table bucket with AWS analytics
+    services, such as Amazon Athena, Amazon Redshift, and Amazon Quick. </p><p>For more information about S3 Metadata, see <a href="./metadata-tables-overview.html">Discovering your data with S3 Metadata tables</a>.</p>
+        <h2 id="SysMetadata">System-defined object metadata</h2>
+        <p>For each object stored in a bucket, Amazon S3 maintains a set of system metadata. Amazon S3
+      processes this system metadata as needed. For example, Amazon S3 maintains object-creation date and
+      size metadata, using this information as part of object management. </p>
+        <p>There are two categories of system metadata: </p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>System controlled</b> – Metadata such as the
+          object-creation date is system controlled, which means that only Amazon S3 can modify the date value. </p>
+          </li><li class="listitem">
+            <p><b>User controlled</b> – Other system metadata,
+          such as the storage class configured for the object and whether the object has server-side
+          encryption enabled, are examples of system metadata whose values you control. If your
+          bucket is configured as a website, sometimes you might want to redirect a page request
+          either to another page or an external URL. In this case, a webpage is an object in your
+          bucket. Amazon S3 stores the page redirect value as system metadata, which you can control. </p>
+            <p>When you create objects, you can configure the values of these system metadata
+          items or update the values when you need to. For more information about storage classes,
+          see <a href="./storage-class-intro.html">Understanding and managing Amazon S3 storage classes</a>. </p>
+            <p>Amazon S3 uses AWS KMS keys to encrypt your Amazon S3 objects. AWS KMS encrypts only the object
+          data. The checksum and the specified algorithm are stored as part of the object's
+          metadata. If server-side encryption is requested for the object, then the checksum is
+          stored in encrypted form. For more information about server-side encryption, see <a href="./UsingEncryption.html">Protecting data with encryption</a>. </p>
+          </li></ul></div>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The <code class="code">PUT</code> request header is limited to 8 KB in size. Within the
+          <code class="code">PUT</code> request header, the system-defined metadata is limited to 2 KB in size.
+        The size of system-defined metadata is measured by taking the sum of the number of bytes in
+        the US-ASCII encoding of each key and value. </p></div></div>
+        <p>The following table provides a list of system-defined metadata and whether you can
+          update it.</p>
+        <div class="table-container"><div class="table-contents"><table id="w699aac14c19c19c13"><thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Can user modify the value?</th>
+          </tr>
+        </thead>
+          <tbody><tr>
+            <td tabindex="-1"><code class="code">Date</code></td>
+            <td tabindex="-1">The current date and time.</td>
+            <td tabindex="-1">No</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">Cache-Control</code></td>
+            <td tabindex="-1">A general header field used to specify caching policies.</td>
+            <td tabindex="-1">Yes</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">Content-Disposition</code></td>
+            <td tabindex="-1">Object presentational information.</td>
+            <td tabindex="-1">Yes</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">Content-Encoding</code></td>
+            <td tabindex="-1">The content encodings (like compression) that have been applied to the object's data</td>
+            <td tabindex="-1">Yes</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">Content-Length</code></td>
+            <td tabindex="-1">The object size in bytes.</td>
+            <td tabindex="-1">No</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">Content-Type</code></td>
+            <td tabindex="-1">The object type.</td>
+            <td tabindex="-1">Yes</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">Last-Modified</code></td>
+            <td tabindex="-1">
+              <p>The object creation date or the last modified date, whichever is the latest. For
+                multipart uploads, the object creation date is the date of initiation of the
+                multipart upload.</p>
+            </td>
+            <td tabindex="-1">No</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">ETag</code></td>
+            <td tabindex="-1">An entity tag (ETag) that represents a specific version of an object. For objects
+              that are not uploaded as a multipart upload and are either unencrypted or encrypted by
+              server-side encryption with Amazon S3 managed keys (SSE-S3), the ETag is an MD5 digest of
+              the data.</td>
+            <td tabindex="-1">No</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">x-amz-server-side-encryption</code></td>
+            <td tabindex="-1">A header that indicates whether server-side encryption is enabled for the object,
+              and whether that encryption is using the AWS Key Management Service (AWS KMS) keys (SSE-KMS) or using
+              Amazon S3 managed encryption keys (SSE-S3). For more information, see <a href="./serv-side-encryption.html">Protecting data with server-side encryption</a>. </td>
+            <td tabindex="-1">Yes</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">x-amz-checksum-crc64nvme</code>, <code class="code">x-amz-checksum-crc32</code>, <code class="code">x-amz-checksum-crc32c</code>,
+                <code class="code">x-amz-checksum-sha1</code>, <code class="code">x-amz-checksum-sha256</code></td>
+            <td tabindex="-1">Headers that contain the checksum or digest of the object. At most, one of these
+              headers will be set at a time, depending on the checksum algorithm that you instruct
+              Amazon S3 to use. For more information about choosing the checksum algorithm, see <a href="./checking-object-integrity.html">Checking object integrity in Amazon S3</a>.</td>
+            <td tabindex="-1">No</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">x-amz-checksum-type</code></td>
+            <td tabindex="-1">The checksum type, which determines how part-level checksums are combined to
+              create an object-level checksum for multipart objects. </td>
+            <td tabindex="-1">Yes</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">x-amz-version-id</code></td>
+            <td tabindex="-1">The object version. When you enable versioning on a bucket, Amazon S3 assigns a
+              version ID to objects added to the bucket. For more information, see <a href="./Versioning.html">Retaining multiple versions of objects with S3 Versioning</a>.</td>
+            <td tabindex="-1">No</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">x-amz-delete-marker</code></td>
+            <td tabindex="-1">A Boolean marker that indicates whether the object is a delete marker. This
+              marker is used only in buckets that have versioning enabled, </td>
+            <td tabindex="-1">No</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">x-amz-storage-class</code></td>
+            <td tabindex="-1">The storage class used for storing the object. For more information, see <a href="./storage-class-intro.html">Understanding and managing Amazon S3 storage classes</a>.</td>
+            <td tabindex="-1">Yes</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">x-amz-website-redirect-location</code></td>
+            <td tabindex="-1"> A header that redirects requests for
+              the associated object to another object in the same bucket or to an external URL. For
+              more information, see <a href="./how-to-page-redirect.html">(Optional) Configuring a webpage redirect</a>.</td>
+            <td tabindex="-1">Yes</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">x-amz-server-side-encryption-aws-kms-key-id</code></td>
+            <td tabindex="-1">A header that indicates the ID of the AWS KMS symmetric encryption KMS key that
+              was used to encrypt the object. This header is used only when the
+                <code class="code">x-amz-server-side-encryption</code> header is present and has the value of
+                <code class="code">aws:kms</code>.</td>
+            <td tabindex="-1">Yes</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">x-amz-server-side-encryption-customer-algorithm</code></td>
+            <td tabindex="-1">A header that indicates whether server-side encryption with customer-provided
+              encryption keys (SSE-C) is enabled. For more information, see <a href="./ServerSideEncryptionCustomerKeys.html">Using server-side encryption with customer-provided keys (SSE-C)</a>. </td>
+            <td tabindex="-1">Yes</td>
+          </tr>
+          <tr>
+            <td tabindex="-1"><code class="code">x-amz-tagging</code></td>
+            <td tabindex="-1">The tag-set for the object. The tag-set must be encoded as URL Query
+              parameters.</td>
+            <td tabindex="-1">Yes</td>
+          </tr>
+        </tbody></table></div></div>
+       
+        <h2 id="UserMetadata">User-defined object metadata</h2>
+        <p>When uploading an object, you can also assign metadata to the object. You provide this
+      optional information as a name-value (key-value) pair when you send a <code class="code">PUT</code> or
+        <code class="code">POST</code> request to create the object. When you upload objects using the REST API,
+      the optional user-defined metadata names must begin with <code class="code">x-amz-meta-</code> to
+      distinguish them from other HTTP headers. When you retrieve the object using the REST API,
+      this prefix is returned. When you upload objects using the SOAP API, the prefix is not
+      required. When you retrieve the object using the SOAP API, the prefix is removed, regardless
+      of which API you used to upload the object. </p>
+        
+<div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+        SOAP APIs for Amazon S3 are not available for new customers, and are approaching End of Life (EOL) on August 31, 2025. We recommend that you use either the REST API or the AWS SDKs.
+    </p></div></div>
+
+        <p>When metadata is retrieved through the REST API, Amazon S3 combines headers that have the
+      same name (ignoring case) into a comma-delimited list. If some metadata contains unprintable
+      characters, it is not returned. Instead, the <code class="code">x-amz-missing-meta</code> header is
+      returned with a value of the number of unprintable metadata entries. The
+        <code class="code">HeadObject</code> action retrieves metadata from an object without returning the
+      object itself. This operation is useful if you're only interested in an object's metadata. To
+      use <code class="code">HEAD</code>, you must have <code class="code">READ</code> access to the object. For more
+      information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html">HeadObject</a> in the <em> Amazon Simple Storage Service API Reference</em>.</p>
+        <p>User-defined metadata is a set of key-value pairs. Amazon S3 stores user-defined metadata keys in lowercase.</p>
+        <p>Amazon S3 allows arbitrary Unicode characters in your metadata values.</p>
+        <p>To avoid issues related to the presentation of these metadata values, you should
+      conform to using US-ASCII characters when using REST and UTF-8 when using SOAP or
+      browser-based uploads through <code class="code">POST</code>.</p>
+        <p>When using non-US-ASCII characters in your metadata values, the provided Unicode
+      string is examined for non-US-ASCII characters. Values of such headers are character decoded
+      as per <a href="https://datatracker.ietf.org/doc/html/rfc2047" rel="noopener noreferrer" target="_blank"><span>RFC 2047</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> before
+      storing and encoded as per <a href="https://datatracker.ietf.org/doc/html/rfc2047" rel="noopener noreferrer" target="_blank"><span>RFC
+        2047</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to make them mail-safe before returning. If the string contains only US-ASCII
+      characters, it is presented as is.</p>
+        <p>The following is an example.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight">
+PUT /Key HTTP/1.1
+Host: <code class="replaceable">amzn-s3-demo-bucket</code>.s3.amazonaws.com
+x-amz-meta-nonascii: ÄMÄZÕÑ S3
+
+HEAD /Key HTTP/1.1
+Host: <code class="replaceable">amzn-s3-demo-bucket</code>.s3.amazonaws.com
+x-amz-meta-nonascii: =?UTF-8?B?w4PChE3Dg8KEWsODwpXDg8KRIFMz?=
+
+PUT /Key HTTP/1.1
+Host: <code class="replaceable">amzn-s3-demo-bucket</code>.s3.amazonaws.com
+x-amz-meta-ascii: AMAZONS3
+
+HEAD /Key HTTP/1.1
+Host: <code class="replaceable">amzn-s3-demo-bucket</code>.s3.amazonaws.com
+x-amz-meta-ascii: AMAZONS3
+		</code></pre>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The <code class="code">PUT</code> request header is limited to 8 KB in size. Within the
+          <code class="code">PUT</code> request header, the user-defined metadata is limited to 2 KB in size. The
+        size of user-defined metadata is measured by taking the sum of the number of bytes in the
+        UTF-8 encoding of each key and value. </p></div></div>
+        <p>For information about changing the metadata of your object after it has been uploaded
+      by creating a copy of the object, modifying it, and replacing the old object, or creating a
+      new version, see <a href="./add-object-metadata.html">Editing object metadata in the Amazon S3 console</a>. </p>
+      <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./object-keys.html">Naming objects</div><div id="next" class="next-link" accesskey="n" href="./add-object-metadata.html">Editing object metadata</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=S3&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/UsingMetadata.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=S3&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/UsingMetadata.html"></awsui-button></p></div></div></div></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

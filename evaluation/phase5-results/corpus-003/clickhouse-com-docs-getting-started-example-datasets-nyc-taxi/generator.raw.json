@@ -1,0 +1,39 @@
+```json
+[
+    {
+        "question": "What are the three types of cab types listed in the New York taxi dataset?",
+        "answer": "yellow, green, and uber",
+        "supporting_sentences": [
+            "cab_type Enum8('yellow' = 1, 'green' = 2, 'uber' = 3)"
+        ]
+    },
+    {
+        "question": "What data type is used for the `trip_id` column in the New York taxi dataset?",
+        "answer": "UInt32",
+        "supporting_sentences": [
+            "trip_id UInt32"
+        ]
+    },
+    {
+        "question": "Which boroughs are explicitly listed as possible values for the `pickup_boroname` column in the dataset?",
+        "answer": "Manhattan, Bronx, Brooklyn, Queens, and Staten Island",
+        "supporting_sentences": [
+            "pickup_boroname Enum8('' = 0, 'Manhattan' = 1, 'Bronx' = 2, 'Brooklyn' = 3, 'Queens' = 4, 'Staten Island' = 5)"
+        ]
+    },
+    {
+        "question": "What are the possible values for the `payment_type_` column in the New York taxi dataset?",
+        "answer": "UNK, CSH, CRE, NOC, and DIS",
+        "supporting_sentences": [
+            "payment_type_ Enum8('UNK' = 0, 'CSH' = 1, 'CRE' = 2, 'NOC' = 3, 'DIS' = 4)"
+        ]
+    },
+    {
+        "question": "What is the data type of the `pickup_datetime` column in the New York taxi dataset?",
+        "answer": "DateTime",
+        "supporting_sentences": [
+            "pickup_datetime DateTime"
+        ]
+    }
+]
+```

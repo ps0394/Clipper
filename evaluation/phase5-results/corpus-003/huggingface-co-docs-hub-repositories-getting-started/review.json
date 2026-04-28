@@ -1,0 +1,106 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the two tools required to work with repositories through the terminal according to the 'Getting Started with Repositories' guide?",
+      "answer": "Git and Git-Xet",
+      "supporting_sentences": [
+        "If you do not have git available as a CLI command yet, you will need to install Git for your platform.",
+        "You will also need to install Git-Xet, which will be used to handle large files such as images and model weights."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the two tools required to work with repositories through the terminal according to the 'Getting Started with Repositories' guide?",
+      "answer": "Git and Git-Xet",
+      "supporting_sentences": [
+        "If you do not have git available as a CLI command yet, you will need to install Git for your platform.",
+        "You will also need to install Git-Xet, which will be used to handle large files such as images and model weights."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the three kinds of repositories available on the Hugging Face Hub?",
+      "answer": "Model repositories, datasets, and Spaces",
+      "supporting_sentences": [
+        "There are three kinds of repositories on the Hub, and in this guide you\u2019ll be creating a model repository for demonstration purposes. For information on creating and managing models, datasets, and Spaces, refer to their respective documentation."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the three kinds of repositories available on the Hugging Face Hub?",
+      "answer": "Model repositories, datasets, and Spaces",
+      "supporting_sentences": [
+        "There are three kinds of repositories on the Hub, and in this guide you\u2019ll be creating a model repository for demonstration purposes. For information on creating and managing models, datasets, and Spaces, refer to their respective documentation."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How can you avoid entering your username and password repeatedly when pushing changes to a repository cloned with HTTP?",
+      "answer": "Switch to SSH or set up a git credential helper",
+      "supporting_sentences": [
+        "If you cloned the repository with HTTP, you might be asked to fill your username and password on every push operation. The simplest way to avoid repetition is to switch to SSH, instead of HTTP. Alternatively, if you have to use HTTP, you might find it helpful to setup a git credential helper to autofill your username and password."
+      ]
+    },
+    "edited_pair": {
+      "question": "How can you avoid entering your username and password repeatedly when pushing changes to a repository cloned with HTTP?",
+      "answer": "Switch to SSH or set up a git credential helper",
+      "supporting_sentences": [
+        "If you cloned the repository with HTTP, you might be asked to fill your username and password on every push operation. The simplest way to avoid repetition is to switch to SSH, instead of HTTP. Alternatively, if you have to use HTTP, you might find it helpful to setup a git credential helper to autofill your username and password."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What command is used to upload files to a repository using the Hugging Face CLI?",
+      "answer": "`hf upload`",
+      "supporting_sentences": [
+        "You can upload files to your repository directly from the terminal using the hf CLI. Use the hf upload command to push local files or entire folders:",
+        "hf upload your-username/your-model-name model.safetensors"
+      ]
+    },
+    "edited_pair": {
+      "question": "What command is used to upload files to a repository using the Hugging Face CLI?",
+      "answer": "`hf upload`",
+      "supporting_sentences": [
+        "You can upload files to your repository directly from the terminal using the hf CLI. Use the hf upload command to push local files or entire folders:",
+        "hf upload your-username/your-model-name model.safetensors"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What file is automatically provided by Hugging Face to list common file extensions for large machine learning files in a repository?",
+      "answer": "`.gitattributes`",
+      "supporting_sentences": [
+        "When you use Hugging Face to create a repository, Hugging Face automatically provides a list of common file extensions for common Machine Learning large files in the .gitattributes file, which git-xet uses to efficiently track changes to your large files."
+      ]
+    },
+    "edited_pair": {
+      "question": "What file is automatically provided by Hugging Face to list common file extensions for large machine learning files in a repository?",
+      "answer": "`.gitattributes`",
+      "supporting_sentences": [
+        "When you use Hugging Face to create a repository, Hugging Face automatically provides a list of common file extensions for common Machine Learning large files in the .gitattributes file, which git-xet uses to efficiently track changes to your large files."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "question": "What happens if an error occurs while using the `db.collection.aggregate()` method in mongosh?",
+    "answer": "The `aggregate()` helper throws an exception.",
+    "supporting_sentences": [
+      "If an error occurs, the aggregate() helper throws an exception."
+    ]
+  },
+  {
+    "question": "What is the default behavior of mongosh when a cursor returned from `db.collection.aggregate()` is not assigned to a variable using the `var` keyword?",
+    "answer": "mongosh automatically iterates the cursor up to 20 times.",
+    "supporting_sentences": [
+      "In mongosh, if the cursor returned from the db.collection.aggregate() is not assigned to a variable using the var keyword, then mongosh automatically iterates the cursor up to 20 times."
+    ]
+  },
+  {
+    "question": "What is the maximum idle time for a MongoDB session before it is marked as expired?",
+    "answer": "30 minutes.",
+    "supporting_sentences": [
+      "If a session is idle for longer than 30 minutes, the MongoDB server marks that session as expired and may close it at any time."
+    ]
+  },
+  {
+    "question": "Which aggregation pipeline stages are not allowed within transactions?",
+    "answer": "The `explain` option and stages like `$out` or `$merge` (when used with read concern 'linearizable') are not allowed within transactions.",
+    "supporting_sentences": [
+      "However, the following stages are not allowed within transactions:",
+      "You also cannot specify the explain option.",
+      "You cannot use the $out or the $merge stage in conjunction with read concern 'linearizable'."
+    ]
+  },
+  {
+    "question": "What is the purpose of the `collation` option in an aggregation operation?",
+    "answer": "Collation allows users to specify language-specific rules for string comparison, such as rules for lettercase and accent marks.",
+    "supporting_sentences": [
+      "Collation allows users to specify language-specific rules for string comparison, such as rules for lettercase and accent marks."
+    ]
+  }
+]

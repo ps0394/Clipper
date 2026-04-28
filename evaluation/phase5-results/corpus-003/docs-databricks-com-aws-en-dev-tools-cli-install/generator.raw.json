@@ -1,0 +1,46 @@
+```json
+[
+    {
+        "question": "What is the minimum version number required for the Databricks CLI as mentioned in the installation instructions?",
+        "answer": "0.205.0 or above",
+        "supporting_sentences": [
+            "If a version number of 0.205.0 or above is listed, the Databricks CLI is installed correctly.",
+            "If the output is version 0.205.0 or above, the Databricks CLI is installed correctly."
+        ]
+    },
+    {
+        "question": "Which two Homebrew commands are required to install the Databricks CLI on Linux or macOS?",
+        "answer": "`brew tap databricks/tap` and `brew install databricks`",
+        "supporting_sentences": [
+            "From your terminal, just run the following two Homebrew commands to install the CLI:",
+            "Bash",
+            "brew tap databricks/tap",
+            "brew install databricks"
+        ]
+    },
+    {
+        "question": "What is the recommended method for installing the Databricks CLI on Windows if you cannot use Windows Subsystem for Linux (WSL) with the curl installation option?",
+        "answer": "Use the Command Prompt or PowerShell to install the Databricks CLI from source instead.",
+        "supporting_sentences": [
+            "For Windows, Databricks recommends that you use Windows Subsystem for Linux (WSL). You must also have unzip installed. For installation instructions, see your operating system's documentation. If you cannot use WSL, skip this procedure and use the Command Prompt or PowerShell to install the Databricks CLI from source instead."
+        ]
+    },
+    {
+        "question": "Where is the Databricks CLI executable installed by default on macOS and Linux when using the curl installation method?",
+        "answer": "`/usr/local/bin/databricks`",
+        "supporting_sentences": [
+            "This command downloads and installs the Databricks CLI executable in the path /usr/local/bin/databricks on macOS and Linux, and C:\\Windows\\databricks.exe on Windows."
+        ]
+    },
+    {
+        "question": "What command should you run to confirm whether the Databricks CLI is installed correctly?",
+        "answer": "`databricks -v` or `databricks version`",
+        "supporting_sentences": [
+            "Confirm whether the Databricks CLI is installed correctly. To do this, view the Databricks CLI executable's version by using the -v option or by running the version command:",
+            "Bash",
+            "databricks -v",
+            "databricks version"
+        ]
+    }
+]
+```

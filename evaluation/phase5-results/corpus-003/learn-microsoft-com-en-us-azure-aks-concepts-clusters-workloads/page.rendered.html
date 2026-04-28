@@ -1,0 +1,2652 @@
+<!DOCTYPE html><html class="layout layout-holy-grail show-table-of-contents conceptual show-breadcrumb default-focus theme-light" lang="en-us" dir="ltr" data-authenticated="false" data-auth-status-determined="true" data-target="docs" x-ms-format-detection="none" style="--window-inner-height: 720px !important; --atlas-header-height: 108px !important; --atlas-footer-height: 173px !important; --atlas-header-visible-height: 108px !important; --atlas-footer-visible-height: 0px !important;"><head>
+			<title>Azure Kubernetes Service (AKS) Core Concepts - Azure Kubernetes Service | Microsoft Learn</title>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="color-scheme" content="light dark">
+
+			<meta name="description" content="Learn about the core concepts of Azure Kubernetes Service (AKS).">
+			<link rel="canonical" href="https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts"> 
+
+			<!-- Non-customizable open graph and sharing-related metadata -->
+			<meta name="twitter:card" content="summary_large_image">
+			<meta name="twitter:site" content="@MicrosoftLearn">
+			<meta property="og:type" content="website">
+			<meta property="og:image:alt" content="Microsoft Learn">
+			<meta property="og:image" content="https://learn.microsoft.com/en-us/media/open-graph-image.png">
+			<!-- Page specific open graph and sharing-related metadata -->
+			<meta property="og:title" content="Azure Kubernetes Service (AKS) Core Concepts - Azure Kubernetes Service">
+			<meta property="og:url" content="https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts">
+			<meta property="og:description" content="Learn about the core concepts of Azure Kubernetes Service (AKS).">
+			<meta name="platform_id" content="e3f565f0-7158-abd9-7b44-f4e09099d0ff"> <meta name="scope" content="Azure,Azure Kubernetes Service">
+			<meta name="locale" content="en-us">
+			 
+			<meta name="uhfHeaderId" content="azure">
+
+			<meta name="page_type" content="conceptual">
+
+			<!--page specific meta tags-->
+			
+
+			<!-- custom meta tags -->
+			
+		<meta name="breadcrumb_path" content="/azure/breadcrumb/azure-aks/toc.json">
+	
+		<meta name="feedback_help_link_url" content="https://learn.microsoft.com/answers/tags/200/azure-kubernetes-service/">
+	
+		<meta name="feedback_help_link_type" content="get-help-at-qna">
+	
+		<meta name="feedback_product_url" content="https://feedback.azure.com/d365community/forum/aabe212a-f724-ec11-b6e6-000d3a4f0da0">
+	
+		<meta name="feedback_system" content="Standard">
+	
+		<meta name="permissioned-type" content="public">
+	
+		<meta name="recommendations" content="true">
+	
+		<meta name="recommendation_types" content="Training">
+	
+		<meta name="recommendation_types" content="Certification">
+	
+		<meta name="ms.suite" content="office">
+	
+		<meta name="adobe-target" content="true">
+	
+		<meta name="manager" content="rayoflores">
+	
+		<meta name="learn_banner_products" content="azure">
+	
+		<meta name="ms.service" content="azure-kubernetes-service">
+	
+		<meta name="ms.topic" content="concept-article">
+	
+		<meta name="ms.date" content="2024-07-10T00:00:00Z">
+	
+		<meta name="author" content="schaffererin">
+	
+		<meta name="ms.author" content="schaffererin">
+	
+		<meta name="document_id" content="b1a57f0b-5ea9-7039-be0b-1773d4a2084a">
+	
+		<meta name="document_version_independent_id" content="20438ef8-bc93-665d-e1d2-e455a9a05c05">
+	
+		<meta name="updated_at" content="2025-12-30T23:03:00Z">
+	
+		<meta name="original_content_git_url" content="https://github.com/MicrosoftDocs/azure-aks-docs-pr/blob/live/articles/aks/core-aks-concepts.md">
+	
+		<meta name="gitcommit" content="https://github.com/MicrosoftDocs/azure-aks-docs-pr/blob/8be8a35809747adb6c1f6ac05bd7df7cdf30d93d/articles/aks/core-aks-concepts.md">
+	
+		<meta name="git_commit_id" content="8be8a35809747adb6c1f6ac05bd7df7cdf30d93d">
+	
+		<meta name="site_name" content="Docs">
+	
+		<meta name="depot_name" content="Learn.azure-aks">
+	
+		<meta name="schema" content="Conceptual">
+	
+		<meta name="toc_rel" content="toc.json">
+	
+		<meta name="word_count" content="1370">
+	
+		<meta name="asset_id" content="aks/core-aks-concepts">
+	
+		<meta name="moniker_range_name" content="">
+	
+		<meta name="item_type" content="Content">
+	
+		<meta name="source_path" content="articles/aks/core-aks-concepts.md">
+	
+		<meta name="previous_tlsh_hash" content="A2200602A608A740FEC39F2B66379500A1F8C8487EF06AC81A3135BFD74E2D694AA87DCAF7537B44433EA61302C73E4F61D69F69C0AE615255AD483F856C12A36EC93B35D8">
+	
+		<meta name="github_feedback_content_git_url" content="https://github.com/MicrosoftDocs/azure-aks-docs/blob/main/articles/aks/core-aks-concepts.md">
+	
+		<meta name="markdown_url" content="https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts?accept=text/markdown">
+	 
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/d44a5346-5de4-439c-b804-7b2a536cbb55" data-source="generated">
+	
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/68ec7f3a-2bc6-459f-b959-19beb729907d" data-source="generated">
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/da41a22b-b7a0-42d3-9c35-50da1c2b7b87" data-source="generated">
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/90370425-aca4-4a39-9533-d52e5e002a5d" data-source="generated">
+	
+
+			<!-- assets and js globals -->
+			
+			<link rel="stylesheet" href="/static/assets/0.4.03398.7756-c1512039/styles/site.css">
+			
+			<script src="https://wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js"></script>
+			<script src="https://js.monitor.azure.com/scripts/c/ms.jsll-4.min.js"></script>
+			<script src="/_themes/docs.theme/master/en-us/_themes/global/deprecation.js"></script>
+
+			<!-- msdocs global object -->
+			<script id="msdocs-script">
+		var msDocs = {
+  "environment": {
+    "accessLevel": "online",
+    "azurePortalHostname": "portal.azure.com",
+    "reviewFeatures": false,
+    "supportLevel": "production",
+    "systemContent": true,
+    "siteName": "learn",
+    "legacyHosting": false
+  },
+  "data": {
+    "contentLocale": "en-us",
+    "contentDir": "ltr",
+    "userLocale": "en-us",
+    "userDir": "ltr",
+    "pageTemplate": "Conceptual",
+    "brand": "azure",
+    "context": {},
+    "standardFeedback": true,
+    "showFeedbackReport": false,
+    "feedbackHelpLinkType": "get-help-at-qna",
+    "feedbackHelpLinkUrl": "https://learn.microsoft.com/answers/tags/200/azure-kubernetes-service/",
+    "feedbackSystem": "Standard",
+    "feedbackGitHubRepo": "",
+    "feedbackProductUrl": "https://feedback.azure.com/d365community/forum/aabe212a-f724-ec11-b6e6-000d3a4f0da0",
+    "extendBreadcrumb": false,
+    "isEditDisplayable": true,
+    "isPrivateUnauthorized": false,
+    "hideViewSource": false,
+    "isPermissioned": false,
+    "hasRecommendations": true,
+    "contributors": [
+      {
+        "name": "schaffererin",
+        "url": "https://github.com/schaffererin"
+      },
+      {
+        "name": "davidsmatlak",
+        "url": "https://github.com/davidsmatlak"
+      },
+      {
+        "name": "cynthn",
+        "url": "https://github.com/cynthn"
+      },
+      {
+        "name": "alvinli222",
+        "url": "https://github.com/alvinli222"
+      },
+      {
+        "name": "allyford",
+        "url": "https://github.com/allyford"
+      },
+      {
+        "name": "stl327",
+        "url": "https://github.com/stl327"
+      },
+      {
+        "name": "wangyira",
+        "url": "https://github.com/wangyira"
+      }
+    ]
+  },
+  "functions": {}
+};;
+	</script>
+
+			<!-- base scripts, msdocs global should be before this -->
+			<script src="/static/assets/0.4.03398.7756-c1512039/scripts/en-us/index-docs.js"></script><style></style>
+			
+
+			<!-- json-ld -->
+			
+		<link rel="preload" as="image" href="/en-us/media/ask-learn/meet-ask-learn-base.png"><link rel="preload" as="image" href="/en-us/media/ask-learn/check-for-accuracy-base.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"name":"Learn","position":1,"@type":"ListItem","item":"https://learn.microsoft.com/en-us/"},{"name":"Azure","position":2,"@type":"ListItem","item":"https://learn.microsoft.com/en-us/azure/"},{"name":"Azure Kubernetes Service","position":3,"@type":"ListItem","item":"https://learn.microsoft.com/en-us/azure/aks/"}]}</script></head>
+	
+			<body id="body" data-bi-name="body" class="layout-body " lang="en-us" dir="ltr">
+				<header class="layout-body-header">
+		<div class="header-holder has-default-focus">
+			
+		<a href="#main" style="z-index: 1070" class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body">
+			Skip to main content
+		</a>
+	
+		<a href="#" data-skip-to-ask-learn="" style="z-index: 1070" class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body">
+			Skip to Ask Learn chat experience
+		</a>
+	
+
+			<div hidden="" id="cookie-consent-holder" data-test-id="cookie-consent-container"></div><div id="banner-holder" class="has-default-focus has-overflow-hidden display-none-visual-diff theme-light"><!----><section data-bi-name="tier1-event-banner" data-dismissable="disappearing" class="tier1-event-banner position-relative padding-block-md build-banner display-none-visual-diff">
+		<div class="uhf-container display-flex-tablet align-items-center">
+			<div class="has-backdrop-filter-blur margin-right-xxl-tablet padding-right-md padding-right-none-tablet">
+				<h2 class="title is-2 is-responsive text-wrap-pretty margin-bottom-xs"><!---->Microsoft Build 2026<!----></h2>
+				<p class="font-size-sm"><!---->June 2-3, 2026<!----></p>
+			</div>
+			<p class="container is-max-mobile display-none display-block-widescreen has-backdrop-filter-blur font-size-sm margin-left-none margin-right-xxl text-wrap-pretty">
+				Go deep on real code and real systems in San Francisco and online
+			</p>
+			<a data-bi-name="CTA" class="button margin-top-sm margin-bottom-sm-tablet " href="https://aka.ms/MSBuild_FY26_BN_MSLearn_Hero">
+				<span><!---->Learn more<!----></span>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-chevron-right-light"></span>
+				</span>
+			</a>
+		</div>
+		<button type="button" data-dismiss="" data-bi-name="close" class="button delete delete-lg position-absolute top-0 right-0 margin-xs margin-sm-tablet ">
+			<span class="visually-hidden"><!---->Dismiss alert<!----></span>
+		</button>
+	</section><!----></div>
+			<!-- Unsupported browser warning -->
+			<div id="unsupported-browser" style="background-color: white; color: black; padding: 16px; border-bottom: 1px solid grey;" hidden="">
+				<div style="max-width: 800px; margin: 0 auto;">
+					<p style="font-size: 24px">This browser is no longer supported.</p>
+					<p style="font-size: 16px; margin-top: 16px;">
+						Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+					</p>
+					<div style="margin-top: 12px;">
+						<a href="https://go.microsoft.com/fwlink/p/?LinkID=2092881 " style="background-color: #0078d4; border: 1px solid #0078d4; color: white; padding: 6px 12px; border-radius: 2px; display: inline-block;">
+							Download Microsoft Edge
+						</a>
+						<a href="https://learn.microsoft.com/en-us/lifecycle/faq/internet-explorer-microsoft-edge" style="background-color: white; padding: 6px 12px; border: 1px solid #505050; color: #171717; border-radius: 2px; display: inline-block;">
+							More info about Internet Explorer and Microsoft Edge
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- site header -->
+			<div id="ms--site-header" data-test-id="site-header-wrapper" itemscope="itemscope" itemtype="http://schema.org/Organization">
+				<div id="ms--mobile-nav" class="site-header display-none-tablet padding-inline-none gap-none" data-bi-name="mobile-header" data-test-id="mobile-header"><!---->
+		<div id="ms--site-header-hamburger" data-test-id="site-header-hamburger">
+			<button type="button" class="button button-clear inner-focus" data-test-id="mobile-nav-open-button" data-bi-name="mobile-nav-open-button" title="Global navigation" aria-label="Global navigation">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-menu"></span>
+				</span>
+			</button>
+		</div>
+
+		<!-- Brand -->
+		
+		<a class="site-header-brand" itemprop="url" href="/en-us/" data-bi-name="site-header-brand-learn-mobile" data-test-id="site-header-brand-mobile">
+			<span><!---->Learn<!----></span>
+		</a>
+	
+
+		<!-- MS logo -->
+		
+		<a href="https://www.microsoft.com" aria-label="Microsoft" itemprop="url" data-bi-name="site-header-microsoft-logo-mobile" data-test-id="site-header-microsoft-logo-mobile" class="site-header-logo site-header-logo-centered">
+			
+		<svg aria-hidden="true" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" itemprop="logo" itemscope="itemscope">
+			<path d="M11.5216 0.5H0V11.9067H11.5216V0.5Z" fill="#f25022"></path>
+			<path d="M24.2418 0.5H12.7202V11.9067H24.2418V0.5Z" fill="#7fba00"></path>
+			<path d="M11.5216 13.0933H0V24.5H11.5216V13.0933Z" fill="#00a4ef"></path>
+			<path d="M24.2418 13.0933H12.7202V24.5H24.2418V13.0933Z" fill="#ffb900"></path>
+		</svg>
+	
+		</a>
+	
+
+		<!-- Search -->
+		
+		<search-expander data-test-id="site-header-search-mobile" class="display-flex flex-grow-1 justify-content-flex-end">
+			<div hidden="" id="ms--site-header-search-mobile" class="display-flex align-items-center gap-xxs width-full padding-left-xxs">
+				
+		<form class="flex-grow-1" method="GET" role="search" id="ms--site-header-search-form-mobile" data-bi-name="site-header-search-form-mobile" name="site-header-search-form-mobile" aria-label="Search" action="/en-us/search/">
+			<div class="autocomplete display-block" data-bi-name="autocomplete"><!---->
+			<div class="field-body control ">
+				<input role="combobox" maxlength="100" aria-autocomplete="list" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" id="site-header-search-autocomplete-input-mobile" data-test-id="site-header-search-autocomplete-input-mobile" class="autocomplete-input input 
+						
+						width-full" type="search" name="terms" aria-expanded="false" aria-owns="ax-1-listbox" aria-controls="ax-1-listbox" aria-activedescendant="" aria-label="Search" aria-describedby="ms--site-header-search-autocomplete-input-mobile-description" placeholder="Search" data-bi-name="site-header-search-autocomplete-input-mobile" pattern=".*">
+
+				
+				
+
+				<span hidden="" id="ms--site-header-search-autocomplete-input-mobile-description">
+					Suggestions will filter as you type
+				</span>
+			</div>
+
+			<ul role="listbox" id="ax-1-listbox" data-test-id="site-header-search-autocomplete-input-mobile-listbox" class="autocomplete-suggestions is-vertically-scrollable padding-xxs " aria-label="Suggestions" hidden="">
+				
+				
+			</ul>
+		<!----></div>
+			<!-- mobile safari will not dispatch submit event unless there's a submit button that is not display:none -->
+			<button type="submit" class="visually-hidden" tabindex="-1" aria-hidden="true"></button>
+			<input name="category" hidden="" value="">
+			
+			
+		</form>
+	
+				<button data-search-expander-trigger-close="" type="button" class="button button-clear inner-focus" aria-controls="ms--site-header-search-mobile" aria-label="Close search" data-bi-name="site-header-search-close-mobile" data-test-id="site-header-search-close-mobile">
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-navigate-close"></span>
+					</span>
+				</button>
+			</div>
+			<button data-search-expander-trigger-open="" type="button" class="button button-clear inner-focus" aria-controls="ms--site-header-search-mobile" aria-label="Open search" data-bi-name="site-header-search-open-mobile" data-test-id="site-header-search-open-mobile">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-search"></span>
+				</span>
+			</button>
+		</search-expander>
+	
+
+		<!-- User avatar/Sign in -->
+		<!---->
+		<a href="#" data-bi-name="site-header-sign-in-mobile" data-test-id="site-header-sign-in-mobile" class="link-button font-size-sm flex-shrink-0 docs-sign-in auth-status-determined not-authenticated margin-right-xs margin-left-xxs">
+			Sign in
+		</a>
+	 
+		<details data-bi-name="site-header-user-mobile" class="popover popover-right auth-status-determined authenticated margin-right-xs margin-left-xxs">
+			<summary data-bi-name="site-header-user-avatar" aria-label="Your Account" data-test-id="site-header-user-mobile">
+				<div class="persona persona-sm">
+					<figure class="persona-avatar">
+						<img alt="" data-profile-property="avatarThumbnailUrl">
+					</figure>
+				</div>
+			</summary>
+			<div class="popover-content width-auto" data-bi-name="site-header-user-menu">
+				<div class="persona persona-sm">
+					<figure class="persona-avatar">
+						<img alt="" data-profile-property="avatarUrl" aria-labelledby="ms--user-display-name-mobile">
+					</figure>
+					<div class="persona-details" data-test-id="persona-detail-mobile">
+						<p class="persona-name" data-profile-property="displayName" id="ms--user-display-name-mobile"></p>
+						<p data-profile-property="upn"></p>
+					</div>
+				</div>
+				<ul class="padding-block-xs">
+					<li class="padding-bottom-xs">
+						<a data-profile-property="profileUrl" class="font-size-sm" data-bi-name="site-header-user-profile" href="https://learn.microsoft.com/en-us/users/me/activity/">
+							Profile
+						</a>
+					</li>
+					<li class="padding-bottom-xs">
+										<a class="font-size-sm" data-bi-name="site-header-user-analytics" href="https://learn.microsoft.com/en-us/users/me/analytics/">
+											Analytics
+										</a>
+								  </li>
+					<li>
+						<a data-profile-property="settingsUrl" class="font-size-sm" data-bi-name="site-header-user-settings" href="https://learn.microsoft.com/en-us/users/me/settings/">
+							Settings
+						</a>
+					</li>
+				</ul>
+				<div class="border-top padding-top-xs">
+					<a class="docs-sign-out font-size-sm" href="#" data-bi-name="site-header-sign-out-mobile" data-test-id="site-header-user-sign-out-mobile">
+						Sign out
+					</a>
+				</div>
+			</div>
+		</details>
+	<!---->
+	<!----></div>
+				<div id="ms--primary-nav" class="site-header display-none display-flex-tablet" data-bi-name="L1-header" data-test-id="primary-header"><!---->
+		<!-- MS logo -->
+		
+		<a href="https://www.microsoft.com" aria-label="Microsoft" itemprop="url" data-bi-name="site-header-microsoft-logo" data-test-id="site-header-microsoft-logo" class="site-header-logo ">
+			
+		<svg aria-hidden="true" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" itemprop="logo" itemscope="itemscope">
+			<path d="M11.5216 0.5H0V11.9067H11.5216V0.5Z" fill="#f25022"></path>
+			<path d="M24.2418 0.5H12.7202V11.9067H24.2418V0.5Z" fill="#7fba00"></path>
+			<path d="M11.5216 13.0933H0V24.5H11.5216V13.0933Z" fill="#00a4ef"></path>
+			<path d="M24.2418 13.0933H12.7202V24.5H24.2418V13.0933Z" fill="#ffb900"></path>
+		</svg>
+	
+		</a>
+	
+
+		<!-- Divider -->
+		<div class="site-header-divider"></div>
+
+		<!-- Brand -->
+		
+		<a class="site-header-brand" itemprop="url" href="/en-us/" data-bi-name="site-header-brand-learn" data-test-id="site-header-brand">
+			<span><!---->Learn<!----></span>
+		</a>
+	
+
+		<div id="ms--search-expander-wrapper" class="display-flex justify-content-space-between flex-grow-1 align-items-center overflow-x-hidden height-full">
+			<!-- Main Nav -->
+			
+		<overflow-menu class="align-self-stretch" style="display: block; overflow: hidden; width: 100%;">
+			<nav class="site-header-nav" data-bi-name="primary-nav" data-overflow-menu-container="" aria-label="Global" style="visibility: visible; overflow: hidden;">
+				<button type="button" data-overflow-menu-prev-button="" data-bi-name="site-header-btn-prev" class="button button-clear button-sm inner-focus" hidden="" aria-label="Previous">
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-chevron-left-light"></span>
+					</span>
+				</button>
+
+				
+		<ul class="display-flex gap-xxs-desktop">
+			<!---->
+			<li aria-setsize="4" aria-posinset="1">
+				<panel-controller data-bi-name="site-header-btn-1-documentation">
+					<button type="button" aria-expanded="false" class="site-header-button" data-overflow-menu-item="" aria-controls="ms--panel-1" data-test-id="site-header-panel-controller-1" style="white-space: nowrap;">
+						<span><!---->Documentation<!----></span>
+						<span class="icon expanded-indicator" aria-hidden="true">
+							<span class="docon docon-chevron-down-light"></span>
+						</span>
+					</button>
+					<div class="site-header-panel" hidden="" id="ms--panel-1" data-bi-name="panel-1-documentation" data-test-id="site-header-panel-1">
+						
+		<div class="site-header-panel-content">
+			<ul class="site-header-panel-links">
+				<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/docs/" data-bi-name="panel-link-1-all-product-documentation">
+						All product documentation
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/azure/?product=popular" data-bi-name="panel-link-2-azure-documentation">
+						Azure documentation
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/dynamics365/" data-bi-name="panel-link-3-dynamics-365-documentation">
+						Dynamics 365 documentation
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/copilot/" data-bi-name="panel-link-4-microsoft-copilot-documentation">
+						Microsoft Copilot documentation
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/microsoft-365/" data-bi-name="panel-link-5-microsoft-365-documentation">
+						Microsoft 365 documentation
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/power-platform/" data-bi-name="panel-link-6-power-platform-documentation">
+						Power Platform documentation
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/samples/" data-bi-name="panel-link-7-code-samples">
+						Code samples
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/troubleshoot/" data-bi-name="panel-link-8-troubleshooting-documentation">
+						Troubleshooting documentation
+					</a>
+				</li>
+			<!---->
+			</ul>
+			
+		</div>
+		
+			<section class="site-header-panel-featured-content"><!----><!---->
+				<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="featured-card-1-ai-tour">
+					<div class="card-content">
+						<p class="card-supertitle line-clamp-2 line-height-normal"><!---->Free to join. Request to attend.<!----></p>
+						<a class="card-title color-text background-color-transparent stretched-link" href="https://aitour.microsoft.com/?wt.mc_id=itour26_learnmarketingspot_wwl">
+							Microsoft AI Tour
+						</a>
+						<p class="card-content-description line-clamp-2"><!---->Take your business to the AI frontier.<!----></p>
+					</div>
+				</article>
+			<!----><!----></section>
+		
+	
+					</div>
+				</panel-controller>
+			</li>
+		<!---->
+			<li aria-setsize="4" aria-posinset="2">
+				<panel-controller data-bi-name="site-header-btn-2-training">
+					<button type="button" aria-expanded="false" class="site-header-button" data-overflow-menu-item="" aria-controls="ms--panel-2" data-test-id="site-header-panel-controller-2" style="white-space: nowrap;">
+						<span><!---->Training &amp; Labs<!----></span>
+						<span class="icon expanded-indicator" aria-hidden="true">
+							<span class="docon docon-chevron-down-light"></span>
+						</span>
+					</button>
+					<div class="site-header-panel" hidden="" id="ms--panel-2" data-bi-name="panel-2-training" data-test-id="site-header-panel-2">
+						
+		<div class="site-header-panel-content">
+			<ul class="site-header-panel-links">
+				<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/training/" data-bi-name="panel-link-1-training">
+						All training
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/training/browse/?products=azure" data-bi-name="panel-link-2-azure-training">
+						Azure training
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/training/browse/?products=dynamics-365" data-bi-name="panel-link-3-dynamics-365-training">
+						Dynamics 365 training
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/training/browse/?products=ms-copilot" data-bi-name="panel-link-4-microsoft-copilot-training">
+						Microsoft Copilot training
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/training/browse/?products=m365" data-bi-name="panel-link-5-microsoft-365-training">
+						Microsoft 365 training
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/training/browse/?products=power-platform" data-bi-name="panel-link-6-microsoft-power-platform-training">
+						Microsoft Power Platform training
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/labs/" data-bi-name="panel-link-7-labs">
+						Labs
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/credentials/" data-bi-name="panel-link-8-credentials">
+						Credentials
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/training/career-paths/" data-bi-name="panel-link-9-career-paths">
+						Career paths
+					</a>
+				</li>
+			<!---->
+			</ul>
+			
+		</div>
+		
+			<section class="site-header-panel-featured-content"><!----><!---->
+				<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="featured-card-1-ai-tour">
+					<div class="card-content">
+						<p class="card-supertitle line-clamp-2 line-height-normal"><!---->Free to join. Request to attend.<!----></p>
+						<a class="card-title color-text background-color-transparent stretched-link" href="https://aitour.microsoft.com/?wt.mc_id=itour26_learnmarketingspot_wwl">
+							Microsoft AI Tour
+						</a>
+						<p class="card-content-description line-clamp-2"><!---->Take your business to the AI frontier.<!----></p>
+					</div>
+				</article>
+			<!----><!----></section>
+		
+	
+					</div>
+				</panel-controller>
+			</li>
+		<!---->
+			<li aria-setsize="4" aria-posinset="3">
+				<panel-controller data-bi-name="site-header-btn-3-qna">
+					<button type="button" aria-expanded="false" class="site-header-button" data-overflow-menu-item="" aria-controls="ms--panel-3" data-test-id="site-header-panel-controller-3" style="white-space: nowrap;">
+						<span><!---->Q&amp;A<!----></span>
+						<span class="icon expanded-indicator" aria-hidden="true">
+							<span class="docon docon-chevron-down-light"></span>
+						</span>
+					</button>
+					<div class="site-header-panel" hidden="" id="ms--panel-3" data-bi-name="panel-3-qna" data-test-id="site-header-panel-3">
+						
+		<div class="site-header-panel-content">
+			<ul class="site-header-panel-links">
+				<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/answers/questions/ask/" data-bi-name="panel-link-1-ask-a-question">
+						Ask a question
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/answers/tags/133/azure/" data-bi-name="panel-link-2-azure-questions">
+						Azure questions
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/answers/tags/60/windows/" data-bi-name="panel-link-3-windows-questions">
+						Windows questions
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/answers/tags/9/m365/" data-bi-name="panel-link-4-m365-questions">
+						Microsoft 365 questions
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/answers/tags/131/office-outlook/" data-bi-name="panel-link-5-microsoft-outlook-questions">
+						Microsoft Outlook questions
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/answers/tags/108/office-teams/" data-bi-name="panel-link-6-microsoft-teams-questions">
+						Microsoft Teams questions
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/answers/tags/" data-bi-name="panel-link-7-popular-tags">
+						Popular tags
+					</a>
+				</li>
+			<!---->
+				<li>
+					<a class="button button-clear button-sm button-block text-align-left font-weight-normal justify-content-flex-start inner-focus border-none background-color-body-accent-onhover" href="/en-us/answers/questions/" data-bi-name="panel-link-8-all-questions">
+						All questions
+					</a>
+				</li>
+			<!---->
+			</ul>
+			
+		</div>
+		
+			<section class="site-header-panel-featured-content"><!----><!---->
+				<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="featured-card-1-ai-tour">
+					<div class="card-content">
+						<p class="card-supertitle line-clamp-2 line-height-normal"><!---->Free to join. Request to attend.<!----></p>
+						<a class="card-title color-text background-color-transparent stretched-link" href="https://aitour.microsoft.com/?wt.mc_id=itour26_learnmarketingspot_wwl">
+							Microsoft AI Tour
+						</a>
+						<p class="card-content-description line-clamp-2"><!---->Take your business to the AI frontier.<!----></p>
+					</div>
+				</article>
+			<!----><!----></section>
+		
+	
+					</div>
+				</panel-controller>
+			</li>
+		<!---->
+			<li aria-setsize="4" aria-posinset="4">
+				<panel-controller data-bi-name="site-header-btn-4-topics">
+					<button type="button" aria-expanded="false" class="site-header-button" data-overflow-menu-item="" aria-controls="ms--panel-4" data-test-id="site-header-panel-controller-4" style="white-space: nowrap;">
+						<span><!---->Topics<!----></span>
+						<span class="icon expanded-indicator" aria-hidden="true">
+							<span class="docon docon-chevron-down-light"></span>
+						</span>
+					</button>
+					<div class="site-header-panel" hidden="" id="ms--panel-4" data-bi-name="panel-4-topics" data-test-id="site-header-panel-4">
+						
+		<div class="site-header-panel-content">
+			<ul class="site-header-panel-cards">
+				<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-1-agents">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/agents/">
+								Agents
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->Key concepts and resources for agentic computing<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-2-ai">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/ai/">
+								Artificial intelligence
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->Learning hub to build AI skills<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-3-devops">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/devops/">
+								DevOps
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->DevOps practices, Git version control and Agile methods<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-4-microsoft-learn-for-organizations">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/training/organizations/">
+								Learn for Organizations
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->Curated offerings from Microsoft to boost your team’s technical skills<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-5-platform-engineering">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/platform-engineering/">
+								Platform engineering
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->Tools from Microsoft and others to build personalized developer experiences<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-6-security">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/security/">
+								Security
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->Guidance to help you tackle security challenges<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-7-assessments">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/assessments/">
+								Assessments
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->Interactive guidance with custom recommendations<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-8-student-hub">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/training/student-hub/">
+								Student hub
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->Self-paced and interactive training for students<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+				<li>
+					<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="panel-card-9-educator-center">
+						<div class="card-content">
+							<a class="card-title color-text background-color-transparent stretched-link" href="/en-us/training/educator-center/">
+								Educator center
+							</a>
+							<p class="card-content-description line-clamp-2"><!---->Resources for educators to bring technical innovation in their classroom<!----></p>
+						</div>
+					</article>
+				</li>
+			<!---->
+			</ul>
+			
+		</div>
+		
+			<section class="site-header-panel-featured-content"><!----><!---->
+				<article class="card position-relative background-color-body-accent-onhover background-color-body-medium box-shadow-none" data-bi-name="featured-card-1-ai-tour">
+					<div class="card-content">
+						<p class="card-supertitle line-clamp-2 line-height-normal"><!---->Free to join. Request to attend.<!----></p>
+						<a class="card-title color-text background-color-transparent stretched-link" href="https://aitour.microsoft.com/?wt.mc_id=itour26_learnmarketingspot_wwl">
+							Microsoft AI Tour
+						</a>
+						<p class="card-content-description line-clamp-2"><!---->Take your business to the AI frontier.<!----></p>
+					</div>
+				</article>
+			<!----><!----></section>
+		
+	
+					</div>
+				</panel-controller>
+			</li>
+		<!---->
+		</ul>
+	
+
+				<button type="button" data-overflow-menu-next-button="" data-bi-name="site-header-btn-next" class="button button-clear button-sm inner-focus margin-left-auto" hidden="" aria-label="Next">
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-chevron-right-light"></span>
+					</span>
+				</button>
+			</nav>
+		</overflow-menu>
+	
+
+			<!-- Search -->
+			
+		<search-expander data-test-id="site-header-search" class="flex-grow-1 margin-left-xxs">
+			<div hidden="" id="ms--site-header-search" class="display-flex align-items-center gap-xxs ">
+				
+		<form class="flex-grow-1" method="GET" role="search" id="ms--site-header-search-form" data-bi-name="site-header-search-form" name="site-header-search-form" aria-label="Search" action="/en-us/search/">
+			<div class="autocomplete display-block" data-bi-name="autocomplete"><!---->
+			<div class="field-body control ">
+				<input role="combobox" maxlength="100" aria-autocomplete="list" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" id="site-header-search-autocomplete-input" data-test-id="site-header-search-autocomplete-input" class="autocomplete-input input input-sm
+						
+						width-full" type="search" name="terms" aria-expanded="false" aria-owns="ax-0-listbox" aria-controls="ax-0-listbox" aria-activedescendant="" aria-label="Search" aria-describedby="ms--site-header-search-autocomplete-input-description" placeholder="Search" data-bi-name="site-header-search-autocomplete-input" pattern=".*">
+
+				
+				
+
+				<span hidden="" id="ms--site-header-search-autocomplete-input-description">
+					Suggestions will filter as you type
+				</span>
+			</div>
+
+			<ul role="listbox" id="ax-0-listbox" data-test-id="site-header-search-autocomplete-input-listbox" class="autocomplete-suggestions is-vertically-scrollable padding-xxs " aria-label="Suggestions" hidden="">
+				
+				
+			</ul>
+		<!----></div>
+			<!-- mobile safari will not dispatch submit event unless there's a submit button that is not display:none -->
+			<button type="submit" class="visually-hidden" tabindex="-1" aria-hidden="true"></button>
+			<input name="category" hidden="" value="">
+			
+			
+		</form>
+	
+				<button data-search-expander-trigger-close="" type="button" class="button button-clear inner-focus" aria-controls="ms--site-header-search" aria-label="Close search" data-bi-name="site-header-search-close" data-test-id="site-header-search-close">
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-navigate-close"></span>
+					</span>
+				</button>
+			</div>
+			<button data-search-expander-trigger-open="" type="button" class="button button-clear inner-focus" aria-controls="ms--site-header-search" aria-label="Open search" data-bi-name="site-header-search-open" data-test-id="site-header-search-open">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-search"></span>
+				</span>
+			</button>
+		</search-expander>
+	
+		</div>
+
+		<!-- User avatar/Sign in -->
+		<!---->
+		<a href="#" data-bi-name="site-header-sign-in" data-test-id="site-header-sign-in" class="link-button font-size-sm flex-shrink-0 docs-sign-in auth-status-determined not-authenticated ">
+			Sign in
+		</a>
+	 
+		<details data-bi-name="site-header-user" class="popover popover-right auth-status-determined authenticated ">
+			<summary data-bi-name="site-header-user-avatar" aria-label="Your Account" data-test-id="site-header-user">
+				<div class="persona ">
+					<figure class="persona-avatar">
+						<img alt="" data-profile-property="avatarThumbnailUrl">
+					</figure>
+				</div>
+			</summary>
+			<div class="popover-content width-auto" data-bi-name="site-header-user-menu">
+				<div class="persona ">
+					<figure class="persona-avatar">
+						<img alt="" data-profile-property="avatarUrl" aria-labelledby="ms--user-display-name">
+					</figure>
+					<div class="persona-details" data-test-id="persona-detail">
+						<p class="persona-name" data-profile-property="displayName" id="ms--user-display-name"></p>
+						<p data-profile-property="upn"></p>
+					</div>
+				</div>
+				<ul class="padding-block-xs">
+					<li class="padding-bottom-xs">
+						<a data-profile-property="profileUrl" class="font-size-sm" data-bi-name="site-header-user-profile" href="https://learn.microsoft.com/en-us/users/me/activity/">
+							Profile
+						</a>
+					</li>
+					<li class="padding-bottom-xs">
+										<a class="font-size-sm" data-bi-name="site-header-user-analytics" href="https://learn.microsoft.com/en-us/users/me/analytics/">
+											Analytics
+										</a>
+								  </li>
+					<li>
+						<a data-profile-property="settingsUrl" class="font-size-sm" data-bi-name="site-header-user-settings" href="https://learn.microsoft.com/en-us/users/me/settings/">
+							Settings
+						</a>
+					</li>
+				</ul>
+				<div class="border-top padding-top-xs">
+					<a class="docs-sign-out font-size-sm" href="#" data-bi-name="site-header-sign-out" data-test-id="site-header-user-sign-out">
+						Sign out
+					</a>
+				</div>
+			</div>
+		</details>
+	<!---->
+	<!----></div>
+				<div id="ms--secondary-nav" class="display-none display-flex-tablet" data-bi-name="L2-header" data-test-id="secondary-header"><!----><div class="site-header width-full"><!----> 
+		<a class="site-header-brand font-size-h6 padding-inline-none margin-right-xxs" itemprop="url" href="/en-us/azure/" data-bi-name="secondary-nav-link-category-azure">
+			<span>
+				Azure
+				
+			</span>
+		</a>
+	 
+		
+		<nav class="site-header-nav width-auto" data-bi-name="secondary-nav" aria-label="Site">
+			<ul class="display-flex">
+				<!---->
+		<li class="dropdown">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  site-header-button-icon-chevron" aria-controls="bx-188" data-bi-name="secondary-nav-btn-1-products" value="undefined">
+				<span><!---->Products<!----></span>
+				<span aria-hidden="true" class="icon expanded-indicator ">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-188" aria-label="Products" data-bi-name="secondary-nav-menu-1-products">
+				<!---->
+		<li class="dropdown">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  width-full justify-content-space-between padding-inline-xs padding-block-xxs" aria-controls="bx-189" data-bi-name="secondary-nav-btn-1-popular-products" value="undefined">
+				<span><!---->Popular products<!----></span>
+				<span aria-hidden="true" class="icon  margin-left-xs">
+					<span class="docon docon-chevron-right-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-189" aria-label="Popular products" data-bi-name="secondary-nav-menu-1-popular-products">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/ai-foundry/" data-bi-name="secondary-nav-link-1-microsoft-foundry">
+						<span><!---->Microsoft Foundry<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/app-service/" data-bi-name="secondary-nav-link-2-azure-app-service">
+						<span><!---->Azure App Service<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/databricks/" data-bi-name="secondary-nav-link-3-azure-databricks">
+						<span><!---->Azure Databricks<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/devops/" data-bi-name="secondary-nav-link-4-azure-devops">
+						<span><!---->Azure DevOps<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/azure-functions/" data-bi-name="secondary-nav-link-5-azure-functions">
+						<span><!---->Azure Functions<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/azure-monitor/" data-bi-name="secondary-nav-link-6-azure-monitor">
+						<span><!---->Azure Monitor<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/virtual-machines/" data-bi-name="secondary-nav-link-7-azure-virtual-machines">
+						<span><!---->Azure Virtual Machines<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+		<li class="dropdown">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  width-full justify-content-space-between padding-inline-xs padding-block-xxs" aria-controls="bx-190" data-bi-name="secondary-nav-btn-2-popular-categories" value="undefined">
+				<span><!---->Popular categories<!----></span>
+				<span aria-hidden="true" class="icon  margin-left-xs">
+					<span class="docon docon-chevron-right-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-190" aria-label="Popular categories" data-bi-name="secondary-nav-menu-2-popular-categories">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/?product=compute" data-bi-name="secondary-nav-link-1-compute">
+						<span><!---->Compute<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/?product=networking" data-bi-name="secondary-nav-link-2-networking">
+						<span><!---->Networking<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/?product=storage" data-bi-name="secondary-nav-link-3-storage">
+						<span><!---->Storage<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/?product=ai-machine-learning" data-bi-name="secondary-nav-link-4-ai-and-machine-learning">
+						<span><!---->AI &amp; machine learning<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/?product=analytics" data-bi-name="secondary-nav-link-5-analytics">
+						<span><!---->Analytics<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/?product=databases" data-bi-name="secondary-nav-link-6-databases">
+						<span><!---->Databases<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/?product=security" data-bi-name="secondary-nav-link-7-security">
+						<span><!---->Security<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/" data-bi-name="secondary-nav-link-3-view-all-products">
+						<span><!---->View all products<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+		<li class="dropdown">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  site-header-button-icon-chevron" aria-controls="bx-191" data-bi-name="secondary-nav-btn-2-architecture" value="undefined">
+				<span><!---->Architecture<!----></span>
+				<span aria-hidden="true" class="icon expanded-indicator ">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-191" aria-label="Architecture" data-bi-name="secondary-nav-menu-2-architecture">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/cloud-adoption-framework/" data-bi-name="secondary-nav-link-1-cloud-adoption-framework">
+						<span><!---->Cloud Adoption Framework<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/well-architected/" data-bi-name="secondary-nav-link-2-well-architected-framework">
+						<span><!---->Well-Architected Framework<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/architecture/" data-bi-name="secondary-nav-link-3-azure-architecture-center">
+						<span><!---->Azure Architecture Center<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+				<li>
+					<a data-test-id="header-link-migration" class="has-external-link-indicator site-header-button " href="/en-us/azure/migration/" data-bi-name="secondary-nav-link-3-migration">
+						<span><!---->Migration<!----></span>
+					</a>
+				</li>
+		  <!---->
+		<li class="dropdown">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  site-header-button-icon-chevron" aria-controls="bx-192" data-bi-name="secondary-nav-btn-4-develop" value="undefined">
+				<span><!---->Develop<!----></span>
+				<span aria-hidden="true" class="icon expanded-indicator ">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-192" aria-label="Develop" data-bi-name="secondary-nav-menu-4-develop">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/developer/python/" data-bi-name="secondary-nav-link-1-python">
+						<span><!---->Python<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/dotnet/azure/" data-bi-name="secondary-nav-link-2-dotnet">
+						<span><!---->.NET<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/developer/javascript/" data-bi-name="secondary-nav-link-3-javascript">
+						<span><!---->JavaScript<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/developer/java/" data-bi-name="secondary-nav-link-4-java">
+						<span><!---->Java<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/powershell/azure/" data-bi-name="secondary-nav-link-5-powershell">
+						<span><!---->PowerShell<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/cli/azure/" data-bi-name="secondary-nav-link-6-azure-cli">
+						<span><!---->Azure CLI<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/developer/" data-bi-name="secondary-nav-link-7-view-all-developer-resources">
+						<span><!---->View all developer resources<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+		<li class="dropdown">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  site-header-button-icon-chevron" aria-controls="bx-193" data-bi-name="secondary-nav-btn-5-learn-azure" value="undefined">
+				<span><!---->Learn Azure<!----></span>
+				<span aria-hidden="true" class="icon expanded-indicator ">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-193" aria-label="Learn Azure" data-bi-name="secondary-nav-menu-5-learn-azure">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/assessments/1c032171-8ca0-4032-8962-a38a5cc424a8/" data-bi-name="secondary-nav-link-1-start-your-ai-learning-assessment">
+						<span><!---->Start your AI learning assessment<!----></span>
+					</a>
+				</li>
+		  <!---->
+		<li class="dropdown">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  width-full justify-content-space-between padding-inline-xs padding-block-xxs" aria-controls="bx-194" data-bi-name="secondary-nav-btn-2-top-learning-paths" value="undefined">
+				<span><!---->Top learning paths<!----></span>
+				<span aria-hidden="true" class="icon  margin-left-xs">
+					<span class="docon docon-chevron-right-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-194" aria-label="Top learning paths" data-bi-name="secondary-nav-menu-2-top-learning-paths">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/" data-bi-name="secondary-nav-link-1-cloud-concepts">
+						<span><!---->Cloud concepts<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/training/paths/get-started-with-artificial-intelligence-on-azure/" data-bi-name="secondary-nav-link-2-ai-fundamentals">
+						<span><!---->AI fundamentals<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/training/paths/introduction-generative-ai/" data-bi-name="secondary-nav-link-3-intro-to-generative-ai">
+						<span><!---->Intro to generative AI<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/training/paths/azure-fundamentals-describe-azure-architecture-services/" data-bi-name="secondary-nav-link-4-azure-architecture-fundamentals">
+						<span><!---->Azure Architecture fundamentals<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/credentials/browse/?products=azure" data-bi-name="secondary-nav-link-3-earn-credentials">
+						<span><!---->Earn credentials<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/training/browse/?products=azure&amp;resource_type=course" data-bi-name="secondary-nav-link-4-instructor-led-courses">
+						<span><!---->Instructor-led courses<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/training/azure/" data-bi-name="secondary-nav-link-5-view-all-training">
+						<span><!---->View all training<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+				<li>
+					<a data-test-id="header-link-troubleshooting" class="has-external-link-indicator site-header-button " href="/en-us/troubleshoot/azure/" data-bi-name="secondary-nav-link-6-troubleshooting">
+						<span><!---->Troubleshooting<!----></span>
+					</a>
+				</li>
+		  <!---->
+		<li class="dropdown">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  site-header-button-icon-chevron" aria-controls="bx-195" data-bi-name="secondary-nav-btn-7-resources" value="undefined">
+				<span><!---->Resources<!----></span>
+				<span aria-hidden="true" class="icon expanded-indicator ">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-195" aria-label="Resources" data-bi-name="secondary-nav-menu-7-resources">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://azure.microsoft.com/get-started" data-bi-name="secondary-nav-link-1-product-overview">
+						<span><!---->Product overview<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://azure.microsoft.com/updates" data-bi-name="secondary-nav-link-2-azure-updates">
+						<span><!---->Azure updates<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://azure.microsoft.com/pricing/" data-bi-name="secondary-nav-link-3-pricing-information">
+						<span><!---->Pricing information<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/cost-management-billing/" data-bi-name="secondary-nav-link-4-cost-management-billing">
+						<span><!---->Cost management &amp; billing<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://azure.microsoft.com/blog/" data-bi-name="secondary-nav-link-5-latest-blog-posts">
+						<span><!---->Latest blog posts<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://azure.microsoft.com/support/options/" data-bi-name="secondary-nav-link-6-support-options">
+						<span><!---->Support options<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+		<li class="dropdown" hidden="">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  site-header-button-icon-chevron" aria-controls="bx-196" data-bi-name="secondary-nav-btn-more" value="undefined">
+				<span><!---->More<!----></span>
+				<span aria-hidden="true" class="icon expanded-indicator ">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-196" aria-label="More" data-bi-name="secondary-nav-menu-more">
+				<!---->
+		<li class="dropdown" hidden="">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  width-full justify-content-space-between padding-inline-xs padding-block-xxs" aria-controls="bx-197" data-bi-name="secondary-nav-btn-1-products" value="undefined">
+				<span><!---->Products<!----></span>
+				<span aria-hidden="true" class="icon  margin-left-xs">
+					<span class="docon docon-chevron-right-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-197" aria-label="Products" data-bi-name="secondary-nav-menu-1-products">
+				<!---->
+		<li class="dropdown">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  width-full justify-content-space-between padding-inline-xs padding-block-xxs" aria-controls="bx-198" data-bi-name="secondary-nav-btn-1-popular-products" value="undefined">
+				<span><!---->Popular products<!----></span>
+				<span aria-hidden="true" class="icon  margin-left-xs">
+					<span class="docon docon-chevron-right-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-198" aria-label="Popular products" data-bi-name="secondary-nav-menu-1-popular-products">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/ai-foundry/" data-bi-name="secondary-nav-link-1-microsoft-foundry">
+						<span><!---->Microsoft Foundry<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/app-service/" data-bi-name="secondary-nav-link-2-azure-app-service">
+						<span><!---->Azure App Service<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/databricks/" data-bi-name="secondary-nav-link-3-azure-databricks">
+						<span><!---->Azure Databricks<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/devops/" data-bi-name="secondary-nav-link-4-azure-devops">
+						<span><!---->Azure DevOps<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/azure-functions/" data-bi-name="secondary-nav-link-5-azure-functions">
+						<span><!---->Azure Functions<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/azure-monitor/" data-bi-name="secondary-nav-link-6-azure-monitor">
+						<span><!---->Azure Monitor<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/virtual-machines/" data-bi-name="secondary-nav-link-7-azure-virtual-machines">
+						<span><!---->Azure Virtual Machines<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+		<li class="dropdown">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  width-full justify-content-space-between padding-inline-xs padding-block-xxs" aria-controls="bx-199" data-bi-name="secondary-nav-btn-2-popular-categories" value="undefined">
+				<span><!---->Popular categories<!----></span>
+				<span aria-hidden="true" class="icon  margin-left-xs">
+					<span class="docon docon-chevron-right-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-199" aria-label="Popular categories" data-bi-name="secondary-nav-menu-2-popular-categories">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/?product=compute" data-bi-name="secondary-nav-link-1-compute">
+						<span><!---->Compute<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/?product=networking" data-bi-name="secondary-nav-link-2-networking">
+						<span><!---->Networking<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/?product=storage" data-bi-name="secondary-nav-link-3-storage">
+						<span><!---->Storage<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/?product=ai-machine-learning" data-bi-name="secondary-nav-link-4-ai-and-machine-learning">
+						<span><!---->AI &amp; machine learning<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/?product=analytics" data-bi-name="secondary-nav-link-5-analytics">
+						<span><!---->Analytics<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/?product=databases" data-bi-name="secondary-nav-link-6-databases">
+						<span><!---->Databases<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/?product=security" data-bi-name="secondary-nav-link-7-security">
+						<span><!---->Security<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/" data-bi-name="secondary-nav-link-3-view-all-products">
+						<span><!---->View all products<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+		<li class="dropdown" hidden="">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  width-full justify-content-space-between padding-inline-xs padding-block-xxs" aria-controls="bx-200" data-bi-name="secondary-nav-btn-2-architecture" value="undefined">
+				<span><!---->Architecture<!----></span>
+				<span aria-hidden="true" class="icon  margin-left-xs">
+					<span class="docon docon-chevron-right-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-200" aria-label="Architecture" data-bi-name="secondary-nav-menu-2-architecture">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/cloud-adoption-framework/" data-bi-name="secondary-nav-link-1-cloud-adoption-framework">
+						<span><!---->Cloud Adoption Framework<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/well-architected/" data-bi-name="secondary-nav-link-2-well-architected-framework">
+						<span><!---->Well-Architected Framework<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/architecture/" data-bi-name="secondary-nav-link-3-azure-architecture-center">
+						<span><!---->Azure Architecture Center<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+				<li hidden="">
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/migration/" data-bi-name="secondary-nav-link-3-migration">
+						<span><!---->Migration<!----></span>
+					</a>
+				</li>
+		  <!---->
+		<li class="dropdown" hidden="">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  width-full justify-content-space-between padding-inline-xs padding-block-xxs" aria-controls="bx-201" data-bi-name="secondary-nav-btn-4-develop" value="undefined">
+				<span><!---->Develop<!----></span>
+				<span aria-hidden="true" class="icon  margin-left-xs">
+					<span class="docon docon-chevron-right-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-201" aria-label="Develop" data-bi-name="secondary-nav-menu-4-develop">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/developer/python/" data-bi-name="secondary-nav-link-1-python">
+						<span><!---->Python<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/dotnet/azure/" data-bi-name="secondary-nav-link-2-dotnet">
+						<span><!---->.NET<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/developer/javascript/" data-bi-name="secondary-nav-link-3-javascript">
+						<span><!---->JavaScript<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/developer/java/" data-bi-name="secondary-nav-link-4-java">
+						<span><!---->Java<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/powershell/azure/" data-bi-name="secondary-nav-link-5-powershell">
+						<span><!---->PowerShell<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/cli/azure/" data-bi-name="secondary-nav-link-6-azure-cli">
+						<span><!---->Azure CLI<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/developer/" data-bi-name="secondary-nav-link-7-view-all-developer-resources">
+						<span><!---->View all developer resources<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+		<li class="dropdown" hidden="">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  width-full justify-content-space-between padding-inline-xs padding-block-xxs" aria-controls="bx-202" data-bi-name="secondary-nav-btn-5-learn-azure" value="undefined">
+				<span><!---->Learn Azure<!----></span>
+				<span aria-hidden="true" class="icon  margin-left-xs">
+					<span class="docon docon-chevron-right-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-202" aria-label="Learn Azure" data-bi-name="secondary-nav-menu-5-learn-azure">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/assessments/1c032171-8ca0-4032-8962-a38a5cc424a8/" data-bi-name="secondary-nav-link-1-start-your-ai-learning-assessment">
+						<span><!---->Start your AI learning assessment<!----></span>
+					</a>
+				</li>
+		  <!---->
+		<li class="dropdown">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  width-full justify-content-space-between padding-inline-xs padding-block-xxs" aria-controls="bx-203" data-bi-name="secondary-nav-btn-2-top-learning-paths" value="undefined">
+				<span><!---->Top learning paths<!----></span>
+				<span aria-hidden="true" class="icon  margin-left-xs">
+					<span class="docon docon-chevron-right-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-203" aria-label="Top learning paths" data-bi-name="secondary-nav-menu-2-top-learning-paths">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/" data-bi-name="secondary-nav-link-1-cloud-concepts">
+						<span><!---->Cloud concepts<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/training/paths/get-started-with-artificial-intelligence-on-azure/" data-bi-name="secondary-nav-link-2-ai-fundamentals">
+						<span><!---->AI fundamentals<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/training/paths/introduction-generative-ai/" data-bi-name="secondary-nav-link-3-intro-to-generative-ai">
+						<span><!---->Intro to generative AI<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/training/paths/azure-fundamentals-describe-azure-architecture-services/" data-bi-name="secondary-nav-link-4-azure-architecture-fundamentals">
+						<span><!---->Azure Architecture fundamentals<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/credentials/browse/?products=azure" data-bi-name="secondary-nav-link-3-earn-credentials">
+						<span><!---->Earn credentials<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/training/browse/?products=azure&amp;resource_type=course" data-bi-name="secondary-nav-link-4-instructor-led-courses">
+						<span><!---->Instructor-led courses<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/training/azure/" data-bi-name="secondary-nav-link-5-view-all-training">
+						<span><!---->View all training<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+				<li hidden="">
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/troubleshoot/azure/" data-bi-name="secondary-nav-link-6-troubleshooting">
+						<span><!---->Troubleshooting<!----></span>
+					</a>
+				</li>
+		  <!---->
+		<li class="dropdown" hidden="">
+			<button type="button" aria-expanded="false" class="dropdown-trigger site-header-button  width-full justify-content-space-between padding-inline-xs padding-block-xxs" aria-controls="bx-204" data-bi-name="secondary-nav-btn-7-resources" value="undefined">
+				<span><!---->Resources<!----></span>
+				<span aria-hidden="true" class="icon  margin-left-xs">
+					<span class="docon docon-chevron-right-light"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu padding-bottom-xxs background-color-body-medium" id="bx-204" aria-label="Resources" data-bi-name="secondary-nav-menu-7-resources">
+				<!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://azure.microsoft.com/get-started" data-bi-name="secondary-nav-link-1-product-overview">
+						<span><!---->Product overview<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://azure.microsoft.com/updates" data-bi-name="secondary-nav-link-2-azure-updates">
+						<span><!---->Azure updates<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://azure.microsoft.com/pricing/" data-bi-name="secondary-nav-link-3-pricing-information">
+						<span><!---->Pricing information<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="/en-us/azure/cost-management-billing/" data-bi-name="secondary-nav-link-4-cost-management-billing">
+						<span><!---->Cost management &amp; billing<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://azure.microsoft.com/blog/" data-bi-name="secondary-nav-link-5-latest-blog-posts">
+						<span><!---->Latest blog posts<!----></span>
+					</a>
+				</li>
+		  <!---->
+				<li>
+					<a class="has-external-link-indicator site-header-button width-full justify-content-flex-start padding-inline-xs padding-block-xxs " href="https://azure.microsoft.com/support/options/" data-bi-name="secondary-nav-link-6-support-options">
+						<span><!---->Support options<!----></span>
+					</a>
+				</li>
+		  <!---->
+			</ul>
+		</li>
+	<!---->
+			</ul>
+		</li>
+	<!---->
+			</ul>
+		</nav>
+	
+		<span class="nav-bar-spacer"></span>
+		 <div class="buttons"><!---->
+		<a data-test-id="navbar-primary-cta" class="button button-sm button-primary " href="https://portal.azure.com" data-bi-name="secondary-nav-cta-secondary-portal">
+			Portal
+		</a>
+	 
+		<a data-test-id="navbar-primary-cta" class="button button-sm button-primary button-filled margin-right-none" href="https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn" data-bi-name="secondary-nav-cta-primary-get-started-with-azure">
+			Get started with Azure
+		</a>
+	<!----></div>  
+	 <!----></div><!----></div>
+			</div>
+			
+		<!-- banner -->
+		<div data-banner="">
+			<div id="disclaimer-holder"></div>
+			
+		</div>
+		<!-- banner end -->
+	
+		</div>
+	</header>
+				 <section id="layout-body-menu" class="layout-body-menu border-right display-flex" data-bi-name="menu">
+					
+		<div id="left-container" class="left-container display-none padding-none display-block-tablet width-full" data-toc-container="true" data-toc-collapsed="false">
+			<!-- Regular TOC content (default) -->
+			
+			<!-- Collapsible TOC content (hidden by default) -->
+			<div id="ms--toc-content-collapsible" class="padding-left-sm padding-right-none padding-bottom-sm height-full">
+				<nav id="affixed-left-container" class="margin-top-xxs-tablet position-sticky display-flex flex-direction-column width-full" aria-label="Primary" data-bi-name="left-toc" role="navigation" style="top: 8px; height: calc(-117px + 100vh); max-height: 7141px;">
+					<div id="ms--collapsible-toc-header" class="display-flex flex-direction-row-reverse justify-content-center align-items-center margin-bottom-xxs margin-right-xxs">
+						<button type="button" class="button button-clear inner-focus" data-collapsible-toc-toggle="" aria-expanded="true" aria-controls="ms--collapsible-toc-content" aria-label="Collapse" title="Collapse" data-bi-name="toc-collapse">
+							<span class="icon font-size-md" aria-hidden="true">
+								<span class="docon docon-panel-left-contract"></span>
+							</span>
+						</button>
+						<div id="ms--collapsible-toc-moniker-slot" class="flex-grow-1"></div>
+					</div>
+				<form action="javascript:" role="search" aria-label="Search" class="margin-right-sm margin-bottom-xxs"><label class="visually-hidden" for="ax-2">Search</label><div class="autocomplete display-block" data-bi-name="autocomplete"><!---->
+			<div class="field-body control has-icons-left">
+				<input role="combobox" maxlength="100" aria-autocomplete="list" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" id="ax-2" data-test-id="ax-2" class="autocomplete-input input input-sm
+						control has-icons-left
+						width-full" type="text" aria-expanded="false" aria-owns="ax-3-listbox" aria-controls="ax-3-listbox" aria-activedescendant="" aria-describedby="ms--ax-2-description" placeholder="Find by title" pattern=".*">
+
+				
+					<span aria-hidden="true" class="icon is-small is-left">
+						<span class="color-text-subtle docon docon-find-by-title"></span>
+					</span>
+			  
+				
+							<span aria-hidden="true" class="autocomplete-loader loader has-text-primary " hidden=""></span>
+					  
+
+				<span hidden="" id="ms--ax-2-description">
+					Suggestions will filter as you type
+				</span>
+			</div>
+
+			<ul role="listbox" id="ax-3-listbox" data-test-id="ax-2-listbox" class="autocomplete-suggestions is-vertically-scrollable padding-xxs " aria-label="Suggestions" hidden="">
+				
+				
+			</ul>
+		<!----></div></form><ul class="tree table-of-contents is-vertically-scrollable flex-grow-1 flex-shrink-1 padding-right-xxs" role="tree" aria-label="Table of contents" data-bi-name="tree" data-is-collapsible="true"><li role="none"><a aria-setsize="23" aria-level="1" aria-posinset="1" role="treeitem" tabindex="-1" class="tree-item is-leaf has-external-link-indicator" data-bi-name="tree-leaf" href="https://learn.microsoft.com/en-us/azure/aks/">Azure Kubernetes Service (AKS)</a></li><li role="none"><a aria-setsize="23" aria-level="1" aria-posinset="2" role="treeitem" tabindex="-1" class="tree-item is-leaf has-external-link-indicator" data-bi-name="tree-leaf" href="https://learn.microsoft.com/en-us/azure/aks/what-is-aks">What is AKS?</a></li><li role="none"><a aria-setsize="23" aria-level="1" aria-posinset="3" role="treeitem" tabindex="-1" class="tree-item is-leaf has-external-link-indicator" data-bi-name="tree-leaf" href="https://learn.microsoft.com/en-us/azure/aks/compare-container-options-with-aks">Compare AKS with other Azure container options</a></li><li class="tree-item is-expanded" aria-setsize="23" aria-level="1" aria-posinset="4" role="treeitem" tabindex="-1" id="title-4-1" aria-expanded="true"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Get started with AKS</span><ul class="tree-group" role="group"><li role="none"><a aria-setsize="7" aria-level="2" aria-posinset="1" role="treeitem" tabindex="-1" class="tree-item is-leaf has-external-link-indicator" data-bi-name="tree-leaf" href="https://learn.microsoft.com/en-us/azure/aks/get-started-kubernetes">Kubernetes basics</a></li><li role="none"><a aria-setsize="7" aria-level="2" aria-posinset="2" role="treeitem" tabindex="-1" class="tree-item is-leaf has-external-link-indicator" data-bi-name="tree-leaf" href="https://learn.microsoft.com/en-us/azure/aks/get-started-aks">AKS basics</a></li><li role="none"><a aria-setsize="7" aria-level="2" aria-posinset="3" role="treeitem" tabindex="0" class="tree-item is-leaf has-external-link-indicator is-selected" data-bi-name="tree-leaf" href="https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts" aria-current="page">Core AKS concepts</a></li><li role="none"><a aria-setsize="7" aria-level="2" aria-posinset="4" role="treeitem" tabindex="-1" class="tree-item is-leaf has-external-link-indicator" data-bi-name="tree-leaf" href="https://learn.microsoft.com/en-us/azure/aks/advanced-aks-concepts">Advanced AKS concepts</a></li><li role="none"><a aria-setsize="7" aria-level="2" aria-posinset="5" role="treeitem" tabindex="-1" class="tree-item is-leaf has-external-link-indicator" data-bi-name="tree-leaf" href="https://learn.microsoft.com/en-us/azure/aks/intro-aks-automatic">Compare AKS Standard and AKS Automatic</a></li><li class="tree-item" aria-setsize="7" aria-level="2" aria-posinset="6" role="treeitem" tabindex="-1" id="title-4-1_6-2" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Deploy a multi-container application to AKS</span></li><li role="none"><a aria-setsize="7" aria-level="2" aria-posinset="7" role="treeitem" tabindex="-1" class="tree-item is-leaf has-external-link-indicator" data-bi-name="tree-leaf" href="https://learn.microsoft.com/en-us/azure/aks/kubernetes-center-azure-portal">Create and manage AKS resources in the Azure portal with Kubernetes center</a></li></ul></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="5" role="treeitem" tabindex="-1" id="title-5-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Pricing and quotas</span></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="6" role="treeitem" tabindex="-1" id="title-6-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Set up clusters</span></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="7" role="treeitem" tabindex="-1" id="title-7-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Create and manage node pools</span></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="8" role="treeitem" tabindex="-1" id="title-8-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Versions and upgrades</span></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="9" role="treeitem" tabindex="-1" id="title-9-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Manage and optimize clusters</span></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="10" role="treeitem" tabindex="-1" id="title-10-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Networking</span></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="11" role="treeitem" tabindex="-1" id="title-11-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Scheduling</span></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="12" role="treeitem" tabindex="-1" id="title-12-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Security</span></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="13" role="treeitem" tabindex="-1" id="title-13-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Storage</span></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="14" role="treeitem" tabindex="-1" id="title-14-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Reliability</span></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="15" role="treeitem" tabindex="-1" id="title-15-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>AI and machine learning</span></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="16" role="treeitem" tabindex="-1" id="title-16-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Manage and optimize costs</span></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="17" role="treeitem" tabindex="-1" id="title-17-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Monitoring</span></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="18" role="treeitem" tabindex="-1" id="title-18-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Deploy and manage workloads</span></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="19" role="treeitem" tabindex="-1" id="title-19-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Develop and run applications</span></li><li role="none"><a aria-setsize="23" aria-level="1" aria-posinset="20" role="treeitem" tabindex="-1" class="tree-item is-leaf has-external-link-indicator" data-bi-name="tree-leaf" href="https://learn.microsoft.com/en-us/azure/aks/faq">FAQ</a></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="21" role="treeitem" tabindex="-1" id="title-21-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Reference</span></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="22" role="treeitem" tabindex="-1" id="title-22-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Resources</span></li><li class="tree-item" aria-setsize="23" aria-level="1" aria-posinset="23" role="treeitem" tabindex="-1" id="title-23-1" aria-expanded="false"><span data-bi-name="tree-expander" class="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>Support and troubleshooting</span></li></ul><div class="padding-xxs padding-none-tablet border-top"><button class="margin-block-xxs button button-sm button-clear button-block inner-focus justify-content-flex-start-tablet" data-bi-name="download-pdf" rel="nofollow"><!---->
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-dictionary-download"></span>
+			</span>
+			<span><!---->Download PDF<!----></span>
+		<!----></button></div></nav>
+			</div>
+		</div>
+	
+			  </section>
+
+				<main id="main" role="main" class="layout-body-main " data-bi-name="content" lang="en-us" dir="ltr">
+					
+			<div id="ms--content-header" class="content-header default-focus border-bottom-none" data-bi-name="content-header">
+		<div class="content-header-controls margin-xxs margin-inline-sm-tablet">
+			<button type="button" class="contents-button button button-sm margin-right-xxs" data-bi-name="contents-expand" aria-haspopup="true" data-contents-button="">
+				<span class="icon" aria-hidden="true"><span class="docon docon-menu"></span></span>
+				<span class="contents-expand-title"> Table of contents </span>
+			</button>
+			<button type="button" class="ap-collapse-behavior ap-expanded button button-sm" data-bi-name="ap-collapse" aria-controls="action-panel">
+				<span class="icon" aria-hidden="true"><span class="docon docon-exit-mode"></span></span>
+				<span>Exit editor mode</span>
+			</button>
+		</div>
+	</div>
+			<div data-main-column="" class="reading-width margin-inline-auto layout-padding padding-top-none padding-top-sm-tablet">
+				<div>
+					
+		<div id="article-header" class="background-color-body margin-bottom-xs display-none-print">
+			<div class="display-flex align-items-center justify-content-space-between">
+				
+		<details id="article-header-breadcrumbs-overflow-popover" class="popover" data-for="article-header-breadcrumbs" hidden="">
+			<summary class="button button-clear button-primary button-sm inner-focus" aria-label="All breadcrumbs">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-more"></span>
+				</span>
+			</summary>
+			<div id="article-header-breadcrumbs-overflow" class="popover-content padding-none"><!---->
+			<nav>
+				<ol class="list-style-none">
+					<!---->
+								<li class="line-clamp-1">
+									<a class="display-block inner-focus padding-inline-xs padding-block-xxs border-radius font-size-sm" href="https://learn.microsoft.com/en-us/">
+										Learn
+									</a>
+								</li>
+							<!----><!---->
+								<li class="line-clamp-1">
+									<a class="display-block inner-focus padding-inline-xs padding-block-xxs border-radius font-size-sm" href="https://learn.microsoft.com/en-us/azure/">
+										Azure
+									</a>
+								</li>
+							<!----><!---->
+								<li class="line-clamp-1">
+									<a class="display-block inner-focus padding-inline-xs padding-block-xxs border-radius font-size-sm" href="https://learn.microsoft.com/en-us/azure/aks/">
+										Azure Kubernetes Service
+									</a>
+								</li>
+							<!---->
+				</ol>
+			</nav>
+			
+		<!----></div>
+		</details>
+
+		<bread-crumbs id="article-header-breadcrumbs" role="group" aria-label="Breadcrumbs" data-test-id="article-header-breadcrumbs" class="overflow-hidden flex-grow-1 margin-right-sm margin-right-md-tablet margin-right-lg-desktop margin-left-negative-xxs padding-left-xxs" style="display: block; white-space: nowrap; overflow: hidden;"><!---->
+			<nav>
+				<ol class="breadcrumbs">
+					<!---->
+								<li class="breadcrumbs-item" data-bread-crumbs-collapse-target="">
+									<a href="https://learn.microsoft.com/en-us/"><!---->Learn<!----></a>
+								</li>
+							<!----><!---->
+								<li class="breadcrumbs-item" data-bread-crumbs-collapse-target="">
+									<a href="https://learn.microsoft.com/en-us/azure/"><!---->Azure<!----></a>
+								</li>
+							<!----><!---->
+								<li class="breadcrumbs-item" data-bread-crumbs-collapse-target="" style="">
+									<a href="https://learn.microsoft.com/en-us/azure/aks/" style=""><!---->Azure Kubernetes Service<!----></a>
+								</li>
+							<!---->
+				</ol>
+			</nav>
+		<!----></bread-crumbs>
+	 
+		<div id="article-header-page-actions" class="margin-left-auto display-flex flex-wrap-no-wrap align-items-stretch">
+			
+		<button class="button button-sm border-none inner-focus display-none-tablet flex-shrink-0 " data-bi-name="ask-learn-assistant-entry" data-test-id="ask-learn-assistant-modal-entry-mobile" data-ask-learn-modal-entry="" type="button" style="min-width: max-content;" aria-expanded="false" aria-label="Ask Learn">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button class="button button-sm display-none display-inline-flex-tablet display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn " data-bi-name="ask-learn-assistant-entry" data-test-id="ask-learn-assistant-modal-entry-tablet" data-ask-learn-modal-entry="" type="button" style="min-width: max-content;" aria-expanded="false">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn " data-bi-name="ask-learn-assistant-entry" data-test-id="ask-learn-assistant-flyout-entry" data-ask-learn-flyout-entry="" data-flyout-button="toggle" type="button" style="min-width: max-content;" aria-expanded="false" aria-controls="ask-learn-flyout">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	 
+
+			<details class="popover popover-right" id="article-header-page-actions-overflow">
+				<summary class="justify-content-flex-start button button-clear button-sm button-primary inner-focus" aria-label="More actions" title="More actions">
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-more-vertical"></span>
+					</span>
+				</summary>
+				<div class="popover-content">
+					
+		<button type="button" id="ms--focus-mode-button" data-focus-mode="" data-bi-name="focus-mode-entry" data-page-action-item="overflow-all" data-popover-close="" class="button button-clear button-sm button-block justify-content-flex-start text-align-left inner-focus display-none display-inline-flex-tablet">
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-glasses"></span>
+			</span>
+			<span>Reading mode</span>
+		</button>
+	 
+		<button data-page-action-item="overflow-mobile" type="button" class="button-block button-sm inner-focus button button-clear display-none-tablet justify-content-flex-start text-align-left" data-bi-name="contents-expand" data-contents-button="" data-popover-close="">
+			<span class="icon" aria-hidden="true"><span class="docon docon-editor-list-bullet"></span></span>
+			<span class="contents-expand-title">Table of contents</span>
+		</button>
+	 
+		<a id="lang-link-overflow" class="button-sm inner-focus button button-clear button-block justify-content-flex-start text-align-left" data-bi-name="language-toggle" data-page-action-item="overflow-all" data-check-hidden="true" data-read-in-link="" href="https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts" hidden="" data-bi="{&quot;cN&quot;:&quot;language-toggle&quot;,&quot;value&quot;:&quot;off&quot;}">
+			<span class="icon" aria-hidden="true" data-read-in-link-icon="">
+				<span class="docon docon-locale-globe"></span>
+			</span>
+			<span data-read-in-link-text="">Read in English</span>
+		</a>
+	
+					
+		<button type="button" class="collection button button-clear button-sm button-block justify-content-flex-start text-align-left inner-focus" data-list-type="collection" data-bi-name="collection" data-page-action-item="overflow-all" data-check-hidden="true" data-popover-close="" data-pressed="false" title="Add Azure Kubernetes Service (AKS) Core Concepts - Azure Kubernetes Service | Microsoft Learn to a collection">
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-circle-addition"></span>
+			</span>
+			<span class="collection-status">Add to Collections</span>
+		</button>
+	 
+		<button type="button" class="collection button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus" data-list-type="plan" data-bi-name="plan" data-page-action-item="overflow-all" data-check-hidden="true" data-popover-close="" data-pressed="false" title="Add Azure Kubernetes Service (AKS) Core Concepts - Azure Kubernetes Service | Microsoft Learn to a plan">
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-circle-addition"></span>
+			</span>
+			<span class="plan-status">Add to plan</span>
+		</button>
+	 
+					
+		<a data-contenteditbtn="" class="button button-clear button-block button-sm inner-focus justify-content-flex-start text-align-left text-decoration-none" data-bi-name="edit" data-page-action-item="overflow-all" data-check-hidden="true" href="https://github.com/MicrosoftDocs/azure-aks-docs/blob/main/articles/aks/core-aks-concepts.md" data-original_content_git_url="https://github.com/MicrosoftDocs/azure-aks-docs-pr/blob/live/articles/aks/core-aks-concepts.md" data-original_content_git_url_template="{repo}/blob/{branch}/articles/aks/core-aks-concepts.md" data-pr_repo="" data-pr_branch="">
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-edit-outline"></span>
+			</span>
+			<span>Edit</span>
+		</a>
+	  
+		<hr class="margin-block-xxs">
+		
+				<button class="button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus" type="button" data-bi-name="copy-markdown" data-page-action-item="overflow-all" data-copy-markdown="" data-copy-state="idle" data-check-hidden="true">
+					<span class="icon color-primary" aria-hidden="true">
+						<span data-show-when="idle" class="docon docon-code-lang"></span>
+						<span data-show-when="loading" class="loader" hidden=""></span>
+						<span data-show-when="success" class="docon docon-check-mark" hidden=""></span>
+					</span>
+					<span>Copy Markdown</span>
+				</button>
+		   
+				<button class="button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus" type="button" data-bi-name="print" data-page-action-item="overflow-all" data-popover-close="" data-print-page="" data-check-hidden="true">
+					<span class="icon color-primary" aria-hidden="true">
+						<span class="docon docon-print"></span>
+					</span>
+					<span>Print</span>
+				</button>
+		  
+	
+				</div>
+			</details>
+		</div>
+	
+			</div>
+		</div>
+	  
+		<!-- privateUnauthorizedTemplate is hidden by default -->
+		<div unauthorized-private-section="" data-bi-name="permission-content-unauthorized-private" hidden="">
+			<hr class="hr margin-top-xs margin-bottom-sm">
+			<div class="notification notification-info">
+				<div class="notification-content">
+					<p class="margin-top-none notification-title">
+						<span class="icon" aria-hidden="true"><span class="docon docon-exclamation-circle-solid"></span></span>
+						<span>Note</span>
+					</p>
+					<p class="margin-top-none authentication-determined not-authenticated">
+						Access to this page requires authorization. You can try <a class="docs-sign-in" href="#" data-bi-name="permission-content-sign-in">signing in</a> or <a class="docs-change-directory" data-bi-name="permisson-content-change-directory">changing directories</a>.
+					</p>
+					<p class="margin-top-none authentication-determined authenticated">
+						Access to this page requires authorization. You can try <a class="docs-change-directory" data-bi-name="permisson-content-change-directory">changing directories</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	
+					<div class="content"><h1 id="core-concepts-for-azure-kubernetes-service-aks">Core concepts for Azure Kubernetes Service (AKS)</h1></div>
+					
+		<div id="article-metadata" data-bi-name="article-metadata" data-test-id="article-metadata" class="page-metadata-container display-flex gap-xxs justify-content-space-between align-items-center flex-wrap-wrap">
+			 
+				<div id="user-feedback" class="margin-block-xxs display-none display-none-print" hidden="" data-hide-on-archived="">
+					
+		<button id="user-feedback-button" data-test-id="conceptual-feedback-button" class="button button-sm button-clear button-primary display-none" type="button" data-bi-name="user-feedback-button" data-user-feedback-button="" hidden="">
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-like"></span>
+			</span>
+			<span>Feedback</span>
+		</button>
+	
+				</div>
+		  
+		</div>
+	 
+		<div data-id="ai-summary" class="display-none-print">
+			<div id="ms--ai-summary-cta" class="margin-top-xs display-flex align-items-center">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-sparkle-fill gradient-text-vivid"></span>
+				</span>
+				<button id="ms--ai-summary" type="button" class="tag tag-sm tag-suggestion margin-left-xxs" data-test-id="ai-summary-cta" data-bi-name="ai-summary-cta" data-an="ai-summary">
+					<span class="ai-summary-cta-text">
+						Summarize this article for me
+					</span>
+				</button>
+			</div>
+			<!-- Slot where the client will render the summary card after the user clicks the CTA -->
+			<div id="ms--ai-summary-header" class="margin-top-xs"></div>
+		</div>
+	 
+		<nav id="center-doc-outline" class="doc-outline display-none-desktop display-none-print margin-bottom-sm" data-bi-name="intopic toc" aria-label="In this article"><!---->
+			<h2 id="ms--in-this-article" class="title is-6 margin-block-xs"><!---->In this article<!----></h2>
+			 
+		<ol id="content-well-in-this-article-list" class="border-left padding-left-xxs">
+			<!---->
+					<li class=" ">
+						<a href="#what-is-kubernetes" class=""><!---->What is Kubernetes?<!----></a>
+					</li>
+				<!---->
+					<li class=" ">
+						<a href="#what-is-aks" class=""><!---->What is AKS?<!----></a>
+					</li>
+				<!---->
+					<li class=" ">
+						<a href="#cluster-components" class=""><!---->Cluster components<!----></a>
+					</li>
+				<!---->
+					<li class=" ">
+						<a href="#node-configuration" class=""><!---->Node configuration<!----></a>
+					</li>
+				<!---->
+					<li class=" expandable">
+						<a href="#pods" class=""><!---->Pods<!----></a>
+					</li>
+				<!---->
+					<li class=" expandable">
+						<a href="#node-pools" class=""><!---->Node pools<!----></a>
+					</li>
+				<!---->
+					<li class=" expandable">
+						<a href="#node-resource-group" class=""><!---->Node resource group<!----></a>
+					</li>
+				<!---->
+					<li class=" expandable">
+						<a href="#namespaces" class=""><!---->Namespaces<!----></a>
+					</li>
+				<!---->
+					<li class=" expandable">
+						<a href="#cluster-modes" class=""><!---->Cluster modes<!----></a>
+					</li>
+				<!---->
+					<li class=" expandable">
+						<a href="#pricing-tiers" class=""><!---->Pricing tiers<!----></a>
+					</li>
+				<!---->
+					<li class=" expandable">
+						<a href="#supported-kubernetes-versions" class=""><!---->Supported Kubernetes versions<!----></a>
+					</li>
+				<!---->
+					<li class=" expandable">
+						<a href="#related-content" class=""><!---->Related content<!----></a>
+					</li>
+				<!---->
+		</ol>
+	 
+		<button type="button" aria-expanded="false" data-show-more="" class="link-button font-weight-semibold font-size-sm margin-top-xxs margin-left-xs" aria-controls="content-well-in-this-article-list" data-title="Show 8 more" data-bi-name="show-more-btn">
+			<span class="show-more-text "><!---->Show 8 more<!----></span>
+			
+		</button>
+	 
+		<!----></nav>
+	
+					<div class="content"><p>This article describes core concepts of Azure Kubernetes Service (AKS), a managed Kubernetes service that you can use to deploy and operate containerized applications at scale on Azure.</p>
+<div class="alert is-primary">
+<p class="alert-title"><span class="icon" aria-hidden="true"><span class="docon docon-status-info-outline"></span></span> Important</p>
+<p>Starting on <strong>November 30, 2025</strong>, Azure Kubernetes Service (AKS) no longer supports or provides security updates for Azure Linux 2.0. The Azure Linux 2.0 node image is frozen at the <a href="https://raw.githubusercontent.com/Azure/AgentBaker/main/vhdbuilder/release-notes/AKSCBLMarinerV2/gen2/202512.06.0.txt" data-linktype="external">202512.06.0 release</a>. Beginning on <strong>March 31, 2026</strong>, node images will be removed, and you'll be unable to scale your node pools. Migrate to a supported Azure Linux version by <a href="/en-us/azure/aks/upgrade-aks-cluster" data-linktype="absolute-path">upgrading your node pools</a> to a supported Kubernetes version or migrating to <a href="/en-us/azure/aks/upgrade-os-version" data-linktype="absolute-path">osSku AzureLinux3</a>. For more information, see the <a href="https://github.com/Azure/AKS/issues/4988" data-linktype="external">Retirement GitHub issue</a> and the <a href="https://azure.microsoft.com/updates?id=500645" data-linktype="external">Azure Updates retirement announcement</a>. To stay informed on announcements and updates, follow the <a href="https://github.com/Azure/AKS/releases" data-linktype="external">AKS release notes</a>.</p>
+</div>
+<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#what-is-kubernetes" aria-label="Section titled: What is Kubernetes?"></a><h2 id="what-is-kubernetes" class="heading-anchor">What is Kubernetes?</h2></div>
+<p>Kubernetes is an open-source container orchestration platform for automating the deployment, scaling, and management of containerized applications. For more information, see the official <a href="https://kubernetes.io/docs/home/" data-linktype="external">Kubernetes documentation</a>.</p>
+<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#what-is-aks" aria-label="Section titled: What is AKS?"></a><h2 id="what-is-aks" class="heading-anchor">What is AKS?</h2></div>
+<p>AKS is a managed Kubernetes service that simplifies deploying, managing, and scaling containerized applications that use Kubernetes. For more information, see <a href="what-is-aks" data-linktype="relative-path">What is Azure Kubernetes Service (AKS)?</a>.</p>
+<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#cluster-components" aria-label="Section titled: Cluster components"></a><h2 id="cluster-components" class="heading-anchor">Cluster components</h2></div>
+<p>An AKS cluster is divided into two main components:</p>
+<ul>
+<li><strong>Control plane</strong>: The control plane provides the core Kubernetes services and orchestration of application workloads.</li>
+<li><strong>Nodes</strong>: Nodes are the underlying virtual machines (VMs) that run your applications.</li>
+</ul>
+<p><img src="media/concepts-clusters-workloads/control-plane-and-nodes.png" alt="Screenshot that shows Kubernetes control plane and node components." data-linktype="relative-path"></p>
+<div class="alert is-info">
+<p class="alert-title"><span class="icon" aria-hidden="true"><span class="docon docon-status-error-outline"></span></span> Note</p>
+<p>AKS managed components have the label <code>kubernetes.azure.com/managedby</code>: <code>aks</code>.</p>
+<p>AKS manages the Helm releases with the prefix <code>aks-managed</code>. Continuously increasing revisions on these releases are expected and safe.</p>
+</div>
+<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#control-plane" aria-label="Section titled: Control plane"></a><h3 id="control-plane" class="heading-anchor">Control plane</h3></div>
+<p>The Azure managed control plane is composed of several components that help manage the cluster:</p>
+<div class="buttons buttons-right margin-bottom-none margin-top-sm"><!----> <button class="button button-clear button-sm display-flex gap-xxs">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-expand color-primary"></span>
+		</span>
+		<span><!---->Expand table<!----></span>
+	</button><!----></div><div class="inner-focus"><table aria-label="Control plane" class="table table-sm margin-top-none">
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kube-apiserver</code></td>
+<td>The API server (<a href="https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver" data-linktype="external">kube-apiserver</a>) exposes the Kubernetes API to enable requests to the cluster from inside and outside of the cluster.</td>
+</tr>
+<tr>
+<td><code>etcd</code></td>
+<td>The highly available key-value store <a href="https://kubernetes.io/docs/concepts/overview/components/#etcd" data-linktype="external">etcd</a> helps to maintain the state of your Kubernetes cluster and configuration.</td>
+</tr>
+<tr>
+<td><code>kube-scheduler</code></td>
+<td>The scheduler (<a href="https://kubernetes.io/docs/concepts/overview/components/#kube-scheduler" data-linktype="external">kube-scheduler</a>) helps to make scheduling decisions. It watches for new pods with no assigned node and selects a node for them to run on.</td>
+</tr>
+<tr>
+<td><code>kube-controller-manager</code></td>
+<td>The controller manager (<a href="https://kubernetes.io/docs/concepts/overview/components/#kube-controller-manager" data-linktype="external">kube-controller-manager</a>) runs controller processes, such as noticing and responding when nodes go down.</td>
+</tr>
+<tr>
+<td><code>cloud-controller-manager</code></td>
+<td>The cloud controller manager (<a href="https://kubernetes.io/docs/concepts/overview/components/#cloud-controller-manager" data-linktype="external">cloud-controller-manager</a>) embeds cloud-specific control logic to run controllers specific to the cloud provider.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#nodes" aria-label="Section titled: Nodes"></a><h3 id="nodes" class="heading-anchor">Nodes</h3></div>
+<p>Each AKS cluster has at least one node, which is an Azure VM that runs Kubernetes node components. The following components run on each node:</p>
+<div class="buttons buttons-right margin-bottom-none margin-top-sm"><!----> <button class="button button-clear button-sm display-flex gap-xxs">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-expand color-primary"></span>
+		</span>
+		<span><!---->Expand table<!----></span>
+	</button><!----></div><div class="inner-focus"><table aria-label="Nodes" class="table table-sm margin-top-none">
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubelet</code></td>
+<td>The <a href="https://kubernetes.io/docs/concepts/overview/components/#kubelet" data-linktype="external">kubelet</a> ensures that containers are running in a pod.</td>
+</tr>
+<tr>
+<td><code>kube-proxy</code></td>
+<td>The <a href="https://kubernetes.io/docs/concepts/overview/components/#kube-proxy" data-linktype="external">kube-proxy</a> is a network proxy that maintains network rules on nodes.</td>
+</tr>
+<tr>
+<td><code>container runtime</code></td>
+<td>The <a href="https://kubernetes.io/docs/concepts/overview/components/#container-runtime" data-linktype="external">container runtime</a> manages the execution and lifecycle of containers.</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="media/concepts-clusters-workloads/aks-node-resource-interactions.png" alt="Screenshot that shows Azure virtual machine and supporting resources for a Kubernetes node." data-linktype="relative-path"></p>
+<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#node-configuration" aria-label="Section titled: Node configuration"></a><h2 id="node-configuration" class="heading-anchor">Node configuration</h2></div>
+<p>Configure the following settings for nodes.</p>
+<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#vm-size-and-image" aria-label="Section titled: VM size and image"></a><h3 id="vm-size-and-image" class="heading-anchor">VM size and image</h3></div>
+<p>The <em>Azure VM size</em> for your nodes defines CPUs, memory, size, and the storage type available, such as a high-performance solid-state drive or a regular hard-disk drive. The VM size you choose depends on the workload requirements and the number of pods that you plan to run on each node. As of May 2025, the default VM SKU and size will be dynamically selected by AKS based on available capacity and quota if the parameter is left blank during deployment. For more information, see <a href="quotas-skus-regions#supported-vm-sizes" data-linktype="relative-path">Supported VM sizes in Azure Kubernetes Service (AKS)</a>.</p>
+<p>In AKS, the <em>VM image</em> for your cluster's nodes is based on Ubuntu Linux, <a href="use-azure-linux" data-linktype="relative-path">Azure Linux</a>, or Windows Server 2022. When you create an AKS cluster or scale out the number of nodes, the Azure platform automatically creates and configures the requested number of VMs. Agent nodes are billed as standard VMs. Any VM size discounts, including <a href="/en-us/azure/cost-management-billing/reservations/save-compute-costs-reservations" data-linktype="absolute-path">Azure reservations</a>, are automatically applied.</p>
+<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#os-disks" aria-label="Section titled: OS disks"></a><h3 id="os-disks" class="heading-anchor">OS disks</h3></div>
+<p>Default OS disk sizing is used on new clusters or node pools only when a default OS disk size isn't specified. This behavior applies to both managed and ephemeral OS disks. For more information, see <a href="concepts-storage#default-os-disk-sizing" data-linktype="relative-path">Default OS disk sizing</a>.</p>
+<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#resource-reservations" aria-label="Section titled: Resource reservations"></a><h3 id="resource-reservations" class="heading-anchor">Resource reservations</h3></div>
+<p>AKS uses node resources to help the nodes function as part of the cluster. This usage can cause a discrepancy between the node's total resources and the allocatable resources in AKS. To maintain node performance and functionality, AKS reserves two types of resources, CPU and memory, on each node. For more information, see <a href="node-resource-reservations" data-linktype="relative-path">Resource reservations in AKS</a>.</p>
+<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#os" aria-label="Section titled: OS"></a><h3 id="os" class="heading-anchor">OS</h3></div>
+<p>AKS supports two linux distros: Ubuntu and Azure Linux. Ubuntu is the default Linux distro on AKS. Windows node pools are also supported on AKS with the <a href="/en-us/windows-server/get-started/servicing-channels-comparison" data-linktype="absolute-path">Long Term Servicing Channel (LTSC)</a> as the default channel on AKS. For more information on default OS versions, see documentation on <a href="node-images" data-linktype="relative-path">node images</a>.</p>
+<div class="heading-wrapper" data-heading-level="h3"><a class="anchor-link docon docon-link" href="#container-runtime" aria-label="Section titled: Container runtime"></a><h3 id="container-runtime" class="heading-anchor">Container runtime</h3></div>
+<p>A container runtime is software that executes containers and manages container images on a node. The runtime helps abstract away system calls or OS-specific functionality to run containers on Linux or Windows. For Linux node pools, <a href="https://containerd.io/" data-linktype="external">containerd</a> is used on Kubernetes version 1.19 and higher. For Windows Server 2019 and 2022 node pools, <a href="https://containerd.io/" data-linktype="external">containerd</a> is generally available and is the only runtime option on Kubernetes version 1.23 and higher.</p>
+<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#pods" aria-label="Section titled: Pods"></a><h2 id="pods" class="heading-anchor">Pods</h2></div>
+<p>A <em>pod</em> is a group of one or more containers that share the same network and storage resources and a specification for how to run the containers. Pods typically have a 1:1 mapping with a container, but you can run multiple containers in a pod.</p>
+<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#node-pools" aria-label="Section titled: Node pools"></a><h2 id="node-pools" class="heading-anchor">Node pools</h2></div>
+<p>In AKS, nodes of the same configuration are grouped together into <em>node pools</em>. These node pools contain the underlying virtual machine scale sets and virtual machines (VMs) that run your applications.</p>
+<p>When you create an AKS cluster, you define the initial number of nodes and their size (version), which creates a <a href="use-system-pools" data-linktype="relative-path">system node pool</a>. System node pools serve the primary purpose of hosting critical system pods, such as CoreDNS and <code>konnectivity</code>.</p>
+<p>To support applications that have different compute or storage demands, you can create <em>user node pools</em>. User node pools serve the primary purpose of hosting your application pods.</p>
+<p>For more information, see <a href="create-node-pools" data-linktype="relative-path">Create node pools in AKS</a> and <a href="manage-node-pools" data-linktype="relative-path">Manage node pools in AKS</a>.</p>
+<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#node-resource-group" aria-label="Section titled: Node resource group"></a><h2 id="node-resource-group" class="heading-anchor">Node resource group</h2></div>
+<p>When you create an AKS cluster in an Azure resource group, the AKS resource provider automatically creates a second resource group called the <em>node resource group</em>. This resource group contains all the infrastructure resources associated with the cluster, including VMs, virtual machine scale sets, and storage.</p>
+<p>For more information, see the following resources:</p>
+<ul>
+<li><a href="faq" data-linktype="relative-path">Why are two resource groups created with AKS?</a></li>
+<li><a href="faq" data-linktype="relative-path">Can I provide my own name for the AKS node resource group?</a></li>
+<li><a href="faq" data-linktype="relative-path">Can I modify tags and other properties of the resources in the AKS node resource group?</a></li>
+</ul>
+<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#namespaces" aria-label="Section titled: Namespaces"></a><h2 id="namespaces" class="heading-anchor">Namespaces</h2></div>
+<p>Kubernetes resources, such as pods and deployments, are logically grouped into <em>namespaces</em> to divide an AKS cluster and create, view, or manage access to resources.</p>
+<p>The following namespaces are created by default in an AKS cluster:</p>
+<div class="buttons buttons-right margin-bottom-none margin-top-sm"><!----> <button class="button button-clear button-sm display-flex gap-xxs">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-expand color-primary"></span>
+		</span>
+		<span><!---->Expand table<!----></span>
+	</button><!----></div><div class="inner-focus"><table aria-label="Namespaces" class="table table-sm margin-top-none">
+<thead>
+<tr>
+<th>Namespace</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>default</code></td>
+<td>The <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#initial-namespaces" data-linktype="external">default</a> namespace allows you to start using cluster resources without creating a new namespace.</td>
+</tr>
+<tr>
+<td><code>kube-node-lease</code></td>
+<td>The <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#initial-namespaces" data-linktype="external">kube-node-lease</a> namespace enables nodes to communicate their availability to the control plane.</td>
+</tr>
+<tr>
+<td><code>kube-public</code></td>
+<td>The <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#initial-namespaces" data-linktype="external">kube-public</a> namespace isn't typically used, but you can use it so that resources are visible across the whole cluster by any user.</td>
+</tr>
+<tr>
+<td><code>kube-system</code></td>
+<td>The <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#initial-namespaces" data-linktype="external">kube-system</a> namespace is used by Kubernetes to manage cluster resources, such as <code>coredns</code>, <code>konnectivity-agent</code>, and <code>metrics-server</code>. It is not recommended to deploy your own applications to this namespace. For rare cases where deploying your own applications to this namespace is necessary, see the <a href="faq#can-admission-controller-webhooks-affect-kube-system-and-internal-aks-namespaces-" data-linktype="relative-path">FAQ</a> to learn how.</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="media/concepts-clusters-workloads/namespaces.png" alt="Screenshot that shows Kubernetes namespaces to logically divide resources and applications." data-linktype="relative-path"></p>
+<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#cluster-modes" aria-label="Section titled: Cluster modes"></a><h2 id="cluster-modes" class="heading-anchor">Cluster modes</h2></div>
+<p>In AKS, you can create a cluster with the Automatic or Standard mode. AKS Automatic provides a more fully managed experience. You can manage cluster configuration, including nodes, scaling, security, and other preconfigured settings. AKS Standard provides more control over the cluster configuration, including the ability to manage node pools, scaling, and other settings.</p>
+<p>For more information, see <a href="intro-aks-automatic#aks-automatic-and-standard-feature-comparison" data-linktype="relative-path">AKS Automatic and Standard feature comparison</a>.</p>
+<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#pricing-tiers" aria-label="Section titled: Pricing tiers"></a><h2 id="pricing-tiers" class="heading-anchor">Pricing tiers</h2></div>
+<p>AKS offers three pricing tiers for cluster management: Free, Standard, and Premium. The pricing tier you choose determines the features that are available for managing your cluster.</p>
+<p>For more information, see <a href="free-standard-pricing-tiers" data-linktype="relative-path">Pricing tiers for AKS cluster management</a>.</p>
+<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#supported-kubernetes-versions" aria-label="Section titled: Supported Kubernetes versions"></a><h2 id="supported-kubernetes-versions" class="heading-anchor">Supported Kubernetes versions</h2></div>
+<p>For more information, see <a href="supported-kubernetes-versions" data-linktype="relative-path">Supported Kubernetes versions in AKS</a>.</p>
+<div class="heading-wrapper" data-heading-level="h2"><a class="anchor-link docon docon-link" href="#related-content" aria-label="Section titled: Related content"></a><h2 id="related-content" class="heading-anchor">Related content</h2></div>
+<p>For information on more core concepts for AKS, see the following resources:</p>
+<ul>
+<li><a href="concepts-identity" data-linktype="relative-path">AKS access and identity</a></li>
+<li><a href="concepts-security" data-linktype="relative-path">AKS security</a></li>
+<li><a href="concepts-network" data-linktype="relative-path">AKS networking</a></li>
+<li><a href="concepts-storage" data-linktype="relative-path">AKS storage</a></li>
+<li><a href="concepts-scale" data-linktype="relative-path">AKS scaling</a></li>
+<li><a href="monitor-aks" data-linktype="relative-path">AKS monitoring</a></li>
+<li><a href="/en-us/azure/backup/azure-kubernetes-service-backup-overview" data-linktype="absolute-path">AKS backup and recovery</a></li>
+</ul>
+<!---LINKS--->
+</div>
+					
+		<div id="ms--inline-notifications" class="margin-block-xs" data-bi-name="inline-notification"></div>
+	 
+		<div id="assertive-live-region" role="alert" aria-live="assertive" class="visually-hidden" aria-relevant="additions" aria-atomic="true"></div>
+		<div id="polite-live-region" role="status" aria-live="polite" class="visually-hidden" aria-relevant="additions" aria-atomic="true"></div>
+	
+					
+		<!-- feedback section -->
+		<section id="site-user-feedback-footer" class="font-size-sm margin-top-md display-none-print display-none-desktop" data-test-id="site-user-feedback-footer" data-bi-name="site-feedback-section">
+			<hr class="hr">
+			<h2 id="ms--feedback" class="title is-3">Feedback</h2>
+			<div class="display-flex flex-wrap-wrap align-items-center">
+				<p class="font-weight-semibold margin-xxs margin-left-none">
+					Was this page helpful?
+				</p>
+				<div class="buttons">
+					<button class="thumb-rating-button like button button-primary button-sm" data-test-id="footer-rating-yes" data-binary-rating-response="rating-yes" type="button" title="This article is helpful" data-bi-name="button-rating-yes" aria-pressed="false">
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-like"></span>
+						</span>
+						<span>Yes</span>
+					</button>
+					<button class="thumb-rating-button dislike button button-primary button-sm" id="standard-rating-no-button" data-test-id="footer-rating-no" data-binary-rating-response="rating-no" type="button" title="This article is not helpful" data-bi-name="button-rating-no" aria-pressed="false">
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-dislike"></span>
+						</span>
+						<span>No</span>
+					</button>
+					<details class="popover popover-top" id="mobile-help-popover" data-test-id="footer-feedback-popover" hidden="">
+						<summary class="thumb-rating-button dislike button button-primary button-sm" data-test-id="details-footer-rating-no" data-binary-rating-response="rating-no" title="This article is not helpful" data-bi-name="button-rating-no" aria-pressed="false" data-bi-an="feedback-unhelpful-popover">
+							<span class="icon" aria-hidden="true">
+								<span class="docon docon-dislike"></span>
+							</span>
+							<span>No</span>
+						</summary>
+						<div class="popover-content width-200 width-300-tablet" role="dialog" aria-labelledby="popover-heading" aria-describedby="popover-description">
+							<p id="popover-heading" class="font-size-lg margin-bottom-xxs font-weight-semibold">
+								Need help with this topic?
+							</p>
+							<p id="popover-description" class="font-size-sm margin-bottom-xs">
+								Want to try using Ask Learn to clarify or guide you through this topic?
+							</p>
+							
+		<div class="buttons flex-direction-row flex-wrap justify-content-center gap-xxs">
+			<div>
+		<button class="button button-sm border inner-focus display-none margin-right-xxs" data-bi-name="ask-learn-assistant-entry-troubleshoot" data-test-id="ask-learn-assistant-modal-entry-mobile-feedback" data-ask-learn-modal-entry-feedback="" data-bi-an="feedback-unhelpful-popover" type="button" style="min-width: max-content;" aria-expanded="false" aria-label="Ask Learn" hidden="">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button class="button button-sm display-inline-flex display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn margin-right-xxs" data-bi-name="ask-learn-assistant-entry-troubleshoot" data-bi-an="feedback-unhelpful-popover" data-test-id="ask-learn-assistant-modal-entry-tablet-feedback" data-ask-learn-modal-entry-feedback="" type="button" style="min-width: max-content;" aria-expanded="false" hidden="">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn margin-right-xxs" data-bi-name="ask-learn-assistant-entry-troubleshoot" data-bi-an="feedback-unhelpful-popover" data-test-id="ask-learn-assistant-flyout-entry-feedback" data-ask-learn-flyout-entry-show-only="" data-flyout-button="toggle" type="button" style="min-width: max-content;" aria-expanded="false" aria-controls="ask-learn-flyout" hidden="">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	</div>
+			<button type="button" class="button button-sm margin-right-xxs" data-help-option="suggest-fix" data-bi-name="feedback-suggest" data-bi-an="feedback-unhelpful-popover" data-test-id="suggest-fix">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-feedback"></span>
+				</span>
+				<span> Suggest a fix? </span>
+			</button>
+		</div>
+	
+						</div>
+					</details>
+				</div>
+			</div>
+		</section>
+		<!-- end feedback section -->
+	
+				</div>
+				
+		<div id="ms--additional-resources-mobile" class="display-none-print">
+			<hr class="hr">
+			<h2 id="ms--additional-resources-mobile-heading" class="title is-3">
+				Additional resources
+			</h2>
+			
+		<section id="right-rail-recommendations-mobile" class="" data-bi-name="recommendations" hidden=""></section>
+	 
+		<section id="right-rail-training-mobile" class="" data-bi-name="learning-resource-card"><!---->
+		
+		<article class="margin-top-md margin-top-sm-desktop">
+			
+		<p class="font-weight-semibold font-size-md display-flex align-items-center">
+			<span class="icon margin-right-xxs" aria-hidden="true">
+				<span class="docon docon-cube-cone-ball-shapes"></span>
+			</span>
+			Training
+		</p>
+	
+			<div class="margin-top-xs position-relative">
+				<!---->
+		<div class="position-relative margin-top-xs">
+			 
+				<p class="has-line-height-reset color-text-subtle font-size-xs font-weight-semibold">
+					Learning path
+				</p>
+		   
+				<p class="line-clamp-3">
+					<a class="display-block inner-focus font-weight-semibold font-size-sm has-line-height-reset stretched-link" href="/en-us/training/paths/intro-to-kubernetes-on-azure/?source=recommendations">
+						Introduction to Kubernetes on Azure - Training
+					</a>
+				</p>
+		   
+			
+		<p class="font-size-sm has-line-height-reset color-text-subtle margin-top-xxs line-clamp-3">
+			Learn about the basics of Docker containers, container orchestration with Kubernetes, and managed clusters on Azure Kubernetes Service.
+		</p>
+	
+		</div>
+	<!---->
+		<div class="position-relative margin-top-sm">
+			 
+				<p class="has-line-height-reset color-text-subtle font-size-xs font-weight-semibold">
+					Certification
+				</p>
+		   
+				<p class="line-clamp-3">
+					<a class="display-block inner-focus font-weight-semibold font-size-sm has-line-height-reset stretched-link" href="/en-us/credentials/certifications/azure-fundamentals/?source=recommendations">
+						Microsoft Certified: Azure Fundamentals - Certifications
+					</a>
+				</p>
+		   
+			
+		<p class="font-size-sm has-line-height-reset color-text-subtle margin-top-xxs line-clamp-3">
+			Demonstrate foundational knowledge of cloud concepts, core Azure services, plus Azure management and governance features and tools.
+		</p>
+	
+		</div>
+	<!---->
+			</div>
+			
+		</article>
+	<!----></section>
+	 
+		<section id="right-rail-events-mobile" class="" data-bi-name="events-card"><!---->
+		
+		<article class="margin-top-md margin-top-sm-desktop">
+			
+		<p class="font-weight-semibold font-size-md display-flex align-items-center">
+			<span class="icon margin-right-xxs" aria-hidden="true">
+				<span class="docon docon-special-event"></span>
+			</span>
+			Events
+		</p>
+	
+			<div class="margin-top-xs ">
+				
+		
+		  
+				<p class="line-clamp-3">
+					<a class="display-block inner-focus font-weight-semibold font-size-sm has-line-height-reset " href="https://aka.ms/AIAppsandAgentsLearn">
+						AI Apps &amp; Agents Dev Days
+					</a>
+				</p>
+		   
+		<p class="font-size-sm font-weight-semibold has-line-height-reset margin-top-xs">
+			Apr 27, 6 PM - Apr 27, 6 PM
+		</p>
+		
+		<p class="font-size-sm has-line-height-reset color-text-subtle margin-top-xxs ">
+			Experiment with what's next in AI-driven apps and agent design
+		</p>
+	
+		<a class="font-size-sm font-weight-semibold" href="https://aka.ms/AIAppsandAgentsLearn">
+			Register now
+		</a>
+	
+			</div>
+			
+		</article>
+	<!----></section>
+	
+		</div>
+	 
+		<div id="article-metadata-footer" data-bi-name="article-metadata-footer" data-test-id="article-metadata-footer" class="page-metadata-container">
+			<hr class="hr">
+			<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+				<li class="visibility-hidden-visual-diff">
+			<span class="badge badge-sm text-wrap-pretty">
+				<span>Last updated on <local-time format="twoDigitNumeric" datetime="2025-12-30T23:03:00.000Z" data-article-date-source="calculated" class="">12/30/2025</local-time></span>
+			</span>
+		</li>
+			</ul>
+		</div>
+	
+			</div>
+			
+		<div id="action-panel" role="region" aria-label="Action Panel" class="action-panel" tabindex="-1"></div>
+	
+		
+				</main>
+				<aside id="layout-body-aside" class="layout-body-aside  " data-bi-name="aside" aria-label="Additional resources">
+					
+		<div id="ms--additional-resources" class="right-container padding-sm display-none display-block-desktop height-full" data-bi-name="pageactions">
+			<div id="affixed-right-container" data-bi-name="right-column" class="position-sticky" style="top: 8px; max-height: 7142px; height: calc(-124px + 100vh);">
+				
+		<nav id="side-doc-outline" class="doc-outline border-bottom padding-bottom-xs margin-bottom-xs" data-bi-name="intopic toc" aria-label="In this article" style="overflow: auto; max-height: calc(100% - 80px);"><!---->
+			<h2 class="title is-6 margin-top-xxs margin-bottom-xs">
+				In this article
+			</h2>
+			 
+		<ol id="right-rail-in-this-article-list" class="padding-right-xxs">
+			<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs ">
+						<a href="#what-is-kubernetes" class="color-text-subtle"><!---->What is Kubernetes?<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs ">
+						<a href="#what-is-aks" class="color-text-subtle"><!---->What is AKS?<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs ">
+						<a href="#cluster-components" class="color-text-subtle"><!---->Cluster components<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs ">
+						<a href="#node-configuration" class="color-text-subtle"><!---->Node configuration<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs ">
+						<a href="#pods" class="color-text-subtle"><!---->Pods<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs ">
+						<a href="#node-pools" class="color-text-subtle"><!---->Node pools<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs ">
+						<a href="#node-resource-group" class="color-text-subtle"><!---->Node resource group<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs ">
+						<a href="#namespaces" class="color-text-subtle"><!---->Namespaces<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs ">
+						<a href="#cluster-modes" class="color-text-subtle"><!---->Cluster modes<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs expandable">
+						<a href="#pricing-tiers" class="color-text-subtle"><!---->Pricing tiers<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs expandable">
+						<a href="#supported-kubernetes-versions" class="color-text-subtle"><!---->Supported Kubernetes versions<!----></a>
+					</li>
+				<!---->
+					<li class="border-left-md border-color-transparent padding-left-xxs expandable">
+						<a href="#related-content" class="color-text-subtle"><!---->Related content<!----></a>
+					</li>
+				<!---->
+		</ol>
+	 
+		<button type="button" aria-expanded="false" data-show-more="" class="link-button font-weight-semibold font-size-sm margin-top-xxs margin-left-xxs" aria-controls="right-rail-in-this-article-list" data-title="Show 3 more" data-bi-name="show-more-btn">
+			<span class="show-more-text "><!---->Show 3 more<!----></span>
+			
+		</button>
+	 
+		<!----></nav>
+	
+				<!-- Feedback -->
+				
+		<section id="ms--site-user-feedback-right-rail" class="font-size-sm display-none-print" data-test-id="site-user-feedback-right-rail" data-bi-name="site-feedback-right-rail">
+			<p class="font-weight-semibold margin-bottom-xs">Was this page helpful?</p>
+			<div class="buttons">
+				<button class="thumb-rating-button like button button-primary button-sm" data-test-id="right-rail-rating-yes" data-binary-rating-response="rating-yes" type="button" title="This article is helpful" data-bi-name="button-rating-yes" aria-pressed="false">
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-like"></span>
+					</span>
+					<span>Yes</span>
+				</button>
+				<button class="thumb-rating-button dislike button button-primary button-sm" id="right-rail-no-button" data-test-id="right-rail-rating-no" data-binary-rating-response="rating-no" type="button" title="This article is not helpful" data-bi-name="button-rating-no" aria-pressed="false">
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-dislike"></span>
+					</span>
+					<span>No</span>
+				</button>
+				<details class="popover popover-right" id="help-popover" data-test-id="feedback-popover" hidden="">
+					<summary tabindex="0" class="thumb-rating-button dislike button button-primary button-sm" data-test-id="details-right-rail-rating-no" data-binary-rating-response="rating-no" title="This article is not helpful" data-bi-name="button-rating-no" aria-pressed="false" data-bi-an="feedback-unhelpful-popover">
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-dislike"></span>
+						</span>
+						<span>No</span>
+					</summary>
+					<div class="popover-content width-200 width-300-tablet" role="dialog" aria-labelledby="popover-heading" aria-describedby="popover-description">
+						<p id="popover-heading-right-rail" class="font-size-lg margin-bottom-xxs font-weight-semibold">
+							Need help with this topic?
+						</p>
+						<p id="popover-description-right-rail" class="font-size-sm margin-bottom-xs">
+							Want to try using Ask Learn to clarify or guide you through this topic?
+						</p>
+						
+		<div class="buttons flex-direction-row flex-wrap justify-content-center gap-xxs">
+			<div>
+		<button class="button button-sm border inner-focus display-none margin-right-xxs" data-bi-name="ask-learn-assistant-entry-troubleshoot" data-test-id="ask-learn-assistant-modal-entry-mobile-feedback" data-ask-learn-modal-entry-feedback="" data-bi-an="feedback-unhelpful-popover" type="button" style="min-width: max-content;" aria-expanded="false" aria-label="Ask Learn" hidden="">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button class="button button-sm display-inline-flex display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn margin-right-xxs" data-bi-name="ask-learn-assistant-entry-troubleshoot" data-bi-an="feedback-unhelpful-popover" data-test-id="ask-learn-assistant-modal-entry-tablet-feedback" data-ask-learn-modal-entry-feedback="" type="button" style="min-width: max-content;" aria-expanded="false" hidden="">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn margin-right-xxs" data-bi-name="ask-learn-assistant-entry-troubleshoot" data-bi-an="feedback-unhelpful-popover" data-test-id="ask-learn-assistant-flyout-entry-feedback" data-ask-learn-flyout-entry-show-only="" data-flyout-button="toggle" type="button" style="min-width: max-content;" aria-expanded="false" aria-controls="ask-learn-flyout" hidden="">
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	</div>
+			<button type="button" class="button button-sm margin-right-xxs" data-help-option="suggest-fix" data-bi-name="feedback-suggest" data-bi-an="feedback-unhelpful-popover" data-test-id="suggest-fix">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-feedback"></span>
+				</span>
+				<span> Suggest a fix? </span>
+			</button>
+		</div>
+	
+					</div>
+				</details>
+			</div>
+		</section>
+	
+			</div>
+		</div>
+	
+			  </aside> <section id="layout-body-flyout" class="layout-body-flyout " data-bi-name="flyout">
+					 <div class="height-full border-left background-color-body-medium" id="ask-learn-flyout"><!---->
+		<article class="chat-container  position-sticky top-0 " data-chat-container-name="ask-learn-flyout" data-test-id="chat-login-ask-learn-flyout">
+			<div class="chat-container-header">
+				<header class="display-flex justify-content-center align-items-center padding-xs">
+					<h2 class="font-size-md padding-right-xxs"><!---->
+		<div class="font-weight-semibold">
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span><!---->Ask Learn<!----></span>
+		</div>
+	<!----></h2>
+					<span class="badge badge-filled badge-sm"><!---->Preview<!----></span>
+
+					<div class="margin-left-auto display-flex flex-wrap-no-wrap align-items-stretch">
+						
+		<button type="button" class="button button-clear inner-focus modal-close" data-flyout-button="close" data-autofocus="" data-bi-an="ask-learn-assistant" data-bi-name="close-chat" aria-label="Close">
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-navigate-close"></span>
+			</span>
+		</button>
+	
+					</div>
+				</header>
+			</div>
+			<div class="text-align-center padding-top-xl padding-inline-md">
+				<p class="margin-bottom-lg"><!---->Ask Learn is an AI assistant that can answer questions, clarify concepts, and define terms using trusted Microsoft documentation.<!----></p>
+				<p class="margin-bottom-lg"><!---->Please sign in to use Ask Learn.<!----></p>
+				<a href="#" class="docs-sign-in button button-primary button-filled button-sm">
+					Sign in
+				</a>
+			</div>
+		</article>
+	<!----></div>
+			  </section> <div class="layout-body-footer " data-bi-name="layout-footer">
+		<footer id="footer" data-test-id="footer" data-bi-name="footer" class="footer-layout has-padding has-default-focus border-top  uhf-container" role="contentinfo">
+			<div class="display-flex gap-xs flex-wrap-wrap is-full-height padding-right-lg-desktop">
+				
+		<a data-mscc-ic="false" href="/en-us/locale?target=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Faks%2Fcore-aks-concepts" data-bi-name="select-locale" class="locale-selector-link flex-shrink-0 button button-sm button-clear external-link-indicator" id="" title="" aria-label="Content language selector. Currently set to English (United States)."><span class="icon" aria-hidden="true"><span class="docon docon-world"></span></span><span class="local-selector-link-text">English (United States)</span></a>
+	 <div class="ccpa-privacy-link" data-ccpa-privacy-link="">
+		
+		<a data-mscc-ic="false" href="https://aka.ms/yourcaliforniaprivacychoices" data-bi-name="your-privacy-choices" class="button button-sm button-clear flex-shrink-0 external-link-indicator" id="" title="">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 14" xml:space="preserve" height="16" width="43" aria-hidden="true" focusable="false">
+			<path d="M7.4 12.8h6.8l3.1-11.6H7.4C4.2 1.2 1.6 3.8 1.6 7s2.6 5.8 5.8 5.8z" style="fill-rule:evenodd;clip-rule:evenodd;fill:#fff"></path>
+			<path d="M22.6 0H7.4c-3.9 0-7 3.1-7 7s3.1 7 7 7h15.2c3.9 0 7-3.1 7-7s-3.2-7-7-7zm-21 7c0-3.2 2.6-5.8 5.8-5.8h9.9l-3.1 11.6H7.4c-3.2 0-5.8-2.6-5.8-5.8z" style="fill-rule:evenodd;clip-rule:evenodd;fill:#06f"></path>
+			<path d="M24.6 4c.2.2.2.6 0 .8L22.5 7l2.2 2.2c.2.2.2.6 0 .8-.2.2-.6.2-.8 0l-2.2-2.2-2.2 2.2c-.2.2-.6.2-.8 0-.2-.2-.2-.6 0-.8L20.8 7l-2.2-2.2c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0l2.2 2.2L23.8 4c.2-.2.6-.2.8 0z" style="fill:#fff"></path>
+			<path d="M12.7 4.1c.2.2.3.6.1.8L8.6 9.8c-.1.1-.2.2-.3.2-.2.1-.5.1-.7-.1L5.4 7.7c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0L8 8.6l3.8-4.5c.2-.2.6-.2.9 0z" style="fill:#06f"></path>
+		</svg>
+	
+			<span>Your Privacy Choices</span></a>
+	
+	</div>
+				<div class="flex-shrink-0">
+		<div class="dropdown has-caret-up">
+			<button data-test-id="theme-selector-button" class="dropdown-trigger button button-clear button-sm inner-focus theme-dropdown-trigger" aria-controls="{{ themeMenuId }}" aria-expanded="false" title="Theme" data-bi-name="theme">
+				<span class="icon" aria-hidden="true"><span class="docon docon-sun"></span></span>
+				<span>Theme</span>
+				<span class="icon expanded-indicator" aria-hidden="true">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<div class="dropdown-menu" id="{{ themeMenuId }}" role="menu">
+				<ul class="theme-selector padding-xxs" data-test-id="theme-dropdown-menu">
+					<li class="theme display-block">
+						<button class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left is-selected" data-theme-to="light" aria-pressed="true">
+							<span class="theme-light margin-right-xxs">
+								<span class="theme-selector-icon border display-inline-block has-body-background" aria-hidden="true">
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background"></rect>
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary"></rect>
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary"></rect>
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary"></rect>
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary"></rect>
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary"></rect>
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> Light </span>
+						</button>
+					</li>
+					<li class="theme display-block">
+						<button class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left" data-theme-to="dark" aria-pressed="false">
+							<span class="theme-dark margin-right-xxs">
+								<span class="border theme-selector-icon display-inline-block has-body-background" aria-hidden="true">
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background"></rect>
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary"></rect>
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary"></rect>
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary"></rect>
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary"></rect>
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary"></rect>
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> Dark </span>
+						</button>
+					</li>
+					<li class="theme display-block">
+						<button class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left" data-theme-to="high-contrast" aria-pressed="false">
+							<span class="theme-high-contrast margin-right-xxs">
+								<span class="border theme-selector-icon display-inline-block has-body-background" aria-hidden="true">
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background"></rect>
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary"></rect>
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary"></rect>
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary"></rect>
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary"></rect>
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary"></rect>
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> High contrast </span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+			</div>
+			<ul class="links" data-bi-name="footerlinks">
+				<li class="manage-cookies-holder" hidden=""></li>
+				<li>
+		
+		<a data-mscc-ic="false" href="https://learn.microsoft.com/en-us/principles-for-ai-generated-content" data-bi-name="aiDisclaimer" class=" external-link-indicator" id="" title="">AI Disclaimer</a>
+	
+	</li><li>
+		
+		<a data-mscc-ic="false" href="https://learn.microsoft.com/en-us/previous-versions/" data-bi-name="archivelink" class=" external-link-indicator" id="" title="">Previous Versions</a>
+	
+	</li> <li>
+		
+		<a data-mscc-ic="false" href="https://techcommunity.microsoft.com/t5/microsoft-learn-blog/bg-p/MicrosoftLearnBlog" data-bi-name="bloglink" class=" external-link-indicator" id="" title="">Blog</a>
+	
+	</li> <li>
+		
+		<a data-mscc-ic="false" href="https://learn.microsoft.com/en-us/contribute" data-bi-name="contributorGuide" class=" external-link-indicator" id="" title="">Contribute</a>
+	
+	</li><li>
+		
+		<a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-bi-name="privacy" class=" external-link-indicator" id="" title="">Privacy</a>
+	
+	</li><li>
+		
+		<a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?linkid=2259814" data-bi-name="consumer-health-privacy" class=" external-link-indicator" id="" title="">Consumer Health Privacy</a>
+	
+	</li><li>
+		
+		<a data-mscc-ic="false" href="https://learn.microsoft.com/en-us/legal/termsofuse" data-bi-name="termsofuse" class=" external-link-indicator" id="" title="">Terms of Use</a>
+	
+	</li><li>
+		
+		<a data-mscc-ic="false" href="https://www.microsoft.com/legal/intellectualproperty/Trademarks/" data-bi-name="trademarks" class=" external-link-indicator" id="" title="">Trademarks</a>
+	
+	</li>
+				<li>© Microsoft 2026</li>
+			</ul>
+		</footer>
+	
+			
+		</div></body></html>

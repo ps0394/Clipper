@@ -1,0 +1,114 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the two main methods for installing Terraform as mentioned in the document?",
+      "answer": "Package manager and manual installation",
+      "supporting_sentences": [
+        "Package manager",
+        "Manual installation",
+        "If you use a package manager to install software on your macOS, Windows, or Linux system, you can use it to install Terraform."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the two main methods for installing Terraform as mentioned in the document?",
+      "answer": "Package manager and manual installation",
+      "supporting_sentences": [
+        "Package manager",
+        "Manual installation",
+        "If you use a package manager to install software on your macOS, Windows, or Linux system, you can use it to install Terraform."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which command is used to install Terraform using Homebrew on macOS?",
+      "answer": "`brew install hashicorp/tap/terraform`",
+      "supporting_sentences": [
+        "Now, install Terraform from hashicorp/tap/terraform.",
+        "$ brew install hashicorp/tap/terraform"
+      ]
+    },
+    "edited_pair": {
+      "question": "Which command is used to install Terraform using Homebrew on macOS?",
+      "answer": "`brew install hashicorp/tap/terraform`",
+      "supporting_sentences": [
+        "Now, install Terraform from hashicorp/tap/terraform.",
+        "$ brew install hashicorp/tap/terraform"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What packages are required to verify HashiCorp's GPG signature and install HashiCorp's Debian package repository on Ubuntu/Debian?",
+      "answer": "`gnupg` and `software-properties-common`",
+      "supporting_sentences": [
+        "Ensure that your system is up to date and that you have installed the gnupg and software-properties-common packages.",
+        "$ sudo apt-get update && sudo apt-get install -y gnupg software-properties-common"
+      ]
+    },
+    "edited_pair": {
+      "question": "What packages are required to verify HashiCorp's GPG signature and install HashiCorp's Debian package repository on Ubuntu/Debian?",
+      "answer": "`gnupg` and `software-properties-common`",
+      "supporting_sentences": [
+        "Ensure that your system is up to date and that you have installed the gnupg and software-properties-common packages.",
+        "$ sudo apt-get update && sudo apt-get install -y gnupg software-properties-common"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the command to install Terraform on CentOS/RHEL after adding the HashiCorp repository?",
+      "answer": "`sudo yum -y install terraform`",
+      "supporting_sentences": [
+        "Install Terraform from the new repository.",
+        "$ sudo yum -y install terraform"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the command to install Terraform on CentOS/RHEL after adding the HashiCorp repository?",
+      "answer": "`sudo yum -y install terraform`",
+      "supporting_sentences": [
+        "Install Terraform from the new repository.",
+        "$ sudo yum -y install terraform"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How can you verify that Terraform was installed correctly?",
+      "answer": "By opening a new terminal session and running `terraform -help`",
+      "supporting_sentences": [
+        "Verify that the installation worked by opening a new terminal session and listing Terraform's available subcommands.",
+        "$ terraform -help"
+      ]
+    },
+    "edited_pair": {
+      "question": "How can you verify that Terraform was installed correctly?",
+      "answer": "By opening a new terminal session and running `terraform -help`",
+      "supporting_sentences": [
+        "Verify that the installation worked by opening a new terminal session and listing Terraform's available subcommands.",
+        "$ terraform -help"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

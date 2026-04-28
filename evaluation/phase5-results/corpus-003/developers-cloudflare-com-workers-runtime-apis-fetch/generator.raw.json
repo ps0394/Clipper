@@ -1,0 +1,39 @@
+```json
+[
+    {
+        "question": "What API provides an interface for asynchronously fetching resources via HTTP requests inside a Cloudflare Worker?",
+        "answer": "The Fetch API",
+        "supporting_sentences": [
+            "The Fetch API ↗ provides an interface for asynchronously fetching resources via HTTP requests inside of a Worker."
+        ]
+    },
+    {
+        "question": "What are the two compression algorithms supported by Cloudflare Workers for the `Accept-Encoding` header?",
+        "answer": "gzip and brotli",
+        "supporting_sentences": [
+            "Workers supports both the gzip and brotli compression algorithms."
+        ]
+    },
+    {
+        "question": "What compatibility flag must be enabled in a Worker to support requesting brotli compression from the origin?",
+        "answer": "brotli_content_encoding",
+        "supporting_sentences": [
+            "To support requesting brotli from the origin, you must enable the brotli_content_encoding compatibility flag in your Worker."
+        ]
+    },
+    {
+        "question": "What happens if a Worker does not read the body of a compressed response and keeps the `Content-Encoding` header intact?",
+        "answer": "The compressed data will 'pass through' without being decompressed and then recompressed again.",
+        "supporting_sentences": [
+            "As long as you do not read the body of the compressed response prior to returning it to the client and keep the Content-Encoding header intact, it will \"pass through\" without being decompressed and then recompressed again."
+        ]
+    },
+    {
+        "question": "What type of Workers does Cloudflare recommend using instead of Service Workers?",
+        "answer": "Module Workers",
+        "supporting_sentences": [
+            "Service Workers are deprecated, but still supported. We recommend using Module Workers instead."
+        ]
+    }
+]
+```

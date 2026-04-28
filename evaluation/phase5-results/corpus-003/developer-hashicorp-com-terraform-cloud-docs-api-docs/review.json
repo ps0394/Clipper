@@ -1,0 +1,110 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What HTTP status code does HCP Terraform return if an authentication token is absent or invalid?",
+      "answer": "HTTP status 401",
+      "supporting_sentences": [
+        "If the token is absent or invalid, HCP Terraform responds with HTTP status 401 and a JSON API error object."
+      ]
+    },
+    "edited_pair": {
+      "question": "What HTTP status code does HCP Terraform return if an authentication token is absent or invalid?",
+      "answer": "HTTP status 401",
+      "supporting_sentences": [
+        "If the token is absent or invalid, HCP Terraform responds with HTTP status 401 and a JSON API error object."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the four types of tokens that can be used to authenticate with the HCP Terraform API?",
+      "answer": "User tokens, Team tokens, Organization tokens, and Audit trails token",
+      "supporting_sentences": [
+        "You can use the following types of tokens to authenticate:",
+        "User tokens \u2014 each HCP Terraform user can have any number of API tokens, which can make requests on their behalf.",
+        "Team tokens \u2014 each team can have one API token at a time. This is intended for performing plans and applies via a CI/CD pipeline.",
+        "Organization tokens \u2014 each organization can have one API token at a time. This is intended for automating the management of teams, team membership, and workspaces. The organization token cannot perform plans and applies.",
+        "Audit trails token - each organization can have a single token that can read that organization's audit trails."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the four types of tokens that can be used to authenticate with the HCP Terraform API?",
+      "answer": "User tokens, Team tokens, Organization tokens, and Audit trails token",
+      "supporting_sentences": [
+        "You can use the following types of tokens to authenticate:",
+        "User tokens \u2014 each HCP Terraform user can have any number of API tokens, which can make requests on their behalf.",
+        "Team tokens \u2014 each team can have one API token at a time. This is intended for performing plans and applies via a CI/CD pipeline.",
+        "Organization tokens \u2014 each organization can have one API token at a time. This is intended for automating the management of teams, team membership, and workspaces. The organization token cannot perform plans and applies.",
+        "Audit trails token - each organization can have a single token that can read that organization's audit trails."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the maximum number of items per page that can be returned by a paginated HCP Terraform API endpoint?",
+      "answer": "100",
+      "supporting_sentences": [
+        "page[size] Optional. If omitted, the endpoint will return 20 items per page. The maximum page size is 100."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the maximum number of items per page that can be returned by a paginated HCP Terraform API endpoint?",
+      "answer": "100",
+      "supporting_sentences": [
+        "page[size] Optional. If omitted, the endpoint will return 20 items per page. The maximum page size is 100."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What entitlement is required for an organization to use Sentinel in HCP Terraform?",
+      "answer": "policy-enforcement",
+      "supporting_sentences": [
+        "policy-enforcement \u2014 Allows an organization to use Sentinel. Affects the policies, policy sets, and policy checks endpoints."
+      ]
+    },
+    "edited_pair": {
+      "question": "What entitlement is required for an organization to use Sentinel in HCP Terraform?",
+      "answer": "policy-enforcement",
+      "supporting_sentences": [
+        "policy-enforcement \u2014 Allows an organization to use Sentinel. Affects the policies, policy sets, and policy checks endpoints."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the default rate limit for most HCP Terraform API endpoints?",
+      "answer": "30 requests per second",
+      "supporting_sentences": [
+        "You can make up to 30 requests per second to most API endpoints as an authenticated or unauthenticated request."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the default rate limit for most HCP Terraform API endpoints?",
+      "answer": "30 requests per second",
+      "supporting_sentences": [
+        "You can make up to 30 requests per second to most API endpoints as an authenticated or unauthenticated request."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

@@ -1,0 +1,503 @@
+{
+  "parseability_score": 72.83949666153056,
+  "failure_mode": "moderate_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-003\\developer-hashicorp-com-terraform-tutorials-aws-get-started-aws-build-examples\\page.rendered.html",
+  "url": "https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build#examples",
+  "component_scores": {
+    "semantic_html": 46.81818181818182,
+    "content_extractability": 73.67899332306112,
+    "structured_data": 77.0,
+    "dom_navigability": 65,
+    "metadata_completeness": 70,
+    "http_compliance": 72.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 6,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 1,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 1,
+      "heading_elements_count": 16,
+      "scoring_breakdown": {
+        "semantic_coverage": 21.81818181818182,
+        "aria_bonus": 5,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 28512,
+        "extracted_text_length": 25986,
+        "extracted_chars": 25986,
+        "extraction_ratio": 0.911,
+        "extracted_title": "Create infrastructure",
+        "extracted_preview": "You can use Terraform to create and manage your infrastructure as code. In this\r\ntutorial, you will use Terraform to provision an EC2 instance on Amazon Web\r\nServices (AWS). EC2 instances are virtual machines running on AWS and a common\r\ncomponent of many infrastructure projects. To provision your i...",
+        "original_headings": 16,
+        "extracted_headings": 0,
+        "original_lists": 15,
+        "extracted_lists": 1,
+        "original_code_blocks": 118,
+        "extracted_code_blocks": 116,
+        "has_main_element": true,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 35,
+        "structure_preservation": 10.497175141242938,
+        "boundary_detection": 28.18181818181818
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 2,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [
+        "HowTo",
+        "BreadcrumbList"
+      ],
+      "key_fields_found": [],
+      "formats_present": 2,
+      "score_breakdown": {
+        "type_appropriateness": 20.0,
+        "field_completeness": 26.25,
+        "multiple_formats": 12,
+        "schema_validation": 18.75
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [
+          {
+            "index": 0,
+            "type": "HowTo",
+            "present": 3,
+            "expected": 4,
+            "ratio": 0.75,
+            "missing": [
+              "step"
+            ],
+            "invalid": []
+          },
+          {
+            "index": 1,
+            "type": "BreadcrumbList",
+            "present": 1,
+            "expected": 1,
+            "ratio": 1.0,
+            "missing": [],
+            "invalid": []
+          }
+        ],
+        "unvalidated_items": 0,
+        "missing_fields": [
+          {
+            "type": "HowTo",
+            "fields": [
+              "step"
+            ]
+          }
+        ],
+        "invalid_fields": [],
+        "average_ratio": 0.875
+      },
+      "sample_structured_data": {
+        "json-ld": [
+          {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "Create infrastructure",
+            "description": "Authenticate to AWS and create infrastructure with Terraform. Write and validate Terraform configuration, initialize a configuration directory, and plan and apply a configuration to create infrastructure.",
+            "totalTime": 14,
+            "tool": {
+              "@type": "SoftwareApplication",
+              "name": "Terraform"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "HashiCorp"
+            }
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Developer",
+                "item": "https://developer.hashicorp.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Terraform",
+                "item": "https://developer.hashicorp.com/terraform"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Tutorials",
+                "item": "https://developer.hashicorp.com/terraform/tutorials"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "name": "AWS",
+                "item": "https://developer.hashicorp.com/terraform/tutorials/aws-get-started"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "name": "Create",
+                "item": "https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-create"
+              }
+            ]
+          }
+        ],
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#",
+              "article": "http://ogp.me/ns/article#"
+            },
+            "properties": [
+              [
+                "og:locale",
+                "en_US"
+              ],
+              [
+                "og:type",
+                "website"
+              ],
+              [
+                "article:publisher",
+                "https://www.facebook.com/HashiCorp/"
+              ],
+              [
+                "og:description",
+                "Authenticate to AWS and create infrastructure with Terraform. Write and validate Terraform configuration, initialize a configuration directory, and plan and apply a configuration to create infrastructure."
+              ],
+              [
+                "og:site_name",
+                "Create infrastructure | Terraform | HashiCorp Developer"
+              ],
+              [
+                "og:title",
+                "Create infrastructure | Terraform | HashiCorp Developer"
+              ],
+              [
+                "og:image",
+                "https://developer.hashicorp.com/og-image/terraform.jpg"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-valid-attr-value?application=axeAPI",
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": [
+                    "aria-controls=\"sandbox-dropdown-menu-react-aria-18\""
+                  ],
+                  "id": "aria-valid-attr-value",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute value: aria-controls=\"sandbox-dropdown-menu-react-aria-18\"",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"sandbox-dropdown-menu-react-aria-18\"",
+              "html": "<button aria-controls=\"sandbox-dropdown-menu-react-aria-18\" aria-expanded=\"false\" aria-label=\"Terraform Sandbox\" class=\"sandbox-dropdown_activator__t6ucA g-focus-ring-from-box-shadow-dark\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                ".sandbox-dropdown_activator__t6ucA"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+          ]
+        },
+        {
+          "description": "Ensures all page content is contained by landmarks",
+          "help": "All page content must be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/region?application=axeAPI",
+          "id": "region",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "region",
+                  "impact": "moderate",
+                  "message": "Some page content is not contained by landmarks",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"standalone-link_text__7GEyG\">AWS</span>",
+                      "target": [
+                        ".standalone-link_text__7GEyG"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks",
+              "html": "<html lang=\"en\" data-theme=\"light\" style=\"color-scheme: light;\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.keyboard",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 2,
+      "passes_count": 36,
+      "total_penalty": 35,
+      "penalty_per_rule": {
+        "aria-valid-attr-value": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "region": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        }
+      },
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 15,
+        "date": 0,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title",
+          "schema:name"
+        ],
+        "description": [
+          "meta:description",
+          "og:description",
+          "schema:description"
+        ],
+        "author": [
+          "schema:author"
+        ],
+        "date": [],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 5,
+      "fields_total": 7,
+      "json_ld_type": "BreadcrumbList"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 404,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "\"farlliaws25wjx\"",
+        "last_modified": "absent",
+        "cache_control": "public, max-age=0, must-revalidate"
+      },
+      "agent_content_hints": {
+        "scoring_contribution": 0,
+        "diagnostic_only": true,
+        "rationale": "PRD F2.2/F2.3: retrieval-lift evidence deferred to Phase 6",
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 12,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "tutorial",
+      "detection": {
+        "schema_type_raw": "HowTo",
+        "source": "schema_type",
+        "matched_value": "HowTo"
+      },
+      "weights": {
+        "semantic_html": 0.0,
+        "content_extractability": 0.5,
+        "structured_data": 0.0,
+        "dom_navigability": 0.0,
+        "metadata_completeness": 0.0,
+        "http_compliance": 0.5
+      },
+      "v1_weights_for_reference": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.25,
+        "structured_data": 0.15,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      },
+      "scoring_version": "v2-evidence-partial"
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "tutorial",
+  "universal_score": 72.83949666153056,
+  "render_mode": "rendered",
+  "confidence_range": {
+    "scoring_version": "v2-evidence-partial",
+    "evidence_tier": "partial",
+    "headline_weights": {
+      "semantic_html": 0.0,
+      "content_extractability": 0.5,
+      "structured_data": 0.0,
+      "dom_navigability": 0.0,
+      "metadata_completeness": 0.0,
+      "http_compliance": 0.5
+    },
+    "calibration_corpus": {
+      "name": "corpus-002",
+      "n": 43,
+      "pearson_r_vs_accuracy_rendered": 0.548,
+      "gate_threshold": 0.35,
+      "source": "findings/phase-5-corpus-002-findings.md Addendum B"
+    },
+    "caveats": [
+      "Single corpus, single grader architecture, single run.",
+      "Four pillars carry zero headline weight in v2; still reported as diagnostics.",
+      "Profile-specific weights collapse to the same 2-pillar composite pending corpus-003.",
+      "Cross-judge accuracy variance: per-judge corpus-002 means span 0.591-0.698 across Llama-3.3-70B, GPT-4o, and DeepSeek-V3.2 (pooled kappa 0.706-0.817). The v2 composite-vs-accuracy Pearson r ranges from +0.440 to +0.618 across judges (all above the +0.35 ship gate). Report majority-vote CI [0.567, 0.688] or per-judge union CI [0.530, 0.758] when comparing across studies.",
+      "No temporal variance measured yet."
+    ]
+  },
+  "subscores": {
+    "semantic_html": 46.81818181818182,
+    "content_extractability": 73.67899332306112,
+    "structured_data": 77.0,
+    "dom_navigability": 65,
+    "metadata_completeness": 70,
+    "http_compliance": 72.0
+  },
+  "evidence_references": null
+}

@@ -1,0 +1,1494 @@
+{
+  "parseability_score": 65.51682070083424,
+  "failure_mode": "moderate_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-003\\huggingface-co-docs-transformers-glossary\\page.rendered.html",
+  "url": "https://huggingface.co/docs/transformers/glossary",
+  "component_scores": {
+    "semantic_html": 56.36363636363636,
+    "content_extractability": 78.03364140166849,
+    "structured_data": 12,
+    "dom_navigability": 0,
+    "metadata_completeness": 45,
+    "http_compliance": 53.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 3,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 106,
+      "heading_elements_count": 70,
+      "scoring_breakdown": {
+        "semantic_coverage": 16.363636363636363,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 26824,
+        "extracted_text_length": 23168,
+        "extracted_chars": 23168,
+        "extraction_ratio": 0.864,
+        "extracted_title": "Glossary · Hugging Face",
+        "extracted_preview": "Glossary This glossary defines general machine learning and 🤗 Transformers terms to help you better understand the\r\ndocumentation. A attention mask The attention mask is an optional argument used when batching sequences together. This argument indicates to the model which tokens should be attended t...",
+        "original_headings": 70,
+        "extracted_headings": 69,
+        "original_lists": 3,
+        "extracted_lists": 1,
+        "original_code_blocks": 62,
+        "extracted_code_blocks": 60,
+        "has_main_element": true,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 35,
+        "structure_preservation": 22.8678955453149,
+        "boundary_detection": 20.165745856353592
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 0,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 3
+      },
+      "schema_types_found": [],
+      "key_fields_found": [],
+      "formats_present": 2,
+      "score_breakdown": {
+        "type_appropriateness": 0,
+        "field_completeness": 0,
+        "multiple_formats": 12,
+        "schema_validation": 0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": []
+      },
+      "sample_structured_data": {
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:title",
+                "Glossary · Hugging Face"
+              ],
+              [
+                "og:description",
+                "We’re on a journey to advance and democratize artificial intelligence through open source and open science."
+              ],
+              [
+                "og:type",
+                "website"
+              ],
+              [
+                "og:url",
+                "https://huggingface.co/docs/transformers/glossary"
+              ],
+              [
+                "og:image",
+                "https://cdn-thumbnails.huggingface.co/social-thumbnails/docs/transformers/glossary.png"
+              ]
+            ]
+          }
+        ],
+        "microformat": [
+          {
+            "type": [
+              "h-fit"
+            ],
+            "properties": {
+              "name": [
+                ""
+              ]
+            }
+          },
+          {
+            "type": [
+              "h-auto"
+            ],
+            "properties": {
+              "name": [
+                "Transformers documentation\n\nGlossary"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures buttons have discernible text",
+          "help": "Buttons must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/button-name?application=axeAPI",
+          "id": "button-name",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button type=\"button\" class=\"px-2 py-0.5 hover:text-gray-500 dark:hover:text-gray-600 flex items-center\n\t\t\t\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                ".dark\\:hover\\:text-gray-600"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a"
+          ]
+        },
+        {
+          "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+          "help": "Elements must have sufficient color contrast",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "7.8pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #0NaN0NaN0NaN, font size: 7.8pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"ml-1.5 translate-y-px rounded bg-blue-600/15 px-1 py-px text-[.65rem] font-bold uppercase leading-tight text-blue-600 dark:bg-blue-500/20 dark:text-blue-300\">new</span>",
+                      "target": [
+                        ".ml-1\\.5"
+                      ]
+                    },
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #0NaN0NaN0NaN, font size: 7.8pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"ml-1.5 translate-y-px rounded bg-blue-600/15 px-1 py-px text-[.65rem] font-bold uppercase leading-tight text-blue-600 dark:bg-blue-500/20 dark:text-blue-300\">new</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".ml-1\\.5"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#ffffff",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #ffffff, background color: #0NaN0NaN0NaN, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"whitespace-nowrap rounded-full border border-transparent bg-gray-900 px-3 py-1 leading-none text-white hover:border-black hover:bg-white hover:text-black\" href=\"/join\">Sign Up</a>",
+                      "target": [
+                        ".border-transparent"
+                      ]
+                    },
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #ffffff, background color: #0NaN0NaN0NaN, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"whitespace-nowrap rounded-full border border-transparent bg-gray-900 px-3 py-1 leading-none text-white hover:border-black hover:bg-white hover:text-black\" href=\"/join\">Sign Up</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".border-transparent"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "3:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "45.0pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 45.0pt, font weight: bold). Expected contrast ratio of 3:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 45.0pt, font weight: bold). Expected contrast ratio of 3:1",
+              "html": "<h1 class=\"mx-auto max-w-xl text-4xl font-bold text-gray-800 md:text-6xl\">429</h1>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "h1"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "13.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 13.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 13.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>We had to rate limit your IP (24.118.26.163). To continue using our service, create a HF account or login to your existing account, and make sure you pass a HF_TOKEN if you're using the API.</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "p > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"rounded-full border border-gray-100 pl-2 py-1 pr-2.5  flex items-center text-sm text-gray-500 bg-white hover:bg-purple-50 hover:border-purple-200 dark:hover:bg-gray-800 dark:hover:border-gray-950 dark:border-gray-800 \" type=\"button\">",
+                      "target": [
+                        ".pl-2"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<button class=\"rounded-full border border-gray-100 pl-2 py-1 pr-2.5  flex items-center text-sm text-gray-500 bg-white hover:bg-purple-50 hover:border-purple-200 dark:hover:bg-gray-800 dark:hover:border-gray-950 dark:border-gray-800 \" type=\"button\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".pl-2"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"/models\">Models</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".hover\\:underline[href$=\"models\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"/datasets\">Datasets</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".hover\\:underline[href$=\"datasets\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"/spaces\">Spaces</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".hover\\:underline[href$=\"spaces\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span class=\"group-hover:underline\">Changelog</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".group-hover\\:underline"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"https://endpoints.huggingface.co\" target=\"_blank\">Inference Endpoints</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[target=\"_blank\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"/chat\">HuggingChat</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"chat\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"/huggingface\">About</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div:nth-child(3) > .space-y-1.text-gray-600.md\\:space-y-2 > li:nth-child(1) > .hover\\:underline[href$=\"huggingface\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"/brand\">Brand assets</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"brand\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"/terms-of-service\">Terms of service</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"terms-of-service\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"/privacy\">Privacy</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"privacy\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"https://apply.workable.com/huggingface/\">Careers</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div:nth-child(3) > .space-y-1.text-gray-600.md\\:space-y-2 > li:nth-child(5) > .hover\\:underline"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"mailto:press@huggingface.co\">Press</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href=\"mailto:press@huggingface.co\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"/learn\">Learn</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"learn\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"/docs\">Documentation</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".hover\\:underline[href$=\"docs\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"/blog\">Blog</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"blog\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"https://discuss.huggingface.co\">Forum</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"discuss.huggingface.co\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"https://status.huggingface.co/\">Service Status</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"status.huggingface.co/\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"https://github.com/huggingface\">GitHub</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div:nth-child(5) > .space-y-1.text-gray-600.md\\:space-y-2 > li:nth-child(1) > .hover\\:underline[href$=\"huggingface\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"https://twitter.com/huggingface\">Twitter</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div:nth-child(5) > .space-y-1.text-gray-600.md\\:space-y-2 > li:nth-child(2) > .hover\\:underline"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"https://www.linkedin.com/company/huggingface/\">LinkedIn</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "div:nth-child(5) > .space-y-1.text-gray-600.md\\:space-y-2 > li:nth-child(3) > .hover\\:underline"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#0NaN0NaN0NaN",
+                    "fontSize": "12.0pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<body class=\"flex flex-col min-h-dvh bg-white dark:bg-gray-950 text-black ErrorPage\">",
+                      "target": [
+                        "body"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #0NaN0NaN0NaN, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a class=\"hover:underline\" href=\"/join/discord\">Discord</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"discord\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+          ]
+        },
+        {
+          "description": "Ensures every HTML document has a lang attribute",
+          "help": "<html> element must have a lang attribute",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/html-has-lang?application=axeAPI",
+          "id": "html-has-lang",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-lang",
+                  "impact": "serious",
+                  "message": "The <html> element does not have a lang attribute",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  The <html> element does not have a lang attribute",
+              "html": "<html class=\"\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.language",
+            "wcag2a",
+            "wcag311"
+          ]
+        },
+        {
+          "description": "Ensures every form element has a label",
+          "help": "Form elements must have labels",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/label?application=axeAPI",
+          "id": "label",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "implicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an implicit (wrapped) <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "explicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an explicit <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  Element has no title attribute or the title attribute is empty",
+              "html": "<input autocomplete=\"off\" spellcheck=\"false\" type=\"text\" class=\"w-full dark:bg-gray-950 pl-8\n\t\t\tform-input-alt h-9 pr-3 focus:shadow-xl \" name=\"\" placeholder=\"Search models, datasets, users...\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "input"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.forms",
+            "wcag2a",
+            "wcag332",
+            "wcag131",
+            "section508",
+            "section508.22.n"
+          ]
+        },
+        {
+          "description": "Ensures <meta name=\"viewport\"> does not disable text scaling and zooming",
+          "help": "Zooming and scaling must not be disabled",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/meta-viewport?application=axeAPI",
+          "id": "meta-viewport",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "user-scalable=no",
+                  "id": "meta-viewport",
+                  "impact": "critical",
+                  "message": "user-scalable=no on <meta> tag disables zooming on mobile devices",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  user-scalable=no on <meta> tag disables zooming on mobile devices",
+              "html": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "meta[name=\"viewport\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.sensory-and-visual-cues",
+            "wcag2aa",
+            "wcag144"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 5,
+      "passes_count": 27,
+      "total_penalty": 115,
+      "penalty_per_rule": {
+        "button-name": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "color-contrast": {
+          "impact": "serious",
+          "node_count": 26,
+          "raw_penalty": 390,
+          "capped_penalty": 25
+        },
+        "html-has-lang": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "label": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "meta-viewport": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        }
+      },
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 0,
+        "date": 0,
+        "topic": 0,
+        "language": 0,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [
+          "meta:description",
+          "og:description"
+        ],
+        "author": [],
+        "date": [],
+        "topic": [],
+        "language": [],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 3,
+      "fields_total": 7,
+      "json_ld_type": "none"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 429,
+        "content_type": "text/html; charset=utf-8"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "W/\"5229-y94Nq5/MxA69NYnoaMr0Bg+XJ7E\"",
+        "last_modified": "absent",
+        "cache_control": "absent"
+      },
+      "agent_content_hints": {
+        "scoring_contribution": 0,
+        "diagnostic_only": true,
+        "rationale": "PRD F2.2/F2.3: retrieval-lift evidence deferred to Phase 6",
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 0,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 8,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "article",
+      "detection": {
+        "source": "default"
+      },
+      "weights": {
+        "semantic_html": 0.0,
+        "content_extractability": 0.5,
+        "structured_data": 0.0,
+        "dom_navigability": 0.0,
+        "metadata_completeness": 0.0,
+        "http_compliance": 0.5
+      },
+      "v1_weights_for_reference": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.2,
+        "structured_data": 0.2,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      },
+      "scoring_version": "v2-evidence-partial"
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "article",
+  "universal_score": 65.51682070083424,
+  "render_mode": "rendered",
+  "confidence_range": {
+    "scoring_version": "v2-evidence-partial",
+    "evidence_tier": "partial",
+    "headline_weights": {
+      "semantic_html": 0.0,
+      "content_extractability": 0.5,
+      "structured_data": 0.0,
+      "dom_navigability": 0.0,
+      "metadata_completeness": 0.0,
+      "http_compliance": 0.5
+    },
+    "calibration_corpus": {
+      "name": "corpus-002",
+      "n": 43,
+      "pearson_r_vs_accuracy_rendered": 0.548,
+      "gate_threshold": 0.35,
+      "source": "findings/phase-5-corpus-002-findings.md Addendum B"
+    },
+    "caveats": [
+      "Single corpus, single grader architecture, single run.",
+      "Four pillars carry zero headline weight in v2; still reported as diagnostics.",
+      "Profile-specific weights collapse to the same 2-pillar composite pending corpus-003.",
+      "Cross-judge accuracy variance: per-judge corpus-002 means span 0.591-0.698 across Llama-3.3-70B, GPT-4o, and DeepSeek-V3.2 (pooled kappa 0.706-0.817). The v2 composite-vs-accuracy Pearson r ranges from +0.440 to +0.618 across judges (all above the +0.35 ship gate). Report majority-vote CI [0.567, 0.688] or per-judge union CI [0.530, 0.758] when comparing across studies.",
+      "No temporal variance measured yet."
+    ]
+  },
+  "subscores": {
+    "semantic_html": 56.36363636363636,
+    "content_extractability": 78.03364140166849,
+    "structured_data": 12,
+    "dom_navigability": 0,
+    "metadata_completeness": 45,
+    "http_compliance": 53.0
+  },
+  "evidence_references": null
+}

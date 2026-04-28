@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, listing the three layers of the medallion lakehouse architecture.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 580,
+    "tokens_out": 32
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including ingesting raw data from various sources without performing data cleanup or validation.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 629,
+    "tokens_out": 34
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer includes some extra operations not mentioned in the ground truth and omits some required operations, such as data cleansing and normalization.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 628,
+    "tokens_out": 32
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the role of the gold layer in representing refined and aggregated data for analytics, reporting, and other applications, with additional details that do not contradict the ground truth.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 631,
+    "tokens_out": 52
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer only provides one example, whereas the ground truth lists multiple examples.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 581,
+    "tokens_out": 21
+  }
+]

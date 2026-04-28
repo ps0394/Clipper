@@ -1,0 +1,102 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the simplest forms of expressions in the Terraform configuration language?",
+      "answer": "The simplest expressions are just literal values, like \"hello\" or 5.",
+      "supporting_sentences": [
+        "The simplest expressions are just literal values, like \"hello\" or 5, but the Terraform language also allows more complex expressions such as references to data exported by resources, arithmetic, conditional evaluation, and a number of built-in functions."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the simplest forms of expressions in the Terraform configuration language?",
+      "answer": "The simplest expressions are just literal values, like \"hello\" or 5.",
+      "supporting_sentences": [
+        "The simplest expressions are just literal values, like \"hello\" or 5, but the Terraform language also allows more complex expressions such as references to data exported by resources, arithmetic, conditional evaluation, and a number of built-in functions."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Where can you experiment with the behavior of Terraform's expressions?",
+      "answer": "You can experiment with the behavior of Terraform's expressions from the Terraform expression console, by running the `terraform console` command.",
+      "supporting_sentences": [
+        "You can experiment with the behavior of Terraform's expressions from the Terraform expression console, by running the `terraform console` command."
+      ]
+    },
+    "edited_pair": {
+      "question": "Where can you experiment with the behavior of Terraform's expressions?",
+      "answer": "You can experiment with the behavior of Terraform's expressions from the Terraform expression console, by running the `terraform console` command.",
+      "supporting_sentences": [
+        "You can experiment with the behavior of Terraform's expressions from the Terraform expression console, by running the `terraform console` command."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What syntax does Terraform use for conditional expressions?",
+      "answer": "Terraform uses the `<CONDITION> ? <TRUE VAL> : <FALSE VAL>` syntax for conditional expressions.",
+      "supporting_sentences": [
+        "Conditional Expressions documents the `<CONDITION> ? <TRUE VAL> : <FALSE VAL>` expression, which chooses between two values based on a bool condition."
+      ]
+    },
+    "edited_pair": {
+      "question": "What syntax does Terraform use for conditional expressions?",
+      "answer": "Terraform uses the `<CONDITION> ? <TRUE VAL> : <FALSE VAL>` syntax for conditional expressions.",
+      "supporting_sentences": [
+        "Conditional Expressions documents the `<CONDITION> ? <TRUE VAL> : <FALSE VAL>` expression, which chooses between two values based on a bool condition."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of splat expressions in Terraform?",
+      "answer": "Splat expressions can extract simpler collections from more complicated expressions.",
+      "supporting_sentences": [
+        "Splat Expressions documents expressions like `var.list[*].id`, which can extract simpler collections from more complicated expressions."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of splat expressions in Terraform?",
+      "answer": "Splat expressions can extract simpler collections from more complicated expressions.",
+      "supporting_sentences": [
+        "Splat Expressions documents expressions like `var.list[*].id`, which can extract simpler collections from more complicated expressions."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What does the `type` argument in input variables expect?",
+      "answer": "The `type` argument in input variables expects the syntax for referring to a type, rather than a value of that type.",
+      "supporting_sentences": [
+        "Type Constraints documents the syntax for referring to a type, rather than a value of that type. Input variables expect this syntax in their `type` argument."
+      ]
+    },
+    "edited_pair": {
+      "question": "What does the `type` argument in input variables expect?",
+      "answer": "The `type` argument in input variables expects the syntax for referring to a type, rather than a value of that type.",
+      "supporting_sentences": [
+        "Type Constraints documents the syntax for referring to a type, rather than a value of that type. Input variables expect this syntax in their `type` argument."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

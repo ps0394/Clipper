@@ -1,0 +1,362 @@
+Kubernetes provides a distributed platform for containerized applications. With Azure Kubernetes Service (AKS), you can quickly create a production ready Kubernetes cluster.
+
+In this tutorial, you deploy a Kubernetes cluster in AKS. You learn how to:
+
+Deploy an AKS cluster that can authenticate to an Azure Container Registry (ACR).
+
+Install the Kubernetes CLI, 
+kubectl
+.
+
+Configure 
+kubectl
+ to connect to your AKS cluster.
+
+In previous tutorials, you created a container image and uploaded it to an ACR instance. Start with 
+Tutorial 1 - Prepare application for AKS
+ to follow along.
+
+If you're using Azure CLI, this tutorial requires that you're running the Azure CLI version 2.35.0 or later. Check your version with 
+az --version
+. To install or upgrade, see 
+Install Azure CLI
+.
+
+If you're using Azure PowerShell, this tutorial requires that you're running Azure PowerShell version 5.9.0 or later. Check your version with 
+Get-InstalledModule -Name Az
+. To install or upgrade, see 
+Install Azure PowerShell
+.
+
+If you're using Azure Developer CLI, this tutorial requires that you're running the Azure Developer CLI version 1.5.1 or later. Check your version with 
+azd version
+. To install or upgrade, see 
+Install Azure Developer CLI
+.
+
+Create a Kubernetes cluster
+
+AKS clusters can use 
+Kubernetes role-based access control (Kubernetes RBAC)
+, which allows you to define access to resources based on roles assigned to users. If a user is assigned multiple roles, permissions are combined. Permissions can be scoped to either a single namespace or across the whole cluster.
+
+To learn more about AKS and Kubernetes RBAC, see 
+Control access to cluster resources using Kubernetes RBAC and Microsoft Entra identities in AKS
+.
+
+This tutorial requires Azure CLI version 2.35.0 or later. Check your version with 
+az --version
+. To install or upgrade, see 
+Install Azure CLI
+. If you're using the Bash environment in Azure Cloud Shell, the latest version is already installed.
+
+This tutorial requires Azure PowerShell version 5.9.0 or later. Check your version with 
+Get-InstalledModule -Name Az
+. To install or upgrade, see 
+Install Azure PowerShell
+. If you're using Azure Cloud Shell, the latest version is already installed.
+
+This tutorial requires Azure Developer CLI version 1.5.1 or later. Check your version with 
+azd version
+. To install or upgrade, see 
+Install Azure Developer CLI
+.
+
+Install the Kubernetes CLI
+
+You use the Kubernetes CLI, 
+kubectl
+, to connect to your Kubernetes cluster. If you use the Azure Cloud Shell, 
+kubectl
+ is already installed. If you're running the commands locally, you can use the Azure CLI or Azure PowerShell to install 
+kubectl
+.
+
+azd
+ environments in a codespace automatically download all dependencies found in 
+./devcontainer/devcontainer.json
+. This includes the Kubernetes CLI along with any Azure Container Registry (ACR) images.
+
+AKS clusters can use 
+Kubernetes role-based access control (Kubernetes RBAC)
+, which allows you to define access to resources based on roles assigned to users. Permissions are combined when users are assigned multiple roles. Permissions can be scoped to either a single namespace or across the whole cluster. For more information, see 
+Control access to cluster resources using Kubernetes RBAC and Microsoft Entra ID in AKS
+.
+
+For information about AKS resource limits and region availability, see 
+Quotas, virtual machine size restrictions, and region availability in AKS
+.
+
+ Important
+
+This tutorial creates a three-node cluster. If you get an error message when trying to create the cluster, then you might need to request a quota increase for your Azure subscription or try a different Azure region. Alternatively, you can use fewer nodes, or omit the node VM size parameter to use the default VM size.
+
+To allow an AKS cluster to interact with other Azure resources, the Azure platform automatically creates a cluster identity. In this example, the cluster identity is 
+granted the right to pull images
+ from the ACR instance you created in the previous tutorial. To execute the command successfully, you must have an 
+Owner
+ or 
+Azure account administrator
+ role in your Azure subscription.
+
+Create an AKS cluster using the 
+az aks create
+ command. The following example creates a cluster named 
+myAKSCluster
+ in the resource group named 
+myResourceGroup
+. This resource group was created in the 
+previous tutorial
+ in the 
+westus2
+ region. We'll continue to use the environment variable, 
+$ACRNAME
+, that we set in the 
+previous tutorial
+. If you don't have this environment variable set, set it now to the same value you used previously.
+
+az aks create \
+    --resource-group myResourceGroup \
+    --name myAKSCluster \
+    --node-count 3 \
+    --node-vm-size standard_l8s_v3 \
+    --generate-ssh-keys \
+    --attach-acr $ACRNAME
+
+ Note
+
+If you already generated SSH keys, you might encounter an error similar to 
+linuxProfile.ssh.publicKeys.keyData is invalid
+. To proceed, retry the command without the 
+--generate-ssh-keys
+ parameter.
+
+To avoid needing an 
+Owner
+ or 
+Azure account administrator
+ role, you can also manually configure a service principal to pull images from ACR. For more information, see 
+ACR authentication with service principals
+ or 
+Authenticate from Kubernetes with a pull secret
+. Alternatively, you can use a 
+managed identity
+ instead of a service principal for easier management.
+
+To allow an AKS cluster to interact with other Azure resources, the Azure platform automatically creates a cluster identity. In this example, the cluster identity is 
+granted the right to pull images
+ from the ACR instance you created in the previous tutorial. To execute the command successfully, you need to have an 
+Owner
+ or 
+Azure account administrator
+ role in your Azure subscription.
+
+Create an AKS cluster using the 
+New-AzAksCluster
+ cmdlet. The following example creates a cluster named 
+myAKSCluster
+ in the resource group named 
+myResourceGroup
+. This resource group was created in the 
+previous tutorial
+ in the 
+westus2
+ region.
+
+New-AzAksCluster -ResourceGroupName myResourceGroup -Name myAKSCluster -NodeCount 3 -NodeVmSize standard_l8s_v3 -GenerateSshKey -AcrNameToAttach $ACRNAME
+
+ Note
+
+If you already generated SSH keys, you might encounter an error similar to 
+linuxProfile.ssh.publicKeys.keyData is invalid
+. To proceed, retry the command without the 
+-GenerateSshKey
+ parameter.
+
+To avoid needing an 
+Owner
+ or 
+Azure account administrator
+ role, you can also manually configure a service principal to pull images from ACR. For more information, see 
+ACR authentication with service principals
+ or 
+Authenticate from Kubernetes with a pull secret
+. Alternatively, you can use a 
+managed identity
+ instead of a service principal for easier management.
+
+azd
+ packages the deployment of clusters with the application itself using the 
+azd up
+ command. This command is covered in the 
+Deploy containerized application
+ tutorial.
+
+Connect to cluster using kubectl
+
+Configure 
+kubectl
+ to connect to your Kubernetes cluster using the 
+az aks get-credentials
+ command. The following example gets credentials for the AKS cluster named 
+myAKSCluster
+ in 
+myResourceGroup
+.
+
+az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
+
+Verify connection to your cluster using the 
+kubectl get nodes
+ command, which returns a list of cluster nodes.
+
+kubectl get nodes
+
+The following example output shows a list of the cluster nodes:
+
+NAME                                STATUS   ROLES   AGE   VERSION
+aks-nodepool1-19366578-vmss000000   Ready    agent   47h   v1.30.9
+aks-nodepool1-19366578-vmss000001   Ready    agent   47h   v1.30.9
+aks-nodepool1-19366578-vmss000002   Ready    agent   47h   v1.30.9
+
+Configure 
+kubectl
+ to connect to your Kubernetes cluster using the 
+Import-AzAksCredential
+ cmdlet. The following example gets credentials for the AKS cluster named 
+myAKSCluster
+ in 
+myResourceGroup
+.
+
+Import-AzAksCredential -ResourceGroupName myResourceGroup -Name myAKSCluster
+
+Verify connection to your cluster using the 
+kubectl get nodes
+ command, which returns a list of cluster nodes.
+
+kubectl get nodes
+
+The following example output shows a list of the cluster nodes.
+
+NAME                                STATUS   ROLES   AGE   VERSION
+aks-nodepool1-19366578-vmss000000   Ready    agent   47h   v1.30.9
+aks-nodepool1-19366578-vmss000001   Ready    agent   47h   v1.30.9
+aks-nodepool1-19366578-vmss000002   Ready    agent   47h   v1.30.9
+
+Configure authentication to your cluster using the 
+azd auth login
+ command.
+
+azd auth login 
+
+Follow the directions for your auth method.
+
+Verify the connection to your cluster using the 
+kubectl get nodes
+ command.
+
+kubectl get nodes
+
+The following example output shows a list of the cluster nodes:
+
+NAME                                STATUS   ROLES   AGE   VERSION
+aks-nodepool1-19366578-vmss000000   Ready    agent   47h   v1.30.9
+aks-nodepool1-19366578-vmss000001   Ready    agent   47h   v1.30.9
+aks-nodepool1-19366578-vmss000002   Ready    agent   47h   v1.30.9
+
+This workaround requires you to have the 
+Azure CLI
+ installed.
+
+Open a terminal window and log in with the Azure CLI using the 
+az login
+ command with the 
+--scope
+ parameter set to 
+https://graph.microsoft.com/.default
+.
+
+az login --scope https://graph.microsoft.com/.default
+
+You should be redirected to an authentication page in a new tab to create a browser access token, as shown in the following example:
+
+https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize?clientid=<your_client_id>.
+
+Copy the localhost URL of the webpage you received after attempting to sign in with 
+azd auth login
+.
+
+In a new terminal window, use the following 
+curl
+ request to log in. Make sure you replace the 
+<localhost>
+ placeholder with the localhost URL you copied in the previous step.
+
+curl <localhost>
+
+A successful login outputs an HTML webpage, as shown in the following example:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="60;url=https://docs.microsoft.com/cli/azure/">
+    <title>Login successfully</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        code {
+            font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            display: inline-block;
+            background-color: rgb(242, 242, 242);
+            padding: 12px 16px;
+            margin: 8px 0px;
+        }
+    </style>
+</head>
+<body>
+    <h3>You have logged into Microsoft Azure!</h3>
+    <p>You can close this window, or we will redirect you to the <a href="https://docs.microsoft.com/cli/azure/">Azure CLI documentation</a> in 1 minute.</p>
+    <h3>Announcements</h3>
+    <p>[Windows only] Azure CLI is collecting feedback on using the <a href="https://learn.microsoft.com/windows/uwp/security/web-account-manager">Web Account Manager</a> (WAM) broker for the login experience.</p>
+    <p>You may opt-in to use WAM by running the following commands:</p>
+    <code>
+        az config set core.allow_broker=true<br>
+        az account clear<br>
+        az login
+    </code>
+</body>
+</html>
+
+Close the current terminal and open the original terminal. You should see a JSON list of your subscriptions.
+
+Copy the 
+id
+ field of the subscription you want to use.
+
+Set your subscription using the 
+az account set
+ command.
+
+az account set --subscription <subscription_id>
+
+In this tutorial, you deployed a Kubernetes cluster in AKS and configured 
+kubectl
+ to connect to the cluster. You learned how to:
+
+Deploy an AKS cluster that can authenticate to an ACR.
+
+Install the Kubernetes CLI, 
+kubectl
+.
+
+Configure 
+kubectl
+ to connect to your AKS cluster.
+
+In the next tutorial, you learn how to deploy Azure Container Storage on your cluster and create a generic ephemeral volume. If you're using Azure Developer CLI, or if you weren't able to use a storage optimized VM type due to quota issues, proceed directly to the 
+Deploy containerized application
+ tutorial.

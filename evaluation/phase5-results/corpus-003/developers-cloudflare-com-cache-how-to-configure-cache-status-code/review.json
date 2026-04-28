@@ -1,0 +1,106 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the default Edge Cache TTL for HTTP status codes 200, 206, and 301 when no cache-control directive or expires header is present?",
+      "answer": "120 minutes",
+      "supporting_sentences": [
+        "By default, Cloudflare caches certain HTTP response codes with the following Edge Cache TTL when a cache-control directive or expires response header are not present.",
+        "HTTP status code | Default TTL",
+        "200, 206, 301 | 120m"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the default Edge Cache TTL for HTTP status codes 200, 206, and 301 when no cache-control directive or expires header is present?",
+      "answer": "120 minutes",
+      "supporting_sentences": [
+        "By default, Cloudflare caches certain HTTP response codes with the following Edge Cache TTL when a cache-control directive or expires response header are not present.",
+        "HTTP status code | Default TTL",
+        "200, 206, 301 | 120m"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the maximum caching limit per file for Free, Pro, and Business Cloudflare customers?",
+      "answer": "512 MB per file",
+      "supporting_sentences": [
+        "The maximum caching limit for Free, Pro, and Business customers is 512 MB per file, and the maximum caching limit for Enterprise customers is 5 GB per file."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the maximum caching limit per file for Free, Pro, and Business Cloudflare customers?",
+      "answer": "512 MB per file",
+      "supporting_sentences": [
+        "The maximum caching limit for Free, Pro, and Business customers is 512 MB per file, and the maximum caching limit for Enterprise customers is 5 GB per file."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the valid values for the 'value' field when setting cache TTL by status code in a Cloudflare Cache Rule?",
+      "answer": "An integer value in seconds, 'no-store' (equivalent to -1), or 'no-cache' (equivalent to 0)",
+      "supporting_sentences": [
+        "value: An integer value that defines the duration an asset is valid in seconds or one of the following strings: no-store (equivalent to -1), no-cache (equivalent to 0)."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the valid values for the 'value' field when setting cache TTL by status code in a Cloudflare Cache Rule?",
+      "answer": "An integer value in seconds, 'no-store' (equivalent to -1), or 'no-cache' (equivalent to 0)",
+      "supporting_sentences": [
+        "value: An integer value that defines the duration an asset is valid in seconds or one of the following strings: no-store (equivalent to -1), no-cache (equivalent to 0)."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does Cloudflare handle the TTL for status code 304 if it is not explicitly set by the user?",
+      "answer": "It automatically sets it to match the TTL of status code 200 if the user has defined one for 200.",
+      "supporting_sentences": [
+        "If a TTL is not explicitly set for status code 304, we automatically set it to match the TTL of status code 200 (if the user has defined one for 200)."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does Cloudflare handle the TTL for status code 304 if it is not explicitly set by the user?",
+      "answer": "It automatically sets it to match the TTL of status code 200 if the user has defined one for 200.",
+      "supporting_sentences": [
+        "If a TTL is not explicitly set for status code 304, we automatically set it to match the TTL of status code 200 (if the user has defined one for 200)."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens if a user sets a TTL of 1 hour for status code 200 and 0 seconds for status code 304?",
+      "answer": "The asset will be cached for 1 hour, and after it expires, each subsequent request will trigger revalidation if the origin returns a 304.",
+      "supporting_sentences": [
+        "For example, if a user specifies a TTL of one hour for status 200 and 0 seconds (cache and always revalidate) for status 304, the asset will be cached for 1 hour. After it expires, we revalidate with the origin. If the origin returns a 304, each subsequent request will trigger revalidation."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens if a user sets a TTL of 1 hour for status code 200 and 0 seconds for status code 304?",
+      "answer": "The asset will be cached for 1 hour, and after it expires, each subsequent request will trigger revalidation if the origin returns a 304.",
+      "supporting_sentences": [
+        "For example, if a user specifies a TTL of one hour for status 200 and 0 seconds (cache and always revalidate) for status 304, the asset will be cached for 1 hour. After it expires, we revalidate with the origin. If the origin returns a 304, each subsequent request will trigger revalidation."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

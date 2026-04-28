@@ -1,0 +1,40 @@
+```json
+[
+    {
+        "question": "What is the purpose of the ClickHouse Cloud API?",
+        "answer": "The ClickHouse Cloud API is a REST API designed for developers to easily manage organizations and services on ClickHouse Cloud, including creating and managing services, provisioning API keys, and adding or removing members in an organization.",
+        "supporting_sentences": [
+            "The ClickHouse Cloud API is a REST API designed for developers to easily manage organizations and services on ClickHouse Cloud. Using our Cloud API, you can create and manage services, provision API keys, and add or remove members in your organization, and more."
+        ]
+    },
+    {
+        "question": "What is the rate limit for API requests per API key in ClickHouse Cloud?",
+        "answer": "Each API key has a limit of 10 requests over a 10-second window.",
+        "supporting_sentences": [
+            "Each API key has a limit of 10 requests over a 10-second window."
+        ]
+    },
+    {
+        "question": "What is the default number of replicas for services in the Scale and Enterprise tiers?",
+        "answer": "The number of replicas defaults to 3 for the Scale and Enterprise tiers.",
+        "supporting_sentences": [
+            "The number of replicas each service will be created with defaults to 3 for the Scale and Enterprise tiers, while it defaults to 1 for the Basic tier."
+        ]
+    },
+    {
+        "question": "What versioning system do the ClickHouse Terraform providers use?",
+        "answer": "Both providers use semantic versioning (MAJOR.MINOR.PATCH).",
+        "supporting_sentences": [
+            "Both providers use semantic versioning (MAJOR.MINOR.PATCH)."
+        ]
+    },
+    {
+        "question": "What should be done with the 'tier' field in the service creation POST request if an organization has been migrated to one of the new pricing plans?",
+        "answer": "The 'tier' field must be removed in the service creation POST request.",
+        "supporting_sentences": [
+            "If your organization has been migrated to one of the new pricing plans, and you use OpenAPI you will be required to remove the tier field in the service creation POST request.",
+            "The tier field has been removed from the service object as we no longer have service tiers."
+        ]
+    }
+]
+```

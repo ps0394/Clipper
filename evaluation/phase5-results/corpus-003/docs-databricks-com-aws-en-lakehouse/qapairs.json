@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What is a data lakehouse?",
+    "answer": "A data lakehouse is a data management system that combines the benefits of data lakes and data warehouses.",
+    "supporting_sentences": [
+      "A data lakehouse is a data management system that combines the benefits of data lakes and data warehouses."
+    ]
+  },
+  {
+    "question": "What are the two key technologies used in the Databricks lakehouse?",
+    "answer": "The two key technologies used in the Databricks lakehouse are Delta Lake and Unity Catalog.",
+    "supporting_sentences": [
+      "The Databricks lakehouse uses two additional key technologies:",
+      "Delta Lake: an optimized storage layer that supports ACID transactions and schema enforcement.",
+      "Unity Catalog: a unified, fine-grained governance solution for data and AI."
+    ]
+  },
+  {
+    "question": "What is the purpose of the medallion architecture in a data lakehouse?",
+    "answer": "The medallion architecture is a data design pattern that incrementally improves, enriches, and refines data as it moves through layers of staging and transformation.",
+    "supporting_sentences": [
+      "Data lakehouses often use a data design pattern that incrementally improves, enriches, and refines data as it moves through layers of staging and transformation. Each layer of the lakehouse can include one or more layers. This pattern is frequently referred to as a medallion architecture."
+    ]
+  },
+  {
+    "question": "What are some key tasks that can be performed in a lakehouse built on Databricks?",
+    "answer": "Key tasks include real-time data processing, data integration, schema evolution, data transformations, data analysis and reporting, machine learning and AI, data versioning and lineage, data governance, data sharing, and operational analytics.",
+    "supporting_sentences": [
+      "Some key tasks you can perform include:",
+      "Real-time data processing: Process streaming data in real-time for immediate analysis and action.",
+      "Data integration: Unify your data in a single system to enable collaboration and establish a single source of truth for your organization.",
+      "Schema evolution: Modify data schema over time to adapt to changing business needs without disrupting existing data pipelines.",
+      "Data transformations: Using Apache Spark and Delta Lake brings speed, scalability, and reliability to your data.",
+      "Data analysis and reporting: Run complex analytical queries with an engine optimized for data warehousing workloads.",
+      "Machine learning and AI: Apply advanced analytics techniques to all of your data. Use ML to enrich your data and support other workloads.",
+      "Data versioning and lineage: Maintain version history for datasets and track lineage to ensure data provenance and traceability.",
+      "Data governance: Use a single, unified system to control access to your data and perform audits.",
+      "Data sharing: Facilitate collaboration by allowing the sharing of curated data sets, reports, and insights across teams.",
+      "Operational analytics: Monitor data quality metrics, model quality metrics, and drift by using Data Quality Monitoring."
+    ]
+  },
+  {
+    "question": "What are the benefits of a data lakehouse compared to data lakes and data warehouses?",
+    "answer": "The data lakehouse provides open, direct access to data stored in standard data formats, indexing protocols optimized for machine learning and data science, low query latency, and high reliability for BI and advanced analytics.",
+    "supporting_sentences": [
+      "The data lakehouse combines the benefits of data lakes and data warehouses and provides:",
+      "Open, direct access to data stored in standard data formats.",
+      "Indexing protocols optimized for machine learning and data science.",
+      "Low query latency and high reliability for BI and advanced analytics."
+    ]
+  }
+]

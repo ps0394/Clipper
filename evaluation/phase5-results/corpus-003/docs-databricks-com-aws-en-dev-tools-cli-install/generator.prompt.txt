@@ -1,0 +1,552 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Install or update the Databricks CLI
+Document URL: https://docs.databricks.com/aws/en/dev-tools/cli/install
+Document profile: tutorial
+
+Document text:
+---
+Install or update the Databricks CLI
+
+This article describes how to install or update the Databricks CLI. See 
+Databricks CLI
+. To configure authentication for the Databricks CLI, see 
+Authentication for the Databricks CLI
+.
+
+Install
+​
+
+To install Databricks CLI version 0.205 or above:
+
+The Databricks CLI is also available from within the Databricks workspace user interface. See 
+Run Databricks CLI commands
+.
+
+Update
+​
+
+To update an earlier installation of Databricks CLI version 0.205 or above:
+
+Homebrew installation for Linux or macOS
+​
+
+For this installation option, you use 
+Homebrew
+ to automatically download and install the latest Databricks CLI executable release.
+
+From your terminal, just run the following two Homebrew commands to install the CLI:
+
+Bash
+brew tap databricks/tap
+brew 
+install
+ databricks
+
+Then continue with 
+Authentication for the Databricks CLI
+.
+
+If you are not sure whether you have Homebrew installed, or if the preceding Homebrew commands fail, follow these longer instructions:
+
+Check whether Homebrew is already installed by running the following command from a Linux shell prompt or macOS Terminal. If Homebrew is installed, the Homebrew version number is displayed:
+
+If Homebrew is not already installed, install it by running the following command:
+
+Bash
+/bin/bash 
+-c
+
+"
+$(
+curl
+
+-fsSL
+ https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+)
+"
+
+Then run the following command to verify the Homebrew installation, which displays the Homebrew version number:
+
+Use Homebrew to add the 
+databricks/homebrew-tap
+ repository in GitHub to your list of available Homebrew Tap repositories, by running the following command:
+
+Use Homebrew to instruct the 
+databricks/homebrew-tap
+ repository to download and install the Databricks CLI executable, by running the following command:
+
+Confirm whether the Databricks CLI is installed correctly. To do this, view the Databricks CLI executable's version by using the 
+-v
+ option or by running the 
+version
+ command:
+
+Bash
+databricks 
+-v
+databricks version
+
+If a version number of 0.205.0 or above is listed, the Databricks CLI is installed correctly.
+
+Continue with 
+Authentication for the Databricks CLI
+.
+
+WinGet installation for Windows
+​
+
+For this installation option, you use 
+winget
+ to automatically download and install the latest Databricks CLI executable release.
+
+From your Command Prompt, run the following two 
+winget
+ commands to install the CLI, and then restart your Command Prompt:
+
+Bash
+winget search databricks
+winget 
+install
+ Databricks.DatabricksCLI
+
+Confirm whether the Databricks CLI is installed correctly. To do this, view the Databricks CLI executable's version by using the 
+-v
+ option or by running the 
+version
+ command:
+
+Bash
+databricks 
+-v
+databricks version
+
+If the output is version 0.205.0 or above, the Databricks CLI is installed correctly.
+
+Continue with 
+Authentication for the Databricks CLI
+.
+
+Chocolatey installation for Windows
+​
+
+Installing the Databricks CLI with Chocolatey is 
+Experimental
+.
+
+For this installation option, you use 
+Chocolatey
+ to automatically download and install the latest Databricks CLI executable release.
+
+From your Command Prompt, run the following 
+choco
+ command to install the CLI:
+
+Bash
+choco 
+install
+ databricks-cli
+
+Confirm whether the Databricks CLI is installed correctly. To do this, view the Databricks CLI executable's version by using the 
+-v
+ option or by running the 
+version
+ command:
+
+Bash
+databricks 
+-v
+databricks version
+
+If the output is version 0.205.0 or above, the Databricks CLI is installed correctly.
+
+Continue with 
+Authentication for the Databricks CLI
+.
+
+curl installation for Linux, macOS, and Windows
+​
+
+For this installation option, you use 
+curl
+ to download and install the latest Databricks CLI executable release.
+
+For Windows, Databricks recommends that you use 
+Windows Subsystem for Linux (WSL)
+. You must also have 
+unzip
+ installed. For installation instructions, see your operating system's documentation. If you cannot use WSL, skip this procedure and use the Command Prompt or PowerShell to 
+install the Databricks CLI from source
+ instead.
+
+curl
+ must be installed. You can check whether 
+curl
+ is already installed by running the following command from a Linux shell prompt, macOS Terminal, or Bash on WSL. If 
+curl
+ is installed, the 
+curl
+ version number is displayed:
+
+If 
+curl
+ is not already installed, install it by following the instructions on the 
+curl
+
+Releases and Downloads
+ page for your operating system and architecture. To get your machine's architecture, see your operating system's documentation.
+
+Then run the following command to verify the 
+curl
+ installation, which displays the 
+curl
+ version number:
+
+Use 
+curl
+ to download and install the Databricks CLI executable by running the following command (note that you must specify the correct uppercase and lowercase characters for 
+-fsSL
+ on all operating systems):
+
+Bash
+curl
+
+-fsSL
+ https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh 
+|
+
+sh
+
+To view the script's contents before you run it, see the 
+install.sh
+ file in the Databricks CLI Setup repository in GitHub.
+
+For Windows, you should run this command as an administrator.
+
+For Linux and macOS, if an error message states that 
+/usr/local/bin
+ is not writable, then run the command again with 
+sudo
+.
+
+This command downloads and installs the Databricks CLI executable in the path 
+/usr/local/bin/databricks
+ on macOS and Linux, and 
+C:\Windows\databricks.exe
+ on Windows.
+
+If for some reason the Databricks CLI is already installed, the following error appears: “Target path 
+<path>
+ already exists.” To fix this, you must manually delete the Databricks CLI executable from the preceding path, and then run the 
+curl
+ command again.
+
+Confirm whether the Databricks CLI is installed correctly. To do this, view the Databricks CLI executable's version by using the 
+-v
+ option or by running the 
+version
+ command:
+
+Bash
+databricks 
+-v
+databricks version
+
+If the output is version 0.205.0 or above, the Databricks CLI is installed correctly.
+
+Continue with 
+Authentication for the Databricks CLI
+.
+
+Source installation for Linux, macOS, and Windows
+​
+
+For this installation option, you manually download a 
+.zip
+ file and then manually extract the Databricks CLI executable from the downloaded 
+.zip
+ file.
+
+Download onto your local development machine the latest Databricks CLI 
+.zip
+ file, as listed in the 
+Releases
+ section of the Databricks CLI repository in GitHub. The latest release has a 
+Latest
+ label next to it in the list of releases. The latest pre-release has a 
+Pre-release
+ label and is more suitable for experimentation and early adopters. The 
+.zip
+ file that you download from the 
+Assets
+ section for the release must match your development machine's operating system and architecture:
+
+To get your machine's architecture, see your operating system's documentation. For example:
+
+Linux: The terminal commands 
+uname -m
+, 
+lscpu
+, or 
+sudo lshw -c cpu
+.
+
+macOS: 
+Apple
+ icon menu > 
+About This Mac
+, or the Terminal command 
+uname -m
+.
+
+Windows: The Command Prompt or PowerShell command 
+echo %PROCESSOR_ARCHITECTURE%
+.
+
+If you need to verify the integrity of one of these 
+.zip
+ files, Databricks provides a checksum file named 
+databricks_cli_X.Y.Z_SHA256SUMS
+ in the same list as the 
+.zip
+ files. To run a checksum verification, see your operating system's documentation.
+
+Extract the contents of the downloaded 
+.zip
+ file. To extract the 
+.zip
+ file, see your operating system's documentation.
+
+In the extracted content, a folder appears with the same name as the 
+.zip
+ file. Inside of this folder is the Databricks CLI executable. You can leave the Databricks CLI executable there, or you can copy or move it to another location.
+
+Confirm whether the Databricks CLI is installed correctly. To do this, from a Linux shell prompt, macOS Terminal, or Windows Command Prompt, view the Databricks CLI executable's version by using the 
+-v
+ option or by running the 
+version
+ command:
+
+Bash
+databricks 
+-v
+databricks version
+
+If the output is version 0.205.0 or above, the Databricks CLI is installed correctly.
+
+Continue with 
+Authentication for the Databricks CLI
+.
+
+Homebrew update for Linux or macOS
+​
+
+For this update option, you use 
+Homebrew
+ to automatically update a previous installation of Databricks CLI version 0.205 or above to the latest version.
+
+From a Linux shell prompt or macOS Terminal, use Homebrew to download and update to the latest version of the Databricks CLI executable by running the following command:
+
+Confirm whether the Databricks CLI is updated correctly. To do this, view the Databricks CLI executable's version by using the 
+-v
+ option or by running the 
+version
+ command:
+
+Bash
+databricks 
+-v
+databricks version
+
+If the output is version 0.205.0 or above, the Databricks CLI is installed correctly.
+
+For a list of Databricks CLI versions, see the 
+Releases
+ section of the Databricks CLI repository in GitHub. The latest release has a 
+Latest
+ label next to it in the list of releases.
+
+To downgrade the version of the Databricks CLI, see the instructions in the 
+databricks/homebrew-tap
+ repository in GitHub.
+
+WinGet update for Windows
+​
+
+For this update option, you use 
+winget
+ to automatically download and update a previous version of Databricks CLI version 0.205 or above to the latest version.
+
+From your Command Prompt, use 
+winget
+ to download and update to the latest version of the Databricks CLI executable by running the following command:
+
+Bash
+winget upgrade Databricks.DatabricksCLI
+
+Confirm whether the Databricks CLI is installed correctly. To do this, view the Databricks CLI executable's version by using the 
+-v
+ option or by running the 
+version
+ command:
+
+Bash
+databricks 
+-v
+databricks version
+
+If the output is version 0.205.0 or above, the Databricks CLI is installed correctly.
+
+For a list of Databricks CLI versions, see the 
+Releases
+ section of the Databricks CLI repository in GitHub. The latest release has a 
+Latest
+ label next to it in the list of releases.
+
+Chocolatey update for Windows
+​
+
+Updating the Databricks CLI with Chocolatey is 
+Experimental
+.
+
+For this update option, you use 
+Chocolatey
+ to automatically download and update a previous version of Databricks CLI version 0.205 or above to the latest version.
+
+From your Command Prompt, use 
+choco
+ to download and update to the latest version of the Databricks CLI executable by running the following command:
+
+Bash
+choco upgrade databricks-cli
+
+Confirm whether the Databricks CLI is installed correctly. To do this, view the Databricks CLI executable's version by using the 
+-v
+ option or by running the 
+version
+ command:
+
+Bash
+databricks 
+-v
+databricks version
+
+If the output is version 0.205.0 or above, the Databricks CLI is installed correctly.
+
+For a list of Databricks CLI versions, see the 
+Releases
+ section of the Databricks CLI repository in GitHub. The latest release has a 
+Latest
+ label next to it in the list of releases.
+
+curl update for Linux, macOS, and Windows
+​
+
+For this update option, you use 
+curl
+ to automatically download and update a previous installation of Databricks CLI version 0.205 or above to the latest version.
+
+For Windows, Databricks recommends that you use 
+Windows Subsystem for Linux (WSL)
+. You must have 
+unzip
+ installed. For installation instructions, see your operating system's documentation. If you cannot use WSL, you should skip this procedure and use the Command Prompt or PowerShell to 
+update the Databricks CLI from source
+ instead.
+
+Delete the existing installation of the Databricks CLI executable from the path 
+/usr/local/bin/databricks
+ on macOS and Linux, or 
+C:\Windows\databricks.exe
+ on Windows.
+
+From a Linux shell prompt, macOS Terminal, or Windows Command Prompt, use 
+curl
+ to download and install the latest version of the Databricks CLI executable by running the following command (note that you must specify the correct uppercase and lowercase characters for 
+-fsSL
+):
+
+Bash
+curl
+
+-fsSL
+ https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh 
+|
+
+sh
+
+To view the script's contents before you run it, see the 
+install.sh
+ file in the Databricks CLI Setup repository in GitHub.
+
+For Windows, you should run this command as an administrator.
+
+For Linux and macOS, if an error message states that 
+/usr/local/bin
+ is not writable, then run the command again with 
+sudo
+.
+
+This command downloads and installs the Databricks CLI executable in the path 
+/usr/local/bin/databricks
+ on macOS and Linux, and 
+C:\Windows\databricks.exe
+ on Windows.
+
+If the following error appears, you must manually delete the Databricks CLI executable from the preceding path, and then run the 
+curl
+ command again: “Target path 
+<path>
+ already exists.”
+
+Confirm whether the Databricks CLI is updated correctly. To do this, from your terminal, view the Databricks CLI executable's version by using the 
+-v
+ option or by running the 
+version
+ command:
+
+Bash
+databricks 
+-v
+databricks version
+
+If the output is version 0.205.0 or above, the Databricks CLI is installed correctly.
+
+For a list of Databricks CLI versions, see the 
+Releases
+ section of the Databricks CLI repository in GitHub. The latest release has a 
+Latest
+ label next to it in the list of releases.
+
+Source update for Linux, macOS, and Windows
+​
+
+For this update option, you manually download a 
+.zip
+ file and then manually extract the Databricks CLI executable from the downloaded 
+.zip
+ file.
+
+Optionally, delete the Databricks CLI executable, the 
+.zip
+ file, and the 
+.zip
+ file's extracted folder, from any previous manual source install procedure.
+
+Continue by following the instructions in 
+Source installation for Linux, macOS, and Windows
+.
+---

@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "SELECT queries perform data retrieval.",
+    "run_index": 0,
+    "tokens_in": 2202,
+    "tokens_out": 7
+  },
+  {
+    "pair_index": 1,
+    "answer": "*",
+    "run_index": 0,
+    "tokens_in": 2207,
+    "tokens_out": 2
+  },
+  {
+    "pair_index": 2,
+    "answer": "Dynamic column selection (also known as a COLUMNS expression) allows you to match some columns in a result with a re2 regular expression. You can use multiple COLUMNS expressions in a query and apply functions to them. Each column returned by the COLUMNS expression is passed to the function as a separate argument. If COLUMNS does not match any columns and is the only expression in SELECT, ClickHouse throws an exception. Columns that matched the COLUMNS expression can have different data types.",
+    "run_index": 0,
+    "tokens_in": 2203,
+    "tokens_out": 98
+  },
+  {
+    "pair_index": 3,
+    "answer": "Minimums and maximums are calculated for numeric types, dates, and dates with times, and extra two rows are output in certain formats, separate from the other rows.",
+    "run_index": 0,
+    "tokens_in": 2210,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 4,
+    "answer": "APPLY, EXCEPT, REPLACE. The REPLACE modifier specifies one or more expression aliases, each alias must match a column name from the SELECT * statement, and in the output column list, the column that matches the alias is replaced by the expression in that REPLACE. This modifier does not change the names or order of columns, but it can change the value and the value type.",
+    "run_index": 0,
+    "tokens_in": 2211,
+    "tokens_out": 80
+  }
+]

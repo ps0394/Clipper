@@ -1,0 +1,39 @@
+[
+  {
+    "question": "What is the highest-level function in Python's C API for executing a string of Python code in the __main__ module context?",
+    "answer": "PyRun_SimpleString()",
+    "supporting_sentences": [
+      "The highest-level function to do this is PyRun_SimpleString() which takes a single string argument to be executed in the context of the module __main__ and returns 0 for success and -1 when an exception occurred (including SyntaxError)."
+    ]
+  },
+  {
+    "question": "How can you call an arbitrary method of a Python object using the C API?",
+    "answer": "Using the PyObject_CallMethod() function.",
+    "supporting_sentences": [
+      "The PyObject_CallMethod() function can be used to call an arbitrary method of an object.",
+      "The parameters are the object, the name of the method to call, a format string like that used with Py_BuildValue(), and the argument values:",
+      "PyObject *PyObject_CallMethod(PyObject *object, const char *method_name, const char *arg_format, ...);"
+    ]
+  },
+  {
+    "question": "What Python class is recommended for redirecting standard output to capture printed text?",
+    "answer": "io.StringIO",
+    "supporting_sentences": [
+      "The easiest way to do this is to use the io.StringIO class:"
+    ]
+  },
+  {
+    "question": "What command should be added to a .gdbinit file to set a breakpoint in a dynamically loaded Python extension?",
+    "answer": "br _PyImport_LoadDynamicModule",
+    "supporting_sentences": [
+      "In your .gdbinit file (or interactively), add the command: br _PyImport_LoadDynamicModule"
+    ]
+  },
+  {
+    "question": "What package must be installed on Debian-based systems to compile Python extensions?",
+    "answer": "python3-dev",
+    "supporting_sentences": [
+      "For Debian, run apt-get install python3-dev."
+    ]
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "question": "What is the purpose of classes in Python?",
+    "answer": "Classes provide a means of bundling data and functionality together.",
+    "supporting_sentences": [
+      "Classes provide a means of bundling data and functionality together."
+    ]
+  },
+  {
+    "question": "What are the two kinds of operations supported by class objects in Python?",
+    "answer": "Class objects support attribute references and instantiation.",
+    "supporting_sentences": [
+      "Class objects support two kinds of operations: attribute references and instantiation."
+    ]
+  },
+  {
+    "question": "How does Python handle private instance variables?",
+    "answer": "Python does not have private instance variables, but a name prefixed with an underscore (e.g., _spam) should be treated as a non-public part of the API.",
+    "supporting_sentences": [
+      "\u201cPrivate\u201d instance variables that cannot be accessed except from inside an object don\u2019t exist in Python.",
+      "However, there is a convention that is followed by most Python code: a name prefixed with an underscore (e.g. _spam) should be treated as a non-public part of the API (whether it is a function, a method or a data member)."
+    ]
+  },
+  {
+    "question": "What happens when a class definition is entered in Python?",
+    "answer": "When a class definition is entered, a new namespace is created, and used as the local scope.",
+    "supporting_sentences": [
+      "When a class definition is entered, a new namespace is created, and used as the local scope \u2014 thus, all assignments to local variables go into this new namespace."
+    ]
+  },
+  {
+    "question": "What is the purpose of the `nonlocal` statement in Python?",
+    "answer": "The `nonlocal` statement indicates that particular variables live in an enclosing scope and should be rebound there.",
+    "supporting_sentences": [
+      "To rebind variables found outside of the innermost scope, the nonlocal statement can be used; if not declared nonlocal, those variables are read-only (an attempt to write to such a variable will simply create a new local variable in the innermost scope, leaving the identically named outer variable unchanged).",
+      "The nonlocal statement indicates that particular variables live in an enclosing scope and should be rebound there."
+    ]
+  }
+]

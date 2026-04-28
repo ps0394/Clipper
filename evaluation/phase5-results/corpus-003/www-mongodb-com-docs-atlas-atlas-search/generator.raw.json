@@ -1,0 +1,42 @@
+```json
+[
+    {
+        "question": "What is MongoDB Search designed to eliminate the need for?",
+        "answer": "A separate search system alongside your database.",
+        "supporting_sentences": [
+            "MongoDB Search is an embedded full-text search that gives you a seamless, scalable experience for building relevance-based app features and eliminates the need to run a separate search system alongside your database."
+        ]
+    },
+    {
+        "question": "How do MongoDB Search queries differ from traditional database queries?",
+        "answer": "Search queries meet more general information needs and can be used for simple text matching, similar phrases, number or date ranges, and regular expressions or wildcards, unlike traditional database queries that must follow a strict syntax.",
+        "supporting_sentences": [
+            "Search queries differ from traditional database queries, as they meet more general information needs. Where a database query must follow a strict syntax, you can use search queries for simple text matching. You can also search for similar phrases, number or date ranges, and regular expressions or wildcards."
+        ]
+    },
+    {
+        "question": "What are the two aggregation pipeline stages provided by MongoDB Search?",
+        "answer": "`$search` and `$searchMeta`.",
+        "supporting_sentences": [
+            "MongoDB Search provides $search and $searchMeta stages, which you can use with other aggregation pipeline stages in your query pipeline."
+        ]
+    },
+    {
+        "question": "What are the three steps involved in the process an analyzer facilitates when transforming data into tokens?",
+        "answer": "Tokenization, normalization, and stemming.",
+        "supporting_sentences": [
+            "An analyzer facilitates this process through steps including:",
+            "Tokenization: Breaks words in a string into indexable tokens, such as splitting a sentence by whitespace and punctuation.",
+            "Normalization: Organizes data for consistent representation and easier analysis, such as transforming text to lowercase or removing unwanted words called stop words.",
+            "Stemming: Reduces words to their root form by ignoring suffixes, prefixes, and plural word forms."
+        ]
+    },
+    {
+        "question": "How does the relevancy score determine the order of query results in MongoDB Search?",
+        "answer": "Documents score higher if the query term appears frequently in a document and lower if the query term appears across many documents in the collection.",
+        "supporting_sentences": [
+            "Each document in the query results receives a relevancy score that orders results from highest to lowest relevance. In the simplest form of scoring, documents score higher if the query term appears frequently in a document and lower if the query term appears across many documents in the collection."
+        ]
+    }
+]
+```

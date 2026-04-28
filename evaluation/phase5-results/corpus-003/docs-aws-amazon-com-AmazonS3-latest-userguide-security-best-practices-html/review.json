@@ -1,0 +1,108 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the default setting for S3 Object Ownership, and what does it enforce?",
+      "answer": "The default setting for S3 Object Ownership is 'bucket owner enforced,' which disables all ACLs and ensures the bucket owner owns all objects in the bucket and manages access exclusively using access management policies.",
+      "supporting_sentences": [
+        "S3 Object Ownership is an Amazon S3 bucket-level setting that you can use to control ownership of objects uploaded to your bucket and to disable or enable ACLs. By default, Object Ownership is set to the bucket owner enforced setting and all ACLs are disabled.",
+        "When ACLs are disabled, the bucket owner owns all the objects in the bucket and manages access to data exclusively using access management policies."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the default setting for S3 Object Ownership, and what does it enforce?",
+      "answer": "The default setting for S3 Object Ownership is 'bucket owner enforced,' which disables all ACLs and ensures the bucket owner owns all objects in the bucket and manages access exclusively using access management policies.",
+      "supporting_sentences": [
+        "S3 Object Ownership is an Amazon S3 bucket-level setting that you can use to control ownership of objects uploaded to your bucket and to disable or enable ACLs. By default, Object Ownership is set to the bucket owner enforced setting and all ACLs are disabled.",
+        "When ACLs are disabled, the bucket owner owns all the objects in the bucket and manages access to data exclusively using access management policies."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens to PUT requests that specify ACLs other than 'bucket-owner-full-control' after ACLs are disabled for an S3 bucket?",
+      "answer": "PUT requests that contain other ACLs (e.g., custom grants to certain AWS accounts) fail and return an HTTP status code 400 (Bad Request) with the error code 'AccessControlListNotSupported.'",
+      "supporting_sentences": [
+        "After you disable ACLs, the following behaviors occur: Your bucket accepts only PUT requests that do not specify an ACL or PUT requests with bucket owner full control ACLs.",
+        "PUT requests that contain other ACLs (for example, custom grants to certain AWS accounts) fail and return an HTTP status code 400 (Bad Request) with the error code AccessControlListNotSupported."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens to PUT requests that specify ACLs other than 'bucket-owner-full-control' after ACLs are disabled for an S3 bucket?",
+      "answer": "PUT requests that contain other ACLs (e.g., custom grants to certain AWS accounts) fail and return an HTTP status code 400 (Bad Request) with the error code 'AccessControlListNotSupported.'",
+      "supporting_sentences": [
+        "After you disable ACLs, the following behaviors occur: Your bucket accepts only PUT requests that do not specify an ACL or PUT requests with bucket owner full control ACLs.",
+        "PUT requests that contain other ACLs (for example, custom grants to certain AWS accounts) fail and return an HTTP status code 400 (Bad Request) with the error code AccessControlListNotSupported."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the three AWS Config managed rules mentioned for detecting public access or misconfigurations in Amazon S3 buckets?",
+      "answer": "The three AWS Config managed rules mentioned are: 's3-bucket-public-read-prohibited,' 's3-bucket-public-write-prohibited,' and 's3-bucket-ssl-requests-only.'",
+      "supporting_sentences": [
+        "Consider implementing ongoing detective controls by using the s3-bucket-public-read-prohibited and s3-bucket-public-write-prohibited managed AWS Config Rules.",
+        "Also consider implementing ongoing detective controls by using the s3-bucket-ssl-requests-only managed AWS Config rule."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the three AWS Config managed rules mentioned for detecting public access or misconfigurations in Amazon S3 buckets?",
+      "answer": "The three AWS Config managed rules mentioned are: 's3-bucket-public-read-prohibited,' 's3-bucket-public-write-prohibited,' and 's3-bucket-ssl-requests-only.'",
+      "supporting_sentences": [
+        "Consider implementing ongoing detective controls by using the s3-bucket-public-read-prohibited and s3-bucket-public-write-prohibited managed AWS Config Rules.",
+        "Also consider implementing ongoing detective controls by using the s3-bucket-ssl-requests-only managed AWS Config rule."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What error is returned when a request specifies SSE-C encryption for a bucket that has blocked SSE-C?",
+      "answer": "The request is rejected with an HTTP 403 AccessDenied error.",
+      "supporting_sentences": [
+        "When SSE-C is blocked for a bucket, any PutObject, CopyObject, PostObject, or Multipart Upload or replication requests that specify SSE-C encryption will be rejected with an HTTP 403 AccessDenied error."
+      ]
+    },
+    "edited_pair": {
+      "question": "What error is returned when a request specifies SSE-C encryption for a bucket that has blocked SSE-C?",
+      "answer": "The request is rejected with an HTTP 403 AccessDenied error.",
+      "supporting_sentences": [
+        "When SSE-C is blocked for a bucket, any PutObject, CopyObject, PostObject, or Multipart Upload or replication requests that specify SSE-C encryption will be rejected with an HTTP 403 AccessDenied error."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the default encryption configuration for new objects uploaded to an Amazon S3 bucket?",
+      "answer": "The default encryption configuration for new objects uploaded to an Amazon S3 bucket is server-side encryption with Amazon S3 managed keys (SSE-S3).",
+      "supporting_sentences": [
+        "All Amazon S3 buckets have encryption configured by default, and all new objects that are uploaded to an S3 bucket are automatically encrypted at rest. Server-side encryption with Amazon S3 managed keys (SSE-S3) is the default encryption configuration for every bucket in Amazon S3."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the default encryption configuration for new objects uploaded to an Amazon S3 bucket?",
+      "answer": "The default encryption configuration for new objects uploaded to an Amazon S3 bucket is server-side encryption with Amazon S3 managed keys (SSE-S3).",
+      "supporting_sentences": [
+        "All Amazon S3 buckets have encryption configured by default, and all new objects that are uploaded to an S3 bucket are automatically encrypted at rest. Server-side encryption with Amazon S3 managed keys (SSE-S3) is the default encryption configuration for every bucket in Amazon S3."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

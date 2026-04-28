@@ -1,0 +1,382 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Working with object metadata
+Document URL: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html
+Document profile: article
+
+Document text:
+---
+There are two kinds of object metadata in Amazon S3: 
+system-defined metadata
+
+    and 
+user-defined metadata
+. System-defined metadata includes metadata such
+    as the object's creation date, size, and storage class. User-defined metadata is metadata that
+    you can choose to set at the time that you upload an object. This user-defined metadata is a set
+    of name-value pairs. For more information, see 
+System-defined object metadata
+ and 
+User-defined object metadata
+. 
+When you create an object, you specify the 
+object key
+ (or
+
+key name
+), which uniquely identifies the object in an Amazon S3
+    bucket. For more information, see 
+Naming Amazon S3 objects
+. You
+    can also set 
+user-defined metadata
+ in Amazon S3 at the time that
+    you upload the object. 
+After you upload the object, you can't modify this user-defined metadata. The only way to
+    modify this metadata is to make a copy of the object and set the metadata. For more information
+    about editing metadata by using the Amazon S3 console, see 
+Editing object metadata in the Amazon S3 console
+. 
+
+Query your metadata and accelerate data discovery with S3 Metadata
+
+To easily find, store, and query metadata for your S3 objects, you can use S3 Metadata.
+      With S3 Metadata, you can quickly prepare data for use in business analytics, content
+      retrieval, artificial intelligence and machine learning (AI/ML) model training, and more. 
+
+S3 Metadata accelerates data discovery by automatically capturing metadata for the objects
+    in your general purpose buckets and storing it in read-only, fully managed Apache
+      Iceberg tables that you can query. These read-only tables are called 
+metadata tables
+. As objects are added to, updated, and removed from
+    your general purpose buckets, S3 Metadata automatically refreshes the corresponding metadata
+    tables to reflect the latest changes.
+By default, S3 Metadata provides 
+system-defined object
+      metadata
+, such as an object's creation time and storage class, and custom metadata,
+    such as tags and 
+user-defined metadata
+ that was included
+    during object upload. S3 Metadata also provides event metadata, such as when an object is
+    updated or deleted, and the AWS account that made the request.
+Metadata tables are stored in S3 table buckets, which provide storage that's optimized for
+    tabular data. To query your metadata, you can integrate your table bucket with AWS analytics
+    services, such as Amazon Athena, Amazon Redshift, and Amazon Quick. 
+For more information about S3 Metadata, see 
+Discovering your data with S3 Metadata tables
+.
+
+For each object stored in a bucket, Amazon S3 maintains a set of system metadata. Amazon S3
+      processes this system metadata as needed. For example, Amazon S3 maintains object-creation date and
+      size metadata, using this information as part of object management. 
+
+There are two categories of system metadata: 
+
+System controlled
+ – Metadata such as the
+          object-creation date is system controlled, which means that only Amazon S3 can modify the date value. 
+
+User controlled
+ – Other system metadata,
+          such as the storage class configured for the object and whether the object has server-side
+          encryption enabled, are examples of system metadata whose values you control. If your
+          bucket is configured as a website, sometimes you might want to redirect a page request
+          either to another page or an external URL. In this case, a webpage is an object in your
+          bucket. Amazon S3 stores the page redirect value as system metadata, which you can control. 
+
+When you create objects, you can configure the values of these system metadata
+          items or update the values when you need to. For more information about storage classes,
+          see 
+Understanding and managing Amazon S3 storage classes
+. 
+
+Amazon S3 uses AWS KMS keys to encrypt your Amazon S3 objects. AWS KMS encrypts only the object
+          data. The checksum and the specified algorithm are stored as part of the object's
+          metadata. If server-side encryption is requested for the object, then the checksum is
+          stored in encrypted form. For more information about server-side encryption, see 
+Protecting data with encryption
+. 
+
+The 
+PUT
+ request header is limited to 8 KB in size. Within the
+
+PUT
+ request header, the system-defined metadata is limited to 2 KB in size.
+        The size of system-defined metadata is measured by taking the sum of the number of bytes in
+        the US-ASCII encoding of each key and value. 
+
+The following table provides a list of system-defined metadata and whether you can
+          update it.
+
+Name
+
+Description
+
+Can user modify the value?
+
+Date
+
+The current date and time.
+
+No
+
+Cache-Control
+
+A general header field used to specify caching policies.
+
+Yes
+
+Content-Disposition
+
+Object presentational information.
+
+Yes
+
+Content-Encoding
+
+The content encodings (like compression) that have been applied to the object's data
+
+Yes
+
+Content-Length
+
+The object size in bytes.
+
+No
+
+Content-Type
+
+The object type.
+
+Yes
+
+Last-Modified
+
+The object creation date or the last modified date, whichever is the latest. For
+                multipart uploads, the object creation date is the date of initiation of the
+                multipart upload.
+
+No
+
+ETag
+
+An entity tag (ETag) that represents a specific version of an object. For objects
+              that are not uploaded as a multipart upload and are either unencrypted or encrypted by
+              server-side encryption with Amazon S3 managed keys (SSE-S3), the ETag is an MD5 digest of
+              the data.
+
+No
+
+x-amz-server-side-encryption
+
+A header that indicates whether server-side encryption is enabled for the object,
+              and whether that encryption is using the AWS Key Management Service (AWS KMS) keys (SSE-KMS) or using
+              Amazon S3 managed encryption keys (SSE-S3). For more information, see 
+Protecting data with server-side encryption
+. 
+
+Yes
+
+x-amz-checksum-crc64nvme
+, 
+x-amz-checksum-crc32
+, 
+x-amz-checksum-crc32c
+,
+
+x-amz-checksum-sha1
+, 
+x-amz-checksum-sha256
+
+Headers that contain the checksum or digest of the object. At most, one of these
+              headers will be set at a time, depending on the checksum algorithm that you instruct
+              Amazon S3 to use. For more information about choosing the checksum algorithm, see 
+Checking object integrity in Amazon S3
+.
+
+No
+
+x-amz-checksum-type
+
+The checksum type, which determines how part-level checksums are combined to
+              create an object-level checksum for multipart objects. 
+
+Yes
+
+x-amz-version-id
+
+The object version. When you enable versioning on a bucket, Amazon S3 assigns a
+              version ID to objects added to the bucket. For more information, see 
+Retaining multiple versions of objects with S3 Versioning
+.
+
+No
+
+x-amz-delete-marker
+
+A Boolean marker that indicates whether the object is a delete marker. This
+              marker is used only in buckets that have versioning enabled, 
+
+No
+
+x-amz-storage-class
+
+The storage class used for storing the object. For more information, see 
+Understanding and managing Amazon S3 storage classes
+.
+
+Yes
+
+x-amz-website-redirect-location
+
+ A header that redirects requests for
+              the associated object to another object in the same bucket or to an external URL. For
+              more information, see 
+(Optional) Configuring a webpage redirect
+.
+
+Yes
+
+x-amz-server-side-encryption-aws-kms-key-id
+
+A header that indicates the ID of the AWS KMS symmetric encryption KMS key that
+              was used to encrypt the object. This header is used only when the
+
+x-amz-server-side-encryption
+ header is present and has the value of
+
+aws:kms
+.
+
+Yes
+
+x-amz-server-side-encryption-customer-algorithm
+
+A header that indicates whether server-side encryption with customer-provided
+              encryption keys (SSE-C) is enabled. For more information, see 
+Using server-side encryption with customer-provided keys (SSE-C)
+. 
+
+Yes
+
+x-amz-tagging
+
+The tag-set for the object. The tag-set must be encoded as URL Query
+              parameters.
+
+Yes
+
+When uploading an object, you can also assign metadata to the object. You provide this
+      optional information as a name-value (key-value) pair when you send a 
+PUT
+ or
+
+POST
+ request to create the object. When you upload objects using the REST API,
+      the optional user-defined metadata names must begin with 
+x-amz-meta-
+ to
+      distinguish them from other HTTP headers. When you retrieve the object using the REST API,
+      this prefix is returned. When you upload objects using the SOAP API, the prefix is not
+      required. When you retrieve the object using the SOAP API, the prefix is removed, regardless
+      of which API you used to upload the object. 
+
+        SOAP APIs for Amazon S3 are not available for new customers, and are approaching End of Life (EOL) on August 31, 2025. We recommend that you use either the REST API or the AWS SDKs.
+
+When metadata is retrieved through the REST API, Amazon S3 combines headers that have the
+      same name (ignoring case) into a comma-delimited list. If some metadata contains unprintable
+      characters, it is not returned. Instead, the 
+x-amz-missing-meta
+ header is
+      returned with a value of the number of unprintable metadata entries. The
+
+HeadObject
+ action retrieves metadata from an object without returning the
+      object itself. This operation is useful if you're only interested in an object's metadata. To
+      use 
+HEAD
+, you must have 
+READ
+ access to the object. For more
+      information, see 
+HeadObject
+ in the 
+ Amazon Simple Storage Service API Reference
+.
+
+User-defined metadata is a set of key-value pairs. Amazon S3 stores user-defined metadata keys in lowercase.
+
+Amazon S3 allows arbitrary Unicode characters in your metadata values.
+
+To avoid issues related to the presentation of these metadata values, you should
+      conform to using US-ASCII characters when using REST and UTF-8 when using SOAP or
+      browser-based uploads through 
+POST
+.
+
+When using non-US-ASCII characters in your metadata values, the provided Unicode
+      string is examined for non-US-ASCII characters. Values of such headers are character decoded
+      as per 
+RFC 2047
+ before
+      storing and encoded as per 
+RFC
+        2047
+ to make them mail-safe before returning. If the string contains only US-ASCII
+      characters, it is presented as is.
+
+The following is an example.
+
+PUT /Key HTTP/1.1
+Host: 
+amzn-s3-demo-bucket
+.s3.amazonaws.com
+x-amz-meta-nonascii: ÄMÄZÕÑ S3
+
+HEAD /Key HTTP/1.1
+Host: 
+amzn-s3-demo-bucket
+.s3.amazonaws.com
+x-amz-meta-nonascii: =?UTF-8?B?w4PChE3Dg8KEWsODwpXDg8KRIFMz?=
+
+PUT /Key HTTP/1.1
+Host: 
+amzn-s3-demo-bucket
+.s3.amazonaws.com
+x-amz-meta-ascii: AMAZONS3
+
+HEAD /Key HTTP/1.1
+Host: 
+amzn-s3-demo-bucket
+.s3.amazonaws.com
+x-amz-meta-ascii: AMAZONS3
+
+The 
+PUT
+ request header is limited to 8 KB in size. Within the
+
+PUT
+ request header, the user-defined metadata is limited to 2 KB in size. The
+        size of user-defined metadata is measured by taking the sum of the number of bytes in the
+        UTF-8 encoding of each key and value. 
+
+For information about changing the metadata of your object after it has been uploaded
+      by creating a copy of the object, modifying it, and replacing the old object, or creating a
+      new version, see 
+Editing object metadata in the Amazon S3 console
+.
+---

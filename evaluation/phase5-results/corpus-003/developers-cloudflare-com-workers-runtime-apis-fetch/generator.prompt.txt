@@ -1,0 +1,268 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Fetch · Cloudflare Workers docs
+Document URL: https://developers.cloudflare.com/workers/runtime-apis/fetch/
+Document profile: reference
+
+Document text:
+---
+The 
+Fetch API
+ ↗
+ provides an interface for asynchronously fetching resources via HTTP requests inside of a Worker.
+
+async
+
+scheduled
+(
+controller
+,
+
+env
+,
+
+ctx
+)
+
+{
+
+return
+
+await
+
+fetch
+(
+"https://example.com"
+,
+
+{
+
+"X-Source"
+:
+
+"Cloudflare-Workers"
+,
+
+Service Workers are deprecated
+Service Workers are deprecated, but still supported. We recommend using 
+Module Workers
+ instead. New features may not be supported for Service Workers.
+addEventListener
+(
+"fetch"
+,
+
+(
+event
+)
+
+=>
+
+{
+
+// NOTE: can’t use fetch here, as we’re not in an async scope yet
+
+event
+.
+respondWith
+(
+eventHandler
+(
+event
+))
+;
+async
+
+function
+
+eventHandler
+(
+event
+)
+
+{
+
+// fetch can be awaited here since `event.respondWith()` waits for the Promise it receives to settle
+
+const
+
+resp
+
+=
+
+await
+
+fetch
+(
+event
+.
+request
+)
+;
+
+from
+ workers 
+import
+ WorkerEntrypoint
+,
+ Response
+,
+ fetch
+class
+
+Default
+(
+WorkerEntrypoint
+):
+
+async
+
+def
+
+scheduled
+(
+self
+,
+
+controller
+,
+
+env
+,
+
+ctx
+):
+
+return
+
+await
+
+fetch
+(
+"https://example.com"
+,
+
+headers
+=
+{
+"X-Source"
+:
+
+"Cloudflare-Workers"
+})
+
+fetch(resource, options optional)
+ : Promise
+<Response>
+
+Fetch returns a promise to a Response.
+
+How the 
+Accept-Encoding
+ header is handled
+
+When making a subrequest with the 
+fetch()
+ API, you can specify which forms of compression to prefer that the server will respond with (if the server supports it) by including the 
+Accept-Encoding
+ ↗
+ header.
+
+Workers supports both the gzip and brotli compression algorithms. Usually it is not necessary to specify 
+Accept-Encoding
+ or 
+Content-Encoding
+ headers in the Workers Runtime production environment – brotli or gzip compression is automatically requested when fetching from an origin and applied to the response when returning data to the client, depending on the capabilities of the client and origin server.
+
+To support requesting brotli from the origin, you must enable the 
+brotli_content_encoding
+ compatibility flag in your Worker. Soon, this compatibility flag will be enabled by default for all Workers past an upcoming compatibility date.
+
+One scenario where the Accept-Encoding header is useful is for passing through compressed data from a server to the client, where the Accept-Encoding allows the worker to directly receive the compressed data stream from the server without it being decompressed beforehand. As long as you do not read the body of the compressed response prior to returning it to the client and keep the 
+Content-Encoding
+ header intact, it will "pass through" without being decompressed and then recompressed again. This can be helpful when using Workers in front of origin servers or when fetching compressed media assets, to ensure that the same compression used by the origin server is used in the response that your Worker returns.
+
+In addition to a change in the content encoding, recompression is also needed when a response uses an encoding not supported by the client. As an example, when a Worker requests either brotli or gzip as the encoding but the client only supports gzip, recompression will still be needed if the server returns brotli-encoded data to the server (and will be applied automatically). Note that this behavior may also vary based on the 
+compression rules
+, which can be used to configure what compression should be applied for different types of data on the server side.
+
+// Accept brotli or gzip compression
+
+const
+
+headers
+
+=
+
+new
+
+Headers
+(
+{
+
+"Accept-Encoding"
+:
+
+"br, gzip"
+,
+
+let
+
+response
+
+=
+
+await
+
+fetch
+(
+"https://developers.cloudflare.com"
+,
+
+{
+
+// As long as the original response body is returned and the Content-Encoding header is
+
+// preserved, the same encoded data will be returned without needing to be compressed again.
+
+return
+
+new
+
+Response
+(
+response
+.
+body
+,
+
+{
+
+statusText
+:
+
+response
+.
+statusText
+,
+
+headers
+:
+
+response
+.
+headers
+,
+---

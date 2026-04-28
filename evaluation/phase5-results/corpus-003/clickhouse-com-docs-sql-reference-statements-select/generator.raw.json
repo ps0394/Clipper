@@ -1,0 +1,40 @@
+```json
+[
+    {
+        "question": "What is the purpose of the SELECT query in ClickHouse?",
+        "answer": "SELECT queries perform data retrieval. By default, the requested data is returned to the client, while in conjunction with INSERT INTO it can be forwarded to a different table.",
+        "supporting_sentences": [
+            "SELECT queries perform data retrieval. By default, the requested data is returned to the client, while in conjunction with INSERT INTO it can be forwarded to a different table."
+        ]
+    },
+    {
+        "question": "What symbol can be used to include all columns in the result of a SELECT query?",
+        "answer": "The asterisk (*) symbol.",
+        "supporting_sentences": [
+            "If you want to include all columns in the result, use the asterisk (*) symbol. For example, SELECT * FROM ...."
+        ]
+    },
+    {
+        "question": "How does ClickHouse handle dynamic column selection in a SELECT query?",
+        "answer": "Dynamic column selection (also known as a COLUMNS expression) allows you to match some columns in a result with a re2 regular expression.",
+        "supporting_sentences": [
+            "Dynamic column selection (also known as a COLUMNS expression) allows you to match some columns in a result with a re2 regular expression."
+        ]
+    },
+    {
+        "question": "What happens if the `extremes` setting is set to 1 in a SELECT query?",
+        "answer": "You can get minimum and maximum values for the results columns. Minimums and maximums are calculated for numeric types, dates, and dates with times. For other columns, the default values are output.",
+        "supporting_sentences": [
+            "In addition to results, you can also get minimum and maximum values for the results columns. To do this, set the extremes setting to 1. Minimums and maximums are calculated for numeric types, dates, and dates with times. For other columns, the default values are output."
+        ]
+    },
+    {
+        "question": "Which modifiers can be used in SELECT queries in ClickHouse, and what does the REPLACE modifier do?",
+        "answer": "Modifiers include APPLY, EXCEPT, and REPLACE. The REPLACE modifier specifies one or more expression aliases. Each alias must match a column name from the SELECT * statement, replacing the column that matches the alias with the expression in that REPLACE.",
+        "supporting_sentences": [
+            "You can use the following modifiers in SELECT queries.",
+            "Modifier: REPLACE. Description: Specifies one or more expression aliases. Each alias must match a column name from the SELECT * statement. In the output column list, the column that matches the alias is replaced by the expression in that REPLACE."
+        ]
+    }
+]
+```

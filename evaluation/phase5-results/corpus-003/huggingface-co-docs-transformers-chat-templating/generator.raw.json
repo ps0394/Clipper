@@ -1,0 +1,42 @@
+```json
+[
+    {
+        "question": "What is the critical insight needed to understand chat models?",
+        "answer": "All causal LMs, whether chat-trained or not, continue a sequence of tokens.",
+        "supporting_sentences": [
+            "The critical insight needed to understand chat models is this: All causal LMs, whether chat-trained or not, continue a sequence of tokens."
+        ]
+    },
+    {
+        "question": "What are the common roles used in the input to `apply_chat_template`?",
+        "answer": "The common roles are `user`, `assistant`, and `system`.",
+        "supporting_sentences": [
+            "The common roles are:",
+            "user for messages from the user",
+            "assistant for messages from the model",
+            "system for directives on how the model should act (usually placed at the beginning of the chat)"
+        ]
+    },
+    {
+        "question": "What tokens does Mistral-7B-Instruct use to indicate the start and end of user messages?",
+        "answer": "`[INST]` and `[/INST]` tokens.",
+        "supporting_sentences": [
+            "Mistral-7B-Instruct uses `[INST]` and `[/INST]` tokens to indicate the start and end of user messages"
+        ]
+    },
+    {
+        "question": "What is the purpose of the `add_generation_prompt` argument in `apply_chat_template`?",
+        "answer": "It adds tokens to the end of the chat that indicate the start of an assistant response.",
+        "supporting_sentences": [
+            "This argument adds tokens to the end of the chat that indicate the start of an assistant response."
+        ]
+    },
+    {
+        "question": "What happens if you use `add_generation_prompt` and `continue_final_message` together in `apply_chat_template`?",
+        "answer": "Using them together returns an error.",
+        "supporting_sentences": [
+            "You shouldn’t use `add_generation_prompt` and `continue_final_message` together. The former adds tokens that start a new message, while the latter removes end of sequence tokens. Using them together returns an error."
+        ]
+    }
+]
+```

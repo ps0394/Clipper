@@ -1,0 +1,40 @@
+```json
+[
+    {
+        "question": "What file systems are recommended for MongoDB deployments on Linux/Unix systems?",
+        "answer": "XFS or EXT4, with XFS strongly recommended when using the WiredTiger storage engine.",
+        "supporting_sentences": [
+            "Linux/Unix: format your drives into XFS or EXT4. If possible, use XFS as it generally performs better with MongoDB.",
+            "With the WiredTiger storage engine, use of XFS is strongly recommended to avoid performance issues found when using EXT4 with WiredTiger."
+        ]
+    },
+    {
+        "question": "What is the minimum number of data-bearing voting members required for a MongoDB replica set to ensure availability and durability?",
+        "answer": "At least three data-bearing voting members.",
+        "supporting_sentences": [
+            "Ensure that your replica set includes at least three data-bearing voting members that run with journaling and that you issue writes with w: majority write concern for availability and durability."
+        ]
+    },
+    {
+        "question": "What readahead settings are recommended for the WiredTiger storage engine in MongoDB?",
+        "answer": "Set readahead between 8 and 32 regardless of storage media type, unless testing shows a measurable benefit in a higher value.",
+        "supporting_sentences": [
+            "For the WiredTiger storage engine, set readahead between 8 and 32 regardless of storage media type (spinning disk, SSD, etc.), unless testing shows a measurable, repeatable, and reliable benefit in a higher readahead value."
+        ]
+    },
+    {
+        "question": "What TCP keepalive adjustment is recommended for MongoDB deployments on Windows Azure?",
+        "answer": "Adjust the TCP keepalive (tcp_keepalive_time) to 100-120.",
+        "supporting_sentences": [
+            "Windows Azure: Adjust the TCP keepalive (tcp_keepalive_time) to 100-120."
+        ]
+    },
+    {
+        "question": "What are the recommended starting values for kernel parameters on large MongoDB systems?",
+        "answer": "fs.file-max: 98000, kernel.pid_max: 64000, kernel.threads-max: 64000, and vm.max_map_count: 131060.",
+        "supporting_sentences": [
+            "For large systems, the following values provide a good starting point: fs.file-max value of 98000, kernel.pid_max value of 64000, kernel.threads-max value of 64000, and vm.max_map_count value of 131060."
+        ]
+    }
+]
+```

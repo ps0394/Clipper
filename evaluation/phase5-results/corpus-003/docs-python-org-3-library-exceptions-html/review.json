@@ -1,0 +1,108 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the base class for all built-in exceptions in Python?",
+      "answer": "BaseException",
+      "supporting_sentences": [
+        "The base class for all built-in exceptions.  It is not meant to be directly inherited by user-defined classes (for that, use Exception)."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the base class for all built-in exceptions in Python?",
+      "answer": "BaseException",
+      "supporting_sentences": [
+        "The base class for all built-in exceptions.  It is not meant to be directly inherited by user-defined classes (for that, use Exception)."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which exception is raised when a sequence subscript is out of range?",
+      "answer": "IndexError",
+      "supporting_sentences": [
+        "Raised when a sequence subscript is out of range."
+      ]
+    },
+    "edited_pair": {
+      "question": "Which exception is raised when a sequence subscript is out of range?",
+      "answer": "IndexError",
+      "supporting_sentences": [
+        "Raised when a sequence subscript is out of range."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the three attributes on exception objects that provide information about the context in which the exception was raised?",
+      "answer": "__context__, __cause__, and __suppress_context__",
+      "supporting_sentences": [
+        "Three attributes on exception objects provide information about the context in which the exception was raised:",
+        "BaseException.__context__",
+        "BaseException.__cause__",
+        "BaseException.__suppress_context__"
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the three attributes on exception objects that provide information about the context in which the exception was raised?",
+      "answer": "__context__, __cause__, and __suppress_context__",
+      "supporting_sentences": [
+        "Three attributes on exception objects provide information about the context in which the exception was raised:",
+        "BaseException.__context__",
+        "BaseException.__cause__",
+        "BaseException.__suppress_context__"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What exception is raised when an `assert` statement fails?",
+      "answer": "AssertionError",
+      "supporting_sentences": [
+        "Raised when an assert statement fails."
+      ]
+    },
+    "edited_pair": {
+      "question": "What exception is raised when an `assert` statement fails?",
+      "answer": "AssertionError",
+      "supporting_sentences": [
+        "Raised when an assert statement fails."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which exception class is recommended for user-defined exceptions to inherit from, and why?",
+      "answer": "Exception (or one of its subclasses), because it is not recommended to derive new exceptions from BaseException.",
+      "supporting_sentences": [
+        "programmers are encouraged to derive new exceptions from the Exception class or one of its subclasses, and not from BaseException."
+      ]
+    },
+    "edited_pair": {
+      "question": "Which exception class is recommended for user-defined exceptions to inherit from, and why?",
+      "answer": "Exception (or one of its subclasses), because it is not recommended to derive new exceptions from BaseException.",
+      "supporting_sentences": [
+        "programmers are encouraged to derive new exceptions from the Exception class or one of its subclasses, and not from BaseException."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

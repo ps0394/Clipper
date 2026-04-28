@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "XFS or EXT4, with XFS strongly recommended for the WiredTiger storage engine",
+    "run_index": 0,
+    "tokens_in": 1741,
+    "tokens_out": 18
+  },
+  {
+    "pair_index": 1,
+    "answer": "three",
+    "run_index": 0,
+    "tokens_in": 1749,
+    "tokens_out": 2
+  },
+  {
+    "pair_index": 2,
+    "answer": "For the WiredTiger storage engine, set readahead between 8 and 32 regardless of storage media type (spinning disk, SSD, etc.), unless testing shows a measurable, repeatable, and reliable benefit in a higher readahead value.",
+    "run_index": 0,
+    "tokens_in": 1743,
+    "tokens_out": 52
+  },
+  {
+    "pair_index": 3,
+    "answer": "Adjust the TCP keepalive (tcp_keepalive_time) to 100-120.",
+    "run_index": 0,
+    "tokens_in": 1741,
+    "tokens_out": 18
+  },
+  {
+    "pair_index": 4,
+    "answer": "fs.file-max value of 98000,\nkernel.pid_max value of 64000,\nkernel.threads-max value of 64000, and\nvm.max_map_count value of 131060",
+    "run_index": 0,
+    "tokens_in": 1741,
+    "tokens_out": 40
+  }
+]

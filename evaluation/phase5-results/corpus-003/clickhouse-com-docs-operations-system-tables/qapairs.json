@@ -1,0 +1,37 @@
+[
+  {
+    "question": "What is the purpose of the `system.asynchronous_metrics` table in ClickHouse?",
+    "answer": "The `system.asynchronous_metrics` table contains metrics that are calculated periodically in the background, such as the amount of RAM in use.",
+    "supporting_sentences": [
+      "system.asynchronous_metrics\nSystem table containing metrics that are calculated periodically in the background. For example, the amount of RAM in use."
+    ]
+  },
+  {
+    "question": "Which system table in ClickHouse provides information about pending asynchronous inserts in a queue?",
+    "answer": "The `system.asynchronous_inserts` table contains information about pending asynchronous inserts in queue.",
+    "supporting_sentences": [
+      "system.asynchronous_inserts\nSystem table containing information about pending asynchronous inserts in queue."
+    ]
+  },
+  {
+    "question": "What type of data does the `system.backup_log` table store in ClickHouse?",
+    "answer": "The `system.backup_log` table contains logging entries with information about `BACKUP` and `RESTORE` operations.",
+    "supporting_sentences": [
+      "system.backup_log\nSystem table containing logging entries with information about \nBACKUP\n and \nRESTORE\n operations."
+    ]
+  },
+  {
+    "question": "Which system table in ClickHouse lists all available aggregate function combinators?",
+    "answer": "The `system.aggregate_function_combinators` table contains a list of all available aggregate function combinators.",
+    "supporting_sentences": [
+      "system.aggregate_function_combinators\nContains a list of all available aggregate function combinators, which could be applied to aggregate functions and change the way they work."
+    ]
+  },
+  {
+    "question": "What is the role of the `system.dashboards` table in ClickHouse?",
+    "answer": "The `system.dashboards` table contains queries used by the `/dashboard` page accessible through the HTTP interface, useful for monitoring and troubleshooting.",
+    "supporting_sentences": [
+      "system.dashboards\nContains queries used by \n/dashboard\n page accessible though the HTTP interface. useful for monitoring and troubleshooting."
+    ]
+  }
+]

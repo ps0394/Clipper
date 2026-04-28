@@ -1,0 +1,44 @@
+```json
+[
+    {
+        "question": "In what order does Cloudflare respect cache headers from the origin web server?",
+        "answer": "Cloudflare respects the origin web server’s cache headers in the following order unless an Edge Cache TTL cache rule overrides the headers.",
+        "supporting_sentences": [
+            "Cloudflare respects the origin web server’s cache headers in the following order unless an Edge Cache TTL cache rule overrides the headers."
+        ]
+    },
+    {
+        "question": "Under what conditions does Cloudflare *not* cache a resource based on the Cache-Control header?",
+        "answer": "Cloudflare does not cache the resource when the Cache-Control header is set to `private`, `no-store`, `no-cache`, or `max-age=0`.",
+        "supporting_sentences": [
+            "Cloudflare does not cache the resource when:",
+            "The Cache-Control header is set to private, no-store, no-cache, or max-age=0."
+        ]
+    },
+    {
+        "question": "What HTTP response codes does Cloudflare cache by default, and what are their corresponding Edge Cache TTLs when no cache-control or expires headers are present?",
+        "answer": "Cloudflare caches HTTP status codes 200, 206, and 301 with a default TTL of 120 minutes; 302 and 303 with a default TTL of 20 minutes; and 404 and 410 with a default TTL of 3 minutes.",
+        "supporting_sentences": [
+            "By default, Cloudflare caches certain HTTP response codes with the following Edge Cache TTL when a cache-control directive or expires response header are not present.",
+            "HTTP status code | Default TTL",
+            "200, 206, 301 | 120m",
+            "302, 303 | 20m",
+            "404, 410 | 3m"
+        ]
+    },
+    {
+        "question": "What is the default maximum cacheable file size for Enterprise customers, and how can it be increased?",
+        "answer": "The default maximum cacheable file size for Enterprise customers is 5 GB, and it can be increased by contacting the account team.",
+        "supporting_sentences": [
+            "For Enterprise customers the default maximum cacheable file size is 5 GB. Contact your account team to request a limit increase."
+        ]
+    },
+    {
+        "question": "What happens when multiple requests for the same uncached asset arrive simultaneously at a single Cloudflare data center?",
+        "answer": "Cloudflare uses a cache lock to avoid sending duplicate requests to the origin. Only the first request is forwarded to the origin, and the remaining requests wait for the response to be streamed to all waiting requests.",
+        "supporting_sentences": [
+            "When multiple requests arrive simultaneously at a single Cloudflare data center for the same asset that is not in cache (a cache miss), Cloudflare uses a cache lock to avoid sending duplicate requests to your origin. Only the first request is forwarded to the origin to fetch the asset. The remaining requests wait for the first request to complete, after which the response is streamed to all waiting requests."
+        ]
+    }
+]
+```

@@ -1,0 +1,210 @@
+This page describes details about the permissions available for the different workspace objects.
+
+Access control lists overview
+​
+
+In Databricks, you can use access control lists (ACLs) to configure permission to access workspace level objects. Workspace admins have the CAN MANAGE permission on all objects in their workspace, which gives them the ability to manage permissions on all objects in their workspaces. Users automatically have the CAN MANAGE permission for objects that they create.
+
+For an example of how to map typical personas to workspace-level permissions, see the 
+Proposal for Getting Started With Databricks Groups and Permissions
+.
+
+ Manage access control lists with folders
+​
+
+You can manage workspace object permissions by adding objects to folders. Objects in a folder inherit all permissions settings of that folder. For example, a user that has the CAN RUN permission on a folder has CAN RUN permission on the alerts in that folder.
+
+If you grant a user access to an object inside the folder, they can view the parent folder's name, even if they do not have permissions on the parent folder. For example, a notebook named 
+test1.py
+ is in a folder named 
+Workflows
+. If you grant a user CAN VIEW on 
+test1.py
+ and no permissions on 
+Workflows
+, the user can see that the parent folder is named 
+Workflows
+. The user cannot view or access any other objects in the 
+Workflows
+ folder unless they have been granted permissions on them.
+
+To learn about organizing objects into folders, see 
+Workspace browser
+.
+
+Alerts ACLs
+​
+
+Compute ACLs
+​
+
+On compute resources that use the legacy access mode 
+No isolation shared
+, users with CAN ATTACH TO permissions can view the service account
+keys in the log4j file. Use caution when granting this permission. For more detail on this mode and how to restrict it, see 
+What are no isolation shared clusters?
+.
+
+Secrets
+ are not redacted from a cluster's Spark driver log 
+stdout
+ and 
+stderr
+ streams. To protect sensitive data, by default, Spark driver logs are viewable only by users with CAN MANAGE permission on job, dedicated access mode, and standard access mode clusters. To allow users with CAN ATTACH TO or CAN RESTART permission to view the logs on these clusters, set the following Spark configuration property in the cluster configuration: 
+spark.databricks.acl.needAdminPermissionToViewLogs false
+.
+On No Isolation Shared access mode clusters, the Spark driver logs can be viewed by users with CAN ATTACH TO, CAN RESTART, or CAN MANAGE permission. To limit who can read the logs to only users with the CAN MANAGE permission, set 
+spark.databricks.acl.needAdminPermissionToViewLogs
+ to 
+true
+.
+See 
+Spark configuration
+ to learn how to add Spark properties to a cluster configuration.
+
+Dashboard ACLs
+​
+
+* The workspace UI refers to view-only access as CAN VIEW, while the Permissions API uses CAN READ to represent the same level of access.
+
+Database instance ACLs
+​
+
+All workspace users automatically inherit CAN CREATE permission. This permission cannot be assigned or removed.
+
+When performing operations that interact with Unity Catalog you need to have permissions on the Unity Catalog object:
+
+Create Unity Catalog database catalog: Requires the 
+CREATE CATALOG
+ privilege on the Unity Catalog metastore.
+
+Create synced table: Requires Unity Catalog permissions to read the source table, write to the destination schema, and write to the pipeline storage schema.
+
+Lakebase project ACLs
+​
+
+These ACL tables show permissions for Lakebase (Autoscaling) projects. For Lakebase (Provisioned) permissions, see 
+Database instance ACLs
+.
+
+Workspace admins automatically inherit the CAN MANAGE permission on all Lakebase project resources.
+
+All workspace users automatically inherit the CAN CREATE permission. This permission cannot be assigned or removed.
+
+To grant access to other individuals, groups, or service principals, assign the CAN MANAGE or CAN USE permission.
+
+Project ACLs
+​
+
+Branch ACLs
+​
+
+Snapshot ACLs
+​
+
+Endpoint ACLs
+​
+
+Operation ACLs
+​
+
+Lakeflow Spark Declarative Pipelines ACLs
+​
+
+Feature tables ACLs
+​
+
+This table describes how to control access to feature tables in workspaces that are not enabled for Unity Catalog. If your workspace is enabled for Unity Catalog, use 
+Unity Catalog privileges
+ instead.
+
+File ACLs
+​
+
+* The workspace UI refers to view-only access as CAN VIEW, while the Permissions API uses CAN READ to represent the same level of access.
+
+Folder ACLs
+​
+
+* The workspace UI refers to view-only access as CAN VIEW, while the Permissions API uses CAN READ to represent the same level of access.
+
+Genie space ACLs
+​
+
+Git folder ACLs
+​
+
+Job ACLs
+​
+
+The creator of a job has the IS OWNER permission by default.
+
+A job cannot have more than one owner.
+
+A group cannot be assigned the Is Owner permission as an owner.
+
+Jobs triggered through 
+Run Now
+ assume the permissions of the job owner and not the user who issued 
+Run Now
+.
+
+Jobs access control applies to jobs displayed in the Lakeflow Jobs UI and their runs. It doesn't apply to:
+
+Notebook workflows
+ that run modular or linked code. These use the permissions of the notebook itself. If the notebook comes from Git, a new copy is created and its files inherit the permissions of the user who triggered the run.
+
+Jobs submitted by API
+. These use the notebook's default permissions unless you explicitly set the 
+access_control_list
+ in the API request.
+
+MLflow experiment ACLs
+​
+
+MLflow experiment ACLs are different for notebook experiments and workspace experiments. Notebook experiments cannot be managed independently of the notebook that created them, so the permissions are similar to notebook permissions.
+
+To learn more about the two types of experiments, see 
+Organize training runs with MLflow experiments
+.
+
+ACLs for notebook experiments
+​
+
+Changing these permissions also modifies the permissions on the notebook that corresponds to the experiment.
+
+ACLs for workspace experiments
+​
+
+MLflow model ACLs
+​
+
+This table describes how to control access to registered models in workspaces that are not enabled for Unity Catalog. If your workspace is enabled for Unity Catalog, use 
+Unity Catalog privileges
+ instead.
+
+Notebook ACLs
+​
+
+* The workspace UI refers to view-only access as CAN VIEW, while the Permissions API uses CAN READ to represent the same level of access.
+
+Pool ACLs
+​
+
+Query ACLs
+​
+
+Legacy SQL editor query ACLs
+​
+
+Secret ACLs
+​
+
+Serving endpoint ACLs
+​
+
+SQL warehouse ACLs
+​
+
+Vector search endpoint ACLs
+​

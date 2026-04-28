@@ -1,0 +1,52 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: System Headers
+Document URL: https://vercel.com/docs/edge-network/headers
+Document profile: reference
+
+Document text:
+---
+Headers are small pieces of information that are sent between the client (usually a web browser) and the server. They contain metadata about the request and response, such as the content type, cache-control directives, and authentication tokens. 
+HTTP headers
+ can be found in both the HTTP Request and HTTP Response.
+
+By using headers effectively, you can optimize the performance and security of your application on Vercel's global network. Here are some tips for using headers on Vercel:
+
+Use caching headers
+: Caching headers instruct the client and server to cache resources like images, CSS files, and JavaScript files, so they don't need to be reloaded every time a user visits your site. By using caching headers, you can significantly reduce the time it takes for your site to load.
+
+Use compression headers
+: Use the 
+Accept-Encoding
+ header to tell the client and server to compress data before it's sent over the network. By using compression, you can reduce the amount of data that needs to be sent, resulting in faster load times.
+
+Use custom headers: You can also use custom headers in your 
+vercel.json
+ file to add metadata specific to your application. For example, you could add a header that indicates the user's preferred language or the version of your application. See 
+Project Configuration
+ docs for more information.
+
+To learn about the request headers sent to each Vercel deployment and how to use them to process requests before sending a response, see 
+Request headers
+.
+
+To learn about the response headers included in Vercel deployment responses and how to use them to process responses before sending a response, see 
+Response headers
+.
+
+To learn about the cache-control headers sent to each Vercel deployment and how to use them to control the caching behavior of your application, see 
+Cache-Control headers
+.
+---

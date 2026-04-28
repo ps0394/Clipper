@@ -1,0 +1,145 @@
+<!doctype html><html lang=en dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-index" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.9.2"><title data-rh=true>Databricks documentation | Databricks on AWS</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://docs.databricks.com/aws/en/img/og-image.png /><meta data-rh=true name=twitter:image content=https://docs.databricks.com/aws/en/img/og-image.png /><meta data-rh=true property=og:url content=https://docs.databricks.com/aws/en/ /><meta data-rh=true property=og:locale content=en /><meta data-rh=true property=og:locale:alternate content=ja /><meta data-rh=true property=og:locale:alternate content=pt /><meta data-rh=true name=docusaurus_locale content=en /><meta data-rh=true name=docsearch:language content=en /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="Databricks documentation | Databricks on AWS"/><meta data-rh=true name=description content="How-to guides and reference documentation for data teams using the Databricks Data Intelligence Platform to solve analytics and AI challenges in the Lakehouse."/><meta data-rh=true property=og:description content="How-to guides and reference documentation for data teams using the Databricks Data Intelligence Platform to solve analytics and AI challenges in the Lakehouse."/><link data-rh=true rel=icon href=/aws/en/favicon.ico /><link data-rh=true rel=canonical href=https://docs.databricks.com/aws/en/ /><link data-rh=true rel=alternate href=https://docs.databricks.com/aws/en/ hreflang=en /><link data-rh=true rel=alternate href=https://docs.databricks.com/aws/ja/ hreflang=ja /><link data-rh=true rel=alternate href=https://docs.databricks.com/aws/pt/ hreflang=pt /><link data-rh=true rel=alternate href=https://docs.databricks.com/aws/en/ hreflang=x-default /><script data-rh=true>document.addEventListener("DOMContentLoaded",function(){void 0===window.docusaurus&&insertBanner()});function insertBanner(){var n=document.createElement("div");n.id="__docusaurus-base-url-issue-banner-container",n.innerHTML='\n<div id="__docusaurus-base-url-issue-banner" style="border: thick solid red; background-color: rgb(255, 230, 179); margin: 20px; padding: 20px; font-size: 20px;">\n   <p style="font-weight: bold; font-size: 30px;">Your Docusaurus site did not load properly.</p>\n   <p>A very common reason is a wrong site <a href="https://docusaurus.io/docs/docusaurus.config.js/#baseUrl" style="font-weight: bold;">baseUrl configuration</a>.</p>\n   <p>Current configured baseUrl = <span style="font-weight: bold; color: red;">/aws/en/</span> </p>\n   <p>We suggest trying baseUrl = <span id="__docusaurus-base-url-issue-banner-suggestion-container" style="font-weight: bold; color: green;"></span></p>\n</div>\n',document.body.prepend(n);var e=document.getElementById("__docusaurus-base-url-issue-banner-suggestion-container"),s=window.location.pathname;e.innerHTML="/"===s.substr(-1)?s:s+"/"}</script><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://docs.databricks.com/aws/en/","name":"Databricks on AWS","position":1}]}</script><link rel=preconnect href=https://www.googletagmanager.com><script>window.dataLayer=window.dataLayer||[],function(e,t,a,n,r){e[n]=e[n]||[],e[n].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var d=t.getElementsByTagName(a)[0],g=t.createElement(a);g.async=!0,g.src="https://www.googletagmanager.com/gtm.js?id="+r+("dataLayer"!=n?"&l="+n:""),d.parentNode.insertBefore(g,d)}(window,document,"script","dataLayer","GTM-TWTKQQ")</script><link rel=stylesheet href=/aws/en/assets/css/styles.74329a39.css /><script src=/aws/en/assets/js/runtime~main.c84d0028.js defer></script><script src=/aws/en/assets/js/main.027dfb56.js defer></script></head><body class=navigation-with-keyboard><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWTKQQ" height=0 width=0 style=display:none;visibility:hidden></iframe></noscript>
+
+
+<svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><link rel=preload as=image href=/aws/en/img/logo.svg /><link rel=preload as=image href=/aws/en/img/logo-dark.svg /><link rel=preload as=image href=/aws/en/assets/images/assistant-docs-cc2c44b8459fdec9f90704f34e5d5cb3.png /><div role=region aria-label="Skip to main content"><a class=skipToContent_CXEz href=#__docusaurus_skipToContent_fallback>Skip to main content</a></div><nav aria-label=Main class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a href=https://www.databricks.com target=_blank rel="noopener noreferrer" class=navbar__brand><div class=navbar__logo><img src=/aws/en/img/logo.svg alt="Databricks Logo" class="themedComponent_Pyes themedComponent--light_HKns"/><img src=/aws/en/img/logo-dark.svg alt="Databricks Logo" class="themedComponent_Pyes themedComponent--dark_Z_KF"/></div></a><a aria-current=page class="navbar__item navbar__link navbar__link--active" href=/aws/en/>Guides</a><a class="navbar__item navbar__link" href=/aws/en/introduction/>Get started</a><a class="navbar__item navbar__link" href=/aws/en/getting-started/connect/>Develop</a><a class="navbar__item navbar__link" href=/aws/en/reference/api>Reference</a><a class="navbar__item navbar__link" href=/aws/en/resources/>Resources</a><a class="navbar__item navbar__link" href=/aws/en/release-notes/>Release notes</a><div class="navbar__item dropdown dropdown--hoverable"><a href=# aria-haspopup=true aria-expanded=false role=button class=navbar__link>Help</a><ul class=dropdown__menu><li><a href=https://help.databricks.com target=_blank rel="noopener noreferrer" class=dropdown__link>Support<svg width=12 height=12 aria-label="(opens in new tab)" class=iconExternalLink_DPlC><use href=#theme-svg-external-link /></svg></a><li><a href=https://kb.databricks.com target=_blank rel="noopener noreferrer" class=dropdown__link>Knowledge Base<svg width=12 height=12 aria-label="(opens in new tab)" class=iconExternalLink_DPlC><use href=#theme-svg-external-link /></svg></a><li><a href=https://community.databricks.com target=_blank rel="noopener noreferrer" class=dropdown__link>Community<svg width=12 height=12 aria-label="(opens in new tab)" class=iconExternalLink_DPlC><use href=#theme-svg-external-link /></svg></a><li><a href=https://customer-academy.databricks.com target=_blank rel="noopener noreferrer" class=dropdown__link>Training<svg width=12 height=12 aria-label="(opens in new tab)" class=iconExternalLink_DPlC><use href=#theme-svg-external-link /></svg></a></ul></div></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="toggle_h6pA colorModeToggle_XqTr"><button class="clean-btn toggleButton_eiE6 toggleButtonDisabled_Wqu6" type=button disabled title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_nuhD lightToggleIcon_gnyb"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_nuhD darkToggleIcon_Pqcv"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_nuhD systemToggleIcon_TrBg"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_oBGw></div></div></div><div class=navbar__inner><div class=navbar__items><div style="width:calc(var(--doc-sidebar-width) - var(--ifm-navbar-padding-horizontal))"><div class=gcse-search></div></div></div><div class="navbar__items navbar__items--right"><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href=# aria-haspopup=true aria-expanded=false role=button class=navbar__link>English</a><ul class=dropdown__menu><li><a class=dropdown__link lang=en target=_self href=/aws/en/>English</a><li><a class=dropdown__link lang=ja target=_self href=/aws/en/aws/ja/>日本語</a><li><a class=dropdown__link lang=pt target=_self href=/aws/en/aws/pt/>Português</a></ul></div><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href=# aria-haspopup=true aria-expanded=false role=button class=navbar__link>AWS</a><ul class=dropdown__menu><li><a href=https://learn.microsoft.com/azure/databricks/ target=_self rel="noopener noreferrer" class=dropdown__link>Azure<svg width=12 height=12 aria-label="(opens in new tab)" class=iconExternalLink_DPlC><use href=#theme-svg-external-link /></svg></a><li><a class=dropdown__link target=_self href=/aws/en/gcp/en/>GCP</a><li><a class=dropdown__link target=_self href=/aws/en/sap>SAP</a></ul></div><a class="tryDatabricksLink tryDatabricksLink_r4AS" href="https://signup.databricks.com/?dbx_source=docs" target=_blank rel=noreferrer>Try Databricks</a></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_H3mo"><div class=docsWrapper_hzwc><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_fHAx" type=button></button><div class=docRoot_iB21><aside class="theme-doc-sidebar-container docSidebarContainer_cv05"><div class=sidebarViewport_qZ5n></div></aside><main class=docMainContainer_yzrY><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_z5aJ"><div class=docItemContainer_c0TR><article><div class=wrapper_tK7j><nav class="theme-doc-breadcrumbs breadcrumbsContainer_pdXE" aria-label=Breadcrumbs><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Home page" class=breadcrumbs__link href=/aws/en/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_WKWw><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>Databricks on AWS</span></ul></nav></div><div class="tocCollapsible_nLnP theme-doc-toc-mobile tocMobile_bwlw"><button type=button class="clean-btn tocCollapsibleButton_JGO6">On this page</button></div><div class="row margin-bottom--sm theme-doc-footer-edit-meta-row"><div class="col lastUpdated__anC"><span class=theme-last-updated>Last updated<!-- --> on <b><time datetime=2026-03-12T00:00:00.000Z itemprop=dateModified>Mar 12, 2026</time></b></span></div><div class=col></div></div><div class="theme-doc-markdown markdown"><header><h1>Databricks<!-- --> documentation</h1></header>
+<p>Databricks documentation provides how-to guidance and reference information for data analysts, data scientists, and data engineers solving problems in analytics and AI. The Databricks Data Intelligence Platform enables data teams to collaborate on data stored in the Lakehouse. See <a class="" href=/aws/en/introduction/>What is <!-- -->Databricks<!-- -->?</a></p>
+<div class="theme-admonition theme-admonition-tip admonition_BhYP alert alert--success"><div class=admonitionHeading_ONgF><span class=admonitionIcon_WXy6><svg viewBox="0 0 12 16"><path fill-rule=evenodd d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"/></svg></span>tip</div><div class=admonitionContent_d6Gz><p>Databricks technical documentation is organized by cloud provider. Use the cloud switcher in the upper right corner of the page to choose between Amazon Web Services, <a href=https://docs.gcp.databricks.com/index.html target=_blank rel="noopener noreferrer" class="">Google Cloud Platform</a>, or <a href=https://learn.microsoft.com/azure/databricks/ target=_blank rel="noopener noreferrer" class="">Microsoft Azure</a>. For ADI Services, see the <a href=https://docs.databricks.com/adi target=_blank rel="noopener noreferrer" class="">ADI Services documentation</a>.</div></div>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id=try-databricks>Try <!-- -->Databricks<a href=#try-databricks class=hash-link aria-label="Direct link to try-databricks" title="Direct link to try-databricks" translate=no>​</a></h2>
+<div class=card-list-container><ul>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/getting-started/free-trial>Sign up for <!-- -->Databricks<!-- --> for free</a></li>
+<li class="">Start your journey with Databricks by signing up for a free trial account.</li>
+</ul>
+</li>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/getting-started/>Get started tutorials on <!-- -->Databricks</a></li>
+<li class="">Learn the basics of working with Databricks using guided tutorials.</li>
+</ul>
+</li>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/workspace/>Workspace UI</a></li>
+<li class="">Learn the fundamentals of navigating and using the Databricks workspace interface.</li>
+</ul>
+</li>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/guides/>Data guides</a></li>
+<li class="">Discover and connect to data sources, manage data assets, and perform exploratory data analysis.</li>
+</ul>
+</li>
+</ul></div>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id=explore-databricks>Explore <!-- -->Databricks<a href=#explore-databricks class=hash-link aria-label="Direct link to explore-databricks" title="Direct link to explore-databricks" translate=no>​</a></h2>
+<div class=card-list-container><ul>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/guides/>Data guides</a></li>
+<li class="">Discover and connect to data sources, manage data assets, and perform exploratory data analysis.</li>
+</ul>
+</li>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/data-sharing/>Data sharing</a></li>
+<li class="">Share data and AI assets securely with users outside of your organization or on different metastores within your account.</li>
+</ul>
+</li>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/data-engineering/>Data engineering</a></li>
+<li class="">Build and manage ETL pipelines, process large data sets, and orchestrate data workflows.</li>
+</ul>
+</li>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/machine-learning/>AI and machine learning</a></li>
+<li class="">Develop, train, and deploy machine learning models and generative AI applications using MLflow and Databricks tools.</li>
+</ul>
+</li>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/ai-bi/>Databricks AI/BI</a></li>
+<li class="">Create dashboards, reports, and visualizations for business insights and BI analytics.</li>
+</ul>
+</li>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/sql/>Data warehousing</a></li>
+<li class="">Query and analyze data using SQL, manage schemas, and optimize data warehouse performance.</li>
+</ul>
+</li>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/oltp/>OLTP databases (Lakebase)</a></li>
+<li class="">Create and manage fully-managed, PostgreSQL-compatible databases with Lakebase, integrated with your Lakehouse.</li>
+</ul>
+</li>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/developers/>Develop on Databricks</a></li>
+<li class="">Build applications, integrate APIs, and extend Databricks functionality with custom code.</li>
+</ul>
+</li>
+</ul></div>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id=manage-databricks>Manage <!-- -->Databricks<a href=#manage-databricks class=hash-link aria-label="Direct link to manage-databricks" title="Direct link to manage-databricks" translate=no>​</a></h2>
+<div class=card-list-container><ul>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/admin/>Administration</a></li>
+<li class="">Configure account settings and manage workspaces, users, and administrative policies across your Databricks environment.</li>
+</ul>
+</li>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/security/>Security and compliance</a></li>
+<li class="">Implement security controls, configure access policies, and ensure compliance with industry standards.</li>
+</ul>
+</li>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/data-governance/>Data governance with <!-- -->Databricks</a></li>
+<li class="">Establish data governance frameworks, manage data lineage, and implement data quality controls.</li>
+</ul>
+</li>
+</ul></div>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id=quick-links>Quick links<a href=#quick-links class=hash-link aria-label="Direct link to Quick links" title="Direct link to Quick links" translate=no>​</a></h2>
+<div class=card-list-container><ul>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/resources/status>Status page</a></li>
+<li class="">Information about the Databricks Status Page to monitor system status, service availability, and maintenance schedules across all regions.</li>
+</ul>
+</li>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/release-notes/>Release notes</a></li>
+<li class="">Stay updated with the latest Databricks product updates, new features, and platform improvements.</li>
+</ul>
+</li>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/resources/glossary>Databricks glossary</a></li>
+<li class="">Find definitions for technical terms, concepts, and terminology used throughout Databricks.</li>
+</ul>
+</li>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/reference/api>Reference</a></li>
+<li class="">Overview of API reference documentation, including reference for the Databricks REST API, SDKs, Python APIs, and Databricks SQL.</li>
+</ul>
+</li>
+<li class="">
+<ul>
+<li class=""><a class="" href=/aws/en/resources/>Other resources</a></li>
+<li class="">Limits and quotas, regions, support, product feedback, free training, migration guides, and more.</li>
+</ul>
+</li>
+</ul></div>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id=get-documentation-help-from-genie><a id=docs class=db-defined-anchor></a>Get documentation help from <!-- -->Genie<a href=#get-documentation-help-from-genie class=hash-link aria-label="Direct link to get-documentation-help-from-genie" title="Direct link to get-documentation-help-from-genie" translate=no>​</a></h2>
+<p>Genie<!-- --> is available on the <a href=https://docs.databricks.com target=_blank rel="noopener noreferrer" class="">Databricks documentation site</a> to help you get answers about Databricks and quickly discover relevant information.</p>
+<p>Click the <img alt="Assistant color fill icon." src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik02LjU3NTExIDIuMzMzMDhDNy4wMjczNyAwLjk1NzkyMiA4Ljk3MjY4IDAuOTU3OTIxIDkuNDI0OTQgMi4zMzMwOEwxMC4yMzgyIDQuODA1OTdDMTAuMzg3MSA1LjI1ODUgMTAuNzQyIDUuNjEzNDMgMTEuMTk0NSA1Ljc2MjI2TDEzLjY2NzQgNi41NzU1NUMxNS4wNDI2IDcuMDI3ODEgMTUuMDQyNiA4Ljk3MzEyIDEzLjY2NzQgOS40MjUzOEwxMS4xOTQ1IDEwLjIzODdDMTAuNzQyIDEwLjM4NzUgMTAuMzg3MSAxMC43NDI0IDEwLjIzODIgMTEuMTk1TDkuNDI0OTQgMTMuNjY3OEM4Ljk3MjY4IDE1LjA0MyA3LjAyNzM3IDE1LjA0MyA2LjU3NTExIDEzLjY2NzhMNS43NjE4MiAxMS4xOTVDNS42MTI5OSAxMC43NDI0IDUuMjU4MDYgMTAuMzg3NSA0LjgwNTUzIDEwLjIzODdMMi4zMzI2NCA5LjQyNTM4QzAuOTU3NDggOC45NzMxMiAwLjk1NzQ3OSA3LjAyNzgxIDIuMzMyNjQgNi41NzU1NUw0LjgwNTUzIDUuNzYyMjZDNS4yNTgwNiA1LjYxMzQzIDUuNjEyOTkgNS4yNTg1IDUuNzYxODIgNC44MDU5N0w2LjU3NTExIDIuMzMzMDhaIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfODUyNF8yNDYzMikiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl84NTI0XzI0NjMyIiB4MT0iMC42OTUxOTIiIHkxPSIxNS42Nzc1IiB4Mj0iMTUuNzUxNCIgeTI9IjAuNjIxMjQ4IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIG9mZnNldD0iMC4yMzUiIHN0b3AtY29sb3I9IiM0Mjk5RTAiLz4KPHN0b3Agb2Zmc2V0PSIwLjQ3IiBzdG9wLWNvbG9yPSIjQ0E0MkUwIi8+CjxzdG9wIG9mZnNldD0iMC43NiIgc3RvcC1jb2xvcj0iI0ZGNUY0NiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=" width=16 height=16 class=mdx-image /> Ask <!-- -->Genie<!-- --> button in the bottom right corner of the site to open <!-- -->Genie<!-- -->. To close <!-- -->Genie<!-- -->, click the button below the chat.</p>
+<p><img alt="Genie in the documentation site." src=/aws/en/assets/images/assistant-docs-cc2c44b8459fdec9f90704f34e5d5cb3.png width=864 height=584 class=mdx-image /></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class=container_ZLZD><div class=tw-scope><div class="text-[0.8rem] font-bold">On this page</div></div><div class="tableOfContents_GfLg thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#try-databricks class="table-of-contents__link toc-highlight">Try Databricks</a><li><a href=#explore-databricks class="table-of-contents__link toc-highlight">Explore Databricks</a><li><a href=#manage-databricks class="table-of-contents__link toc-highlight">Manage Databricks</a><li><a href=#quick-links class="table-of-contents__link toc-highlight">Quick links</a><li><a href=#get-documentation-help-from-genie class="table-of-contents__link toc-highlight"><link class=db-defined-anchor>Get documentation help from Genie</a></ul></div></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__links text--center"><div class=footer__links><a href=https://www.databricks.com/legal/privacynotice target=_blank rel="noopener noreferrer" class=footer__link-item>Privacy Notice<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_DPlC><use href=#theme-svg-external-link /></svg></a><span class=footer__link-separator>·</span><a href=https://www.databricks.com/terms-of-use target=_blank rel="noopener noreferrer" class=footer__link-item>Terms of Use<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_DPlC><use href=#theme-svg-external-link /></svg></a><span class=footer__link-separator>·</span><a href=https://www.databricks.com/legal/modern-slavery-policy-statement target=_blank rel="noopener noreferrer" class=footer__link-item>Modern Slavery Statement<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_DPlC><use href=#theme-svg-external-link /></svg></a><span class=footer__link-separator>·</span><a href=https://www.databricks.com/legal/supplemental-privacy-notice-california-residents target=_blank rel="noopener noreferrer" class=footer__link-item>California Privacy<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_DPlC><use href=#theme-svg-external-link /></svg></a><span class=footer__link-separator>·</span><span class=footer__link-item><a href=javascript:OneTrust.ToggleInfoDisplay()>Your Privacy Choices <img alt="" src=https://www.databricks.com/sites/default/files/2022-12/gpcicon_small.png data-ot-ignore=1 class="dbgpcicon inline-block max-h-[15px] w-auto" width=31 height=15></a></span></div></div><div class="footer__bottom text--center"><div class=footer__copyright>© Databricks 2026. All rights reserved. Apache, Apache Spark, Spark and the Spark logo are trademarks of the <a href=https://www.apache.org/ target=_blank>Apache Software Foundation</a>.</div></div></div></footer></div></body>

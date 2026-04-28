@@ -1,0 +1,45 @@
+```json
+[
+    {
+        "question": "What is the purpose of the `EXCEPT` keyword in an INSERT INTO statement in ClickHouse?",
+        "answer": "The `EXCEPT` keyword allows you to insert data into all columns of a table except the specified ones. For example, you can exclude a column like `b` and insert values only into the remaining columns.",
+        "supporting_sentences": [
+            "If you want to insert data into all of the columns, except column `b`, you can do so using the `EXCEPT` keyword.",
+            "With reference to the syntax above, you will need to ensure that you insert as many values (`VALUES (v11, v13)`) as you specify columns (`(c1, c3)`)."
+        ]
+    },
+    {
+        "question": "What happens to columns not included in the column list of an INSERT INTO statement in ClickHouse?",
+        "answer": "If a list of columns does not include all existing columns, the rest of the columns are filled with either the values calculated from the `DEFAULT` expressions specified in the table definition, or zeros and empty strings if `DEFAULT` expressions are not defined.",
+        "supporting_sentences": [
+            "If a list of columns does not include all existing columns, the rest of the columns are filled with:",
+            "The values calculated from the `DEFAULT` expressions specified in the table definition.",
+            "Zeros and empty strings, if `DEFAULT` expressions are not defined."
+        ]
+    },
+    {
+        "question": "How does ClickHouse handle data type validation during an INSERT operation?",
+        "answer": "ClickHouse validates allowed data types only during table creation (`CREATE TABLE`) and schema modification (`ALTER TABLE`), not during `INSERT`. This means data can be inserted into a table with disallowed data types as long as the table already exists.",
+        "supporting_sentences": [
+            "ClickHouse validates allowed data types (controlled by settings like `enable_time_time64_type`, `allow_suspicious_low_cardinality_types`, `allow_suspicious_fixed_string_types`, etc.) only during table creation (`CREATE TABLE`) and schema modification (`ALTER TABLE`), not during `INSERT`.",
+            "This means that if a table with a disallowed data type already exists, data can be inserted into it even when the corresponding setting is disabled on the server."
+        ]
+    },
+    {
+        "question": "What is the purpose of the `FROM INFILE` clause in an INSERT INTO statement in ClickHouse?",
+        "answer": "The `FROM INFILE` clause is used to insert data from a file or files stored on the client side into a table. The file name and compression type can be specified, and the input file format must be set in the `FORMAT` clause.",
+        "supporting_sentences": [
+            "Use the syntax above to insert data from a file, or files, stored on the `client` side.",
+            "`file_name` and `type` are string literals. Input file `format` must be set in the `FORMAT` clause."
+        ]
+    },
+    {
+        "question": "What setting can be used to force a replica in ClickHouse Cloud to receive the latest updates after an INSERT operation?",
+        "answer": "The `select_sequential_consistency` setting can be used to force the replica to receive the latest updates after an INSERT operation.",
+        "supporting_sentences": [
+            "It is possible to use the `select_sequential_consistency` to force the replica to receive the latest updates.",
+            "Here is an example of a `SELECT` query using this setting: `SELECT .... SETTINGS select_sequential_consistency = 1;`"
+        ]
+    }
+]
+```

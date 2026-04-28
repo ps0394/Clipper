@@ -1,0 +1,407 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Security best practices for Amazon S3
+Document URL: https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html
+Document profile: article
+
+Document text:
+---
+Disable access control lists (ACLs)
+
+S3 Object Ownership is an Amazon S3 bucket-level setting that you can use to control ownership of objects uploaded to your bucket and to disable or enable ACLs. By default, Object Ownership is set to the bucket owner enforced setting and all ACLs are disabled. When ACLs are disabled, the bucket owner owns all the objects 
+                        in the bucket and manages access to data exclusively using access management policies. 
+
+A majority of modern use cases in Amazon S3 no longer require the use of 
+access control lists (ACLs)
+. We recommend
+                        that you disable ACLs, except in circumstances where you must
+                        control access for each object individually. To disable ACLs and take
+                        ownership of every object in your bucket, apply the bucket owner enforced
+                        setting for S3 Object Ownership. When you disable ACLs, you can easily
+                        maintain a bucket with objects uploaded by different AWS accounts. 
+
+When ACLs are disabled access control for your data is based on policies,
+                        such as the following: 
+
+AWS Identity and Access Management (IAM) user policies
+
+S3 bucket policies
+
+Virtual private cloud (VPC) endpoint policies
+
+AWS Organizations service control policies (SCPs)
+
+AWS Organizations resource control policies (RCPs)
+
+Disabling ACLs simplifies permissions management and auditing. ACLs are
+                        disabled for new buckets by default. You can also disable ACLs for existing
+                        buckets. If you have an existing bucket that already has objects in it,
+                        after you disable ACLs, the object and bucket ACLs are no longer part of the
+                        access-evaluation process. Instead, access is granted or denied on the basis
+                        of policies. 
+
+Before you disable ACLs, make sure that you do the following: 
+
+Review your bucket policy to ensure that it covers all the ways
+                                that you intend to grant access to your bucket outside of your
+                                account.
+
+Reset your bucket ACL to the default (full control to the bucket
+                                owner).
+
+After you disable ACLs, the following behaviors occur: 
+
+Your bucket accepts only 
+PUT
+ requests that do not
+                                specify an ACL or 
+PUT
+ requests with bucket owner full
+                                control ACLs. These ACLs include the
+
+bucket-owner-full-control
+ canned ACL or equivalent
+                                forms of this ACL that are expressed in XML.
+
+Existing applications that support bucket owner full control ACLs
+                                see no impact. 
+
+PUT
+ requests that contain other ACLs (for example,
+                                custom grants to certain AWS accounts) fail and return an HTTP
+                                status code 
+400 (Bad Request)
+ with the error code
+
+AccessControlListNotSupported
+.
+
+For more information, see 
+Controlling ownership of objects and disabling ACLs for your bucket
+.
+
+Ensure that
+                    your Amazon S3 buckets use the correct policies and are not publicly
+                    accessible
+
+Unless you explicitly require anyone on the internet to be able to read or
+                        write to your S3 bucket, make sure that your S3 bucket is not public. The
+                        following are some of the steps that you can take to block public
+                        access:
+
+Use S3 Block Public Access. With S3 Block Public Access, you can
+                                easily set up centralized controls to limit public access to your
+                                Amazon S3 resources. These centralized controls are enforced regardless
+                                of how the resources are created. For organizations managing
+                                multiple AWS accounts, you can now use organization-level
+                                enforcement through AWS Organizations to centrally manage S3 Block Public
+                                Access settings across your entire organization with a single policy
+                                configuration.
+
+For more information, see 
+Blocking public access to your Amazon S3 storage
+.
+
+Identify Amazon S3 bucket policies that allow a wildcard identity such
+                                as 
+"Principal": "*"
+ (which effectively means "anyone").
+                                Also look for policies that allow a wildcard action 
+"*"
+
+                                (which effectively allows the user to perform any action in the Amazon S3
+                                bucket).
+
+Similarly, look for Amazon S3 bucket access control lists (ACLs) that
+                                provide read, write, or full-access to "Everyone" or "Any
+                                authenticated AWS user." 
+
+Use the 
+ListBuckets
+ API operation to scan all of your
+                                Amazon S3 buckets. Then use 
+GetBucketAcl
+,
+
+GetBucketWebsite
+, and 
+GetBucketPolicy
+
+                                to determine whether each bucket has compliant access controls and a
+                                compliant configuration.
+
+Use 
+AWS Trusted Advisor
+ to inspect your Amazon S3
+                                implementation.
+
+Consider implementing ongoing detective controls by using the
+
+s3-bucket-public-read-prohibited
+ and
+
+s3-bucket-public-write-prohibited
+
+                                managed AWS Config Rules.
+
+For organizations with multiple AWS accounts,
+                            consider using organization-level Block Public Access
+                            management:
+
+Centralized policy management: Use AWS Organizations to create a single S3
+                                Block Public Access policy that automatically applies to all member
+                                accounts or selected organizational units (OUs).
+
+Automatic inheritance: When you attach the policy at the root or
+                                OU level, new member accounts automatically inherit the Block Public
+                                Access settings without individual account setup.
+
+Simplified compliance: Organization-level policies eliminate the
+                                need to maintain complex Service Control Policies (SCPs) for Block
+                                Public Access enforcement and reduce operational overhead of
+                                managing individual account configurations.
+
+Audit capabilities: Use AWS CloudTrail to monitor policy attachment and
+                                enforcement across member accounts for compliance tracking.
+
+For more information, see 
+Identity and Access Management for Amazon S3
+. 
+
+Disable server-side encryption with customer-provided keys (SSE-C) to your buckets
+
+Most modern use cases in Amazon S3 no longer use SSE-C because it lacks the flexibility of server-side encryption with Amazon S3 managed keys (SSE-S3) or server-side encryption with AWS KMS keys (SSE-KMS). SSE-C's requirement to provide the encryption key each time you interact with your SSE-C encrypted data makes it impractical to share your SSE-C key with other users, roles, or AWS services who read data from your S3 buckets in order to operate on your data.
+
+To limit the server-side encryption types you can use in your general purpose buckets, you can choose to block SSE-C write requests by updating your default encryption configuration for your buckets. This bucket-level configuration blocks requests to upload objects that specify SSE-C. When SSE-C is blocked for a bucket, any 
+PutObject
+, 
+CopyObject
+, 
+PostObject
+, or Multipart Upload or replication requests that specify SSE-C encryption will be rejected with an 
+HTTP 403 AccessDenied
+ error. 
+
+To learn more about blocking SSE-C, see 
+Blocking or unblocking SSE-C for a general purpose bucket
+.
+
+Create buckets in your account regional namespace
+
+By default, you create global general purpose buckets in the shared global namespace. After creating a general purpose bucket in the shared global namespace, that bucket name is unavailable for anyone else to create within partition. When you delete a global general purpose bucket, the bucket name becomes available again in the global namespace for anyone to re-create.
+
+Although Amazon S3 general purpose buckets exist in a shared global namespace, you can optionally create buckets in your account regional namespace. The account regional namespace is a reserved subdivision of the global bucket namespace where only your account can create general purpose buckets. We recommend you create buckets in your account regional namespace since these buckets are unique to your account and can never be re-created by another account. For more information, see 
+Namespaces for general purpose buckets
+.
+
+We recommend that you don't delete your global general purpose buckets in the shared global namespace. All AWS Accounts now have a default bucket quota of 10,000 buckets, reducing the need to delete empty buckets from your account. If you delete a bucket in the shared global namespace, be aware that another AWS account in the same partition can use the same bucket name for a new bucket and can therefore potentially receive requests that are intended for the deleted bucket. If you want to prevent this, or if you want to continue to use the same bucket name, don't delete the bucket. We recommend that you empty the bucket and keep it. Instead of deleting the bucket, block any bucket requests as needed. For buckets no longer in active use, we recommend emptying the bucket of all objects to minimize costs while retaining the bucket itself. For more information, see 
+Deleting a general purpose bucket
+.
+
+Implement
+                    least privilege access
+
+When granting permissions, you decide who is getting what permissions to
+                        which Amazon S3 resources. You enable specific actions that you want to allow on
+                        those resources. Therefore, we recommend that you grant only the permissions
+                        that are required to perform a task. Implementing least privilege access is
+                        fundamental in reducing security risk and the impact that could result from
+                        errors or malicious intent. 
+
+The following tools are available to implement least privilege
+                        access:
+
+For guidance on what to consider when choosing one or more of the
+                        preceding mechanisms, see 
+Identity and Access Management for Amazon S3
+.
+
+Use IAM roles for
+                    applications and AWS services that require Amazon S3 access
+
+In order for applications running on Amazon EC2 or other AWS services to
+                        access Amazon S3 resources, they must include valid AWS credentials in their
+                        AWS API requests. We recommend not storing AWS credentials directly in
+                        the application or Amazon EC2 instance. These are long-term credentials that are
+                        not automatically rotated and could have a significant business impact if
+                        they are compromised.
+
+Instead, use an IAM role to manage temporary credentials for
+                        applications or services that need to access Amazon S3. When you use a role, you
+                        don't have to distribute long-term credentials (such as a username and
+                        password or access keys) to an Amazon EC2 instance or AWS service, such as
+                        AWS Lambda. The role supplies temporary permissions that applications can use
+                        when they make calls to other AWS resources.
+
+For more information, see the following topics in the
+
+IAM User Guide
+:
+
+Consider encryption of data at rest
+
+You have the following options for protecting data at rest in Amazon S3:
+
+Server-side encryption
+ –
+                                All Amazon S3 buckets have encryption configured by default, and all new
+                                objects that are uploaded to an S3 bucket are automatically
+                                encrypted at rest. Server-side encryption with Amazon S3 managed keys
+                                (SSE-S3) is the default encryption configuration for every bucket in
+                                Amazon S3. To use a different type of encryption, you can either specify
+                                the type of server-side encryption to use in your S3
+
+PUT
+ requests, or you can set the default encryption
+                                configuration in the destination bucket. 
+
+Amazon S3 also provides these server-side encryption options:
+
+Server-side encryption with AWS Key Management Service (AWS KMS) keys
+                                        (SSE-KMS) 
+
+Dual-layer server-side encryption with AWS Key Management Service (AWS KMS) keys
+                                        (DSSE-KMS)
+
+Server-side encryption with customer-provided keys
+                                        (SSE-C)
+
+For more information, see 
+Protecting data with server-side encryption
+.
+
+Client-side encryption
+ –
+                                Encrypt data client-side and upload the encrypted data to Amazon S3. In
+                                this case, you manage the encryption process, the encryption keys,
+                                and related tools. As with server-side encryption, client-side
+                                encryption can help reduce risk by encrypting the data with a key
+                                that is stored in a different mechanism than the mechanism that
+                                stores the data itself. 
+
+Amazon S3 provides multiple client-side encryption options. For more
+                                information, see 
+Protecting data by using client-side encryption
+.
+
+Enforce encryption of data in transit
+
+You can use HTTPS (TLS) to help prevent potential attackers from eavesdropping on or manipulating network traffic by using person-in-the-middle or similar attacks. We recommend allowing only encrypted connections over HTTPS (TLS) by using the 
+aws:SecureTransport
+ condition in your Amazon S3 bucket policies. For more information, see the example S3 bucket policy 
+Managing access based on HTTP or HTTPS requests
+. In addition to denying HTTP requests, we recommend that you set Amazon CloudWatch alarms on 
+tlsDetails.tlsVersion NOT EXISTS
+ that alert you if HTTP access attempts are made on your content. For more information on how to configure Amazon CloudWatch alarms, see 
+Creating CloudWatch alarms for CloudTrail events: examples
+ and 
+CloudTrail record contents
+ in the 
+AWS CloudTrail User Guide
+.
+
+We recommend that your application not pin Amazon S3 TLS certificates as AWS doesn’t support pinning of publicly-trusted certificates. S3 automatically renews certificates and renewal can happen any time before 
+                       certificate expiry. Renewing a certificate generates a new public-private key pair. If you’ve pinned an S3 certificate 
+                       which has been recently renewed with a new public key, you won’t be able to connect to S3 until 
+                       your application uses the new certificate. 
+
+Also consider implementing ongoing detective controls by using the 
+s3-bucket-ssl-requests-only
+ managed AWS Config
+                        rule. 
+
+Consider using
+                    S3 Object Lock
+
+With S3 Object Lock, you can store objects by using a "Write Once Read
+                        Many" (WORM) model. S3 Object Lock can help prevent accidental or
+                        inappropriate deletion of data. For example, you can use S3 Object Lock to
+                        help protect your AWS CloudTrail logs.
+
+For more information, see 
+Locking objects with Object Lock
+.
+
+Enable
+                    S3 Versioning
+
+S3 Versioning is a means of keeping multiple variants of an object in the
+                        same bucket. You can use versioning to preserve, retrieve, and restore every
+                        version of every object stored in your bucket. With versioning, you can
+                        easily recover from both unintended user actions and application failures. 
+
+Also consider implementing ongoing detective controls by using the 
+s3-bucket-versioning-enabled
+ managed AWS Config
+                        rule.
+
+For more information, see 
+Retaining multiple versions of objects with S3 Versioning
+. 
+
+Consider using S3 Cross-Region Replication
+
+Although Amazon S3 stores your data across multiple geographically diverse
+                        Availability Zones by default, compliance requirements might dictate that
+                        you store data at even greater distances. With S3 Cross-Region Replication
+                        (CRR), you can replicate data between distant AWS Regions to help satisfy
+                        these requirements. CRR enables automatic, asynchronous copying of objects
+                        across buckets in different AWS Regions. For more information, see 
+Replicating objects within and across Regions
+.
+
+CRR requires both the source and destination S3 buckets to have
+                            versioning enabled.
+
+Also consider implementing ongoing detective controls by using the 
+s3-bucket-replication-enabled
+ managed AWS Config
+                        rule.
+
+Consider using VPC endpoints for Amazon S3 access
+
+A virtual private cloud (VPC) endpoint for Amazon S3 is a logical entity within
+                        a VPC that allows connectivity only to Amazon S3. VPC endpoints can help prevent
+                        traffic from traversing the open internet.
+
+VPC endpoints for Amazon S3 provide multiple ways to control access to your
+                        Amazon S3 data:
+
+You can control the requests, users, or groups that are allowed
+                                through a specific VPC endpoint by using S3 bucket policies.
+
+You can control which VPCs or VPC endpoints have access to your S3
+                                buckets by using S3 bucket policies.
+
+You can help prevent data exfiltration by using a VPC that does
+                                not have an internet gateway.
+
+For more information, see 
+Controlling access from VPC endpoints with bucket policies
+. 
+
+Use managed AWS security services to monitor data security
+
+Several managed AWS security services can help you identify, assess, and
+                        monitor security and compliance risks for your Amazon S3 data. These services can
+                        also help you protect your data from those risks. These services include
+                        automated detection, monitoring, and protection capabilities that are
+                        designed to scale from Amazon S3 resources for a single AWS account to
+                        resources for organizations spanning thousands of accounts.
+
+For more information, see 
+Monitoring data security with managed AWS security services
+.
+---

@@ -1,0 +1,49 @@
+```json
+[
+    {
+        "question": "What are the three main purposes of using an `output` block in Terraform?",
+        "answer": "Child modules can expose resource attributes to parent modules, root modules can display values in CLI output, and other Terraform configurations using remote state can access root module outputs with the `terraform_remote_state` data source, including state sharing in HCP Terraform. Additionally, outputs can pass information from a Terraform operation to an automation tool.",
+        "supporting_sentences": [
+            "The `output` block serves the following purposes in Terraform:",
+            "Child modules can expose resource attributes to parent modules.",
+            "Root modules can display values in CLI output.",
+            "Other Terraform configurations using `remote state` can access root module outputs with the `terraform_remote_state` data source, including `state sharing in HCP Terraform`.",
+            "Pass information from a Terraform operation to an automation tool."
+        ]
+    },
+    {
+        "question": "How can a parent module access the outputs of a child module in Terraform?",
+        "answer": "Parent modules can access child module outputs using the syntax `module.<CHILD_MODULE_NAME>.<OUTPUT_NAME>`.",
+        "supporting_sentences": [
+            "Defining an `output` block in a child module exposes that value to the parent module so that you can pass values from a child module to a parent module.",
+            "Parent modules can access child module outputs using `module.<CHILD_MODULE_NAME>.<OUTPUT_NAME>` syntax."
+        ]
+    },
+    {
+        "question": "What happens when you mark an output as `sensitive` in Terraform?",
+        "answer": "Terraform prevents the sensitive output value from being displayed in CLI output, showing a redacted message (`<sensitive>`) instead.",
+        "supporting_sentences": [
+            "If you are outputting sensitive data such as a password or API key, use the `sensitive` argument to prevent Terraform from displaying the value in CLI output:",
+            "Trying to access a sensitive output value directly in the CLI displays a redacted message instead of the actual value:",
+            "`$ terraform output database_password`",
+            "`database_password = <sensitive>`"
+        ]
+    },
+    {
+        "question": "What is the syntax for referencing a child module's output in a parent module's resource configuration?",
+        "answer": "The syntax is `[module.<CHILD_MODULE_NAME>.<OUTPUT_NAME>]`.",
+        "supporting_sentences": [
+            "For example, the following parent module can access the `instance_ip` and `instance_id` outputs from a child module named `web_server` by referencing `module.web_server.NAME`:",
+            "`records = [module.web_server.instance_ip]`",
+            "`InstanceId = module.web_server.instance_id`"
+        ]
+    },
+    {
+        "question": "What warning does Terraform provide about sensitive outputs when using the CLI with `-json` or `-raw` flags?",
+        "answer": "Terraform warns that using the `terraform output` CLI command with the `-json` or `-raw` flags will display sensitive outputs in plain text.",
+        "supporting_sentences": [
+            "Warning: Terraform stores the values of `sensitive` outputs in your state. If you use the `terraform output` CLI command with the `-json` or `-raw` flags, Terraform displays sensitive outputs in plain text."
+        ]
+    }
+]
+```

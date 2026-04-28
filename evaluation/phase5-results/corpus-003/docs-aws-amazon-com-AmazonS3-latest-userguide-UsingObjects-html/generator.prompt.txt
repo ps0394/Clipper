@@ -1,0 +1,117 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Amazon S3 objects overview
+Document URL: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingObjects.html
+Document profile: landing
+
+Document text:
+---
+Amazon S3 objects overview
+Amazon S3 is an object store that uses unique key-values to store as many objects as you want.
+    You store these objects in one or more buckets, and each object can be up to 50 TB in size. An
+    object consists of the following:
+
+Key
+
+The name that you assign to an object. You use the object key to retrieve the object.
+          For more information, see 
+Working with object
+            metadata
+.
+
+Version ID
+
+ Within a bucket, a key and version ID uniquely identify an object. The version ID is
+          a string that Amazon S3 generates when you add an object to a bucket. For more information, see
+
+Retaining multiple versions of objects with S3 Versioning
+.
+
+Value
+
+ The content that you are storing.
+
+An object value can be any sequence of bytes. Objects can range in size from zero to
+          50 TB. For more information, see 
+Uploading objects
+.
+
+While Amazon S3 documentation commonly references 50 TB object size limit, the actual
+            maximum object size is 53.7 TB (48.8 TiB). This limit is determined by multipart upload
+            constraints: 10,000 maximum parts x 5 GiB per part = 50,000 GiB (53.7 TB)
+
+Metadata
+
+A set of name-value pairs with which you can store information regarding the object.
+          You can assign metadata, referred to as user-defined metadata, to your objects in Amazon S3.
+          Amazon S3 also assigns system-metadata to these objects, which it uses for managing objects.
+          For more information, see 
+Working with object
+            metadata
+.
+
+Subresources
+
+Amazon S3 uses the subresource mechanism to store object-specific additional information.
+          Because subresources are subordinates to objects, they are always associated with some
+          other entity such as an object or a bucket. For more information, see 
+Object subresources
+.
+
+Access control
+        information
+
+You can control access to the objects you store in Amazon S3. Amazon S3 supports both the
+          resource-based access control, such as an access control list (ACL) and bucket policies,
+          and user-based access control. For more information about access control, see the
+          following:
+
+Your Amazon S3 resources (for example, buckets and objects) are private by default. You
+          must explicitly grant permission for others to access these resources. For more
+          information about sharing objects, see 
+Sharing objects with presigned URLs
+.
+
+Tags
+
+You can use tags to categorize your stored objects, for access control, or cost allocation.
+          For more information, see 
+Categorizing your objects using tags
+.
+
+Object subresources
+
+Amazon S3 defines a set of subresources associated with buckets and objects. Subresources are
+        subordinates to objects. This means that subresources don't exist on their own. They are
+        always associated with some other entity, such as an object or a bucket. 
+
+ The following table lists the subresources associated with Amazon S3 objects.
+
+Subresource
+
+Description
+
+acl
+
+Contains a list of grants identifying the grantees and the permissions granted.
+                        When you create an object, the 
+acl
+ identifies the object owner as having
+                        full control over the object. You can retrieve an object ACL or replace it with an
+                        updated list of grants. Any update to an ACL requires you to replace the existing ACL.
+                        For more information about ACLs, see 
+Access control list (ACL) overview
+.
+---

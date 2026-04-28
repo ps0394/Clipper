@@ -1,0 +1,251 @@
+Type
+: string
+Available in MongoDB Enterprise only.
+Maps the username provided to 
+mongod
+ or 
+mongos
+ for authentication to a LDAP
+Distinguished Name (DN). You may need to use 
+userToDNMapping
+ to transform a
+username into an LDAP DN in the following scenarios:
+Performing LDAP authentication with simple LDAP binding, where users
+authenticate to MongoDB with usernames that are not full LDAP DNs.
+Using an 
+LDAP authorization query template
+ that requires a DN.
+Transforming the usernames of clients authenticating to Mongo DB using
+different authentication mechanisms (for example, X.509, kerberos) to a full LDAP
+DN for authorization.
+userToDNMapping
+ expects a quote-enclosed JSON-string representing an ordered array
+of documents. Each document contains a regular expression 
+match
+ and
+either a 
+substitution
+ or 
+ldapQuery
+ template used for transforming the
+incoming username.
+Each document in the array has the following form:
+{
+
+match
+: 
+"<regex>"
+
+substitution
+: 
+"<LDAP DN>"
+ | 
+ldapQuery
+: 
+"<LDAP Query>"
+}
+An ECMAScript-formatted regular expression (regex) to match against a
+provided username. Each parenthesis-enclosed section represents a
+regex capture group used by 
+substitution
+ or 
+ldapQuery
+.
+"(.+)ENGINEERING"
+
+"(.+)DBA"
+An LDAP distinguished name (DN) formatting template that converts the
+authentication name matched by the 
+match
+ regex into a LDAP DN.
+Each curly bracket-enclosed numeric value is replaced by the
+corresponding 
+regex capture group
+ extracted
+from the authentication username through the 
+match
+ regex.
+The result of the substitution must be an 
+RFC4514
+ escaped string.
+"cn={0},ou=engineering,
+dc=example,dc=com"
+A LDAP query formatting template that inserts the authentication
+name matched by the 
+match
+ regex into an LDAP query URI encoded
+respecting RFC4515 and RFC4516. Each curly bracket-enclosed numeric
+value is replaced by the corresponding 
+regex capture group
+ extracted
+from the authentication username through the 
+match
+ expression.
+
+mongod
+ or 
+mongos
+ executes the query against the LDAP server to retrieve
+the LDAP DN for the authenticated user. 
+mongod
+ or 
+mongos
+ requires
+exactly one returned result for the transformation to be
+successful, or 
+mongod
+ or 
+mongos
+ skips this transformation.
+"ou=engineering,dc=example,
+dc=com??one?(user={0})"
+Note
+An explanation of  
+RFC4514
+,
+
+RFC4515
+,
+
+RFC4516
+, or LDAP queries is out
+of scope for the MongoDB Documentation. Please review the RFC directly or
+use your preferred LDAP resource.
+For each document in the array, you must use either 
+substitution
+ or
+
+ldapQuery
+. You 
+cannot
+ specify both in the same document.
+When performing authentication or authorization, 
+mongod
+ or 
+mongos
+ steps through
+each document in the array in the given order, checking the authentication
+username against the 
+match
+ filter.  If a match is found,
+
+mongod
+ or 
+mongos
+ applies the transformation and uses the output for
+authenticating the user. 
+mongod
+ or 
+mongos
+ does not check the remaining documents
+in the array.
+If the given document does not match the provided authentication
+name, 
+mongod
+ or 
+mongos
+ continues
+through the list of documents to find additional matches. If no
+matches are found in any document, or the transformation the document
+describes fails, 
+mongod
+ or 
+mongos
+
+returns an error.
+mongod
+ or 
+mongos
+ also returns an error if one
+of the transformations cannot be evaluated due to networking or
+authentication failures to the LDAP server. 
+mongod
+ or
+
+mongos
+ rejects the connection request and does not
+check the remaining documents in the array.
+Starting in MongoDB 5.0, 
+userToDNMapping
+
+accepts an empty string 
+""
+ or empty array 
+[ ]
+ in place of a
+mapping document. If providing an empty string or empty array to
+
+userToDNMapping
+, MongoDB maps the
+authenticated username as the LDAP DN. Previously, providing an
+empty mapping document would cause mapping to fail.
+Example
+The following shows two transformation documents. The first
+document matches against any string ending in 
+@ENGINEERING
+, placing
+anything preceding the suffix into a regex capture group. The
+second document matches against any string ending in 
+@DBA
+, placing
+anything preceding the suffix into a regex capture group.
+Important
+You must pass the array to userToDNMapping as a string.
+"[
+   {
+      match: "(.+)@ENGINEERING.EXAMPLE.COM",
+      substitution: "cn={0},ou=engineering,dc=example,dc=com"
+   },
+   {
+      match: "(.+)@DBA.EXAMPLE.COM",
+      ldapQuery: "ou=dba,dc=example,dc=com??one?(user={0})"
+   }
+]"
+A user with username 
+alice@ENGINEERING.EXAMPLE.COM
+ matches the first
+document. The regex capture group 
+{0}
+ corresponds to the string
+
+alice
+. The resulting output is the DN
+
+"cn=alice,ou=engineering,dc=example,dc=com"
+.
+A user with username 
+bob@DBA.EXAMPLE.COM
+ matches the second document.
+The regex capture group 
+{0}
+ corresponds to the string 
+bob
+.  The
+resulting output is the LDAP query
+
+"ou=dba,dc=example,dc=com??one?(user=bob)"
+. 
+mongod
+ or 
+mongos
+ executes this
+query against the LDAP server, returning the result
+
+"cn=bob,ou=dba,dc=example,dc=com"
+.
+If 
+userToDNMapping
+ is unset, 
+mongod
+ or 
+mongos
+ applies no transformations to the username
+when attempting to authenticate or authorize a user against the LDAP server.
+This setting can be configured on a running 
+mongod
+ or 
+mongos
+ using the
+
+setParameter
+ database command.

@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "Cloudflare respects the origin web server\u2019s cache headers in the following order unless an Edge Cache TTL cache rule overrides the headers.",
+    "run_index": 0,
+    "tokens_in": 1108,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 1,
+    "answer": "Cloudflare does not cache the resource when the Cache-Control header is set to private, no-store, no-cache, or max-age=0.",
+    "run_index": 0,
+    "tokens_in": 1112,
+    "tokens_out": 30
+  },
+  {
+    "pair_index": 2,
+    "answer": "200, 206, 301: 120m  \n302, 303: 20m  \n404, 410: 3m",
+    "run_index": 0,
+    "tokens_in": 1123,
+    "tokens_out": 30
+  },
+  {
+    "pair_index": 3,
+    "answer": "The default maximum cacheable file size for Enterprise customers is 5 GB. Contact your account team to request a limit increase.",
+    "run_index": 0,
+    "tokens_in": 1113,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 4,
+    "answer": "Cloudflare uses a cache lock to avoid sending duplicate requests to your origin. Only the first request is forwarded to the origin to fetch the asset. The remaining requests wait for the first request to complete, after which the response is streamed to all waiting requests.",
+    "run_index": 0,
+    "tokens_in": 1114,
+    "tokens_out": 52
+  }
+]

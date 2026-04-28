@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same factual content as the ground-truth answer, covering the purpose of the `EXCEPT` keyword in an INSERT INTO statement.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 590,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, despite differences in wording and structure.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 602,
+    "tokens_out": 25
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, with additional detail about settings and validation levels, but it does not contradict or omit any part of the ground truth.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 673,
+    "tokens_out": 41
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the requirement to specify the file name, compression type, and input file format in the `FORMAT` clause, which are essential details in the ground-truth answer.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 612,
+    "tokens_out": 43
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same factual content as the ground-truth answer, despite being more concise.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 562,
+    "tokens_out": 24
+  }
+]

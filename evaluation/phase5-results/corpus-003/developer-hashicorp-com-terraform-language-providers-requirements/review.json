@@ -1,0 +1,116 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the three steps required to declare a provider in a Terraform module?",
+      "answer": "Define the provider's source, local name, and version in the `required_providers` block inside the top-level `terraform` block; add a top-level `provider` block to configure the provider; and install the provider.",
+      "supporting_sentences": [
+        "To declare a provider in a module, perform the following three steps:",
+        "Define the provider's source, local name, and version in the `required_providers` block inside your top-level `terraform` block.",
+        "Add a top-level `provider` block to your configuration to configure a provider with authentication, a region, and other provider-specific arguments.",
+        "Install your provider."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the three steps required to declare a provider in a Terraform module?",
+      "answer": "Define the provider's source, local name, and version in the `required_providers` block inside the top-level `terraform` block; add a top-level `provider` block to configure the provider; and install the provider.",
+      "supporting_sentences": [
+        "To declare a provider in a module, perform the following three steps:",
+        "Define the provider's source, local name, and version in the `required_providers` block inside your top-level `terraform` block.",
+        "Add a top-level `provider` block to your configuration to configure a provider with authentication, a region, and other provider-specific arguments.",
+        "Install your provider."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the default hostname for a provider's source address if it is omitted?",
+      "answer": "The default hostname is `registry.terraform.io`.",
+      "supporting_sentences": [
+        "Hostname (optional): The hostname of the Terraform registry that distributes the provider. If omitted, this defaults to `registry.terraform.io`, the hostname of the public Terraform Registry."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the default hostname for a provider's source address if it is omitted?",
+      "answer": "The default hostname is `registry.terraform.io`.",
+      "supporting_sentences": [
+        "Hostname (optional): The hostname of the Terraform registry that distributes the provider. If omitted, this defaults to `registry.terraform.io`, the hostname of the public Terraform Registry."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of the `dependency lock file` in Terraform?",
+      "answer": "The dependency lock file ensures Terraform always installs the same provider versions for a given configuration.",
+      "supporting_sentences": [
+        "To ensure Terraform always installs the same provider versions for a given configuration, you can use Terraform CLI to create a dependency lock file and commit it to version control along with your configuration.",
+        "If a lock file is present, HCP Terraform, CLI, and Enterprise will all obey it when installing providers."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of the `dependency lock file` in Terraform?",
+      "answer": "The dependency lock file ensures Terraform always installs the same provider versions for a given configuration.",
+      "supporting_sentences": [
+        "To ensure Terraform always installs the same provider versions for a given configuration, you can use Terraform CLI to create a dependency lock file and commit it to version control along with your configuration.",
+        "If a lock file is present, HCP Terraform, CLI, and Enterprise will all obey it when installing providers."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the source address of the built-in Terraform provider that enables the `terraform_remote_state` data source?",
+      "answer": "The source address is `terraform.io/builtin/terraform`.",
+      "supporting_sentences": [
+        "Because this provider is built into Terraform, you don't need to declare it in the `required_providers` block in order to use its features. However, for consistency it does have a special provider source address, which is `terraform.io/builtin/terraform`."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the source address of the built-in Terraform provider that enables the `terraform_remote_state` data source?",
+      "answer": "The source address is `terraform.io/builtin/terraform`.",
+      "supporting_sentences": [
+        "Because this provider is built into Terraform, you don't need to declare it in the `required_providers` block in order to use its features. However, for consistency it does have a special provider source address, which is `terraform.io/builtin/terraform`."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the three parts of a provider's source address, and what do they represent?",
+      "answer": "The three parts are `<HOSTNAME>/<NAMESPACE>/<TYPE>`, where the hostname is the Terraform registry distributing the provider, the namespace is an organizational namespace within the registry, and the type is a short name for the platform or system the provider manages.",
+      "supporting_sentences": [
+        "Source addresses consist of three parts delimited by slashes (`/`), as follows: `[<HOSTNAME>/]<NAMESPACE>/<TYPE>`.",
+        "Hostname (optional): The hostname of the Terraform registry that distributes the provider. If omitted, this defaults to `registry.terraform.io`, the hostname of the public Terraform Registry.",
+        "Namespace: An organizational namespace within the specified registry. For the public Terraform Registry and for HCP Terraform's private registry, this represents the organization that publishes the provider.",
+        "Type: A short name for the platform or system the provider manages. Must be unique within a particular namespace on a particular registry host."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the three parts of a provider's source address, and what do they represent?",
+      "answer": "The three parts are `<HOSTNAME>/<NAMESPACE>/<TYPE>`, where the hostname is the Terraform registry distributing the provider, the namespace is an organizational namespace within the registry, and the type is a short name for the platform or system the provider manages.",
+      "supporting_sentences": [
+        "Source addresses consist of three parts delimited by slashes (`/`), as follows: `[<HOSTNAME>/]<NAMESPACE>/<TYPE>`.",
+        "Hostname (optional): The hostname of the Terraform registry that distributes the provider. If omitted, this defaults to `registry.terraform.io`, the hostname of the public Terraform Registry.",
+        "Namespace: An organizational namespace within the specified registry. For the public Terraform Registry and for HCP Terraform's private registry, this represents the organization that publishes the provider.",
+        "Type: A short name for the platform or system the provider manages. Must be unique within a particular namespace on a particular registry host."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

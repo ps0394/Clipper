@@ -1,0 +1,45 @@
+```json
+[
+    {
+        "question": "What is the purpose of input variables in Terraform configurations?",
+        "answer": "Input variables make Terraform configuration more flexible by defining values that end users can assign to customize the configuration. They provide a consistent interface to change how a given configuration behaves.",
+        "supporting_sentences": [
+            "Input variables make your Terraform configuration more flexible by defining values that your end users can assign to customize the configuration.",
+            "They provide a consistent interface to change how a given configuration behaves."
+        ]
+    },
+    {
+        "question": "What are the three optional arguments in a Terraform variable block?",
+        "answer": "The three optional arguments in a Terraform variable block are: description, type, and default.",
+        "supporting_sentences": [
+            "Variable blocks have three optional arguments.",
+            "Description: A short description to document the purpose of the variable.",
+            "Type: The type of data contained in the variable.",
+            "Default: The default value."
+        ]
+    },
+    {
+        "question": "What file extension does Terraform automatically load for variable values?",
+        "answer": "Terraform automatically loads files with the exact name `terraform.tfvars` or matching `*.auto.tfvars`.",
+        "supporting_sentences": [
+            "Terraform automatically loads all files in the current directory with the exact name `terraform.tfvars` or matching `*.auto.tfvars`."
+        ]
+    },
+    {
+        "question": "What function is used in Terraform to extract a subset of a list?",
+        "answer": "The `slice()` function is used to extract a subset of a list.",
+        "supporting_sentences": [
+            "Now use the `slice()` function to return the first three elements from the list.",
+            "The `slice()` function takes three arguments: the list to slice, the start index, and the end index (exclusive)."
+        ]
+    },
+    {
+        "question": "What are the character limits for the 'project' and 'environment' tags enforced by the variable validation in the tutorial?",
+        "answer": "The 'project' tag must be no more than 16 characters, and the 'environment' tag must be no more than 8 characters.",
+        "supporting_sentences": [
+            "The project tag must be no more than 16 characters, and only contain letters, numbers, and hyphens.",
+            "The environment tag must be no more than 8 characters, and only contain letters, numbers, and hyphens."
+        ]
+    }
+]
+```

@@ -1,0 +1,353 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Use outputs to expose module data
+Document URL: https://developer.hashicorp.com/terraform/language/values/outputs
+Document profile: article
+
+Document text:
+---
+Hands-on:
+ Try the 
+Output data from Terraform
+ tutorial.
+Add 
+output
+ blocks to your configuration to expose information about your infrastructure on the command line, in HCP Terraform, and in other Terraform configurations. The 
+output
+ block serves the following purposes in Terraform:
+Child modules can expose resource attributes to parent modules.
+Root modules can display values in CLI output.
+Other Terraform configurations using 
+remote state
+ can access root module outputs with the 
+terraform_remote_state
+ data source, including 
+state sharing in HCP Terraform
+.
+Pass information from a Terraform operation to an automation tool.
+Add 
+output
+ blocks to export information about your module's infrastructure. For example, you can add two 
+output
+ blocks to expose the ID and the IP address of your configuration's web server:
+output
+ "instance_id"
+ {
+
+  description 
+=
+ "ID of the EC2 instance"
+
+  value       
+=
+ aws_instance.web.id
+
+}
+
+output
+ "instance_ip"
+ {
+
+  description 
+=
+ "Private IP address of the EC2 instance"
+
+  value       
+=
+ aws_instance.web.private_ip
+
+}
+
+resource
+ "aws_instance"
+ "web"
+ {
+
+  # …
+
+}
+
+output
+ "instance_id"
+ {
+
+  description 
+=
+ "ID of the EC2 instance"
+
+  value       
+=
+ aws_instance.web.id
+
+}
+
+output
+ "instance_ip"
+ {
+
+  description 
+=
+ "Private IP address of the EC2 instance"
+
+  value       
+=
+ aws_instance.web.private_ip
+
+}
+
+resource
+ "aws_instance"
+ "web"
+ {
+
+  # …
+
+}
+
+You can set the 
+value
+ argument of an 
+output
+ block to any valid expression. To learn more, refer to the 
+output
+ block reference
+.
+Depending where you define an output value, you can access the information a module exposes in different ways. Terraform displays root module output values in the CLI after you apply your configuration. If you are using HCP Terraform, your workspace's overview page also lists your configuration's outputs.
+Defining an 
+output
+ block in a child module exposes that value to the parent module so that you can pass values from a child module to a parent module. Parent modules can access child module outputs using 
+module.<CHILD_MODULE_NAME>.<OUTPUT_NAME>
+ syntax.
+For example, the following parent module can access the 
+instance_ip
+ and 
+instance_id
+ outputs from a child module named 
+web_server
+ by referencing 
+module.web_server.NAME
+:
+module
+ "web_server"
+ {
+
+  source 
+=
+ "./modules/web_server"
+
+  # …
+
+}
+
+resource
+ "aws_route53_record"
+ "web"
+ {
+
+  zone_id 
+=
+ data.aws_route53_zone.main.zone_id
+
+  name    
+=
+ "web.example.com"
+
+  type    
+=
+ "A"
+
+  records 
+=
+ [module.web_server.instance_ip]
+
+  #...
+
+}
+
+resource
+ "aws_cloudwatch_alarm"
+ "web_health"
+ {
+
+  alarm_name          
+=
+ "web-server-health"
+
+  comparison_operator 
+=
+ "GreaterThanThreshold"
+
+  threshold           
+=
+ "80"
+
+  dimensions 
+=
+ {
+
+    InstanceId 
+=
+ module.web_server.instance_id
+
+  }
+
+  # ...
+
+}
+
+module
+ "web_server"
+ {
+
+  source 
+=
+ "./modules/web_server"
+
+  # …
+
+}
+
+resource
+ "aws_route53_record"
+ "web"
+ {
+
+  zone_id 
+=
+ data.aws_route53_zone.main.zone_id
+
+  name    
+=
+ "web.example.com"
+
+  type    
+=
+ "A"
+
+  records 
+=
+ [module.web_server.instance_ip]
+
+  #...
+
+}
+
+resource
+ "aws_cloudwatch_alarm"
+ "web_health"
+ {
+
+  alarm_name          
+=
+ "web-server-health"
+
+  comparison_operator 
+=
+ "GreaterThanThreshold"
+
+  threshold           
+=
+ "80"
+
+  dimensions 
+=
+ {
+
+    InstanceId 
+=
+ module.web_server.instance_id
+
+  }
+
+  # ...
+
+}
+
+To learn more about passing information between modules, refer to 
+Call a child module
+.
+If you are outputting sensitive data such as a password or API key, use the 
+sensitive
+ argument to prevent Terraform from displaying the value in CLI output:
+output
+ "database_password"
+ {
+
+  description 
+=
+ "Auto-generated password for the RDS database instance"
+
+  value       
+=
+ aws_db_instance.main.password
+
+  sensitive   
+=
+ true
+
+}
+
+output
+ "database_password"
+ {
+
+  description 
+=
+ "Auto-generated password for the RDS database instance"
+
+  value       
+=
+ aws_db_instance.main.password
+
+  sensitive   
+=
+ true
+
+}
+
+Trying to access a sensitive output value directly in the CLI displays a redacted message instead of the actual value:
+$
+ terraform output database_password
+
+database_password = <sensitive>
+
+$
+ terraform output database_password
+
+database_password = <sensitive>
+
+Warning
+Terraform stores the values of 
+sensitive
+ outputs in your state. If you use the 
+terraform output
+ CLI command
+ with the 
+-json
+ or 
+-raw
+ flags, Terraform displays sensitive outputs in plain text.
+Adding the 
+ephemeral
+ argument to an output omits that value from state and plan files, but it also adds restrictions to the values you can assign to that output. To learn more about handling and outputting sensitive data in your configuration, refer to 
+Manage sensitive data
+.
+To learn more about the 
+output
+ block, refer to the 
+output
+ block reference
+.
+---

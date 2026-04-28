@@ -1,0 +1,48 @@
+```json
+[
+    {
+        "question": "What is the purpose of using raw string notation (prefixed with 'r') for regular expression patterns in Python?",
+        "answer": "Using Python’s raw string notation for regular expression patterns ensures that backslashes are not handled in any special way in a string literal. For example, r\"\\n\" is a two-character string containing '\\' and 'n', while \"\\n\" is a one-character string containing a newline.",
+        "supporting_sentences": [
+            "The solution is to use Python’s raw string notation for regular expression patterns; backslashes are not handled in any special way in a string literal prefixed with 'r'.",
+            "So r\"\\n\" is a two-character string containing '\\' and 'n', while \"\\n\" is a one-character string containing a newline.",
+            "Usually patterns will be expressed in Python code using this raw string notation."
+        ]
+    },
+    {
+        "question": "What does the '|' character do in a regular expression?",
+        "answer": "The '|' character creates a regular expression that will match either the expression before or after it. For example, A|B matches either A or B. It can be used inside groups as well, and patterns separated by '|' are tried from left to right.",
+        "supporting_sentences": [
+            "| A|B, where A and B can be arbitrary REs, creates a regular expression that will match either A or B.",
+            "An arbitrary number of REs can be separated by the '|' in this way.",
+            "As the target string is scanned, REs separated by '|' are tried from left to right. When one pattern completely matches, that branch is accepted."
+        ]
+    },
+    {
+        "question": "What is the effect of the DOTALL flag in a regular expression?",
+        "answer": "The DOTALL flag makes the '.' special character match any character at all, including a newline. Without this flag, '.' will match anything except a newline.",
+        "supporting_sentences": [
+            "re.DOTALL Make the '.' special character match any character at all, including a newline; without this flag, '.' will match anything except a newline.",
+            "(Dot.) In the default mode, this matches any character except a newline. If the DOTALL flag has been specified, this matches any character including a newline."
+        ]
+    },
+    {
+        "question": "What is the difference between greedy and non-greedy quantifiers in regular expressions?",
+        "answer": "Greedy quantifiers (e.g., *, +, ?) match as much text as possible, while non-greedy quantifiers (e.g., *?, +?, ??) match as few characters as possible. For example, <.*> matches the entire string '<a> b <c>', but <.*?> matches only '<a>'.",
+        "supporting_sentences": [
+            "The '*', '+', and '?' quantifiers are all greedy; they match as much text as possible.",
+            "Adding '?' after the quantifier makes it perform the match in non-greedy or minimal fashion; as few characters as possible will be matched.",
+            "Using the RE <.*?> will match only '<a>'."
+        ]
+    },
+    {
+        "question": "What does the re.escape() function do in Python's re module?",
+        "answer": "The re.escape() function escapes special characters in a pattern, making it useful for matching an arbitrary literal string that may contain regular expression metacharacters. For example, re.escape('https://www.python.org') returns 'https://www\\.python\\.org'.",
+        "supporting_sentences": [
+            "re.escape(pattern) Escape special characters in pattern.",
+            "This is useful if you want to match an arbitrary literal string that may have regular expression metacharacters in it.",
+            "For example: >>> print(re.escape('https://www.python.org')) https://www\\.python\\.org"
+        ]
+    }
+]
+```

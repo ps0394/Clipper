@@ -1,0 +1,37 @@
+[
+  {
+    "question": "What is the default size of the WiredTiger internal cache in MongoDB?",
+    "answer": "The default WiredTiger internal cache size is the larger of either 50% of (RAM - 1GB) or 0.256 GB.",
+    "supporting_sentences": [
+      "The default WiredTiger internal cache size is the larger of either: 50% of (RAM - 1GB), or 0.256 GB."
+    ]
+  },
+  {
+    "question": "What compression methods does WiredTiger use by default for collections and indexes?",
+    "answer": "By default, WiredTiger uses Snappy block compression for all collections and prefix compression for all indexes.",
+    "supporting_sentences": [
+      "By default, WiredTiger uses Snappy block compression for all collections and prefix compression for all indexes."
+    ]
+  },
+  {
+    "question": "How does MongoDB utilize free memory that is not used by the WiredTiger cache or other processes?",
+    "answer": "With the filesystem cache, MongoDB automatically uses all free memory that is not used by the WiredTiger cache or by other processes.",
+    "supporting_sentences": [
+      "With the filesystem cache, MongoDB automatically uses all free memory that is not used by the WiredTiger cache or by other processes."
+    ]
+  },
+  {
+    "question": "What command can be used to view the memory limit that WiredTiger utilizes as the maximum amount of RAM available?",
+    "answer": "The `hostInfo` command can be used to view the memory limit.",
+    "supporting_sentences": [
+      "To view the memory limit, the value that WiredTiger utilizes as the maximum amount of RAM available use the hostInfo command."
+    ]
+  },
+  {
+    "question": "Under what circumstances can the WiredTiger storage engine release empty space back to the operating system?",
+    "answer": "The WiredTiger storage engine can release empty space to the operating system by defragmenting the data file, which can be achieved by resyncing a replica set member or using the `compact` command.",
+    "supporting_sentences": [
+      "To allow the WiredTiger storage engine to release this empty space to the operating system, you can de-fragment your data file. This can be achieved by resyncing a replica set member or using the compact command."
+    ]
+  }
+]

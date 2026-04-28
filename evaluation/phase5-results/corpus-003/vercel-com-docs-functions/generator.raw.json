@@ -1,0 +1,42 @@
+```json
+[
+    {
+        "question": "What are Vercel Functions designed to handle without requiring server management?",
+        "answer": "Vercel Functions let you run server-side code without managing servers, handle connections to APIs and databases, and offer enhanced concurrency through fluid compute.",
+        "supporting_sentences": [
+            "Vercel Functions let you run server-side code without managing servers. They adapt automatically to user demand, handle connections to APIs and databases, and offer enhanced concurrency through fluid compute."
+        ]
+    },
+    {
+        "question": "How does Vercel ensure low latency for deployed applications?",
+        "answer": "Vercel ensures low latency by routing traffic through Vercel's CDN and placing functions in a specific region when more control over data locality is needed.",
+        "supporting_sentences": [
+            "It ensures low latency by routing traffic through Vercel's CDN, and placing your functions in a specific region when you need more control over data locality."
+        ]
+    },
+    {
+        "question": "What is the default region where functions using the Node.js runtime execute?",
+        "answer": "The default region is Washington, D.C., USA (iad1).",
+        "supporting_sentences": [
+            "By default, functions using the Node.js runtime execute in Washington, D.C., USA (iad1), a common location for external data sources."
+        ]
+    },
+    {
+        "question": "How does Vercel optimize performance and cost efficiency for function invocations?",
+        "answer": "Vercel reuses the same function instance for subsequent requests and scales functions down to zero when there are no incoming requests.",
+        "supporting_sentences": [
+            "If another request arrives soon after the previous one, Vercel reuses the same function instance to optimize performance and cost efficiency.",
+            "Vercel scales your functions down to zero when there are no incoming requests."
+        ]
+    },
+    {
+        "question": "Where can you view performance and cost efficiency metrics for Vercel Functions?",
+        "answer": "You can view these metrics in the Observability tab of the Vercel dashboard under the Vercel Functions section.",
+        "supporting_sentences": [
+            "You can view various performance and cost efficiency metrics using Vercel Observability:",
+            "Choose your project from the dashboard.",
+            "Click on the Observability tab and select the Vercel Functions section."
+        ]
+    }
+]
+```

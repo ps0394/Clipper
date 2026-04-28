@@ -1,0 +1,80 @@
+The 
+vercel dev
+ command is used to replicate the Vercel deployment environment locally, allowing you to test your 
+Vercel Functions
+ and 
+Middleware
+ without requiring you to deploy each time a change is made.
+
+If the 
+Development Command
+ is configured in your Project Settings, it will affect the behavior of 
+vercel dev
+ for everyone on that team.
+
+Before running 
+vercel dev
+, make sure to install your
+dependencies by running 
+npm install
+.
+
+If you're using a framework and your framework's 
+Development Command
+ already provides all the features you need, we do not recommend using 
+vercel dev
+.
+
+For example, 
+Next.js
+'s Development Command (
+next dev
+) provides native support for Functions, 
+redirects
+, rewrites, headers and more.
+
+Using the 
+vercel dev
+ command from the root of a
+Vercel Project directory.
+
+These are options that only apply to the 
+vercel dev
+ command.
+
+The 
+--listen
+ option, shorthand 
+-l
+, can be used to specify which port 
+vercel dev
+ runs on.
+
+Using the 
+vercel dev
+ command with the 
+
+--listen
+ option.
+
+The 
+--yes
+ option can be used to skip questions you are asked when setting up a new Vercel Project.
+The questions will be answered with the default scope and current directory for the Vercel Project name and location.
+
+Using the 
+vercel dev
+ command with the 
+
+--yes
+ option.
+
+The following 
+global options
+ can be passed when using the 
+vercel dev
+ command:
+
+For more information on global options and their usage, refer to the 
+options section
+.

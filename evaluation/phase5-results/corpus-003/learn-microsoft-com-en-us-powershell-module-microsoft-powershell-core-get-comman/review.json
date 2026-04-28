@@ -1,0 +1,104 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What types of commands does the Get-Command cmdlet retrieve by default when no parameters are specified?",
+      "answer": "By default, Get-Command gets all the cmdlets, functions, and aliases installed on the computer.",
+      "supporting_sentences": [
+        "Without parameters, Get-Command gets all the cmdlets, functions, and aliases installed on the computer."
+      ]
+    },
+    "edited_pair": {
+      "question": "What types of commands does the Get-Command cmdlet retrieve by default when no parameters are specified?",
+      "answer": "By default, Get-Command gets all the cmdlets, functions, and aliases installed on the computer.",
+      "supporting_sentences": [
+        "Without parameters, Get-Command gets all the cmdlets, functions, and aliases installed on the computer."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What parameter can be used with Get-Command to retrieve only the commands imported into the current session?",
+      "answer": "The ListImported parameter can be used to get only the commands in the current session.",
+      "supporting_sentences": [
+        "To get only commands that have been imported into the current session, use the ListImported parameter."
+      ]
+    },
+    "edited_pair": {
+      "question": "What parameter can be used with Get-Command to retrieve only the commands imported into the current session?",
+      "answer": "The ListImported parameter can be used to get only the commands in the current session.",
+      "supporting_sentences": [
+        "To get only commands that have been imported into the current session, use the ListImported parameter."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What does the -All parameter do when used with the Get-Command cmdlet?",
+      "answer": "The -All parameter gets all commands with the specified name, including commands of the same type that have the same name, and returns them in execution precedence order.",
+      "supporting_sentences": [
+        "The All parameter is useful when there is more than one command with the same name in the session.",
+        "With the All parameter, Get-Command gets all commands with the specified name and returns them in execution precedence order."
+      ]
+    },
+    "edited_pair": {
+      "question": "What does the -All parameter do when used with the Get-Command cmdlet?",
+      "answer": "The -All parameter gets all commands with the specified name, including commands of the same type that have the same name, and returns them in execution precedence order.",
+      "supporting_sentences": [
+        "The All parameter is useful when there is more than one command with the same name in the session.",
+        "With the All parameter, Get-Command gets all commands with the specified name and returns them in execution precedence order."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What type of objects does Get-Command return for executable files found in the PATH environment variable?",
+      "answer": "Get-Command returns an ApplicationInfo object (System.Management.Automation.ApplicationInfo) for each executable file.",
+      "supporting_sentences": [
+        "It returns an ApplicationInfo object (System.Management.Automation.ApplicationInfo) for each file, not a FileInfo object (System.IO.FileInfo)."
+      ]
+    },
+    "edited_pair": {
+      "question": "What type of objects does Get-Command return for executable files found in the PATH environment variable?",
+      "answer": "Get-Command returns an ApplicationInfo object (System.Management.Automation.ApplicationInfo) for each executable file.",
+      "supporting_sentences": [
+        "It returns an ApplicationInfo object (System.Management.Automation.ApplicationInfo) for each file, not a FileInfo object (System.IO.FileInfo)."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which parameter of Get-Command allows filtering commands by the type of parameter they accept?",
+      "answer": "The ParameterType parameter allows filtering commands by the type of parameter they accept.",
+      "supporting_sentences": [
+        "Specifies an array of parameter names. This cmdlet gets commands in the session that have parameters of the specified type. Enter the full name or partial name of a parameter type. Wildcard characters are supported."
+      ]
+    },
+    "edited_pair": {
+      "question": "Which parameter of Get-Command allows filtering commands by the type of parameter they accept?",
+      "answer": "The ParameterType parameter allows filtering commands by the type of parameter they accept.",
+      "supporting_sentences": [
+        "Specifies an array of parameter names. This cmdlet gets commands in the session that have parameters of the specified type. Enter the full name or partial name of a parameter type. Wildcard characters are supported."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the additional functionality of SELECT queries when used with INSERT INTO, which is a required part of the ground-truth answer.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 592,
+    "tokens_out": 34
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, identifying the asterisk symbol as the correct symbol to include all columns in a SELECT query.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 565,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same core fact as the ground-truth answer about dynamic column selection and adds extra correct details without contradicting the ground truth.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 679,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer introduces an unsupported fact about \"extra two rows\" not present in the ground-truth answer, and omits the fact that default values are output for non-numeric columns.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 635,
+    "tokens_out": 43
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the list of modifiers and the function of the REPLACE modifier, with only minor wording differences.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 684,
+    "tokens_out": 38
+  }
+]

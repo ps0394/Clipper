@@ -1,0 +1,2644 @@
+ <!DOCTYPE html>
+		<html
+			class="layout layout-holy-grail   show-table-of-contents conceptual show-breadcrumb default-focus"
+			lang="en-us"
+			dir="ltr"
+			data-authenticated="false"
+			data-auth-status-determined="false"
+			data-target="docs"
+			x-ms-format-detection="none"
+		>
+			
+		<head>
+			<title>Quickstart: Deploy an ASP.NET web app - Azure App Service | Microsoft Learn</title>
+			<meta charset="utf-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="color-scheme" content="light dark" />
+
+			<meta name="description" content="Learn how to run web apps in Azure App Service by deploying your first ASP.NET app." />
+			<link rel="canonical" href="https://learn.microsoft.com/en-us/azure/app-service/quickstart-dotnetcore" /> 
+
+			<!-- Non-customizable open graph and sharing-related metadata -->
+			<meta name="twitter:card" content="summary_large_image" />
+			<meta name="twitter:site" content="@MicrosoftLearn" />
+			<meta property="og:type" content="website" />
+			<meta property="og:image:alt" content="Microsoft Learn" />
+			<meta property="og:image" content="https://learn.microsoft.com/en-us/media/open-graph-image.png" />
+			<!-- Page specific open graph and sharing-related metadata -->
+			<meta property="og:title" content="Quickstart: Deploy an ASP.NET web app - Azure App Service" />
+			<meta property="og:url" content="https://learn.microsoft.com/en-us/azure/app-service/quickstart-dotnetcore" />
+			<meta property="og:description" content="Learn how to run web apps in Azure App Service by deploying your first ASP.NET app." />
+			<meta name="platform_id" content="004eda0b-4b0b-1feb-3acb-83b2f0b4ef41" /> <meta name="scope" content="Azure,App Service" />
+			<meta name="locale" content="en-us" />
+			 
+			<meta name="uhfHeaderId" content="azure" />
+
+			<meta name="page_type" content="conceptual" />
+
+			<!--page specific meta tags-->
+			
+
+			<!-- custom meta tags -->
+			
+		<meta name="breadcrumb_path" content="/azure/bread/toc.json" />
+	
+		<meta name="feedback_help_link_url" content="https://learn.microsoft.com/answers/tags/436/azure-app-service/" />
+	
+		<meta name="feedback_help_link_type" content="get-help-at-qna" />
+	
+		<meta name="feedback_product_url" content="https://feedback.azure.com/d365community/forum/b09330d1-c625-ec11-b6e6-000d3a4f0f1c" />
+	
+		<meta name="feedback_system" content="Standard" />
+	
+		<meta name="permissioned-type" content="public" />
+	
+		<meta name="recommendations" content="true" />
+	
+		<meta name="recommendation_types" content="Training" />
+	
+		<meta name="recommendation_types" content="Certification" />
+	
+		<meta name="ms.suite" content="office" />
+	
+		<meta name="adobe-target" content="true" />
+	
+		<meta name="zone_pivot_group_filename" content="zone-pivot-groups.json" />
+	
+		<meta name="learn_banner_products" content="azure" />
+	
+		<meta name="ms.service" content="azure-app-service" />
+	
+		<meta name="ms.assetid" content="b1e6bd58-48d1-4007-9d6c-53fd6db061e3" />
+	
+		<meta name="ms.topic" content="quickstart" />
+	
+		<meta name="ms.date" content="2025-12-15T00:00:00Z" />
+	
+		<meta name="ms.update-cycle" content="180-days" />
+	
+		<meta name="zone_pivot_groups" content="app-service-ide" />
+	
+		<meta name="adobe-target-activity" content="DocsExp–386541–A/B–Enhanced-Readability-Quickstarts–2.19.2021" />
+	
+		<meta name="adobe-target-experience" content="Experience B" />
+	
+		<meta name="adobe-target-content" content="./quickstart-dotnetcore-uiex" />
+	
+		<meta name="author" content="cephalin" />
+	
+		<meta name="ms.author" content="cephalin" />
+	
+		<meta name="ai-usage" content="ai-assisted" />
+	
+		<meta name="ms.collection" content="ce-skilling-ai-copilot" />
+	
+		<meta name="ms.custom" content="devx-track-csharp" />
+	
+		<meta name="ms.custom" content="mvc" />
+	
+		<meta name="ms.custom" content="devcenter" />
+	
+		<meta name="ms.custom" content="vs-azure" />
+	
+		<meta name="ms.custom" content="devdivchpfy22" />
+	
+		<meta name="ms.custom" content="devx-track-azurepowershell" />
+	
+		<meta name="ms.custom" content="devx-track-dotnet" />
+	
+		<meta name="ms.custom" content="ai-video-demo" />
+	
+		<meta name="ms.custom" content="devx-track-extended-azdevcli" />
+	
+		<meta name="ms.custom" content="sfi-image-nochange" />
+	
+		<meta name="document_id" content="96dd11f6-d1c2-9f4b-25c0-cc70ea7f1715" />
+	
+		<meta name="document_version_independent_id" content="564bbd9f-2f3c-aa7a-1ca2-2bb93f9b19ac" />
+	
+		<meta name="updated_at" content="2025-12-17T12:14:00Z" />
+	
+		<meta name="original_content_git_url" content="https://github.com/MicrosoftDocs/azure-docs-pr/blob/live/articles/app-service/quickstart-dotnetcore.md" />
+	
+		<meta name="gitcommit" content="https://github.com/MicrosoftDocs/azure-docs-pr/blob/56490e6ce39049fc8cc903b4e48b0e2dcd7afd07/articles/app-service/quickstart-dotnetcore.md" />
+	
+		<meta name="git_commit_id" content="56490e6ce39049fc8cc903b4e48b0e2dcd7afd07" />
+	
+		<meta name="site_name" content="Docs" />
+	
+		<meta name="depot_name" content="Azure.azure-documents" />
+	
+		<meta name="schema" content="Conceptual" />
+	
+		<meta name="toc_rel" content="toc.json" />
+	
+		<meta name="pdf_url_template" content="https://learn.microsoft.com/pdfstore/en-us/Azure.azure-documents/{branchName}{pdfName}" />
+	
+		<meta name="word_count" content="3495" />
+	
+		<meta name="asset_id" content="app-service/quickstart-dotnetcore" />
+	
+		<meta name="moniker_range_name" content="" />
+	
+		<meta name="item_type" content="Content" />
+	
+		<meta name="source_path" content="articles/app-service/quickstart-dotnetcore.md" />
+	
+		<meta name="previous_tlsh_hash" content="B4AFCA92850DDB01FFD30F27124B7D40A1F8D188EEE42BC5677AA1E6C74A3D6247EE7EAADB0B6208037157661197794D2BC1FB9C916C6332766948FD904C22A43A8D3796C7" />
+	
+		<meta name="github_feedback_content_git_url" content="https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/app-service/quickstart-dotnetcore.md" />
+	
+		<meta name="markdown_url" content="https://learn.microsoft.com/en-us/azure/app-service/quickstart-dotnetcore?accept=text/markdown" />
+	 
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/7ebba99b-05c3-4387-8883-f7bbf6632cb8" data-source="generated" />
+	
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/7696cda6-0510-47f6-8302-71bb5d2e28cf" data-source="generated" />
+	
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/68ec7f3a-2bc6-459f-b959-19beb729907d" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/006ab567-b18c-4cf1-9a25-c24daa46ede1" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/69c76c32-967e-4c65-b89a-74cc527db725" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/90370425-aca4-4a39-9533-d52e5e002a5d" data-source="generated" />
+	
+
+			<!-- assets and js globals -->
+			
+			<link rel="stylesheet" href="/static/assets/0.4.03398.7756-c1512039/styles/site.css" />
+			
+			<script src="https://wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js"></script>
+			<script src="https://js.monitor.azure.com/scripts/c/ms.jsll-4.min.js"></script>
+			<script src="/_themes/docs.theme/master/en-us/_themes/global/deprecation.js"></script>
+
+			<!-- msdocs global object -->
+			<script id="msdocs-script">
+		var msDocs = {
+  "environment": {
+    "accessLevel": "online",
+    "azurePortalHostname": "portal.azure.com",
+    "reviewFeatures": false,
+    "supportLevel": "production",
+    "systemContent": true,
+    "siteName": "learn",
+    "legacyHosting": false
+  },
+  "data": {
+    "contentLocale": "en-us",
+    "contentDir": "ltr",
+    "userLocale": "en-us",
+    "userDir": "ltr",
+    "pageTemplate": "Conceptual",
+    "brand": "azure",
+    "context": {},
+    "standardFeedback": true,
+    "showFeedbackReport": false,
+    "feedbackHelpLinkType": "get-help-at-qna",
+    "feedbackHelpLinkUrl": "https://learn.microsoft.com/answers/tags/436/azure-app-service/",
+    "feedbackSystem": "Standard",
+    "feedbackGitHubRepo": "MicrosoftDocs/azure-docs",
+    "feedbackProductUrl": "https://feedback.azure.com/d365community/forum/b09330d1-c625-ec11-b6e6-000d3a4f0f1c",
+    "extendBreadcrumb": false,
+    "isEditDisplayable": true,
+    "isPrivateUnauthorized": false,
+    "hideViewSource": false,
+    "isPermissioned": false,
+    "hasRecommendations": true,
+    "contributors": [
+      {
+        "name": "cephalin",
+        "url": "https://github.com/cephalin"
+      },
+      {
+        "name": "Dickson-Mwendia",
+        "url": "https://github.com/Dickson-Mwendia"
+      },
+      {
+        "name": "msangapu-msft",
+        "url": "https://github.com/msangapu-msft"
+      },
+      {
+        "name": "nathlaroche",
+        "url": "https://github.com/nathlaroche"
+      },
+      {
+        "name": "jeffwmartinez",
+        "url": "https://github.com/jeffwmartinez"
+      },
+      {
+        "name": "ry0y4n",
+        "url": "https://github.com/ry0y4n"
+      },
+      {
+        "name": "alexwolfmsft",
+        "url": "https://github.com/alexwolfmsft"
+      },
+      {
+        "name": "cmcclister",
+        "url": "https://github.com/cmcclister"
+      },
+      {
+        "name": "Venkateshdodda-MSFT",
+        "url": "https://github.com/Venkateshdodda-MSFT"
+      },
+      {
+        "name": "aarthiem",
+        "url": "https://github.com/aarthiem"
+      },
+      {
+        "name": "sadukie",
+        "url": "https://github.com/sadukie"
+      },
+      {
+        "name": "tiagocostapt",
+        "url": "https://github.com/tiagocostapt"
+      },
+      {
+        "name": "v-alje",
+        "url": "https://github.com/v-alje"
+      },
+      {
+        "name": "Vaseem-raza",
+        "url": "https://github.com/Vaseem-raza"
+      },
+      {
+        "name": "DavidCBerry13",
+        "url": "https://github.com/DavidCBerry13"
+      },
+      {
+        "name": "mijacobs",
+        "url": "https://github.com/mijacobs"
+      },
+      {
+        "name": "pritamso",
+        "url": "https://github.com/pritamso"
+      },
+      {
+        "name": "IEvangelist",
+        "url": "https://github.com/IEvangelist"
+      },
+      {
+        "name": "SnehaAgrawal-MSFT",
+        "url": "https://github.com/SnehaAgrawal-MSFT"
+      },
+      {
+        "name": "v-kents",
+        "url": "https://github.com/v-kents"
+      },
+      {
+        "name": "SyntaxC4",
+        "url": "https://github.com/SyntaxC4"
+      },
+      {
+        "name": "diberry",
+        "url": "https://github.com/diberry"
+      },
+      {
+        "name": "BryanTrach-MSFT",
+        "url": "https://github.com/BryanTrach-MSFT"
+      },
+      {
+        "name": "RyanHill-MSFT",
+        "url": "https://github.com/RyanHill-MSFT"
+      },
+      {
+        "name": "kenwith",
+        "url": "https://github.com/kenwith"
+      },
+      {
+        "name": "waiholiu",
+        "url": "https://github.com/waiholiu"
+      },
+      {
+        "name": "jdmartinez36",
+        "url": "https://github.com/jdmartinez36"
+      },
+      {
+        "name": "DCtheGeek",
+        "url": "https://github.com/DCtheGeek"
+      },
+      {
+        "name": "wadepickett",
+        "url": "https://github.com/wadepickett"
+      }
+    ]
+  },
+  "functions": {}
+};;
+	</script>
+
+			<!-- base scripts, msdocs global should be before this -->
+			<script src="/static/assets/0.4.03398.7756-c1512039/scripts/en-us/index-docs.js"></script>
+			
+
+			<!-- json-ld -->
+			
+		</head>
+	
+			<body
+				id="body"
+				data-bi-name="body"
+				class="layout-body "
+				lang="en-us"
+				dir="ltr"
+			>
+				<header class="layout-body-header">
+		<div class="header-holder has-default-focus">
+			
+		<a
+			href="#main"
+			
+			style="z-index: 1070"
+			class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body"
+			
+		>
+			Skip to main content
+		</a>
+	
+		<a
+			href="#"
+			data-skip-to-ask-learn
+			style="z-index: 1070"
+			class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body"
+			hidden
+		>
+			Skip to Ask Learn chat experience
+		</a>
+	
+
+			<div hidden id="cookie-consent-holder" data-test-id="cookie-consent-container"></div>
+			<!-- Unsupported browser warning -->
+			<div
+				id="unsupported-browser"
+				style="background-color: white; color: black; padding: 16px; border-bottom: 1px solid grey;"
+				hidden
+			>
+				<div style="max-width: 800px; margin: 0 auto;">
+					<p style="font-size: 24px">This browser is no longer supported.</p>
+					<p style="font-size: 16px; margin-top: 16px;">
+						Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+					</p>
+					<div style="margin-top: 12px;">
+						<a
+							href="https://go.microsoft.com/fwlink/p/?LinkID=2092881 "
+							style="background-color: #0078d4; border: 1px solid #0078d4; color: white; padding: 6px 12px; border-radius: 2px; display: inline-block;"
+						>
+							Download Microsoft Edge
+						</a>
+						<a
+							href="https://learn.microsoft.com/en-us/lifecycle/faq/internet-explorer-microsoft-edge"
+							style="background-color: white; padding: 6px 12px; border: 1px solid #505050; color: #171717; border-radius: 2px; display: inline-block;"
+						>
+							More info about Internet Explorer and Microsoft Edge
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- site header -->
+			<div
+				id="ms--site-header"
+				data-test-id="site-header-wrapper"
+				itemscope="itemscope"
+				itemtype="http://schema.org/Organization"
+			>
+				<div
+					id="ms--mobile-nav"
+					class="site-header display-none-tablet padding-inline-none gap-none"
+					data-bi-name="mobile-header"
+					data-test-id="mobile-header"
+				></div>
+				<div
+					id="ms--primary-nav"
+					class="site-header display-none display-flex-tablet"
+					data-bi-name="L1-header"
+					data-test-id="primary-header"
+				></div>
+				<div
+					id="ms--secondary-nav"
+					class="site-header display-none display-flex-tablet"
+					data-bi-name="L2-header"
+					data-test-id="secondary-header"
+					
+				></div>
+			</div>
+			
+		<!-- banner -->
+		<div data-banner>
+			<div id="disclaimer-holder"></div>
+			
+		</div>
+		<!-- banner end -->
+	
+		</div>
+	</header>
+				 <section
+					id="layout-body-menu"
+					class="layout-body-menu border-right display-flex"
+					data-bi-name="menu"
+			  >
+					
+		<div
+			id="left-container"
+			class="left-container display-none padding-none display-block-tablet width-full"
+			data-toc-container="true"
+		>
+			<!-- Regular TOC content (default) -->
+			<div
+				id="ms--toc-content"
+				class="height-full padding-left-sm padding-right-none padding-bottom-sm"
+			>
+				<nav
+					id="affixed-left-container"
+					class="margin-top-xxs-tablet position-sticky display-flex flex-direction-column"
+					aria-label="Primary"
+					data-bi-name="left-toc"
+					role="navigation"
+				></nav>
+			</div>
+			<!-- Collapsible TOC content (hidden by default) -->
+			<div
+				id="ms--toc-content-collapsible"
+				class="padding-left-sm padding-right-none padding-bottom-sm height-full"
+				hidden
+			>
+				<nav
+					id="affixed-left-container"
+					class="margin-top-xxs-tablet position-sticky display-flex flex-direction-column width-full"
+					aria-label="Primary"
+					data-bi-name="left-toc"
+					role="navigation"
+				>
+					<div
+						id="ms--collapsible-toc-header"
+						class="display-flex flex-direction-row-reverse justify-content-center align-items-center margin-bottom-xxs margin-right-xxs"
+					>
+						<button
+							type="button"
+							class="button button-clear inner-focus"
+							data-collapsible-toc-toggle
+							aria-expanded="true"
+							aria-controls="ms--collapsible-toc-content"
+							aria-label="Table of contents"
+						>
+							<span class="icon font-size-md" aria-hidden="true">
+								<span class="docon docon-panel-left-contract"></span>
+							</span>
+						</button>
+						<div id="ms--collapsible-toc-moniker-slot" class="flex-grow-1"></div>
+					</div>
+				</nav>
+			</div>
+		</div>
+	
+			  </section>
+
+				<main
+					id="main"
+					role="main"
+					class="layout-body-main "
+					data-bi-name="content"
+					lang="en-us"
+					dir="ltr"
+				>
+					
+			<div
+		id="ms--content-header"
+		class="content-header default-focus border-bottom-none"
+		data-bi-name="content-header"
+	>
+		<div class="content-header-controls margin-xxs margin-inline-sm-tablet">
+			<button
+				type="button"
+				class="contents-button button button-sm margin-right-xxs"
+				data-bi-name="contents-expand"
+				aria-haspopup="true"
+				data-contents-button
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-menu"></span></span>
+				<span class="contents-expand-title"> Table of contents </span>
+			</button>
+			<button
+				type="button"
+				class="ap-collapse-behavior ap-expanded button button-sm"
+				data-bi-name="ap-collapse"
+				aria-controls="action-panel"
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-exit-mode"></span></span>
+				<span>Exit editor mode</span>
+			</button>
+		</div>
+	</div>
+			<div
+				data-main-column
+				class="reading-width margin-inline-auto layout-padding padding-top-none padding-top-sm-tablet"
+			>
+				<div>
+					
+		<div id="article-header" class="background-color-body margin-bottom-xs display-none-print">
+			<div class="display-flex align-items-center justify-content-space-between">
+				
+		<details
+			id="article-header-breadcrumbs-overflow-popover"
+			class="popover"
+			data-for="article-header-breadcrumbs"
+		>
+			<summary
+				class="button button-clear button-primary button-sm inner-focus"
+				aria-label="All breadcrumbs"
+			>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-more"></span>
+				</span>
+			</summary>
+			<div id="article-header-breadcrumbs-overflow" class="popover-content padding-none"></div>
+		</details>
+
+		<bread-crumbs
+			id="article-header-breadcrumbs"
+			role="group"
+			aria-label="Breadcrumbs"
+			data-test-id="article-header-breadcrumbs"
+			class="overflow-hidden flex-grow-1 margin-right-sm margin-right-md-tablet margin-right-lg-desktop margin-left-negative-xxs padding-left-xxs"
+		></bread-crumbs>
+	 
+		<div
+			id="article-header-page-actions"
+			class="opacity-none margin-left-auto display-flex flex-wrap-no-wrap align-items-stretch"
+		>
+			
+		<button
+			class="button button-sm border-none inner-focus display-none-tablet flex-shrink-0 "
+			data-bi-name="ask-learn-assistant-entry"
+			data-test-id="ask-learn-assistant-modal-entry-mobile"
+			data-ask-learn-modal-entry
+			
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-label="Ask Learn"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button
+			class="button button-sm display-none display-inline-flex-tablet display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn "
+			data-bi-name="ask-learn-assistant-entry"
+			
+			data-test-id="ask-learn-assistant-modal-entry-tablet"
+			data-ask-learn-modal-entry
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button
+			class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn "
+			data-bi-name="ask-learn-assistant-entry"
+			
+			data-test-id="ask-learn-assistant-flyout-entry"
+			data-ask-learn-flyout-entry
+			data-flyout-button="toggle"
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-controls="ask-learn-flyout"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	 
+
+			<details class="popover popover-right" id="article-header-page-actions-overflow">
+				<summary
+					class="justify-content-flex-start button button-clear button-sm button-primary inner-focus"
+					aria-label="More actions"
+					title="More actions"
+				>
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-more-vertical"></span>
+					</span>
+				</summary>
+				<div class="popover-content">
+					
+		<button
+			type="button"
+			id="ms--focus-mode-button"
+			data-focus-mode
+			data-bi-name="focus-mode-entry"
+			data-page-action-item="overflow-all"
+			data-popover-close
+			class="button button-clear button-sm button-block justify-content-flex-start text-align-left inner-focus display-none display-inline-flex-tablet"
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-glasses"></span>
+			</span>
+			<span>Reading mode</span>
+		</button>
+	 
+		<button
+			data-page-action-item="overflow-mobile"
+			type="button"
+			class="button-block button-sm inner-focus button button-clear display-none-tablet justify-content-flex-start text-align-left"
+			data-bi-name="contents-expand"
+			data-contents-button
+			data-popover-close
+		>
+			<span class="icon" aria-hidden="true"
+				><span class="docon docon-editor-list-bullet"></span
+			></span>
+			<span class="contents-expand-title">Table of contents</span>
+		</button>
+	 
+		<a
+			id="lang-link-overflow"
+			class="button-sm inner-focus button button-clear button-block justify-content-flex-start text-align-left"
+			data-bi-name="language-toggle"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			data-read-in-link
+			href="#"
+			hidden
+		>
+			<span class="icon" aria-hidden="true" data-read-in-link-icon>
+				<span class="docon docon-locale-globe"></span>
+			</span>
+			<span data-read-in-link-text>Read in English</span>
+		</a>
+	
+					
+		<button
+			type="button"
+			class="collection button button-clear button-sm button-block justify-content-flex-start text-align-left inner-focus"
+			data-list-type="collection"
+			data-bi-name="collection"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			data-popover-close
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-circle-addition"></span>
+			</span>
+			<span class="collection-status">Add</span>
+		</button>
+	 
+		<button
+			type="button"
+			class="collection button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus"
+			data-list-type="plan"
+			data-bi-name="plan"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			data-popover-close
+			hidden
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-circle-addition"></span>
+			</span>
+			<span class="plan-status">Add to plan</span>
+		</button>
+	 
+					
+		<a
+			data-contenteditbtn
+			class="button button-clear button-block button-sm inner-focus justify-content-flex-start text-align-left text-decoration-none"
+			data-bi-name="edit"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			
+			href="https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/app-service/quickstart-dotnetcore.md"
+			data-original_content_git_url="https://github.com/MicrosoftDocs/azure-docs-pr/blob/live/articles/app-service/quickstart-dotnetcore.md"
+			data-original_content_git_url_template="{repo}/blob/{branch}/articles/app-service/quickstart-dotnetcore.md"
+			data-pr_repo=""
+			data-pr_branch=""
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-edit-outline"></span>
+			</span>
+			<span>Edit</span>
+		</a>
+	  
+		<hr class="margin-block-xxs" />
+		
+				<button
+					class="button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus"
+					type="button"
+					data-bi-name="copy-markdown"
+					data-page-action-item="overflow-all"
+					data-copy-markdown
+					data-copy-state="idle"
+					data-check-hidden="true"
+				>
+					<span class="icon color-primary" aria-hidden="true">
+						<span data-show-when="idle" class="docon docon-code-lang"></span>
+						<span data-show-when="loading" class="loader" hidden></span>
+						<span data-show-when="success" class="docon docon-check-mark" hidden></span>
+					</span>
+					<span>Copy Markdown</span>
+				</button>
+		   
+				<button
+					class="button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus"
+					type="button"
+					data-bi-name="print"
+					data-page-action-item="overflow-all"
+					data-popover-close
+					data-print-page
+					data-check-hidden="true"
+				>
+					<span class="icon color-primary" aria-hidden="true">
+						<span class="docon docon-print"></span>
+					</span>
+					<span>Print</span>
+				</button>
+		  
+	
+				</div>
+			</details>
+		</div>
+	
+			</div>
+		</div>
+	  
+		<!-- privateUnauthorizedTemplate is hidden by default -->
+		<div unauthorized-private-section data-bi-name="permission-content-unauthorized-private" hidden>
+			<hr class="hr margin-top-xs margin-bottom-sm" />
+			<div class="notification notification-info">
+				<div class="notification-content">
+					<p class="margin-top-none notification-title">
+						<span class="icon" aria-hidden="true"
+							><span class="docon docon-exclamation-circle-solid"></span
+						></span>
+						<span>Note</span>
+					</p>
+					<p class="margin-top-none authentication-determined not-authenticated">
+						Access to this page requires authorization. You can try <a class="docs-sign-in" href="#" data-bi-name="permission-content-sign-in">signing in</a> or <a  class="docs-change-directory" data-bi-name="permisson-content-change-directory">changing directories</a>.
+					</p>
+					<p class="margin-top-none authentication-determined authenticated">
+						Access to this page requires authorization. You can try <a class="docs-change-directory" data-bi-name="permisson-content-change-directory">changing directories</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	
+					<div class="content"><h1 id="quickstart-deploy-an-aspnet-web-app">Quickstart: Deploy an ASP.NET web app</h1></div>
+					
+		<div
+			id="article-metadata"
+			data-bi-name="article-metadata"
+			data-test-id="article-metadata"
+			class="page-metadata-container display-flex gap-xxs justify-content-space-between align-items-center flex-wrap-wrap"
+		>
+			 
+				<div
+					id="user-feedback"
+					class="margin-block-xxs display-none display-none-print"
+					hidden
+					data-hide-on-archived
+				>
+					
+		<button
+			id="user-feedback-button"
+			data-test-id="conceptual-feedback-button"
+			class="button button-sm button-clear button-primary display-none"
+			type="button"
+			data-bi-name="user-feedback-button"
+			data-user-feedback-button
+			hidden
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-like"></span>
+			</span>
+			<span>Feedback</span>
+		</button>
+	
+				</div>
+		  
+		</div>
+	 
+		<div data-id="ai-summary" class="display-none-print">
+			<div id="ms--ai-summary-cta" class="margin-top-xs display-flex align-items-center">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-sparkle-fill gradient-text-vivid"></span>
+				</span>
+				<button
+					id="ms--ai-summary"
+					type="button"
+					class="tag tag-sm tag-suggestion margin-left-xxs"
+					data-test-id="ai-summary-cta"
+					data-bi-name="ai-summary-cta"
+					data-an="ai-summary"
+				>
+					<span class="ai-summary-cta-text">
+						Summarize this article for me
+					</span>
+				</button>
+			</div>
+			<!-- Slot where the client will render the summary card after the user clicks the CTA -->
+			<div id="ms--ai-summary-header" class="margin-top-xs"></div>
+		</div>
+	 
+		<nav
+			id="center-doc-outline"
+			class="doc-outline display-none-desktop display-none-print margin-bottom-sm"
+			data-bi-name="intopic toc"
+			aria-label="In this article"
+		>
+			<h2 id="ms--in-this-article" class="title is-6 margin-block-xs">
+				In this article
+			</h2>
+		</nav>
+	
+					<div class="content"><!-- NOTES:
+
+I'm a .NET developer who wants to deploy my web app to App Service. I might develop apps with
+Visual Studio, Visual Studio Code, or the .NET SDK/CLI. This article
+should be able to guide .NET devs, whether they're app is .NET Core, .NET, or .NET Framework.
+
+As a .NET developer, when choosing an IDE and .NET TFM - you map to various OS requirements.
+For example, if you choose Visual Studio - you're developing the app on Windows, but you can still
+target cross-platform with .NET 10.0.
+
+| .NET / IDE         | Visual Studio | Visual Studio Code | Command line   |
+|--------------------|---------------|--------------------|----------------|
+| .NET 10.0          | Windows       | Cross-platform     | Cross-platform |
+| .NET Framework 4.8 | Windows       | Windows            | Windows        |
+
+-->
+<p>In this quickstart, you learn how to create and deploy your first ASP.NET web app to <a href="overview" data-linktype="relative-path">Azure App Service</a>. App Service supports various versions of .NET apps. It provides a highly scalable, self-patching web hosting service. ASP.NET web apps are cross-platform and can be hosted on Linux or Windows. When you're finished, you have an Azure resource group that includes an App Service hosting plan and an App Service with a deployed web application.</p>
+<p>Alternatively, you can deploy an ASP.NET web app as part of a <a href="quickstart-custom-container" data-linktype="relative-path">Windows or Linux container in App Service</a>.</p>
+<div class="TIP">
+<p>Tip</p>
+<p>Find GitHub Copilot tips in the Visual Studio, Visual Studio Code, and Azure portal steps.</p>
+</div>
+<h2 id="prerequisites">Prerequisites</h2>
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-vs">
+<div class="tabGroup" id="tabgroup_1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_1_net10" role="tab" aria-controls="tabpanel_1_net10" data-tab="net10" tabindex="0" aria-selected="true" data-linktype="self-bookmark">.NET 10</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_1_netframework48" role="tab" aria-controls="tabpanel_1_netframework48" data-tab="netframework48" tabindex="-1" data-linktype="self-bookmark">.NET Framework 4.8</a>
+</li>
+</ul>
+<section id="tabpanel_1_net10" role="tabpanel" data-tab="net10">
+
+<ul>
+<li>An Azure account with an active subscription. <a href="https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn" data-linktype="external">Create an account for free</a>.</li>
+<li><a href="https://www.visualstudio.com/downloads" target="_blank" data-linktype="external">Visual Studio 2026</a> with the <strong>ASP.NET and web development</strong> workload.</li>
+</ul>
+</section>
+<section id="tabpanel_1_netframework48" role="tabpanel" data-tab="netframework48" aria-hidden="true" hidden="hidden">
+
+<ul>
+<li>An Azure account with an active subscription. <a href="https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn" data-linktype="external">Create an account for free</a>.</li>
+<li><a href="https://www.visualstudio.com/downloads" target="_blank" data-linktype="external">Visual Studio 2026</a> with the <strong>ASP.NET and web development</strong> workload. Ensure the optional checkbox <strong>.NET Framework project and item templates</strong> is selected.</li>
+</ul>
+</section>
+</div>
+
+<p>If you already installed Visual Studio 2026:</p>
+<ol>
+<li>Install the latest updates in Visual Studio by selecting <strong>Help</strong> &gt; <strong>Check for Updates</strong>.</li>
+<li>Add the workload by selecting <strong>Tools</strong> &gt; <strong>Get Tools and Features</strong>.</li>
+</ol>
+</div>
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-vscode">
+<ul>
+<li>An Azure account with an active subscription. <a href="https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn" data-linktype="external">Create an account for free</a>.</li>
+<li><a href="https://www.visualstudio.com/downloads" target="_blank" data-linktype="external">Visual Studio Code</a>.</li>
+<li>The <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-node-azure-pack" target="_blank" data-linktype="external">Azure Tools</a> extension.</li>
+<li><a href="https://dotnet.microsoft.com/download/dotnet/10.0" target="_blank" data-linktype="external">The latest .NET 10.0 SDK.</a></li>
+</ul>
+</div>
+<!-- markdownlint-disable MD044 -->
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-cli">
+<!-- markdownlint-enable MD044 -->
+<ul>
+<li>An Azure account with an active subscription. <a href="https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn" data-linktype="external">Create an account for free</a>.</li>
+<li>The <a href="/en-us/cli/azure/install-azure-cli" target="_blank" data-linktype="absolute-path">Azure CLI</a>.</li>
+<li><a href="https://dotnet.microsoft.com/download/dotnet/10.0" target="_blank" data-linktype="external">The latest .NET 10.0 SDK.</a></li>
+</ul>
+</div>
+<!-- markdownlint-disable MD044 -->
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-ps">
+<!-- markdownlint-enable MD044 -->
+<ul>
+<li>An Azure account with an active subscription. <a href="https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn" data-linktype="external">Create an account for free</a>.</li>
+<li>The <a href="/en-us/powershell/azure/install-az-ps" target="_blank" data-linktype="absolute-path">Azure PowerShell</a>.</li>
+<li><a href="https://dotnet.microsoft.com/download/dotnet/10.0" target="_blank" data-linktype="external">The latest .NET 10.0 SDK.</a></li>
+</ul>
+</div>
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-azure-portal">
+<ul>
+<li>An Azure account with an active subscription. <a href="https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn" data-linktype="external">Create an account for free</a>.</li>
+<li>A GitHub account <a href="https://github.com/" data-linktype="external">Create an account for free</a>.</li>
+</ul>
+</div>
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-vs development-environment-azure-portal development-environment-ps development-environment-vscode development-environment-cli">
+<h2 id="skip-to-the-end">Skip to the end</h2>
+<p>You can quickly deploy the ASP.NET Core sample app in this tutorial using Azure Developer CLI and see it running in Azure. Just run the following commands in the <a href="https://shell.azure.com" data-linktype="external">Azure Cloud Shell</a>, and follow the prompt:</p>
+<pre><code class="lang-bash">mkdir dotnetcore-quickstart
+cd dotnetcore-quickstart
+azd init --template https://github.com/Azure-Samples/quickstart-deploy-aspnet-core-app-service.git
+azd up
+</code></pre>
+<p>And, to delete the resources:</p>
+<pre><code class="lang-bash">azd down
+</code></pre>
+<h2 id="create-an-aspnet-web-app">Create an ASP.NET web app</h2>
+</div>
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-vs">
+<div class="tabGroup" id="tabgroup_2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_2_net10" role="tab" aria-controls="tabpanel_2_net10" data-tab="net10" tabindex="0" aria-selected="true" data-linktype="self-bookmark">.NET 10</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_2_netframework48" role="tab" aria-controls="tabpanel_2_netframework48" data-tab="netframework48" tabindex="-1" data-linktype="self-bookmark">.NET Framework 4.8</a>
+</li>
+</ul>
+<section id="tabpanel_2_net10" role="tabpanel" data-tab="net10">
+
+<ol>
+<li><p>Open Visual Studio and then select <strong>Create a new project</strong>.</p>
+</li>
+<li><p>In <strong>Create a new project</strong>, find and select <strong>Blazor Web App</strong>, then select <strong>Next</strong>.</p>
+</li>
+<li><p>In <strong>Configure your new project</strong>, name the application <em>MyFirstAzureWebApp</em>, and then select <strong>Next</strong>.</p>
+</li>
+<li><p>Select <strong>.NET 10.0 (Long Term Support)</strong>.</p>
+</li>
+<li><p>Ensure <strong>Authentication type</strong> is set to <strong>None</strong>. Select <strong>Create</strong>.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/vs-additional-info-net-10.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/vs-additional-info-net-10.png" alt="Screenshot of Visual Studio - Additional info when selecting .NET 10.0." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</li>
+<li><p>From the Visual Studio menu, select <strong>Debug</strong> &gt; <strong>Start Without Debugging</strong> to run the web app locally. If you see dialog boxes asking you to trust a self-signed certificate, select <strong>Yes</strong>.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/web-app-net-10.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/web-app-net-10.png" alt="Screenshot of Visual Studio - ASP.NET Core 10.0 running locally." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</li>
+</ol>
+</section>
+<section id="tabpanel_2_netframework48" role="tabpanel" data-tab="netframework48" aria-hidden="true" hidden="hidden">
+
+<ol>
+<li><p>Open Visual Studio and then select <strong>Create a new project</strong>.</p>
+</li>
+<li><p>In <strong>Create a new project</strong>, find and select <strong>ASP.NET Web Application (.NET Framework)</strong>, then select <strong>Next</strong>.</p>
+</li>
+<li><p>In <strong>Configure your new project</strong>, name the application <em>MyFirstAzureWebApp</em>, and then select <strong>Create</strong>.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnet/configure-web-app-net-framework-48.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnet/configure-web-app-net-framework-48.png" alt="Screenshot of Visual Studio - Configure ASP.NET Framework 4.8 web app." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</li>
+<li><p>Select the <strong>MVC</strong> template.</p>
+</li>
+<li><p>Ensure <strong>Authentication</strong> is set to <strong>No Authentication</strong>. Select <strong>Create</strong>.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/vs-mvc-no-auth-net-framework-48.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/vs-mvc-no-auth-net-framework-48.png" alt="Screenshot of Visual Studio - Select the MVC template." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</li>
+<li><p>From the Visual Studio menu, select <strong>Debug</strong> &gt; <strong>Start Without Debugging</strong> to run the web app locally.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/vs-local-web-app-net-framework-48.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/vs-local-web-app-net-framework-48.png" alt="Screenshot of Visual Studio - ASP.NET Framework 4.8 running locally." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</li>
+</ol>
+</section>
+</div>
+
+<div class="TIP">
+<p>Tip</p>
+<p>If you have a GitHub Copilot account, try <a href="https://visualstudio.microsoft.com/github-copilot/" data-linktype="external">getting GitHub Copilot features for Visual Studio</a>.</p>
+</div>
+</div>
+<!-- markdownlint-disable MD044 -->
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-vscode development-environment-cli development-environment-ps">
+<!-- markdownlint-enable MD044 -->
+<ol>
+<li><p>Open a terminal window on your machine to a working directory. Create a new .NET web app using the <a href="/en-us/dotnet/core/tools/dotnet-new#web-options" data-linktype="absolute-path">dotnet new webapp</a> command, and then change directories into the newly created app.</p>
+<!-- Please keep the following commands in two lines instead of one && separated line. The latter doesn't work in PowerShell -->
+<pre><code class="lang-dotnetcli">dotnet new blazor -n MyFirstAzureWebApp --framework net10.0
+cd MyFirstAzureWebApp
+</code></pre>
+</li>
+<li><p>From the same terminal session, run the application locally using the <a href="/en-us/dotnet/core/tools/dotnet-run" data-linktype="absolute-path">dotnet run</a> command.</p>
+<pre><code class="lang-dotnetcli">dotnet run --urls=https://localhost:5001/
+</code></pre>
+</li>
+<li><p>Open a web browser, and navigate to the app at <code>https://localhost:5001</code>.</p>
+<p>You see the template ASP.NET Core 10.0 web app displayed in the page.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/web-app-net-10.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/web-app-net-10.png" alt="Screenshot of Visual Studio Code - ASP.NET Core 10.0 in local browser." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</li>
+</ol>
+</div>
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-azure-portal">
+<p>In this step, you fork a demo project to deploy.</p>
+<div class="tabGroup" id="tabgroup_3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_3_net10" role="tab" aria-controls="tabpanel_3_net10" data-tab="net10" tabindex="0" aria-selected="true" data-linktype="self-bookmark">.NET 10</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_3_netframework48" role="tab" aria-controls="tabpanel_3_netframework48" data-tab="netframework48" tabindex="-1" data-linktype="self-bookmark">.NET Framework 4.8</a>
+</li>
+</ul>
+<section id="tabpanel_3_net10" role="tabpanel" data-tab="net10">
+
+<ol>
+<li>Go to the <a href="https://github.com/Azure-Samples/dotnetcore-docs-hello-world" data-linktype="external">.NET 10.0 sample app</a>.</li>
+<li>Select the <strong>Fork</strong> button in the upper right on the GitHub page.</li>
+<li>Select the <strong>Owner</strong> and leave the default <strong>Repository name</strong>.</li>
+<li>Select <strong>Create fork</strong>.</li>
+</ol>
+</section>
+<section id="tabpanel_3_netframework48" role="tabpanel" data-tab="netframework48" aria-hidden="true" hidden="hidden">
+
+<ol>
+<li>Go to the <a href="https://github.com/Azure-Samples/app-service-web-dotnet-get-started" data-linktype="external">.NET Framework 4.8 sample app</a>.</li>
+<li>Select the <strong>Fork</strong> button in the upper right on the GitHub page.</li>
+<li>Select the <strong>Owner</strong> and leave the default <strong>Repository name</strong>.</li>
+<li>Select <strong>Create fork</strong>.</li>
+</ol>
+</section>
+</div>
+</div>
+<h2 id="publish-your-web-app">Publish your web app</h2>
+<p>Follow these steps to create your App Service resources and publish your project:</p>
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-vs">
+<ol>
+<li><p>In <strong>Solution Explorer</strong>, right-click the <strong>MyFirstAzureWebApp</strong> project and select <strong>Publish</strong>.</p>
+</li>
+<li><p>In <strong>Publish</strong>, select <strong>Azure</strong> and then <strong>Next</strong>.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/vs-publish-target-azure.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/vs-publish-target-azure.png" alt="Screenshot of Visual Studio - Publish the web app and target Azure." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</li>
+<li><p>Choose the <strong>Specific target</strong>, either <strong>Azure App Service (Linux)</strong> or <strong>Azure App Service (Windows)</strong>. Select <strong>Next</strong>.</p>
+<div class="IMPORTANT">
+<p>Important</p>
+<p>When targeting ASP.NET Framework 4.8, use <strong>Azure App Service (Windows)</strong>.</p>
+</div>
+</li>
+<li><p>Your options depend on whether you're signed in to Azure already and whether you have a Visual Studio account linked to an Azure account. Select either <strong>Add an account</strong> or <strong>Sign in</strong> to sign in to your Azure subscription. If you're already signed in, select the account you want.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/sign-in-azure.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/sign-in-azure.png" alt="Screenshot of Visual Studio - Select sign in to Azure dialog." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</li>
+<li><p>Select <strong>Create new</strong>.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/publish-new-app-service.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/publish-new-app-service.png" alt="Screenshot of Visual Studio - New App Service app dialog." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</li>
+<li><p>For <strong>Subscription</strong>, accept the subscription that is listed or select a new one from the drop-down list.</p>
+</li>
+<li><p>For <strong>Resource group</strong>, select <strong>New</strong>. In <strong>New resource group name</strong>, enter <em>myResourceGroup</em> and select <strong>OK</strong>.</p>
+</li>
+<li><p>For <strong>Hosting Plan</strong>, select <strong>New</strong>.</p>
+</li>
+<li><p>In the <strong>Hosting Plan: Create new</strong> dialog, enter the values specified in the following table:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Suggested value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hosting Plan</strong></td>
+<td><em>MyFirstAzureWebAppPlan</em></td>
+<td>Name of the App Service plan.</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><em>West Europe</em></td>
+<td>The datacenter where the web app is hosted.</td>
+</tr>
+<tr>
+<td><strong>Size</strong></td>
+<td>Choose the lowest tier.</td>
+<td><a href="https://azure.microsoft.com/pricing/details/app-service/?ref=microsoft.com&amp;utm_source=microsoft.com&amp;utm_medium=docs&amp;utm_campaign=visualstudio" data-linktype="external">Pricing tiers</a> define hosting features.</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p>In <strong>Name</strong>, enter a unique app name. Include only characters <code>a-z</code>, <code>A-Z</code>, <code>0-9</code>, and <code>-</code>. You can accept the automatically generated unique name.</p>
+</li>
+<li><p>Select <strong>Create</strong> to create the Azure resources.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/web-app-name.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/web-app-name.png" alt="Screenshot of Visual Studio - Create app resources dialog." data-linktype="relative-path">
+</a>
+</span>
+</p>
+<p>When the process completes, the Azure resources are created for you. You're ready to publish your ASP.NET Core project.</p>
+</li>
+<li><p>In the <strong>Publish</strong> dialog, ensure your new App Service app is selected, then select <strong>Finish</strong>, then select <strong>Close</strong>. Visual Studio creates a publish profile for you for the selected App Service app.</p>
+</li>
+<li><p>In the <strong>Publish</strong> page, select <strong>Publish</strong>. If you see a warning message, select <strong>Continue</strong>.</p>
+<p>Visual Studio builds, packages, and publishes the app to Azure, and then launches the app in the default browser.</p>
+<div class="tabGroup" id="tabgroup_4">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_4_net10" role="tab" aria-controls="tabpanel_4_net10" data-tab="net10" tabindex="0" aria-selected="true" data-linktype="self-bookmark">.NET 10</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_4_netframework48" role="tab" aria-controls="tabpanel_4_netframework48" data-tab="netframework48" tabindex="-1" data-linktype="self-bookmark">.NET Framework 4.8</a>
+</li>
+</ul>
+<section id="tabpanel_4_net10" role="tabpanel" data-tab="net10">
+
+<p>You see the ASP.NET Core 10.0 web app displayed in the page.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/web-app-net-10.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/web-app-net-10.png" alt="Screenshot of Visual Studio - ASP.NET Core 10.0 web app in Azure." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</section>
+<section id="tabpanel_4_netframework48" role="tabpanel" data-tab="netframework48" aria-hidden="true" hidden="hidden">
+
+<p>You see the ASP.NET Framework 4.8 web app displayed in the page.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/vs-azure-web-app-net-48.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/vs-azure-web-app-net-48.png" alt="Screenshot of Visual Studio - ASP.NET Framework 4.8 web app in Azure." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</section>
+</div>
+</li>
+</ol>
+<hr>
+</div>
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-vscode">
+<!-- :::image type="content" source="media/quickstart-dotnet/vscode-sign-in-to-Azure.png" alt-text="Screenshot of Visual Studio Code - Sign in to Azure." border="true"::: -->
+<ol>
+<li><p>Open Visual Studio Code from your project's root directory.</p>
+<pre><code class="lang-terminal">code .
+</code></pre>
+</li>
+<li><p>If prompted, select <strong>Yes, I trust the authors.</strong></p>
+<div class="TIP">
+<p>Tip</p>
+<p>If you have a GitHub Copilot account, try <a href="https://code.visualstudio.com/docs/copilot/overview" data-linktype="external">getting GitHub Copilot features for Visual Studio Code</a>.</p>
+</div>
+</li>
+<li><p>In Visual Studio Code, select <strong>View</strong> &gt; <strong>Command Palette</strong> to open the <a href="https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette" data-linktype="external">Command Palette</a>.</p>
+</li>
+<li><p>Search for and select <em>Azure App Service: Create New Web App (Advanced)</em>.</p>
+</li>
+<li><p>Respond to the prompts as follows:</p>
+<ol>
+<li>If prompted, sign in to your Azure account.</li>
+<li>Select your <strong>Subscription</strong>.</li>
+<li>Select a location near you.</li>
+<li>Select <strong>Secure unique default hostname</strong>.</li>
+<li>Select <strong>Create new resource group</strong> and provide a name like <code>myResourceGroup</code>.</li>
+<li>Enter a name for the new web app.</li>
+<li>When prompted to <strong>Select a runtime stack</strong>, select <strong>.NET 10 (LTS)</strong>.</li>
+<li>Select an operating system (Windows or Linux).</li>
+<li>Select <strong>Create new App Service plan</strong>, provide a name, and select the <strong>Free (F1)</strong> <a href="https://azure.microsoft.com/pricing/details/app-service/?ref=microsoft.com&amp;utm_source=microsoft.com&amp;utm_medium=docs&amp;utm_campaign=visualstudio" data-linktype="external">pricing tier</a>.</li>
+<li>For the Application Insights resource, select <strong>Skip for now</strong> for the Application Insights resource.</li>
+</ol>
+<p>Wait for Visual Studio to finish creating the Azure resources.</p>
+</li>
+<li><p>In Visual Studio Code, select <strong>View</strong> &gt; <strong>Command Palette</strong> again.</p>
+</li>
+<li><p>Search for and select <em>Azure App Service: Deploy to Web App</em>.</p>
+<ol>
+<li>Select <em>MyFirstAzureWebApp</em> as the folder to deploy.</li>
+<li>Select <strong>Add Config</strong> when prompted.</li>
+<li>Select your <strong>Subscription</strong>.</li>
+<li>Select your web app.</li>
+<li>When prompted, select <strong>Deploy</strong>.</li>
+</ol>
+</li>
+<li><p>In the dialog <strong>Always deploy the workspace "MyFirstAzureWebApp" to &lt;app-name&gt;"</strong>, select <strong>Yes</strong> so that Visual Studio Code deploys to the same App Service app every time you're in that workspace.</p>
+</li>
+<li><p>When publishing completes, select <strong>Browse Website</strong> in the notification.</p>
+<p>You see the Blazor web app displayed in the page.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/web-app-net-10.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/web-app-net-10.png" alt="Screenshot of Visual Studio Code - ASP.NET Core 10.0 web app in Azure." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</li>
+</ol>
+</div>
+<!-- markdownlint-disable MD044 -->
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-cli">
+<!-- markdownlint-enable MD044 -->
+<ol>
+<li><p>Sign into your Azure account by using the <a href="/en-us/cli/azure/reference-index#az-login" data-linktype="absolute-path">az login</a> command and following the prompt:</p>
+<pre><code class="lang-azurecli">az login
+</code></pre>
+<ul>
+<li>If the <code>az</code> command isn't recognized, ensure that you have the Azure CLI installed as described in <a href="#prerequisites" data-linktype="self-bookmark">Prerequisites</a>.</li>
+</ul>
+</li>
+<li><p>Use <a href="/en-us/cli/azure/webapp#az-webapp-up" data-linktype="absolute-path">az webapp up</a> to deploy the code in your local <em>MyFirstAzureWebApp</em> directory:</p>
+<pre><code class="lang-azurecli">az webapp up --sku F1 --name &lt;app-name&gt; --os-type &lt;os&gt;
+</code></pre>
+<ul>
+<li>Replace <code>&lt;app-name&gt;</code> with a name that's unique across all of Azure. Valid characters are <code>a-z</code>, <code>0-9</code>, and <code>-</code>. A good pattern is to use a combination of your company name and an app identifier.</li>
+<li>The <code>--sku F1</code> argument creates the web app on the <strong>Free</strong> <a href="https://azure.microsoft.com/pricing/details/app-service/?ref=microsoft.com&amp;utm_source=microsoft.com&amp;utm_medium=docs&amp;utm_campaign=visualstudio" data-linktype="external">pricing tier</a>. Omit this argument to use a faster premium tier, which incurs an hourly cost.</li>
+<li>Replace <code>&lt;os&gt;</code> with either <code>linux</code> or <code>windows</code>.</li>
+<li>You can optionally include the argument <code>--location &lt;location-name&gt;</code> where <code>&lt;location-name&gt;</code> is an available Azure region. To get a list of allowable regions for your Azure account, run the <a href="/en-us/cli/azure/appservice#az-appservice-list-locations" data-linktype="absolute-path">az account list-locations</a> command.</li>
+</ul>
+<p>The command might take a few minutes to complete. While it runs, the command provides messages about creating the resource group, the App Service plan, and hosting app, configuring logging, then performing ZIP deployment. Then it shows a message with the app's URL.</p>
+</li>
+<li><p>Open a web browser and navigate to the URL. You see the ASP.NET Core 10.0 web app displayed in the page.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/web-app-net-10.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/web-app-net-10.png" alt="Screenshot of the CLI - ASP.NET Core 10.0 web app in Azure." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</li>
+</ol>
+</div>
+<!-- markdownlint-disable MD044 -->
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-ps">
+<!-- markdownlint-enable MD044 -->
+<div class="NOTE">
+<p>Note</p>
+<p>We recommend Azure PowerShell for creating apps on the Windows hosting platform. To create apps on Linux, use a different tool, such as <a href="quickstart-dotnetcore?pivots=development-environment-cli" data-linktype="relative-path">Azure CLI</a>.</p>
+</div>
+<ol>
+<li><p>Sign into your Azure account by using the <a href="/en-us/powershell/module/az.accounts/connect-azaccount" data-linktype="absolute-path">Connect-AzAccount</a> command and following the prompt:</p>
+<pre><code class="lang-azurepowershell">Connect-AzAccount
+</code></pre>
+</li>
+<li><p>Create a new app by using the <a href="/en-us/powershell/module/az.websites/new-azwebapp" data-linktype="absolute-path">New-AzWebApp</a> command:</p>
+<pre><code class="lang-azurepowershell">New-AzWebApp -ResourceGroupName myResourceGroup -Name &lt;app-name&gt; -Location westeurope
+</code></pre>
+<ul>
+<li>Replace <code>&lt;app-name&gt;</code> with a name that's unique across all of Azure. Valid characters are <code>a-z</code>, <code>0-9</code>, and <code>-</code> A combination of your company name and an app identifier is a good pattern.</li>
+<li>You can optionally include the parameter <code>-Location &lt;location-name&gt;</code> where <code>&lt;location-name&gt;</code> is an available Azure region. To get a list of allowable regions for your Azure account, run the <a href="/en-us/powershell/module/az.resources/get-azlocation" data-linktype="absolute-path">Get-AzLocation</a> command.</li>
+</ul>
+<p>The command might take a few minutes to complete. The command creates a resource group, an App Service plan, and the App Service resource.</p>
+</li>
+<li><p>From the application root folder, run the <a href="/en-us/dotnet/core/tools/dotnet-publish" data-linktype="absolute-path">dotnet publish</a> command to prepare your local <em>MyFirstAzureWebApp</em> application for deployment:</p>
+<pre><code class="lang-dotnetcli">dotnet publish --configuration Release
+</code></pre>
+</li>
+<li><p>Change to the release directory and create a zip file from the contents:</p>
+<pre><code class="lang-powershell">cd bin\Release\net10.0\publish
+Compress-Archive -Path * -DestinationPath deploy.zip
+</code></pre>
+</li>
+<li><p>Publish the zip file to the Azure app using the <a href="/en-us/powershell/module/az.websites/publish-azwebapp" data-linktype="absolute-path">Publish-AzWebApp</a> command:</p>
+<pre><code class="lang-azurepowershell">Publish-AzWebApp -ResourceGroupName myResourceGroup -Name &lt;app-name&gt; -ArchivePath (Get-Item .\deploy.zip).FullName -Force
+</code></pre>
+<div class="NOTE">
+<p>Note</p>
+<p><code>-ArchivePath</code> needs the full path of the zip file.</p>
+</div>
+</li>
+<li><p>Open a web browser and navigate to the URL. You see the Blazor web app displayed in the page.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/web-app-net-10.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/web-app-net-10.png" alt="Screenshot of the CLI - ASP.NET Core 10.0 web app in Azure." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</li>
+</ol>
+</div>
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-azure-portal">
+<ol>
+<li><p>In the <a href="https://portal.azure.com" data-linktype="external">Azure portal</a>, type <strong>app services</strong> in the search. Under <strong>Services</strong>, select <strong>App Services</strong>.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/portal-search.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/portal-search.png" alt="Screenshot of portal search in the Azure portal." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</li>
+<li><p>In the <strong>App Services</strong> page, select <strong>Create</strong> &gt; <strong>Web App</strong>.</p>
+</li>
+<li><p>In the <strong>Basics</strong> tab:</p>
+<div class="tabGroup" id="tabgroup_5">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_5_net10" role="tab" aria-controls="tabpanel_5_net10" data-tab="net10" tabindex="0" aria-selected="true" data-linktype="self-bookmark">.NET 10</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_5_netframework48" role="tab" aria-controls="tabpanel_5_netframework48" data-tab="netframework48" tabindex="-1" data-linktype="self-bookmark">.NET Framework 4.8</a>
+</li>
+</ul>
+<section id="tabpanel_5_net10" role="tabpanel" data-tab="net10">
+
+<ul>
+<li>Under <strong>Resource group</strong>, select <strong>Create new</strong>. Enter <em>myResourceGroup</em> for the name.</li>
+<li>Under <strong>Name</strong>, enter a globally unique name for your web app.</li>
+<li>Under <strong>Publish</strong>, select <em>Code</em>.</li>
+<li>Under <strong>Runtime stack</strong> select <em>.NET 8 (LTS)</em>.</li>
+<li>Under <strong>Operating System</strong>, select <strong>Windows</strong>. If you select <strong>Linux</strong>, you can't configure GitHub deployment in the next step, but you can still do it after you create the app in the <strong>Deployment Center</strong> page.</li>
+<li>Select a <strong>Region</strong> you want to serve your app from.</li>
+<li>Under <strong>App Service Plan</strong>, select <strong>Create new</strong> and type <em>myAppServicePlan</em> for the name.</li>
+<li>Under <strong>Pricing plan</strong>, select <strong>Free F1</strong>.</li>
+</ul>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/app-service-details-net-10.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/app-service-details-net-10.png" alt="Screenshot of new App Service app configuration for .NET 8 in the Azure portal." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</section>
+<section id="tabpanel_5_netframework48" role="tabpanel" data-tab="netframework48" aria-hidden="true" hidden="hidden">
+
+<ul>
+<li>Under <strong>Resource group</strong>, select <strong>Create new</strong>. Enter <em>myResourceGroup</em> for the name.</li>
+<li>Under <strong>Name</strong>, enter a globally unique name for your web app.</li>
+<li>Under <strong>Publish</strong>, select <em>Code</em>.</li>
+<li>Under <strong>Runtime stack</strong> select <em>ASP.NET V4.8</em>.</li>
+<li>Select an <strong>Operating System</strong>, and a <strong>Region</strong> you want to serve your app from.</li>
+<li>Under <strong>App Service Plan</strong>, select <strong>Create new</strong> and type <em>myAppServicePlan</em> for the name.</li>
+<li>Under <strong>Pricing plan</strong>, select <strong>Free F1</strong>.</li>
+</ul>
+<h2 id="section"><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/app-service-details-net-48.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/app-service-details-net-48.png" alt="Screenshot of new App Service app configuration for .NET Framework V4.8 in the Azure portal." data-linktype="relative-path">
+</a>
+</span>
+</h2>
+</section>
+</div>
+</li>
+<li><p>Select the <strong>Deployment</strong> tab at the top of the page</p>
+</li>
+<li><p>Under <strong>GitHub Actions settings</strong>, set <strong>Continuous deployment</strong> to <em>Enable</em>.</p>
+</li>
+<li><p>Under <strong>GitHub Actions details</strong>, authenticate with your GitHub account, and select the following options:</p>
+<div class="tabGroup" id="tabgroup_6">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_6_net10" role="tab" aria-controls="tabpanel_6_net10" data-tab="net10" tabindex="0" aria-selected="true" data-linktype="self-bookmark">.NET 10</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_6_netframework48" role="tab" aria-controls="tabpanel_6_netframework48" data-tab="netframework48" tabindex="-1" data-linktype="self-bookmark">.NET Framework 4.8</a>
+</li>
+</ul>
+<section id="tabpanel_6_net10" role="tabpanel" data-tab="net10">
+
+<ul>
+<li>For <strong>Organization</strong>, select the organization where you forked the demo project.</li>
+<li>For <strong>Repository</strong>, select the <em>dotnetcore-docs-hello-world</em> project.</li>
+<li>For <strong>Branch</strong>, select <em>main</em>.</li>
+</ul>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/app-service-deploy-10.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/app-service-deploy-10.png" alt="Screenshot of the deployment options for an app using the .NET 10 runtime." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</section>
+<section id="tabpanel_6_netframework48" role="tabpanel" data-tab="netframework48" aria-hidden="true" hidden="hidden">
+
+<ul>
+<li>For <strong>Organization</strong>, select the organization where you forked the demo project.</li>
+<li>For <strong>Repository</strong>, select the <em>app-service-web-dotnet-get-started</em> project.</li>
+<li>For <strong>Branch</strong>, select <em>main</em>.</li>
+</ul>
+<h2 id="section-1"><span class="mx-imgBorder">
+<a href="media/quickstart-dotnet/app-service-deploy-48.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnet/app-service-deploy-48.png" alt="Screenshot of the deployment options for an app using the .NET Framework 4.8 runtime." data-linktype="relative-path">
+</a>
+</span>
+</h2>
+<div class="NOTE">
+<p>Note</p>
+<p>By default, the resource creation <a href="configure-basic-auth-disable" data-linktype="relative-path">disables basic authentication</a>. It creates the GitHub Actions deployment by using a <a href="deploy-continuous-deployment#what-does-the-user-assigned-identity-option-do-for-github-actions" data-linktype="relative-path">user-assigned identity</a>. If you get a permissions error during resource creation, your Azure account might not have <a href="deploy-continuous-deployment#why-do-i-see-the-error-you-do-not-have-sufficient-permissions-on-this-app-to-assign-role-based-access-to-a-managed-identity-and-configure-federated-credentials" data-linktype="relative-path">enough permissions</a>. You can <a href="deploy-continuous-deployment" data-linktype="relative-path">configure GitHub Actions deployment later</a> with an identity generated for you by an Azure administrator, or you enable basic authentication instead.</p>
+</div>
+</section>
+</div>
+</li>
+<li><p>Select <strong>Review + create</strong> at the bottom of the page.</p>
+</li>
+<li><p>After validation runs, select <strong>Create</strong> at the bottom of the page.</p>
+</li>
+<li><p>After deployment is complete, select <strong>Go to resource</strong>.</p>
+<p><span class="mx-imgBorder">
+<img src="media/quickstart-dotnet/next-steps.png" alt="Screenshot of the next step of going to the resource." data-linktype="relative-path">
+</span>
+</p>
+</li>
+<li><p>To browse to the created app, select the <strong>default domain</strong> in the <strong>Overview</strong> page. If you see the message <em>Your web app is running and waiting for your content</em>, GitHub deployment is still running. Wait a couple of minutes and refresh the page.</p>
+<div class="tabGroup" id="tabgroup_7">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_7_net10" role="tab" aria-controls="tabpanel_7_net10" data-tab="net10" tabindex="0" aria-selected="true" data-linktype="self-bookmark">.NET 10</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_7_netframework48" role="tab" aria-controls="tabpanel_7_netframework48" data-tab="netframework48" tabindex="-1" data-linktype="self-bookmark">.NET Framework 4.8</a>
+</li>
+</ul>
+<section id="tabpanel_7_net10" role="tabpanel" data-tab="net10">
+
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/web-app-net-10.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/web-app-net-10.png" alt="Screenshot of the deployed .NET 10.0 sample app." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</section>
+<section id="tabpanel_7_netframework48" role="tabpanel" data-tab="netframework48" aria-hidden="true" hidden="hidden">
+<h2 id="section-2"><span class="mx-imgBorder">
+<a href="media/quickstart-dotnet/browse-dotnet-48.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnet/browse-dotnet-48.png" alt="Screenshot of the deployed .NET Framework 4.8 sample app." data-linktype="relative-path">
+</a>
+</span>
+</h2>
+</section>
+</div>
+</li>
+</ol>
+</div>
+<h2 id="update-the-app-and-redeploy">Update the app and redeploy</h2>
+<p>Make a change the default page and redeploy to see the changes.</p>
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-vs">
+<ol>
+<li><p>In <strong>Solution Explorer</strong>, find the default page in your project and replace the content as follows:</p>
+<div class="tabGroup" id="tabgroup_8">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_8_net10" role="tab" aria-controls="tabpanel_8_net10" data-tab="net10" tabindex="0" aria-selected="true" data-linktype="self-bookmark">.NET 10</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_8_netframework48" role="tab" aria-controls="tabpanel_8_netframework48" data-tab="netframework48" tabindex="-1" data-linktype="self-bookmark">.NET Framework 4.8</a>
+</li>
+</ul>
+<section id="tabpanel_8_net10" role="tabpanel" data-tab="net10">
+
+<p>In <em>Components/Pages/Home.razor</em>, replace everything with the following code:</p>
+<pre><code class="lang-html">@page "/"
+
+&lt;PageTitle&gt;Home&lt;/PageTitle&gt;
+
+&lt;h1&gt;.NET 💜 Azure&lt;/h1&gt;
+
+Example .NET app to Azure App Service.
+</code></pre>
+</section>
+<section id="tabpanel_8_netframework48" role="tabpanel" data-tab="netframework48" aria-hidden="true" hidden="hidden">
+
+<p>In <em>Views/Home/Index.cshtml</em>, replace the first <code>&lt;div&gt;</code> element with the following code:</p>
+<pre><code class="lang-html">&lt;div class="jumbotron"&gt;
+    &lt;h1&gt;.NET 💜 Azure&lt;/h1&gt;
+    &lt;p class="lead"&gt;Example .NET app to Azure App Service.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+</section>
+</div>
+
+<div class="TIP">
+<p>Tip</p>
+<p>With GitHub Copilot enabled in Visual Studio, try the following steps:</p>
+<ol>
+<li>Type <kbd>Alt</kbd>+<kbd>/</kbd>.</li>
+<li>Ask Copilot, "Change to a Bootstrap card that says .NET 💜 Azure."</li>
+</ol>
+</div>
+<p>Save your changes.</p>
+</li>
+<li><p>To redeploy to Azure, right-click the <strong>MyFirstAzureWebApp</strong> project in <strong>Solution Explorer</strong> and select <strong>Publish</strong>.</p>
+</li>
+<li><p>In the <strong>Publish</strong> summary page, select <strong>Publish</strong>.</p>
+<p>When publishing completes, Visual Studio launches a browser to the URL of the web app.</p>
+<div class="tabGroup" id="tabgroup_9">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_9_net10" role="tab" aria-controls="tabpanel_9_net10" data-tab="net10" tabindex="0" aria-selected="true" data-linktype="self-bookmark">.NET 10</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_9_netframework48" role="tab" aria-controls="tabpanel_9_netframework48" data-tab="netframework48" tabindex="-1" data-linktype="self-bookmark">.NET Framework 4.8</a>
+</li>
+</ul>
+<section id="tabpanel_9_net10" role="tabpanel" data-tab="net10">
+
+<p>You see the updated ASP.NET Core 10.0 web app displayed in the page.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/updated-azure-web-app-net.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/updated-azure-web-app-net.png" alt="Screenshot of Visual Studio - Updated ASP.NET Core 10.0 web app in Azure." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</section>
+<section id="tabpanel_9_netframework48" role="tabpanel" data-tab="netframework48" aria-hidden="true" hidden="hidden">
+
+<p>You see the updated ASP.NET Framework 4.8 web app displayed in the page.</p>
+<h2 id="section-3"><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/vs-updated-azure-web-app-net-48.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/vs-updated-azure-web-app-net-48.png" alt="Screenshot of Visual Studio - Updated ASP.NET Framework 4.8 web app in Azure." data-linktype="relative-path">
+</a>
+</span>
+</h2>
+</section>
+</div>
+</li>
+</ol>
+</div>
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-vscode">
+<ol>
+<li><p>In your workspace, find <em>Components/Pages/Home.razor</em> and replace everything with the following code:</p>
+<pre><code class="lang-html">@page "/"
+
+&lt;PageTitle&gt;Home&lt;/PageTitle&gt;
+
+&lt;h1&gt;.NET 💜 Azure&lt;/h1&gt;
+
+Example .NET app to Azure App Service.
+</code></pre>
+<div class="TIP">
+<p>Tip</p>
+<p>Try this approach with GitHub Copilot:</p>
+<ol>
+<li>Select the content and select <img src="media/quickstart-dotnetcore/github-copilot-in-editor.png" role="presentation" data-linktype="relative-path">
+.</li>
+<li>Select <strong>Modify</strong>.</li>
+<li>Enter "<em>Change to a Bootstrap card that says .NET 💜 Azure.</em>"</li>
+</ol>
+</div>
+<p>Save your changes.</p>
+</li>
+<li><p>In Visual Studio Code, select <strong>View</strong> &gt; <strong>Command Palette</strong> again.</p>
+</li>
+<li><p>Search for and select <em>Azure App Service: Deploy to Web App</em>.</p>
+</li>
+<li><p>Select the subscription and the web app you used earlier.</p>
+</li>
+<li><p>When prompted, select <strong>Deploy</strong>.</p>
+</li>
+<li><p>When publishing completes, select <strong>Browse Website</strong> in the notification.</p>
+<p>You see the updated ASP.NET Core 10.0 web app displayed in the page.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/updated-azure-web-app-net.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/updated-azure-web-app-net.png" alt="Screenshot of Visual Studio Code - Updated ASP.NET Core 10.0 web app in Azure." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</li>
+</ol>
+</div>
+<!-- markdownlint-disable MD044 -->
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-cli development-environment-ps">
+<div class="TIP">
+<p>Tip</p>
+<p>To see how Visual Studio Code with GitHub Copilot helps improve your web development experience, see the Visual Studio Code steps.</p>
+</div>
+<!-- markdownlint-enable MD044 -->
+</div>
+<!-- markdownlint-disable MD044 -->
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-cli">
+<!-- markdownlint-enable MD044 -->
+<ol>
+<li><p>In the local directory, find <em>Components/Pages/Home.razor</em> and replace everything with the following code:</p>
+<pre><code class="lang-html">@page "/"
+
+&lt;PageTitle&gt;Home&lt;/PageTitle&gt;
+
+&lt;h1&gt;.NET 💜 Azure&lt;/h1&gt;
+
+Example .NET app to Azure App Service.
+</code></pre>
+</li>
+<li><p>Save your changes, then redeploy the app using the <code>az webapp up</code> command again and replace <code>&lt;os&gt;</code> with either <code>linux</code> or <code>windows</code>.</p>
+<pre><code class="lang-azurecli">az webapp up --os-type &lt;os&gt;
+</code></pre>
+<p>This command uses values that are cached locally in the <em>.azure/config</em> file, including the app name, resource group, and App Service plan.</p>
+</li>
+<li><p>After deployment completes, switch back to the browser window that opened in the <strong>Browse to the app</strong> step, and refresh.</p>
+<p>You see the updated ASP.NET Core 10.0 web app displayed in the page.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/updated-azure-web-app-net.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/updated-azure-web-app-net.png" alt="Screenshot of the CLI - Updated ASP.NET Core 10.0 web app in Azure." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</li>
+</ol>
+</div>
+<!-- markdownlint-disable MD044 -->
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-ps">
+<!-- markdownlint-enable MD044 -->
+<ol>
+<li><p>In the local directory, open <em>Components/Pages/Home.razor</em> and replace everything with the following code:</p>
+<pre><code class="lang-html">@page "/"
+
+&lt;PageTitle&gt;Home&lt;/PageTitle&gt;
+
+&lt;h1&gt;.NET 💜 Azure&lt;/h1&gt;
+
+Example .NET app to Azure App Service.
+</code></pre>
+</li>
+<li><p>From the application root folder, prepare your local <em>MyFirstAzureWebApp</em> application for deployment using the <a href="/en-us/dotnet/core/tools/dotnet-publish" data-linktype="absolute-path">dotnet publish</a> command:</p>
+<pre><code class="lang-dotnetcli">dotnet publish --configuration Release
+</code></pre>
+</li>
+<li><p>Change to the release directory and create a zip file from the contents:</p>
+<pre><code class="lang-powershell">cd bin\Release\net10.0\publish
+Compress-Archive -Path * -DestinationPath deploy.zip -Force
+</code></pre>
+</li>
+<li><p>Publish the zip file to the Azure app using the <a href="/en-us/powershell/module/az.websites/publish-azwebapp" data-linktype="absolute-path">Publish-AzWebApp</a> command:</p>
+<pre><code class="lang-azurepowershell">Publish-AzWebApp -ResourceGroupName myResourceGroup -Name &lt;app-name&gt; -ArchivePath (Get-Item .\deploy.zip).FullName -Force
+</code></pre>
+<div class="NOTE">
+<p>Note</p>
+<p><code>-ArchivePath</code> needs the full path of the zip file.</p>
+</div>
+</li>
+<li><p>After deployment completes, switch back to the browser window that opened in the <strong>Browse to the app</strong> step, and refresh.</p>
+<p>You see the updated Blazor web app displayed in the page.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/updated-azure-web-app-net.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/updated-azure-web-app-net.png" alt="Screenshot of the CLI - Updated ASP.NET Core 10.0 web app in Azure." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</li>
+</ol>
+</div>
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-azure-portal">
+<ol>
+<li><p>Browse to your GitHub fork of the sample code.</p>
+</li>
+<li><p>On your repo page, create a codespace by selecting <strong>Code</strong> &gt; <strong>Create codespace on main</strong>.</p>
+<div class="tabGroup" id="tabgroup_10">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_10_net10" role="tab" aria-controls="tabpanel_10_net10" data-tab="net10" tabindex="0" aria-selected="true" data-linktype="self-bookmark">.NET 10</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_10_netframework48" role="tab" aria-controls="tabpanel_10_netframework48" data-tab="netframework48" tabindex="-1" data-linktype="self-bookmark">.NET Framework 4.8</a>
+</li>
+</ul>
+<section id="tabpanel_10_net10" role="tabpanel" data-tab="net10">
+
+<p><span class="mx-imgBorder">
+<img src="media/quickstart-dotnetcore/github-forked-dotnetcore-docs-hello-world-repo-create-codespace.png" alt="Screenshot showing how to create a codespace in the forked dotnetcore-docs-hello-world GitHub repo." data-linktype="relative-path">
+</span>
+</p>
+</section>
+<section id="tabpanel_10_netframework48" role="tabpanel" data-tab="netframework48" aria-hidden="true" hidden="hidden">
+<h2 id="section-4"><span class="mx-imgBorder">
+<img src="media/quickstart-dotnetcore/github-forked-app-service-web-dotnet-get-started-repo-create-codespace.png" alt="Screenshot showing how to create a codespace in the forked app-service-web-dotnet-get-started GitHub repo." data-linktype="relative-path">
+</span>
+</h2>
+</section>
+</div>
+</li>
+<li><p>In <strong>Solution Explorer</strong>, find the default page in your project and replace the content as follows:</p>
+<div class="tabGroup" id="tabgroup_11">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_11_net10" role="tab" aria-controls="tabpanel_11_net10" data-tab="net10" tabindex="0" aria-selected="true" data-linktype="self-bookmark">.NET 10</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_11_netframework48" role="tab" aria-controls="tabpanel_11_netframework48" data-tab="netframework48" tabindex="-1" data-linktype="self-bookmark">.NET Framework 4.8</a>
+</li>
+</ul>
+<section id="tabpanel_11_net10" role="tabpanel" data-tab="net10">
+
+<p>In <em>Components/Pages/Home.razor</em>, replace everything with the following code. The changes are saved automatically.</p>
+<pre><code class="lang-html">@page "/"
+
+&lt;PageTitle&gt;Home&lt;/PageTitle&gt;
+
+&lt;h1&gt;.NET 💜 Azure&lt;/h1&gt;
+
+Example .NET app to Azure App Service.
+</code></pre>
+</section>
+<section id="tabpanel_11_netframework48" role="tabpanel" data-tab="netframework48" aria-hidden="true" hidden="hidden">
+
+<p>In <em>Views/Home/Index.cshtml</em>, replace the first <code>&lt;div&gt;</code> element with the following code. The changes are saved automatically.</p>
+<pre><code class="lang-html">&lt;div class="jumbotron"&gt;
+    &lt;h1&gt;.NET 💜 Azure&lt;/h1&gt;
+    &lt;p class="lead"&gt;Example .NET app to Azure App Service.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+</section>
+</div>
+
+<div class="TIP">
+<p>Tip</p>
+<p>Try this approach with GitHub Copilot:</p>
+<ol>
+<li>Select all the content and select <img src="media/quickstart-dotnetcore/github-copilot-in-editor.png" role="presentation" data-linktype="relative-path">
+.</li>
+<li>Ask Copilot, "Change to a Bootstrap card that says .NET 💜 Azure."</li>
+</ol>
+</div>
+</li>
+<li><p>From the <strong>Source Control</strong> menu, enter a commit message such as <code>Modify homepage</code>. Then, select <strong>Commit</strong> and confirm staging the changes by selecting <strong>Yes</strong>.</p>
+<div class="tabGroup" id="tabgroup_12">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_12_net10" role="tab" aria-controls="tabpanel_12_net10" data-tab="net10" tabindex="0" aria-selected="true" data-linktype="self-bookmark">.NET 10</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_12_netframework48" role="tab" aria-controls="tabpanel_12_netframework48" data-tab="netframework48" tabindex="-1" data-linktype="self-bookmark">.NET Framework 4.8</a>
+</li>
+</ul>
+<section id="tabpanel_12_net10" role="tabpanel" data-tab="net10">
+
+<p><span class="mx-imgBorder">
+<img src="media/quickstart-dotnetcore/visual-studio-code-in-browser-commit-push-dotnetcore.png" alt="Screenshot of Visual Studio Code in the browser, Source Control panel with a commit message of 'We love Azure' and the Commit and Push button highlighted." data-linktype="relative-path">
+</span>
+</p>
+</section>
+<section id="tabpanel_12_netframework48" role="tabpanel" data-tab="netframework48" aria-hidden="true" hidden="hidden">
+<h2 id="section-5"><span class="mx-imgBorder">
+<img src="media/quickstart-dotnetcore/visual-studio-code-in-browser-commit-push-dotnet-framework.png" alt="Screenshot of Visual Studio Code in the browser, Source Control panel with a commit message of 'We love Azure' and the Commit and Push button highlighted." data-linktype="relative-path">
+</span>
+</h2>
+<div class="TIP">
+<p>Tip</p>
+<p>Let GitHub Copilot create a commit message for you by selecting <img src="media/quickstart-dotnetcore/github-copilot-in-editor.png" role="presentation" data-linktype="relative-path">
+ in the message box.</p>
+</div>
+</section>
+</div>
+</li>
+<li><p>Select <strong>Sync changes 1</strong>, then confirm by selecting <strong>OK</strong>.</p>
+</li>
+<li><p>It takes a few minutes for the deployment to run. To view the progress, navigate to <code>https://github.com/&lt;your-github-alias&gt;/dotnetcore-docs-hello-world/actions</code>.</p>
+</li>
+<li><p>Return to the browser window that opened during the <strong>Browse to the app</strong> step, and refresh the page.</p>
+<div class="tabGroup" id="tabgroup_13">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_13_net10" role="tab" aria-controls="tabpanel_13_net10" data-tab="net10" tabindex="0" aria-selected="true" data-linktype="self-bookmark">.NET 10</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_13_netframework48" role="tab" aria-controls="tabpanel_13_netframework48" data-tab="netframework48" tabindex="-1" data-linktype="self-bookmark">.NET Framework 4.8</a>
+</li>
+</ul>
+<section id="tabpanel_13_net10" role="tabpanel" data-tab="net10">
+
+<p>You see the updated ASP.NET Core 10.0 web app displayed in the page.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/updated-azure-web-app-net.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/updated-azure-web-app-net.png" alt="Screenshot of the CLI - Updated ASP.NET Core 10.0 web app in Azure." data-linktype="relative-path">
+</a>
+</span>
+</p>
+</section>
+<section id="tabpanel_13_netframework48" role="tabpanel" data-tab="netframework48" aria-hidden="true" hidden="hidden">
+
+<p>You see the updated ASP.NET Framework 4.8 web app displayed in the page.</p>
+<h2 id="section-6"><span class="mx-imgBorder">
+<a href="media/quickstart-dotnet/updated-azure-webapp-net-48.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnet/updated-azure-webapp-net-48.png" alt="Screenshot of the CLI - Updated ASP.NET Framework 4.8 web app in Azure." data-linktype="relative-path">
+</a>
+</span>
+</h2>
+</section>
+</div>
+</li>
+</ol>
+</div>
+<h2 id="manage-the-azure-app">Manage the Azure app</h2>
+<p>To manage your web app, go to the <a href="https://portal.azure.com" data-linktype="external">Azure portal</a>, and search for and select <strong>App Services</strong>.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/app-services.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/app-services.png" alt="Screenshot of the Azure portal - Select App Services option." data-linktype="relative-path">
+</a>
+</span>
+</p>
+<p>On the <strong>App Services</strong> page, select the name of your web app.</p>
+<p><span class="mx-imgBorder">
+<img src="media/quickstart-dotnetcore/select-app-service.png" alt="Screenshot of the Azure portal - App Services page with an example web app selected." data-linktype="relative-path">
+</span>
+</p>
+<p>The <strong>Overview</strong> page for your web app, contains options for basic management like browse, stop, start, restart, and delete. The left menu provides further pages for configuring your app.</p>
+<p><span class="mx-imgBorder">
+<a href="media/quickstart-dotnetcore/web-app-overview-page.png#lightbox" data-linktype="relative-path">
+<img src="media/quickstart-dotnetcore/web-app-overview-page.png" alt="Screenshot of the Azure portal - App Service overview page." data-linktype="relative-path">
+</a>
+</span>
+</p>
+<!--
+## Clean up resources - H2 added from the next three includes
+-->
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-vs">
+<h2 id="clean-up-resources">Clean up resources</h2>
+<p>In the preceding steps, you created Azure resources in a resource group. If you don't expect to need these resources in the future, you can delete them by deleting the resource group.</p>
+<ol>
+<li>From your web app's <strong>Overview</strong> page in the Azure portal, select the <strong>myResourceGroup</strong> link under <strong>Resource group</strong>.</li>
+<li>On the resource group page, make sure that the listed resources are the ones you want to delete.</li>
+<li>Select <strong>Delete resource group</strong>, type <strong>myResourceGroup</strong> in the text box, and then select <strong>Delete</strong>.</li>
+<li>Confirm again by selecting <strong>Delete</strong>.</li>
+</ol>
+</div>
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-vscode">
+<h2 id="clean-up-resources">Clean up resources</h2>
+<p>In the preceding steps, you created Azure resources in a resource group. If you don't expect to need these resources in the future, you can delete them by deleting the resource group.</p>
+<ol>
+<li>From your web app's <strong>Overview</strong> page in the Azure portal, select the <strong>myResourceGroup</strong> link under <strong>Resource group</strong>.</li>
+<li>On the resource group page, make sure that the listed resources are the ones you want to delete.</li>
+<li>Select <strong>Delete resource group</strong>, type <strong>myResourceGroup</strong> in the text box, and then select <strong>Delete</strong>.</li>
+<li>Confirm again by selecting <strong>Delete</strong>.</li>
+</ol>
+</div>
+<!-- markdownlint-disable MD044 -->
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-cli">
+<!-- markdownlint-enable MD044 -->
+<p>In the preceding steps, you created Azure resources in a resource group. If you don't expect to need these resources in the future, delete the resource group by running the following command in the Cloud Shell:</p>
+<pre><code class="lang-azurecli">az group delete
+</code></pre>
+<p>For your convenience, the <a href="/en-us/cli/azure/webapp#az-webapp-up" data-linktype="absolute-path">az webapp up</a> command that you ran earlier in this project saves the resource group name as the default value whenever you run <code>az</code> commands from this project.</p>
+</div>
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-ps">
+<!-- markdownlint-enable MD044 -->
+<h2 id="clean-up-resources">Clean up resources</h2>
+<p>In the preceding steps, you created Azure resources in a resource group. If you don't expect to need these resources in the future, delete the resource group by running the following PowerShell command:</p>
+<pre><code class="lang-azurepowershell">Remove-AzResourceGroup -Name myResourceGroup
+</code></pre>
+<p>This command might take a minute to run.</p>
+</div>
+<!-- markdownlint-enable MD044 -->
+<div class="zone has-target has-pivot" data-target="docs" data-pivot="development-environment-azure-portal">
+<!-- markdownlint-enable MD044 -->
+<h2 id="clean-up-resources">Clean up resources</h2>
+<p>In the preceding steps, you created Azure resources in a resource group. If you don't expect to need these resources in the future, you can delete them by deleting the resource group.</p>
+<ol>
+<li>From your web app's <strong>Overview</strong> page in the Azure portal, select the <strong>myResourceGroup</strong> link under <strong>Resource group</strong>.</li>
+<li>On the resource group page, make sure that the listed resources are the ones you want to delete.</li>
+<li>Select <strong>Delete resource group</strong>, type <strong>myResourceGroup</strong> in the text box, and then select <strong>Delete</strong>.</li>
+<li>Confirm again by selecting <strong>Delete</strong>.</li>
+</ol>
+</div>
+<!-- markdownlint-enable MD044 -->
+<h2 id="next-steps">Next steps</h2>
+<div class="tabGroup" id="tabgroup_14">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_14_net10" role="tab" aria-controls="tabpanel_14_net10" data-tab="net10" tabindex="0" aria-selected="true" data-linktype="self-bookmark">.NET 10</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_14_netframework48" role="tab" aria-controls="tabpanel_14_netframework48" data-tab="netframework48" tabindex="-1" data-linktype="self-bookmark">.NET Framework 4.8</a>
+</li>
+</ul>
+<section id="tabpanel_14_net10" role="tabpanel" data-tab="net10">
+
+<p>Advance to the next article to learn how to create a .NET Core app and connect it to a SQL Database:</p>
+<div class="nextstepaction">
+<p><a href="tutorial-dotnetcore-sqldb-app" data-linktype="relative-path">Tutorial: ASP.NET Core app with SQL database</a></p>
+</div>
+<div class="nextstepaction">
+<p><a href="https://github.com/Azure-Samples/app-templates-dotnet-azuresql-appservice" data-linktype="external">App Template: ASP.NET Core app with SQL database and App Insights deployed using CI/CD GitHub Actions</a></p>
+</div>
+<div class="nextstepaction">
+<p><a href="configure-language-dotnetcore" data-linktype="relative-path">Configure ASP.NET Core app</a></p>
+</div>
+</section>
+<section id="tabpanel_14_netframework48" role="tabpanel" data-tab="netframework48" aria-hidden="true" hidden="hidden">
+
+<p>Advance to the next article to learn how to create a .NET Framework app and connect it to a SQL Database:</p>
+<div class="nextstepaction">
+<p><a href="app-service-web-tutorial-dotnet-sqldatabase" data-linktype="relative-path">Tutorial: ASP.NET app with SQL database</a></p>
+</div>
+<div class="nextstepaction">
+<p><a href="configure-language-dotnet-framework" data-linktype="relative-path">Configure ASP.NET Framework app</a></p>
+</div>
+<div class="nextstepaction">
+<p>&nbsp;<a href="tutorial-secure-domain-certificate" data-linktype="relative-path">Secure with custom domain and certificate</a></p>
+</div>
+</section>
+</div>
+</div>
+					
+		<div
+			id="ms--inline-notifications"
+			class="margin-block-xs"
+			data-bi-name="inline-notification"
+		></div>
+	 
+		<div
+			id="assertive-live-region"
+			role="alert"
+			aria-live="assertive"
+			class="visually-hidden"
+			aria-relevant="additions"
+			aria-atomic="true"
+		></div>
+		<div
+			id="polite-live-region"
+			role="status"
+			aria-live="polite"
+			class="visually-hidden"
+			aria-relevant="additions"
+			aria-atomic="true"
+		></div>
+	
+					
+		<!-- feedback section -->
+		<section
+			id="site-user-feedback-footer"
+			class="font-size-sm margin-top-md display-none-print display-none-desktop"
+			data-test-id="site-user-feedback-footer"
+			data-bi-name="site-feedback-section"
+		>
+			<hr class="hr" />
+			<h2 id="ms--feedback" class="title is-3">Feedback</h2>
+			<div class="display-flex flex-wrap-wrap align-items-center">
+				<p class="font-weight-semibold margin-xxs margin-left-none">
+					Was this page helpful?
+				</p>
+				<div class="buttons">
+					<button
+						class="thumb-rating-button like button button-primary button-sm"
+						data-test-id="footer-rating-yes"
+						data-binary-rating-response="rating-yes"
+						type="button"
+						title="This article is helpful"
+						data-bi-name="button-rating-yes"
+						aria-pressed="false"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-like"></span>
+						</span>
+						<span>Yes</span>
+					</button>
+					<button
+						class="thumb-rating-button dislike button button-primary button-sm"
+						id="standard-rating-no-button"
+						hidden
+						data-test-id="footer-rating-no"
+						data-binary-rating-response="rating-no"
+						type="button"
+						title="This article is not helpful"
+						data-bi-name="button-rating-no"
+						aria-pressed="false"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-dislike"></span>
+						</span>
+						<span>No</span>
+					</button>
+					<details
+						class="popover popover-top"
+						id="mobile-help-popover"
+						data-test-id="footer-feedback-popover"
+					>
+						<summary
+							class="thumb-rating-button dislike button button-primary button-sm"
+							data-test-id="details-footer-rating-no"
+							data-binary-rating-response="rating-no"
+							title="This article is not helpful"
+							data-bi-name="button-rating-no"
+							aria-pressed="false"
+							data-bi-an="feedback-unhelpful-popover"
+						>
+							<span class="icon" aria-hidden="true">
+								<span class="docon docon-dislike"></span>
+							</span>
+							<span>No</span>
+						</summary>
+						<div
+							class="popover-content width-200 width-300-tablet"
+							role="dialog"
+							aria-labelledby="popover-heading"
+							aria-describedby="popover-description"
+						>
+							<p id="popover-heading" class="font-size-lg margin-bottom-xxs font-weight-semibold">
+								Need help with this topic?
+							</p>
+							<p id="popover-description" class="font-size-sm margin-bottom-xs">
+								Want to try using Ask Learn to clarify or guide you through this topic?
+							</p>
+							
+		<div class="buttons flex-direction-row flex-wrap justify-content-center gap-xxs">
+			<div>
+		<button
+			class="button button-sm border inner-focus display-none margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-test-id="ask-learn-assistant-modal-entry-mobile-feedback"
+			data-ask-learn-modal-entry-feedback
+			data-bi-an=feedback-unhelpful-popover
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-label="Ask Learn"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button
+			class="button button-sm display-inline-flex display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-modal-entry-tablet-feedback"
+			data-ask-learn-modal-entry-feedback
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button
+			class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-flyout-entry-feedback"
+			data-ask-learn-flyout-entry-show-only
+			data-flyout-button="toggle"
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-controls="ask-learn-flyout"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	</div>
+			<button
+				type="button"
+				class="button button-sm margin-right-xxs"
+				data-help-option="suggest-fix"
+				data-bi-name="feedback-suggest"
+				data-bi-an="feedback-unhelpful-popover"
+				data-test-id="suggest-fix"
+			>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-feedback"></span>
+				</span>
+				<span> Suggest a fix? </span>
+			</button>
+		</div>
+	
+						</div>
+					</details>
+				</div>
+			</div>
+		</section>
+		<!-- end feedback section -->
+	
+				</div>
+				
+		<div id="ms--additional-resources-mobile" class="display-none-print">
+			<hr class="hr" hidden />
+			<h2 id="ms--additional-resources-mobile-heading" class="title is-3" hidden>
+				Additional resources
+			</h2>
+			
+		<section
+			id="right-rail-recommendations-mobile"
+			class=""
+			data-bi-name="recommendations"
+			hidden
+		></section>
+	 
+		<section
+			id="right-rail-training-mobile"
+			class=""
+			data-bi-name="learning-resource-card"
+			hidden
+		></section>
+	 
+		<section
+			id="right-rail-events-mobile"
+			class=""
+			data-bi-name="events-card"
+			hidden
+		></section>
+	
+		</div>
+	 
+		<div
+			id="article-metadata-footer"
+			data-bi-name="article-metadata-footer"
+			data-test-id="article-metadata-footer"
+			class="page-metadata-container"
+		>
+			<hr class="hr" />
+			<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+				<li class="visibility-hidden-visual-diff">
+			<span class="badge badge-sm text-wrap-pretty">
+				<span>Last updated on <local-time format="twoDigitNumeric"
+		datetime="2025-12-17T12:14:00.000Z"
+		data-article-date-source="calculated"
+		class="is-invisible"
+	>
+		2025-12-17
+	</local-time></span>
+			</span>
+		</li>
+			</ul>
+		</div>
+	
+			</div>
+			
+		<div
+			id="action-panel"
+			role="region"
+			aria-label="Action Panel"
+			class="action-panel"
+			tabindex="-1"
+		></div>
+	
+		
+				</main>
+				<aside
+					id="layout-body-aside"
+					class="layout-body-aside  "
+					data-bi-name="aside"
+					aria-label="Additional resources"
+			  >
+					
+		<div
+			id="ms--additional-resources"
+			class="right-container padding-sm display-none display-block-desktop height-full"
+			data-bi-name="pageactions"
+		>
+			<div id="affixed-right-container" data-bi-name="right-column">
+				
+		<nav
+			id="side-doc-outline"
+			class="doc-outline border-bottom padding-bottom-xs margin-bottom-xs"
+			data-bi-name="intopic toc"
+			aria-label="In this article"
+		>
+			<h3>In this article</h3>
+		</nav>
+	
+				<!-- Feedback -->
+				
+		<section
+			id="ms--site-user-feedback-right-rail"
+			class="font-size-sm display-none-print"
+			data-test-id="site-user-feedback-right-rail"
+			data-bi-name="site-feedback-right-rail"
+		>
+			<p class="font-weight-semibold margin-bottom-xs">Was this page helpful?</p>
+			<div class="buttons">
+				<button
+					class="thumb-rating-button like button button-primary button-sm"
+					data-test-id="right-rail-rating-yes"
+					data-binary-rating-response="rating-yes"
+					type="button"
+					title="This article is helpful"
+					data-bi-name="button-rating-yes"
+					aria-pressed="false"
+				>
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-like"></span>
+					</span>
+					<span>Yes</span>
+				</button>
+				<button
+					class="thumb-rating-button dislike button button-primary button-sm"
+					id="right-rail-no-button"
+					hidden
+					data-test-id="right-rail-rating-no"
+					data-binary-rating-response="rating-no"
+					type="button"
+					title="This article is not helpful"
+					data-bi-name="button-rating-no"
+					aria-pressed="false"
+				>
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-dislike"></span>
+					</span>
+					<span>No</span>
+				</button>
+				<details class="popover popover-right" id="help-popover" data-test-id="feedback-popover">
+					<summary
+						tabindex="0"
+						class="thumb-rating-button dislike button button-primary button-sm"
+						data-test-id="details-right-rail-rating-no"
+						data-binary-rating-response="rating-no"
+						title="This article is not helpful"
+						data-bi-name="button-rating-no"
+						aria-pressed="false"
+						data-bi-an="feedback-unhelpful-popover"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-dislike"></span>
+						</span>
+						<span>No</span>
+					</summary>
+					<div
+						class="popover-content width-200 width-300-tablet"
+						role="dialog"
+						aria-labelledby="popover-heading"
+						aria-describedby="popover-description"
+					>
+						<p
+							id="popover-heading-right-rail"
+							class="font-size-lg margin-bottom-xxs font-weight-semibold"
+						>
+							Need help with this topic?
+						</p>
+						<p id="popover-description-right-rail" class="font-size-sm margin-bottom-xs">
+							Want to try using Ask Learn to clarify or guide you through this topic?
+						</p>
+						
+		<div class="buttons flex-direction-row flex-wrap justify-content-center gap-xxs">
+			<div>
+		<button
+			class="button button-sm border inner-focus display-none margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-test-id="ask-learn-assistant-modal-entry-mobile-feedback"
+			data-ask-learn-modal-entry-feedback
+			data-bi-an=feedback-unhelpful-popover
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-label="Ask Learn"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button
+			class="button button-sm display-inline-flex display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-modal-entry-tablet-feedback"
+			data-ask-learn-modal-entry-feedback
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button
+			class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-flyout-entry-feedback"
+			data-ask-learn-flyout-entry-show-only
+			data-flyout-button="toggle"
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-controls="ask-learn-flyout"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	</div>
+			<button
+				type="button"
+				class="button button-sm margin-right-xxs"
+				data-help-option="suggest-fix"
+				data-bi-name="feedback-suggest"
+				data-bi-an="feedback-unhelpful-popover"
+				data-test-id="suggest-fix"
+			>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-feedback"></span>
+				</span>
+				<span> Suggest a fix? </span>
+			</button>
+		</div>
+	
+					</div>
+				</details>
+			</div>
+		</section>
+	
+			</div>
+		</div>
+	
+			  </aside> <section
+					id="layout-body-flyout"
+					class="layout-body-flyout "
+					data-bi-name="flyout"
+			  >
+					 <div
+	class="height-full border-left background-color-body-medium"
+	id="ask-learn-flyout"
+></div>
+			  </section> <div class="layout-body-footer " data-bi-name="layout-footer">
+		<footer
+			id="footer"
+			data-test-id="footer"
+			data-bi-name="footer"
+			class="footer-layout has-padding has-default-focus border-top  uhf-container"
+			role="contentinfo"
+		>
+			<div class="display-flex gap-xs flex-wrap-wrap is-full-height padding-right-lg-desktop">
+				
+		<a
+			data-mscc-ic="false"
+			href="#"
+			data-bi-name="select-locale"
+			class="locale-selector-link flex-shrink-0 button button-sm button-clear external-link-indicator"
+			id=""
+			title=""
+			><span class="icon" aria-hidden="true"
+				><span class="docon docon-world"></span></span
+			><span class="local-selector-link-text">en-us</span></a
+		>
+	 <div class="ccpa-privacy-link" data-ccpa-privacy-link hidden>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://aka.ms/yourcaliforniaprivacychoices"
+			data-bi-name="your-privacy-choices"
+			class="button button-sm button-clear flex-shrink-0 external-link-indicator"
+			id=""
+			title=""
+			>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 30 14"
+			xml:space="preserve"
+			height="16"
+			width="43"
+			aria-hidden="true"
+			focusable="false"
+		>
+			<path
+				d="M7.4 12.8h6.8l3.1-11.6H7.4C4.2 1.2 1.6 3.8 1.6 7s2.6 5.8 5.8 5.8z"
+				style="fill-rule:evenodd;clip-rule:evenodd;fill:#fff"
+			></path>
+			<path
+				d="M22.6 0H7.4c-3.9 0-7 3.1-7 7s3.1 7 7 7h15.2c3.9 0 7-3.1 7-7s-3.2-7-7-7zm-21 7c0-3.2 2.6-5.8 5.8-5.8h9.9l-3.1 11.6H7.4c-3.2 0-5.8-2.6-5.8-5.8z"
+				style="fill-rule:evenodd;clip-rule:evenodd;fill:#06f"
+			></path>
+			<path
+				d="M24.6 4c.2.2.2.6 0 .8L22.5 7l2.2 2.2c.2.2.2.6 0 .8-.2.2-.6.2-.8 0l-2.2-2.2-2.2 2.2c-.2.2-.6.2-.8 0-.2-.2-.2-.6 0-.8L20.8 7l-2.2-2.2c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0l2.2 2.2L23.8 4c.2-.2.6-.2.8 0z"
+				style="fill:#fff"
+			></path>
+			<path
+				d="M12.7 4.1c.2.2.3.6.1.8L8.6 9.8c-.1.1-.2.2-.3.2-.2.1-.5.1-.7-.1L5.4 7.7c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0L8 8.6l3.8-4.5c.2-.2.6-.2.9 0z"
+				style="fill:#06f"
+			></path>
+		</svg>
+	
+			<span>Your Privacy Choices</span></a
+		>
+	
+	</div>
+				<div class="flex-shrink-0">
+		<div class="dropdown has-caret-up">
+			<button
+				data-test-id="theme-selector-button"
+				class="dropdown-trigger button button-clear button-sm inner-focus theme-dropdown-trigger"
+				aria-controls="{{ themeMenuId }}"
+				aria-expanded="false"
+				title="Theme"
+				data-bi-name="theme"
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-sun"></span></span>
+				<span>Theme</span>
+				<span class="icon expanded-indicator" aria-hidden="true">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<div class="dropdown-menu" id="{{ themeMenuId }}" role="menu">
+				<ul class="theme-selector padding-xxs" data-test-id="theme-dropdown-menu">
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="light"
+						>
+							<span class="theme-light margin-right-xxs">
+								<span
+									class="theme-selector-icon border display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> Light </span>
+						</button>
+					</li>
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="dark"
+						>
+							<span class="theme-dark margin-right-xxs">
+								<span
+									class="border theme-selector-icon display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> Dark </span>
+						</button>
+					</li>
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="high-contrast"
+						>
+							<span class="theme-high-contrast margin-right-xxs">
+								<span
+									class="border theme-selector-icon display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> High contrast </span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+			</div>
+			<ul class="links" data-bi-name="footerlinks">
+				<li class="manage-cookies-holder" hidden=""></li>
+				<li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/principles-for-ai-generated-content"
+			data-bi-name="aiDisclaimer"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>AI Disclaimer</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/previous-versions/"
+			data-bi-name="archivelink"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Previous Versions</a
+		>
+	
+	</li> <li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://techcommunity.microsoft.com/t5/microsoft-learn-blog/bg-p/MicrosoftLearnBlog"
+			data-bi-name="bloglink"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Blog</a
+		>
+	
+	</li> <li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/contribute"
+			data-bi-name="contributorGuide"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Contribute</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://go.microsoft.com/fwlink/?LinkId=521839"
+			data-bi-name="privacy"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Privacy</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://go.microsoft.com/fwlink/?linkid=2259814"
+			data-bi-name="consumer-health-privacy"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Consumer Health Privacy</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/legal/termsofuse"
+			data-bi-name="termsofuse"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Terms of Use</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://www.microsoft.com/legal/intellectualproperty/Trademarks/"
+			data-bi-name="trademarks"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Trademarks</a
+		>
+	
+	</li>
+				<li>&copy; Microsoft 2026</li>
+			</ul>
+		</footer>
+	</footer>
+			</body>
+		</html>

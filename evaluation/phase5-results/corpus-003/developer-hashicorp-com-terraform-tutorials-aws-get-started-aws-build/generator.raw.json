@@ -1,0 +1,42 @@
+```json
+[
+    {
+        "question": "What type of infrastructure does this Terraform tutorial provision on AWS?",
+        "answer": "An EC2 instance",
+        "supporting_sentences": [
+            "In this tutorial, you will use Terraform to provision an EC2 instance on Amazon Web Services (AWS). EC2 instances are virtual machines running on AWS and a common component of many infrastructure projects."
+        ]
+    },
+    {
+        "question": "What is the name of the directory created for the Terraform configuration in this tutorial?",
+        "answer": "learn-terraform-get-started-aws",
+        "supporting_sentences": [
+            "Create a new directory for the Terraform configuration you will use in this tutorial.",
+            "$ mkdir learn-terraform-get-started-aws"
+        ]
+    },
+    {
+        "question": "What is the version constraint specified for the AWS provider in the Terraform configuration?",
+        "answer": "~> 5.92",
+        "supporting_sentences": [
+            "The  version  argument sets a version constraint for your AWS provider. If you do not specify a version constraint, Terraform defaults to the most recent version of the provider. We recommend using version constraints to ensure that Terraform does not install a version of the provider that you have not tested with your configuration. The string  ~> 5.92  means your configuration supports any version of the provider with a major version of  5  and a minor version greater than or equal to  92 ."
+        ]
+    },
+    {
+        "question": "What AWS region is specified in the provider block of the Terraform configuration?",
+        "answer": "us-west-2",
+        "supporting_sentences": [
+            "The  provider  block configures the  aws  provider. The label of the provider block corresponds to the name of the provider in the  required_providers  list in your  terraform  block.",
+            "provider  \"aws\" {   region  =  \"us-west-2\" }"
+        ]
+    },
+    {
+        "question": "What command is used to initialize a Terraform workspace and download the required providers?",
+        "answer": "terraform init",
+        "supporting_sentences": [
+            "Before you can apply your configuration, you must initialize your Terraform workspace with the  terraform init  command. As part of initialization, Terraform downloads and installs the providers defined in your configuration in your current working directory.",
+            "Initialize your Terraform workspace. $ terraform init"
+        ]
+    }
+]
+```

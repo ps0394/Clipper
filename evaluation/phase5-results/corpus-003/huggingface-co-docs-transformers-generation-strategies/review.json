@@ -1,0 +1,104 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the default decoding strategy in Transformers for text generation?",
+      "answer": "Greedy search",
+      "supporting_sentences": [
+        "Greedy search is the default decoding strategy."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the default decoding strategy in Transformers for text generation?",
+      "answer": "Greedy search",
+      "supporting_sentences": [
+        "Greedy search is the default decoding strategy."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How many new tokens does greedy search generate by default unless specified in GenerationConfig?",
+      "answer": "20 new tokens",
+      "supporting_sentences": [
+        "Unless specified in GenerationConfig, this strategy generates a maximum of 20 new tokens."
+      ]
+    },
+    "edited_pair": {
+      "question": "How many new tokens does greedy search generate by default unless specified in GenerationConfig?",
+      "answer": "20 new tokens",
+      "supporting_sentences": [
+        "Unless specified in GenerationConfig, this strategy generates a maximum of 20 new tokens."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What parameter enables multinomial sampling in Transformers?",
+      "answer": "`do_sample=True` and `num_beams=1`",
+      "supporting_sentences": [
+        "Enable multinomial sampling with `do_sample=True` and `num_beams=1`."
+      ]
+    },
+    "edited_pair": {
+      "question": "What parameter enables multinomial sampling in Transformers?",
+      "answer": "`do_sample=True` and `num_beams=1`",
+      "supporting_sentences": [
+        "Enable multinomial sampling with `do_sample=True` and `num_beams=1`."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of the `num_beams` parameter in beam search?",
+      "answer": "It keeps track of several generated sequences (beams) at each time step and should be greater than 1 to enable beam search.",
+      "supporting_sentences": [
+        "Beam search keeps track of several generated sequences (beams) at each time step.",
+        "Enable beam search with the `num_beams` parameter (should be greater than 1 otherwise it\u2019s equivalent to greedy search)."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of the `num_beams` parameter in beam search?",
+      "answer": "It keeps track of several generated sequences (beams) at each time step and should be greater than 1 to enable beam search.",
+      "supporting_sentences": [
+        "Beam search keeps track of several generated sequences (beams) at each time step.",
+        "Enable beam search with the `num_beams` parameter (should be greater than 1 otherwise it\u2019s equivalent to greedy search)."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What file must a custom generation method repository include to document new arguments or output type differences?",
+      "answer": "`README.md`",
+      "supporting_sentences": [
+        "README.md, where you should add the `custom_generate` tag and document any new arguments or output type differences of your custom method here."
+      ]
+    },
+    "edited_pair": {
+      "question": "What file must a custom generation method repository include to document new arguments or output type differences?",
+      "answer": "`README.md`",
+      "supporting_sentences": [
+        "README.md, where you should add the `custom_generate` tag and document any new arguments or output type differences of your custom method here."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

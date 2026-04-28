@@ -1,0 +1,110 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the three methods available for configuring a Vercel project?",
+      "answer": "The three methods are static file-based configuration, programmatic file-based configuration, and global CLI configuration.",
+      "supporting_sentences": [
+        "In addition to configuring your project through Project Settings, you have the following options:",
+        "Static file-based configuration - Static JSON configuration in your repository",
+        "Programmatic file-based configuration - Dynamic TypeScript configuration that runs at build time",
+        "Global CLI configuration - System-wide Vercel CLI settings"
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the three methods available for configuring a Vercel project?",
+      "answer": "The three methods are static file-based configuration, programmatic file-based configuration, and global CLI configuration.",
+      "supporting_sentences": [
+        "In addition to configuring your project through Project Settings, you have the following options:",
+        "Static file-based configuration - Static JSON configuration in your repository",
+        "Programmatic file-based configuration - Dynamic TypeScript configuration that runs at build time",
+        "Global CLI configuration - System-wide Vercel CLI settings"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What file formats can be used for file-based configuration in a Vercel project, and what is the key difference between them?",
+      "answer": "The file formats are `vercel.json` for static configuration and `vercel.ts` for programmatic configuration. The key difference is that `vercel.ts` allows dynamic generation of configuration using environment variables, API calls, or other build-time logic.",
+      "supporting_sentences": [
+        "File-based configuration lives in your repository and gets version-controlled with your code. You can use either vercel.json for static configuration or vercel.ts for programmatic configuration that runs at build time.",
+        "Both support the same properties, but vercel.ts lets you generate configuration dynamically using environment variables, API calls, or other build-time logic."
+      ]
+    },
+    "edited_pair": {
+      "question": "What file formats can be used for file-based configuration in a Vercel project, and what is the key difference between them?",
+      "answer": "The file formats are `vercel.json` for static configuration and `vercel.ts` for programmatic configuration. The key difference is that `vercel.ts` allows dynamic generation of configuration using environment variables, API calls, or other build-time logic.",
+      "supporting_sentences": [
+        "File-based configuration lives in your repository and gets version-controlled with your code. You can use either vercel.json for static configuration or vercel.ts for programmatic configuration that runs at build time.",
+        "Both support the same properties, but vercel.ts lets you generate configuration dynamically using environment variables, API calls, or other build-time logic."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which configuration property in Vercel allows you to schedule functions to run at specific times?",
+      "answer": "The `crons` property allows you to schedule functions to run at specific times.",
+      "supporting_sentences": [
+        "crons | View | View | Schedule functions to run at specific times"
+      ]
+    },
+    "edited_pair": {
+      "question": "Which configuration property in Vercel allows you to schedule functions to run at specific times?",
+      "answer": "The `crons` property allows you to schedule functions to run at specific times.",
+      "supporting_sentences": [
+        "crons | View | View | Schedule functions to run at specific times"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Where are global CLI configuration settings for Vercel stored, and do they apply to all projects?",
+      "answer": "Global CLI configuration settings are stored in your user directory and apply across all projects.",
+      "supporting_sentences": [
+        "Global Configuration affects how Vercel CLI behaves on your machine. These settings are stored in your user directory and apply across all projects."
+      ]
+    },
+    "edited_pair": {
+      "question": "Where are global CLI configuration settings for Vercel stored, and do they apply to all projects?",
+      "answer": "Global CLI configuration settings are stored in your user directory and apply across all projects.",
+      "supporting_sentences": [
+        "Global Configuration affects how Vercel CLI behaves on your machine. These settings are stored in your user directory and apply across all projects."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What does the `cleanUrls` property in Vercel configuration do?",
+      "answer": "The `cleanUrls` property removes `.html` extensions from URLs.",
+      "supporting_sentences": [
+        "cleanUrls | View | View | Remove .html extensions from URLs"
+      ]
+    },
+    "edited_pair": {
+      "question": "What does the `cleanUrls` property in Vercel configuration do?",
+      "answer": "The `cleanUrls` property removes `.html` extensions from URLs.",
+      "supporting_sentences": [
+        "cleanUrls | View | View | Remove .html extensions from URLs"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

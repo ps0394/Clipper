@@ -1,0 +1,40 @@
+```json
+[
+    {
+        "question": "What happens if the `insertOne()` method is called on a collection that does not exist?",
+        "answer": "The `insertOne()` method creates the collection if it does not exist.",
+        "supporting_sentences": [
+            "If the collection does not exist, then insertOne() creates the collection."
+        ]
+    },
+    {
+        "question": "What does MongoDB do if a document inserted with `insertOne()` does not specify an `_id` field?",
+        "answer": "MongoDB adds the `_id` field and assigns a unique `ObjectId()` for the document.",
+        "supporting_sentences": [
+            "If the document to insert does not specify an _id field, then mongod adds the _id field and assigns a unique ObjectId() for the document.",
+            "Because the documents did not include _id, mongod creates and adds the _id field and assigns it a unique ObjectId() value."
+        ]
+    },
+    {
+        "question": "What type of exception does `insertOne()` throw if a document fails schema validation with `validationAction` set to `error`?",
+        "answer": "`insertOne()` throws a `MongoServerError` and fails.",
+        "supporting_sentences": [
+            "If your collection uses schema validation and has validationAction set to error, inserting an invalid document throws a MongoServerError and insertOne() fails."
+        ]
+    },
+    {
+        "question": "What is the default behavior of `insertOne()` regarding the oplog if the operation fails?",
+        "answer": "If the operation fails, `insertOne()` does not add an entry on the oplog.",
+        "supporting_sentences": [
+            "If an insertOne() operation successfully inserts a document, the operation adds an entry on the oplog (operations log). If the operation fails, the operation does not add an entry on the oplog."
+        ]
+    },
+    {
+        "question": "What error code is returned when attempting to insert a duplicate `_id` value in a collection using `insertOne()`?",
+        "answer": "The error code `11000` is returned for a duplicate key error.",
+        "supporting_sentences": [
+            "WriteError({ \"index\" : 0, \"code\" : 11000, \"errmsg\" : \"E11000 duplicate key error collection: inventory.products index: _id_ dup key: { : 10.0 }\""
+        ]
+    }
+]
+```

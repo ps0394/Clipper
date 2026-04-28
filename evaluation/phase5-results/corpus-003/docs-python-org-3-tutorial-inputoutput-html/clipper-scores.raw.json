@@ -1,0 +1,522 @@
+{
+  "parseability_score": 74.35001840264998,
+  "failure_mode": "moderate_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-003\\docs-python-org-3-tutorial-inputoutput-html\\page.raw.html",
+  "url": "https://docs.python.org/3/tutorial/inputoutput.html",
+  "component_scores": {
+    "semantic_html": 50.90909090909091,
+    "content_extractability": 72.70003680529996,
+    "structured_data": 5,
+    "dom_navigability": 60,
+    "metadata_completeness": 55,
+    "http_compliance": 76.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "nav",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "section",
+          "count": 9,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 12,
+      "heading_elements_count": 19,
+      "scoring_breakdown": {
+        "semantic_coverage": 10.90909090909091,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 20616,
+        "extracted_text_length": 18898,
+        "extracted_chars": 18898,
+        "extraction_ratio": 0.917,
+        "extracted_title": "7. Input and Output",
+        "extracted_preview": "There are several ways to present the output of a program; data can be printed\r\nin a human-readable form, or written to a file for future use. This chapter will\r\ndiscuss some of the possibilities. 7.1. Fancier Output Formatting So far we’ve encountered two ways of writing values: expression statemen...",
+        "original_headings": 19,
+        "extracted_headings": 8,
+        "original_lists": 13,
+        "extracted_lists": 1,
+        "original_code_blocks": 143,
+        "extracted_code_blocks": 139,
+        "has_main_element": false,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 35,
+        "structure_preservation": 14.700036805299963,
+        "boundary_detection": 23
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 0,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [],
+      "key_fields_found": [],
+      "formats_present": 1,
+      "score_breakdown": {
+        "type_appropriateness": 0,
+        "field_completeness": 0,
+        "multiple_formats": 5,
+        "schema_validation": 0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": []
+      },
+      "sample_structured_data": {
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:title",
+                "7. Input and Output"
+              ],
+              [
+                "og:type",
+                "website"
+              ],
+              [
+                "og:url",
+                "https://docs.python.org/3/tutorial/inputoutput.html"
+              ],
+              [
+                "og:site_name",
+                "Python documentation"
+              ],
+              [
+                "og:description",
+                "There are several ways to present the output of a program; data can be printed in a human-readable form, or written to a file for future use. This chapter will discuss some of the possibilities. Fa..."
+              ],
+              [
+                "og:image:width",
+                "1146"
+              ],
+              [
+                "og:image:height",
+                "600"
+              ],
+              [
+                "og:image",
+                "https://docs.python.org/3.14/_images/social_previews/summary_tutorial_inputoutput_a32b759c.png"
+              ],
+              [
+                "og:image:alt",
+                "There are several ways to present the output of a program; data can be printed in a human-readable form, or written to a file for future use. This chapter will discuss some of the possibilities. Fa..."
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures role attribute has an appropriate value for the element",
+          "help": "ARIA role must be appropriate for the element",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+          "id": "aria-allowed-role",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "navigation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role navigation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role navigation  is not allowed for given element",
+              "html": "<nav class=\"nav-content\" role=\"navigation\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".nav-content"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "navigation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role navigation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role navigation  is not allowed for given element",
+              "html": "<nav class=\"menu\" role=\"navigation\" aria-label=\"main navigation\" tabindex=\"-1\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".menu"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value of active elements is unique",
+          "help": "IDs of active elements must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id-active?application=axeAPI",
+          "id": "duplicate-id-active",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "search-box",
+                  "id": "duplicate-id-active",
+                  "impact": "serious",
+                  "message": "Document has active elements with the same id attribute: search-box",
+                  "relatedNodes": [
+                    {
+                      "html": "<input placeholder=\"Quick search\" aria-label=\"Quick search\" type=\"search\" name=\"q\" id=\"search-box\">",
+                      "target": [
+                        ".related[aria-label=\"Related\"][role=\"navigation\"]:nth-child(4) > ul > .right:nth-child(12) > .inline-search[role=\"search\"] > form > input[placeholder=\"Quick\\ search\"][aria-label=\"Quick\\ search\"][type=\"search\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has active elements with the same id attribute: search-box",
+              "html": "<input placeholder=\"Quick search\" aria-label=\"Quick search\" type=\"search\" name=\"q\" id=\"search-box\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".related[aria-label=\"Related\"][role=\"navigation\"]:nth-child(2) > ul > .right:nth-child(12) > .inline-search[role=\"search\"] > form > input[placeholder=\"Quick\\ search\"][aria-label=\"Quick\\ search\"][type=\"search\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value is unique",
+          "help": "id attribute value must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id?application=axeAPI",
+          "id": "duplicate-id",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "cpython-language-and-version",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<li id=\"cpython-language-and-version\">\n      <a href=\"../index.html\">3.14.4 Documentation</a> »\n    </li>",
+                      "target": [
+                        ".related[aria-label=\"Related\"][role=\"navigation\"]:nth-child(4) > ul > li:nth-child(9)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<li id=\"cpython-language-and-version\">\n      <a href=\"../index.html\">3.14.4 Documentation</a> »\n    </li>",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".related[aria-label=\"Related\"][role=\"navigation\"]:nth-child(2) > ul > li:nth-child(9)"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures all page content is contained by landmarks",
+          "help": "All page content must be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/region?application=axeAPI",
+          "id": "region",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "region",
+                  "impact": "moderate",
+                  "message": "Some page content is not contained by landmarks",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"footer\">",
+                      "target": [
+                        ".footer"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks",
+              "html": "<html lang=\"en\" data-content_root=\"../\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.keyboard",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 4,
+      "passes_count": 35,
+      "total_penalty": 40,
+      "penalty_per_rule": {
+        "aria-allowed-role": {
+          "impact": "minor",
+          "node_count": 2,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        },
+        "duplicate-id-active": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "duplicate-id": {
+          "impact": "minor",
+          "node_count": 1,
+          "raw_penalty": 5,
+          "capped_penalty": 5
+        },
+        "region": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        }
+      },
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 0,
+        "date": 0,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [
+          "meta:description",
+          "og:description"
+        ],
+        "author": [],
+        "date": [],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 4,
+      "fields_total": 7,
+      "json_ld_type": "none"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "\"69efc4c5-1316f\"",
+        "last_modified": "Mon, 27 Apr 2026 20:19:17 GMT",
+        "cache_control": "absent"
+      },
+      "agent_content_hints": {
+        "scoring_contribution": 0,
+        "diagnostic_only": true,
+        "rationale": "PRD F2.2/F2.3: retrieval-lift evidence deferred to Phase 6",
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 16,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "tutorial",
+      "detection": {
+        "source": "url",
+        "matched_value": "/tutorial"
+      },
+      "weights": {
+        "semantic_html": 0.0,
+        "content_extractability": 0.5,
+        "structured_data": 0.0,
+        "dom_navigability": 0.0,
+        "metadata_completeness": 0.0,
+        "http_compliance": 0.5
+      },
+      "v1_weights_for_reference": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.25,
+        "structured_data": 0.15,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      },
+      "scoring_version": "v2-evidence-partial"
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "tutorial",
+  "universal_score": 74.35001840264998,
+  "render_mode": "rendered",
+  "confidence_range": {
+    "scoring_version": "v2-evidence-partial",
+    "evidence_tier": "partial",
+    "headline_weights": {
+      "semantic_html": 0.0,
+      "content_extractability": 0.5,
+      "structured_data": 0.0,
+      "dom_navigability": 0.0,
+      "metadata_completeness": 0.0,
+      "http_compliance": 0.5
+    },
+    "calibration_corpus": {
+      "name": "corpus-002",
+      "n": 43,
+      "pearson_r_vs_accuracy_rendered": 0.548,
+      "gate_threshold": 0.35,
+      "source": "findings/phase-5-corpus-002-findings.md Addendum B"
+    },
+    "caveats": [
+      "Single corpus, single grader architecture, single run.",
+      "Four pillars carry zero headline weight in v2; still reported as diagnostics.",
+      "Profile-specific weights collapse to the same 2-pillar composite pending corpus-003.",
+      "Cross-judge accuracy variance: per-judge corpus-002 means span 0.591-0.698 across Llama-3.3-70B, GPT-4o, and DeepSeek-V3.2 (pooled kappa 0.706-0.817). The v2 composite-vs-accuracy Pearson r ranges from +0.440 to +0.618 across judges (all above the +0.35 ship gate). Report majority-vote CI [0.567, 0.688] or per-judge union CI [0.530, 0.758] when comparing across studies.",
+      "No temporal variance measured yet."
+    ]
+  },
+  "subscores": {
+    "semantic_html": 50.90909090909091,
+    "content_extractability": 72.70003680529996,
+    "structured_data": 5,
+    "dom_navigability": 60,
+    "metadata_completeness": 55,
+    "http_compliance": 76.0
+  },
+  "evidence_references": null
+}

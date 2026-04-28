@@ -1,0 +1,46 @@
+```json
+[
+    {
+        "question": "What is the purpose of the `aks-store-quickstart.yaml` file in this Kubernetes on Azure tutorial?",
+        "answer": "The `aks-store-quickstart.yaml` file is a Kubernetes manifest file used to deploy a sample application into a Kubernetes cluster. It defines the Kubernetes objects (such as deployments, services, and statefulsets) required to run the application.",
+        "supporting_sentences": [
+            "To complete this tutorial, you need the precreated aks-store-quickstart.yaml Kubernetes manifest file.",
+            "Deploy the application using the kubectl apply command, which parses the manifest file and creates the defined Kubernetes objects.",
+            "Update the image property for the containers by replacing ghcr.io/azure-samples with your ACR login server name in the aks-store-quickstart.yaml manifest file."
+        ]
+    },
+    {
+        "question": "What command is used to check the version of the Azure CLI required for this tutorial?",
+        "answer": "The command `az --version` is used to check the Azure CLI version.",
+        "supporting_sentences": [
+            "Check your version with az --version."
+        ]
+    },
+    {
+        "question": "Which three container images must be updated in the `aks-store-quickstart.yaml` file to include the ACR login server name?",
+        "answer": "The three container images that must be updated are `order-service`, `product-service`, and `store-front`.",
+        "supporting_sentences": [
+            "Update the image property for the containers by replacing ghcr.io/azure-samples with your ACR login server name.",
+            "- name: order-service\n  image: <acrName>.azurecr.io/aks-store-demo/order-service:latest",
+            "- name: product-service\n  image: <acrName>.azurecr.io/aks-store-demo/product-service:latest",
+            "- name: store-front\n  image: <acrName>.azurecr.io/aks-store-demo/store-front:latest"
+        ]
+    },
+    {
+        "question": "What command is used to monitor the external IP address assignment for the `store-front` service?",
+        "answer": "The command `kubectl get service store-front --watch` is used to monitor the external IP address assignment.",
+        "supporting_sentences": [
+            "Monitor progress using the kubectl get service command with the --watch argument.",
+            "kubectl get service store-front --watch"
+        ]
+    },
+    {
+        "question": "What command is used to remove the deployed application and its resources from the AKS cluster?",
+        "answer": "The command `kubectl delete -f aks-store-quickstart.yaml` is used to remove the deployed application and its resources.",
+        "supporting_sentences": [
+            "Stop and remove the container instances and resources using the kubectl delete command.",
+            "kubectl delete -f aks-store-quickstart.yaml"
+        ]
+    }
+]
+```

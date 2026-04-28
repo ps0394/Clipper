@@ -1,0 +1,2191 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Manage resources in Terraform state
+Document URL: https://developer.hashicorp.com/terraform/tutorials/state/state-cli
+Document profile: tutorial
+
+Document text:
+---
+Terraform stores information about your infrastructure in a state file. This
+state file keeps track of resources created by your configuration and maps them
+to real-world resources.
+Terraform compares your configuration with the state file and your existing
+infrastructure to create plans and make changes to your infrastructure. When you
+run 
+terraform apply
+ or 
+terraform destroy
+ against your initialized
+configuration, Terraform writes metadata about your configuration to the state
+file and updates your infrastructure resources accordingly. Occasionally,
+you may need to manipulate your projects state outside of the standard
+workflow. For example, you may want to remove a resource from your project
+without destroying the real-world resource associated with it.
+In this tutorial, you will create an AWS instance and security group, examine
+your project's state file, and use Terraform to remove infrastructure from your
+project's state.
+This tutorial assumes that you are familiar with the usual Terraform plan/apply
+workflow. If you are new to Terraform, refer first to the Getting Started
+
+tutorial
+.
+For this tutorial, you will need:
+Note
+ This tutorial will provision resources that qualify under the 
+AWS free-tier
+. If your account doesn't qualify under the AWS free-tier, we're not responsible for any charges that you may incur.
+Clone the 
+Learn Terraform State Management repository
+.
+$
+ git clone https://github.com/hashicorp-education/learn-terraform-state
+
+$
+ git clone https://github.com/hashicorp-education/learn-terraform-state
+
+Change into the new directory.
+$
+ cd learn-terraform-state
+
+$
+ cd learn-terraform-state
+
+Review the 
+main.tf
+ file. This configuration deploys an Ubuntu EC2 instance publicly accessible on port 8080.
+provider
+ "aws"
+ {
+
+  region 
+=
+ var.aws_region
+
+}
+
+data
+ "aws_ami"
+ "ubuntu"
+ {
+
+  most_recent 
+=
+ true
+
+  filter
+ {
+
+    name   
+=
+ "name"
+
+    values 
+=
+ [
+"ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
+]
+
+  }
+
+  filter
+ {
+
+    name   
+=
+ "virtualization-type"
+
+    values 
+=
+ [
+"hvm"
+]
+
+  }
+
+  owners 
+=
+ [
+"099720109477"
+] 
+# Canonical
+
+}
+
+resource
+ "aws_security_group"
+ "sg_8080"
+ {
+
+  name 
+=
+ "terraform-learn-state-sg-8080"
+
+  ingress
+ {
+
+    from_port   
+=
+ "8080"
+
+    to_port     
+=
+ "8080"
+
+    protocol    
+=
+ "tcp"
+
+    cidr_blocks 
+=
+ [
+"0.0.0.0/0"
+]
+
+  }
+
+  // connectivity to ubuntu mirrors is required to run `apt-get update` and `apt-get install apache2`
+
+  egress
+ {
+
+    from_port   
+=
+ 0
+
+    to_port     
+=
+ 0
+
+    protocol    
+=
+ "-1"
+
+    cidr_blocks 
+=
+ [
+"0.0.0.0/0"
+]
+
+  }
+
+}
+
+resource
+ "aws_instance"
+ "example"
+ {
+
+  ami                    
+=
+ data.aws_ami.ubuntu.id
+
+  instance_type          
+=
+ "t2.micro"
+
+  vpc_security_group_ids 
+=
+ [aws_security_group.sg_8080.id]
+
+  user_data              
+=
+ <<-EOF
+
+              #!/bin/bash
+
+              apt-get update
+
+              apt-get install -y apache2
+
+              sed -i -e 's/80/8080/' /etc/apache2/ports.conf
+
+              echo "Hello World" > /var/www/html/index.html
+
+              systemctl restart apache2
+
+              EOF
+
+  tags 
+=
+ {
+
+    Name 
+=
+ "terraform-learn-state-ec2"
+
+  }
+
+}
+
+provider
+ "aws"
+ {
+
+  region 
+=
+ var.aws_region
+
+}
+
+data
+ "aws_ami"
+ "ubuntu"
+ {
+
+  most_recent 
+=
+ true
+
+  filter
+ {
+
+    name   
+=
+ "name"
+
+    values 
+=
+ [
+"ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
+]
+
+  }
+
+  filter
+ {
+
+    name   
+=
+ "virtualization-type"
+
+    values 
+=
+ [
+"hvm"
+]
+
+  }
+
+  owners 
+=
+ [
+"099720109477"
+] 
+# Canonical
+
+}
+
+resource
+ "aws_security_group"
+ "sg_8080"
+ {
+
+  name 
+=
+ "terraform-learn-state-sg-8080"
+
+  ingress
+ {
+
+    from_port   
+=
+ "8080"
+
+    to_port     
+=
+ "8080"
+
+    protocol    
+=
+ "tcp"
+
+    cidr_blocks 
+=
+ [
+"0.0.0.0/0"
+]
+
+  }
+
+  // connectivity to ubuntu mirrors is required to run `apt-get update` and `apt-get install apache2`
+
+  egress
+ {
+
+    from_port   
+=
+ 0
+
+    to_port     
+=
+ 0
+
+    protocol    
+=
+ "-1"
+
+    cidr_blocks 
+=
+ [
+"0.0.0.0/0"
+]
+
+  }
+
+}
+
+resource
+ "aws_instance"
+ "example"
+ {
+
+  ami                    
+=
+ data.aws_ami.ubuntu.id
+
+  instance_type          
+=
+ "t2.micro"
+
+  vpc_security_group_ids 
+=
+ [aws_security_group.sg_8080.id]
+
+  user_data              
+=
+ <<-EOF
+
+              #!/bin/bash
+
+              apt-get update
+
+              apt-get install -y apache2
+
+              sed -i -e 's/80/8080/' /etc/apache2/ports.conf
+
+              echo "Hello World" > /var/www/html/index.html
+
+              systemctl restart apache2
+
+              EOF
+
+  tags 
+=
+ {
+
+    Name 
+=
+ "terraform-learn-state-ec2"
+
+  }
+
+}
+
+This configuration uses the AWS provider to create an EC2 instance and a security group that allows public access.
+Initialize the directory.
+$
+ terraform init
+
+Initializing the backend...
+
+Initializing provider plugins...
+
+- Reusing previous version of hashicorp/aws from the dependency lock file
+
+- Installing hashicorp/aws v5.31.0...
+
+- Installed hashicorp/aws v5.31.0 (signed by HashiCorp)
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+
+any changes that are required for your infrastructure. All Terraform commands
+
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+
+rerun this command to reinitialize your working directory. If you forget, other
+
+commands will detect it and remind you to do so if necessary.
+
+$
+ terraform init
+
+Initializing the backend...
+
+Initializing provider plugins...
+
+- Reusing previous version of hashicorp/aws from the dependency lock file
+
+- Installing hashicorp/aws v5.31.0...
+
+- Installed hashicorp/aws v5.31.0 (signed by HashiCorp)
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+
+any changes that are required for your infrastructure. All Terraform commands
+
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+
+rerun this command to reinitialize your working directory. If you forget, other
+
+commands will detect it and remind you to do so if necessary.
+
+After Terraform initializes, apply the configuration and approve the run by
+typing 
+yes
+ at the prompt.
+$
+ terraform apply
+
+data.aws_ami.ubuntu: Reading...
+
+data.aws_ami.ubuntu: Read complete after 0s [id=ami-027a754129abb5386]
+
+Terraform used the selected providers to generate the following execution plan.
+
+Resource actions are indicated with the following symbols:
+
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.example will be created
+
+  + resource "aws_instance" "example" {
+
+##...
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+
+  + aws_region     = "us-east-1"
+
+  + instance_id    = (known after apply)
+
+  + public_ip      = (known after apply)
+
+  + security_group = (known after apply)
+
+Do you want to perform these actions?
+
+  Terraform will perform the actions described above.
+
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_security_group.sg_8080: Creating...
+
+aws_security_group.sg_8080: Creation complete after 3s [id=sg-0adfd0a0ade3eebdc]
+
+aws_instance.example: Creating...
+
+aws_instance.example: Still creating... [10s elapsed]
+
+aws_instance.example: Still creating... [20s elapsed]
+
+aws_instance.example: Still creating... [30s elapsed]
+
+aws_instance.example: Creation complete after 32s [id=i-05a8893f05c6a37be]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+aws_region = "us-east-1"
+
+instance_id = "i-05a8893f05c6a37be"
+
+public_ip = "18.212.104.187"
+
+security_group = "sg-0adfd0a0ade3eebdc"
+
+$
+ terraform apply
+
+data.aws_ami.ubuntu: Reading...
+
+data.aws_ami.ubuntu: Read complete after 0s [id=ami-027a754129abb5386]
+
+Terraform used the selected providers to generate the following execution plan.
+
+Resource actions are indicated with the following symbols:
+
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.example will be created
+
+  + resource "aws_instance" "example" {
+
+##...
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+
+  + aws_region     = "us-east-1"
+
+  + instance_id    = (known after apply)
+
+  + public_ip      = (known after apply)
+
+  + security_group = (known after apply)
+
+Do you want to perform these actions?
+
+  Terraform will perform the actions described above.
+
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_security_group.sg_8080: Creating...
+
+aws_security_group.sg_8080: Creation complete after 3s [id=sg-0adfd0a0ade3eebdc]
+
+aws_instance.example: Creating...
+
+aws_instance.example: Still creating... [10s elapsed]
+
+aws_instance.example: Still creating... [20s elapsed]
+
+aws_instance.example: Still creating... [30s elapsed]
+
+aws_instance.example: Creation complete after 32s [id=i-05a8893f05c6a37be]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+aws_region = "us-east-1"
+
+instance_id = "i-05a8893f05c6a37be"
+
+public_ip = "18.212.104.187"
+
+security_group = "sg-0adfd0a0ade3eebdc"
+
+Now that you have applied this configuration, you have a local state file that
+tracks the resources Terraform created. Check your directory to confirm the
+
+terraform.tfstate
+ file exists.
+$
+ ls -1
+
+LICENSE
+
+README.md
+
+main.tf
+
+new_state
+
+outputs.tf
+
+terraform.tf
+
+terraform.tfstate
+
+variables.tf
+
+$
+ ls -1
+
+LICENSE
+
+README.md
+
+main.tf
+
+new_state
+
+outputs.tf
+
+terraform.tf
+
+terraform.tfstate
+
+variables.tf
+
+You should not manually change information in your state file in a real-world
+situation to avoid unnecessary drift between your Terraform configuration,
+state, and infrastructure. Any change in state could result in your
+infrastructure being destroyed and recreated at your next 
+terraform apply
+.
+Warning
+ Do not manually modify state files.
+Open the 
+terraform.tfstate
+ file in your file editor.
+This example contains few resources, so your actual state file is relatively small.
+This file is the JSON encoded state that Terraform writes and reads at each
+operation. The first stanza contains information about your Terraform
+application.
+The 
+resources
+ section of the state file contains the schema for any resources
+you create in Terraform. Review the 
+resources
+ section of this file.
+  "resources"
+: [
+
+    {
+
+      "mode"
+:
+ "data"
+,
+
+      "type"
+:
+ "aws_ami"
+,
+
+      "name"
+:
+ "ubuntu"
+,
+
+      "provider"
+:
+ "provider[\"registry.terraform.io/hashicorp/aws\"]"
+,
+
+      "instances"
+:
+ [
+
+        {
+
+          "schema_version"
+:
+ 0
+,
+
+          "attributes"
+:
+ {
+
+            "architecture"
+:
+ "x86_64"
+,
+
+            "arn"
+:
+ "arn:aws:ec2:us-east-1::image/ami-027a754129abb5386"
+,
+
+      ##...
+
+    }
+,
+
+    ##...
+
+]
+
+  "resources"
+: [
+
+    {
+
+      "mode"
+:
+ "data"
+,
+
+      "type"
+:
+ "aws_ami"
+,
+
+      "name"
+:
+ "ubuntu"
+,
+
+      "provider"
+:
+ "provider[\"registry.terraform.io/hashicorp/aws\"]"
+,
+
+      "instances"
+:
+ [
+
+        {
+
+          "schema_version"
+:
+ 0
+,
+
+          "attributes"
+:
+ {
+
+            "architecture"
+:
+ "x86_64"
+,
+
+            "arn"
+:
+ "arn:aws:ec2:us-east-1::image/ami-027a754129abb5386"
+,
+
+      ##...
+
+    }
+,
+
+    ##...
+
+]
+
+The first key in this schema is the 
+mode
+. Mode refers to the type of resource
+Terraform creates — either a resource (
+managed
+) or a data source (
+data
+). The
+
+type
+ key refers to the resource type - in this case, the 
+aws_ami
+ type is a
+resource available in the 
+aws
+ provider.
+##...
+
+    {
+
+      "mode"
+:
+ "managed"
+,
+
+      "type"
+:
+ "aws_instance"
+,
+
+      "name"
+:
+ "example"
+,
+
+      "provider"
+:
+ "provider[\"registry.terraform.io/hashicorp/aws\"]"
+,
+
+      "instances"
+:
+ [
+
+        {
+
+          "schema_version"
+:
+ 1
+,
+
+          "attributes"
+:
+ {
+
+            "ami"
+:
+ "ami-027a754129abb5386"
+,
+
+            "arn"
+:
+ "arn:aws:ec2:us-east-1:949008909725:instance/i-05a8893f05c6a37be"
+,
+
+            "associate_public_ip_address"
+:
+ true
+,
+
+            "availability_zone"
+:
+ "us-east-1a"
+,
+
+##...
+
+            "public_ip"
+:
+ "18.212.104.187"
+,
+
+##...
+
+            "secondary_private_ips"
+:
+ []
+,
+
+            "security_groups"
+:
+ [
+
+              "terraform-learn-state-sg-8080"
+
+            ]
+,
+
+            "source_dest_check"
+:
+ true
+,
+
+            "spot_instance_request_id"
+:
+ ""
+,
+
+            "subnet_id"
+:
+ "subnet-0e75b9376618c682a"
+,
+
+            "tags"
+:
+ {
+
+              "Name"
+:
+ "terraform-learn-state-ec2"
+
+            }
+,
+
+##...
+
+      }
+
+    }
+
+  ]
+
+},
+
+##...
+
+    {
+
+      "mode"
+:
+ "managed"
+,
+
+      "type"
+:
+ "aws_instance"
+,
+
+      "name"
+:
+ "example"
+,
+
+      "provider"
+:
+ "provider[\"registry.terraform.io/hashicorp/aws\"]"
+,
+
+      "instances"
+:
+ [
+
+        {
+
+          "schema_version"
+:
+ 1
+,
+
+          "attributes"
+:
+ {
+
+            "ami"
+:
+ "ami-027a754129abb5386"
+,
+
+            "arn"
+:
+ "arn:aws:ec2:us-east-1:949008909725:instance/i-05a8893f05c6a37be"
+,
+
+            "associate_public_ip_address"
+:
+ true
+,
+
+            "availability_zone"
+:
+ "us-east-1a"
+,
+
+##...
+
+            "public_ip"
+:
+ "18.212.104.187"
+,
+
+##...
+
+            "secondary_private_ips"
+:
+ []
+,
+
+            "security_groups"
+:
+ [
+
+              "terraform-learn-state-sg-8080"
+
+            ]
+,
+
+            "source_dest_check"
+:
+ true
+,
+
+            "spot_instance_request_id"
+:
+ ""
+,
+
+            "subnet_id"
+:
+ "subnet-0e75b9376618c682a"
+,
+
+            "tags"
+:
+ {
+
+              "Name"
+:
+ "terraform-learn-state-ec2"
+
+            }
+,
+
+##...
+
+      }
+
+    }
+
+  ]
+
+},
+
+The 
+aws_instance
+ type is a 
+managed
+ resource with the AMI from the 
+data.aws_ami
+ source.
+The 
+instances
+ section in this resource contains the 
+attributes
+ of the resource. The 
+security_groups
+ attribute, for example, is captured in plain text in state as opposed to the variable interpolated string in the configuration file.
+Terraform also marks dependencies between resources in state with the built-in dependency tree logic.
+##...
+
+          "dependencies"
+: [
+
+            "aws_security_group.sg_8080"
+,
+
+            "data.aws_ami.ubuntu"
+
+          ]
+
+##...
+
+##...
+
+          "dependencies"
+: [
+
+            "aws_security_group.sg_8080"
+,
+
+            "data.aws_ami.ubuntu"
+
+          ]
+
+##...
+
+Because your state file has a record of your dependencies, enforced by you with a 
+depends_on
+ attribute or by Terraform automatically, any changes to the dependencies will force a change to the dependent resource.
+The Terraform CLI allows you to review resources in the state file without interacting with the 
+.tfstate
+ file itself. This is how you should interact with your state.
+Run 
+terraform show
+ to get a human-friendly output of the resources contained in your state.
+$
+ terraform show
+
+#
+ data.aws_ami.ubuntu:
+
+data "aws_ami" "ubuntu" {
+
+    architecture          = "x86_64"
+
+    arn                   = "arn:aws:ec2:us-east-1::image/ami-027a754129abb5386"
+
+    block_device_mappings = [
+
+##...
+
+}
+
+#
+ aws_instance.example:
+
+resource "aws_instance" "example" {
+
+    ami                                  = "ami-027a754129abb5386"
+
+    arn                                  = "arn:aws:ec2:us-east-1:949008909725:instance/i-05a8893f05c6a37be"
+
+##...
+
+}
+
+#
+ aws_security_group.sg_8080:
+
+resource "aws_security_group" "sg_8080" {
+
+    arn                    = "arn:aws:ec2:us-east-1:949008909725:security-group/sg-0adfd0a0ade3eebdc"
+
+    description            = "Managed by Terraform"
+
+##...
+
+}
+
+Outputs:
+
+aws_region = "us-east-1"
+
+instance_id = "i-05a8893f05c6a37be"
+
+public_ip = "18.212.104.187"
+
+security_group = "sg-0adfd0a0ade3eebdc"
+
+$
+ terraform show
+
+#
+ data.aws_ami.ubuntu:
+
+data "aws_ami" "ubuntu" {
+
+    architecture          = "x86_64"
+
+    arn                   = "arn:aws:ec2:us-east-1::image/ami-027a754129abb5386"
+
+    block_device_mappings = [
+
+##...
+
+}
+
+#
+ aws_instance.example:
+
+resource "aws_instance" "example" {
+
+    ami                                  = "ami-027a754129abb5386"
+
+    arn                                  = "arn:aws:ec2:us-east-1:949008909725:instance/i-05a8893f05c6a37be"
+
+##...
+
+}
+
+#
+ aws_security_group.sg_8080:
+
+resource "aws_security_group" "sg_8080" {
+
+    arn                    = "arn:aws:ec2:us-east-1:949008909725:security-group/sg-0adfd0a0ade3eebdc"
+
+    description            = "Managed by Terraform"
+
+##...
+
+}
+
+Outputs:
+
+aws_region = "us-east-1"
+
+instance_id = "i-05a8893f05c6a37be"
+
+public_ip = "18.212.104.187"
+
+security_group = "sg-0adfd0a0ade3eebdc"
+
+Run 
+terraform state list
+ to get the list of resource names and local identifiers in your state file. This command is useful for more complex configurations where you need to find a specific resource without parsing state with 
+terraform show
+.
+$
+ terraform state list
+
+data.aws_ami.ubuntu
+
+aws_instance.example
+
+aws_security_group.sg_8080
+
+$
+ terraform state list
+
+data.aws_ami.ubuntu
+
+aws_instance.example
+
+aws_security_group.sg_8080
+
+Terraform usually only updates your infrastructure if it does not match your configuration. You can use the 
+-replace
+ flag for 
+terraform plan
+ and 
+terraform apply
+ operations to safely recreate resources in your environment even if you have not edited the configuration, which can be useful in cases of system malfunction. Replacing a resource is also useful in cases where a user manually changes a setting on a resource or when you need to update a provisioning script. This allows you to rebuild specific resources and avoid a full 
+terraform destroy
+ operation on your configuration. The 
+-replace
+ flag allows you to target specific resources and avoid destroying all the resources in your workspace just to fix one of them.
+In older versions of Terraform, you may have used the 
+terraform taint
+ command
+to achieve a similar outcome. That command has now been deprecated in favor of
+the 
+-replace
+ flag, which allows for a simpler, less error-prone workflow. If
+you are using an older version of Terraform, consider upgrading or review the
+
+taint
+ documentation
+
+for more information.
+Tip
+ The 
+-replace
+ flag was introduced in Terraform 0.15.2. Ensure you are using the correct version of Terraform for this next step.
+Run 
+terraform plan -replace="aws_instance.example"
+ to see the actions Terraform would take if you replaced the instance.
+$
+ terraform plan -replace=
+"aws_instance.example"
+
+data.aws_ami.ubuntu: Reading...
+
+aws_security_group.sg_8080: Refreshing state... [id=sg-0adfd0a0ade3eebdc]
+
+data.aws_ami.ubuntu: Read complete after 1s [id=ami-027a754129abb5386]
+
+aws_instance.example: Refreshing state... [id=i-05a8893f05c6a37be]
+
+Terraform used the selected providers to generate the following execution plan.
+
+Resource actions are indicated with the following symbols:
+
+-/+ destroy and then create replacement
+
+Terraform will perform the following actions:
+
+  # aws_instance.example will be replaced, as requested
+
+-/+ resource "aws_instance" "example" {
+
+      ~ arn                                  = "arn:aws:ec2:us-east-1:949008909725:instance/i-05a8893f05c6a37be" -> (known after apply)
+
+##...
+
+    }
+
+Plan: 1 to add, 0 to change, 1 to destroy.
+
+Changes to Outputs:
+
+  ~ instance_id    = "i-05a8893f05c6a37be" -> (known after apply)
+
+  ~ public_ip      = "18.212.104.187" -> (known after apply)
+
+───────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+
+guarantee to take exactly these actions if you run "terraform apply" now.
+
+$
+ terraform plan -replace=
+"aws_instance.example"
+
+data.aws_ami.ubuntu: Reading...
+
+aws_security_group.sg_8080: Refreshing state... [id=sg-0adfd0a0ade3eebdc]
+
+data.aws_ami.ubuntu: Read complete after 1s [id=ami-027a754129abb5386]
+
+aws_instance.example: Refreshing state... [id=i-05a8893f05c6a37be]
+
+Terraform used the selected providers to generate the following execution plan.
+
+Resource actions are indicated with the following symbols:
+
+-/+ destroy and then create replacement
+
+Terraform will perform the following actions:
+
+  # aws_instance.example will be replaced, as requested
+
+-/+ resource "aws_instance" "example" {
+
+      ~ arn                                  = "arn:aws:ec2:us-east-1:949008909725:instance/i-05a8893f05c6a37be" -> (known after apply)
+
+##...
+
+    }
+
+Plan: 1 to add, 0 to change, 1 to destroy.
+
+Changes to Outputs:
+
+  ~ instance_id    = "i-05a8893f05c6a37be" -> (known after apply)
+
+  ~ public_ip      = "18.212.104.187" -> (known after apply)
+
+───────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+
+guarantee to take exactly these actions if you run "terraform apply" now.
+
+As shown in the output, when you apply this change, Terraform will destroy your running instance and create a new one.
+Run 
+terraform apply
+ with the 
+-replace
+ flag to force Terraform to destroy and
+recreate the resource. Type 
+yes
+ when prompted to accept this update.
+$
+ terraform apply -replace=
+"aws_instance.example"
+
+data.aws_ami.ubuntu: Reading...
+
+aws_security_group.sg_8080: Refreshing state... [id=sg-0adfd0a0ade3eebdc]
+
+data.aws_ami.ubuntu: Read complete after 0s [id=ami-027a754129abb5386]
+
+aws_instance.example: Refreshing state... [id=i-05a8893f05c6a37be]
+
+Terraform used the selected providers to generate the following execution plan.
+
+Resource actions are indicated with the following symbols:
+
+-/+ destroy and then create replacement
+
+Terraform will perform the following actions:
+
+  # aws_instance.example will be replaced, as requested
+
+-/+ resource "aws_instance" "example" {
+
+      ~ arn                                  = "arn:aws:ec2:us-east-1:949008909725:instance/i-05a8893f05c6a37be" -> (known after apply)
+
+###...
+
+Plan: 1 to add, 0 to change, 1 to destroy.
+
+Changes to Outputs:
+
+  ~ instance_id    = "i-05a8893f05c6a37be" -> (known after apply)
+
+  ~ public_ip      = "18.212.104.187" -> (known after apply)
+
+Do you want to perform these actions?
+
+  Terraform will perform the actions described above.
+
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_instance.example: Destroying... [id=i-05a8893f05c6a37be]
+
+aws_instance.example: Still destroying... [id=i-05a8893f05c6a37be, 10s elapsed]
+
+aws_instance.example: Still destroying... [id=i-05a8893f05c6a37be, 20s elapsed]
+
+aws_instance.example: Still destroying... [id=i-05a8893f05c6a37be, 30s elapsed]
+
+aws_instance.example: Destruction complete after 31s
+
+aws_instance.example: Creating...
+
+aws_instance.example: Still creating... [10s elapsed]
+
+aws_instance.example: Still creating... [20s elapsed]
+
+aws_instance.example: Still creating... [30s elapsed]
+
+aws_instance.example: Creation complete after 32s [id=i-0c517d96d291b7e26]
+
+Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
+
+Outputs:
+
+aws_region = "us-east-1"
+
+instance_id = "i-0c517d96d291b7e26"
+
+public_ip = "54.159.61.68"
+
+security_group = "sg-0adfd0a0ade3eebdc"
+
+$
+ terraform apply -replace=
+"aws_instance.example"
+
+data.aws_ami.ubuntu: Reading...
+
+aws_security_group.sg_8080: Refreshing state... [id=sg-0adfd0a0ade3eebdc]
+
+data.aws_ami.ubuntu: Read complete after 0s [id=ami-027a754129abb5386]
+
+aws_instance.example: Refreshing state... [id=i-05a8893f05c6a37be]
+
+Terraform used the selected providers to generate the following execution plan.
+
+Resource actions are indicated with the following symbols:
+
+-/+ destroy and then create replacement
+
+Terraform will perform the following actions:
+
+  # aws_instance.example will be replaced, as requested
+
+-/+ resource "aws_instance" "example" {
+
+      ~ arn                                  = "arn:aws:ec2:us-east-1:949008909725:instance/i-05a8893f05c6a37be" -> (known after apply)
+
+###...
+
+Plan: 1 to add, 0 to change, 1 to destroy.
+
+Changes to Outputs:
+
+  ~ instance_id    = "i-05a8893f05c6a37be" -> (known after apply)
+
+  ~ public_ip      = "18.212.104.187" -> (known after apply)
+
+Do you want to perform these actions?
+
+  Terraform will perform the actions described above.
+
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_instance.example: Destroying... [id=i-05a8893f05c6a37be]
+
+aws_instance.example: Still destroying... [id=i-05a8893f05c6a37be, 10s elapsed]
+
+aws_instance.example: Still destroying... [id=i-05a8893f05c6a37be, 20s elapsed]
+
+aws_instance.example: Still destroying... [id=i-05a8893f05c6a37be, 30s elapsed]
+
+aws_instance.example: Destruction complete after 31s
+
+aws_instance.example: Creating...
+
+aws_instance.example: Still creating... [10s elapsed]
+
+aws_instance.example: Still creating... [20s elapsed]
+
+aws_instance.example: Still creating... [30s elapsed]
+
+aws_instance.example: Creation complete after 32s [id=i-0c517d96d291b7e26]
+
+Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
+
+Outputs:
+
+aws_region = "us-east-1"
+
+instance_id = "i-0c517d96d291b7e26"
+
+public_ip = "54.159.61.68"
+
+security_group = "sg-0adfd0a0ade3eebdc"
+
+Using the 
+terraform apply
+ command with the 
+-replace
+ flag is the
+HashiCorp-recommended process for managing resources without manually editing
+your state file.
+Some of the Terraform state subcommands are useful in very specific situations.
+HashiCorp recommends only performing these advanced operations as the last
+resort.
+The 
+terraform state mv
+ command moves resources from one state file to another.
+You can also rename resources with 
+mv
+. The move command will update the
+resource in state, but not in your configuration file. Moving resources is
+useful when you want to combine modules or resources from other states, but do
+not want to destroy and recreate the infrastructure.
+The 
+new_state
+ subdirectory contains a new Terraform configuration. This
+configuration creates a new EC2 instance named 
+aws_instance.example_new
+ and
+uses a data resource to use the same security group from your root configuration
+file. Change into the subdirectory.
+$
+ cd new_state
+
+$
+ cd new_state
+
+Run 
+terraform init
+.
+$
+ terraform init
+
+Initializing the backend...
+
+Initializing provider plugins...
+
+- Reusing previous version of hashicorp/aws from the dependency lock file
+
+- Using previously-installed hashicorp/aws v5.31.0
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+
+any changes that are required for your infrastructure. All Terraform commands
+
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+
+rerun this command to reinitialize your working directory. If you forget, other
+
+commands will detect it and remind you to do so if necessary.
+
+$
+ terraform init
+
+Initializing the backend...
+
+Initializing provider plugins...
+
+- Reusing previous version of hashicorp/aws from the dependency lock file
+
+- Using previously-installed hashicorp/aws v5.31.0
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+
+any changes that are required for your infrastructure. All Terraform commands
+
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+
+rerun this command to reinitialize your working directory. If you forget, other
+
+commands will detect it and remind you to do so if necessary.
+
+Apply your configuration. Respond to the confirmation prompt with a 
+yes
+.
+$
+ terraform apply
+
+data.terraform_remote_state.root: Reading...
+
+data.terraform_remote_state.root: Read complete after 0s
+
+data.aws_ami.ubuntu: Reading...
+
+data.aws_ami.ubuntu: Read complete after 0s [id=ami-027a754129abb5386]
+
+Terraform used the selected providers to generate the following execution plan.
+
+Resource actions are indicated with the following symbols:
+
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.example will be created
+
+  + resource "aws_instance" "example" {
+
+##...
+
+Do you want to perform these actions?
+
+  Terraform will perform the actions described above.
+
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_instance.example: Creating...
+
+aws_instance.example: Still creating... [10s elapsed]
+
+aws_instance.example: Still creating... [20s elapsed]
+
+aws_instance.example: Still creating... [30s elapsed]
+
+aws_instance.example: Creation complete after 33s [id=i-0bf5ee79542833739]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+instance_id = "i-0bf5ee79542833739"
+
+public_ip = "3.80.21.81"
+
+$
+ terraform apply
+
+data.terraform_remote_state.root: Reading...
+
+data.terraform_remote_state.root: Read complete after 0s
+
+data.aws_ami.ubuntu: Reading...
+
+data.aws_ami.ubuntu: Read complete after 0s [id=ami-027a754129abb5386]
+
+Terraform used the selected providers to generate the following execution plan.
+
+Resource actions are indicated with the following symbols:
+
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.example will be created
+
+  + resource "aws_instance" "example" {
+
+##...
+
+Do you want to perform these actions?
+
+  Terraform will perform the actions described above.
+
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_instance.example: Creating...
+
+aws_instance.example: Still creating... [10s elapsed]
+
+aws_instance.example: Still creating... [20s elapsed]
+
+aws_instance.example: Still creating... [30s elapsed]
+
+aws_instance.example: Creation complete after 33s [id=i-0bf5ee79542833739]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+instance_id = "i-0bf5ee79542833739"
+
+public_ip = "3.80.21.81"
+
+Now, you have a second state file with a managed resource and a data source.
+Move the new EC2 instance resource you just created, 
+aws_instance.example_new
+, to the old configuration's file in the directory above your current location, as specified with the 
+-state-out
+ flag. Set the destination name to the same name, since in this case there is no resource with the same name in the target state file.
+$
+ terraform state mv -state-out=../terraform.tfstate aws_instance.example_new aws_instance.example_new
+
+Move "aws_instance.example_new" to "aws_instance.example_new"
+
+Successfully moved 1 object(s).
+
+$
+ terraform state mv -state-out=../terraform.tfstate aws_instance.example_new aws_instance.example_new
+
+Move "aws_instance.example_new" to "aws_instance.example_new"
+
+Successfully moved 1 object(s).
+
+Note
+ Resource names 
+must
+ be unique to the intended state file. The 
+terraform state mv
+ command can also rename resources to make them unique.
+Change into your root directory.
+Run 
+terraform state list
+ to confirm that the new EC2 instance, 
+aws_instance.example_new
+, is present in the in original configuration's state file.
+$
+ terraform state list
+
+data.aws_ami.ubuntu
+
+aws_instance.example
+
+aws_instance.example_new
+
+aws_security_group.sg_8080
+
+$
+ terraform state list
+
+data.aws_ami.ubuntu
+
+aws_instance.example
+
+aws_instance.example_new
+
+aws_security_group.sg_8080
+
+Without adding the EC2 resource you moved to your configuration files, create a
+Terraform plan. Because the new EC2 instance is present in state but not in the
+configuration, Terraform plans to destroy the moved instance, and remove the
+resource from the state file.
+$
+ terraform plan
+
+data.aws_ami.ubuntu: Reading...
+
+aws_security_group.sg_8080: Refreshing state... [id=sg-0adfd0a0ade3eebdc]
+
+aws_instance.example_new: Refreshing state... [id=i-084a99085ac1aab41]
+
+data.aws_ami.ubuntu: Read complete after 1s [id=ami-027a754129abb5386]
+
+aws_instance.example: Refreshing state... [id=i-0c517d96d291b7e26]
+
+Terraform used the selected providers to generate the following execution plan.
+
+Resource actions are indicated with the following symbols:
+
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_instance.example_new will be destroyed
+
+  # (because aws_instance.example_new is not in configuration)
+
+  - resource "aws_instance" "example_new" {
+
+      - ami                                  = "ami-027a754129abb5386" -> null
+
+      - arn                                  = "arn:aws:ec2:us-east-1:949008909725:instance/i-084a99085ac1aab41" -> null
+
+##...
+
+    }
+
+Plan: 0 to add, 0 to change, 1 to destroy.
+
+───────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+
+guarantee to take exactly these actions if you run "terraform apply" now.
+
+$
+ terraform plan
+
+data.aws_ami.ubuntu: Reading...
+
+aws_security_group.sg_8080: Refreshing state... [id=sg-0adfd0a0ade3eebdc]
+
+aws_instance.example_new: Refreshing state... [id=i-084a99085ac1aab41]
+
+data.aws_ami.ubuntu: Read complete after 1s [id=ami-027a754129abb5386]
+
+aws_instance.example: Refreshing state... [id=i-0c517d96d291b7e26]
+
+Terraform used the selected providers to generate the following execution plan.
+
+Resource actions are indicated with the following symbols:
+
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_instance.example_new will be destroyed
+
+  # (because aws_instance.example_new is not in configuration)
+
+  - resource "aws_instance" "example_new" {
+
+      - ami                                  = "ami-027a754129abb5386" -> null
+
+      - arn                                  = "arn:aws:ec2:us-east-1:949008909725:instance/i-084a99085ac1aab41" -> null
+
+##...
+
+    }
+
+Plan: 0 to add, 0 to change, 1 to destroy.
+
+───────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+
+guarantee to take exactly these actions if you run "terraform apply" now.
+
+Open the 
+main.tf
+ file in your root directory. Copy and paste the resource definition below.
+resource
+ "aws_instance"
+ "example_new"
+ {
+
+  ami                    
+=
+ data.aws_ami.ubuntu.id
+
+  instance_type          
+=
+ "t2.micro"
+
+  vpc_security_group_ids 
+=
+ [aws_security_group.sg_8080.id]
+
+  user_data              
+=
+ <<-EOF
+
+              #!/bin/bash
+
+              apt-get update
+
+              apt-get install -y apache2
+
+              sed -i -e 's/80/8080/' /etc/apache2/ports.conf
+
+              echo "Hello World" > /var/www/html/index.html
+
+              systemctl restart apache2
+
+              EOF
+
+  tags 
+=
+ {
+
+    Name 
+=
+ "terraform-learn-state-ec2"
+
+  }
+
+}
+
+resource
+ "aws_instance"
+ "example_new"
+ {
+
+  ami                    
+=
+ data.aws_ami.ubuntu.id
+
+  instance_type          
+=
+ "t2.micro"
+
+  vpc_security_group_ids 
+=
+ [aws_security_group.sg_8080.id]
+
+  user_data              
+=
+ <<-EOF
+
+              #!/bin/bash
+
+              apt-get update
+
+              apt-get install -y apache2
+
+              sed -i -e 's/80/8080/' /etc/apache2/ports.conf
+
+              echo "Hello World" > /var/www/html/index.html
+
+              systemctl restart apache2
+
+              EOF
+
+  tags 
+=
+ {
+
+    Name 
+=
+ "terraform-learn-state-ec2"
+
+  }
+
+}
+
+Apply your configuration. Your configuration now matches your state file and Terraform will not perform any changes.
+$
+ terraform apply
+
+data.aws_ami.ubuntu: Reading...
+
+aws_security_group.sg_8080: Refreshing state... [id=sg-0adfd0a0ade3eebdc]
+
+data.aws_ami.ubuntu: Read complete after 0s [id=ami-027a754129abb5386]
+
+aws_instance.example_new: Refreshing state... [id=i-084a99085ac1aab41]
+
+aws_instance.example: Refreshing state... [id=i-0c517d96d291b7e26]
+
+No changes. Your infrastructure matches the configuration.
+
+Terraform has compared your real infrastructure against your configuration and
+
+found no differences, so no changes are needed.
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+aws_region = "us-east-1"
+
+instance_id = "i-0c517d96d291b7e26"
+
+public_ip = "54.159.61.68"
+
+security_group = "sg-0adfd0a0ade3eebdc"
+
+$
+ terraform apply
+
+data.aws_ami.ubuntu: Reading...
+
+aws_security_group.sg_8080: Refreshing state... [id=sg-0adfd0a0ade3eebdc]
+
+data.aws_ami.ubuntu: Read complete after 0s [id=ami-027a754129abb5386]
+
+aws_instance.example_new: Refreshing state... [id=i-084a99085ac1aab41]
+
+aws_instance.example: Refreshing state... [id=i-0c517d96d291b7e26]
+
+No changes. Your infrastructure matches the configuration.
+
+Terraform has compared your real infrastructure against your configuration and
+
+found no differences, so no changes are needed.
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+aws_region = "us-east-1"
+
+instance_id = "i-0c517d96d291b7e26"
+
+public_ip = "54.159.61.68"
+
+security_group = "sg-0adfd0a0ade3eebdc"
+
+Change into your 
+new_state
+ directory.
+$
+ cd new_state
+
+$
+ cd new_state
+
+Run 
+terraform destroy
+ and you should have no resources to destroy. Your 
+security_group
+ resource is a data source and you moved the 
+aws_instance
+ resource to another state file. Accept the changes by typing 
+yes
+ when prompted.
+$
+ terraform destroy
+
+data.terraform_remote_state.root: Reading...
+
+data.terraform_remote_state.root: Read complete after 0s
+
+data.aws_ami.ubuntu: Reading...
+
+data.aws_ami.ubuntu: Read complete after 1s [id=ami-027a754129abb5386]
+
+Changes to Outputs:
+
+  - instance_id = "i-084a99085ac1aab41" -> null
+
+  - public_ip   = "3.208.8.142" -> null
+
+You can apply this plan to save these new output values to the Terraform state,
+
+without changing any real infrastructure.
+
+Do you really want to destroy all resources?
+
+  Terraform will destroy all your managed infrastructure, as shown above.
+
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+Destroy complete! Resources: 0 destroyed.
+
+$
+ terraform destroy
+
+data.terraform_remote_state.root: Reading...
+
+data.terraform_remote_state.root: Read complete after 0s
+
+data.aws_ami.ubuntu: Reading...
+
+data.aws_ami.ubuntu: Read complete after 1s [id=ami-027a754129abb5386]
+
+Changes to Outputs:
+
+  - instance_id = "i-084a99085ac1aab41" -> null
+
+  - public_ip   = "3.208.8.142" -> null
+
+You can apply this plan to save these new output values to the Terraform state,
+
+without changing any real infrastructure.
+
+Do you really want to destroy all resources?
+
+  Terraform will destroy all your managed infrastructure, as shown above.
+
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+Destroy complete! Resources: 0 destroyed.
+
+Use a 
+removed
+ block to remove specific resources from your state. This does
+not destroy the infrastructure itself, instead it indicates that your Terraform configuration
+will no longer manage the resource.
+Change into your root directory.
+Remove the 
+aws_instance.example_new
+ from your project's state.
+Comment out the entire 
+resource "aws_instance" "example_new"
+ block from
+
+main.tf
+ and add a 
+removed
+ block to instruct Terraform to remove the resource
+from state, but not destroy it.
+removed
+ {
+
+  from 
+=
+ aws_instance.example_new
+
+  lifecycle
+ {
+
+    destroy 
+=
+ false
+
+  }
+
+}
+
+# resource "aws_instance" "example_new" {
+
+#   ami                    = data.aws_ami.ubuntu.id
+
+#   instance_type          = "t2.micro"
+
+#   vpc_security_group_ids = [aws_security_group.sg_8080.id]
+
+#   user_data              = <<-EOF
+
+#               #!/bin/bash
+
+#               apt-get update
+
+#               apt-get install -y apache2
+
+#               sed -i -e 's/80/8080/' /etc/apache2/ports.conf
+
+#               echo "Hello World" > /var/www/html/index.html
+
+#               systemctl restart apache2
+
+#               EOF
+
+#   tags = {
+
+#     Name = "terraform-learn-state-ec2"
+
+#   }
+
+# }
+
+removed
+ {
+
+  from 
+=
+ aws_instance.example_new
+
+  lifecycle
+ {
+
+    destroy 
+=
+ false
+
+  }
+
+}
+
+# resource "aws_instance" "example_new" {
+
+#   ami                    = data.aws_ami.ubuntu.id
+
+#   instance_type          = "t2.micro"
+
+#   vpc_security_group_ids = [aws_security_group.sg_8080.id]
+
+#   user_data              = <<-EOF
+
+#               #!/bin/bash
+
+#               apt-get update
+
+#               apt-get install -y apache2
+
+#               sed -i -e 's/80/8080/' /etc/apache2/ports.conf
+
+#               echo "Hello World" > /var/www/html/index.html
+
+#               systemctl restart apache2
+
+#               EOF
+
+#   tags = {
+
+#     Name = "terraform-learn-state-ec2"
+
+#   }
+
+# }
+
+Tip
+ The 
+removed
+ block was introduced in Terraform 1.7. Previous versions of
+Terraform used the 
+terraform state rm
+ command to remove resources from state.
+Ensure you are using the correct version of Terraform for this step.
+Apply your configuration. Before you remove the new instance
+
+[document truncated for prompt size]
+---

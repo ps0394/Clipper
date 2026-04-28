@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer matches the ground-truth answer exactly.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 538,
+    "tokens_out": 15
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer matches the ground-truth answer exactly.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 534,
+    "tokens_out": 15
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer specifies a particular cookie name (\"__uid\") while the ground truth uses a placeholder (\"[cookie name]\"), which changes the factual content.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 545,
+    "tokens_out": 36
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the required import source \"from 'hono/cookie'\" specified in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 544,
+    "tokens_out": 28
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer \"Default\" does not match the ground-truth fact \"WorkerEntrypoint\".",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 538,
+    "tokens_out": 24
+  }
+]

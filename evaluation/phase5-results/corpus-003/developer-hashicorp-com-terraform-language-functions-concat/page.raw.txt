@@ -1,0 +1,33 @@
+> concat(["a", ""], ["b", "c"])
+
+[
+
+  "a",
+
+  "",
+
+  "b",
+
+  "c",
+
+]
+
+# Can do multiple lists of mixed types, arguments can also be empty lists
+
+concat([], [1, "a"], [[3], "c"])
+
+[
+
+  1,
+
+  "a",
+
+  [
+
+    3,
+
+  ],
+
+  "c",
+
+]

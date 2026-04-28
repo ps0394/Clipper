@@ -1,0 +1,37 @@
+[
+  {
+    "question": "What is the name of the database used in the first collection accessed in the `with_transaction_example` function?",
+    "answer": "mydb1",
+    "supporting_sentences": [
+      "coll = mongoc_client_get_collection(client, \"mydb1\", \"foo\");"
+    ]
+  },
+  {
+    "question": "What value is set for the write concern majority timeout in the `with_transaction_example` function?",
+    "answer": "1000",
+    "supporting_sentences": [
+      "mongoc_write_concern_set_wmajority(wc, 1000);"
+    ]
+  },
+  {
+    "question": "Which function is called to start a client session in the `with_transaction_example` function?",
+    "answer": "mongoc_client_start_session",
+    "supporting_sentences": [
+      "session = mongoc_client_start_session(client, NULL, error);"
+    ]
+  },
+  {
+    "question": "What is the integer value assigned to the key 'xyz' in the second document inserted within the `callback` function?",
+    "answer": "999",
+    "supporting_sentences": [
+      "doc = BCON_NEW(\"xyz\", BCON_INT32(999));"
+    ]
+  },
+  {
+    "question": "What is the name of the collection accessed in the `callback` function after the first insertion?",
+    "answer": "bar",
+    "supporting_sentences": [
+      "coll = mongoc_client_get_collection(client, \"mydb2\", \"bar\");"
+    ]
+  }
+]

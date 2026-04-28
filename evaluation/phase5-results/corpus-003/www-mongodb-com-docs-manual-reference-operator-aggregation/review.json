@@ -1,0 +1,106 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of expressions in MongoDB Query Language (MQL)?",
+      "answer": "Expressions are MQL components that resolve to a value. They are stateless, meaning they return a value without mutating any of the values used to build the expression.",
+      "supporting_sentences": [
+        "Expressions are MQL components that resolve to a value.",
+        "Expressions are stateless, meaning they return a value without mutating any of the values used to build the expression."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of expressions in MongoDB Query Language (MQL)?",
+      "answer": "Expressions are MQL components that resolve to a value. They are stateless, meaning they return a value without mutating any of the values used to build the expression.",
+      "supporting_sentences": [
+        "Expressions are MQL components that resolve to a value.",
+        "Expressions are stateless, meaning they return a value without mutating any of the values used to build the expression."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the general form of an expression operator in MongoDB?",
+      "answer": "Expression operators generally take an array of arguments and have the form: `{ <operator>: [ <argument1>, <argument2> ... ] }`. If an operator accepts a single argument, you can omit the outer array: `{ <operator>: <argument> }`.",
+      "supporting_sentences": [
+        "Expression operators are similar to functions that take arguments. In general, these operators take an array of arguments and have the following form: { <operator>: [ <argument1>, <argument2> ... ] }",
+        "If an operator accepts a single argument, you can omit the outer array designating the argument list: { <operator>: <argument> }"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the general form of an expression operator in MongoDB?",
+      "answer": "Expression operators generally take an array of arguments and have the form: `{ <operator>: [ <argument1>, <argument2> ... ] }`. If an operator accepts a single argument, you can omit the outer array: `{ <operator>: <argument> }`.",
+      "supporting_sentences": [
+        "Expression operators are similar to functions that take arguments. In general, these operators take an array of arguments and have the following form: { <operator>: [ <argument1>, <argument2> ... ] }",
+        "If an operator accepts a single argument, you can omit the outer array designating the argument list: { <operator>: <argument> }"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which arithmetic operator in MongoDB returns the smallest integer greater than or equal to a specified number?",
+      "answer": "The `$ceil` operator returns the smallest integer greater than or equal to the specified number.",
+      "supporting_sentences": [
+        "Returns the smallest integer greater than or equal to the specified number."
+      ]
+    },
+    "edited_pair": {
+      "question": "Which arithmetic operator in MongoDB returns the smallest integer greater than or equal to a specified number?",
+      "answer": "The `$ceil` operator returns the smallest integer greater than or equal to the specified number.",
+      "supporting_sentences": [
+        "Returns the smallest integer greater than or equal to the specified number."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What does the `$concatArrays` array operator do in MongoDB?",
+      "answer": "The `$concatArrays` operator concatenates arrays to return the concatenated array.",
+      "supporting_sentences": [
+        "Concatenates arrays to return the concatenated array."
+      ]
+    },
+    "edited_pair": {
+      "question": "What does the `$concatArrays` array operator do in MongoDB?",
+      "answer": "The `$concatArrays` operator concatenates arrays to return the concatenated array.",
+      "supporting_sentences": [
+        "Concatenates arrays to return the concatenated array."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does the `$dateToString` date operator format its output?",
+      "answer": "The `$dateToString` operator returns the date as a formatted string.",
+      "supporting_sentences": [
+        "Returns the date as a formatted string."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does the `$dateToString` date operator format its output?",
+      "answer": "The `$dateToString` operator returns the date as a formatted string.",
+      "supporting_sentences": [
+        "Returns the date as a formatted string."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

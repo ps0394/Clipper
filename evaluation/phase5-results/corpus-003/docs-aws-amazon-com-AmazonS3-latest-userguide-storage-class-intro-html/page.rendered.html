@@ -1,0 +1,529 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Understanding and managing Amazon S3 storage classes - Amazon Simple Storage Service</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="assets_root" content="/assets"><meta name="target_state" content="storage-class-intro"><meta name="default_state" content="storage-class-intro"><link rel="icon" type="image/ico" href="/assets/images/favicon.ico"><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico"><link rel="canonical" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html"><meta name="description" content="Learn how to choose from a range of high durability storage classes for the objects that you store in Amazon S3, depending on your use case scenario and performance access requirements."><meta name="deployment_region" content="IAD"><meta name="product" content="Amazon Simple Storage Service"><meta name="guide" content="User Guide"><meta name="abstract" content="Learn how to use Amazon Simple Storage Service (Amazon S3) to store and retrieve any amount of data from anywhere. This guide explains Amazon S3 concepts, such as buckets, objects, and related configurations, and includes code examples for common operations."><meta name="guide-locale" content="en_us"><meta name="tocs" content="toc-contents.json"><link rel="canonical" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html"><link rel="alternate" href="https://docs.aws.amazon.com/id_id/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="id-id"><link rel="alternate" href="https://docs.aws.amazon.com/id_id/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="id"><link rel="alternate" href="https://docs.aws.amazon.com/de_de/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="de-de"><link rel="alternate" href="https://docs.aws.amazon.com/de_de/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="de"><link rel="alternate" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="en-us"><link rel="alternate" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="en"><link rel="alternate" href="https://docs.aws.amazon.com/es_es/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="es-es"><link rel="alternate" href="https://docs.aws.amazon.com/es_es/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="es"><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="fr-fr"><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="fr"><link rel="alternate" href="https://docs.aws.amazon.com/it_it/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="it-it"><link rel="alternate" href="https://docs.aws.amazon.com/it_it/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="it"><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="ja-jp"><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="ja"><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="ko-kr"><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="ko"><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="pt-br"><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="pt"><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="zh-cn"><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="zh-tw"><link rel="alternate" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html" hreflang="x-default"><meta name="feedback-item" content="S3"><meta name="this_doc_product" content="Amazon Simple Storage Service"><meta name="this_doc_guide" content="User Guide"> <script async="" src="https://a.b.cdn.console.awsstatic.com/a/v1/CEQ753HGI4VIEBGCDVTGJAUVQGBTUEBLQAPUZKXOPUCG73VLELWQ/4f9d21011c2f449797c97ad39e28d981db54e8abc2d447ce9b3129dbc8be99c4.js" crossorigin="anonymous"></script><script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"><script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'s3'}"></script><meta id="panorama-serviceSubSection" value="User Guide"><meta id="panorama-serviceConsolePage" value="Understanding and managing Amazon S3 storage classes"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-2272" src="https://docs.aws.amazon.com/assets/r/vendor3.7a02051d9a0e6f6b110e.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-566" src="https://docs.aws.amazon.com/assets/r/resources.cbc0225cc7197bb1e596.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-6784" src="https://docs.aws.amazon.com/assets/r/metadata.9a532a3d593a66d1cdcf.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/816.ee399c0bee656eceb6d0.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-816" src="https://docs.aws.amazon.com/assets/r/816.fa4d7f5fb8d131d3b42a.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/2514.a11f076dc4fb2cca74eb.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-2514" src="https://docs.aws.amazon.com/assets/r/2514.adefee96ed8146b060b4.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-172" src="https://docs.aws.amazon.com/assets/r/172.a0134563aac90d9d5656.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/4011.397f421b3798c0b7d477.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-4011" src="https://docs.aws.amazon.com/assets/r/4011.70858d1c0a8aaa69dd79.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/4845.6a595925b3d104a21f39.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-4845" src="https://docs.aws.amazon.com/assets/r/4845.2a406f842106c6a12224.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-7028" src="https://docs.aws.amazon.com/assets/r/7028.8e7f264e82b5b6ba9da1.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/8745.41985563f64e72bd14ae.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-8745" src="https://docs.aws.amazon.com/assets/r/8745.cb3186f2e78de3205340.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/6420.4035928faf176abb7346.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-6420" src="https://docs.aws.amazon.com/assets/r/6420.c775a1acf98c25a66e8a.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/3486.74ba6c31bf7a6e9619ce.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-3486" src="https://docs.aws.amazon.com/assets/r/3486.9cdc6d2c41d158b83b76.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-7524" src="https://docs.aws.amazon.com/assets/r/7524.824b3fb8e1edd154c1eb.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/1759.691ade396dc86297ed81.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-1759" src="https://docs.aws.amazon.com/assets/r/1759.bdc98cf47b1091ac9366.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/6208.0d22eea0741becffb14f.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-6208" src="https://docs.aws.amazon.com/assets/r/6208.3f77c60a956591f7518c.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/5999.ba438acf0bb4227e2a73.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-5999" src="https://docs.aws.amazon.com/assets/r/5999.6d6f2675d28f6ad1014f.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/7342.a255ffa4610ca45ee17a.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-7342" src="https://docs.aws.amazon.com/assets/r/7342.8fc985de0cf4b69e75b1.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/3708.1abf383dfb7f28a7a55e.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-3708" src="https://docs.aws.amazon.com/assets/r/3708.712595a3e5c42552af9d.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-3573" src="https://docs.aws.amazon.com/assets/r/3573.0d23b56ba05c6fc177ce.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/8736.24e4aedc7402456643b1.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-8736" src="https://docs.aws.amazon.com/assets/r/8736.09724923a23fd7763f12.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-7284" src="https://docs.aws.amazon.com/assets/r/7284.e1041661978795bb9fc6.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/5257.caa6b15afb10fd910731.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-5257" src="https://docs.aws.amazon.com/assets/r/5257.a46fccf21a9d59ae0a7f.js"></script><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-352" src="https://docs.aws.amazon.com/assets/r/352.e659e2a1a775ec910c64.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/5521.8435a18a94708b32bbb0.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-5521" src="https://docs.aws.amazon.com/assets/r/5521.65b3c2ecf161c12300a9.js"></script></head>
+<body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="storage-class-intro.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><title>Understanding and managing Amazon S3 storage classes - Amazon Simple Storage Service</title><meta name="pdf" content="/pdfs/AmazonS3/latest/userguide/s3-userguide.pdf#storage-class-intro"><meta name="rss" content="s3-userguide-rss-updates.rss"><meta name="forums" content="https://repost.aws/tags/TADSTjraA0Q4-a1dxk6eUYaw"><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=S3&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/storage-class-intro.html"><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/storage-class-intro.html"><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/storage-class-intro.html"><meta name="keywords" content="S3,Amazon S3,S3 User Guide,Amazon S3 User Guide,Amazon User Guide,s3 bucket,s3 object,cloud storage,data storage,storage class,storage classes,Glacier"><link rel="alternate" type="text/markdown" href="storage-class-intro.md" title="Markdown version"><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Simple Storage Service (S3)",
+        "item" : "https://docs.aws.amazon.com/s3/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/AmazonS3/latest/userguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Cost optimization",
+        "item" : "https://docs.aws.amazon.com/AmazonS3/latest/userguide/cost-optimization.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Understanding and managing Amazon S3 storage classes",
+        "item" : "https://docs.aws.amazon.com/AmazonS3/latest/userguide/cost-optimization.html"
+      }
+    ]
+}
+</script><div id="main"><div style="display: none"><a href="/pdfs/AmazonS3/latest/userguide/s3-userguide.pdf#storage-class-intro" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/s3/index.html">Amazon Simple Storage Service (S3)</a><a href="Welcome.html">User Guide</a></div><div id="page-toc-src"><a href="#sc-freq-data-access">Frequently accessed objects</a><a href="#sc-dynamic-data-access">Automatically optimizing data with changing or unknown access
+        patterns</a><a href="#sc-infreq-data-access">Infrequently accessed objects</a><a href="#sc-glacier">Rarely accessed objects</a><a href="#s3-outposts">Amazon S3 on Outposts</a><a href="#sc-compare">Comparing storage classes</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="storage-class-intro">Understanding and managing Amazon S3 storage classes</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Each object in Amazon S3 has a storage class associated with it. By default, objects in S3 are stored in the S3 Standard storage class, however Amazon S3 offers a range of other storage classes for the objects that you store. You choose a class
+    depending on your use case scenario and performance access requirements. Choosing a storage class designed for your use case lets you optimize storage costs, performance, and availability for your objects. All of these storage classes offer high durability.</p><p>The following sections provide details of the various storage classes and how to set the
+    storage class for your objects.</p><div class="highlights"><h6>Topics</h6><ul><li><p><a href="#sc-freq-data-access">Storage classes for frequently accessed objects</a></p></li><li><p><a href="#sc-dynamic-data-access">Storage class for automatically optimizing data with changing or unknown access patterns</a></p></li><li><p><a href="#sc-infreq-data-access">Storage classes for infrequently accessed objects</a></p></li><li><p><a href="#sc-glacier">Storage classes for rarely accessed objects</a></p></li><li><p><a href="#s3-outposts">Storage class for Amazon S3 on Outposts</a></p></li><li><p><a href="#sc-compare">Comparing the Amazon S3 storage classes</a></p></li><li><p><a href="./sc-howtoset.html">Setting the storage class of an object</a></p></li><li><p><a href="./analytics-storage-class.html">Amazon S3 analytics – Storage Class Analysis</a></p></li><li><p><a href="./intelligent-tiering.html">Managing storage costs with Amazon S3 Intelligent-Tiering</a></p></li><li><p><a href="./glacier-storage-classes.html">Understanding S3 Glacier storage classes for long-term data storage</a></p></li><li><p><a href="./archived-objects.html">Working with archived objects</a></p></li></ul></div>
+    <h2 id="sc-freq-data-access">Storage classes for frequently accessed objects</h2>
+    <p>For performance-sensitive use cases (those that require millisecond access time) and
+      frequently accessed data, Amazon S3 provides the following storage classes:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>S3 Standard</b> (<code class="code">STANDARD</code>) – The default storage class. If you
+          don't specify the storage class when you upload an object, Amazon S3 assigns the S3 Standard
+          storage class. To help you optimize costs between S3 Standard and S3 Standard-IA you can use <a href="./analytics-storage-class.html">Amazon S3 analytics – Storage Class Analysis</a>.</p>
+      </li><li class="listitem">
+        <p><b>S3 Express One Zone</b> (<code class="code">EXPRESS_ONEZONE</code>) – Amazon S3 Express One Zone is a
+          high-performance, single-zone Amazon S3 storage class that is purpose-built to deliver
+          consistent, single-digit millisecond data access for your most latency-sensitive
+          applications. S3 Express One Zone is the lowest latency cloud object storage class available
+          today, with data access speed up to 10x faster and with request costs 50 percent lower
+          than S3 Standard. With S3 Express One Zone, your data is redundantly stored on multiple devices
+          within a single Availability Zone. For more information, see <a href="./directory-bucket-high-performance.html#s3-express-one-zone">S3 Express One Zone</a>.</p>
+      </li><li class="listitem">
+        <p><b>Reduced Redundancy
+          Storage </b> (<code class="code">REDUCED_REDUNDANCY</code>) – The Reduced Redundancy
+          Storage (RRS) class is designed for noncritical, reproducible data that can be
+          stored with less redundancy than the S3 Standard storage class.</p>
+        <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>We recommend not using this storage class. The S3 Standard storage class is more
+            cost-effective. </p></div></div>
+        <p>For durability, RRS objects have an average annual expected loss of 0.01 percent of
+          objects. If an RRS object is lost, when requests are made to that object, Amazon S3 returns a
+          405 error.</p>
+      </li></ul></div>
+   
+    <h2 id="sc-dynamic-data-access">Storage class for automatically optimizing data with changing or unknown access patterns</h2>
+    <p><b>S3 Intelligent-Tiering</b> (<code class="code">INTELLIGENT_TIERING</code>) is an Amazon S3 storage class that's
+      designed to optimize storage costs by automatically moving data to the most cost-effective
+      access tier, without performance impact or operational overhead. S3 Intelligent-Tiering is the
+      only cloud storage class that delivers automatic cost savings by moving data on a granular
+      object level between access tiers when access patterns change. S3 Intelligent-Tiering is the
+      ideal storage class when you want to optimize storage costs for data that has unknown or
+      changing access patterns. There are no retrieval fees for S3 Intelligent-Tiering. </p>
+   
+    <p>For a small monthly object monitoring and automation fee, S3 Intelligent-Tiering monitors
+      access patterns and automatically moves objects that have not been accessed to lower-cost
+      access tiers. S3 Intelligent-Tiering delivers automatic storage cost savings in three low-latency
+      and high-throughput access tiers. For data that can be accessed asynchronously, you can choose
+      to activate automatic archiving capabilities within the S3 Intelligent-Tiering storage class.
+      S3 Intelligent-Tiering is designed for 99.9% availability and 99.999999999% durability.</p>
+    <p>S3 Intelligent-Tiering automatically stores objects in three access tiers: </p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Frequent Access</b> – Objects that are uploaded or
+          transitioned to S3 Intelligent-Tiering are automatically stored in the
+          Frequent Access tier.</p>
+      </li><li class="listitem">
+        <p><b>Infrequent Access</b> – S3 Intelligent-Tiering
+          moves objects that have not been accessed in 30 consecutive days to the
+          Infrequent Access tier.</p>
+      </li><li class="listitem">
+        <p><b>Archive Instant Access</b> – With
+          S3 Intelligent-Tiering, any existing objects that have not been accessed for 90 consecutive
+          days are automatically moved to the Archive Instant Access tier. </p>
+      </li></ul></div>
+    <p>In addition to these three tiers, S3 Intelligent-Tiering offers two optional archive access
+      tiers: </p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Archive Access</b> – S3 Intelligent-Tiering
+          provides you with the option to activate the Archive Access tier for data that can be
+          accessed asynchronously. After activation, the Archive Access tier automatically
+          archives objects that have not been accessed for a minimum of 90 consecutive days.</p>
+      </li><li class="listitem">
+        <p><b>Deep Archive Access</b> – S3 Intelligent-Tiering
+          provides you with the option to activate the Deep Archive Access tier for data that can be
+          accessed asynchronously. After activation, the Deep Archive Access tier automatically
+          archives objects that have not been accessed for a minimum of 180 consecutive days.</p>
+      </li></ul></div>
+    
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>Only activate the Archive Access tier for 90 days if you want to bypass the
+            Archive Instant Access tier. The Archive Access tier delivers slightly lower-cost
+            storage with minute-to-hour retrieval times. The Archive Instant Access tier delivers millisecond
+            access and high-throughput performance.</p>
+        </li><li class="listitem">
+          <p>Activate the Archive Access and Deep Archive Access tiers only if your objects can
+            be accessed asynchronously by your application. If the object that you are retrieving is
+            stored in the Archive Access or Deep Archive Access tiers, first restore the object by
+            using <code class="code">RestoreObject</code>.</p>
+        </li></ul></div></div></div>
+    <p>You can <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-intelligent-tiering.html#moving-data-to-int-tiering">move newly created data to S3 Intelligent-Tiering</a>, setting it as your default
+      storage class. You can also choose to activate one or both of the archive access tiers by
+      using the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html"><code class="code">PutBucketIntelligentTieringConfiguration</code></a> API operation, the AWS CLI,
+      or the Amazon S3 console. For more information about using S3 Intelligent-Tiering and activating the
+      archive access tiers, see <a href="./using-intelligent-tiering.html">Using S3 Intelligent-Tiering</a>.</p>
+   
+    <p>To access objects in the Archive Access or Deep Archive Access tiers, you first need to restore them. For more information,
+      see <a href="./intelligent-tiering-managing.html#restore-data-from-int-tier-archive">Restoring objects from the S3 Intelligent-Tiering Archive Access and Deep Archive Access tiers</a>.</p>
+    
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If the size of an object is less than 128 KB, it is not monitored and not eligible for
+        auto-tiering. Smaller objects are always stored in the Frequent Access tier. For more
+        information about S3 Intelligent-Tiering, see <a href="./intelligent-tiering-overview.html#intel-tiering-tier-definition">S3 Intelligent-Tiering access tiers</a>.</p></div></div>
+  
+   
+    <h2 id="sc-infreq-data-access">Storage classes for infrequently accessed objects</h2>
+    <p>The <b>S3 Standard-IA</b> and <b>S3 One
+        Zone-IA</b> storage classes are designed for long-lived and infrequently accessed
+      data. (IA stands for <em>infrequent access</em>.) S3 Standard-IA and S3 One Zone-IA
+      objects are available for millisecond access (similar to the S3 Standard storage class). Amazon S3
+      charges a retrieval fee for these objects, so they are most suitable for infrequently accessed
+      data. For pricing information, see <a href="https://aws.amazon.com/s3/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon S3
+        pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+    <p>For example, you might choose the S3 Standard-IA and S3 One Zone-IA storage classes to do the
+      following:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>For storing backups. </p>
+      </li><li class="listitem">
+        <p>For older data that is accessed infrequently, but that still requires millisecond
+          access. For example, when you upload data, you might choose the S3 Standard storage class,
+          and use lifecycle configuration to tell Amazon S3 to transition the objects to the
+          S3 Standard-IA or S3 One Zone-IA class.</p>
+        <p>For more information about lifecycle management, see <a href="./object-lifecycle-mgmt.html">Managing the lifecycle of objects</a>.</p>
+      </li></ul></div>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The S3 Standard-IA and S3 One Zone-IA storage classes are suitable for objects larger than
+        128 KB that you plan to store for at least 30 days. If an object is less than 128 KB, Amazon S3
+        charges you for 128 KB. If you delete an object before the end of the 30-day minimum storage
+        duration period, you are charged for 30 days. 
+        Objects that are deleted, overwritten, or transitioned to a different storage class before 30 days will incur the normal storage usage charge 
+        plus a pro-rated charge for the remainder of the 30-day minimum. For pricing information, see <a href="https://aws.amazon.com/s3/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon S3 pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></div></div>
+    <p>These storage classes differ as follows:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>S3 Standard-IA</b> (<code class="code">STANDARD_IA</code>) – Amazon S3 stores the object data
+          redundantly across multiple geographically separated Availability Zones (similar to the
+          S3 Standard storage class). S3 Standard-IA objects are resilient to the loss of an
+          Availability Zone. This storage class offers greater availability and resiliency than the
+          S3 One Zone-IA class. To help you optimize costs between S3 Standard and S3 Standard-IA you can use <a href="./analytics-storage-class.html">Amazon S3 analytics – Storage Class Analysis</a></p>
+      </li><li class="listitem">
+        <p><b>S3 One Zone-IA</b> (<code class="code">ONEZONE_IA</code>) – Amazon S3 stores the object data in
+          only one Availability Zone, which makes it less expensive than S3 Standard-IA. However, the
+          data is not resilient to the physical loss of the Availability Zone resulting from
+          disasters, such as earthquakes and floods. The S3 One Zone-IA storage class is as durable as
+          S3 Standard-IA, but it is less available and less resilient. For a comparison of storage
+          class durability and availability, see <a href="#sc-compare">Comparing the Amazon S3 storage classes</a> at the end of this section. For pricing information, see
+            <a href="https://aws.amazon.com/s3/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon S3 pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For data residency and isolation use cases, you can 
+          create directory buckets in AWS Local Zones and use the S3 Express One Zone (<code class="code">EXPRESS_ONEZONE</code>) and S3 One Zone-IA (<code class="code">ONEZONE_IA</code>) storage classes. For more information about 
+          directory buckets in Local Zones, see <a href="./directory-bucket-data-residency.html">Data residency workloads</a>.
+        </p>
+      </li></ul></div>
+    <p>We recommend the following:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>S3 Standard-IA</b> (<code class="code">STANDARD_IA</code>) – Use for your primary or only
+          copy of data that can't be re-created. </p>
+      </li><li class="listitem">
+        <p><b>S3 One Zone-IA</b> (<code class="code">ONEZONE_IA</code>) – Use if you can re-create the
+          data if the Availability Zone fails, for object replicas when configuring S3
+          Cross-Region Replication (CRR). Also, for data residency and isolation, you can create directory buckets in AWS Local Zones and use the S3 One Zone-IA storage class.</p>
+      </li></ul></div>
+   
+    <h2 id="sc-glacier">Storage classes for rarely accessed objects</h2>
+      <p>The <b>S3 Glacier Instant Retrieval</b> (<code class="code">GLACIER_IR</code>), <b>S3 Glacier Flexible Retrieval</b> (<code class="code">GLACIER</code>),
+        and <b>S3 Glacier Deep Archive</b> (<code class="code">DEEP_ARCHIVE</code>) storage classes are designed for low-cost, long-term data storage and data archiving. These storage classes require minimum storage durations and retrieval fees making them most effective for rarely accessed data. For more information about S3 Glacier storage classes, see <a href="./glacier-storage-classes.html">Understanding S3 Glacier storage classes for long-term data storage</a>.</p>
+  
+    <p>Amazon S3 provides the following S3 Glacier storage classes:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>S3 Glacier Instant Retrieval</b> (<code class="code">GLACIER_IR</code>) – Use for long-term data that's rarely
+          accessed and requires milliseconds retrieval. Data in this storage class is available for
+          real-time access.</p>
+      </li><li class="listitem">
+        <p><b>S3 Glacier Flexible Retrieval</b> (<code class="code">GLACIER</code>) – Use for archives
+          where portions of the data might need to be retrieved in minutes. Data in this storage class is archived, and not available for real-time access.</p>
+
+      </li><li class="listitem">
+        <p><b>S3 Glacier Deep Archive</b> (<code class="code">DEEP_ARCHIVE</code>) – Use for
+          archiving data that rarely needs to be accessed. Data in this storage class is archived, and not available for real-time access.</p>
+      </li></ul></div>
+     
+      <h3 id="sc-glacier-restore">Retrieving archived objects</h3>
+      <p>You can set the storage class of an object to S3 Glacier Flexible Retrieval (<code class="code">GLACIER</code>) or
+        S3 Glacier Deep Archive (<code class="code">DEEP_ARCHIVE</code>) in the same ways that you do for the other storage classes
+        as described in the section <a href="./sc-howtoset.html">Setting the storage class of an object</a>.
+        However, S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive objects are archived, and not
+        available for real-time access. For more information, see <a href="./archival-storage.html">Understanding archival storage in S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive</a>.</p>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When you use S3 Glacier storage classes, your objects remain in Amazon S3. You can't access them directly through the
+        separate Amazon Glacier service. For information about the Amazon Glacier service, see the <a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/">Amazon Glacier Developer Guide</a>.</p></div></div>
+     
+   
+    <h2 id="s3-outposts">Storage class for Amazon S3 on Outposts</h2>
+    <p>With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts resources and store and
+      retrieve objects on-premises for applications that require local data access, local data
+      processing, and data residency. You can use the same API operations and features on AWS Outposts as
+      you do on Amazon S3, including access policies, encryption, and tagging. You can use S3 on Outposts
+      through the AWS Management Console, AWS CLI, AWS SDKs, or REST API.</p>
+    <p>S3 on Outposts provides a new storage class, S3 Outposts (<code class="code">OUTPOSTS</code>). The S3
+      Outposts storage class is available only for objects stored in buckets on Outposts. If you try
+      to use this storage class with an S3 bucket in an AWS Region, an
+        <code class="code">InvalidStorageClass</code> error occurs. In addition, if you try to use other S3
+      storage classes with objects stored in S3 on Outposts buckets, the same error occurs. </p>
+    <p>Objects stored in the S3 Outposts (<code class="code">OUTPOSTS</code>) storage class are always
+      encrypted by using server-side encryption with Amazon S3 managed encryption keys (SSE-S3). For more
+      information, see <a href="./UsingServerSideEncryption.html">Using server-side encryption with Amazon S3 managed keys (SSE-S3)</a>. </p>
+    <p>You can also explicitly choose to encrypt objects stored in the S3 Outposts storage class
+      by using server-side encryption with customer-provided encryption keys (SSE-C). For more
+      information, see <a href="./ServerSideEncryptionCustomerKeys.html">Using server-side encryption with customer-provided keys (SSE-C)</a>. </p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>S3 on Outposts doesn't support server-side encryption with AWS Key Management Service (AWS KMS) keys
+        (SSE-KMS).</p></div></div>
+    <p>For more information about S3 on Outposts, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/s3-outposts/S3onOutposts.html">What is S3 on Outposts</a> in the
+        <em>Amazon S3 on Outposts User Guide</em>.</p>
+   
+    <h2 id="sc-compare">Comparing the Amazon S3 storage classes</h2>
+    <p>The following table compares the storage classes, including their availability,
+      durability, minimum storage duration, and other considerations.</p>
+    
+    <div class="table-container"><div class="table-contents disable-scroll"><table id="w699aac30c17c19b5"><thead>
+          <tr>
+            <th>Storage class</th>
+            <th>Designed for</th>
+            <th>Durability (designed for)</th>
+            <th>Availability (designed for)</th>
+            <th>Availability Zones</th>
+            <th>Min storage duration</th>
+            <th>Min billable object size</th>
+            <th>Other considerations </th>
+          </tr>
+        </thead>
+          <tbody><tr>
+            <td tabindex="-1">
+              <p>S3 Standard (<code class="code">STANDARD</code>)</p>
+            </td>
+            <td tabindex="-1">
+              <p>Frequently accessed data (more than once a month) with millisecond access</p>
+            </td>
+            <td tabindex="-1">
+              <p>99.999999999% </p>
+            </td>
+            <td tabindex="-1">
+              <p>99.99%</p>
+            </td>
+            <td tabindex="-1">
+              <p>&gt;= 3</p>
+            </td>
+            <td tabindex="-1">
+              <p>None</p>
+            </td>
+            <td tabindex="-1">
+              <p>None</p>
+            </td>
+            <td tabindex="-1">
+              <p>None</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>S3 Standard-IA (<code class="code">STANDARD_IA</code>)</p>
+            </td>
+            <td tabindex="-1">
+              <p>Long-lived, infrequently accessed data (once a month) with millisecond
+                access</p>
+            </td>
+            <td tabindex="-1">
+              <p>99.999999999% </p>
+            </td>
+            <td tabindex="-1">
+              <p>99.9%</p>
+            </td>
+            <td tabindex="-1">
+              <p>&gt;= 3</p>
+            </td>
+            <td tabindex="-1">
+              <p>30 days</p>
+            </td>
+            <td tabindex="-1">
+              <p>128 KB</p>
+            </td>
+            <td tabindex="-1">
+              <p>Per-GB retrieval fees apply. </p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>S3 Intelligent-Tiering (<code class="code">INTELLIGENT_TIERING</code>)</p>
+            </td>
+            <td tabindex="-1">
+              <p>Data with unknown, changing, or unpredictable access patterns</p>
+            </td>
+            <td tabindex="-1">
+              <p>99.999999999%</p>
+            </td>
+            <td tabindex="-1">
+              <p>99.9%</p>
+            </td>
+            <td tabindex="-1">
+              <p>&gt;= 3</p>
+            </td>
+            <td tabindex="-1">
+              <p>None</p>
+            </td>
+            <td tabindex="-1">
+              <p>None</p>
+            </td>
+            <td tabindex="-1">
+              <p>Monitoring and automation fees per object apply. No retrieval fees. Objects less than 128KB are not monitored and always stored in the Frequent Access tier. For more information, see <a href="./intelligent-tiering-overview.html">How S3 Intelligent-Tiering works</a>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>S3 One Zone-IA (<code class="code">ONEZONE_IA</code>)</p>
+            </td>
+            <td tabindex="-1">
+              <p>Recreatable, infrequently accessed data (once a month) with millisecond
+                access</p>
+            </td>
+            <td tabindex="-1">
+              <p>99.999999999% </p>
+            </td>
+            <td tabindex="-1">
+              <p>99.5%</p>
+            </td>
+            <td tabindex="-1">
+              <p>1</p>
+            </td>
+            <td tabindex="-1">
+              <p>30 days</p>
+            </td>
+            <td tabindex="-1">
+              <p>128 KB</p>
+            </td>
+            <td tabindex="-1">
+              <p>Per-GB retrieval fees apply. Not resilient to the loss of the Availability
+                Zone.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>S3 Express One Zone (<code class="code">EXPRESS_ONEZONE</code>)</p>
+            </td>
+            <td tabindex="-1">
+              <p>Single-digit millisecond data access for latency-sensitive applications within a single AWS Availability Zone</p>
+            </td>
+            <td tabindex="-1">
+              <p>99.999999999% </p>
+            </td>
+            <td tabindex="-1">
+              <p>99.95%</p>
+            </td>
+            <td tabindex="-1">
+              <p>1</p>
+            </td>
+            <td tabindex="-1">
+              <p>None</p>
+            </td>
+            <td tabindex="-1">
+              <p>None</p>
+            </td>
+            <td tabindex="-1">
+              <p>S3 Express One Zone (<code class="code">EXPRESS_ONEZONE</code>) objects are stored in a single AWS Availability Zone that you
+                choose. </p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>S3 Glacier Instant Retrieval (<code class="code">GLACIER_IR</code>)</p>
+            </td>
+            <td tabindex="-1">Long-lived, archive data accessed once a quarter with millisecond access</td>
+            <td tabindex="-1">99.999999999% </td>
+            <td tabindex="-1">
+              <p>99.9%</p>
+            </td>
+            <td tabindex="-1">
+              <p>&gt;= 3</p>
+            </td>
+            <td tabindex="-1">
+              <p>90 days</p>
+            </td>
+            <td tabindex="-1">
+              <p>128 KB</p>
+            </td>
+            <td tabindex="-1">Per-GB retrieval fees apply.</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>S3 Glacier Flexible Retrieval (<code class="code">GLACIER</code>)</p>
+            </td>
+            <td tabindex="-1">Long-lived archive data accessed once a year with retrieval times of minutes to
+              hours</td>
+            <td tabindex="-1">99.999999999% </td>
+            <td tabindex="-1">
+              <p>99.99% (after you restore objects)</p>
+            </td>
+            <td tabindex="-1">
+              <p>&gt;= 3</p>
+            </td>
+            <td tabindex="-1">
+              <p>90 days</p>
+            </td>
+            <td tabindex="-1">
+              <p>NA*</p>
+            </td>
+            <td tabindex="-1">Per-GB retrieval fees apply. You must first restore archived objects before you
+              can access them. For information, see <a href="./restoring-objects.html">Restoring an archived object</a>.</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>S3 Glacier Deep Archive (<code class="code">DEEP_ARCHIVE</code>)</p>
+            </td>
+            <td tabindex="-1">Long-lived archive data accessed less than once a year with retrieval times of
+              hours</td>
+            <td tabindex="-1">99.999999999% </td>
+            <td tabindex="-1">
+              <p>99.99% (after you restore objects)</p>
+            </td>
+            <td tabindex="-1">
+              <p>&gt;= 3</p>
+            </td>
+            <td tabindex="-1">
+              <p>180 days</p>
+            </td>
+            <td tabindex="-1">
+              <p>NA**</p>
+            </td>
+            <td tabindex="-1">Per-GB retrieval fees apply. You must first restore archived objects before you
+              can access them. For information, see <a href="./restoring-objects.html">Restoring an archived object</a>.</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Reduced Redundancy Storage  (<code class="code">REDUCED_REDUNDANCY</code>) Not recommended</p>
+            </td>
+            <td tabindex="-1">
+              <p>Noncritical, frequently accessed data with millisecond access</p>
+            </td>
+            <td tabindex="-1">
+              <p>99.99% </p>
+            </td>
+            <td tabindex="-1">
+              <p>99.99%</p>
+            </td>
+            <td tabindex="-1">
+              <p>&gt;= 3</p>
+            </td>
+            <td tabindex="-1">
+              <p>None</p>
+            </td>
+            <td tabindex="-1">
+              <p>None</p>
+            </td>
+            <td tabindex="-1">
+              <p>None</p>
+            </td>
+          </tr>
+        </tbody></table></div></div>
+    <p>* S3 Glacier Flexible Retrieval requires 40 KB of additional metadata for each archived
+      object. This includes 32 KB of metadata charged at the S3 Glacier Flexible Retrieval rate
+      (required to identify and retrieve your data), and an additional 8 KB data charged at the
+      S3 Standard rate. The S3 Standard rate is required to maintain the user-defined name and
+      metadata for objects archived to S3 Glacier Flexible Retrieval. For more information about
+      storage classes, see <a href="https://aws.amazon.com/s3/storage-classes/" rel="noopener noreferrer" target="_blank"><span>Amazon S3 storage
+        classes</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+    <p>** S3 Glacier Deep Archive requires 40 KB of additional metadata for each archived
+      object. This includes 32 KB of metadata charged at the S3 Glacier Deep Archive rate
+      (required to identify and retrieve your data), and an additional 8 KB data charged at the
+      S3 Standard rate. The S3 Standard rate is required to maintain the user-defined name and
+      metadata for objects archived to Amazon S3 Glacier Deep Archive. For more information about storage
+      classes, see <a href="https://aws.amazon.com/s3/storage-classes/" rel="noopener noreferrer" target="_blank"><span>Amazon S3 storage
+        classes</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+    <p>Be aware that all of the storage classes except for S3 One Zone-IA (<code class="code">ONEZONE_IA</code>) and S3 Express One Zone (<code class="code">EXPRESS_ONEZONE</code>) are designed to be
+      resilient to the physical loss of an Availability Zone resulting from disasters. Also,
+      consider costs, in addition to the performance requirements of your application scenario. For
+      storage class pricing, see <a href="https://aws.amazon.com/s3/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon S3
+      pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./ErrorCodeBilling.html">Billing for Amazon S3 error responses</div><div id="next" class="next-link" accesskey="n" href="./sc-howtoset.html">Setting the storage class of an object</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=S3&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/storage-class-intro.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=S3&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/storage-class-intro.html"></awsui-button></p></div></div></div></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,116 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the typical use cases for Azure Cosmos DB?",
+      "answer": "Azure Cosmos DB is well suited for web, mobile, gaming, and IoT use cases where automatic scale, predictable performance, fast order of millisecond response times, and the ability to query over schema-free data are important. It supports rapid development and continuous iteration of application data models, particularly for applications managing user-generated content and data.",
+      "supporting_sentences": [
+        "Azure Cosmos DB is well suited for web, mobile, gaming, and IoT use cases. In these use cases; automatic scale, predictable performance, fast order of millisecond response times, and the ability to query over schema-free data is important.",
+        "Azure Cosmos DB lends itself to rapid development and supporting the continuous iteration of application data models.",
+        "Applications that manage user-generated content and data often map to common use cases for Azure Cosmos DB."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the typical use cases for Azure Cosmos DB?",
+      "answer": "Azure Cosmos DB is well suited for web, mobile, gaming, and IoT use cases where automatic scale, predictable performance, fast order of millisecond response times, and the ability to query over schema-free data are important. It supports rapid development and continuous iteration of application data models, particularly for applications managing user-generated content and data.",
+      "supporting_sentences": [
+        "Azure Cosmos DB is well suited for web, mobile, gaming, and IoT use cases. In these use cases; automatic scale, predictable performance, fast order of millisecond response times, and the ability to query over schema-free data is important.",
+        "Azure Cosmos DB lends itself to rapid development and supporting the continuous iteration of application data models.",
+        "Applications that manage user-generated content and data often map to common use cases for Azure Cosmos DB."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How does Azure Cosmos DB measure throughput?",
+      "answer": "Azure Cosmos DB measures throughput using request units (RUs). A single request unit corresponds to the throughput of a GET HTTP action for a 1-kilobyte document. Every operation, including reads, writes, queries, and stored procedure executions, has a deterministic RU value based on the required throughput.",
+      "supporting_sentences": [
+        "A request unit (RU) is the measure of throughput in Azure Cosmos DB.",
+        "A single request unit throughput corresponds to the throughput of the GET HTTP action for a 1-kilobite document.",
+        "Every operation in Azure Cosmos DB; including reads, writes, queries, and stored procedure executions; has a deterministic request unit value based on the throughput required to complete the operation."
+      ]
+    },
+    "edited_pair": {
+      "question": "How does Azure Cosmos DB measure throughput?",
+      "answer": "Azure Cosmos DB measures throughput using request units (RUs). A single request unit corresponds to the throughput of a GET HTTP action for a 1-kilobyte document. Every operation, including reads, writes, queries, and stored procedure executions, has a deterministic RU value based on the required throughput.",
+      "supporting_sentences": [
+        "A request unit (RU) is the measure of throughput in Azure Cosmos DB.",
+        "A single request unit throughput corresponds to the throughput of the GET HTTP action for a 1-kilobite document.",
+        "Every operation in Azure Cosmos DB; including reads, writes, queries, and stored procedure executions; has a deterministic request unit value based on the throughput required to complete the operation."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What data models does Azure Cosmos DB natively support?",
+      "answer": "Azure Cosmos DB natively supports key/value (table), columnar, document, and graph data models due to its ARS (atoms, records, and sequences) design. APIs are available for MongoDB, NoSQL, Table, Apache Cassandra, and Apache Gremlin.",
+      "supporting_sentences": [
+        "Key/value (table), columnar, document, and graph data models are all natively supported because of the ARS (atoms, records, and sequences) design that Azure Cosmos DB is built on.",
+        "The APIs for a subset of models are available using the ARS design (MongoDB, NoSQL, Table, Apache Cassandra, and Apache Gremlin)."
+      ]
+    },
+    "edited_pair": {
+      "question": "What data models does Azure Cosmos DB natively support?",
+      "answer": "Azure Cosmos DB natively supports key/value (table), columnar, document, and graph data models due to its ARS (atoms, records, and sequences) design. APIs are available for MongoDB, NoSQL, Table, Apache Cassandra, and Apache Gremlin.",
+      "supporting_sentences": [
+        "Key/value (table), columnar, document, and graph data models are all natively supported because of the ARS (atoms, records, and sequences) design that Azure Cosmos DB is built on.",
+        "The APIs for a subset of models are available using the ARS design (MongoDB, NoSQL, Table, Apache Cassandra, and Apache Gremlin)."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Is Azure Cosmos DB HIPAA compliant?",
+      "answer": "Yes, Azure Cosmos DB is HIPAA-compliant. HIPAA establishes requirements for the use, disclosure, and safeguarding of individually identifiable health information.",
+      "supporting_sentences": [
+        "Yes, Azure Cosmos DB is HIPAA-compliant.",
+        "HIPAA establishes requirements for the use, disclosure, and safeguarding of individually identifiable health information."
+      ]
+    },
+    "edited_pair": {
+      "question": "Is Azure Cosmos DB HIPAA compliant?",
+      "answer": "Yes, Azure Cosmos DB is HIPAA-compliant. HIPAA establishes requirements for the use, disclosure, and safeguarding of individually identifiable health information.",
+      "supporting_sentences": [
+        "Yes, Azure Cosmos DB is HIPAA-compliant.",
+        "HIPAA establishes requirements for the use, disclosure, and safeguarding of individually identifiable health information."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Does Azure Cosmos DB for NoSQL support ACID transactions?",
+      "answer": "Yes, the API for NoSQL supports cross-document transactions expressed using either batches in the SDKs or as JavaScript-stored procedures and triggers. Transactions are scoped to a single partition within each container and executed with ACID semantics as 'all or nothing.'",
+      "supporting_sentences": [
+        "Yes, the API for NoSQL supports cross-document transactions expressed using either batches in the SDKs or as JavaScript-stored procedures and triggers.",
+        "Transactions are scoped to a single partition within each container and executed with ACID semantics as \"all or nothing,\" isolated from other concurrently executing code and user requests."
+      ]
+    },
+    "edited_pair": {
+      "question": "Does Azure Cosmos DB for NoSQL support ACID transactions?",
+      "answer": "Yes, the API for NoSQL supports cross-document transactions expressed using either batches in the SDKs or as JavaScript-stored procedures and triggers. Transactions are scoped to a single partition within each container and executed with ACID semantics as 'all or nothing.'",
+      "supporting_sentences": [
+        "Yes, the API for NoSQL supports cross-document transactions expressed using either batches in the SDKs or as JavaScript-stored procedures and triggers.",
+        "Transactions are scoped to a single partition within each container and executed with ACID semantics as \"all or nothing,\" isolated from other concurrently executing code and user requests."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

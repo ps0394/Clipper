@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer \"120m\" conveys the same factual duration as the ground truth \"120 minutes\".",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 552,
+    "tokens_out": 24
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer matches the ground truth exactly in factual content.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 543,
+    "tokens_out": 16
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes all valid values specified in the ground truth: an integer in seconds, 'no-store' (equivalent to -1), and 'no-cache' (equivalent to 0).",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 603,
+    "tokens_out": 44
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same factual content as the ground truth, stating that the TTL for 304 is automatically set to match the TTL for status code 200 if the user has defined one.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 598,
+    "tokens_out": 45
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes all key facts from the ground truth: the asset is cached for 1 hour, and after expiration, each subsequent request triggers revalidation if the origin returns a 304.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 654,
+    "tokens_out": 43
+  }
+]

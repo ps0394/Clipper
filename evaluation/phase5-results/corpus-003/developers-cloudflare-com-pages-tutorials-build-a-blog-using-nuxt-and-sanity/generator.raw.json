@@ -1,0 +1,41 @@
+```json
+[
+    {
+        "question": "What is the default local URL for the Sanity studio after running it locally?",
+        "answer": "localhost:3333",
+        "supporting_sentences": [
+            "By default, running the studio locally makes it available at localhost:3333"
+        ]
+    },
+    {
+        "question": "Which rendering mode and deployment target should be selected when setting up a new Nuxt.js project for this tutorial?",
+        "answer": "Universal (SSR / SSG) for rendering mode and Static (Static/JAMStack hosting) for deployment target",
+        "supporting_sentences": [
+            "Importantly, ensure that you select a rendering mode of Universal (SSR / SSG) and a deployment target of Static (Static/JAMStack hosting), while going through the setup process."
+        ]
+    },
+    {
+        "question": "What GROQ query is used to retrieve all blog posts from a Sanity dataset?",
+        "answer": "`*[_type == \"post\"]`",
+        "supporting_sentences": [
+            "const query = groq`*[_type == \"post\"]`;",
+            "For our first query, you will tell Sanity to retrieve every object in the dataset with a _type value of post"
+        ]
+    },
+    {
+        "question": "Which npm package is required to render Sanity's Portable Text format in a Vue component?",
+        "answer": "sanity-blocks-vue-component",
+        "supporting_sentences": [
+            "To render this, import the sanity-blocks-vue-component package, which takes Sanity's Portable Text format and renders it as a Vue component.",
+            "npm i sanity-blocks-vue-component"
+        ]
+    },
+    {
+        "question": "What is the two-step process for publishing a project with Cloudflare Pages?",
+        "answer": "Push the project to GitHub, then set up a new project in the Cloudflare Pages dashboard based on that GitHub repository",
+        "supporting_sentences": [
+            "Publishing your project with Cloudflare Pages is a two-step process: first, push your project to GitHub, and then in the Cloudflare Pages dashboard, set up a new project based on that GitHub repository."
+        ]
+    }
+]
+```

@@ -1,0 +1,321 @@
+{
+  "parseability_score": 51.94275404819592,
+  "failure_mode": "significant_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-003\\docs-python-org-3-contents-html\\page.raw.html",
+  "url": "https://docs.python.org/3/contents.html",
+  "component_scores": {
+    "semantic_html": 44.90909090909091,
+    "content_extractability": 27.88550809639184,
+    "structured_data": 5,
+    "dom_navigability": 100.0,
+    "metadata_completeness": 55,
+    "http_compliance": 76.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "nav",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "section",
+          "count": 1,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 12,
+      "heading_elements_count": 7,
+      "scoring_breakdown": {
+        "semantic_coverage": 10.90909090909091,
+        "aria_bonus": 20,
+        "heading_bonus": 14
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 120546,
+        "extracted_text_length": 1861,
+        "extracted_chars": 1861,
+        "extraction_ratio": 0.015,
+        "extracted_title": "Python Documentation contents",
+        "extracted_preview": "Python Documentation contents ¶ What’s New in Python The Python Tutorial Python Setup and Usage The Python Language Reference The Python Standard Library Introduction Built-in Functions Built-in Constants Built-in Types Truth Value Testing Boolean Operations — and , or , not Comparisons Numeric Type...",
+        "original_headings": 7,
+        "extracted_headings": 1,
+        "original_lists": 937,
+        "extracted_lists": 3,
+        "original_code_blocks": 504,
+        "extracted_code_blocks": 17,
+        "has_main_element": false,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 3.0876180047450763,
+        "structure_preservation": 1.7978900916467615,
+        "boundary_detection": 23
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 0,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [],
+      "key_fields_found": [],
+      "formats_present": 1,
+      "score_breakdown": {
+        "type_appropriateness": 0,
+        "field_completeness": 0,
+        "multiple_formats": 5,
+        "schema_validation": 0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": []
+      },
+      "sample_structured_data": {
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:title",
+                "Python Documentation contents"
+              ],
+              [
+                "og:type",
+                "website"
+              ],
+              [
+                "og:url",
+                "https://docs.python.org/3/contents.html"
+              ],
+              [
+                "og:site_name",
+                "Python documentation"
+              ],
+              [
+                "og:description",
+                "What’s New in Python- What’s new in Python 3.14- Summary – Release highlights, New features- PEP 649& PEP 749: Deferred evaluation of annotations, PEP 734: Multiple interpreters in the standard..."
+              ],
+              [
+                "og:image:width",
+                "1146"
+              ],
+              [
+                "og:image:height",
+                "600"
+              ],
+              [
+                "og:image",
+                "https://docs.python.org/3.14/_images/social_previews/summary_contents_a76dc1a0.png"
+              ],
+              [
+                "og:image:alt",
+                "What’s New in Python- What’s new in Python 3.14- Summary – Release highlights, New features- PEP 649& PEP 749: Deferred evaluation of annotations, PEP 734: Multiple interpreters in the standard..."
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Static HTML accessibility analysis (fallback)",
+      "violations": [],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "axe_fallback_reason": "Browser accessibility evaluation failed: Message: script timeout\n  (Session info: chrome=147.0.7727.116)\nStacktrace:\n\tchromedriver!GetHandleVerifier [0x7ff74afba8e5+14e45]\n\tchromedriver!GetHandleVerifier [0x7ff74afba950+14eb0]\n\tchromedriver!(No symbol) [0x7ff74ad2d4d6]\n\tchromedriver!(No symbol) [0x7ff74add63e1]\n\tchromedriver!(No symbol) [0x7ff74adb002a]\n\tchromedriver!(No symbol) [0x7ff74add483b]\n\tchromedriver!(No symbol) [0x7ff74ad790e8]\n\tchromedriver!(No symbol) [0x7ff74ad79fc3]\n\tchromedriver!GetHandleVerifier [0x7ff74b2d0149+32a6a9]\n\tchromedriver!GetHandleVerifier [0x7ff74b2ca715+324c75]\n\tchromedriver!GetHandleVerifier [0x7ff74b2ec012+346572]\n\tchromedriver!GetHandleVerifier [0x7ff74afd7cb5+32215]\n\tchromedriver!GetHandleVerifier [0x7ff74afe087c+3addc]\n\tchromedriver!GetHandleVerifier [0x7ff74afc40e4+1e644]\n\tchromedriver!GetHandleVerifier [0x7ff74afc4296+1e7f6]\n\tchromedriver!GetHandleVerifier [0x7ff74afa8737+2c97]\n\tKERNEL32!BaseThreadInitThunk [0x7ff8ebfbe957+17]\n\tntdll!RtlUserThreadStart [0x7ff8ede479fc+2c]\n",
+      "evaluation_method": "Static HTML analysis (axe-core unavailable)",
+      "checks_performed": {
+        "has_lang_attribute": true,
+        "has_title": true,
+        "images_have_alt": true,
+        "headings_structured": true,
+        "links_descriptive": true
+      },
+      "passed_checks": "5/5"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 0,
+        "date": 0,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [
+          "meta:description",
+          "og:description"
+        ],
+        "author": [],
+        "date": [],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 4,
+      "fields_total": 7,
+      "json_ld_type": "none"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "\"69efc4c5-c80d0\"",
+        "last_modified": "Mon, 27 Apr 2026 20:19:17 GMT",
+        "cache_control": "absent"
+      },
+      "agent_content_hints": {
+        "scoring_contribution": 0,
+        "diagnostic_only": true,
+        "rationale": "PRD F2.2/F2.3: retrieval-lift evidence deferred to Phase 6",
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 16,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0"
+    },
+    "_content_type": {
+      "profile": "sample",
+      "detection": {
+        "source": "dom",
+        "matched_value": "sample"
+      },
+      "weights": {
+        "semantic_html": 0.0,
+        "content_extractability": 0.5,
+        "structured_data": 0.0,
+        "dom_navigability": 0.0,
+        "metadata_completeness": 0.0,
+        "http_compliance": 0.5
+      },
+      "v1_weights_for_reference": {
+        "semantic_html": 0.2,
+        "content_extractability": 0.25,
+        "structured_data": 0.2,
+        "dom_navigability": 0.1,
+        "metadata_completeness": 0.15,
+        "http_compliance": 0.1
+      },
+      "scoring_version": "v2-evidence-partial"
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "sample",
+  "universal_score": 51.94275404819592,
+  "render_mode": "rendered",
+  "confidence_range": {
+    "scoring_version": "v2-evidence-partial",
+    "evidence_tier": "partial",
+    "headline_weights": {
+      "semantic_html": 0.0,
+      "content_extractability": 0.5,
+      "structured_data": 0.0,
+      "dom_navigability": 0.0,
+      "metadata_completeness": 0.0,
+      "http_compliance": 0.5
+    },
+    "calibration_corpus": {
+      "name": "corpus-002",
+      "n": 43,
+      "pearson_r_vs_accuracy_rendered": 0.548,
+      "gate_threshold": 0.35,
+      "source": "findings/phase-5-corpus-002-findings.md Addendum B"
+    },
+    "caveats": [
+      "Single corpus, single grader architecture, single run.",
+      "Four pillars carry zero headline weight in v2; still reported as diagnostics.",
+      "Profile-specific weights collapse to the same 2-pillar composite pending corpus-003.",
+      "Cross-judge accuracy variance: per-judge corpus-002 means span 0.591-0.698 across Llama-3.3-70B, GPT-4o, and DeepSeek-V3.2 (pooled kappa 0.706-0.817). The v2 composite-vs-accuracy Pearson r ranges from +0.440 to +0.618 across judges (all above the +0.35 ship gate). Report majority-vote CI [0.567, 0.688] or per-judge union CI [0.530, 0.758] when comparing across studies.",
+      "No temporal variance measured yet."
+    ]
+  },
+  "subscores": {
+    "semantic_html": 44.90909090909091,
+    "content_extractability": 27.88550809639184,
+    "structured_data": 5,
+    "dom_navigability": 100.0,
+    "metadata_completeness": 55,
+    "http_compliance": 76.0
+  },
+  "evidence_references": null
+}

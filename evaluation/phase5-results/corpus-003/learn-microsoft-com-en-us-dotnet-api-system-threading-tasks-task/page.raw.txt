@@ -1,0 +1,585 @@
+ConfigureAwait(Boolean)
+
+Configures an awaiter used to await this 
+Task
+.
+
+ConfigureAwait(ConfigureAwaitOptions)
+
+Configures an awaiter used to await this 
+Task
+.
+
+ContinueWith(Action<Task,Object>, Object, CancellationToken, TaskContinuationOptions, TaskScheduler)
+
+Creates a continuation that receives caller-supplied state information and a cancellation token and that executes when the target 
+Task
+ completes. The continuation executes based on a set of specified conditions and uses a specified scheduler.
+
+ContinueWith(Action<Task,Object>, Object, CancellationToken)
+
+Creates a continuation that receives caller-supplied state information and a cancellation token and that executes asynchronously when the target 
+Task
+ completes.
+
+ContinueWith(Action<Task,Object>, Object, TaskContinuationOptions)
+
+Creates a continuation that receives caller-supplied state information and executes when the target 
+Task
+ completes. The continuation executes based on a set of specified conditions.
+
+ContinueWith(Action<Task,Object>, Object, TaskScheduler)
+
+Creates a continuation that receives caller-supplied state information and executes asynchronously when the target 
+Task
+ completes. The continuation uses a specified scheduler.
+
+ContinueWith(Action<Task,Object>, Object)
+
+Creates a continuation that receives caller-supplied state information and executes when the target 
+Task
+ completes.
+
+ContinueWith(Action<Task>, CancellationToken, TaskContinuationOptions, TaskScheduler)
+
+Creates a continuation that executes when the target task competes according to the specified 
+TaskContinuationOptions
+. The continuation receives a cancellation token and uses a specified scheduler.
+
+ContinueWith(Action<Task>, CancellationToken)
+
+Creates a continuation that receives a cancellation token and executes asynchronously when the target 
+Task
+ completes.
+
+ContinueWith(Action<Task>, TaskContinuationOptions)
+
+Creates a continuation that executes when the target task completes according to the specified 
+TaskContinuationOptions
+.
+
+ContinueWith(Action<Task>, TaskScheduler)
+
+Creates a continuation that executes asynchronously when the target 
+Task
+ completes. The continuation uses a specified scheduler.
+
+ContinueWith(Action<Task>)
+
+Creates a continuation that executes asynchronously when the target 
+Task
+ completes.
+
+ContinueWith<TResult>(Func<Task,Object,TResult>, Object, CancellationToken, TaskContinuationOptions, TaskScheduler)
+
+Creates a continuation that executes based on the specified task continuation options when the target 
+Task
+ completes and returns a value. The continuation receives caller-supplied state information and a cancellation token and uses the specified scheduler.
+
+ContinueWith<TResult>(Func<Task,Object,TResult>, Object, CancellationToken)
+
+Creates a continuation that executes asynchronously when the target 
+Task
+ completes and returns a value. The continuation receives caller-supplied state information and a cancellation token.
+
+ContinueWith<TResult>(Func<Task,Object,TResult>, Object, TaskContinuationOptions)
+
+Creates a continuation that executes based on the specified task continuation options when the target 
+Task
+ completes. The continuation receives caller-supplied state information.
+
+ContinueWith<TResult>(Func<Task,Object,TResult>, Object, TaskScheduler)
+
+Creates a continuation that executes asynchronously when the target 
+Task
+ completes. The continuation receives caller-supplied state information and uses a specified scheduler.
+
+ContinueWith<TResult>(Func<Task,Object,TResult>, Object)
+
+Creates a continuation that receives caller-supplied state information and executes asynchronously when the target 
+Task
+ completes and returns a value.
+
+ContinueWith<TResult>(Func<Task,TResult>, CancellationToken, TaskContinuationOptions, TaskScheduler)
+
+Creates a continuation that executes according to the specified continuation options and returns a value. The continuation is passed a cancellation token and uses a specified scheduler.
+
+ContinueWith<TResult>(Func<Task,TResult>, CancellationToken)
+
+Creates a continuation that executes asynchronously when the target 
+Task
+ completes and returns a value. The continuation receives a cancellation token.
+
+ContinueWith<TResult>(Func<Task,TResult>, TaskContinuationOptions)
+
+Creates a continuation that executes according to the specified continuation options and returns a value.
+
+ContinueWith<TResult>(Func<Task,TResult>, TaskScheduler)
+
+Creates a continuation that executes asynchronously when the target 
+Task
+ completes and returns a value. The continuation uses a specified scheduler.
+
+ContinueWith<TResult>(Func<Task,TResult>)
+
+Creates a continuation that executes asynchronously when the target 
+Task<TResult>
+ completes and returns a value.
+
+Delay(Int32, CancellationToken)
+
+Creates a cancellable task that completes after a specified number of milliseconds.
+
+Delay(Int32)
+
+Creates a task that completes after a specified number of milliseconds.
+
+Delay(TimeSpan, CancellationToken)
+
+Creates a cancellable task that completes after a specified time interval.
+
+Delay(TimeSpan, TimeProvider, CancellationToken)
+
+Creates a cancellable task that completes after a specified time interval.
+
+Delay(TimeSpan, TimeProvider)
+
+Creates a task that completes after a specified time interval.
+
+Delay(TimeSpan)
+
+Creates a task that completes after a specified time interval.
+
+Dispose()
+
+Releases all resources used by the current instance of the 
+Task
+ class.
+
+Dispose(Boolean)
+
+Disposes the 
+Task
+, releasing all of its unmanaged resources.
+
+Equals(Object)
+
+Determines whether the specified object is equal to the current object.
+
+		(Inherited from 
+Object
+)
+
+FromCanceled(CancellationToken)
+
+Creates a 
+Task
+ that's completed due to cancellation with a specified cancellation token.
+
+FromCanceled<TResult>(CancellationToken)
+
+Creates a 
+Task<TResult>
+ that's completed due to cancellation with a specified cancellation token.
+
+FromException(Exception)
+
+Creates a 
+Task
+ that has completed with a specified exception.
+
+FromException<TResult>(Exception)
+
+Creates a 
+Task<TResult>
+ that's completed with a specified exception.
+
+FromResult<TResult>(TResult)
+
+Creates a 
+Task<TResult>
+ that's completed successfully with the specified result.
+
+GetAwaiter()
+
+Gets an awaiter used to await this 
+Task
+.
+
+GetHashCode()
+
+Serves as the default hash function.
+
+		(Inherited from 
+Object
+)
+
+GetType()
+
+Gets the 
+Type
+ of the current instance.
+
+		(Inherited from 
+Object
+)
+
+MemberwiseClone()
+
+Creates a shallow copy of the current 
+Object
+.
+
+		(Inherited from 
+Object
+)
+
+Run(Action, CancellationToken)
+
+Queues the specified work to run on the thread pool and returns a 
+Task
+ object that represents that work. A cancellation token allows the work to be cancelled if it has not yet started.
+
+Run(Action)
+
+Queues the specified work to run on the thread pool and returns a 
+Task
+ object that represents that work.
+
+Run(Func<Task>, CancellationToken)
+
+Queues the specified work to run on the thread pool and returns a proxy for the task returned by 
+function
+. A cancellation token allows the work to be cancelled if it has not yet started.
+
+Run(Func<Task>)
+
+Queues the specified work to run on the thread pool and returns a proxy for the task returned by 
+function
+.
+
+Run<TResult>(Func<Task<TResult>>, CancellationToken)
+
+Queues the specified work to run on the thread pool and returns a proxy for the 
+Task(TResult)
+ returned by 
+function
+.
+
+Run<TResult>(Func<Task<TResult>>)
+
+Queues the specified work to run on the thread pool and returns a proxy for the 
+Task(TResult)
+ returned by 
+function
+. A cancellation token allows the work to be cancelled if it has not yet started.
+
+Run<TResult>(Func<TResult>, CancellationToken)
+
+Queues the specified work to run on the thread pool and returns a 
+Task(TResult)
+ object that represents that work.
+
+Run<TResult>(Func<TResult>)
+
+Queues the specified work to run on the thread pool and returns a 
+Task<TResult>
+ object that represents that work. A cancellation token allows the work to be cancelled if it has not yet started.
+
+RunSynchronously()
+
+Runs the 
+Task
+ synchronously on the current 
+TaskScheduler
+.
+
+RunSynchronously(TaskScheduler)
+
+Runs the 
+Task
+ synchronously on the 
+TaskScheduler
+ provided.
+
+Start()
+
+Starts the 
+Task
+, scheduling it for execution to the current 
+TaskScheduler
+.
+
+Start(TaskScheduler)
+
+Starts the 
+Task
+, scheduling it for execution to the specified 
+TaskScheduler
+.
+
+ToString()
+
+Returns a string that represents the current object.
+
+		(Inherited from 
+Object
+)
+
+Wait()
+
+Waits for the 
+Task
+ to complete execution.
+
+Wait(CancellationToken)
+
+Waits for the 
+Task
+ to complete execution. The wait terminates if a cancellation token is canceled before the task completes.
+
+Wait(Int32, CancellationToken)
+
+Waits for the 
+Task
+ to complete execution. The wait terminates if a timeout interval elapses or a cancellation token is canceled before the task completes.
+
+Wait(Int32)
+
+Waits for the 
+Task
+ to complete execution within a specified number of milliseconds.
+
+Wait(TimeSpan, CancellationToken)
+
+Waits for the 
+Task
+ to complete execution.
+
+Wait(TimeSpan)
+
+Waits for the 
+Task
+ to complete execution within a specified time interval.
+
+WaitAll(IEnumerable<Task>, CancellationToken)
+
+Waits for all of the provided 
+Task
+ objects to complete execution unless the wait is cancelled.
+
+WaitAll(ReadOnlySpan<Task>)
+
+Waits for all of the provided 
+Task
+ objects to complete execution.
+
+WaitAll(Task[], CancellationToken)
+
+Waits for all of the provided 
+Task
+ objects to complete execution unless the wait is cancelled.
+
+WaitAll(Task[], Int32, CancellationToken)
+
+Waits for all of the provided 
+Task
+ objects to complete execution within a specified number of milliseconds or until the wait is cancelled.
+
+WaitAll(Task[], Int32)
+
+Waits for all of the provided 
+Task
+ objects to complete execution within a specified number of milliseconds.
+
+WaitAll(Task[], TimeSpan)
+
+Waits for all of the provided cancellable 
+Task
+ objects to complete execution within a specified time interval.
+
+WaitAll(Task[])
+
+Waits for all of the provided 
+Task
+ objects to complete execution.
+
+WaitAny(Task[], CancellationToken)
+
+Waits for any of the provided 
+Task
+ objects to complete execution unless the wait is cancelled.
+
+WaitAny(Task[], Int32, CancellationToken)
+
+Waits for any of the provided 
+Task
+ objects to complete execution within a specified number of milliseconds or until a cancellation token is cancelled.
+
+WaitAny(Task[], Int32)
+
+Waits for any of the provided 
+Task
+ objects to complete execution within a specified number of milliseconds.
+
+WaitAny(Task[], TimeSpan)
+
+Waits for any of the provided 
+Task
+ objects to complete execution within a specified time interval.
+
+WaitAny(Task[])
+
+Waits for any of the provided 
+Task
+ objects to complete execution.
+
+WaitAsync(CancellationToken)
+
+Gets a 
+Task
+ that will complete when this 
+Task
+ completes or when the specified 
+CancellationToken
+ has cancellation requested.
+
+WaitAsync(TimeSpan, CancellationToken)
+
+Gets a 
+Task
+ that will complete when this 
+Task
+ completes, when the specified timeout expires, or when the specified 
+CancellationToken
+ has cancellation requested.
+
+WaitAsync(TimeSpan, TimeProvider, CancellationToken)
+
+Gets a 
+Task
+ that will complete when this 
+Task
+ completes, when the specified timeout expires, or when the specified 
+CancellationToken
+ has cancellation requested.
+
+WaitAsync(TimeSpan, TimeProvider)
+
+Gets a 
+Task
+ that will complete when this 
+Task
+ completes or when the specified timeout expires.
+
+WaitAsync(TimeSpan)
+
+Gets a 
+Task
+ that will complete when this 
+Task
+ completes or when the specified timeout expires.
+
+WhenAll(IEnumerable<Task>)
+
+Creates a task that will complete when all of the 
+Task
+ objects in an enumerable collection have completed.
+
+WhenAll(ReadOnlySpan<Task>)
+
+Creates a task that will complete when all of the supplied tasks have completed.
+
+WhenAll(Task[])
+
+Creates a task that will complete when all of the 
+Task
+ objects in an array have completed.
+
+WhenAll<TResult>(IEnumerable<Task<TResult>>)
+
+Creates a task that will complete when all of the 
+Task<TResult>
+ objects in an enumerable collection have completed.
+
+WhenAll<TResult>(ReadOnlySpan<Task<TResult>>)
+
+Creates a task that will complete when all of the supplied tasks have completed.
+
+WhenAll<TResult>(Task<TResult>[])
+
+Creates a task that will complete when all of the 
+Task<TResult>
+ objects in an array have completed.
+
+WhenAny(IEnumerable<Task>)
+
+Creates a task that will complete when any of the supplied tasks have completed.
+
+WhenAny(ReadOnlySpan<Task>)
+
+Creates a task that will complete when any of the supplied tasks have completed.
+
+WhenAny(Task, Task)
+
+Creates a task that will complete when either of the supplied tasks have completed.
+
+WhenAny(Task[])
+
+Creates a task that will complete when any of the supplied tasks have completed.
+
+WhenAny<TResult>(IEnumerable<Task<TResult>>)
+
+Creates a task that will complete when any of the supplied tasks have completed.
+
+WhenAny<TResult>(ReadOnlySpan<Task<TResult>>)
+
+Creates a task that will complete when any of the supplied tasks have completed.
+
+WhenAny<TResult>(Task<TResult>, Task<TResult>)
+
+Creates a task that will complete when either of the supplied tasks have completed.
+
+WhenAny<TResult>(Task<TResult>[])
+
+Creates a task that will complete when any of the supplied tasks have completed.
+
+WhenEach(IEnumerable<Task>)
+
+Creates an 
+IAsyncEnumerable<T>
+ that will yield the supplied tasks as those tasks complete.
+
+WhenEach(ReadOnlySpan<Task>)
+
+Creates an 
+IAsyncEnumerable<T>
+ that will yield the supplied tasks as those tasks complete.
+
+WhenEach(Task[])
+
+Creates an 
+IAsyncEnumerable<T>
+ that will yield the supplied tasks as those tasks complete.
+
+WhenEach<TResult>(IEnumerable<Task<TResult>>)
+
+Creates an 
+IAsyncEnumerable<T>
+ that will yield the supplied tasks as those tasks complete.
+
+WhenEach<TResult>(ReadOnlySpan<Task<TResult>>)
+
+Creates an 
+IAsyncEnumerable<T>
+ that will yield the supplied tasks as those tasks complete.
+
+WhenEach<TResult>(Task<TResult>[])
+
+Creates an 
+IAsyncEnumerable<T>
+ that will yield the supplied tasks as those tasks complete.
+
+Yield()
+
+Creates an awaitable task that asynchronously yields back to the current context when awaited.

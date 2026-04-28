@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, only omitting the consequence of fine-tuning, which is to improve performance, but this omission does not contradict the ground truth.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 602,
+    "tokens_out": 45
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, listing the two main inputs accepted by the model's forward method during tokenization.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 579,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, with additional detail that does not contradict the ground truth.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 659,
+    "tokens_out": 30
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, explaining the effect of setting `dtype=\"auto\"` on weight loading and memory usage.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 634,
+    "tokens_out": 36
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer states that the information is not in the document, which is incorrect because the ground truth provides a clear answer to the question.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 593,
+    "tokens_out": 33
+  }
+]

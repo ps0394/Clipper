@@ -1,0 +1,43 @@
+```json
+[
+    {
+        "question": "What type of locking does MongoDB use to allow concurrent readers to access a resource?",
+        "answer": "MongoDB uses reader-writer locks that allow concurrent readers shared access to a resource, such as a database or collection.",
+        "supporting_sentences": [
+            "MongoDB uses reader-writer locks that allow concurrent readers shared access to a resource, such as a database or collection."
+        ]
+    },
+    {
+        "question": "What are the four lock modes represented in the output of `db.serverStatus()` and `db.currentOp()`?",
+        "answer": "The four lock modes are Shared (S) lock, Exclusive (X) lock, Intent Shared (IS) lock, and Intent Exclusive (IX) lock.",
+        "supporting_sentences": [
+            "In db.serverStatus() and db.currentOp() output, the lock modes are represented as follows:",
+            "Represents Shared (S) lock.",
+            "Represents Exclusive (X) lock.",
+            "Represents Intent Shared (IS) lock.",
+            "Represents Intent Exclusive (IX) lock."
+        ]
+    },
+    {
+        "question": "What happens when MongoDB detects conflicts between two operations in WiredTiger?",
+        "answer": "When the storage engine detects conflicts between two operations, one will incur a write conflict causing MongoDB to transparently retry that operation.",
+        "supporting_sentences": [
+            "When the storage engine detects conflicts between two operations, one will incur a write conflict causing MongoDB to transparently retry that operation."
+        ]
+    },
+    {
+        "question": "What type of lock does the `renameCollection` command take when renaming a collection within the same database?",
+        "answer": "The `renameCollection` command takes an exclusive (W) lock on the source and target collections when renaming a collection within the same database.",
+        "supporting_sentences": [
+            "If renaming a collection within the same database, the renameCollection command takes an exclusive (W) lock on the source and target collections."
+        ]
+    },
+    {
+        "question": "How does sharding improve concurrency in MongoDB?",
+        "answer": "Sharding improves concurrency by distributing collections over multiple `mongod` instances, allowing shard servers (specifically, `mongos` processes) to run concurrently with the downstream `mongod` instances.",
+        "supporting_sentences": [
+            "Sharding improves concurrency by distributing collections over multiple mongod instances, allowing shard servers (specifically, mongos processes) to run concurrently with the downstream mongod instances."
+        ]
+    }
+]
+```

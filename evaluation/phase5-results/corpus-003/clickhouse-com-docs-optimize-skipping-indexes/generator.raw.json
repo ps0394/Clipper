@@ -1,0 +1,41 @@
+```json
+[
+    {
+        "question": "What is the primary purpose of ClickHouse data skipping indexes?",
+        "answer": "Data skipping indexes enable ClickHouse to skip reading significant chunks of data that are guaranteed to have no matching values, thereby improving query speed in specific circumstances.",
+        "supporting_sentences": [
+            "These structures are labeled \"Skip\" indexes because they enable ClickHouse to skip reading significant chunks of data that are guaranteed to have no matching values."
+        ]
+    },
+    {
+        "question": "Which table engine family supports Data Skipping Indexes in ClickHouse?",
+        "answer": "Data Skipping Indexes can only be employed on the MergeTree family of tables.",
+        "supporting_sentences": [
+            "You can only employ Data Skipping Indexes on the MergeTree family of tables."
+        ]
+    },
+    {
+        "question": "What are the two additional files created in each data part directory when a data skipping index is added to a table?",
+        "answer": "The two additional files are `skp_idx_{index_name}.idx` and `skp_idx_{index_name}.mrk2`.",
+        "supporting_sentences": [
+            "When a user creates a data skipping index, there will be two additional files in each data part directory for the table.",
+            "skp_idx_{index_name}.idx, which contains the ordered expression values",
+            "skp_idx_{index_name}.mrk2, which contains the corresponding offsets into the associated data column files."
+        ]
+    },
+    {
+        "question": "What is the default false positive rate for the `bloom_filter` skip index type if no parameter is specified?",
+        "answer": "The default false positive rate is 0.025.",
+        "supporting_sentences": [
+            "The basic bloom_filter which takes a single optional parameter of the allowed \"false positive\" rate between 0 and 1 (if unspecified, .025 is used)."
+        ]
+    },
+    {
+        "question": "What setting can be used to prevent inefficient queries by requiring the use of specific skip indexes?",
+        "answer": "The `force_data_skipping_indices` setting can be used to require the use of specific skip indexes.",
+        "supporting_sentences": [
+            "force_data_skipping_indices (comma separated list of index names). This setting can be used to prevent some kinds of inefficient queries. In circumstances where querying a table is too expensive unless a skip index is used, using this setting with one or more index names will return an exception for any query that doesn't use the listed index."
+        ]
+    }
+]
+```

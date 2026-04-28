@@ -1,0 +1,923 @@
+ <!DOCTYPE html>
+		<html
+			class="layout layout-sidecar-left   show-table-of-contents landing show-breadcrumb default-focus"
+			lang="en-us"
+			dir="ltr"
+			data-authenticated="false"
+			data-auth-status-determined="false"
+			data-target="docs"
+			x-ms-format-detection="none"
+		>
+			
+		<head>
+			<title>Azure Kubernetes Service (AKS) documentation | Microsoft Learn</title>
+			<meta charset="utf-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="color-scheme" content="light dark" />
+
+			<meta name="description" content="AKS allows you to quickly deploy a production ready Kubernetes cluster in Azure. Learn how to use AKS with these quickstarts, tutorials, and samples." />
+			<link rel="canonical" href="https://learn.microsoft.com/en-us/azure/aks/" /> 
+
+			<!-- Non-customizable open graph and sharing-related metadata -->
+			<meta name="twitter:card" content="summary_large_image" />
+			<meta name="twitter:site" content="@MicrosoftLearn" />
+			<meta property="og:type" content="website" />
+			<meta property="og:image:alt" content="Microsoft Learn" />
+			<meta property="og:image" content="https://learn.microsoft.com/en-us/media/open-graph-image.png" />
+			<!-- Page specific open graph and sharing-related metadata -->
+			<meta property="og:title" content="Azure Kubernetes Service (AKS) documentation" />
+			<meta property="og:url" content="https://learn.microsoft.com/en-us/azure/aks/" />
+			<meta property="og:description" content="AKS allows you to quickly deploy a production ready Kubernetes cluster in Azure. Learn how to use AKS with these quickstarts, tutorials, and samples." />
+			<meta name="platform_id" content="a5ffb93b-ca10-4455-d907-54e4ae1f0040" /> <meta name="scope" content="Azure,Azure Kubernetes Service" />
+			<meta name="locale" content="en-us" />
+			 
+			<meta name="uhfHeaderId" content="azure" />
+
+			<meta name="page_type" content="landing" />
+
+			<!--page specific meta tags-->
+			
+
+			<!-- custom meta tags -->
+			
+		<meta name="summary" content="AKS allows you to quickly deploy a production ready Kubernetes cluster in Azure. Learn how to use AKS with these quickstarts, tutorials, and samples." />
+	
+		<meta name="schema" content="Landing" />
+	
+		<meta name="breadcrumb_path" content="/azure/breadcrumb/azure-aks/toc.json" />
+	
+		<meta name="feedback_help_link_url" content="https://learn.microsoft.com/answers/tags/200/azure-kubernetes-service/" />
+	
+		<meta name="feedback_help_link_type" content="get-help-at-qna" />
+	
+		<meta name="feedback_product_url" content="https://feedback.azure.com/d365community/forum/aabe212a-f724-ec11-b6e6-000d3a4f0da0" />
+	
+		<meta name="feedback_system" content="Standard" />
+	
+		<meta name="permissioned-type" content="public" />
+	
+		<meta name="recommendations" content="true" />
+	
+		<meta name="recommendation_types" content="Training" />
+	
+		<meta name="recommendation_types" content="Certification" />
+	
+		<meta name="ms.suite" content="office" />
+	
+		<meta name="adobe-target" content="true" />
+	
+		<meta name="manager" content="rayoflores" />
+	
+		<meta name="ms.service" content="azure-kubernetes-service" />
+	
+		<meta name="ms.custom" content="build-2024" />
+	
+		<meta name="ms.topic" content="landing-page" />
+	
+		<meta name="author" content="davidsmatlak" />
+	
+		<meta name="ms.author" content="davidsmatlak" />
+	
+		<meta name="ms.date" content="2024-01-12T00:00:00Z" />
+	
+		<meta name="document_id" content="f0b78955-b48d-15e3-a43f-669cd3542822" />
+	
+		<meta name="document_version_independent_id" content="5198aaed-efc0-100d-36e0-59ce693e3745" />
+	
+		<meta name="updated_at" content="2025-10-22T22:08:00Z" />
+	
+		<meta name="original_content_git_url" content="https://github.com/MicrosoftDocs/azure-aks-docs-pr/blob/live/articles/aks/index.yml" />
+	
+		<meta name="gitcommit" content="https://github.com/MicrosoftDocs/azure-aks-docs-pr/blob/c6c61287da17a15cde7b6f5ed4afbc37e9b2cfef/articles/aks/index.yml" />
+	
+		<meta name="git_commit_id" content="c6c61287da17a15cde7b6f5ed4afbc37e9b2cfef" />
+	
+		<meta name="site_name" content="Docs" />
+	
+		<meta name="depot_name" content="Learn.azure-aks" />
+	
+		<meta name="toc_rel" content="toc.json" />
+	
+		<meta name="asset_id" content="aks/index" />
+	
+		<meta name="moniker_range_name" content="" />
+	
+		<meta name="item_type" content="Content" />
+	
+		<meta name="source_path" content="articles/aks/index.yml" />
+	
+		<meta name="github_feedback_content_git_url" content="https://github.com/MicrosoftDocs/azure-aks-docs/blob/main/articles/aks/index.yml" />
+	
+		<meta name="markdown_url" content="https://learn.microsoft.com/en-us/azure/aks/?accept=text/markdown" />
+	 
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/d44a5346-5de4-439c-b804-7b2a536cbb55" data-source="generated" />
+	
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/68ec7f3a-2bc6-459f-b959-19beb729907d" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/da41a22b-b7a0-42d3-9c35-50da1c2b7b87" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/90370425-aca4-4a39-9533-d52e5e002a5d" data-source="generated" />
+	
+
+			<!-- assets and js globals -->
+			
+			<link rel="stylesheet" href="/static/assets/0.4.03398.7756-c1512039/styles/site.css" />
+			
+			<script src="https://wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js"></script>
+			<script src="https://js.monitor.azure.com/scripts/c/ms.jsll-4.min.js"></script>
+			<script src="/_themes/docs.theme/master/en-us/_themes/global/deprecation.js"></script>
+
+			<!-- msdocs global object -->
+			<script id="msdocs-script">
+		var msDocs = {
+  "environment": {
+    "accessLevel": "online",
+    "azurePortalHostname": "portal.azure.com",
+    "reviewFeatures": false,
+    "supportLevel": "production",
+    "systemContent": true,
+    "siteName": "learn",
+    "legacyHosting": false
+  },
+  "data": {
+    "contentLocale": "en-us",
+    "contentDir": "ltr",
+    "userLocale": "en-us",
+    "userDir": "ltr",
+    "pageTemplate": "Landing",
+    "brand": "azure",
+    "context": {},
+    "standardFeedback": false,
+    "showFeedbackReport": false,
+    "feedbackHelpLinkType": "get-help-at-qna",
+    "feedbackHelpLinkUrl": "https://learn.microsoft.com/answers/tags/200/azure-kubernetes-service/",
+    "feedbackSystem": "Standard",
+    "feedbackGitHubRepo": "",
+    "feedbackProductUrl": "https://feedback.azure.com/d365community/forum/aabe212a-f724-ec11-b6e6-000d3a4f0da0",
+    "extendBreadcrumb": false,
+    "isEditDisplayable": true,
+    "isPrivateUnauthorized": false,
+    "hideViewSource": false,
+    "isPermissioned": false,
+    "hasRecommendations": false,
+    "contributors": [
+      {
+        "name": "schaffererin",
+        "url": "https://github.com/schaffererin"
+      },
+      {
+        "name": "robbyatmicrosoft",
+        "url": "https://github.com/robbyatmicrosoft"
+      },
+      {
+        "name": "sabbour",
+        "url": "https://github.com/sabbour"
+      },
+      {
+        "name": "tamram",
+        "url": "https://github.com/tamram"
+      },
+      {
+        "name": "MGoedtel",
+        "url": "https://github.com/MGoedtel"
+      },
+      {
+        "name": "Nickomang",
+        "url": "https://github.com/Nickomang"
+      },
+      {
+        "name": "nathaniel-msft",
+        "url": "https://github.com/nathaniel-msft"
+      },
+      {
+        "name": "PixelRobots",
+        "url": "https://github.com/PixelRobots"
+      },
+      {
+        "name": "xfz11",
+        "url": "https://github.com/xfz11"
+      },
+      {
+        "name": "shashankbarsin",
+        "url": "https://github.com/shashankbarsin"
+      },
+      {
+        "name": "rayoef",
+        "url": "https://github.com/rayoef"
+      },
+      {
+        "name": "allyford",
+        "url": "https://github.com/allyford"
+      },
+      {
+        "name": "zr-msft",
+        "url": "https://github.com/zr-msft"
+      },
+      {
+        "name": "PageWriter-MSFT",
+        "url": "https://github.com/PageWriter-MSFT"
+      },
+      {
+        "name": "DCtheGeek",
+        "url": "https://github.com/DCtheGeek"
+      },
+      {
+        "name": "laurenhughes",
+        "url": "https://github.com/laurenhughes"
+      },
+      {
+        "name": "ghogen",
+        "url": "https://github.com/ghogen"
+      },
+      {
+        "name": "928PJY",
+        "url": "https://github.com/928PJY"
+      },
+      {
+        "name": "doodlemania2",
+        "url": "https://github.com/doodlemania2"
+      },
+      {
+        "name": "iainfoulds",
+        "url": "https://github.com/iainfoulds"
+      },
+      {
+        "name": "neilpeterson",
+        "url": "https://github.com/neilpeterson"
+      },
+      {
+        "name": "mmacy",
+        "url": "https://github.com/mmacy"
+      },
+      {
+        "name": "v-kents",
+        "url": "https://github.com/v-kents"
+      }
+    ]
+  },
+  "functions": {}
+};;
+	</script>
+
+			<!-- base scripts, msdocs global should be before this -->
+			<script src="/static/assets/0.4.03398.7756-c1512039/scripts/en-us/index-docs.js"></script>
+			
+
+			<!-- json-ld -->
+			
+		</head>
+	
+			<body
+				id="body"
+				data-bi-name="body"
+				class="layout-body "
+				lang="en-us"
+				dir="ltr"
+			>
+				<header class="layout-body-header">
+		<div class="header-holder has-default-focus">
+			
+		<a
+			href="#main"
+			
+			style="z-index: 1070"
+			class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body"
+			
+		>
+			Skip to main content
+		</a>
+	
+
+			<div hidden id="cookie-consent-holder" data-test-id="cookie-consent-container"></div>
+			<!-- Unsupported browser warning -->
+			<div
+				id="unsupported-browser"
+				style="background-color: white; color: black; padding: 16px; border-bottom: 1px solid grey;"
+				hidden
+			>
+				<div style="max-width: 800px; margin: 0 auto;">
+					<p style="font-size: 24px">This browser is no longer supported.</p>
+					<p style="font-size: 16px; margin-top: 16px;">
+						Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+					</p>
+					<div style="margin-top: 12px;">
+						<a
+							href="https://go.microsoft.com/fwlink/p/?LinkID=2092881 "
+							style="background-color: #0078d4; border: 1px solid #0078d4; color: white; padding: 6px 12px; border-radius: 2px; display: inline-block;"
+						>
+							Download Microsoft Edge
+						</a>
+						<a
+							href="https://learn.microsoft.com/en-us/lifecycle/faq/internet-explorer-microsoft-edge"
+							style="background-color: white; padding: 6px 12px; border: 1px solid #505050; color: #171717; border-radius: 2px; display: inline-block;"
+						>
+							More info about Internet Explorer and Microsoft Edge
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- site header -->
+			<div
+				id="ms--site-header"
+				data-test-id="site-header-wrapper"
+				itemscope="itemscope"
+				itemtype="http://schema.org/Organization"
+			>
+				<div
+					id="ms--mobile-nav"
+					class="site-header display-none-tablet padding-inline-none gap-none"
+					data-bi-name="mobile-header"
+					data-test-id="mobile-header"
+				></div>
+				<div
+					id="ms--primary-nav"
+					class="site-header display-none display-flex-tablet"
+					data-bi-name="L1-header"
+					data-test-id="primary-header"
+				></div>
+				<div
+					id="ms--secondary-nav"
+					class="site-header display-none display-flex-tablet"
+					data-bi-name="L2-header"
+					data-test-id="secondary-header"
+					
+				></div>
+			</div>
+			
+		<!-- banner -->
+		<div data-banner>
+			<div id="disclaimer-holder"></div>
+			
+		</div>
+		<!-- banner end -->
+	
+		</div>
+	</header>
+				 <section
+					id="layout-body-menu"
+					class="layout-body-menu border-right display-flex"
+					data-bi-name="menu"
+			  >
+					
+		<div
+			id="left-container"
+			class="left-container display-none padding-none display-block-tablet width-full"
+			data-toc-container="true"
+		>
+			<!-- Regular TOC content (default) -->
+			<div
+				id="ms--toc-content"
+				class="height-full padding-left-sm padding-right-none padding-bottom-sm"
+			>
+				<nav
+					id="affixed-left-container"
+					class="margin-top-xxs-tablet position-sticky display-flex flex-direction-column"
+					aria-label="Primary"
+					data-bi-name="left-toc"
+					role="navigation"
+				></nav>
+			</div>
+			<!-- Collapsible TOC content (hidden by default) -->
+			<div
+				id="ms--toc-content-collapsible"
+				class="padding-left-sm padding-right-none padding-bottom-sm height-full"
+				hidden
+			>
+				<nav
+					id="affixed-left-container"
+					class="margin-top-xxs-tablet position-sticky display-flex flex-direction-column width-full"
+					aria-label="Primary"
+					data-bi-name="left-toc"
+					role="navigation"
+				>
+					<div
+						id="ms--collapsible-toc-header"
+						class="display-flex flex-direction-row-reverse justify-content-center align-items-center margin-bottom-xxs margin-right-xxs"
+					>
+						<button
+							type="button"
+							class="button button-clear inner-focus"
+							data-collapsible-toc-toggle
+							aria-expanded="true"
+							aria-controls="ms--collapsible-toc-content"
+							aria-label="Table of contents"
+						>
+							<span class="icon font-size-md" aria-hidden="true">
+								<span class="docon docon-panel-left-contract"></span>
+							</span>
+						</button>
+						<div id="ms--collapsible-toc-moniker-slot" class="flex-grow-1"></div>
+					</div>
+				</nav>
+			</div>
+		</div>
+	
+			  </section>
+
+				<main
+					id="main"
+					role="main"
+					class="layout-body-main "
+					data-bi-name="content"
+					lang="en-us"
+					dir="ltr"
+				>
+					
+			<div data-main-column class="padding-sm padding-top-none padding-top-sm-tablet">
+				
+		<div id="article-header" class="margin-bottom-xs display-none-print">
+			<div class="display-flex align-items-center justify-content-space-between">
+				
+		<details
+			id="article-header-breadcrumbs-overflow-popover"
+			class="popover"
+			data-for="article-header-breadcrumbs"
+		>
+			<summary
+				class="button button-clear button-primary button-sm inner-focus"
+				aria-label="All breadcrumbs"
+			>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-more"></span>
+				</span>
+			</summary>
+			<div id="article-header-breadcrumbs-overflow" class="popover-content padding-none"></div>
+		</details>
+
+		<bread-crumbs
+			id="article-header-breadcrumbs"
+			role="group"
+			aria-label="Breadcrumbs"
+			data-test-id="article-header-breadcrumbs"
+			class="overflow-hidden flex-grow-1 margin-right-sm margin-right-md-tablet margin-right-lg-desktop margin-left-negative-xxs padding-left-xxs"
+		></bread-crumbs>
+	 
+		<div
+			id="article-header-page-actions"
+			class="opacity-none margin-left-auto display-flex flex-wrap-no-wrap align-items-stretch"
+		>
+			 
+
+			<details class="popover popover-right" id="article-header-page-actions-overflow">
+				<summary
+					class="justify-content-flex-start button button-clear button-sm button-primary inner-focus"
+					aria-label="More actions"
+					title="More actions"
+				>
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-more-vertical"></span>
+					</span>
+				</summary>
+				<div class="popover-content">
+					 
+		<button
+			data-page-action-item="overflow-mobile"
+			type="button"
+			class="button-block button-sm inner-focus button button-clear display-none-tablet justify-content-flex-start text-align-left"
+			data-bi-name="contents-expand"
+			data-contents-button
+			data-popover-close
+		>
+			<span class="icon" aria-hidden="true"
+				><span class="docon docon-editor-list-bullet"></span
+			></span>
+			<span class="contents-expand-title">Table of contents</span>
+		</button>
+	 
+		<a
+			id="lang-link-overflow"
+			class="button-sm inner-focus button button-clear button-block justify-content-flex-start text-align-left"
+			data-bi-name="language-toggle"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			data-read-in-link
+			href="#"
+			hidden
+		>
+			<span class="icon" aria-hidden="true" data-read-in-link-icon>
+				<span class="docon docon-locale-globe"></span>
+			</span>
+			<span data-read-in-link-text>Read in English</span>
+		</a>
+	
+					  
+					
+		<a
+			data-contenteditbtn
+			class="button button-clear button-block button-sm inner-focus justify-content-flex-start text-align-left text-decoration-none"
+			data-bi-name="edit"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			
+			href="https://github.com/MicrosoftDocs/azure-aks-docs/blob/main/articles/aks/index.yml"
+			data-original_content_git_url="https://github.com/MicrosoftDocs/azure-aks-docs-pr/blob/live/articles/aks/index.yml"
+			data-original_content_git_url_template="{repo}/blob/{branch}/articles/aks/index.yml"
+			data-pr_repo=""
+			data-pr_branch=""
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-edit-outline"></span>
+			</span>
+			<span>Edit</span>
+		</a>
+	  
+				</div>
+			</details>
+		</div>
+	
+			</div>
+		</div>
+	 
+				<div class="content">
+<section id="landing-head">
+	<div class="padding-top-xxs padding-bottom-xs">
+		<div class="columns">
+			<div class="column is-full">
+				<h1 class="font-size-h2">Azure Kubernetes Service (AKS)</h1>
+					<p class="margin-top-xxs has-line-height-reset">AKS allows you to quickly deploy a production ready Kubernetes cluster in Azure. Learn how to use AKS with these quickstarts, tutorials, and samples.</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="landing-content" class="padding-block-xs">
+	<div class="columns is-masonry is-three-masonry-columns">
+			<div class="column is-12 is-4-desktop">
+				<div class="box box-shadow-medium margin-none margin-xxs-desktop">
+					<h2 class="margin-none font-size-h6">About AKS</h2>
+						<h3 class="display-flex is-uppercase font-size-sm border-top margin-bottom-xxs margin-top-xs padding-top-xs has-text-subtle">
+							<span class="margin-right-xxs align-self-center font-size-h5 docon docon-topic-overview" aria-hidden="true"></span>
+							Overview
+						</h3>
+						<ul class="margin-none has-line-height-reset">
+							<li class="is-unstyled padding-block-xxs">
+								<a class="has-external-link-indicator font-size-sm display-block" href="what-is-aks" data-linktype="relative-path">What is AKS?</a>
+							</li>
+							<li class="is-unstyled padding-block-xxs">
+								<a class="has-external-link-indicator font-size-sm display-block" href="intro-aks-automatic" data-linktype="relative-path">What is AKS Automatic?</a>
+							</li>
+							<li class="is-unstyled padding-block-xxs">
+								<a class="has-external-link-indicator font-size-sm display-block" href="supported-kubernetes-versions" data-linktype="relative-path">Supported Kubernetes versions</a>
+							</li>
+						</ul>
+						<h3 class="display-flex is-uppercase font-size-sm border-top margin-bottom-xxs margin-top-xs padding-top-xs has-text-subtle">
+							<span class="margin-right-xxs align-self-center font-size-h5 docon docon-topic-concept" aria-hidden="true"></span>
+							Concept
+						</h3>
+						<ul class="margin-none has-line-height-reset">
+							<li class="is-unstyled padding-block-xxs">
+								<a class="has-external-link-indicator font-size-sm display-block" href="core-aks-concepts" data-linktype="relative-path">Core concepts</a>
+							</li>
+						</ul>
+						<h3 class="display-flex is-uppercase font-size-sm border-top margin-bottom-xxs margin-top-xs padding-top-xs has-text-subtle">
+							<span class="margin-right-xxs align-self-center font-size-h5 docon docon-topic-reference" aria-hidden="true"></span>
+							Reference
+						</h3>
+						<ul class="margin-none has-line-height-reset">
+							<li class="is-unstyled padding-block-xxs">
+								<a class="has-external-link-indicator font-size-sm display-block" href="/en-us/cli/azure/aks" data-linktype="absolute-path">Azure CLI</a>
+							</li>
+							<li class="is-unstyled padding-block-xxs">
+								<a class="has-external-link-indicator font-size-sm display-block" href="/en-us/powershell/module/az.aks" data-linktype="absolute-path">Azure PowerShell</a>
+							</li>
+							<li class="is-unstyled padding-block-xxs">
+								<a class="has-external-link-indicator font-size-sm display-block" href="/en-us/rest/api/aks/" data-linktype="absolute-path">REST</a>
+							</li>
+						</ul>
+				</div>
+			</div>
+			<div class="column is-12 is-4-desktop">
+				<div class="box box-shadow-medium margin-none margin-xxs-desktop">
+					<h2 class="margin-none font-size-h6">Get started</h2>
+						<h3 class="display-flex is-uppercase font-size-sm border-top margin-bottom-xxs margin-top-xs padding-top-xs has-text-subtle">
+							<span class="margin-right-xxs align-self-center font-size-h5 docon docon-topic-quickstart" aria-hidden="true"></span>
+							Quickstart
+						</h3>
+						<ul class="margin-none has-line-height-reset">
+							<li class="is-unstyled padding-block-xxs">
+								<a class="has-external-link-indicator font-size-sm display-block" href="learn/quick-kubernetes-deploy-cli" data-linktype="relative-path">Create a Linux cluster</a>
+							</li>
+							<li class="is-unstyled padding-block-xxs">
+								<a class="has-external-link-indicator font-size-sm display-block" href="learn/quick-windows-container-deploy-cli" data-linktype="relative-path">Create a Windows cluster</a>
+							</li>
+						</ul>
+						<h3 class="display-flex is-uppercase font-size-sm border-top margin-bottom-xxs margin-top-xs padding-top-xs has-text-subtle">
+							<span class="margin-right-xxs align-self-center font-size-h5 docon docon-topic-tutorial" aria-hidden="true"></span>
+							Tutorial
+						</h3>
+						<ul class="margin-none has-line-height-reset">
+							<li class="is-unstyled padding-block-xxs">
+								<a class="has-external-link-indicator font-size-sm display-block" href="tutorial-kubernetes-prepare-app" data-linktype="relative-path">Prepare an application for AKS</a>
+							</li>
+						</ul>
+						<h3 class="display-flex is-uppercase font-size-sm border-top margin-bottom-xxs margin-top-xs padding-top-xs has-text-subtle">
+							<span class="margin-right-xxs align-self-center font-size-h5 docon docon-topic-training" aria-hidden="true"></span>
+							Training
+						</h3>
+						<ul class="margin-none has-line-height-reset">
+							<li class="is-unstyled padding-block-xxs">
+								<a class="has-external-link-indicator font-size-sm display-block" href="/en-us/training/browse/?products=azure-kubernetes-service" data-linktype="absolute-path">AKS training modules</a>
+							</li>
+						</ul>
+				</div>
+			</div>
+			<div class="column is-12 is-4-desktop">
+				<div class="box box-shadow-medium margin-none margin-xxs-desktop">
+					<h2 class="margin-none font-size-h6">Plan and design</h2>
+						<h3 class="display-flex is-uppercase font-size-sm border-top margin-bottom-xxs margin-top-xs padding-top-xs has-text-subtle">
+							<span class="margin-right-xxs align-self-center font-size-h5 docon docon-topic-architecture" aria-hidden="true"></span>
+							Architecture
+						</h3>
+						<ul class="margin-none has-line-height-reset">
+							<li class="is-unstyled padding-block-xxs">
+								<a class="has-external-link-indicator font-size-sm display-block" href="/en-us/azure/well-architected/service-guides/azure-kubernetes-service" data-linktype="absolute-path">Architectural best practices</a>
+							</li>
+							<li class="is-unstyled padding-block-xxs">
+								<a class="has-external-link-indicator font-size-sm display-block" href="/en-us/azure/architecture/reference-architectures/containers/aks/baseline-aks" data-linktype="absolute-path">Baseline infrastructure architecture</a>
+							</li>
+						</ul>
+						<h3 class="display-flex is-uppercase font-size-sm border-top margin-bottom-xxs margin-top-xs padding-top-xs has-text-subtle">
+							<span class="margin-right-xxs align-self-center font-size-h5 docon docon-topic-concept" aria-hidden="true"></span>
+							Concept
+						</h3>
+						<ul class="margin-none has-line-height-reset">
+							<li class="is-unstyled padding-block-xxs">
+								<a class="has-external-link-indicator font-size-sm display-block" href="best-practices-cost" data-linktype="relative-path">Optimize costs</a>
+							</li>
+							<li class="is-unstyled padding-block-xxs">
+								<a class="has-external-link-indicator font-size-sm display-block" href="windows-vs-linux-containers" data-linktype="relative-path">Windows container considerations</a>
+							</li>
+						</ul>
+				</div>
+			</div>
+	</div>
+</section>
+</div>
+			</div>
+		
+				</main>
+				  <div class="layout-body-footer " data-bi-name="layout-footer">
+		<footer
+			id="footer"
+			data-test-id="footer"
+			data-bi-name="footer"
+			class="footer-layout has-padding has-default-focus border-top  uhf-container"
+			role="contentinfo"
+		>
+			<div class="display-flex gap-xs flex-wrap-wrap is-full-height padding-right-lg-desktop">
+				
+		<a
+			data-mscc-ic="false"
+			href="#"
+			data-bi-name="select-locale"
+			class="locale-selector-link flex-shrink-0 button button-sm button-clear external-link-indicator"
+			id=""
+			title=""
+			><span class="icon" aria-hidden="true"
+				><span class="docon docon-world"></span></span
+			><span class="local-selector-link-text">en-us</span></a
+		>
+	 <div class="ccpa-privacy-link" data-ccpa-privacy-link hidden>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://aka.ms/yourcaliforniaprivacychoices"
+			data-bi-name="your-privacy-choices"
+			class="button button-sm button-clear flex-shrink-0 external-link-indicator"
+			id=""
+			title=""
+			>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 30 14"
+			xml:space="preserve"
+			height="16"
+			width="43"
+			aria-hidden="true"
+			focusable="false"
+		>
+			<path
+				d="M7.4 12.8h6.8l3.1-11.6H7.4C4.2 1.2 1.6 3.8 1.6 7s2.6 5.8 5.8 5.8z"
+				style="fill-rule:evenodd;clip-rule:evenodd;fill:#fff"
+			></path>
+			<path
+				d="M22.6 0H7.4c-3.9 0-7 3.1-7 7s3.1 7 7 7h15.2c3.9 0 7-3.1 7-7s-3.2-7-7-7zm-21 7c0-3.2 2.6-5.8 5.8-5.8h9.9l-3.1 11.6H7.4c-3.2 0-5.8-2.6-5.8-5.8z"
+				style="fill-rule:evenodd;clip-rule:evenodd;fill:#06f"
+			></path>
+			<path
+				d="M24.6 4c.2.2.2.6 0 .8L22.5 7l2.2 2.2c.2.2.2.6 0 .8-.2.2-.6.2-.8 0l-2.2-2.2-2.2 2.2c-.2.2-.6.2-.8 0-.2-.2-.2-.6 0-.8L20.8 7l-2.2-2.2c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0l2.2 2.2L23.8 4c.2-.2.6-.2.8 0z"
+				style="fill:#fff"
+			></path>
+			<path
+				d="M12.7 4.1c.2.2.3.6.1.8L8.6 9.8c-.1.1-.2.2-.3.2-.2.1-.5.1-.7-.1L5.4 7.7c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0L8 8.6l3.8-4.5c.2-.2.6-.2.9 0z"
+				style="fill:#06f"
+			></path>
+		</svg>
+	
+			<span>Your Privacy Choices</span></a
+		>
+	
+	</div>
+				<div class="flex-shrink-0">
+		<div class="dropdown has-caret-up">
+			<button
+				data-test-id="theme-selector-button"
+				class="dropdown-trigger button button-clear button-sm inner-focus theme-dropdown-trigger"
+				aria-controls="{{ themeMenuId }}"
+				aria-expanded="false"
+				title="Theme"
+				data-bi-name="theme"
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-sun"></span></span>
+				<span>Theme</span>
+				<span class="icon expanded-indicator" aria-hidden="true">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<div class="dropdown-menu" id="{{ themeMenuId }}" role="menu">
+				<ul class="theme-selector padding-xxs" data-test-id="theme-dropdown-menu">
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="light"
+						>
+							<span class="theme-light margin-right-xxs">
+								<span
+									class="theme-selector-icon border display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> Light </span>
+						</button>
+					</li>
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="dark"
+						>
+							<span class="theme-dark margin-right-xxs">
+								<span
+									class="border theme-selector-icon display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> Dark </span>
+						</button>
+					</li>
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="high-contrast"
+						>
+							<span class="theme-high-contrast margin-right-xxs">
+								<span
+									class="border theme-selector-icon display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> High contrast </span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+			</div>
+			<ul class="links" data-bi-name="footerlinks">
+				<li class="manage-cookies-holder" hidden=""></li>
+				<li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/principles-for-ai-generated-content"
+			data-bi-name="aiDisclaimer"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>AI Disclaimer</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/previous-versions/"
+			data-bi-name="archivelink"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Previous Versions</a
+		>
+	
+	</li> <li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://techcommunity.microsoft.com/t5/microsoft-learn-blog/bg-p/MicrosoftLearnBlog"
+			data-bi-name="bloglink"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Blog</a
+		>
+	
+	</li> <li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/contribute"
+			data-bi-name="contributorGuide"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Contribute</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://go.microsoft.com/fwlink/?LinkId=521839"
+			data-bi-name="privacy"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Privacy</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://go.microsoft.com/fwlink/?linkid=2259814"
+			data-bi-name="consumer-health-privacy"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Consumer Health Privacy</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/legal/termsofuse"
+			data-bi-name="termsofuse"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Terms of Use</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://www.microsoft.com/legal/intellectualproperty/Trademarks/"
+			data-bi-name="trademarks"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Trademarks</a
+		>
+	
+	</li>
+				<li>&copy; Microsoft 2026</li>
+			</ul>
+		</footer>
+	</footer>
+			</body>
+		</html>

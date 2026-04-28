@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer covers all the main purposes of using an `output` block in Terraform as stated in the ground-truth answer, although it omits the additional detail about state sharing in HCP Terraform and passing information to automation tools.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 665,
+    "tokens_out": 53
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same factual content as the ground-truth answer, providing the correct syntax for accessing child module outputs.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 589,
+    "tokens_out": 30
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, which is that Terraform hides sensitive output values and displays a redacted message instead.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 606,
+    "tokens_out": 36
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same factual content as the ground-truth answer, differing only in formatting.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 585,
+    "tokens_out": 25
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, which is that Terraform displays sensitive outputs in plain text when using the CLI with `-json` or `-raw` flags.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 633,
+    "tokens_out": 44
+  }
+]

@@ -1,0 +1,2421 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Vercel CDN Cache
+Document URL: https://vercel.com/docs/edge-network/caching
+Document profile: article
+
+Document text:
+---
+Vercel's CDN caches your content (including pages, API responses, and static assets) in data centers around the world, closer to your users than your origin server. When someone requests cached content, Vercel serves it from the nearest 
+region
+, cutting latency, reducing load on your origin, and making your site feel faster everywhere.
+
+CDN caching is available for all deployments and domains on your account, regardless of the 
+pricing plan
+.
+
+There are two ways to cache content:
+
+Static file caching
+ is automatic for all deployments, requiring no manual configuration
+
+To cache dynamic content that doesn't require real-time updates, use 
+Incremental Static Regeneration
+. For more granular control, you can use 
+Cache-Control
+
+headers
+. Review 
+How to cache responses
+ to learn more.
+
+To learn about cache keys, manually purging the cache, and the differences between invalidate and delete methods, see 
+Purging Vercel CDN cache
+
+CDN cache is best when you want to cache complete HTTP responses (entire pages, API responses, or static assets) at the edge, close to your users, such as in the following scenarios:
+
+Static pages that are the same for all users
+
+API responses that don't change frequently
+
+Static assets like images, fonts, and JavaScript bundles
+
+Server-rendered pages with predictable cache lifetimes
+
+CDN Cache isn't the right fit when
+:
+
+You need user-specific content without the 
+Vary
+ header (consider 
+Runtime Cache
+)
+
+Responses include sensitive user data
+
+Content changes on every request to the same url
+
+You can cache responses on Vercel with 
+Cache-Control
+ headers defined in:
+
+Responses from 
+Vercel Functions
+
+Route definitions in 
+vercel.json
+ or 
+next.config.js
+
+You can use any combination of the above options, but if you return 
+Cache-Control
+ headers in a Vercel Function, it will override the headers defined for the same route in 
+vercel.json
+ or 
+next.config.js
+.
+
+To cache the response of Functions on Vercel's CDN, you must include 
+Cache-Control
+ headers with 
+any
+ of the following directives:
+
+s-maxage=N
+
+s-maxage=N, stale-while-revalidate=Z
+
+s-maxage=N, stale-while-revalidate=Z, stale-if-error=Z
+
+proxy-revalidate
+ is not currently supported.
+
+The following example demonstrates a 
+function
+ that caches its response and revalidates it every 1 second:
+
+app/api/cache-control-example
+/
+route
+.ts
+
+Next.js (/app)
+Next.js (/pages)
+Other frameworks
+export
+
+async
+
+function
+
+GET
+() {
+
+return
+
+new
+
+Response
+(
+'Cache Control example'
+,
+ {
+
+    status
+:
+
+200
+,
+
+    headers
+:
+ {
+
+'Cache-Control'
+:
+
+'public, s-maxage=1'
+,
+
+'CDN-Cache-Control'
+:
+
+'public, s-maxage=60'
+,
+
+'Vercel-CDN-Cache-Control'
+:
+
+'public, s-maxage=3600'
+,
+
+    }
+,
+
+  });
+
+}
+export
+
+async
+
+function
+
+GET
+() {
+
+return
+
+new
+
+Response
+(
+'Cache Control example'
+,
+ {
+
+    status
+:
+
+200
+,
+
+    headers
+:
+ {
+
+'Cache-Control'
+:
+
+'public, s-maxage=1'
+,
+
+'CDN-Cache-Control'
+:
+
+'public, s-maxage=60'
+,
+
+'Vercel-CDN-Cache-Control'
+:
+
+'public, s-maxage=3600'
+,
+
+    }
+,
+
+  });
+
+}
+import
+
+type
+ { NextApiRequest
+,
+ NextApiResponse } 
+from
+
+'next'
+;
+
+export
+
+default
+
+function
+
+handler
+(
+
+  request
+:
+
+NextApiRequest
+,
+
+  response
+:
+
+NextApiResponse
+,
+
+) {
+
+response
+.setHeader
+(
+'Cache-Control'
+,
+
+'public, s-maxage=1'
+);
+
+return
+
+response
+.status
+(
+200
+)
+.json
+({ name
+:
+
+'Timmy Triangle'
+ });
+
+}
+export
+
+default
+
+function
+
+handler
+(request
+,
+ response) {
+
+response
+.setHeader
+(
+'Cache-Control'
+,
+
+'public, s-maxage=1'
+);
+
+return
+
+response
+.status
+(
+200
+)
+.json
+({ name
+:
+
+'Timmy Triangle'
+ });
+
+}
+import
+
+type
+ { VercelResponse } 
+from
+
+'@vercel/node'
+;
+
+export
+
+default
+
+function
+
+handler
+(response
+:
+
+VercelResponse
+) {
+
+response
+.setHeader
+(
+'Cache-Control'
+,
+
+'public, s-maxage=1'
+);
+
+return
+
+response
+.status
+(
+200
+)
+.json
+({ name
+:
+
+'Timmy Triangle'
+ });
+
+}
+export
+
+default
+
+function
+
+handler
+(response) {
+
+response
+.setHeader
+(
+'Cache-Control'
+,
+
+'public, s-maxage=1'
+);
+
+return
+
+response
+.status
+(
+200
+)
+.json
+({ name
+:
+
+'Timmy Triangle'
+ });
+
+}
+
+For direct control over caching on Vercel and downstream CDNs, you can use 
+CDN-Cache-Control
+ headers.
+
+You can define route headers in 
+vercel.json
+ or 
+next.config.js
+ files. These headers will be overridden by 
+headers defined in Function responses
+.
+
+The following example demonstrates a 
+vercel.json
+ file that adds 
+Cache-Control
+ headers to a route:
+
+{
+
+"$schema"
+:
+
+"https://openapi.vercel.sh/vercel.json"
+,
+
+"headers"
+:
+ [
+
+    {
+
+"source"
+:
+
+"/about.js"
+,
+
+"headers"
+:
+ [
+
+        {
+
+"key"
+:
+
+"Cache-Control"
+,
+
+"value"
+:
+
+"s-maxage=1, stale-while-revalidate=59"
+
+        }
+
+      ]
+
+    }
+
+  ]
+
+}
+
+If you're building your app with Next.js, you should use 
+next.config.js
+ rather than 
+vercel.json
+. The following example demonstrates a 
+next.config.js
+ file that adds 
+Cache-Control
+ headers to a route:
+
+/** 
+@type
+
+{import('next').NextConfig}
+ */
+
+const
+
+nextConfig
+
+=
+ {
+
+  reactStrictMode
+:
+
+true
+,
+
+async
+
+headers
+() {
+
+return
+ [
+
+      {
+
+        source
+:
+
+'/about'
+,
+
+        headers
+:
+ [
+
+          {
+
+            key
+:
+
+'Cache-Control'
+,
+
+            value
+:
+
+'s-maxage=1, stale-while-revalidate=59'
+,
+
+          }
+,
+
+        ]
+,
+
+      }
+,
+
+    ];
+
+  }
+,
+
+};
+
+module
+.
+exports
+
+=
+ nextConfig;
+
+See 
+the Next docs
+ to learn more about 
+next.config.js
+.
+
+Static files are 
+automatically cached on Vercel's global network
+ for the lifetime of the deployment after the first request.
+
+If a static file is unchanged, the cached value can persist across deployments due to the hash used in the filename
+
+Optimized images cached will persist across deployments for both 
+static images
+ and 
+remote images
+
+max-age=N, public
+
+max-age=N, immutable
+
+Where 
+N
+ is the number of seconds the response should be cached. The response must also meet the 
+caching criteria
+.
+
+You can cache dynamic content through 
+Vercel Functions
+, including SSR, by adding 
+Cache-Control
+
+headers
+ to your response. When you specify 
+Cache-Control
+ headers in a function, responses will be cached in the region the function was requested from.
+
+See 
+our docs on Cache-Control headers
+ to learn how to best use 
+Cache-Control
+ directives on Vercel's CDN.
+
+Vercel supports two 
+Targeted Cache-Control headers
+:
+
+CDN-Cache-Control
+, which allows you to control the Vercel CDN Cache or other CDN cache 
+separately
+ from the browser's cache. The browser will not be affected by this header
+
+Vercel-CDN-Cache-Control
+, which allows you to specifically control Vercel's Cache. Neither other CDNs nor the browser will be affected by this header
+
+By default, the headers returned to the browser are as follows:
+
+Cache-Control
+
+CDN-Cache-Control
+
+Vercel-CDN-Cache-Control
+ headers are not returned to the browser or forwarded to other CDNs.
+
+To learn how these headers work in detail, see 
+our dedicated headers docs
+.
+
+The following example demonstrates 
+Cache-Control
+ headers that instruct:
+
+Vercel's Cache to have a 
+TTL
+ of 
+3600
+ seconds
+
+Downstream CDNs to have a TTL of 
+60
+ seconds
+
+Clients to have a TTL of 
+10
+ seconds
+
+app/api/cache-control-headers
+/
+route
+.ts
+
+Next.js (/app)
+Next.js (/pages)
+Other frameworks
+export
+
+async
+
+function
+
+GET
+() {
+
+return
+
+new
+
+Response
+(
+'Cache Control example'
+,
+ {
+
+    status
+:
+
+200
+,
+
+    headers
+:
+ {
+
+'Cache-Control'
+:
+
+'max-age=10'
+,
+
+'CDN-Cache-Control'
+:
+
+'max-age=60'
+,
+
+'Vercel-CDN-Cache-Control'
+:
+
+'max-age=3600'
+,
+
+    }
+,
+
+  });
+
+}
+export
+
+async
+
+function
+
+GET
+() {
+
+return
+
+new
+
+Response
+(
+'Cache Control example'
+,
+ {
+
+    status
+:
+
+200
+,
+
+    headers
+:
+ {
+
+'Cache-Control'
+:
+
+'max-age=10'
+,
+
+'CDN-Cache-Control'
+:
+
+'max-age=60'
+,
+
+'Vercel-CDN-Cache-Control'
+:
+
+'max-age=3600'
+,
+
+    }
+,
+
+  });
+
+}
+export
+
+async
+
+function
+
+GET
+() {
+
+return
+
+new
+
+Response
+(
+'Cache Control example'
+,
+ {
+
+    status
+:
+
+200
+,
+
+    headers
+:
+ {
+
+'Cache-Control'
+:
+
+'max-age=10'
+,
+
+'CDN-Cache-Control'
+:
+
+'max-age=60'
+,
+
+'Vercel-CDN-Cache-Control'
+:
+
+'max-age=3600'
+,
+
+    }
+,
+
+  });
+
+}
+export
+
+async
+
+function
+
+GET
+() {
+
+return
+
+new
+
+Response
+(
+'Cache Control example'
+,
+ {
+
+    status
+:
+
+200
+,
+
+    headers
+:
+ {
+
+'Cache-Control'
+:
+
+'max-age=10'
+,
+
+'CDN-Cache-Control'
+:
+
+'max-age=60'
+,
+
+'Vercel-CDN-Cache-Control'
+:
+
+'max-age=3600'
+,
+
+    }
+,
+
+  });
+
+}
+export
+
+default
+
+function
+
+handler
+(request
+,
+ response) {
+
+response
+.setHeader
+(
+'Vercel-CDN-Cache-Control'
+,
+
+'max-age=3600'
+);
+
+response
+.setHeader
+(
+'CDN-Cache-Control'
+,
+
+'max-age=60'
+);
+
+response
+.setHeader
+(
+'Cache-Control'
+,
+
+'max-age=10'
+);
+
+return
+
+response
+.status
+(
+200
+)
+.json
+({ name
+:
+
+'Timmy Triangle'
+ });
+
+}
+import
+
+type
+ { VercelResponse } 
+from
+
+'@vercel/node'
+;
+
+export
+
+default
+
+function
+
+handler
+(response
+:
+
+VercelResponse
+) {
+
+response
+.setHeader
+(
+'Vercel-CDN-Cache-Control'
+,
+
+'max-age=3600'
+);
+
+response
+.setHeader
+(
+'CDN-Cache-Control'
+,
+
+'max-age=60'
+);
+
+response
+.setHeader
+(
+'Cache-Control'
+,
+
+'max-age=10'
+);
+
+return
+
+response
+.status
+(
+200
+)
+.json
+({ name
+:
+
+'Timmy Triangle'
+ });
+
+}
+
+If you set 
+Cache-Control
+ without a 
+CDN-Cache-Control
+, the Vercel CDN strips 
+s-maxage
+ and 
+stale-while-revalidate
+ from the response before sending it to the browser. To determine if the response was served from the cache, check the 
+x-vercel-cache
+ header in the response.
+
+The 
+Vary
+ response header instructs caches to use specific request headers as part of the cache key. This allows you to serve different cached responses to different users based on their request headers.
+
+The 
+Vary
+ header only has an effect when used in combination with
+
+Cache-Control
+ headers that enable caching (such as 
+s-maxage
+). Without a
+caching directive, the 
+Vary
+ header has no behavior.
+
+When Vercel's CDN receives a request, it combines the cache key (described in the 
+Cache Invalidation
+ section) with the values of any request headers specified in the 
+Vary
+ header to create a unique cache entry for each distinct combination.
+
+Vercel's CDN already includes the 
+Accept
+ and 
+Accept-Encoding
+ headers as
+part of the cache key by default. You don't need to explicitly include these
+headers in your 
+Vary
+ header.
+
+The most common use case for the 
+Vary
+ header is content negotiation, serving different content based on:
+
+User location (e.g., 
+X-Vercel-IP-Country
+)
+
+Device type (e.g., 
+User-Agent
+)
+
+Language preferences (e.g., 
+Accept-Language
+)
+
+Example: Country-specific content
+
+You can use the 
+Vary
+ header with Vercel's 
+X-Vercel-IP-Country
+ request header to cache different responses for users from different countries:
+
+app/api/country-specific
+/
+route
+.ts
+
+Next.js (/app)
+Next.js (/pages)
+Other frameworks
+import
+ { 
+type
+ NextRequest } 
+from
+
+'next/server'
+;
+
+export
+
+async
+
+function
+
+GET
+(request
+:
+
+NextRequest
+) {
+
+const
+
+country
+
+=
+
+request
+.
+headers
+.get
+(
+'x-vercel-ip-country'
+) 
+||
+
+'unknown'
+;
+
+// Serve different content based on country
+
+let
+ content;
+
+if
+ (country 
+===
+
+'US'
+) {
+
+    content 
+=
+ { message
+:
+
+'Hello from the United States!'
+ };
+
+  } 
+else
+
+if
+ (country 
+===
+
+'GB'
+) {
+
+    content 
+=
+ { message
+:
+
+'Hello from the United Kingdom!'
+ };
+
+  } 
+else
+ {
+
+    content 
+=
+ { message
+:
+
+`Hello from 
+${
+country
+}
+!`
+ };
+
+  }
+
+return
+
+Response
+.json
+(content
+,
+ {
+
+    status
+:
+
+200
+,
+
+    headers
+:
+ {
+
+'Cache-Control'
+:
+
+'s-maxage=3600'
+,
+
+      Vary
+:
+
+'X-Vercel-IP-Country'
+,
+
+    }
+,
+
+  });
+
+}
+export
+
+async
+
+function
+
+GET
+(request) {
+
+const
+
+country
+
+=
+
+request
+.
+headers
+.get
+(
+'x-vercel-ip-country'
+) 
+||
+
+'unknown'
+;
+
+// Serve different content based on country
+
+let
+ content;
+
+if
+ (country 
+===
+
+'US'
+) {
+
+    content 
+=
+ { message
+:
+
+'Hello from the United States!'
+ };
+
+  } 
+else
+
+if
+ (country 
+===
+
+'GB'
+) {
+
+    content 
+=
+ { message
+:
+
+'Hello from the United Kingdom!'
+ };
+
+  } 
+else
+ {
+
+    content 
+=
+ { message
+:
+
+`Hello from 
+${
+country
+}
+!`
+ };
+
+  }
+
+return
+
+Response
+.json
+(content
+,
+ {
+
+    status
+:
+
+200
+,
+
+    headers
+:
+ {
+
+'Cache-Control'
+:
+
+'s-maxage=3600'
+,
+
+      Vary
+:
+
+'X-Vercel-IP-Country'
+,
+
+    }
+,
+
+  });
+
+}
+import
+
+type
+ { NextApiRequest
+,
+ NextApiResponse } 
+from
+
+'next'
+;
+
+export
+
+default
+
+function
+
+handler
+(req
+:
+
+NextApiRequest
+,
+ res
+:
+
+NextApiResponse
+) {
+
+const
+
+country
+
+=
+
+req
+.headers[
+'x-vercel-ip-country'
+] 
+||
+
+'unknown'
+;
+
+// Serve different content based on country
+
+let
+ content;
+
+if
+ (country 
+===
+
+'US'
+) {
+
+    content 
+=
+ { message
+:
+
+'Hello from the United States!'
+ };
+
+  } 
+else
+
+if
+ (country 
+===
+
+'GB'
+) {
+
+    content 
+=
+ { message
+:
+
+'Hello from the United Kingdom!'
+ };
+
+  } 
+else
+ {
+
+    content 
+=
+ { message
+:
+
+`Hello from 
+${
+country
+}
+!`
+ };
+
+  }
+
+// Set caching headers
+
+res
+.setHeader
+(
+'Cache-Control'
+,
+
+'s-maxage=3600'
+);
+
+res
+.setHeader
+(
+'Vary'
+,
+
+'X-Vercel-IP-Country'
+);
+
+res
+.status
+(
+200
+)
+.json
+(content);
+
+}
+export
+
+default
+
+function
+
+handler
+(req
+,
+ res) {
+
+const
+
+country
+
+=
+
+req
+.headers[
+'x-vercel-ip-country'
+] 
+||
+
+'unknown'
+;
+
+// Serve different content based on country
+
+let
+ content;
+
+if
+ (country 
+===
+
+'US'
+) {
+
+    content 
+=
+ { message
+:
+
+'Hello from the United States!'
+ };
+
+  } 
+else
+
+if
+ (country 
+===
+
+'GB'
+) {
+
+    content 
+=
+ { message
+:
+
+'Hello from the United Kingdom!'
+ };
+
+  } 
+else
+ {
+
+    content 
+=
+ { message
+:
+
+`Hello from 
+${
+country
+}
+!`
+ };
+
+  }
+
+// Set caching headers
+
+res
+.setHeader
+(
+'Cache-Control'
+,
+
+'s-maxage=3600'
+);
+
+res
+.setHeader
+(
+'Vary'
+,
+
+'X-Vercel-IP-Country'
+);
+
+res
+.status
+(
+200
+)
+.json
+(content);
+
+}
+export
+
+default
+ {
+
+fetch
+(request) {
+
+const
+
+country
+
+=
+
+request
+.
+headers
+.get
+(
+'x-vercel-ip-country'
+) 
+||
+
+'unknown'
+;
+
+// Serve different content based on country
+
+let
+ content;
+
+if
+ (country 
+===
+
+'US'
+) {
+
+      content 
+=
+ { message
+:
+
+'Hello from the United States!'
+ };
+
+    } 
+else
+
+if
+ (country 
+===
+
+'GB'
+) {
+
+      content 
+=
+ { message
+:
+
+'Hello from the United Kingdom!'
+ };
+
+    } 
+else
+ {
+
+      content 
+=
+ { message
+:
+
+`Hello from 
+${
+country
+}
+!`
+ };
+
+    }
+
+return
+
+Response
+.json
+(content
+,
+ {
+
+      status
+:
+
+200
+,
+
+      headers
+:
+ {
+
+'Cache-Control'
+:
+
+'s-maxage=3600'
+,
+
+        Vary
+:
+
+'X-Vercel-IP-Country'
+,
+
+      }
+,
+
+    });
+
+  }
+,
+
+};
+export
+
+default
+ {
+
+fetch
+(request) {
+
+const
+
+country
+
+=
+
+request
+.
+headers
+.get
+(
+'x-vercel-ip-country'
+) 
+||
+
+'unknown'
+;
+
+// Serve different content based on country
+
+let
+ content;
+
+if
+ (country 
+===
+
+'US'
+) {
+
+      content 
+=
+ { message
+:
+
+'Hello from the United States!'
+ };
+
+    } 
+else
+
+if
+ (country 
+===
+
+'GB'
+) {
+
+      content 
+=
+ { message
+:
+
+'Hello from the United Kingdom!'
+ };
+
+    } 
+else
+ {
+
+      content 
+=
+ { message
+:
+
+`Hello from 
+${
+country
+}
+!`
+ };
+
+    }
+
+return
+
+Response
+.json
+(content
+,
+ {
+
+      status
+:
+
+200
+,
+
+      headers
+:
+ {
+
+'Cache-Control'
+:
+
+'s-maxage=3600'
+,
+
+        Vary
+:
+
+'X-Vercel-IP-Country'
+,
+
+      }
+,
+
+    });
+
+  }
+,
+
+};
+
+You can set the 
+Vary
+ header in the same ways you set other response headers:
+
+In Vercel Functions
+
+Next.js (/app)
+Next.js (/pages)
+Other frameworks
+import
+ { 
+type
+ NextRequest } 
+from
+
+'next/server'
+;
+
+export
+
+async
+
+function
+
+GET
+(request
+:
+
+NextRequest
+) {
+
+return
+
+Response
+.json
+(
+
+    { data
+:
+
+'This response varies by country'
+ }
+,
+
+    {
+
+      status
+:
+
+200
+,
+
+      headers
+:
+ {
+
+        Vary
+:
+
+'X-Vercel-IP-Country'
+,
+
+'Cache-Control'
+:
+
+'s-maxage=3600'
+,
+
+      }
+,
+
+    }
+,
+
+  );
+
+}
+export
+
+async
+
+function
+
+GET
+(request) {
+
+return
+
+Response
+.json
+(
+
+    { data
+:
+
+'This response varies by country'
+ }
+,
+
+    {
+
+      status
+:
+
+200
+,
+
+      headers
+:
+ {
+
+        Vary
+:
+
+'X-Vercel-IP-Country'
+,
+
+'Cache-Control'
+:
+
+'s-maxage=3600'
+,
+
+      }
+,
+
+    }
+,
+
+  );
+
+}
+import
+
+type
+ { NextApiRequest
+,
+ NextApiResponse } 
+from
+
+'next'
+;
+
+export
+
+default
+
+function
+
+handler
+(req
+:
+
+NextApiRequest
+,
+ res
+:
+
+NextApiResponse
+) {
+
+res
+.setHeader
+(
+'Vary'
+,
+
+'X-Vercel-IP-Country'
+);
+
+res
+.setHeader
+(
+'Cache-Control'
+,
+
+'s-maxage=3600'
+);
+
+res
+.status
+(
+200
+)
+.json
+({ data
+:
+
+'This response varies by country'
+ });
+
+}
+export
+
+default
+
+function
+
+handler
+(req
+,
+ res) {
+
+res
+.setHeader
+(
+'Vary'
+,
+
+'X-Vercel-IP-Country'
+);
+
+res
+.setHeader
+(
+'Cache-Control'
+,
+
+'s-maxage=3600'
+);
+
+res
+.status
+(
+200
+)
+.json
+({ data
+:
+
+'This response varies by country'
+ });
+
+}
+export
+
+default
+ {
+
+fetch
+(request) {
+
+return
+
+Response
+.json
+(
+
+      { data
+:
+
+'This response varies by country'
+ }
+,
+
+      {
+
+        status
+:
+
+200
+,
+
+        headers
+:
+ {
+
+          Vary
+:
+
+'X-Vercel-IP-Country'
+,
+
+'Cache-Control'
+:
+
+'s-maxage=3600'
+,
+
+        }
+,
+
+      }
+,
+
+    );
+
+  }
+,
+
+};
+export
+
+default
+ {
+
+fetch
+(request) {
+
+return
+
+Response
+.json
+(
+
+      { data
+:
+
+'This response varies by country'
+ }
+,
+
+      {
+
+        status
+:
+
+200
+,
+
+        headers
+:
+ {
+
+          Vary
+:
+
+'X-Vercel-IP-Country'
+,
+
+'Cache-Control'
+:
+
+'s-maxage=3600'
+,
+
+        }
+,
+
+      }
+,
+
+    );
+
+  }
+,
+
+};
+
+Using 
+vercel.json
+
+{
+
+"$schema"
+:
+
+"https://openapi.vercel.sh/vercel.json"
+,
+
+"headers"
+:
+ [
+
+    {
+
+"source"
+:
+
+"/api/data"
+,
+
+"headers"
+:
+ [
+
+        {
+
+"key"
+:
+
+"Vary"
+,
+
+"value"
+:
+
+"X-Vercel-IP-Country"
+
+        }
+,
+
+        {
+
+"key"
+:
+
+"Cache-Control"
+,
+
+"value"
+:
+
+"s-maxage=3600"
+
+        }
+
+      ]
+
+    }
+
+  ]
+
+}
+
+Using 
+next.config.js
+
+If you're building your app with Next.js, use 
+next.config.js
+:
+
+/** 
+@type
+
+{import('next').NextConfig}
+ */
+
+const
+
+nextConfig
+
+=
+ {
+
+async
+
+headers
+() {
+
+return
+ [
+
+      {
+
+        source
+:
+
+'/api/data'
+,
+
+        headers
+:
+ [
+
+          {
+
+            key
+:
+
+'Vary'
+,
+
+            value
+:
+
+'X-Vercel-IP-Country'
+,
+
+          }
+,
+
+          {
+
+            key
+:
+
+'Cache-Control'
+,
+
+            value
+:
+
+'s-maxage=3600'
+,
+
+          }
+,
+
+        ]
+,
+
+      }
+,
+
+    ];
+
+  }
+,
+
+};
+
+module
+.
+exports
+
+=
+ nextConfig;
+
+You can specify multiple headers in a single 
+Vary
+ value by separating them with commas:
+
+res
+.setHeader
+(
+'Vary'
+,
+
+'X-Vercel-IP-Country, Accept-Language'
+);
+
+This will create separate cache entries for each unique combination of country and language preference.
+
+Use 
+Vary
+ headers selectively, as each additional header exponentially increases the number of cache entries. This doesn't directly impact your bill, but can result in more cache misses than desired
+
+Only include headers that meaningfully impact content generation
+
+Consider combining multiple variations into a single header value when possible
+
+The 
+Cache-Control
+ field is an HTTP header specifying caching rules for client (browser) requests and server responses. A cache must obey the requirements defined in the 
+Cache-Control
+ header.
+
+For server responses to be successfully cached with Vercel's CDN, the following criteria must be met:
+
+Request uses 
+GET
+ or 
+HEAD
+ method.
+
+Request doesn't contain 
+Range
+ header.
+
+Request doesn't contain 
+Authorization
+ header.
+
+Response uses 
+200
+, 
+404
+, 
+410
+, 
+301
+, 
+302
+, 
+307
+ or 
+308
+ status code.
+
+Response doesn't exceed 
+10MB
+ in content length.
+
+Response doesn't contain the 
+set-cookie
+ header.
+
+Response doesn't contain the 
+private
+, 
+no-cache
+ or 
+no-store
+ directives in the 
+Cache-Control
+ header.
+
+Response doesn't contain 
+Vary: *
+ header, which is treated as equivalent to 
+Cache-Control: private
+.
+
+Vercel 
+doesn't allow bypassing the cache for static files
+ by design.
+
+To learn about cache keys, manually purging the cache, and the differences between invalidate and delete methods, see 
+Purging Vercel CDN Cache
+.
+
+The 
+x-vercel-cache
+ header is included in HTTP responses to the client, and describes the state of the cache.
+
+See 
+our headers docs
+ to learn more.
+
+Vercel's CDN Cache is segmented 
+by region
+. The following caching limits apply to 
+Vercel Function
+ responses:
+
+Max cacheable response size:
+
+Streaming functions: 
+20MB
+
+Non-streaming functions: 
+10MB
+
+Max cache time: 
+1 year
+
+s-maxage
+
+max-age
+
+stale-while-revalidate
+
+While you can put the maximum time for server-side caching, cache times are best-effort and not guaranteed. If an asset is requested often, it is more likely to live the entire duration. If your asset is rarely requested (e.g. once a day), it may be evicted from the regional cache.
+
+Vercel doesn't currently support using 
+proxy-revalidate
+ and 
+stale-if-error
+ for server-side caching.
+---

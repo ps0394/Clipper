@@ -1,0 +1,527 @@
+<!DOCTYPE html><html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-dev-tools/cli/install" data-has-hydrated="false" data-theme="light" data-theme-choice="light"><head><meta charset="UTF-8"><meta name="generator" content="Docusaurus v3.9.2"><title data-rh="true">Install or update the Databricks CLI | Databricks on AWS</title><meta data-rh="true" name="viewport" content="width=device-width, initial-scale=1.0"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.databricks.com/aws/en/img/og-image.png"><meta data-rh="true" name="twitter:image" content="https://docs.databricks.com/aws/en/img/og-image.png"><meta data-rh="true" property="og:url" content="https://docs.databricks.com/aws/en/dev-tools/cli/install"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="ja"><meta data-rh="true" property="og:locale:alternate" content="pt"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Install or update the Databricks CLI | Databricks on AWS"><meta data-rh="true" name="description" content="Learn how to install the Databricks CLI. The Databricks CLI is a command-line tool that works with Databricks."><meta data-rh="true" property="og:description" content="Learn how to install the Databricks CLI. The Databricks CLI is a command-line tool that works with Databricks."><link data-rh="true" rel="icon" href="/aws/en/favicon.ico"><link data-rh="true" rel="canonical" href="https://docs.databricks.com/aws/en/dev-tools/cli/install"><link data-rh="true" rel="alternate" href="https://docs.databricks.com/aws/en/dev-tools/cli/install" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.databricks.com/aws/ja/dev-tools/cli/install" hreflang="ja"><link data-rh="true" rel="alternate" href="https://docs.databricks.com/aws/pt/dev-tools/cli/install" hreflang="pt"><link data-rh="true" rel="alternate" href="https://docs.databricks.com/aws/en/dev-tools/cli/install" hreflang="x-default"><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=AW-369195016&amp;cx=c&amp;gtm=4e64o1"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=DC-10510347&amp;cx=c&amp;gtm=4e64o1"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=DC-15572922&amp;cx=c&amp;gtm=4e64o1"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-TWTKQQ"></script><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://docs.databricks.com/aws/en/dev-tools/","name":"Local development tools","position":1},{"@type":"ListItem","item":"https://docs.databricks.com/aws/en/dev-tools/cli/","name":"Databricks CLI","position":2},{"@type":"ListItem","item":"https://docs.databricks.com/aws/en/dev-tools/cli/install","name":"Install or update","position":3}]}</script><link rel="preconnect" href="https://www.googletagmanager.com"><script>window.dataLayer=window.dataLayer||[],function(e,t,a,n,r){e[n]=e[n]||[],e[n].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var d=t.getElementsByTagName(a)[0],g=t.createElement(a);g.async=!0,g.src="https://www.googletagmanager.com/gtm.js?id="+r+("dataLayer"!=n?"&l="+n:""),d.parentNode.insertBefore(g,d)}(window,document,"script","dataLayer","GTM-TWTKQQ")</script><link rel="stylesheet" href="/aws/en/assets/css/styles.74329a39.css"><script src="/aws/en/assets/js/runtime~main.c84d0028.js" defer=""></script><script src="/aws/en/assets/js/main.027dfb56.js" defer=""></script><script type="text/javascript" src="https://www.databricks.com/sites/default/files/onetrust/DB_OtAutoBlock.js?v=1"></script><script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="92466579-1717-44d3-809d-a05fb02843ed"></script><link rel="stylesheet" id="db-onetrust-style" href="https://www.databricks.com/wp-content/uploads/db_onetrust.css" media="all"><script>window.rudderstackKey = "2SOR9fvSr5Fi6tN2ihPbVHnX1SZ"</script><script type="text/javascript" src="https://www.databricks.com/sites/default/files/rudderstack/v1/db-rudderstack-events.js"></script><style type="text/css">[data-sonner-toaster][dir=ltr],html[dir=ltr]{--toast-icon-margin-start:-3px;--toast-icon-margin-end:4px;--toast-svg-margin-start:-1px;--toast-svg-margin-end:0px;--toast-button-margin-start:auto;--toast-button-margin-end:0;--toast-close-button-start:0;--toast-close-button-end:unset;--toast-close-button-transform:translate(-35%, -35%)}[data-sonner-toaster][dir=rtl],html[dir=rtl]{--toast-icon-margin-start:4px;--toast-icon-margin-end:-3px;--toast-svg-margin-start:0px;--toast-svg-margin-end:-1px;--toast-button-margin-start:0;--toast-button-margin-end:auto;--toast-close-button-start:unset;--toast-close-button-end:0;--toast-close-button-transform:translate(35%, -35%)}[data-sonner-toaster]{position:fixed;width:var(--width);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;--gray1:hsl(0, 0%, 99%);--gray2:hsl(0, 0%, 97.3%);--gray3:hsl(0, 0%, 95.1%);--gray4:hsl(0, 0%, 93%);--gray5:hsl(0, 0%, 90.9%);--gray6:hsl(0, 0%, 88.7%);--gray7:hsl(0, 0%, 85.8%);--gray8:hsl(0, 0%, 78%);--gray9:hsl(0, 0%, 56.1%);--gray10:hsl(0, 0%, 52.3%);--gray11:hsl(0, 0%, 43.5%);--gray12:hsl(0, 0%, 9%);--border-radius:8px;box-sizing:border-box;padding:0;margin:0;list-style:none;outline:0;z-index:999999999;transition:transform .4s ease}@media (hover:none) and (pointer:coarse){[data-sonner-toaster][data-lifted=true]{transform:none}}[data-sonner-toaster][data-x-position=right]{right:var(--offset-right)}[data-sonner-toaster][data-x-position=left]{left:var(--offset-left)}[data-sonner-toaster][data-x-position=center]{left:50%;transform:translateX(-50%)}[data-sonner-toaster][data-y-position=top]{top:var(--offset-top)}[data-sonner-toaster][data-y-position=bottom]{bottom:var(--offset-bottom)}[data-sonner-toast]{--y:translateY(100%);--lift-amount:calc(var(--lift) * var(--gap));z-index:var(--z-index);position:absolute;opacity:0;transform:var(--y);touch-action:none;transition:transform .4s,opacity .4s,height .4s,box-shadow .2s;box-sizing:border-box;outline:0;overflow-wrap:anywhere}[data-sonner-toast][data-styled=true]{padding:16px;background:var(--normal-bg);border:1px solid var(--normal-border);color:var(--normal-text);border-radius:var(--border-radius);box-shadow:0 4px 12px rgba(0,0,0,.1);width:var(--width);font-size:13px;display:flex;align-items:center;gap:6px}[data-sonner-toast]:focus-visible{box-shadow:0 4px 12px rgba(0,0,0,.1),0 0 0 2px rgba(0,0,0,.2)}[data-sonner-toast][data-y-position=top]{top:0;--y:translateY(-100%);--lift:1;--lift-amount:calc(1 * var(--gap))}[data-sonner-toast][data-y-position=bottom]{bottom:0;--y:translateY(100%);--lift:-1;--lift-amount:calc(var(--lift) * var(--gap))}[data-sonner-toast][data-styled=true] [data-description]{font-weight:400;line-height:1.4;color:#3f3f3f}[data-rich-colors=true][data-sonner-toast][data-styled=true] [data-description]{color:inherit}[data-sonner-toaster][data-sonner-theme=dark] [data-description]{color:#e8e8e8}[data-sonner-toast][data-styled=true] [data-title]{font-weight:500;line-height:1.5;color:inherit}[data-sonner-toast][data-styled=true] [data-icon]{display:flex;height:16px;width:16px;position:relative;justify-content:flex-start;align-items:center;flex-shrink:0;margin-left:var(--toast-icon-margin-start);margin-right:var(--toast-icon-margin-end)}[data-sonner-toast][data-promise=true] [data-icon]>svg{opacity:0;transform:scale(.8);transform-origin:center;animation:sonner-fade-in .3s ease forwards}[data-sonner-toast][data-styled=true] [data-icon]>*{flex-shrink:0}[data-sonner-toast][data-styled=true] [data-icon] svg{margin-left:var(--toast-svg-margin-start);margin-right:var(--toast-svg-margin-end)}[data-sonner-toast][data-styled=true] [data-content]{display:flex;flex-direction:column;gap:2px}[data-sonner-toast][data-styled=true] [data-button]{border-radius:4px;padding-left:8px;padding-right:8px;height:24px;font-size:12px;color:var(--normal-bg);background:var(--normal-text);margin-left:var(--toast-button-margin-start);margin-right:var(--toast-button-margin-end);border:none;font-weight:500;cursor:pointer;outline:0;display:flex;align-items:center;flex-shrink:0;transition:opacity .4s,box-shadow .2s}[data-sonner-toast][data-styled=true] [data-button]:focus-visible{box-shadow:0 0 0 2px rgba(0,0,0,.4)}[data-sonner-toast][data-styled=true] [data-button]:first-of-type{margin-left:var(--toast-button-margin-start);margin-right:var(--toast-button-margin-end)}[data-sonner-toast][data-styled=true] [data-cancel]{color:var(--normal-text);background:rgba(0,0,0,.08)}[data-sonner-toaster][data-sonner-theme=dark] [data-sonner-toast][data-styled=true] [data-cancel]{background:rgba(255,255,255,.3)}[data-sonner-toast][data-styled=true] [data-close-button]{position:absolute;left:var(--toast-close-button-start);right:var(--toast-close-button-end);top:0;height:20px;width:20px;display:flex;justify-content:center;align-items:center;padding:0;color:var(--gray12);background:var(--normal-bg);border:1px solid var(--gray4);transform:var(--toast-close-button-transform);border-radius:50%;cursor:pointer;z-index:1;transition:opacity .1s,background .2s,border-color .2s}[data-sonner-toast][data-styled=true] [data-close-button]:focus-visible{box-shadow:0 4px 12px rgba(0,0,0,.1),0 0 0 2px rgba(0,0,0,.2)}[data-sonner-toast][data-styled=true] [data-disabled=true]{cursor:not-allowed}[data-sonner-toast][data-styled=true]:hover [data-close-button]:hover{background:var(--gray2);border-color:var(--gray5)}[data-sonner-toast][data-swiping=true]::before{content:'';position:absolute;left:-100%;right:-100%;height:100%;z-index:-1}[data-sonner-toast][data-y-position=top][data-swiping=true]::before{bottom:50%;transform:scaleY(3) translateY(50%)}[data-sonner-toast][data-y-position=bottom][data-swiping=true]::before{top:50%;transform:scaleY(3) translateY(-50%)}[data-sonner-toast][data-swiping=false][data-removed=true]::before{content:'';position:absolute;inset:0;transform:scaleY(2)}[data-sonner-toast][data-expanded=true]::after{content:'';position:absolute;left:0;height:calc(var(--gap) + 1px);bottom:100%;width:100%}[data-sonner-toast][data-mounted=true]{--y:translateY(0);opacity:1}[data-sonner-toast][data-expanded=false][data-front=false]{--scale:var(--toasts-before) * 0.05 + 1;--y:translateY(calc(var(--lift-amount) * var(--toasts-before))) scale(calc(-1 * var(--scale)));height:var(--front-toast-height)}[data-sonner-toast]>*{transition:opacity .4s}[data-sonner-toast][data-x-position=right]{right:0}[data-sonner-toast][data-x-position=left]{left:0}[data-sonner-toast][data-expanded=false][data-front=false][data-styled=true]>*{opacity:0}[data-sonner-toast][data-visible=false]{opacity:0;pointer-events:none}[data-sonner-toast][data-mounted=true][data-expanded=true]{--y:translateY(calc(var(--lift) * var(--offset)));height:var(--initial-height)}[data-sonner-toast][data-removed=true][data-front=true][data-swipe-out=false]{--y:translateY(calc(var(--lift) * -100%));opacity:0}[data-sonner-toast][data-removed=true][data-front=false][data-swipe-out=false][data-expanded=true]{--y:translateY(calc(var(--lift) * var(--offset) + var(--lift) * -100%));opacity:0}[data-sonner-toast][data-removed=true][data-front=false][data-swipe-out=false][data-expanded=false]{--y:translateY(40%);opacity:0;transition:transform .5s,opacity .2s}[data-sonner-toast][data-removed=true][data-front=false]::before{height:calc(var(--initial-height) + 20%)}[data-sonner-toast][data-swiping=true]{transform:var(--y) translateY(var(--swipe-amount-y,0)) translateX(var(--swipe-amount-x,0));transition:none}[data-sonner-toast][data-swiped=true]{user-select:none}[data-sonner-toast][data-swipe-out=true][data-y-position=bottom],[data-sonner-toast][data-swipe-out=true][data-y-position=top]{animation-duration:.2s;animation-timing-function:ease-out;animation-fill-mode:forwards}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=left]{animation-name:swipe-out-left}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=right]{animation-name:swipe-out-right}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=up]{animation-name:swipe-out-up}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=down]{animation-name:swipe-out-down}@keyframes swipe-out-left{from{transform:var(--y) translateX(var(--swipe-amount-x));opacity:1}to{transform:var(--y) translateX(calc(var(--swipe-amount-x) - 100%));opacity:0}}@keyframes swipe-out-right{from{transform:var(--y) translateX(var(--swipe-amount-x));opacity:1}to{transform:var(--y) translateX(calc(var(--swipe-amount-x) + 100%));opacity:0}}@keyframes swipe-out-up{from{transform:var(--y) translateY(var(--swipe-amount-y));opacity:1}to{transform:var(--y) translateY(calc(var(--swipe-amount-y) - 100%));opacity:0}}@keyframes swipe-out-down{from{transform:var(--y) translateY(var(--swipe-amount-y));opacity:1}to{transform:var(--y) translateY(calc(var(--swipe-amount-y) + 100%));opacity:0}}@media (max-width:600px){[data-sonner-toaster]{position:fixed;right:var(--mobile-offset-right);left:var(--mobile-offset-left);width:100%}[data-sonner-toaster][dir=rtl]{left:calc(var(--mobile-offset-left) * -1)}[data-sonner-toaster] [data-sonner-toast]{left:0;right:0;width:calc(100% - var(--mobile-offset-left) * 2)}[data-sonner-toaster][data-x-position=left]{left:var(--mobile-offset-left)}[data-sonner-toaster][data-y-position=bottom]{bottom:var(--mobile-offset-bottom)}[data-sonner-toaster][data-y-position=top]{top:var(--mobile-offset-top)}[data-sonner-toaster][data-x-position=center]{left:var(--mobile-offset-left);right:var(--mobile-offset-right);transform:none}}[data-sonner-toaster][data-sonner-theme=light]{--normal-bg:#fff;--normal-border:var(--gray4);--normal-text:var(--gray12);--success-bg:hsl(143, 85%, 96%);--success-border:hsl(145, 92%, 87%);--success-text:hsl(140, 100%, 27%);--info-bg:hsl(208, 100%, 97%);--info-border:hsl(221, 91%, 93%);--info-text:hsl(210, 92%, 45%);--warning-bg:hsl(49, 100%, 97%);--warning-border:hsl(49, 91%, 84%);--warning-text:hsl(31, 92%, 45%);--error-bg:hsl(359, 100%, 97%);--error-border:hsl(359, 100%, 94%);--error-text:hsl(360, 100%, 45%)}[data-sonner-toaster][data-sonner-theme=light] [data-sonner-toast][data-invert=true]{--normal-bg:#000;--normal-border:hsl(0, 0%, 20%);--normal-text:var(--gray1)}[data-sonner-toaster][data-sonner-theme=dark] [data-sonner-toast][data-invert=true]{--normal-bg:#fff;--normal-border:var(--gray3);--normal-text:var(--gray12)}[data-sonner-toaster][data-sonner-theme=dark]{--normal-bg:#000;--normal-bg-hover:hsl(0, 0%, 12%);--normal-border:hsl(0, 0%, 20%);--normal-border-hover:hsl(0, 0%, 25%);--normal-text:var(--gray1);--success-bg:hsl(150, 100%, 6%);--success-border:hsl(147, 100%, 12%);--success-text:hsl(150, 86%, 65%);--info-bg:hsl(215, 100%, 6%);--info-border:hsl(223, 43%, 17%);--info-text:hsl(216, 87%, 65%);--warning-bg:hsl(64, 100%, 6%);--warning-border:hsl(60, 100%, 9%);--warning-text:hsl(46, 87%, 65%);--error-bg:hsl(358, 76%, 10%);--error-border:hsl(357, 89%, 16%);--error-text:hsl(358, 100%, 81%)}[data-sonner-toaster][data-sonner-theme=dark] [data-sonner-toast] [data-close-button]{background:var(--normal-bg);border-color:var(--normal-border);color:var(--normal-text)}[data-sonner-toaster][data-sonner-theme=dark] [data-sonner-toast] [data-close-button]:hover{background:var(--normal-bg-hover);border-color:var(--normal-border-hover)}[data-rich-colors=true][data-sonner-toast][data-type=success]{background:var(--success-bg);border-color:var(--success-border);color:var(--success-text)}[data-rich-colors=true][data-sonner-toast][data-type=success] [data-close-button]{background:var(--success-bg);border-color:var(--success-border);color:var(--success-text)}[data-rich-colors=true][data-sonner-toast][data-type=info]{background:var(--info-bg);border-color:var(--info-border);color:var(--info-text)}[data-rich-colors=true][data-sonner-toast][data-type=info] [data-close-button]{background:var(--info-bg);border-color:var(--info-border);color:var(--info-text)}[data-rich-colors=true][data-sonner-toast][data-type=warning]{background:var(--warning-bg);border-color:var(--warning-border);color:var(--warning-text)}[data-rich-colors=true][data-sonner-toast][data-type=warning] [data-close-button]{background:var(--warning-bg);border-color:var(--warning-border);color:var(--warning-text)}[data-rich-colors=true][data-sonner-toast][data-type=error]{background:var(--error-bg);border-color:var(--error-border);color:var(--error-text)}[data-rich-colors=true][data-sonner-toast][data-type=error] [data-close-button]{background:var(--error-bg);border-color:var(--error-border);color:var(--error-text)}.sonner-loading-wrapper{--size:16px;height:var(--size);width:var(--size);position:absolute;inset:0;z-index:10}.sonner-loading-wrapper[data-visible=false]{transform-origin:center;animation:sonner-fade-out .2s ease forwards}.sonner-spinner{position:relative;top:50%;left:50%;height:var(--size);width:var(--size)}.sonner-loading-bar{animation:sonner-spin 1.2s linear infinite;background:var(--gray11);border-radius:6px;height:8%;left:-10%;position:absolute;top:-3.9%;width:24%}.sonner-loading-bar:first-child{animation-delay:-1.2s;transform:rotate(.0001deg) translate(146%)}.sonner-loading-bar:nth-child(2){animation-delay:-1.1s;transform:rotate(30deg) translate(146%)}.sonner-loading-bar:nth-child(3){animation-delay:-1s;transform:rotate(60deg) translate(146%)}.sonner-loading-bar:nth-child(4){animation-delay:-.9s;transform:rotate(90deg) translate(146%)}.sonner-loading-bar:nth-child(5){animation-delay:-.8s;transform:rotate(120deg) translate(146%)}.sonner-loading-bar:nth-child(6){animation-delay:-.7s;transform:rotate(150deg) translate(146%)}.sonner-loading-bar:nth-child(7){animation-delay:-.6s;transform:rotate(180deg) translate(146%)}.sonner-loading-bar:nth-child(8){animation-delay:-.5s;transform:rotate(210deg) translate(146%)}.sonner-loading-bar:nth-child(9){animation-delay:-.4s;transform:rotate(240deg) translate(146%)}.sonner-loading-bar:nth-child(10){animation-delay:-.3s;transform:rotate(270deg) translate(146%)}.sonner-loading-bar:nth-child(11){animation-delay:-.2s;transform:rotate(300deg) translate(146%)}.sonner-loading-bar:nth-child(12){animation-delay:-.1s;transform:rotate(330deg) translate(146%)}@keyframes sonner-fade-in{0%{opacity:0;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}@keyframes sonner-fade-out{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.8)}}@keyframes sonner-spin{0%{opacity:1}100%{opacity:.15}}@media (prefers-reduced-motion){.sonner-loading-bar,[data-sonner-toast],[data-sonner-toast]>*{transition:none!important;animation:none!important}}.sonner-loader{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transform-origin:center;transition:opacity .2s,transform .2s}.sonner-loader[data-visible=false]{opacity:0;transform:scale(.8) translate(-50%,-50%)}</style><script async="">
+    var db_debug = function(){}
+    if(document.cookie.match('(^|;)\\s*' + 'wp-db_debug' + '\\s*=\\s*([^;]+)')) { db_debug = console.log.bind(window.console) }
+</script><script async="">
+function OptanonWrapper() {
+    db_debug("OptanonWrapper():DB:v1.3")
+    let otInitialGroupsStr = null
+    let otActiveGroupsStr = null
+    // Get initial OnetrustActiveGroups ids
+    if(typeof OptanonWrapperCount == "undefined"){
+      db_debug("otInitialGroups()", OnetrustActiveGroups)
+      OptanonWrapperCount = ''
+      otInitialGroupsStr = OnetrustActiveGroups
+    }
+    otActiveGroupsStr =  OnetrustActiveGroups
+    const rudderstackKey = (typeof window !== 'undefined' && window.rudderstackKey) || "undefined"
+    const knownBotUserAgents = [
+      'HeadlessChrome',
+      'PhantomJS',
+      'Electron/',
+      'ApacheBench',
+      'Siege/',
+      'https://k6.io/',
+      'Radview',
+      'Locust',
+      'Cypress',
+      'webmarketing_ignore'
+    ]    
+    let shouldLoadRudderstack = true
+    if (navigator?.userAgent) {
+      const lowerCaseUserAgent = navigator.userAgent.toLowerCase()
+      if (knownBotUserAgents.some(bot => lowerCaseUserAgent.includes(bot.toLowerCase()))) {
+        if (typeof db_debug !== "undefined") {
+          db_debug("OptanonWrapper():Bot detected, not loading Rudderstack")
+        }
+        shouldLoadRudderstack = false
+      }
+    }    
+    if (typeof window !== 'undefined') {
+      window.rudderstackKey = rudderstackKey
+    }
+    // Load rudderstack
+    if (typeof rudderanalytics !== "undefined" && shouldLoadRudderstack) {
+      if (typeof db_debug !== "undefined") {
+        db_debug('OptanonWrapper():Loading Rudderstack with OneTrust: rudderstack key', rudderstackKey)
+      }    
+      rudderanalytics.load(rudderstackKey,"https://ue.databricks.com", {
+          cookieConsentManager: {
+              oneTrust: {
+                  enabled: true
+              }
+          }
+      })
+    }
+    
+    function getGroupsQueryParam (oneTrustCookie) {
+      if (!oneTrustCookie) {
+        return ""
+      }
+      try {
+        // Extract the groups parameter
+        const groupsEncoded = oneTrustCookie.match(/groups=([^&]*)/)[1]
+        
+        // Decode the value
+        const groupsDecoded = decodeURIComponent(groupsEncoded)
+        return groupsDecoded
+      } catch (error) {
+        return ""
+      }
+    }    
+
+    function getCookie(name) {
+      const value = ";" + document.cookie
+      const parts = value.split("; " + name + "=")
+      var returnVal = undefined
+      if (parts.length === 2) {
+        returnVal = parts.pop().split(';').shift()
+      }
+      db_debug("getCookie():result", name, returnVal)
+      return returnVal
+    }
+
+    function checkIfCookieConsentIsDefined(groupId) {
+      const oneTrustCookie = getCookie("OptanonConsent")
+      db_debug("checkIfCookieConsentIsDefined()", groupId, oneTrustCookie)
+      const groups = getGroupsQueryParam(oneTrustCookie)
+      
+      if (groups.length > 0) {
+          if (groups.includes(groupId)) {
+            db_debug("checkIfCookieConsentIsDefined():result", groupId, true)
+            return true
+          }
+      }
+      else {
+        // fallback to OnetrustActiveGroups if OptanonConsent does not define groups
+        if (typeof OnetrustActiveGroups !== "undefined") {
+            const otActiveGroupsStr =  OnetrustActiveGroups
+            if (otActiveGroupsStr.includes(groupId)) {
+                db_debug("checkIfCookieConsentIsDefined():resultfallback", groupId, true)
+                return true
+            }                
+        }
+        db_debug("checkIfCookieConsentIsDefined():resultfallback", groupId, false)  
+        return false
+      }      
+      
+      db_debug("checkIfCookieConsentIsDefined():result", groupId, false)
+      return false
+    }
+    
+    function checkCookieConsent(groupId) {
+      // checks if consent given for category, ex: C0002
+      let consent = false
+      const oneTrustCookie = getCookie("OptanonConsent")
+      const groups = getGroupsQueryParam(oneTrustCookie)
+      
+      if (groups.length > 0) {
+          const arrGroups = groups.split(",")
+          arrGroups.forEach((el) => {
+            if (el.includes(groupId + ":")) {
+              const arrGroup = el.split(":")
+              if (arrGroup.length === 2 && arrGroup[1] === "1") {
+                consent = true
+              }
+            }
+          }) 
+      }
+      else {
+        // fallback to OnetrustActiveGroups if OptanonConsent does not define groups
+        if (typeof OnetrustActiveGroups !== "undefined") {
+            const otActiveGroupsStr =  OnetrustActiveGroups
+            if (otActiveGroupsStr.includes(groupId)) {
+                consent = true
+            }        
+        }
+      }
+    
+      // alternate handling for US banner if groupId is not defined
+      if (!checkIfCookieConsentIsDefined(groupId) && checkIfCookieConsentIsDefined("SHARE")) {
+        switch (groupId) {
+          case "C0002":
+          case "C0003":
+          case "C0004":
+            consent = true
+            break
+          default:
+            break
+        }
+    
+        // if consent is given for C0004 and SHARE is defined, check if SHARE is also given too
+        if (consent && groupId === "C0004") {
+          if (checkIfCookieConsentIsDefined("SHARE")) {
+            consent = checkCookieConsent("SHARE")
+          }
+        }
+      }
+      db_debug("checkCookieConsent():result", groupId, consent)
+      return consent
+    }
+
+    //Delete cookies
+    otRemoveOptOutCookies(otActiveGroupsStr)
+
+    function otRemoveOptOutCookies(otActiveGroupsStr)
+    {
+        db_debug("otRemoveOptOutCookies()")
+        db_debug("otRemoveOptOutCookies():otActiveGroupsStr", otActiveGroupsStr)
+        
+        // do not process if we cannot find the OneTrust cookie
+        const oneTrustCookie = getCookie("OptanonConsent")
+        db_debug("otRemoveOptOutCookies():oneTrustCookie", oneTrustCookie)
+        if (typeof oneTrustCookie === "undefined") {
+            return
+        }
+
+        var otDomainGroups = JSON.parse(JSON.stringify(Optanon.GetDomainData().Groups))
+        var dbDomainGroups = ["C0002","C0003","C0004"]
+
+        dbDomainGroups.forEach((domainGroup) => {
+            // check if group is inactive
+            if (!checkCookieConsent(domainGroup)) {
+                // if inactive, time to delete cookies for that group
+                for(var i=0; i < otDomainGroups.length; i++){
+                    // small array so brute force search
+                    if(otDomainGroups[i]['CustomGroupId'] == domainGroup){
+                        for(var j=0; j < otDomainGroups[i]['Cookies'].length; j++){
+                            var regexp = new RegExp("^(.*;)?\\s*" + otDomainGroups[i]['Cookies'][j]['Name'] + "\\s*=\\s*[^;]+(.*)?$")
+                            if (document.cookie.match(regexp)) {
+                                db_debug("Found cookie to erase: " + otDomainGroups[i]['Cookies'][j]['Name'])
+                                eraseCookie(otDomainGroups[i]['Cookies'][j]['Name'])
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    //Delete cookie
+    function eraseCookie(name) {
+        db_debug("eraseCookie(" + name + ")")
+
+        // Delete DB domain cookies just to be sure
+        document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; Domain=.databricks.com"
+        document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; Domain=.databricksweb.com"
+
+        //Delete root path cookies
+        domainName = window.location.hostname
+        document.cookie = name+'=; Max-Age=-99999999; Path=/;Domain='+ domainName
+        document.cookie = name+'=; Max-Age=-99999999; Path=/;'
+
+        //Delete LSO incase LSO being used, cna be commented out.
+        localStorage.removeItem(name)
+
+        //Check for the current path of the page
+        pathArray = window.location.pathname.split('/')
+        //Loop through path hierarchy and delete potential cookies at each path.
+        for (var i=0; i < pathArray.length; i++){
+            if (pathArray[i]){
+                //Build the path string from the Path Array e.g /site/login
+                var currentPath = pathArray.slice(0,i+1).join('/')
+                document.cookie = name+'=; Max-Age=-99999999; Path=' + currentPath + ';Domain='+ domainName
+                document.cookie = name+'=; Max-Age=-99999999; Path=' + currentPath + ';'
+                //Maybe path has a trailing slash!
+                document.cookie = name+'=; Max-Age=-99999999; Path=' + currentPath + '/;Domain='+ domainName
+                document.cookie = name+'=; Max-Age=-99999999; Path=' + currentPath + '/;'
+            }
+        }
+
+        var regexp = new RegExp("^(.*;)?\\s*" + name + "\\s*=\\s*[^;]+(.*)?$")
+        if (document.cookie.match(regexp)) {
+            db_debug("Error: Cookie not deleted (" + name + ")")
+        }
+        else {
+            // not needed extra debug info
+            // db_debug("Cookie successfully deleted (" + name + ")")
+        }
+    }
+
+    if (!document.querySelector("body").dataset.hasOwnProperty("gatsbystatus") && typeof OneTrust !== "undefined") {
+        db_debug("Loading OneTrust OnConsentChanged Reinitialization")
+        OneTrust.OnConsentChanged(function (e) {
+            db_debug("OneTrust OnConsentChanged()", e.detail)
+            const isFunctionalConsented = checkCookieConsent('C0003') ? true : false
+            db_debug("OneTrust OnConsentChanged():isFunctionalConsented", isFunctionalConsented)
+            const knownBotUserAgents = [
+              'HeadlessChrome',
+              'PhantomJS',
+              'Electron/',
+              'ApacheBench',
+              'Siege/',
+              'https://k6.io/',
+              'Radview',
+              'Locust',
+              'Cypress',
+              'webmarketing_ignore'
+            ]
+            let shouldLoadRudderstack = true
+            if (navigator?.userAgent) {
+              const lowerCaseUserAgent = navigator.userAgent.toLowerCase()
+              if (knownBotUserAgents.some(bot => lowerCaseUserAgent.includes(bot.toLowerCase()))) {
+                if (typeof db_debug !== "undefined") {
+                  db_debug("OnConsentChanged():Bot detected, not loading Rudderstack")
+                }
+                shouldLoadRudderstack = false
+              }
+            }  
+
+            if (isFunctionalConsented && shouldLoadRudderstack && typeof rudderanalytics !== "undefined" && typeof window !== 'undefined' && window.rudderstackKey) {
+                db_debug("RudderStack Re-initialization check")
+                // only inject if we don't already have a script loaded
+                let rudderStackScriptExists = false
+                const existingOriginalElement = document.querySelector('script[src="https://notebooks.databricks.com/v1.1/rudder-analytics.min.js"]')
+                if (existingOriginalElement && existingOriginalElement.getAttribute("type") == "text/javascript") {
+                  rudderStackScriptExists = true
+                }
+                const existingReinitElement = document.querySelector('#rudderstack-analytics-min-reinitialize')
+                if (existingReinitElement) {
+                  rudderStackScriptExists = true
+                }
+
+                if (!rudderStackScriptExists) {
+                  db_debug("RudderStack Re-initialization is executing")
+                  const body = document.getElementsByTagName("body")[0]
+                  const script = document.createElement("script")
+                  script.setAttribute("data-ot-ignore", "1")
+                  script.setAttribute("class", "optanon-category-C0003")
+                  script.id = "rudderstack-analytics-min-reinitialize"
+                  script.src = `https://notebooks.databricks.com/v1.1/rudder-analytics.min.js`
+                  script.setAttribute("type", "text/javascript")
+                  body.appendChild(script)
+
+                  rudderanalytics.load(window.rudderstackKey,"https://ue.databricks.com", {
+                    cookieConsentManager: {
+                      oneTrust: {
+                        enabled: true
+                      }
+                    }
+                  })
+                }
+            }
+        })
+    }
+}
+</script><script async="">!function(){var e=window.rudderanalytics=window.rudderanalytics||[];e.methods=["load","page","track","identify","alias","group","ready","reset","getAnonymousId","setAnonymousId","getUserId","getUserTraits","getGroupId","getGroupTraits","startSession","endSession"],e.factory=function(t){return function(){e.push([t].concat(Array.prototype.slice.call(arguments)))}};for(var t=0;t<e.methods.length;t++){var r=e.methods[t];e[r]=e.factory(r)}window.dbrsloadJS=e.loadJS=function(e,t){if(typeof window !== "undefined" && window.OptanonActiveGroups){if(window.OptanonActiveGroups.indexOf("C0003") > -1 || window.OptanonActiveGroups.indexOf("TUSA") > -1) {var r=document.createElement("script");r.setAttribute("class", "optanon-category-C0003");r.type="text/javascript",r.async=!0,r.src="https://notebooks.databricks.com/v1.1/rudder-analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(r,a)}} else {setTimeout(window.dbrsloadJS, 1000);}},e.loadJS()}();</script></head><body class="navigation-with-keyboard"><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWTKQQ" height=0 width=0 style=display:none;visibility:hidden></iframe></noscript>
+
+
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/aws/en/img/logo.svg"><link rel="preload" as="image" href="/aws/en/img/logo-dark.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_CXEz" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a href="https://www.databricks.com" target="_blank" rel="noopener noreferrer" class="navbar__brand"><div class="navbar__logo"><img src="/aws/en/img/logo.svg" alt="Databricks Logo" class="themedComponent_Pyes themedComponent--light_HKns"><img src="/aws/en/img/logo-dark.svg" alt="Databricks Logo" class="themedComponent_Pyes themedComponent--dark_Z_KF"></div></a><a class="navbar__item navbar__link" href="/aws/en/">Guides</a><a class="navbar__item navbar__link" href="/aws/en/introduction/">Get started</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/aws/en/getting-started/connect/">Develop</a><a class="navbar__item navbar__link" href="/aws/en/reference/api">Reference</a><a class="navbar__item navbar__link" href="/aws/en/resources/">Resources</a><a class="navbar__item navbar__link" href="/aws/en/release-notes/">Release notes</a><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Help</a><ul class="dropdown__menu"><li><a href="https://help.databricks.com" target="_blank" rel="noopener noreferrer" class="dropdown__link">Support<svg width="12" height="12" aria-label="(opens in new tab)" class="iconExternalLink_DPlC"><use href="#theme-svg-external-link"></use></svg></a></li><li><a href="https://kb.databricks.com" target="_blank" rel="noopener noreferrer" class="dropdown__link">Knowledge Base<svg width="12" height="12" aria-label="(opens in new tab)" class="iconExternalLink_DPlC"><use href="#theme-svg-external-link"></use></svg></a></li><li><a href="https://community.databricks.com" target="_blank" rel="noopener noreferrer" class="dropdown__link">Community<svg width="12" height="12" aria-label="(opens in new tab)" class="iconExternalLink_DPlC"><use href="#theme-svg-external-link"></use></svg></a></li><li><a href="https://customer-academy.databricks.com" target="_blank" rel="noopener noreferrer" class="dropdown__link">Training<svg width="12" height="12" aria-label="(opens in new tab)" class="iconExternalLink_DPlC"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="toggle_h6pA colorModeToggle_XqTr"><button class="clean-btn toggleButton_eiE6 toggleButtonDisabled_Wqu6" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_nuhD lightToggleIcon_gnyb"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_nuhD darkToggleIcon_Pqcv"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_nuhD systemToggleIcon_TrBg"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_oBGw"></div></div></div><div class="navbar__inner"><div class="navbar__items"><div style="width:calc(var(--doc-sidebar-width) - var(--ifm-navbar-padding-horizontal))"><div class="gcse-search"></div></div></div><div class="navbar__items navbar__items--right"><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">English</a><ul class="dropdown__menu"><li><a class="dropdown__link" lang="en" target="_self" href="/aws/en/dev-tools/cli/install">English</a></li><li><a class="dropdown__link" lang="ja" target="_self" href="/aws/en/aws/ja/dev-tools/cli/install">日本語</a></li><li><a class="dropdown__link" lang="pt" target="_self" href="/aws/en/aws/pt/dev-tools/cli/install">Português</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">AWS</a><ul class="dropdown__menu"><li><a href="https://learn.microsoft.com/azure/databricks/dev-tools/cli/install" target="_self" rel="noopener noreferrer" class="dropdown__link">Azure<svg width="12" height="12" aria-label="(opens in new tab)" class="iconExternalLink_DPlC"><use href="#theme-svg-external-link"></use></svg></a></li><li><a class="dropdown__link" target="_self" href="/aws/en/gcp/en/dev-tools/cli/install">GCP</a></li><li><a class="dropdown__link" target="_self" href="/aws/en/sap">SAP</a></li></ul></div><a class="tryDatabricksLink tryDatabricksLink_r4AS" href="https://signup.databricks.com/?dbx_source=docs" target="_blank" rel="noreferrer">Try Databricks</a></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_H3mo"><div class="docsWrapper_hzwc"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_fHAx" type="button"></button><div class="docRoot_iB21"><aside class="theme-doc-sidebar-container docSidebarContainer_cv05"><div class="sidebarViewport_qZ5n"></div></aside><main class="docMainContainer_yzrY"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><div class="wrapper_tK7j"><nav class="theme-doc-breadcrumbs breadcrumbsContainer_pdXE" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/aws/en/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_WKWw"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/aws/en/dev-tools/"><span>Local development tools</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/aws/en/dev-tools/cli/"><span>Databricks CLI</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Install or update</span></li></ul></nav></div><div class="tocCollapsible_nLnP theme-doc-toc-mobile tocMobile_bwlw"><button type="button" class="clean-btn tocCollapsibleButton_JGO6">On this page</button></div><div class="row margin-bottom--sm theme-doc-footer-edit-meta-row"><div class="col lastUpdated__anC"><span class="theme-last-updated">Last updated<!-- --> on <b><time datetime="2026-01-24T00:00:00.000Z" itemprop="dateModified">Jan 24, 2026</time></b></span></div><div class="col"></div></div><div class="theme-doc-markdown markdown"><header><h1>Install or update the Databricks CLI</h1></header>
+<div class="theme-admonition theme-admonition-note admonition_BhYP alert alert--secondary"><div class="admonitionHeading_ONgF"><span class="admonitionIcon_WXy6"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_d6Gz"><p>This information applies to <!-- -->Databricks CLI versions 0.205 and above<!-- -->. The Databricks CLI is in <a class="" href="/aws/en/release-notes/release-types">Public Preview</a>.</p><p>Databricks CLI use is subject to the <a href="https://github.com/databricks/cli?tab=License-1-ov-file#readme" target="_blank" rel="noopener noreferrer" class="">Databricks License</a> and <a href="https://www.databricks.com/legal/privacynotice" target="_blank" rel="noopener noreferrer" class="">Databricks Privacy Notice</a>, including any Usage Data provisions.</p></div></div>
+<p>This article describes how to install or update the Databricks CLI. See <a class="" href="/aws/en/dev-tools/cli/">Databricks CLI</a>. To configure authentication for the Databricks CLI, see <a class="" href="/aws/en/dev-tools/cli/authentication">Authentication for the Databricks CLI</a>.</p>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id="install">Install<a href="#install" class="hash-link" aria-label="Direct link to Install" title="Direct link to Install" translate="no">​</a></h2>
+<p>To install <!-- -->Databricks CLI version 0.205 or above<!-- -->:</p>
+<ul>
+<li class=""><strong>Linux</strong> or <strong>macOS</strong>: Use <a href="#homebrew-install" class="">Homebrew</a>, <a href="#curl-install" class="">curl</a>, or <a href="#source-install" class="">source builds</a>.</li>
+<li class=""><strong>Windows</strong>: Use <a href="#winget-install" class="">WinGet</a>, <a href="#chocolatey-install" class="">Chocolatey</a>, <a href="#curl-install" class="">Windows Subsystem for Linux (WSL)</a>, or <a href="#source-install" class="">source builds</a>.</li>
+</ul>
+<p>The Databricks CLI is also available from within the <!-- -->Databricks<!-- --> workspace user interface. See <a class="" href="/aws/en/compute/web-terminal#cli-workspace">Run Databricks CLI commands</a>.</p>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id="update">Update<a href="#update" class="hash-link" aria-label="Direct link to Update" title="Direct link to Update" translate="no">​</a></h2>
+<p>To update an earlier installation of <!-- -->Databricks CLI version 0.205 or above<!-- -->:</p>
+<ul>
+<li class=""><strong>Linux</strong> or <strong>macOS</strong>: Use <a href="#homebrew-update" class="">Homebrew</a>, <a href="#curl-update" class="">curl</a>, or <a href="#source-update" class="">source builds</a>.</li>
+<li class=""><strong>Windows</strong>: Use <a href="#winget-update" class="">WinGet</a>, <a href="#chocolatey-update" class="">Chocolatey</a>, <a href="#curl-update" class="">Windows Subsystem for Linux (WSL)</a>, or <a href="#source-update" class="">source builds</a>.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id="homebrew-installation-for-linux-or-macos"><a id="homebrew-install" class="db-defined-anchor"></a>Homebrew installation for Linux or macOS<a href="#homebrew-installation-for-linux-or-macos" class="hash-link" aria-label="Direct link to homebrew-installation-for-linux-or-macos" title="Direct link to homebrew-installation-for-linux-or-macos" translate="no">​</a></h2>
+<p>For this installation option, you use <a href="https://brew.sh/" target="_blank" rel="noopener noreferrer" class="">Homebrew</a> to automatically download and install the latest Databricks CLI executable release.</p>
+<p>From your terminal, just run the following two Homebrew commands to install the CLI:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">brew tap databricks/tap</span><br></span><span class="token-line" style="color:#000000"><span class="token plain">brew </span><span class="token function" style="color:rgb(0, 0, 255)">install</span><span class="token plain"> databricks</span><br></span></code></pre></div></div>
+<p>Then continue with <a class="" href="/aws/en/dev-tools/cli/authentication">Authentication for the Databricks CLI</a>.</p>
+<p>If you are not sure whether you have Homebrew installed, or if the preceding Homebrew commands fail, follow these longer instructions:</p>
+<ol>
+<li class="">
+<p>Check whether Homebrew is already installed by running the following command from a Linux shell prompt or macOS Terminal. If Homebrew is installed, the Homebrew version number is displayed:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">brew </span><span class="token parameter variable" style="color:rgb(9, 134, 88)">-v</span><br></span></code></pre></div></div>
+</li>
+<li class="">
+<p>If Homebrew is not already installed, install it by running the following command:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">/bin/bash </span><span class="token parameter variable" style="color:rgb(9, 134, 88)">-c</span><span class="token plain"> </span><span class="token string" style="color:rgb(163, 21, 21)">"</span><span class="token string variable" style="color:rgb(9, 134, 88)">$(</span><span class="token string variable function" style="color:rgb(0, 0, 255)">curl</span><span class="token string variable" style="color:rgb(9, 134, 88)"> </span><span class="token string variable parameter variable" style="color:rgb(9, 134, 88)">-fsSL</span><span class="token string variable" style="color:rgb(9, 134, 88)"> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh</span><span class="token string variable" style="color:rgb(9, 134, 88)">)</span><span class="token string" style="color:rgb(163, 21, 21)">"</span><br></span></code></pre></div></div>
+<p>Then run the following command to verify the Homebrew installation, which displays the Homebrew version number:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">brew </span><span class="token parameter variable" style="color:rgb(9, 134, 88)">-v</span><br></span></code></pre></div></div>
+</li>
+<li class="">
+<p>Use Homebrew to add the <a href="https://github.com/databricks/homebrew-tap" target="_blank" rel="noopener noreferrer" class="">databricks/homebrew-tap</a> repository in GitHub to your list of available Homebrew Tap repositories, by running the following command:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">brew tap databricks/tap</span><br></span></code></pre></div></div>
+</li>
+<li class="">
+<p>Use Homebrew to instruct the <code>databricks/homebrew-tap</code> repository to download and install the Databricks CLI executable, by running the following command:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">brew </span><span class="token function" style="color:rgb(0, 0, 255)">install</span><span class="token plain"> databricks</span><br></span></code></pre></div></div>
+</li>
+<li class="">
+<p>Confirm whether the Databricks CLI is installed correctly. To do this, view the Databricks CLI executable's version by using the <code>-v</code> option or by running the <code>version</code> command:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">databricks </span><span class="token parameter variable" style="color:rgb(9, 134, 88)">-v</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain"></span><span class="token comment" style="color:rgb(0, 128, 0)"># Or:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain">databricks version</span><br></span></code></pre></div></div>
+<p>If a version number of 0.205.0 or above is listed, the Databricks CLI is installed correctly.</p>
+</li>
+<li class="">
+<p>Continue with <a class="" href="/aws/en/dev-tools/cli/authentication">Authentication for the Databricks CLI</a>.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id="winget-installation-for-windows"><a id="winget-install" class="db-defined-anchor"></a>WinGet installation for Windows<a href="#winget-installation-for-windows" class="hash-link" aria-label="Direct link to winget-installation-for-windows" title="Direct link to winget-installation-for-windows" translate="no">​</a></h2>
+<p>For this installation option, you use <a href="https://learn.microsoft.com/windows/package-manager/winget/" target="_blank" rel="noopener noreferrer" class="">winget</a> to automatically download and install the latest Databricks CLI executable release.</p>
+<ol>
+<li class="">
+<p>From your Command Prompt, run the following two <code>winget</code> commands to install the CLI, and then restart your Command Prompt:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">winget search databricks</span><br></span><span class="token-line" style="color:#000000"><span class="token plain">winget </span><span class="token function" style="color:rgb(0, 0, 255)">install</span><span class="token plain"> Databricks.DatabricksCLI</span><br></span></code></pre></div></div>
+</li>
+<li class="">
+<p>Confirm whether the Databricks CLI is installed correctly. To do this, view the Databricks CLI executable's version by using the <code>-v</code> option or by running the <code>version</code> command:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">databricks </span><span class="token parameter variable" style="color:rgb(9, 134, 88)">-v</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain"></span><span class="token comment" style="color:rgb(0, 128, 0)"># Or:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain">databricks version</span><br></span></code></pre></div></div>
+</li>
+</ol>
+<p>If the output is version 0.205.0 or above, the Databricks CLI is installed correctly.</p>
+<ol>
+<li class="">Continue with <a class="" href="/aws/en/dev-tools/cli/authentication">Authentication for the Databricks CLI</a>.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id="chocolatey-installation-for-windows"><a id="chocolatey-install" class="db-defined-anchor"></a>Chocolatey installation for Windows<a href="#chocolatey-installation-for-windows" class="hash-link" aria-label="Direct link to chocolatey-installation-for-windows" title="Direct link to chocolatey-installation-for-windows" translate="no">​</a></h2>
+<div class="theme-admonition theme-admonition-note admonition_BhYP alert alert--secondary"><div class="admonitionHeading_ONgF"><span class="admonitionIcon_WXy6"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_d6Gz"><p>Installing the Databricks CLI with Chocolatey is <a class="" href="/aws/en/release-notes/release-types">Experimental</a>.</p></div></div>
+<p>For this installation option, you use <a href="https://chocolatey.org/install" target="_blank" rel="noopener noreferrer" class="">Chocolatey</a> to automatically download and install the latest Databricks CLI executable release.</p>
+<ol>
+<li class="">
+<p>From your Command Prompt, run the following <code>choco</code> command to install the CLI:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">choco </span><span class="token function" style="color:rgb(0, 0, 255)">install</span><span class="token plain"> databricks-cli</span><br></span></code></pre></div></div>
+</li>
+<li class="">
+<p>Confirm whether the Databricks CLI is installed correctly. To do this, view the Databricks CLI executable's version by using the <code>-v</code> option or by running the <code>version</code> command:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">databricks </span><span class="token parameter variable" style="color:rgb(9, 134, 88)">-v</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain"></span><span class="token comment" style="color:rgb(0, 128, 0)"># Or:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain">databricks version</span><br></span></code></pre></div></div>
+<p>If the output is version 0.205.0 or above, the Databricks CLI is installed correctly.</p>
+</li>
+<li class="">
+<p>Continue with <a class="" href="/aws/en/dev-tools/cli/authentication">Authentication for the Databricks CLI</a>.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id="curl-installation-for-linux-macos-and-windows"><a id="curl-install" class="db-defined-anchor"></a>curl installation for Linux, macOS, and Windows<a href="#curl-installation-for-linux-macos-and-windows" class="hash-link" aria-label="Direct link to curl-installation-for-linux-macos-and-windows" title="Direct link to curl-installation-for-linux-macos-and-windows" translate="no">​</a></h2>
+<p>For this installation option, you use <a href="https://curl.se/" target="_blank" rel="noopener noreferrer" class="">curl</a> to download and install the latest Databricks CLI executable release.</p>
+<p>For Windows, Databricks recommends that you use <a href="https://learn.microsoft.com/windows/wsl/about" target="_blank" rel="noopener noreferrer" class="">Windows Subsystem for Linux (WSL)</a>. You must also have <code>unzip</code> installed. For installation instructions, see your operating system's documentation. If you cannot use WSL, skip this procedure and use the Command Prompt or PowerShell to <a href="#source-install" class="">install the Databricks CLI from source</a> instead.</p>
+<ol>
+<li class="">
+<p><code>curl</code> must be installed. You can check whether <code>curl</code> is already installed by running the following command from a Linux shell prompt, macOS Terminal, or Bash on WSL. If <code>curl</code> is installed, the <code>curl</code> version number is displayed:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token function" style="color:rgb(0, 0, 255)">curl</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(9, 134, 88)">-V</span><br></span></code></pre></div></div>
+</li>
+<li class="">
+<p>If <code>curl</code> is not already installed, install it by following the instructions on the <code>curl</code> <a href="https://curl.se/download.html" target="_blank" rel="noopener noreferrer" class="">Releases and Downloads</a> page for your operating system and architecture. To get your machine's architecture, see your operating system's documentation.</p>
+<p>Then run the following command to verify the <code>curl</code> installation, which displays the <code>curl</code> version number:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token function" style="color:rgb(0, 0, 255)">curl</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(9, 134, 88)">-V</span><br></span></code></pre></div></div>
+</li>
+<li class="">
+<p>Use <code>curl</code> to download and install the Databricks CLI executable by running the following command (note that you must specify the correct uppercase and lowercase characters for <code>-fsSL</code> on all operating systems):</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token function" style="color:rgb(0, 0, 255)">curl</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(9, 134, 88)">-fsSL</span><span class="token plain"> https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh </span><span class="token operator" style="color:rgb(0, 0, 0)">|</span><span class="token plain"> </span><span class="token function" style="color:rgb(0, 0, 255)">sh</span><br></span></code></pre></div></div>
+<div class="theme-admonition theme-admonition-note admonition_BhYP alert alert--secondary"><div class="admonitionHeading_ONgF"><span class="admonitionIcon_WXy6"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_d6Gz"><p>To view the script's contents before you run it, see the <a href="https://github.com/databricks/setup-cli/blob/main/install.sh" target="_blank" rel="noopener noreferrer" class="">install.sh</a> file in the Databricks CLI Setup repository in GitHub.</p></div></div>
+<p>For Windows, you should run this command as an administrator.</p>
+<p>For Linux and macOS, if an error message states that <code>/usr/local/bin</code> is not writable, then run the command again with <code>sudo</code>.</p>
+<p>This command downloads and installs the Databricks CLI executable in the path <code>/usr/local/bin/databricks</code> on macOS and Linux, and <code>C:\Windows\databricks.exe</code> on Windows.</p>
+<p>If for some reason the Databricks CLI is already installed, the following error appears: “Target path <code>&lt;path&gt;</code> already exists.” To fix this, you must manually delete the Databricks CLI executable from the preceding path, and then run the <code>curl</code> command again.</p>
+</li>
+<li class="">
+<p>Confirm whether the Databricks CLI is installed correctly. To do this, view the Databricks CLI executable's version by using the <code>-v</code> option or by running the <code>version</code> command:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">databricks </span><span class="token parameter variable" style="color:rgb(9, 134, 88)">-v</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain"></span><span class="token comment" style="color:rgb(0, 128, 0)"># Or:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain">databricks version</span><br></span></code></pre></div></div>
+<p>If the output is version 0.205.0 or above, the Databricks CLI is installed correctly.</p>
+</li>
+<li class="">
+<p>Continue with <a class="" href="/aws/en/dev-tools/cli/authentication">Authentication for the Databricks CLI</a>.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id="source-installation-for-linux-macos-and-windows"><a id="source-install" class="db-defined-anchor"></a>Source installation for Linux, macOS, and Windows<a href="#source-installation-for-linux-macos-and-windows" class="hash-link" aria-label="Direct link to source-installation-for-linux-macos-and-windows" title="Direct link to source-installation-for-linux-macos-and-windows" translate="no">​</a></h2>
+<p>For this installation option, you manually download a <code>.zip</code> file and then manually extract the Databricks CLI executable from the downloaded <code>.zip</code> file.</p>
+<ol>
+<li class="">
+<p>Download onto your local development machine the latest Databricks CLI <code>.zip</code> file, as listed in the <a href="https://github.com/databricks/cli/releases" target="_blank" rel="noopener noreferrer" class="">Releases</a> section of the Databricks CLI repository in GitHub. The latest release has a <code>Latest</code> label next to it in the list of releases. The latest pre-release has a <code>Pre-release</code> label and is more suitable for experimentation and early adopters. The <code>.zip</code> file that you download from the <code>Assets</code> section for the release must match your development machine's operating system and architecture:</p>
+<div class="scrollable-table-container"><table><thead><tr><th><p>Filename</p></th><th><p>Architecture</p></th></tr></thead><tbody><tr><td><p><code>databricks_cli_X.Y.Z_darwin_amd64.zip</code></p></td><td><p>macOS, Intel 64-bit / <code>x86_64</code></p></td></tr></tbody><tbody><tr><td><p><code>databricks_cli_X.Y.Z_darwin_arm64.zip</code></p></td><td><p>macOS, Apple Silicon / <code>M</code> Series / <code>arm64</code></p></td></tr></tbody><tbody><tr><td><p><code>databricks_cli_X.Y.Z_linux_amd64.zip</code></p></td><td><p>Linux, Intel 64-bit / <code>x86_64</code></p></td></tr></tbody><tbody><tr><td><p><code>databricks_cli_X.Y.Z_linux_arm64.zip</code></p></td><td><p>Linux, ARM 64-bit / <code>arm64</code></p></td></tr></tbody><tbody><tr><td><p><code>databricks_cli_X.Y.Z_windows_386.zip</code></p></td><td><p>Windows, Intel 32-bit / <code>x86</code></p></td></tr></tbody><tbody><tr><td><p><code>databricks_cli_X.Y.Z_windows_amd64.zip</code></p></td><td><p>Windows, Intel 64-bit / <code>AMD64</code></p></td></tr></tbody><tbody><tr><td><p><code>databricks_cli_X.Y.Z_windows_arm64.zip</code></p></td><td><p>Windows, ARM 64-bit / <code>ARM64</code></p></td></tr></tbody></table></div>
+<p>To get your machine's architecture, see your operating system's documentation. For example:</p>
+<ul>
+<li class="">Linux: The terminal commands <code>uname -m</code>, <code>lscpu</code>, or <code>sudo lshw -c cpu</code>.</li>
+<li class="">macOS: <strong>Apple</strong> icon menu &gt; <strong>About This Mac</strong>, or the Terminal command <code>uname -m</code>.</li>
+<li class="">Windows: The Command Prompt or PowerShell command <code>echo %PROCESSOR_ARCHITECTURE%</code>.</li>
+</ul>
+<p>If you need to verify the integrity of one of these <code>.zip</code> files, Databricks provides a checksum file named <code>databricks_cli_X.Y.Z_SHA256SUMS</code> in the same list as the <code>.zip</code> files. To run a checksum verification, see your operating system's documentation.</p>
+</li>
+<li class="">
+<p>Extract the contents of the downloaded <code>.zip</code> file. To extract the <code>.zip</code> file, see your operating system's documentation.</p>
+</li>
+<li class="">
+<p>In the extracted content, a folder appears with the same name as the <code>.zip</code> file. Inside of this folder is the Databricks CLI executable. You can leave the Databricks CLI executable there, or you can copy or move it to another location.</p>
+</li>
+<li class="">
+<p>Confirm whether the Databricks CLI is installed correctly. To do this, from a Linux shell prompt, macOS Terminal, or Windows Command Prompt, view the Databricks CLI executable's version by using the <code>-v</code> option or by running the <code>version</code> command:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">databricks </span><span class="token parameter variable" style="color:rgb(9, 134, 88)">-v</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain"></span><span class="token comment" style="color:rgb(0, 128, 0)"># Or:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain">databricks version</span><br></span></code></pre></div></div>
+<p>If the output is version 0.205.0 or above, the Databricks CLI is installed correctly.</p>
+<div class="theme-admonition theme-admonition-note admonition_BhYP alert alert--secondary"><div class="admonitionHeading_ONgF"><span class="admonitionIcon_WXy6"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_d6Gz"><p>For macOS, you might need to authorize your system to be able to run the Databricks CLI first. See <a href="https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac" target="_blank" rel="noopener noreferrer" class="">Open a Mac app from an unidentified developer</a>.</p></div></div>
+</li>
+<li class="">
+<p>Continue with <a class="" href="/aws/en/dev-tools/cli/authentication">Authentication for the Databricks CLI</a>.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id="homebrew-update-for-linux-or-macos"><a id="homebrew-update" class="db-defined-anchor"></a>Homebrew update for Linux or macOS<a href="#homebrew-update-for-linux-or-macos" class="hash-link" aria-label="Direct link to homebrew-update-for-linux-or-macos" title="Direct link to homebrew-update-for-linux-or-macos" translate="no">​</a></h2>
+<p>For this update option, you use <a href="https://brew.sh/" target="_blank" rel="noopener noreferrer" class="">Homebrew</a> to automatically update a previous installation of <!-- -->Databricks CLI version 0.205 or above<!-- --> to the latest version.</p>
+<ol>
+<li class="">
+<p>From a Linux shell prompt or macOS Terminal, use Homebrew to download and update to the latest version of the Databricks CLI executable by running the following command:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">brew upgrade databricks</span><br></span></code></pre></div></div>
+</li>
+<li class="">
+<p>Confirm whether the Databricks CLI is updated correctly. To do this, view the Databricks CLI executable's version by using the <code>-v</code> option or by running the <code>version</code> command:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">databricks </span><span class="token parameter variable" style="color:rgb(9, 134, 88)">-v</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain"></span><span class="token comment" style="color:rgb(0, 128, 0)"># Or:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain">databricks version</span><br></span></code></pre></div></div>
+<p>If the output is version 0.205.0 or above, the Databricks CLI is installed correctly.</p>
+<p>For a list of Databricks CLI versions, see the <a href="https://github.com/databricks/cli/releases" target="_blank" rel="noopener noreferrer" class="">Releases</a> section of the Databricks CLI repository in GitHub. The latest release has a <code>Latest</code> label next to it in the list of releases.</p>
+</li>
+</ol>
+<div class="theme-admonition theme-admonition-tip admonition_BhYP alert alert--success"><div class="admonitionHeading_ONgF"><span class="admonitionIcon_WXy6"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_d6Gz"><p>To downgrade the version of the Databricks CLI, see the instructions in the <a href="https://github.com/databricks/homebrew-tap#installing-an-older-version" target="_blank" rel="noopener noreferrer" class="">databricks/homebrew-tap</a> repository in GitHub.</p></div></div>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id="winget-update-for-windows"><a id="winget-update" class="db-defined-anchor"></a>WinGet update for Windows<a href="#winget-update-for-windows" class="hash-link" aria-label="Direct link to winget-update-for-windows" title="Direct link to winget-update-for-windows" translate="no">​</a></h2>
+<p>For this update option, you use <a href="https://learn.microsoft.com/windows/package-manager/winget/" target="_blank" rel="noopener noreferrer" class="">winget</a> to automatically download and update a previous version of <!-- -->Databricks CLI version 0.205 or above<!-- --> to the latest version.</p>
+<ol>
+<li class="">
+<p>From your Command Prompt, use <code>winget</code> to download and update to the latest version of the Databricks CLI executable by running the following command:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">winget upgrade Databricks.DatabricksCLI</span><br></span></code></pre></div></div>
+</li>
+<li class="">
+<p>Confirm whether the Databricks CLI is installed correctly. To do this, view the Databricks CLI executable's version by using the <code>-v</code> option or by running the <code>version</code> command:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">databricks </span><span class="token parameter variable" style="color:rgb(9, 134, 88)">-v</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain"></span><span class="token comment" style="color:rgb(0, 128, 0)"># Or:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain">databricks version</span><br></span></code></pre></div></div>
+<p>If the output is version 0.205.0 or above, the Databricks CLI is installed correctly.</p>
+<p>For a list of Databricks CLI versions, see the <a href="https://github.com/databricks/cli/releases" target="_blank" rel="noopener noreferrer" class="">Releases</a> section of the Databricks CLI repository in GitHub. The latest release has a <code>Latest</code> label next to it in the list of releases.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id="chocolatey-update-for-windows"><a id="chocolatey-update" class="db-defined-anchor"></a>Chocolatey update for Windows<a href="#chocolatey-update-for-windows" class="hash-link" aria-label="Direct link to chocolatey-update-for-windows" title="Direct link to chocolatey-update-for-windows" translate="no">​</a></h2>
+<div class="theme-admonition theme-admonition-note admonition_BhYP alert alert--secondary"><div class="admonitionHeading_ONgF"><span class="admonitionIcon_WXy6"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_d6Gz"><p>Updating the Databricks CLI with Chocolatey is <a class="" href="/aws/en/release-notes/release-types">Experimental</a>.</p></div></div>
+<p>For this update option, you use <a href="https://chocolatey.org/install" target="_blank" rel="noopener noreferrer" class="">Chocolatey</a> to automatically download and update a previous version of <!-- -->Databricks CLI version 0.205 or above<!-- --> to the latest version.</p>
+<ol>
+<li class="">
+<p>From your Command Prompt, use <code>choco</code> to download and update to the latest version of the Databricks CLI executable by running the following command:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">choco upgrade databricks-cli</span><br></span></code></pre></div></div>
+</li>
+<li class="">
+<p>Confirm whether the Databricks CLI is installed correctly. To do this, view the Databricks CLI executable's version by using the <code>-v</code> option or by running the <code>version</code> command:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">databricks </span><span class="token parameter variable" style="color:rgb(9, 134, 88)">-v</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain"></span><span class="token comment" style="color:rgb(0, 128, 0)"># Or:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain">databricks version</span><br></span></code></pre></div></div>
+<p>If the output is version 0.205.0 or above, the Databricks CLI is installed correctly.</p>
+<p>For a list of Databricks CLI versions, see the <a href="https://github.com/databricks/cli/releases" target="_blank" rel="noopener noreferrer" class="">Releases</a> section of the Databricks CLI repository in GitHub. The latest release has a <code>Latest</code> label next to it in the list of releases.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id="curl-update-for-linux-macos-and-windows"><a id="curl-update" class="db-defined-anchor"></a>curl update for Linux, macOS, and Windows<a href="#curl-update-for-linux-macos-and-windows" class="hash-link" aria-label="Direct link to curl-update-for-linux-macos-and-windows" title="Direct link to curl-update-for-linux-macos-and-windows" translate="no">​</a></h2>
+<p>For this update option, you use <a href="https://curl.se/" target="_blank" rel="noopener noreferrer" class="">curl</a> to automatically download and update a previous installation of <!-- -->Databricks CLI version 0.205 or above<!-- --> to the latest version.</p>
+<p>For Windows, Databricks recommends that you use <a href="https://learn.microsoft.com/windows/wsl/about" target="_blank" rel="noopener noreferrer" class="">Windows Subsystem for Linux (WSL)</a>. You must have <code>unzip</code> installed. For installation instructions, see your operating system's documentation. If you cannot use WSL, you should skip this procedure and use the Command Prompt or PowerShell to <a href="#source-update" class="">update the Databricks CLI from source</a> instead.</p>
+<ol>
+<li class="">
+<p>Delete the existing installation of the Databricks CLI executable from the path <code>/usr/local/bin/databricks</code> on macOS and Linux, or <code>C:\Windows\databricks.exe</code> on Windows.</p>
+</li>
+<li class="">
+<p>From a Linux shell prompt, macOS Terminal, or Windows Command Prompt, use <code>curl</code> to download and install the latest version of the Databricks CLI executable by running the following command (note that you must specify the correct uppercase and lowercase characters for <code>-fsSL</code>):</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token function" style="color:rgb(0, 0, 255)">curl</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(9, 134, 88)">-fsSL</span><span class="token plain"> https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh </span><span class="token operator" style="color:rgb(0, 0, 0)">|</span><span class="token plain"> </span><span class="token function" style="color:rgb(0, 0, 255)">sh</span><br></span></code></pre></div></div>
+<div class="theme-admonition theme-admonition-note admonition_BhYP alert alert--secondary"><div class="admonitionHeading_ONgF"><span class="admonitionIcon_WXy6"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_d6Gz"><p>To view the script's contents before you run it, see the <a href="https://github.com/databricks/setup-cli/blob/main/install.sh" target="_blank" rel="noopener noreferrer" class="">install.sh</a> file in the Databricks CLI Setup repository in GitHub.</p></div></div>
+<p>For Windows, you should run this command as an administrator.</p>
+<p>For Linux and macOS, if an error message states that <code>/usr/local/bin</code> is not writable, then run the command again with <code>sudo</code>.</p>
+<p>This command downloads and installs the Databricks CLI executable in the path <code>/usr/local/bin/databricks</code> on macOS and Linux, and <code>C:\Windows\databricks.exe</code> on Windows.</p>
+<p>If the following error appears, you must manually delete the Databricks CLI executable from the preceding path, and then run the <code>curl</code> command again: “Target path <code>&lt;path&gt;</code> already exists.”</p>
+</li>
+<li class="">
+<p>Confirm whether the Databricks CLI is updated correctly. To do this, from your terminal, view the Databricks CLI executable's version by using the <code>-v</code> option or by running the <code>version</code> command:</p>
+<div class="language-bash codeBlockContainer_BQgA theme-code-block" style="--prism-color:#000000;--prism-background-color:hsl(230, 1%, 97%)"><div class="codeBlockTitle_Y4XX">Bash</div><div class="codeBlockContent_g6_d"><pre tabindex="0" class="prism-code language-bash codeBlock_gQpI thin-scrollbar" style="color:#000000;background-color:hsl(230, 1%, 97%)"><code class="codeBlockLines_AJRd"><span class="token-line" style="color:#000000"><span class="token plain">databricks </span><span class="token parameter variable" style="color:rgb(9, 134, 88)">-v</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain"></span><span class="token comment" style="color:rgb(0, 128, 0)"># Or:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#000000"><span class="token plain">databricks version</span><br></span></code></pre></div></div>
+<p>If the output is version 0.205.0 or above, the Databricks CLI is installed correctly.</p>
+<p>For a list of Databricks CLI versions, see the <a href="https://github.com/databricks/cli/releases" target="_blank" rel="noopener noreferrer" class="">Releases</a> section of the Databricks CLI repository in GitHub. The latest release has a <code>Latest</code> label next to it in the list of releases.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar__d0A" id="source-update-for-linux-macos-and-windows"><a id="source-update" class="db-defined-anchor"></a>Source update for Linux, macOS, and Windows<a href="#source-update-for-linux-macos-and-windows" class="hash-link" aria-label="Direct link to source-update-for-linux-macos-and-windows" title="Direct link to source-update-for-linux-macos-and-windows" translate="no">​</a></h2>
+<p>For this update option, you manually download a <code>.zip</code> file and then manually extract the Databricks CLI executable from the downloaded <code>.zip</code> file.</p>
+<ol>
+<li class="">Optionally, delete the Databricks CLI executable, the <code>.zip</code> file, and the <code>.zip</code> file's extracted folder, from any previous manual source install procedure.</li>
+<li class="">Continue by following the instructions in <a href="#source-install" class="">Source installation for Linux, macOS, and Windows</a>.</li>
+</ol></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="container_ZLZD"><div class="tw-scope"><div class="text-[0.8rem] font-bold">On this page</div></div><div class="tableOfContents_GfLg thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#install" class="table-of-contents__link toc-highlight">Install</a></li><li><a href="#update" class="table-of-contents__link toc-highlight">Update</a></li><li><a href="#homebrew-installation-for-linux-or-macos" class="table-of-contents__link toc-highlight"><link class="db-defined-anchor">Homebrew installation for Linux or macOS</a></li><li><a href="#winget-installation-for-windows" class="table-of-contents__link toc-highlight"><link class="db-defined-anchor">WinGet installation for Windows</a></li><li><a href="#chocolatey-installation-for-windows" class="table-of-contents__link toc-highlight"><link class="db-defined-anchor">Chocolatey installation for Windows</a></li><li><a href="#curl-installation-for-linux-macos-and-windows" class="table-of-contents__link toc-highlight"><link class="db-defined-anchor">curl installation for Linux, macOS, and Windows</a></li><li><a href="#source-installation-for-linux-macos-and-windows" class="table-of-contents__link toc-highlight"><link class="db-defined-anchor">Source installation for Linux, macOS, and Windows</a></li><li><a href="#homebrew-update-for-linux-or-macos" class="table-of-contents__link toc-highlight"><link class="db-defined-anchor">Homebrew update for Linux or macOS</a></li><li><a href="#winget-update-for-windows" class="table-of-contents__link toc-highlight"><link class="db-defined-anchor">WinGet update for Windows</a></li><li><a href="#chocolatey-update-for-windows" class="table-of-contents__link toc-highlight"><link class="db-defined-anchor">Chocolatey update for Windows</a></li><li><a href="#curl-update-for-linux-macos-and-windows" class="table-of-contents__link toc-highlight"><link class="db-defined-anchor">curl update for Linux, macOS, and Windows</a></li><li><a href="#source-update-for-linux-macos-and-windows" class="table-of-contents__link toc-highlight"><link class="db-defined-anchor">Source update for Linux, macOS, and Windows</a></li></ul></div></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__links text--center"><div class="footer__links"><a href="https://www.databricks.com/legal/privacynotice" target="_blank" rel="noopener noreferrer" class="footer__link-item">Privacy Notice<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_DPlC"><use href="#theme-svg-external-link"></use></svg></a><span class="footer__link-separator">·</span><a href="https://www.databricks.com/terms-of-use" target="_blank" rel="noopener noreferrer" class="footer__link-item">Terms of Use<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_DPlC"><use href="#theme-svg-external-link"></use></svg></a><span class="footer__link-separator">·</span><a href="https://www.databricks.com/legal/modern-slavery-policy-statement" target="_blank" rel="noopener noreferrer" class="footer__link-item">Modern Slavery Statement<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_DPlC"><use href="#theme-svg-external-link"></use></svg></a><span class="footer__link-separator">·</span><a href="https://www.databricks.com/legal/supplemental-privacy-notice-california-residents" target="_blank" rel="noopener noreferrer" class="footer__link-item">California Privacy<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_DPlC"><use href="#theme-svg-external-link"></use></svg></a><span class="footer__link-separator">·</span><span class="footer__link-item"><a href="javascript:OneTrust.ToggleInfoDisplay()">Your Privacy Choices&nbsp;<img alt="" src="https://www.databricks.com/sites/default/files/2022-12/gpcicon_small.png" data-ot-ignore="1" class="dbgpcicon inline-block max-h-[15px] w-auto" width="31" height="15"></a></span></div></div><div class="footer__bottom text--center"><div class="footer__copyright">© Databricks 2026. All rights reserved. Apache, Apache Spark, Spark and the Spark logo are trademarks of the <a href="https://www.apache.org/" target="_blank">Apache Software Foundation</a>.</div></div></div></footer></div><script type="text/javascript" id="" charset="">typeof MktoForms2!="undefined"&&MktoForms2.whenReady(function(a){a.onSuccess(function(){window.dataLayer.push({event:"mkto.form.success"})})});</script></body></html>

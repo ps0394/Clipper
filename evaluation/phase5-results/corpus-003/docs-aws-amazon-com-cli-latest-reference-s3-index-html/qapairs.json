@@ -1,0 +1,37 @@
+[
+  {
+    "question": "What are the two types of path arguments used in AWS CLI S3 commands?",
+    "answer": "LocalPath and S3Uri",
+    "supporting_sentences": [
+      "There are two types of path arguments: LocalPath and S3Uri."
+    ]
+  },
+  {
+    "question": "How must an S3Uri be formatted to specify an S3 access point?",
+    "answer": "It must be of the form `s3://<access-point-arn>/<key>`.",
+    "supporting_sentences": [
+      "S3Uri also supports S3 access points. To specify an access point, this value must be of the form `s3://<access-point-arn>/<key>`."
+    ]
+  },
+  {
+    "question": "In AWS CLI S3 commands, what does the first path argument represent?",
+    "answer": "The source, which is the local file/directory or S3 object/prefix/bucket that is being referenced.",
+    "supporting_sentences": [
+      "The first path argument represents the source, which is the local file/directory or S3 object/prefix/bucket that is being referenced."
+    ]
+  },
+  {
+    "question": "What happens if a destination path in an AWS CLI S3 command ends with a forward slash or backslash?",
+    "answer": "The destination file or object will adopt the name of the source file or object.",
+    "supporting_sentences": [
+      "If a slash is at the end of the destination, the destination file or object will adopt the name of the source file or object."
+    ]
+  },
+  {
+    "question": "What is the default behavior of include and exclude filters in AWS CLI S3 commands if no filters are specified?",
+    "answer": "By default, all files are included.",
+    "supporting_sentences": [
+      "Note that, by default, all files are included."
+    ]
+  }
+]

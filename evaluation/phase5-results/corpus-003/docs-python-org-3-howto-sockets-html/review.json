@@ -1,0 +1,106 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the two main types of sockets discussed in the Socket Programming HOWTO?",
+      "answer": "The two main types of sockets discussed are 'client' sockets and 'server' sockets.",
+      "supporting_sentences": [
+        "So first, let\u2019s make a distinction between a \u201cclient\u201d socket - an endpoint of a conversation, and a \u201cserver\u201d socket, which is more like a switchboard operator.",
+        "The client application (your browser, for example) uses \u201cclient\u201d sockets exclusively; the web server it\u2019s talking to uses both \u201cserver\u201d sockets and \u201cclient\u201d sockets."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the two main types of sockets discussed in the Socket Programming HOWTO?",
+      "answer": "The two main types of sockets discussed are 'client' sockets and 'server' sockets.",
+      "supporting_sentences": [
+        "So first, let\u2019s make a distinction between a \u201cclient\u201d socket - an endpoint of a conversation, and a \u201cserver\u201d socket, which is more like a switchboard operator.",
+        "The client application (your browser, for example) uses \u201cclient\u201d sockets exclusively; the web server it\u2019s talking to uses both \u201cserver\u201d sockets and \u201cclient\u201d sockets."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What function is used to bind a server socket to a host and port in Python?",
+      "answer": "The `bind` function is used to bind a server socket to a host and port.",
+      "supporting_sentences": [
+        "# bind the socket to a public host, and a well-known port\nserversocket.bind((socket.gethostname(), 80))"
+      ]
+    },
+    "edited_pair": {
+      "question": "What function is used to bind a server socket to a host and port in Python?",
+      "answer": "The `bind` function is used to bind a server socket to a host and port.",
+      "supporting_sentences": [
+        "# bind the socket to a public host, and a well-known port\nserversocket.bind((socket.gethostname(), 80))"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens when a `recv` call returns 0 bytes in socket programming?",
+      "answer": "When a `recv` returns 0 bytes, it means the other side has closed (or is in the process of closing) the connection, and no more data will be received on that connection.",
+      "supporting_sentences": [
+        "When a recv returns 0 bytes, it means the other side has closed (or is in the process of closing) the connection. You will not receive any more data on this connection. Ever."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens when a `recv` call returns 0 bytes in socket programming?",
+      "answer": "When a `recv` returns 0 bytes, it means the other side has closed (or is in the process of closing) the connection, and no more data will be received on that connection.",
+      "supporting_sentences": [
+        "When a recv returns 0 bytes, it means the other side has closed (or is in the process of closing) the connection. You will not receive any more data on this connection. Ever."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of the `listen` method in socket programming?",
+      "answer": "The `listen` method tells the socket library to queue up as many as the specified number of connect requests before refusing outside connections.",
+      "supporting_sentences": [
+        "Finally, the argument to listen tells the socket library that we want it to queue up as many as 5 connect requests (the normal max) before refusing outside connections."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of the `listen` method in socket programming?",
+      "answer": "The `listen` method tells the socket library to queue up as many as the specified number of connect requests before refusing outside connections.",
+      "supporting_sentences": [
+        "Finally, the argument to listen tells the socket library that we want it to queue up as many as 5 connect requests (the normal max) before refusing outside connections."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What does the `shutdown` function do in socket programming, and what are its possible arguments?",
+      "answer": "The `shutdown` function is an advisory to the socket at the other end, indicating whether the sender is done sending or the receiver is done listening. The arguments can mean 'I\u2019m not going to send anymore, but I\u2019ll still listen' or 'I\u2019m not listening, good riddance!'.",
+      "supporting_sentences": [
+        "Strictly speaking, you\u2019re supposed to use shutdown on a socket before you close it. The shutdown is an advisory to the socket at the other end.",
+        "Depending on the argument you pass it, it can mean 'I\u2019m not going to send anymore, but I\u2019ll still listen', or 'I\u2019m not listening, good riddance!'."
+      ]
+    },
+    "edited_pair": {
+      "question": "What does the `shutdown` function do in socket programming, and what are its possible arguments?",
+      "answer": "The `shutdown` function is an advisory to the socket at the other end, indicating whether the sender is done sending or the receiver is done listening. The arguments can mean 'I\u2019m not going to send anymore, but I\u2019ll still listen' or 'I\u2019m not listening, good riddance!'.",
+      "supporting_sentences": [
+        "Strictly speaking, you\u2019re supposed to use shutdown on a socket before you close it. The shutdown is an advisory to the socket at the other end.",
+        "Depending on the argument you pass it, it can mean 'I\u2019m not going to send anymore, but I\u2019ll still listen', or 'I\u2019m not listening, good riddance!'."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

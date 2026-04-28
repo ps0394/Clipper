@@ -1,0 +1,41 @@
+```json
+[
+    {
+        "question": "What is the name of the collection used in the MongoDB C driver example for inserting documents?",
+        "answer": "inventory",
+        "supporting_sentences": [
+            "collection = mongoc_database_get_collection (db, \"inventory\");"
+        ]
+    },
+    {
+        "question": "What is the value of the 'qty' field for the document with the 'item' field set to 'mat'?",
+        "answer": "85",
+        "supporting_sentences": [
+            "doc = BCON_NEW (\"item\", BCON_UTF8 (\"mat\"), \"qty\", BCON_INT64 (85), ... );"
+        ]
+    },
+    {
+        "question": "What are the tags associated with the 'journal' item in the example?",
+        "answer": ["blank", "red"],
+        "supporting_sentences": [
+            "doc = BCON_NEW (\"item\", BCON_UTF8 (\"journal\"), ..., \"tags\", \"[\", BCON_UTF8 (\"blank\"), BCON_UTF8 (\"red\"), \"]\", ... );"
+        ]
+    },
+    {
+        "question": "What unit of measurement ('uom') is used for the 'size' field in all three example documents?",
+        "answer": "cm",
+        "supporting_sentences": [
+            "\"uom\", BCON_UTF8 (\"cm\"),",
+            "\"uom\", BCON_UTF8 (\"cm\"),",
+            "\"uom\", BCON_UTF8 (\"cm\"),"
+        ]
+    },
+    {
+        "question": "What function is used to execute the bulk operation in the MongoDB C driver example?",
+        "answer": "mongoc_bulk_operation_execute",
+        "supporting_sentences": [
+            "r = (bool) mongoc_bulk_operation_execute (bulk, &reply, &error);"
+        ]
+    }
+]
+```

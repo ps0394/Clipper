@@ -1,0 +1,39 @@
+```json
+[
+    {
+        "question": "What is the typical installation path for the Python interpreter on Unix-based systems?",
+        "answer": "/usr/local/bin/python3.14",
+        "supporting_sentences": [
+            "The Python interpreter is usually installed as /usr/local/bin/python3.14 on those machines where it is available;"
+        ]
+    },
+    {
+        "question": "How can you exit the Python interpreter if typing an end-of-file character does not work?",
+        "answer": "By typing the command `quit()`.",
+        "supporting_sentences": [
+            "If that doesn’t work, you can exit the interpreter by typing the following command: `quit()`."
+        ]
+    },
+    {
+        "question": "What is assigned to `sys.argv[0]` when the script name is given as `'-'` (standard input)?",
+        "answer": "It is set to `'-'`.",
+        "supporting_sentences": [
+            "When the script name is given as '-' (meaning standard input), `sys.argv[0]` is set to `'-'`."
+        ]
+    },
+    {
+        "question": "What are the default primary and secondary prompts in Python's interactive mode?",
+        "answer": "The primary prompt is `>>>` and the secondary prompt is `...`.",
+        "supporting_sentences": [
+            "In this mode it prompts for the next command with the primary prompt, usually three greater-than signs (`>>>`); for continuation lines it prompts with the secondary prompt, by default three dots (`...`)."
+        ]
+    },
+    {
+        "question": "What happens when you pass the `-i` option before a script in Python?",
+        "answer": "It runs the script and then enters interactive mode afterwards.",
+        "supporting_sentences": [
+            "When a script file is used, it is sometimes useful to be able to run the script and enter interactive mode afterwards. This can be done by passing `-i` before the script."
+        ]
+    }
+]
+```

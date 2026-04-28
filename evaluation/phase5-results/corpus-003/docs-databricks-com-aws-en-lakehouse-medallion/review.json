@@ -1,0 +1,114 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the three layers of the medallion lakehouse architecture called?",
+      "answer": "The three layers are bronze (raw), silver (validated), and gold (enriched).",
+      "supporting_sentences": [
+        "The terms bronze (raw), silver (validated), and gold (enriched) describe the quality of the data in each of these layers."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the three layers of the medallion lakehouse architecture called?",
+      "answer": "The three layers are bronze (raw), silver (validated), and gold (enriched).",
+      "supporting_sentences": [
+        "The terms bronze (raw), silver (validated), and gold (enriched) describe the quality of the data in each of these layers."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the primary purpose of the bronze layer in the medallion architecture?",
+      "answer": "The bronze layer ingests raw data from sources like cloud storage, Kafka, and Salesforce without performing any data cleanup or validation.",
+      "supporting_sentences": [
+        "Bronze layer (ops.bronze): Ingests raw data from cloud storage, Kafka, and Salesforce. No data cleanup or validation is performed here.",
+        "The bronze layer contains raw, unvalidated data."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the primary purpose of the bronze layer in the medallion architecture?",
+      "answer": "The bronze layer ingests raw data from sources like cloud storage, Kafka, and Salesforce without performing any data cleanup or validation.",
+      "supporting_sentences": [
+        "Bronze layer (ops.bronze): Ingests raw data from cloud storage, Kafka, and Salesforce. No data cleanup or validation is performed here.",
+        "The bronze layer contains raw, unvalidated data."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What types of operations are performed in the silver layer of the medallion architecture?",
+      "answer": "The silver layer performs data cleansing, deduplication, normalization, schema enforcement, handling of null values, data quality checks, and joins.",
+      "supporting_sentences": [
+        "The silver layer: Is where you perform data cleansing, deduplication, and normalization.",
+        "The following operations are performed in silver tables: Schema enforcement, Handling of null and missing values, Data deduplication, Resolution of out-of-order and late-arriving data issues, Data quality checks and enforcement, Schema evolution, Type casting, Joins."
+      ]
+    },
+    "edited_pair": {
+      "question": "What types of operations are performed in the silver layer of the medallion architecture?",
+      "answer": "The silver layer performs data cleansing, deduplication, normalization, schema enforcement, handling of null values, data quality checks, and joins.",
+      "supporting_sentences": [
+        "The silver layer: Is where you perform data cleansing, deduplication, and normalization.",
+        "The following operations are performed in silver tables: Schema enforcement, Handling of null and missing values, Data deduplication, Resolution of out-of-order and late-arriving data issues, Data quality checks and enforcement, Schema evolution, Type casting, Joins."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the role of the gold layer in the medallion architecture?",
+      "answer": "The gold layer represents highly refined, aggregated data tailored for analytics, reporting, machine learning, and business applications.",
+      "supporting_sentences": [
+        "The gold layer represents highly refined views of the data that drive downstream analytics, dashboards, ML, and applications.",
+        "The gold layer: Consists of aggregated data tailored for analytics and reporting. Aligns with business logic and requirements. Is optimized for performance in queries and dashboards."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the role of the gold layer in the medallion architecture?",
+      "answer": "The gold layer represents highly refined, aggregated data tailored for analytics, reporting, machine learning, and business applications.",
+      "supporting_sentences": [
+        "The gold layer represents highly refined views of the data that drive downstream analytics, dashboards, ML, and applications.",
+        "The gold layer: Consists of aggregated data tailored for analytics and reporting. Aligns with business logic and requirements. Is optimized for performance in queries and dashboards."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is an example of a dataset created in the gold layer for business operations?",
+      "answer": "Examples include `customer_spending`, `account_performance`, `sales_pipeline_summary`, and `business_summary`.",
+      "supporting_sentences": [
+        "customer_spending: Average and total spend for each customer.",
+        "account_performance: Daily performance for each account.",
+        "sales_pipeline_summary: Information about the end-to-end sales pipeline.",
+        "business_summary: Highly aggregated information for the executive staff."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is an example of a dataset created in the gold layer for business operations?",
+      "answer": "Examples include `customer_spending`, `account_performance`, `sales_pipeline_summary`, and `business_summary`.",
+      "supporting_sentences": [
+        "customer_spending: Average and total spend for each customer.",
+        "account_performance: Daily performance for each account.",
+        "sales_pipeline_summary: Information about the end-to-end sales pipeline.",
+        "business_summary: Highly aggregated information for the executive staff."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

@@ -1,0 +1,40 @@
+```json
+[
+    {
+        "question": "What method returns a read-only wrapper for a Dictionary<TKey,TValue>?",
+        "answer": "AsReadOnly<TKey,TValue>(IDictionary<TKey,TValue>)",
+        "supporting_sentences": [
+            "AsReadOnly<TKey,TValue>(IDictionary<TKey,TValue>)\nReturns a read-only ReadOnlyDictionary<TKey,TValue> wrapper for the current dictionary."
+        ]
+    },
+    {
+        "question": "Which method determines whether all elements of a sequence satisfy a condition?",
+        "answer": "All<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)",
+        "supporting_sentences": [
+            "All<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)\nDetermines whether all elements of a sequence satisfy a condition."
+        ]
+    },
+    {
+        "question": "What does the `GetValueOrDefault<TKey,TValue>` method do when the specified key is not found in the dictionary?",
+        "answer": "Tries to get the value associated with the specified key in the dictionary.",
+        "supporting_sentences": [
+            "GetValueOrDefault<TKey,TValue>(IReadOnlyDictionary<TKey,TValue>, TKey, TValue)\nTries to get the value associated with the specified key in the dictionary.",
+            "GetValueOrDefault<TKey,TValue>(IReadOnlyDictionary<TKey,TValue>, TKey)\nTries to get the value associated with the specified key in the dictionary."
+        ]
+    },
+    {
+        "question": "Which method creates a `Dictionary<TKey,TValue>` from an `IEnumerable<T>` using a specified key selector function?",
+        "answer": "ToDictionary<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>)",
+        "supporting_sentences": [
+            "ToDictionary<TSource,TKey>(IEnumerable<TSource>, Func<TSource,TKey>)\nCreates a Dictionary<TKey,TValue> from an IEnumerable<T> according to a specified key selector function."
+        ]
+    },
+    {
+        "question": "What method returns the first element of a sequence that satisfies a condition or a default value if no such element is found?",
+        "answer": "FirstOrDefault<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)",
+        "supporting_sentences": [
+            "FirstOrDefault<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>)\nReturns the first element of the sequence that satisfies a condition or a default value if no such element is found."
+        ]
+    }
+]
+```

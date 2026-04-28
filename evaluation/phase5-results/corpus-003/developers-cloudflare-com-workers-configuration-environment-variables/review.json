@@ -1,0 +1,112 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What parameter in a Worker's fetch event handler provides access to environment variables?",
+      "answer": "The `env` parameter passed to the Worker's `fetch` event handler provides access to environment variables.",
+      "supporting_sentences": [
+        "Environment variables are available on the `env` parameter passed to your Worker's `fetch` event handler."
+      ]
+    },
+    "edited_pair": {
+      "question": "What parameter in a Worker's fetch event handler provides access to environment variables?",
+      "answer": "The `env` parameter passed to the Worker's `fetch` event handler provides access to environment variables.",
+      "supporting_sentences": [
+        "Environment variables are available on the `env` parameter passed to your Worker's `fetch` event handler."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How can you define environment variables in a Wrangler configuration file?",
+      "answer": "You can define environment variables in a Wrangler configuration file under the `[vars]` configuration, specifying text or JSON values.",
+      "supporting_sentences": [
+        "To add env variables using Wrangler, define text and JSON via the `[vars]` configuration in your Wrangler file.",
+        "In the following example, `API_HOST` and `API_ACCOUNT_ID` are text values and `SERVICE_X_DATA` is a JSON value."
+      ]
+    },
+    "edited_pair": {
+      "question": "How can you define environment variables in a Wrangler configuration file?",
+      "answer": "You can define environment variables in a Wrangler configuration file under the `[vars]` configuration, specifying text or JSON values.",
+      "supporting_sentences": [
+        "To add env variables using Wrangler, define text and JSON via the `[vars]` configuration in your Wrangler file.",
+        "In the following example, `API_HOST` and `API_ACCOUNT_ID` are text values and `SERVICE_X_DATA` is a JSON value."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What flag is used to specify a Wrangler environment when running commands?",
+      "answer": "The `--env` or `-e` flag is used to specify a Wrangler environment when running commands.",
+      "supporting_sentences": [
+        "To run Wrangler commands in specific environments, you can pass in the `--env` or `-e` flag."
+      ]
+    },
+    "edited_pair": {
+      "question": "What flag is used to specify a Wrangler environment when running commands?",
+      "answer": "The `--env` or `-e` flag is used to specify a Wrangler environment when running commands.",
+      "supporting_sentences": [
+        "To run Wrangler commands in specific environments, you can pass in the `--env` or `-e` flag."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Where should secrets for local development be stored to avoid committing them to Git?",
+      "answer": "Secrets for local development should be stored in either a `.dev.vars` file or a `.env` file, and these files should be added to the `.gitignore` file.",
+      "supporting_sentences": [
+        "Put secrets for use in local development in either a `.dev.vars` file or a `.env` file, in the same directory as the Wrangler configuration file.",
+        "The `.dev.vars` and `.env` files should not committed to git. Add `.dev.vars*` and `.env*` to your project's `.gitignore` file."
+      ]
+    },
+    "edited_pair": {
+      "question": "Where should secrets for local development be stored to avoid committing them to Git?",
+      "answer": "Secrets for local development should be stored in either a `.dev.vars` file or a `.env` file, and these files should be added to the `.gitignore` file.",
+      "supporting_sentences": [
+        "Put secrets for use in local development in either a `.dev.vars` file or a `.env` file, in the same directory as the Wrangler configuration file.",
+        "The `.dev.vars` and `.env` files should not committed to git. Add `.dev.vars*` and `.env*` to your project's `.gitignore` file."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How are environment variables exposed when the `nodejs_compat` flag is enabled with the `nodejs_compat_populate_process_env` compatibility flag?",
+      "answer": "Environment variables are available via the global `process.env`, with text values exposed directly and JSON values exposed as parsed or raw JSON strings.",
+      "supporting_sentences": [
+        "When you enable `nodejs_compat` and the `nodejs_compat_populate_process_env` compatibility flag (enabled by default for compatibility dates on or after 2025-04-01), environment variables are available via the global `process.env`.",
+        "Text variable values are exposed directly.",
+        "JSON variable values that evaluate to string values are exposed as the parsed value.",
+        "JSON variable values that do not evaluate to string values are exposed as the raw JSON string."
+      ]
+    },
+    "edited_pair": {
+      "question": "How are environment variables exposed when the `nodejs_compat` flag is enabled with the `nodejs_compat_populate_process_env` compatibility flag?",
+      "answer": "Environment variables are available via the global `process.env`, with text values exposed directly and JSON values exposed as parsed or raw JSON strings.",
+      "supporting_sentences": [
+        "When you enable `nodejs_compat` and the `nodejs_compat_populate_process_env` compatibility flag (enabled by default for compatibility dates on or after 2025-04-01), environment variables are available via the global `process.env`.",
+        "Text variable values are exposed directly.",
+        "JSON variable values that evaluate to string values are exposed as the parsed value.",
+        "JSON variable values that do not evaluate to string values are exposed as the raw JSON string."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

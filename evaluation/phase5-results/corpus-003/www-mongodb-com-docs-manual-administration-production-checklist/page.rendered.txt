@@ -1,0 +1,258 @@
+The following checklist, along with the
+
+Development Checklist
+ list, provides
+recommendations to help you avoid issues in your production MongoDB
+deployment.
+Align your disk partitions with your RAID configuration.
+Avoid using NFS drives for your 
+dbPath
+.
+Using NFS drives can result in degraded and unstable performance.
+See: 
+Remote Filesystems (NFS)
+ for more information.
+Linux/Unix: format your drives into XFS or EXT4. If possible, use
+XFS as it generally performs better with MongoDB.
+With the WiredTiger storage engine, use of XFS is 
+strongly
+recommended
+ to avoid performance issues found when using EXT4
+with WiredTiger.
+If using RAID, you may need to configure XFS with your RAID
+geometry.
+Windows: use the NTFS file system.
+
+Do not
+ use any FAT file system (i.e. FAT 16/32/exFAT).
+Verify that all non-hidden replica set members are identically
+provisioned in terms of their RAM, CPU, disk, network setup, etc.
+Configure the oplog size
+ to
+suit your use case:
+The replication oplog window should cover normal maintenance and
+downtime windows to avoid the need for a full resync.
+The replication oplog window should cover the time needed to
+restore a replica set member from the last backup.
+Note
+The replication oplog window doesn't need to cover the
+time needed to restore a replica set member via initial sync
+as the oplog records are pulled during the data copy.
+However, the member being restored must have enough disk
+space in the 
+local
+
+database to temporarily store these oplog records for the
+duration of this data copy stage.
+Ensure that your replica set includes at least three data-bearing voting
+members that run with journaling and that you issue writes
+with 
+w: majority
+
+write concern
+ for availability and durability.
+Use hostnames when configuring replica set members, rather than IP
+addresses.
+Ensure full bidirectional network connectivity between all
+
+mongod
+ instances.
+Ensure that each host can resolve itself.
+Ensure that your replica set contains an odd number of voting members.
+Ensure that 
+mongod
+ instances have 
+0
+ or 
+1
+ votes.
+For 
+high availability
+, deploy your replica set into a
+
+minimum
+ of three data centers.
+Place your 
+config servers
+ on dedicated hardware for
+optimal performance in large clusters. Ensure that the hardware has
+enough RAM to hold the data files entirely in memory and that it
+has dedicated storage.
+Deploy 
+mongos
+ routers in accordance with the
+
+Production Configuration
+ guidelines.
+Use NTP to synchronize the clocks on all components of your sharded
+cluster.
+Ensure full bidirectional network connectivity between
+
+mongod
+, 
+mongos
+, and config servers.
+Ensure that all instances use 
+journaling.
+Place the journal on its own low-latency disk for write-intensive
+workloads. Note that this will affect snapshot-style backups as
+the files constituting the state of the database will reside on
+separate volumes.
+Windows Azure: Adjust the TCP keepalive (
+tcp_keepalive_time
+) to
+100-120. The TCP idle timeout on the Azure load balancer is too
+slow for MongoDB's connection pooling behavior. See:
+
+Azure Production Notes
+
+for more information.
+Use MongoDB version 2.6.4 or later on systems with high-latency
+storage, such as Windows Azure, as these versions include
+performance improvements for those systems.
+If running MongoDB 8.0 or later, 
+turn on Transparent Hugepages.
+If running MongoDB 7.0 or earlier, 
+turn off Transparent Hugepages.
+Adjust the readahead settings
+ on the devices
+storing your database files.
+For the WiredTiger storage engine, set readahead between 8
+and 32 regardless of storage media type (spinning disk, SSD,
+etc.), unless testing shows a measurable, repeatable, and
+reliable benefit in a higher readahead value.
+MongoDB commercial support
+ can provide
+advice and guidance on alternate readahead configurations.
+If using 
+tuned
+ on RHEL / CentOS, you must customize your
+
+tuned
+ profile. Many of the 
+tuned
+ profiles that ship with
+RHEL / CentOS can negatively impact performance with their default
+settings. Customize your chosen 
+tuned
+ profile to:
+Enable or disable Transparent Hugepages, depending on your MongoDB version.
+Set readahead between 8 and 32 regardless of storage media type.
+See 
+Readahead settings
+ for more information.
+Use the 
+none
+ disk schedulers for NVMe or SSD drives.
+Use the 
+none
+ disk scheduler for virtualized drives in guest VMs.
+If there are no neighbors, or if the neighbors do not produce heavy I/O
+patterns, there will be little HBA contention and the default 
+none
+
+scheduler suffices.
+Use 
+kyber
+ to run multiple workloads in the same VM or in your own
+data center. 
+kyber
+ improves the I/O interpolation under contention, and
+reduces the impact of noisy neighbors. Additionally, 
+kyber
+ works
+efficiently in self hosted situations, such as on-premises virtualization and
+collocated workloads in one large cloud VM. However, 
+kyber
+ is only
+available on linux kernels starting in version 4.12.
+Disable NUMA or set vm.zone_reclaim_mode to 0 and run 
+mongod
+
+instances with node interleaving. See: 
+MongoDB and NUMA Hardware
+
+for more information.
+Adjust the 
+ulimit
+ values on your hardware to suit your use case. If
+multiple 
+mongod
+ or 
+mongos
+ instances are
+running under the same user, scale the 
+ulimit
+ values
+accordingly. See: 
+UNIX 
+ulimit
+ Settings for Self-Managed Deployments
+ for more information.
+Use 
+noatime
+ for the 
+dbPath
+ mount point.
+Configure sufficient file handles (
+fs.file-max
+), kernel pid
+limit (
+kernel.pid_max
+), maximum threads per process
+(
+kernel.threads-max
+), and maximum number of memory map areas per
+process (
+vm.max_map_count
+) for your deployment. For large systems,
+the following values provide a good starting point:
+fs.file-max
+ value of 98000,
+kernel.pid_max
+ value of 64000,
+kernel.threads-max
+ value of 64000, and
+vm.max_map_count
+ value of 131060
+To manage swap space, perform one of the following:
+Ensure that your system has swap space configured. Refer to your
+operating system's documentation for details on appropriate sizing.
+Do not assign swap space on your system, and configure the kernel
+to disable swapping entirely.
+Ensure that the system default TCP keepalive is set correctly. A
+value of 120 often provides better performance for replica sets and
+sharded clusters. See: 
+Does TCP 
+keepalive
+ time affect MongoDB Deployments?
+ in the Frequently Asked
+Questions for more information.
+Use 
+MongoDB Cloud Manager
+ or 
+Ops Manager, an on-premise
+solution available in MongoDB Enterprise Advanced
+ or another monitoring system to
+monitor key database metrics and set up alerts for them. Include
+alerts for the following metrics:
+replication lag
+replication oplog window
+assertions
+queues
+page faults
+Monitor hardware statistics for your servers. In particular,
+pay attention to the disk use, CPU, and available disk space.
+In the absence of disk space monitoring, or as a precaution:
+Create a dummy 4 GB file on the 
+storage.dbPath
+ drive
+to ensure available space if the disk becomes full.
+A combination of 
+cron+df
+ can alert when disk space hits a
+high-water mark, if no other monitoring tool is available.
+Configure load balancers to enable "sticky sessions" or "client
+affinity", with a sufficient timeout for existing connections.
+Avoid placing load balancers between MongoDB cluster or replica set
+components.

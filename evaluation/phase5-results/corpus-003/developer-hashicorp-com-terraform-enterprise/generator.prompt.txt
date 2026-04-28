@@ -1,0 +1,38 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Terraform Enterprise
+Document URL: https://developer.hashicorp.com/terraform/enterprise
+Document profile: landing
+
+Document text:
+---
+Terraform Enterprise is HashiCorp's self-hosted distribution of 
+HCP Terraform
+. Terraform Enterprise offers a private instance of HCP Terraform application, with no resource limits and additional enterprise-grade architectural features like audit logging and SAML single sign-on.
+HCP Terraform and Terraform Enterprise are different distributions of the same application. When this documentation refers to HCP Terraform, the information applies to Terraform Enterprise unless specifically stated otherwise.
+Introducing HCP Terraform
+: Effective April 22, 2024, Terraform Cloud is now HCP Terraform. To learn more about this name change, refer to 
+Introducing the Infrastructure Cloud
+.
+Before mid-2019, we referred to all distributions of HCP Terraform as Terraform Enterprise, and the self-hosted distribution as Private Terraform Enterprise (PTFE). These older names sometimes appear in supporting tools, like the 
+tfe
+ Terraform provider
+, which you can also use with HCP Terraform.
+The 
+installation
+ and 
+administration
+ instructions are for customers who feel confident that they can successfully deploy Terraform Enterprise on their own. If you are unsure, or have questions, please talk to your Solutions Engineer (pre-sales, POC or trial) or Customer Success Manager (existing customers). If you have read the documentation and are ready to schedule your install, please inform your Sales Engineer (pre-sales, POC or trial) or Customer Success Manager (existing customers) of your install time window so they can make sure they are available if necessary.
+---

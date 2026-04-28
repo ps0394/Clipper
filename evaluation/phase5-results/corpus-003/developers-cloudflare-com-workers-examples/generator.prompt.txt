@@ -1,0 +1,119 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Examples · Cloudflare Workers docs
+Document URL: https://developers.cloudflare.com/workers/examples/
+Document profile: sample
+
+Document text:
+---
+Single Page App (SPA) shell with bootstrap data
+Use HTMLRewriter to inject prefetched bootstrap data into an SPA shell, eliminating client-side data fetching on initial load. Works with Workers Static Assets or an externally hosted SPA.
+Write to Analytics Engine
+Write custom analytics events to Workers Analytics Engine for high-cardinality, time-series data.
+Stream large JSON
+Parse and transform large JSON request and response bodies using streaming.
+HTTP Basic Authentication
+Shows how to restrict access using the HTTP Basic schema.
+Fetch HTML
+Send a request to a remote server, read HTML from the response, and serve that HTML.
+Return small HTML page
+Deliver an HTML page from an HTML string directly inside the Worker script.
+Return JSON
+Return JSON directly from a Worker script, useful for building APIs and middleware.
+Sign requests
+Verify a signed request using the HMAC and SHA-256 algorithms or return a 403.
+Stream OpenAI API Responses
+Use the OpenAI v4 SDK to stream responses from OpenAI.
+Using timingSafeEqual
+Protect against timing attacks by safely comparing values using 
+timingSafeEqual
+.
+Turnstile with Workers
+Inject Turnstile implicitly into HTML elements using the HTMLRewriter runtime API.
+Custom Domain with Images
+Set up custom domain for Images using a Worker or serve images using a prefix path and Cloudflare registered domain.
+103 Early Hints
+Allow a client to request static assets while waiting for the HTML response.
+Cache Tags using Workers
+Send Additional Cache Tags using Workers
+Accessing the Cloudflare Object
+Access custom Cloudflare properties and control how Cloudflare features are applied to every request.
+Aggregate requests
+Send two GET request to two urls and aggregates the responses into one response.
+Block on TLS
+Inspects the incoming request's TLS version and blocks if under TLSv1.2.
+Bulk redirects
+Redirect requests to certain URLs based on a mapped object to the request's URL.
+Cache POST requests
+Cache POST requests using the Cache API.
+Conditional response
+Return a response based on the incoming request's URL, HTTP method, User Agent, IP address, ASN or device type.
+Cookie parsing
+Given the cookie name, get the value of a cookie. You can also use cookies for A/B testing.
+Fetch JSON
+Send a GET request and read in JSON from the response. Use to fetch external data.
+Geolocation: Custom Styling
+Personalize website styling based on localized user time.
+Geolocation: Hello World
+Get all geolocation data fields and display them in HTML.
+Post JSON
+Send a POST request with JSON data. Use to share data with external servers.
+Redirect
+Redirect requests from one URL to another or from one set of URLs to another set.
+Rewrite links
+Rewrite URL links in HTML using the HTMLRewriter. This is useful for JAMstack websites.
+Set security headers
+Set common security headers (X-XSS-Protection, X-Frame-Options, X-Content-Type-Options, Permissions-Policy, Referrer-Policy, Strict-Transport-Security, Content-Security-Policy).
+Multiple Cron Triggers
+Set multiple Cron Triggers on three different schedules.
+Setting Cron Triggers
+Set a Cron Trigger for your Worker.
+Using the WebSockets API
+Use the WebSockets API to communicate in real time with your Cloudflare Workers.
+Geolocation: Weather application
+Fetch weather data from an API using the user's geolocation data.
+A/B testing with same-URL direct access
+Set up an A/B test by controlling what response is served based on cookies. This version supports passing the request through to test and control on the origin, bypassing random assignment.
+Alter headers
+Example of how to add, change, or delete headers sent in a request or returned in a response.
+Auth with headers
+Allow or deny a request based on a known pre-shared key in a header. This is not meant to replace the WebCrypto API.
+Bulk origin override
+Resolve requests to your domain to a set of proxy third-party origin URLs.
+Using the Cache API
+Use the Cache API to store responses in Cloudflare's cache.
+Cache using fetch
+Determine how to cache a resource by setting TTLs, custom cache keys, and cache headers in a fetch request.
+CORS header proxy
+Add the necessary CORS headers to a third party API response.
+Country code redirect
+Redirect a response based on the country code in the header of a visitor.
+Data loss prevention
+Protect sensitive data to prevent data loss, and send alerts to a webhooks server in the event of a data breach.
+Debugging logs
+Send debugging information in an errored response to a logging service.
+Hot-link protection
+Block other websites from linking to your content. This is useful for protecting images.
+Logging headers to console
+Examine the contents of a Headers object by logging to console with a Map.
+Modify request property
+Create a modified request with edited properties based off of an incoming request.
+Modify response
+Fetch and modify response properties which are immutable by creating a copy first.
+Read POST
+Serve an HTML form, then read POST requests. Use also to read JSON or POST data from an incoming request.
+Respond with another site
+Respond to the Worker request with the response from another website (example.com in this example).
+---

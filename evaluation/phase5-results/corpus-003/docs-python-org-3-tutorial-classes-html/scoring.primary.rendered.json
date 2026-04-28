@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "Classes provide a means of bundling data and functionality together, creating a new type of object that allows new instances to be made, each with attributes for maintaining state and methods for modifying state.",
+    "run_index": 0,
+    "tokens_in": 8441,
+    "tokens_out": 39
+  },
+  {
+    "pair_index": 1,
+    "answer": "Attribute references and instantiation.",
+    "run_index": 0,
+    "tokens_in": 8446,
+    "tokens_out": 7
+  },
+  {
+    "pair_index": 2,
+    "answer": "Python does not have true private instance variables. However, by convention, a name prefixed with an underscore (e.g. _spam) is treated as non-public. For class-private members, Python supports name mangling: identifiers with at least two leading underscores (e.g. __spam) are textually replaced with _classname__spam within the class definition, helping to avoid name clashes with subclasses. Name mangling does not prevent access or modification, but is designed to avoid accidents.",
+    "run_index": 0,
+    "tokens_in": 8440,
+    "tokens_out": 99
+  },
+  {
+    "pair_index": 3,
+    "answer": "When a class definition is entered, a new namespace is created and used as the local scope; all assignments to local variables go into this new namespace. When the class definition is left normally, a class object is created, which is a wrapper around the contents of the namespace created by the class definition. The original local scope is reinstated, and the class object is bound to the class name given in the class definition header.",
+    "run_index": 0,
+    "tokens_in": 8443,
+    "tokens_out": 86
+  },
+  {
+    "pair_index": 4,
+    "answer": "The `nonlocal` statement indicates that particular variables live in an enclosing scope and should be rebound there.",
+    "run_index": 0,
+    "tokens_in": 8446,
+    "tokens_out": 22
+  }
+]

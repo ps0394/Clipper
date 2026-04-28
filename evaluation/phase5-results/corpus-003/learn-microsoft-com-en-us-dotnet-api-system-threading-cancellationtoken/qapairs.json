@@ -1,0 +1,37 @@
+[
+  {
+    "question": "What is the purpose of the `CancellationToken` struct in .NET?",
+    "answer": "Propagates notification that operations should be canceled.",
+    "supporting_sentences": [
+      "Propagates notification that operations should be canceled."
+    ]
+  },
+  {
+    "question": "How do you create a cancellation token in .NET?",
+    "answer": "By instantiating a `CancellationTokenSource` object and retrieving the token from its `CancellationTokenSource.Token` property.",
+    "supporting_sentences": [
+      "You create a cancellation token by instantiating a CancellationTokenSource object, which manages cancellation tokens retrieved from its CancellationTokenSource.Token property."
+    ]
+  },
+  {
+    "question": "What happens to the `IsCancellationRequested` property of a cancellation token when `CancellationTokenSource.Cancel` is called?",
+    "answer": "The `IsCancellationRequested` property on every copy of the cancellation token is set to `true`.",
+    "supporting_sentences": [
+      "When the owning object calls CancellationTokenSource.Cancel, the IsCancellationRequested property on every copy of the cancellation token is set to true."
+    ]
+  },
+  {
+    "question": "In the provided example, what triggers the cancellation of the operation?",
+    "answer": "A value of zero from the random number generator indicates that the measurement has failed, which triggers the cancellation.",
+    "supporting_sentences": [
+      "A value of zero indicates that the measurement has failed for one instrument, in which case the operation should be cancelled and no overall mean should be computed."
+    ]
+  },
+  {
+    "question": "Are the public and protected members of `CancellationToken` thread-safe?",
+    "answer": "Yes, all public and protected members of `CancellationToken` are thread-safe and may be used concurrently from multiple threads.",
+    "supporting_sentences": [
+      "All public and protected members of CancellationToken are thread-safe and may be used concurrently from multiple threads."
+    ]
+  }
+]

@@ -1,0 +1,102 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What does the `alltrue` function in Terraform's configuration language return if the given collection is empty?",
+      "answer": "It returns true if the collection is empty.",
+      "supporting_sentences": [
+        "alltrue\n.hcl\nreturns true if all elements in the given collection are true or \"true\", or if the collection is empty"
+      ]
+    },
+    "edited_pair": {
+      "question": "What does the `alltrue` function in Terraform's configuration language return if the given collection is empty?",
+      "answer": "It returns true if the collection is empty.",
+      "supporting_sentences": [
+        "alltrue\n.hcl\nreturns true if all elements in the given collection are true or \"true\", or if the collection is empty"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which function would you use to split a single list into fixed-size chunks in Terraform?",
+      "answer": "The `chunklist` function.",
+      "supporting_sentences": [
+        "chunklist\n.hcl\nsplits a single list into fixed-size chunks, returning a list of lists"
+      ]
+    },
+    "edited_pair": {
+      "question": "Which function would you use to split a single list into fixed-size chunks in Terraform?",
+      "answer": "The `chunklist` function.",
+      "supporting_sentences": [
+        "chunklist\n.hcl\nsplits a single list into fixed-size chunks, returning a list of lists"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens when the `one` function is called with a list that has more than one element?",
+      "answer": "It raises an error if the given list has more than one value.",
+      "supporting_sentences": [
+        "one\n.hcl\nreturns the only element in the given list, set, or tuple, null if the given argument is empty, or raises an error if it has more than one value"
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens when the `one` function is called with a list that has more than one element?",
+      "answer": "It raises an error if the given list has more than one value.",
+      "supporting_sentences": [
+        "one\n.hcl\nreturns the only element in the given list, set, or tuple, null if the given argument is empty, or raises an error if it has more than one value"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which deprecated function should be replaced with `tolist` in Terraform 0.12 and later?",
+      "answer": "The `list` function is deprecated and should be replaced with `tolist`.",
+      "supporting_sentences": [
+        "list\n\ndeprecated after Terraform 0.12. Use \ntolist\n instead"
+      ]
+    },
+    "edited_pair": {
+      "question": "Which deprecated function should be replaced with `tolist` in Terraform 0.12 and later?",
+      "answer": "The `list` function is deprecated and should be replaced with `tolist`.",
+      "supporting_sentences": [
+        "list\n\ndeprecated after Terraform 0.12. Use \ntolist\n instead"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What does the `setintersection` function do in Terraform?",
+      "answer": "It takes multiple sets and produces a single set containing only the elements that all of the given sets have in common.",
+      "supporting_sentences": [
+        "setintersection\n.hcl,\n.tfcomponent.hcl,\n.tfdeploy.hcl\ntakes multiple sets and produces a single set containing only the elements that all of the given sets have in common"
+      ]
+    },
+    "edited_pair": {
+      "question": "What does the `setintersection` function do in Terraform?",
+      "answer": "It takes multiple sets and produces a single set containing only the elements that all of the given sets have in common.",
+      "supporting_sentences": [
+        "setintersection\n.hcl,\n.tfcomponent.hcl,\n.tfdeploy.hcl\ntakes multiple sets and produces a single set containing only the elements that all of the given sets have in common"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

@@ -1,0 +1,48 @@
+```json
+[
+    {
+        "question": "What is the maximum total size limit for environment variables per deployment on Vercel?",
+        "answer": "64 KB",
+        "supporting_sentences": [
+            "Developers on all plans using the runtimes stated below can use a total of 64 KB in Environments Variables per-Deployment on Vercel.",
+            "This limit is for all variables combined, and so no single variable can be larger than 64 KB."
+        ]
+    },
+    {
+        "question": "Which runtimes on Vercel support environment variables up to 64 KB?",
+        "answer": "Node.js, Python, Ruby, Go, and PHP Community Runtime",
+        "supporting_sentences": [
+            "Deployments using the following runtimes can support environment variables up to 64 KB:",
+            "Node.js",
+            "Python",
+            "Ruby",
+            "Go",
+            "PHP Community Runtime"
+        ]
+    },
+    {
+        "question": "What is the size limit for environment variables in Edge Functions and Middleware using the edge runtime?",
+        "answer": "5KB per Environment Variable",
+        "supporting_sentences": [
+            "While Vercel allows environment variables up to a total of 64KB in size, Edge Functions and Middleware using the edge runtime are limited to 5KB per Environment Variable."
+        ]
+    },
+    {
+        "question": "What file is used to define environment variables for local development in a Vercel project?",
+        "answer": ".env.local",
+        "supporting_sentences": [
+            "Environment variables for local development are defined in the .env.local file.",
+            "This is a plain text file that contains key=value pairs of environment variables, that you can manually create in your project's root directory to define specific variables."
+        ]
+    },
+    {
+        "question": "What command is used to download Development Environment Variables from a Vercel project to a local .env file?",
+        "answer": "vercel env pull",
+        "supporting_sentences": [
+            "You can use the vercel env pull command to automatically create and populate the .env file (which serves the same purpose as .env.local) with the environment variables from your Vercel project:",
+            "vercel env pull",
+            "Downloading Development Environment Variables for Project my-lovely-project"
+        ]
+    }
+]
+```

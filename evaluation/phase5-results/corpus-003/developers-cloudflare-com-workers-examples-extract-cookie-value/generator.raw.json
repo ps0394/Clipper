@@ -1,0 +1,45 @@
+```json
+[
+    {
+        "question": "What is the name of the cookie used in the Cloudflare Workers example for extracting a cookie value?",
+        "answer": "__uid",
+        "supporting_sentences": [
+            "const COOKIE_NAME = \"__uid\";",
+            "const COOKIE_NAME = \"__uid\";",
+            "const COOKIE_NAME = \"__uid\";"
+        ]
+    },
+    {
+        "question": "Which npm package is required for the JavaScript example in the Cloudflare Workers cookie parsing documentation?",
+        "answer": "cookie",
+        "supporting_sentences": [
+            "This example requires the npm package cookie ↗ to be installed in your JavaScript project."
+        ]
+    },
+    {
+        "question": "What does the Cloudflare Workers example return if the specified cookie is not found?",
+        "answer": "No cookie with name: [cookie name]",
+        "supporting_sentences": [
+            "return new Response(\"No cookie with name: \" + COOKIE_NAME);",
+            "return Response(\"No cookie with name: \" + cookie_name);",
+            "return c.text(\"No cookie with name: \" + COOKIE_NAME);"
+        ]
+    },
+    {
+        "question": "Which utility does the Hono example use to get the cookie value in the Cloudflare Workers documentation?",
+        "answer": "getCookie from 'hono/cookie'",
+        "supporting_sentences": [
+            "import { getCookie } from 'hono/cookie';",
+            "const cookieValue = getCookie(c, COOKIE_NAME);"
+        ]
+    },
+    {
+        "question": "What is the Python class used for the Worker entry point in the Cloudflare Workers cookie parsing example?",
+        "answer": "WorkerEntrypoint",
+        "supporting_sentences": [
+            "from workers import WorkerEntrypoint, Response",
+            "class Default(WorkerEntrypoint):"
+        ]
+    }
+]
+```

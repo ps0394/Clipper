@@ -1,0 +1,40 @@
+```json
+[
+    {
+        "question": "Which MongoDB product edition includes the LDAP user-to-DN mapping feature?",
+        "answer": "MongoDB Enterprise",
+        "supporting_sentences": [
+            "Available in MongoDB Enterprise only."
+        ]
+    },
+    {
+        "question": "What are the two possible fields that can be used in a document within the `--ldapUserToDNMapping` array to transform a username into an LDAP DN?",
+        "answer": "`substitution` or `ldapQuery`",
+        "supporting_sentences": [
+            "Each document contains a regular expression `match` and either a `substitution` or `ldapQuery` template used for transforming the incoming username.",
+            "For each document in the array, you must use either `substitution` or `ldapQuery`. You cannot specify both in the same document."
+        ]
+    },
+    {
+        "question": "What happens if no documents in the `--ldapUserToDNMapping` array match the provided authentication username?",
+        "answer": "`mongod` returns an error",
+        "supporting_sentences": [
+            "If no matches are found in any document, or the transformation the document describes fails, `mongod` returns an error."
+        ]
+    },
+    {
+        "question": "In MongoDB 5.0 and later, what does providing an empty string or empty array to `--ldapUserToDNMapping` cause MongoDB to do?",
+        "answer": "MongoDB maps the authenticated username as the LDAP DN",
+        "supporting_sentences": [
+            "Starting in MongoDB 5.0, `--ldapUserToDNMapping` accepts an empty string `\"\"` or empty array `[]` in place of a mapping document. If providing an empty string or empty array to `--ldapUserToDNMapping`, MongoDB maps the authenticated username as the LDAP DN."
+        ]
+    },
+    {
+        "question": "What is the resulting LDAP DN for a user with the username `alice@ENGINEERING.EXAMPLE.COM` when using the example transformation documents in the documentation?",
+        "answer": "`cn=alice,ou=engineering,dc=example,dc=com`",
+        "supporting_sentences": [
+            "A user with username `alice@ENGINEERING.EXAMPLE.COM` matches the first document. The regex capture group `{0}` corresponds to the string `alice`. The resulting output is the DN `\"cn=alice,ou=engineering,dc=example,dc=com\"`."
+        ]
+    }
+]
+```

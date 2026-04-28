@@ -1,0 +1,1169 @@
+This article explains the new features in Python 3.12, compared to 3.11.
+Python 3.12 was released on October 2, 2023.
+For full details, see the 
+changelog
+.
+
+Summary – Release highlights
+
+Python 3.12 is a stable release of the Python programming language,
+with a mix of changes to the language and the standard library.
+The library changes focus on cleaning up deprecated APIs, usability, and correctness.
+Of note, the 
+distutils
+ package has been removed from the standard library.
+Filesystem support in 
+os
+ and 
+pathlib
+ has seen a number of improvements,
+and several modules have better performance.
+
+The language changes focus on usability,
+as 
+f-strings
+ have had many limitations removed
+and ‘Did you mean …’ suggestions continue to improve.
+The new 
+type parameter syntax
+
+and 
+type
+ statement improve ergonomics for using 
+generic types
+ and 
+type aliases
+ with static type checkers.
+
+This article doesn’t attempt to provide a complete specification of all new features,
+but instead gives a convenient overview.
+For full details, you should refer to the documentation,
+such as the  
+Library Reference
+
+and 
+Language Reference
+.
+If you want to understand the complete implementation and design rationale for a change,
+refer to the PEP for a particular new feature;
+but note that PEPs usually are not kept up-to-date
+once a feature has been fully implemented.
+
+New syntax features:
+
+New grammar features:
+
+Interpreter improvements:
+
+Python data model improvements:
+
+Significant improvements in the standard library:
+
+Security improvements:
+
+Replace the builtin 
+hashlib
+ implementations of
+SHA1, SHA3, SHA2-384, SHA2-512, and MD5 with formally verified code from the
+
+HACL*
+ project.
+These builtin implementations remain as fallbacks that are only used when
+OpenSSL does not provide them.
+
+C API improvements:
+
+CPython implementation improvements:
+
+PEP 709
+, comprehension inlining
+
+CPython support
+ for the Linux 
+perf
+ profiler
+
+Implement stack overflow protection on supported platforms
+
+New typing features:
+
+Important deprecations, removals or restrictions:
+
+PEP 623
+: Remove 
+wstr
+ from Unicode objects in Python’s C API,
+reducing the size of every 
+str
+ object by at least 8 bytes.
+
+PEP 632
+: Remove the 
+distutils
+ package.
+See 
+the migration guide
+
+for advice replacing the APIs it provided.
+The third-party 
+Setuptools
+
+package continues to provide 
+distutils
+,
+if you still require it in Python 3.12 and beyond.
+
+gh-95299
+: Do not pre-install 
+setuptools
+ in virtual environments
+created with 
+venv
+.
+This means that 
+distutils
+, 
+setuptools
+, 
+pkg_resources
+,
+and 
+easy_install
+ will no longer available by default; to access these
+run 
+pip
+
+install
+
+setuptools
+ in the 
+activated
+
+virtual environment.
+
+The 
+asynchat
+, 
+asyncore
+, and 
+imp
+ modules have been
+removed, along with several 
+unittest.TestCase
+
+method aliases
+.
+
+New Features
+
+PEP 695: Type Parameter Syntax
+
+Generic classes and functions under 
+PEP 484
+ were declared using a verbose syntax
+that left the scope of type parameters unclear and required explicit declarations of
+variance.
+
+PEP 695
+ introduces a new, more compact and explicit way to create
+
+generic classes
+ and 
+functions
+:
+
+def
+
+max
+[
+T
+](
+args
+:
+
+Iterable
+[
+T
+])
+
+->
+
+T
+:
+
+...
+
+class
+
+list
+[
+T
+]:
+
+def
+
+__getitem__
+(
+self
+,
+
+index
+:
+
+int
+,
+
+/
+)
+
+->
+
+T
+:
+
+...
+
+def
+
+append
+(
+self
+,
+
+element
+:
+
+T
+)
+
+->
+
+None
+:
+
+...
+
+In addition, the PEP introduces a new way to declare 
+type aliases
+
+using the 
+type
+ statement, which creates an instance of
+
+TypeAliasType
+:
+
+type
+
+Point
+
+=
+
+tuple
+[
+float
+,
+
+float
+]
+
+Type aliases can also be 
+generic
+:
+
+type
+
+Point
+[
+T
+]
+
+=
+
+tuple
+[
+T
+,
+
+T
+]
+
+The new syntax allows declaring 
+TypeVarTuple
+
+and 
+ParamSpec
+ parameters, as well as 
+TypeVar
+
+parameters with bounds or constraints:
+
+type
+
+IntFunc
+[
+**
+P
+]
+
+=
+
+Callable
+[
+P
+,
+
+int
+]
+
+# ParamSpec
+
+type
+
+LabeledTuple
+[
+*
+Ts
+]
+
+=
+
+tuple
+[
+str
+,
+
+*
+Ts
+]
+
+# TypeVarTuple
+
+type
+
+HashableSequence
+[
+T
+:
+
+Hashable
+]
+
+=
+
+Sequence
+[
+T
+]
+
+# TypeVar with bound
+
+type
+
+IntOrStrSequence
+[
+T
+:
+
+(
+int
+,
+
+str
+)]
+
+=
+
+Sequence
+[
+T
+]
+
+# TypeVar with constraints
+
+The value of type aliases and the bound and constraints of type variables
+created through this syntax are evaluated only on demand (see
+
+lazy evaluation
+). This means type aliases are able to
+refer to other types defined later in the file.
+
+Type parameters declared through a type parameter list are visible within the
+scope of the declaration and any nested scopes, but not in the outer scope. For
+example, they can be used in the type annotations for the methods of a generic
+class or in the class body. However, they cannot be used in the module scope after
+the class is defined. See 
+Type parameter lists
+ for a detailed description of the
+runtime semantics of type parameters.
+
+In order to support these scoping semantics, a new kind of scope is introduced,
+the 
+annotation scope
+. Annotation scopes behave for the
+most part like function scopes, but interact differently with enclosing class scopes.
+In Python 3.13, 
+annotations
+ will also be evaluated in
+annotation scopes.
+
+See 
+PEP 695
+ for more details.
+
+(PEP written by Eric Traut. Implementation by Jelle Zijlstra, Eric Traut,
+and others in 
+gh-103764
+.)
+
+PEP 701: Syntactic formalization of f-strings
+
+PEP 701
+ lifts some restrictions on the usage of 
+f-strings
+.
+Expression components inside f-strings can now be any valid Python expression,
+including strings reusing the same quote as the containing f-string,
+multi-line expressions, comments, backslashes, and unicode escape sequences.
+Let’s cover these in detail:
+
+Quote reuse: in Python 3.11, reusing the same quotes as the enclosing f-string
+raises a 
+SyntaxError
+, forcing the user to either use other available
+quotes (like using double quotes or triple quotes if the f-string uses single
+quotes). In Python 3.12, you can now do things like this:
+
+>>> 
+songs
+
+=
+
+[
+'Take me back to Eden'
+,
+
+'Alkaline'
+,
+
+'Ascensionism'
+]
+
+>>> 
+f
+"This is the playlist: 
+{
+", "
+.
+join
+(
+songs
+)
+}
+"
+
+'This is the playlist: Take me back to Eden, Alkaline, Ascensionism'
+
+Note that before this change there was no explicit limit in how f-strings can
+be nested, but the fact that string quotes cannot be reused inside the
+expression component of f-strings made it impossible to nest f-strings
+arbitrarily. In fact, this is the most nested f-string that could be written:
+
+>>> 
+f
+"""
+{
+f
+'''
+{
+f
+'
+{
+f
+"
+{
+1
++
+1
+}
+"
+}
+'
+}
+'''
+}
+"""
+
+'2'
+
+As now f-strings can contain any valid Python expression inside expression
+components, it is now possible to nest f-strings arbitrarily:
+
+>>> 
+f
+"
+{
+f
+"
+{
+f
+"
+{
+f
+"
+{
+f
+"
+{
+f
+"
+{
+1
++
+1
+}
+"
+}
+"
+}
+"
+}
+"
+}
+"
+}
+"
+
+'2'
+
+Multi-line expressions and comments: In Python 3.11, f-string expressions
+must be defined in a single line, even if the expression within the f-string
+could normally span multiple lines
+(like literal lists being defined over multiple lines),
+making them harder to read. In Python 3.12 you can now define f-strings
+spanning multiple lines, and add inline comments:
+
+>>> f"This is the playlist: {", ".join([
+...     'Take me back to Eden',  # My, my, those eyes like fire
+...     'Alkaline',              # Not acid nor alkaline
+...     'Ascensionism'           # Take to the broken skies at last
+... ])}"
+'This is the playlist: Take me back to Eden, Alkaline, Ascensionism'
+
+Backslashes and unicode characters: before Python 3.12 f-string expressions
+couldn’t contain any 
+\
+ character. This also affected unicode 
+escape
+sequences
+ (such as 
+\N{snowman}
+) as these contain
+the 
+\N
+ part that previously could not be part of expression components of
+f-strings. Now, you can define expressions like this:
+
+>>> 
+print
+(
+f
+"This is the playlist: 
+{
+"
+\n
+"
+.
+join
+(
+songs
+)
+}
+"
+)
+
+This is the playlist: Take me back to Eden
+
+Alkaline
+
+Ascensionism
+
+>>> 
+print
+(
+f
+"This is the playlist: 
+{
+"
+\N{BLACK HEART SUIT}
+"
+.
+join
+(
+songs
+)
+}
+"
+)
+
+This is the playlist: Take me back to Eden♥Alkaline♥Ascensionism
+
+See 
+PEP 701
+ for more details.
+
+As a positive side-effect of how this feature has been implemented (by parsing f-strings
+with 
+the PEG parser
+), now error messages for f-strings are more precise
+and include the exact location of the error. For example, in Python 3.11, the following
+f-string raises a 
+SyntaxError
+:
+
+>>> 
+my_string
+
+=
+
+f
+"
+{
+x
+
+z
+
+y
+}
+"
+
++
+
+f
+"
+{
+1
+
++
+
+1
+}
+"
+
+  File 
+"<stdin>"
+, line 
+1
+
+(
+x
+
+z
+
+y
+)
+
+^^^
+
+SyntaxError
+: 
+f-string: invalid syntax. Perhaps you forgot a comma?
+
+but the error message doesn’t include the exact location of the error within the line and
+also has the expression artificially surrounded by parentheses. In Python 3.12, as f-strings
+are parsed with the PEG parser, error messages can be more precise and show the entire line:
+
+>>> 
+my_string
+
+=
+
+f
+"
+{
+x
+
+z
+
+y
+}
+"
+
++
+
+f
+"
+{
+1
+
++
+
+1
+}
+"
+
+  File 
+"<stdin>"
+, line 
+1
+
+my_string
+
+=
+
+f
+"
+{
+x
+
+z
+
+y
+}
+"
+
++
+
+f
+"
+{
+1
+
++
+
+1
+}
+"
+
+^^^
+
+SyntaxError
+: 
+invalid syntax. Perhaps you forgot a comma?
+
+(Contributed by Pablo Galindo, Batuhan Taskaya, Lysandros Nikolaou, Cristián
+Maureira-Fredes and Marta Gómez in 
+gh-102856
+. PEP written by Pablo Galindo,
+Batuhan Taskaya, Lysandros Nikolaou and Marta Gómez).
+
+PEP 684: A Per-Interpreter GIL
+
+PEP 684
+ introduces a per-interpreter 
+GIL
+,
+so that sub-interpreters may now be created with a unique GIL per interpreter.
+This allows Python programs to take full advantage of multiple CPU
+cores. This is currently only available through the C-API,
+though a Python API is 
+anticipated for 3.13
+.
+
+Use the new 
+Py_NewInterpreterFromConfig()
+ function to
+create an interpreter with its own GIL:
+
+PyInterpreterConfig
+
+config
+
+=
+
+{
+
+.
+check_multi_interp_extensions
+
+=
+
+1
+,
+
+.
+gil
+
+=
+
+PyInterpreterConfig_OWN_GIL
+,
+
+};
+
+PyThreadState
+
+*
+tstate
+
+=
+
+NULL
+;
+
+PyStatus
+
+status
+
+=
+
+Py_NewInterpreterFromConfig
+(
+&
+tstate
+,
+
+&
+config
+);
+
+if
+
+(
+PyStatus_Exception
+(
+status
+))
+
+{
+
+return
+
+-1
+;
+
+}
+
+/* The new interpreter is now active in the current thread. */
+
+For further examples how to use the C-API for sub-interpreters with a
+per-interpreter GIL, see 
+Modules/_xxsubinterpretersmodule.c
+.
+
+(Contributed by Eric Snow in 
+gh-104210
+, etc.)
+
+PEP 669: Low impact monitoring for CPython
+
+PEP 669
+ defines a new 
+API
+ for profilers,
+debuggers, and other tools to monitor events in CPython.
+It covers a wide range of events, including calls,
+returns, lines, exceptions, jumps, and more.
+This means that you only pay for what you use, providing support
+for near-zero overhead debuggers and coverage tools.
+See  
+sys.monitoring
+ for details.
+
+(Contributed by Mark Shannon in 
+gh-103082
+.)
+
+PEP 688: Making the buffer protocol accessible in Python
+
+PEP 688
+ introduces a way to use the 
+buffer protocol
+
+from Python code. Classes that implement the 
+__buffer__()
+ method
+are now usable as buffer types.
+
+The new 
+collections.abc.Buffer
+ ABC provides a standard
+way to represent buffer objects, for example in type annotations.
+The new 
+inspect.BufferFlags
+ enum represents the flags that
+can be used to customize buffer creation.
+(Contributed by Jelle Zijlstra in 
+gh-102500
+.)
+
+PEP 709: Comprehension inlining
+
+Dictionary, list, and set comprehensions are now inlined, rather than creating a
+new single-use function object for each execution of the comprehension. This
+speeds up execution of a comprehension by up to two times.
+See 
+PEP 709
+ for further details.
+
+Comprehension iteration variables remain isolated and don’t overwrite a
+variable of the same name in the outer scope, nor are they visible after the
+comprehension. Inlining does result in a few visible behavior changes:
+
+There is no longer a separate frame for the comprehension in tracebacks,
+and tracing/profiling no longer shows the comprehension as a function call.
+
+The 
+symtable
+ module will no longer produce child symbol tables for each
+comprehension; instead, the comprehension’s locals will be included in the
+parent function’s symbol table.
+
+Calling 
+locals()
+ inside a comprehension now includes variables
+from outside the comprehension, and no longer includes the synthetic 
+.0
+
+variable for the comprehension “argument”.
+
+A comprehension iterating directly over 
+locals()
+ (e.g. 
+[k
+
+for
+
+k
+
+in
+
+locals()]
+) may see “RuntimeError: dictionary changed size during iteration”
+when run under tracing (e.g. code coverage measurement). This is the same
+behavior already seen in e.g. 
+for
+
+k
+
+in
+
+locals():
+. To avoid the error, first
+create a list of keys to iterate over: 
+keys
+
+=
+
+list(locals());
+
+[k
+
+for
+
+k
+
+in
+
+keys]
+.
+
+(Contributed by Carl Meyer and Vladimir Matveev in 
+PEP 709
+.)
+
+Improved Error Messages
+
+Modules from the standard library are now potentially suggested as part of
+the error messages displayed by the interpreter when a 
+NameError
+ is
+raised to the top level. (Contributed by Pablo Galindo in 
+gh-98254
+.)
+
+>>> 
+sys
+.
+version_info
+
+Traceback (most recent call last):
+
+  File 
+"<stdin>"
+, line 
+1
+, in 
+<module>
+
+NameError
+: 
+name 'sys' is not defined. Did you forget to import 'sys'?
+
+Improve the error suggestion for 
+NameError
+ exceptions for instances.
+Now if a 
+NameError
+ is raised in a method and the instance has an
+attribute that’s exactly equal to the name in the exception, the suggestion
+will include 
+self.<NAME>
+ instead of the closest match in the method
+scope. (Contributed by Pablo Galindo in 
+gh-99139
+.)
+
+>>> 
+class
+
+A
+:
+
+... 
+
+def
+
+__init__
+(
+self
+):
+
+... 
+
+self
+.
+blech
+
+=
+
+1
+
+...
+
+... 
+
+def
+
+foo
+(
+self
+):
+
+... 
+
+somethin
+
+=
+
+blech
+
+...
+
+>>> 
+A
+()
+.
+foo
+()
+
+Traceback (most recent call last):
+
+  File 
+"<stdin>"
+, line 
+1
+
+somethin
+
+=
+
+blech
+
+^^^^^
+
+NameError
+: 
+name 'blech' is not defined. Did you mean: 'self.blech'?
+
+Improve the 
+SyntaxError
+ error message when the user types 
+import
+
+x
+
+from
+
+y
+ instead of 
+from
+
+y
+
+import
+
+x
+. (Contributed by Pablo Galindo in 
+gh-98931
+.)
+
+>>> 
+import
+
+a.y.z
+
+from
+
+b.y.z
+
+Traceback (most recent call last):
+
+  File 
+"<stdin>"
+, line 
+1
+
+import
+
+a.y.z
+
+from
+
+b.y.z
+
+^^^^^^^^^^^^^^^^^^^^^^^
+
+SyntaxError
+: 
+Did you mean to use 'from ... import ...' instead?
+
+ImportError
+ exceptions raised from failed 
+from
+
+<module>
+
+import
+
+<name>
+ statements now include suggestions for the value of 
+<name>
+ based on the
+available names in 
+<module>
+. (Contributed by Pablo Galindo in 
+gh-91058
+.)
+
+>>> 
+from
+
+collections
+
+import
+
+chainmap
+
+Traceback (most recent call last):
+
+  File 
+"<stdin>"
+, line 
+1
+, in 
+<module>
+
+ImportError
+: 
+cannot import name 'chainmap' from 'collections'. Did you mean: 'ChainMap'?

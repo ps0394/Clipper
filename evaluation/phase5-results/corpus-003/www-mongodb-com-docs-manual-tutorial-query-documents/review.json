@@ -1,0 +1,102 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the name of the collection used in the MongoDB C driver example for inserting documents?",
+      "answer": "inventory",
+      "supporting_sentences": [
+        "collection = mongoc_database_get_collection (db, \"inventory\");"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the name of the collection used in the MongoDB C driver example for inserting documents?",
+      "answer": "inventory",
+      "supporting_sentences": [
+        "collection = mongoc_database_get_collection (db, \"inventory\");"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the quantity value of the 'notebook' item in the example documents?",
+      "answer": "50",
+      "supporting_sentences": [
+        "\"item\", BCON_UTF8 (\"notebook\"), \"qty\", BCON_INT64 (50),"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the quantity value of the 'notebook' item in the example documents?",
+      "answer": "50",
+      "supporting_sentences": [
+        "\"item\", BCON_UTF8 (\"notebook\"), \"qty\", BCON_INT64 (50),"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What unit of measurement (uom) is used for the 'paper' item's size in the example?",
+      "answer": "in",
+      "supporting_sentences": [
+        "\"uom\", BCON_UTF8 (\"in\"), \"}\", \"status\", BCON_UTF8 (\"D\"));"
+      ]
+    },
+    "edited_pair": {
+      "question": "What unit of measurement (uom) is used for the 'paper' item's size in the example?",
+      "answer": "in",
+      "supporting_sentences": [
+        "\"uom\", BCON_UTF8 (\"in\"), \"}\", \"status\", BCON_UTF8 (\"D\"));"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the status of the 'planner' item in the example documents?",
+      "answer": "D",
+      "supporting_sentences": [
+        "\"status\", BCON_UTF8 (\"D\"));"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the status of the 'planner' item in the example documents?",
+      "answer": "D",
+      "supporting_sentences": [
+        "\"status\", BCON_UTF8 (\"D\"));"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the height (h) value of the 'postcard' item in the example documents?",
+      "answer": "10",
+      "supporting_sentences": [
+        "\"h\", BCON_DOUBLE (10),"
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the height (h) value of the 'postcard' item in the example documents?",
+      "answer": "10",
+      "supporting_sentences": [
+        "\"h\", BCON_DOUBLE (10),"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

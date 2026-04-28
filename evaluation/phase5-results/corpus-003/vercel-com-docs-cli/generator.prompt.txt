@@ -1,0 +1,1356 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Vercel CLI Overview
+Document URL: https://vercel.com/docs/cli
+Document profile: reference
+
+Document text:
+---
+Vercel gives you multiple ways to interact with and configure your Vercel Projects. With the command-line interface (CLI) you can interact with the Vercel platform using a terminal, or through an automated system, enabling you to 
+retrieve logs
+, manage 
+certificates
+, replicate your deployment environment 
+locally
+, manage Domain Name System (DNS) 
+records
+, and more.
+
+If you'd like to interface with the platform programmatically, check out the 
+REST API documentation
+.
+
+To download and install Vercel CLI, run the following command:
+
+pnpm
+bun
+yarn
+npm
+
+When there is a new release of Vercel CLI, running any command will show you a message letting you know that an update is available.
+
+If you have installed our command-line interface through 
+npm
+ or 
+Yarn
+, the easiest way to update it is by running the installation command yet again.
+
+pnpm
+bun
+yarn
+npm
+yarn global add vercel@latest
+
+If you see permission errors, please read npm's 
+official guide
+. Yarn depends on the same configuration as npm.
+
+The 
+--version
+ option can be used to verify the version of Vercel CLI currently being used.
+
+Using the 
+vercel
+ command with the 
+--version
+ option.
+
+Vercel CLI requires you to log in and authenticate before accessing resources or performing administrative tasks. In a terminal environment, you can use 
+vercel login
+, which requires manual input. In a CI/CD environment where manual input is not possible, you can create a token on your 
+tokens page
+ and then authenticate using one of these methods:
+
+Set the 
+VERCEL_TOKEN
+ environment variable
+
+Pass the 
+--token
+ option
+ to the command
+
+Using the 
+VERCEL_TOKEN
+ environment variable is recommended for CI/CD because it avoids exposing the token in command-line arguments, which can be visible in process lists and logs. If both are provided, the 
+--token
+ flag takes precedence over the environment variable.
+
+View activity events for your Vercel project or team, filtered by type, date range, and project.
+
+vercel
+
+activity
+
+vercel
+
+activity
+
+ls
+
+--all
+
+--since
+
+30
+d
+
+vercel
+
+activity
+
+ls
+
+--type
+
+deployment
+
+--since
+
+7
+d
+
+Learn more about the activity command
+
+Make authenticated HTTP requests to the Vercel API from your terminal. This is a beta command.
+
+vercel
+
+api
+ [endpoint]
+
+vercel
+
+api
+
+/v2/user
+
+vercel
+
+api
+
+/v9/projects
+
+-X
+
+POST
+
+-F
+
+name=my-project
+
+Learn more about the api command
+
+Apply custom domain aliases to your Vercel deployments.
+
+vercel
+
+alias
+
+set
+ [deployment-url] [custom-domain]
+
+vercel
+
+alias
+
+rm
+ [custom-domain]
+
+vercel
+
+alias
+
+ls
+
+Learn more about the alias command
+
+List recent alerts for a linked project, a specific project, or an entire team.
+
+vercel
+
+alerts
+
+vercel
+
+alerts
+
+--all
+
+vercel
+
+alerts
+
+--project
+ [project-name]
+
+Learn more about the alerts command
+
+Perform a binary search on your deployments to help surface issues.
+
+vercel
+
+bisect
+
+vercel
+
+bisect
+
+--good
+ [deployment-url] --bad [deployment-url]
+
+Learn more about the bisect command
+
+Interact with Vercel Blob storage to upload, download, list, delete, and copy files.
+
+vercel
+
+blob
+
+list
+
+vercel
+
+blob
+
+put
+ [path-to-file]
+
+vercel
+
+blob
+
+get
+ [url-or-pathname]
+
+vercel
+
+blob
+
+del
+ [url-or-pathname]
+
+vercel
+
+blob
+
+copy
+ [from-url] [to-pathname]
+
+Learn more about the blob command
+
+Build a Vercel Project locally or in your own CI environment.
+
+vercel
+
+build
+
+vercel
+
+build
+
+--prod
+
+Learn more about the build command
+
+Purchase Vercel products like credits, addons, subscriptions, and domains directly from the CLI.
+
+vercel
+
+buy
+
+credits
+
+v0
+
+100
+
+vercel
+
+buy
+
+addon
+
+siem
+
+1
+
+vercel
+
+buy
+
+pro
+
+vercel
+
+buy
+
+domain
+
+example.com
+
+Learn more about the buy command
+
+Manage cache for your project (CDN cache and Data cache).
+
+vercel
+
+cache
+
+purge
+
+vercel
+
+cache
+
+purge
+
+--type
+
+cdn
+
+vercel
+
+cache
+
+purge
+
+--type
+
+data
+
+vercel
+
+cache
+
+invalidate
+
+--tag
+
+foo
+
+vercel
+
+cache
+
+dangerously-delete
+
+--tag
+
+foo
+
+Learn more about the cache command
+
+Manage certificates for your domains.
+
+vercel
+
+certs
+
+ls
+
+vercel
+
+certs
+
+issue
+ [domain]
+
+vercel
+
+certs
+
+rm
+ [certificate-id]
+
+Learn more about the certs command
+
+View contract commitment information for your Vercel account.
+
+vercel
+
+contract
+
+vercel
+
+contract
+
+--format
+
+json
+
+Learn more about the contract command
+
+Make HTTP requests to your Vercel deployments with automatic deployment protection bypass. This is a beta command.
+
+vercel
+
+curl
+ [path]
+
+vercel
+
+curl
+
+/api/hello
+
+vercel
+
+curl
+
+/api/data
+
+--deployment
+ [deployment-url]
+
+Learn more about the curl command
+
+Deploy your Vercel projects. Default command when no subcommand is specified.
+
+vercel
+
+vercel
+
+deploy
+
+vercel
+
+deploy
+
+--prod
+
+Learn more about the deploy command
+
+Replicate the Vercel deployment environment locally and test your project.
+
+vercel
+
+dev
+
+vercel
+
+dev
+
+--port
+
+3000
+
+Learn more about the dev command
+
+Manage your DNS records for your domains.
+
+vercel
+
+dns
+
+ls
+ [domain]
+
+vercel
+
+dns
+
+add
+ [domain] [name] [type] [value]
+
+vercel
+
+dns
+
+rm
+ [record-id]
+
+Learn more about the dns command
+
+Buy, sell, transfer, and manage your domains.
+
+vercel
+
+domains
+
+ls
+
+vercel
+
+domains
+
+add
+ [domain] [project]
+
+vercel
+
+domains
+
+rm
+ [domain]
+
+vercel
+
+domains
+
+buy
+ [domain]
+
+Learn more about the domains command
+
+Manage environment variables in your Vercel Projects.
+
+vercel
+
+env
+
+ls
+
+vercel
+
+env
+
+add
+ [name] [environment]
+
+vercel
+
+env
+
+update
+ [name] [environment]
+
+vercel
+
+env
+
+rm
+ [name] [environment]
+
+vercel
+
+env
+
+pull
+ [file]
+
+vercel
+
+env
+
+run
+
+--
+
+<
+comman
+d
+>
+
+Learn more about the env command
+
+Manage feature flags for your Vercel Project.
+
+vercel
+
+flags
+
+list
+
+vercel
+
+flags
+
+create
+ [slug]
+
+vercel
+
+flags
+
+set
+ [flag] --environment [environment] --variant [variant]
+
+vercel
+
+flags
+
+open
+ [flag]
+
+Learn more about the flags command
+
+Manage your Git provider connections.
+
+vercel
+
+git
+
+ls
+
+vercel
+
+git
+
+connect
+
+vercel
+
+git
+
+disconnect
+ [provider]
+
+Learn more about the git command
+
+Enable or disable guidance messages shown after CLI commands.
+
+vercel
+
+guidance
+
+enable
+
+vercel
+
+guidance
+
+disable
+
+vercel
+
+guidance
+
+status
+
+Learn more about the guidance command
+
+Get information about all available Vercel CLI commands.
+
+vercel
+
+help
+
+vercel
+
+help
+ [command]
+
+Learn more about the help command
+
+Visualize HTTP request timing statistics for your Vercel deployments with automatic deployment protection bypass.
+
+vercel
+
+httpstat
+ [path]
+
+vercel
+
+httpstat
+
+/api/hello
+
+vercel
+
+httpstat
+
+/api/data
+
+--deployment
+ [deployment-url]
+
+Learn more about the httpstat command
+
+Initialize example Vercel Projects locally from the examples repository.
+
+vercel
+
+init
+
+vercel
+
+init
+ [project-name]
+
+Learn more about the init command
+
+Retrieve information about your Vercel deployments.
+
+vercel
+
+inspect
+ [deployment-id-or-url]
+
+vercel
+
+inspect
+ [deployment-id-or-url] --logs
+
+vercel
+
+inspect
+ [deployment-id-or-url] --wait
+
+Learn more about the inspect command
+
+Install a marketplace integration and provision a resource. Alias for 
+vercel integration add
+.
+
+vercel
+
+install
+
+<
+integration-nam
+e
+>
+
+Learn more about the install command
+
+Manage marketplace integrations: provision resources, discover available integrations, view setup guides, check balances, and more.
+
+vercel
+
+integration
+
+add
+
+<
+integration-nam
+e
+>
+
+vercel
+
+integration
+
+list
+ [project-name]
+
+vercel
+
+integration
+
+discover
+
+vercel
+
+integration
+
+guide
+
+<
+integration-nam
+e
+>
+
+vercel
+
+integration
+
+balance
+
+<
+integration-nam
+e
+>
+
+vercel
+
+integration
+
+open
+
+<
+integration-nam
+e
+>
+ [resource-name]
+
+vercel
+
+integration
+
+remove
+
+<
+integration-nam
+e
+>
+
+Learn more about the integration command
+
+Manage individual resources from marketplace integrations: remove, disconnect from projects, and configure auto-recharge thresholds.
+
+vercel
+
+integration-resource
+
+remove
+
+<
+resource-nam
+e
+>
+
+vercel
+
+integration-resource
+
+disconnect
+
+<
+resource-nam
+e
+>
+ [project-name]
+
+vercel
+
+integration-resource
+
+create-threshold
+
+<
+resource-nam
+e
+>
+
+<
+minimu
+m
+>
+
+<
+spen
+d
+>
+
+<
+limi
+t
+>
+
+Learn more about the integration-resource command
+
+Link a local directory to a Vercel Project.
+
+vercel
+
+link
+
+vercel
+
+link
+ [path-to-directory]
+
+Learn more about the link command
+
+List recent deployments for the current Vercel Project.
+
+vercel
+
+list
+
+vercel
+
+list
+ [project-name]
+
+Learn more about the list command
+
+Login to your Vercel account through CLI.
+
+vercel
+
+login
+
+vercel
+
+login
+ [email]
+
+vercel
+
+login
+
+--github
+
+Learn more about the login command
+
+Logout from your Vercel account through CLI.
+
+Learn more about the logout command
+
+List runtime logs for a specific deployment.
+
+vercel
+
+logs
+ [deployment-url]
+
+vercel
+
+logs
+ [deployment-url] --follow
+
+Learn more about the logs command
+
+Set up MCP client configuration for your Vercel Project.
+
+vercel
+
+mcp
+
+vercel
+
+mcp
+
+--project
+
+Learn more about the mcp command
+
+Work with microfrontends configuration.
+
+vercel
+
+microfrontends
+
+pull
+
+vercel
+
+microfrontends
+
+pull
+
+--dpl
+ [deployment-id-or-url]
+
+Learn more about the microfrontends command
+
+Query observability metrics and inspect available metrics, dimensions, and aggregations.
+
+vercel
+
+metrics
+
+vercel.request.count
+
+vercel
+
+metrics
+
+schema
+
+vercel
+
+metrics
+
+schema
+
+vercel.request
+
+Learn more about the metrics command
+
+Open your current project in the Vercel Dashboard.
+
+Learn more about the open command
+
+List, add, inspect, remove, and manage your Vercel Projects.
+
+vercel
+
+project
+
+ls
+
+vercel
+
+project
+
+add
+
+vercel
+
+project
+
+rm
+
+vercel
+
+project
+
+inspect
+ [project-name]
+
+Learn more about the project command
+
+Promote an existing deployment to be the current deployment.
+
+vercel
+
+promote
+ [deployment-id-or-url]
+
+vercel
+
+promote
+
+status
+ [project]
+
+Learn more about the promote command
+
+Update your local project with remote environment variables and project settings.
+
+vercel
+
+pull
+
+vercel
+
+pull
+
+--environment=production
+
+Learn more about the pull command
+
+Rebuild and redeploy an existing deployment.
+
+vercel
+
+redeploy
+ [deployment-id-or-url]
+
+Learn more about the redeploy command
+
+Manage project-level redirects.
+
+vercel
+
+redirects
+
+list
+
+vercel
+
+redirects
+
+add
+
+/old
+
+/new
+
+--status
+
+301
+
+vercel
+
+redirects
+
+upload
+
+redirects.csv
+
+--overwrite
+
+vercel
+
+redirects
+
+promote
+
+<
+version-i
+d
+>
+
+Learn more about the redirects command
+
+Remove deployments either by ID or for a specific Vercel Project.
+
+vercel
+
+remove
+ [deployment-url]
+
+vercel
+
+remove
+ [project-name]
+
+Learn more about the remove command
+
+Roll back production deployments to previous deployments.
+
+vercel
+
+rollback
+
+vercel
+
+rollback
+ [deployment-id-or-url]
+
+vercel
+
+rollback
+
+status
+ [project]
+
+Learn more about the rollback command
+
+Manage your project's rolling releases to gradually roll out new deployments.
+
+vercel
+
+rolling-release
+
+configure
+
+--cfg=
+'[config]'
+
+vercel
+
+rolling-release
+
+start
+
+--dpl=[deployment-id]
+
+vercel
+
+rolling-release
+
+approve
+
+--dpl=[deployment-id]
+
+vercel
+
+rolling-release
+
+complete
+
+--dpl=[deployment-id]
+
+Learn more about the rolling-release command
+
+Manage project-level routing rules for your Vercel Project.
+
+vercel
+
+routes
+
+list
+
+vercel
+
+routes
+
+add
+
+--ai
+
+"Rewrite /api/* to https://backend.internal/*"
+
+vercel
+
+routes
+
+edit
+
+"API Proxy"
+
+--dest
+
+"https://new-api.example.com/:path*"
+
+vercel
+
+routes
+
+publish
+
+Learn more about the routes command
+
+Switch between different team scopes.
+
+vercel
+
+switch
+
+vercel
+
+switch
+ [team-name]
+
+Learn more about the switch command
+
+List, add, remove, and manage your teams.
+
+vercel
+
+teams
+
+list
+
+vercel
+
+teams
+
+add
+
+vercel
+
+teams
+
+invite
+ [email]
+
+Learn more about the teams command
+
+Manage custom environments (targets) and use the 
+--target
+ flag on relevant commands.
+
+vercel
+
+target
+
+list
+
+vercel
+
+target
+
+ls
+
+vercel
+
+deploy
+
+--target=staging
+
+Learn more about the target command
+
+View billing usage and costs for your Vercel account.
+
+vercel
+
+usage
+
+vercel
+
+usage
+
+--from
+
+2025
+-01-01
+
+--to
+
+2025
+-01-31
+
+vercel
+
+usage
+
+--breakdown
+
+daily
+
+Learn more about the usage command
+
+Enable or disable telemetry collection.
+
+vercel
+
+telemetry
+
+status
+
+vercel
+
+telemetry
+
+enable
+
+vercel
+
+telemetry
+
+disable
+
+Learn more about the telemetry command
+
+Manage webhooks for your account. This command is in beta.
+
+vercel
+
+webhooks
+
+list
+
+vercel
+
+webhooks
+
+get
+
+<
+i
+d
+>
+
+vercel
+
+webhooks
+
+create
+
+<
+ur
+l
+>
+
+--event
+
+<
+even
+t
+>
+
+vercel
+
+webhooks
+
+rm
+
+<
+i
+d
+>
+
+Learn more about the webhooks command
+
+Display the username of the currently logged in user.
+
+Learn more about the whoami command
+---

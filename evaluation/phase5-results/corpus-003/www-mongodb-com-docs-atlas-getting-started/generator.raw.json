@@ -1,0 +1,46 @@
+```json
+[
+    {
+        "question": "What are the deprecated commands in the Atlas CLI as of version 1.52.0, and what should be used instead?",
+        "answer": "The 'atlas deployments' commands are deprecated. Instead, 'atlas local' commands should be used for local deployments and 'atlas clusters' commands for cloud deployments.",
+        "supporting_sentences": [
+            "The atlas deployments commands are deprecated as of Atlas CLI version 1.52.0. Use atlas local commands for local deployments and atlas clusters commands for cloud deployments."
+        ]
+    },
+    {
+        "question": "What are the three dependencies required to begin the MongoDB Atlas deployment tutorial?",
+        "answer": "The three dependencies are: Atlas CLI, MongoDB Shell, and Docker.",
+        "supporting_sentences": [
+            "Before you begin this tutorial, you must install the following dependencies in your development environment:",
+            "Atlas CLI: Command-line interface that allows you to manage your deployments from the terminal",
+            "MongoDB Shell: Interactive tool that connects to a deployment and provides database operation support",
+            "Docker: Platform that allows you to run software within containers, including local MongoDB deployments"
+        ]
+    },
+    {
+        "question": "What is the default port number for a local MongoDB Atlas deployment, and can it be changed?",
+        "answer": "The default port number is 27017, but it can be changed to a different port if 27017 is not available.",
+        "supporting_sentences": [
+            "Note: Replace the <port number> placeholder with the port you want to use. The default port is 27017, but you can specify a different port if 27017 is not available."
+        ]
+    },
+    {
+        "question": "What command is used to create a local MongoDB Atlas deployment with a specific MongoDB version?",
+        "answer": "The command is: `atlas local setup myDeployment --mdbVersion 8.0 --port <port number> --connectWith connectionString`.",
+        "supporting_sentences": [
+            "This command creates a single-member replica set in a container that runs on your local machine.",
+            "atlas local setup myDeployment \\\n--mdbVersion 8.0 --port <port number> --connectWith connectionString"
+        ]
+    },
+    {
+        "question": "What information does the `atlas local setup` command output after creating a local deployment?",
+        "answer": "The command outputs the following information: 'Deployment created!' and the connection string URI.",
+        "supporting_sentences": [
+            "The command outputs the following information:",
+            "Deployment created!",
+            "Connection string: \"<connection string URI>\"",
+            "Save the connection string URI for use in a future step."
+        ]
+    }
+]
+```

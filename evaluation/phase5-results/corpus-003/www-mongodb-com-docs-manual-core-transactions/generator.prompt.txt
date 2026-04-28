@@ -1,0 +1,274 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Transactions - Database Manual - MongoDB Docs
+Document URL: https://www.mongodb.com/docs/manual/core/transactions/
+Document profile: article
+
+Document text:
+---
+static
+
+bool
+with_transaction_example
+(
+bson_error_t
+ *error)
+{
+
+mongoc_client_t
+ *client = 
+NULL
+;
+
+mongoc_write_concern_t
+ *wc = 
+NULL
+;
+
+mongoc_collection_t
+ *coll = 
+NULL
+;
+
+bool
+ success = 
+false
+;
+
+bool
+ ret = 
+false
+;
+
+bson_t
+ *doc = 
+NULL
+;
+
+bson_t
+ *insert_opts = 
+NULL
+;
+
+mongoc_client_session_t
+ *session = 
+NULL
+;
+
+mongoc_transaction_opt_t
+ *txn_opts = 
+NULL
+;
+
+   client = get_client();
+
+   wc = mongoc_write_concern_new();
+   mongoc_write_concern_set_wmajority(wc, 
+1000
+);
+   insert_opts = bson_new();
+   mongoc_write_concern_append(wc, insert_opts);
+   coll = mongoc_client_get_collection(client, 
+"mydb1"
+, 
+"foo"
+);
+   doc = BCON_NEW(
+"abc"
+, BCON_INT32(
+0
+));
+   ret = mongoc_collection_insert_one(coll, doc, insert_opts, 
+NULL
+ , error);
+
+if
+ (!ret) {
+
+goto
+ fail;
+   }
+   bson_destroy(doc);
+   mongoc_collection_destroy(coll);
+   coll = mongoc_client_get_collection(client, 
+"mydb2"
+, 
+"bar"
+);
+   doc = BCON_NEW(
+"xyz"
+, BCON_INT32(
+0
+));
+   ret = mongoc_collection_insert_one(coll, doc, insert_opts, 
+NULL
+ , error);
+
+if
+ (!ret) {
+
+goto
+ fail;
+   }
+
+   session = mongoc_client_start_session(client, 
+NULL
+ , error);
+
+if
+ (!session) {
+
+goto
+ fail;
+   }
+
+   txn_opts = mongoc_transaction_opts_new();
+   mongoc_transaction_opts_set_write_concern(txn_opts, wc);
+
+   ret = mongoc_client_session_with_transaction(session, callback, txn_opts, 
+NULL
+ , 
+NULL
+ , error);
+
+if
+ (!ret) {
+
+goto
+ fail;
+   }
+   success = 
+true
+;
+fail:
+   bson_destroy(doc);
+   mongoc_collection_destroy(coll);
+   bson_destroy(insert_opts);
+   mongoc_write_concern_destroy(wc);
+   mongoc_transaction_opts_destroy(txn_opts);
+   mongoc_client_session_destroy(session);
+   mongoc_client_destroy(client);
+
+return
+ success;
+}
+static
+
+bool
+callback
+(
+mongoc_client_session_t
+ *session, 
+void
+ *ctx, 
+bson_t
+ **reply, 
+bson_error_t
+ *error)
+{
+
+mongoc_client_t
+ *client = 
+NULL
+;
+
+mongoc_collection_t
+ *coll = 
+NULL
+;
+
+bson_t
+ *doc = 
+NULL
+;
+
+bson_t
+ *opts = bson_new();
+
+bool
+ success = 
+false
+;
+
+bool
+ ret = 
+false
+;
+   BSON_UNUSED(ctx);
+   BSON_UNUSED(reply);
+
+   ret = mongoc_client_session_append(session, opts, error);
+
+if
+ (!ret) {
+
+goto
+ fail;
+   }
+   client = mongoc_client_session_get_client(session);
+   coll = mongoc_client_get_collection(client, 
+"mydb1"
+, 
+"foo"
+);
+   doc = BCON_NEW(
+"abc"
+, BCON_INT32(
+1
+));
+   ret = mongoc_collection_insert_one(coll, doc, opts, 
+NULL
+, error);
+
+if
+ (!ret) {
+
+goto
+ fail;
+   }
+   bson_destroy(doc);
+   mongoc_collection_destroy(coll);
+   coll = mongoc_client_get_collection(client, 
+"mydb2"
+, 
+"bar"
+);
+   doc = BCON_NEW(
+"xyz"
+, BCON_INT32(
+999
+));
+   ret = mongoc_collection_insert_one(coll, doc, opts, 
+NULL
+, error);
+
+if
+ (!ret) {
+
+goto
+ fail;
+   }
+   success = 
+true
+;
+fail:
+   mongoc_collection_destroy(coll);
+   bson_destroy(opts);
+   bson_destroy(doc);
+
+return
+ success;
+}
+---

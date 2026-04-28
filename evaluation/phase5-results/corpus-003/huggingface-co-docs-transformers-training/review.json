@@ -1,0 +1,112 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of fine-tuning a pretrained model?",
+      "answer": "Fine-tuning continues training a large pretrained model on a smaller dataset specific to a task or domain to improve its performance on that task or domain.",
+      "supporting_sentences": [
+        "Fine-tuning continues training a large pretrained model on a smaller dataset specific to a task or domain.",
+        "For example, fine-tuning on a dataset of coding examples helps the model get better at coding."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of fine-tuning a pretrained model?",
+      "answer": "Fine-tuning continues training a large pretrained model on a smaller dataset specific to a task or domain to improve its performance on that task or domain.",
+      "supporting_sentences": [
+        "Fine-tuning continues training a large pretrained model on a smaller dataset specific to a task or domain.",
+        "For example, fine-tuning on a dataset of coding examples helps the model get better at coding."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the two main inputs accepted by the model's forward method during tokenization?",
+      "answer": "The model's forward method only accepts `input_ids` and `attention_mask`.",
+      "supporting_sentences": [
+        "The model\u2019s forward method only accepts `input_ids` and `attention_mask`, so set `remove_columns` to drop columns like `horoscope` after tokenization."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the two main inputs accepted by the model's forward method during tokenization?",
+      "answer": "The model's forward method only accepts `input_ids` and `attention_mask`.",
+      "supporting_sentences": [
+        "The model\u2019s forward method only accepts `input_ids` and `attention_mask`, so set `remove_columns` to drop columns like `horoscope` after tokenization."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the role of `DataCollatorForLanguageModeling` in the fine-tuning process?",
+      "answer": "`DataCollatorForLanguageModeling` dynamically pads each batch to the longest sequence in that batch rather than padding every sequence in the dataset to the same length, saving compute and memory.",
+      "supporting_sentences": [
+        "A data collator assembles dataset samples into batches for the model to process.",
+        "`DataCollatorForLanguageModeling` dynamically pads each batch to the longest sequence in that batch rather than padding every sequence in the dataset to the same length. This saves compute and memory by avoiding computing unnecessary padding tokens."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the role of `DataCollatorForLanguageModeling` in the fine-tuning process?",
+      "answer": "`DataCollatorForLanguageModeling` dynamically pads each batch to the longest sequence in that batch rather than padding every sequence in the dataset to the same length, saving compute and memory.",
+      "supporting_sentences": [
+        "A data collator assembles dataset samples into batches for the model to process.",
+        "`DataCollatorForLanguageModeling` dynamically pads each batch to the longest sequence in that batch rather than padding every sequence in the dataset to the same length. This saves compute and memory by avoiding computing unnecessary padding tokens."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What does setting `dtype=\"auto\"` do when loading a pretrained model?",
+      "answer": "Setting `dtype=\"auto\"` loads the weights in their saved dtype, preventing PyTorch from loading weights in `torch.float32` and doubling memory usage if the weights are originally `torch.bfloat16`.",
+      "supporting_sentences": [
+        "Set `dtype=\"auto\"` to load the weights in their saved dtype.",
+        "Without it, PyTorch loads weights in `torch.float32`, which doubles memory usage if the weights are originally `torch.bfloat16`."
+      ]
+    },
+    "edited_pair": {
+      "question": "What does setting `dtype=\"auto\"` do when loading a pretrained model?",
+      "answer": "Setting `dtype=\"auto\"` loads the weights in their saved dtype, preventing PyTorch from loading weights in `torch.float32` and doubling memory usage if the weights are originally `torch.bfloat16`.",
+      "supporting_sentences": [
+        "Set `dtype=\"auto\"` to load the weights in their saved dtype.",
+        "Without it, PyTorch loads weights in `torch.float32`, which doubles memory usage if the weights are originally `torch.bfloat16`."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the default values for `eval_strategy` and `save_strategy` in the `TrainingArguments` configuration?",
+      "answer": "The default values for `eval_strategy` and `save_strategy` in `TrainingArguments` are both set to `\"epoch\"`.",
+      "supporting_sentences": [
+        "training_args = TrainingArguments(",
+        "    eval_strategy=\"epoch\",",
+        "    save_strategy=\"epoch\","
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the default values for `eval_strategy` and `save_strategy` in the `TrainingArguments` configuration?",
+      "answer": "The default values for `eval_strategy` and `save_strategy` in `TrainingArguments` are both set to `\"epoch\"`.",
+      "supporting_sentences": [
+        "training_args = TrainingArguments(",
+        "    eval_strategy=\"epoch\",",
+        "    save_strategy=\"epoch\","
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

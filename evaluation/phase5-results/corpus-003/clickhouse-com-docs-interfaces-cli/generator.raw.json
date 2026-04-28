@@ -1,0 +1,44 @@
+```json
+[
+    {
+        "question": "What is the default installation directory for `clickhousectl` when using the quick install method?",
+        "answer": "`~/.local/bin/clickhousectl`",
+        "supporting_sentences": [
+            "The install script downloads the correct version for your OS and installs to ~/.local/bin/clickhousectl."
+        ]
+    },
+    {
+        "question": "How can you install the latest LTS release of ClickHouse using `clickhousectl`?",
+        "answer": "`clickhousectl local install lts`",
+        "supporting_sentences": [
+            "# Install a version",
+            "clickhousectl local install lts             # Latest LTS release"
+        ]
+    },
+    {
+        "question": "What are the default HTTP and TCP ports used by a ClickHouse server started with `clickhousectl`?",
+        "answer": "HTTP 8123 and TCP 9000",
+        "supporting_sentences": [
+            "Ports:",
+            "Defaults are HTTP 8123 and TCP 9000."
+        ]
+    },
+    {
+        "question": "Where are ClickHouse Cloud OAuth tokens saved after authentication?",
+        "answer": "`.clickhousectl/tokens.json` (project-local)",
+        "supporting_sentences": [
+            "This opens your browser for authentication via the OAuth device flow. Tokens are saved to .clickhousectl/tokens.json (project-local)."
+        ]
+    },
+    {
+        "question": "What is the command to create a ClickHouse Cloud service with a specific IP allowlist?",
+        "answer": "`clickhousectl cloud service create --name my-service --ip-allow 10.0.0.0/8 --ip-allow 192.168.1.0/24`",
+        "supporting_sentences": [
+            "# Create with specific IP allowlist",
+            "clickhousectl cloud service create --name my-service \\",
+            "  --ip-allow 10.0.0.0/8 \\",
+            "  --ip-allow 192.168.1.0/24"
+        ]
+    }
+]
+```

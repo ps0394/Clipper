@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "The purpose of the `aks-store-quickstart.yaml` file is to define the Kubernetes manifest for deploying the sample application and its services into the AKS cluster.",
+    "run_index": 0,
+    "tokens_in": 1758,
+    "tokens_out": 34
+  },
+  {
+    "pair_index": 1,
+    "answer": "az --version",
+    "run_index": 0,
+    "tokens_in": 1753,
+    "tokens_out": 4
+  },
+  {
+    "pair_index": 2,
+    "answer": "order-service, product-service, store-front",
+    "run_index": 0,
+    "tokens_in": 1763,
+    "tokens_out": 9
+  },
+  {
+    "pair_index": 3,
+    "answer": "kubectl get service store-front --watch",
+    "run_index": 0,
+    "tokens_in": 1755,
+    "tokens_out": 9
+  },
+  {
+    "pair_index": 4,
+    "answer": "kubectl delete -f aks-store-quickstart.yaml",
+    "run_index": 0,
+    "tokens_in": 1754,
+    "tokens_out": 12
+  }
+]

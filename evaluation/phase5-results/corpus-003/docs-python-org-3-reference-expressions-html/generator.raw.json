@@ -1,0 +1,40 @@
+```json
+[
+    {
+        "question": "What phrase is used in the description of an arithmetic operator to indicate how numeric arguments are handled in Python?",
+        "answer": "the numeric arguments are converted to a common real type",
+        "supporting_sentences": [
+            "When a description of an arithmetic operator below uses the phrase \"the numeric arguments are converted to a common real type\", this means that the operator implementation for built-in numeric types works as described in the Numeric Types section of the standard library documentation."
+        ]
+    },
+    {
+        "question": "Which Python keywords name built-in constants that cannot be reassigned?",
+        "answer": "True, False, and None",
+        "supporting_sentences": [
+            "The keywords True, False, and None name built-in constants.",
+            "In particular, these names cannot be reassigned or used as attributes:"
+        ]
+    },
+    {
+        "question": "How are private names in a Python class definition transformed before code generation?",
+        "answer": "The class name, with leading underscores removed and a single leading underscore inserted, is inserted in front of the identifier.",
+        "supporting_sentences": [
+            "The transformation rule is defined as follows: The class name, with leading underscores removed and a single leading underscore inserted, is inserted in front of the identifier, e.g., the identifier __spam occurring in a class named Foo, _Foo or __Foo is transformed to _Foo__spam."
+        ]
+    },
+    {
+        "question": "What happens when a generator function is resumed with the `__next__()` method?",
+        "answer": "The current yield expression always evaluates to None, and the execution continues to the next yield expression.",
+        "supporting_sentences": [
+            "When a generator function is resumed with a __next__() method, the current yield expression always evaluates to None. The execution then continues to the next yield expression, where the generator is suspended again, and the value of the yield_list is returned to __next__()’s caller."
+        ]
+    },
+    {
+        "question": "What exception is raised when a generator's `close()` method is called and the generator yields a value?",
+        "answer": "RuntimeError",
+        "supporting_sentences": [
+            "If the generator yields a value, a RuntimeError is raised."
+        ]
+    }
+]
+```

@@ -1,0 +1,102 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What API provides an interface for asynchronously fetching resources via HTTP requests inside a Cloudflare Worker?",
+      "answer": "The Fetch API",
+      "supporting_sentences": [
+        "The Fetch API \u2197 provides an interface for asynchronously fetching resources via HTTP requests inside of a Worker."
+      ]
+    },
+    "edited_pair": {
+      "question": "What API provides an interface for asynchronously fetching resources via HTTP requests inside a Cloudflare Worker?",
+      "answer": "The Fetch API",
+      "supporting_sentences": [
+        "The Fetch API \u2197 provides an interface for asynchronously fetching resources via HTTP requests inside of a Worker."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the two compression algorithms supported by Cloudflare Workers for the `Accept-Encoding` header?",
+      "answer": "gzip and brotli",
+      "supporting_sentences": [
+        "Workers supports both the gzip and brotli compression algorithms."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the two compression algorithms supported by Cloudflare Workers for the `Accept-Encoding` header?",
+      "answer": "gzip and brotli",
+      "supporting_sentences": [
+        "Workers supports both the gzip and brotli compression algorithms."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What compatibility flag must be enabled in a Worker to support requesting brotli compression from the origin?",
+      "answer": "brotli_content_encoding",
+      "supporting_sentences": [
+        "To support requesting brotli from the origin, you must enable the brotli_content_encoding compatibility flag in your Worker."
+      ]
+    },
+    "edited_pair": {
+      "question": "What compatibility flag must be enabled in a Worker to support requesting brotli compression from the origin?",
+      "answer": "brotli_content_encoding",
+      "supporting_sentences": [
+        "To support requesting brotli from the origin, you must enable the brotli_content_encoding compatibility flag in your Worker."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens if a Worker does not read the body of a compressed response and keeps the `Content-Encoding` header intact?",
+      "answer": "The compressed data will 'pass through' without being decompressed and then recompressed again.",
+      "supporting_sentences": [
+        "As long as you do not read the body of the compressed response prior to returning it to the client and keep the Content-Encoding header intact, it will \"pass through\" without being decompressed and then recompressed again."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens if a Worker does not read the body of a compressed response and keeps the `Content-Encoding` header intact?",
+      "answer": "The compressed data will 'pass through' without being decompressed and then recompressed again.",
+      "supporting_sentences": [
+        "As long as you do not read the body of the compressed response prior to returning it to the client and keep the Content-Encoding header intact, it will \"pass through\" without being decompressed and then recompressed again."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What type of Workers does Cloudflare recommend using instead of Service Workers?",
+      "answer": "Module Workers",
+      "supporting_sentences": [
+        "Service Workers are deprecated, but still supported. We recommend using Module Workers instead."
+      ]
+    },
+    "edited_pair": {
+      "question": "What type of Workers does Cloudflare recommend using instead of Service Workers?",
+      "answer": "Module Workers",
+      "supporting_sentences": [
+        "Service Workers are deprecated, but still supported. We recommend using Module Workers instead."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

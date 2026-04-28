@@ -1,0 +1,37 @@
+[
+  {
+    "question": "What method configures an awaiter used to await a Task and allows specifying a boolean parameter?",
+    "answer": "ConfigureAwait(Boolean)",
+    "supporting_sentences": [
+      "Configure\nAwait(Boolean)\n\nConfigures an awaiter used to await this \nTask\n."
+    ]
+  },
+  {
+    "question": "Which method creates a continuation that executes when the target Task completes and receives caller-supplied state information, a cancellation token, and uses a specified scheduler?",
+    "answer": "ContinueWith(Action<Task,Object>, Object, CancellationToken, TaskContinuationOptions, TaskScheduler)",
+    "supporting_sentences": [
+      "Continue\nWith(Action<Task,Object>, Object, Cancellation\nToken, Task\nContinuation\nOptions, Task\nScheduler)\n\nCreates a continuation that receives caller-supplied state information and a cancellation token and that executes when the target \nTask\n completes. The continuation executes based on a set of specified conditions and uses a specified scheduler."
+    ]
+  },
+  {
+    "question": "What method creates a task that completes after a specified number of milliseconds and can be cancelled using a cancellation token?",
+    "answer": "Delay(Int32, CancellationToken)",
+    "supporting_sentences": [
+      "Delay(Int32, Cancellation\nToken)\n\nCreates a cancellable task that completes after a specified number of milliseconds."
+    ]
+  },
+  {
+    "question": "Which method queues the specified work to run on the thread pool and returns a Task object representing that work, with an option to cancel the work if it hasn't started?",
+    "answer": "Run(Action, CancellationToken)",
+    "supporting_sentences": [
+      "Run(Action, Cancellation\nToken)\n\nQueues the specified work to run on the thread pool and returns a \nTask\n object that represents that work. A cancellation token allows the work to be cancelled if it has not yet started."
+    ]
+  },
+  {
+    "question": "What method creates a task that will complete when all of the Task objects in an enumerable collection have completed?",
+    "answer": "WhenAll(IEnumerable<Task>)",
+    "supporting_sentences": [
+      "When\nAll(IEnumerable<Task>)\n\nCreates a task that will complete when all of the \nTask\n objects in an enumerable collection have completed."
+    ]
+  }
+]

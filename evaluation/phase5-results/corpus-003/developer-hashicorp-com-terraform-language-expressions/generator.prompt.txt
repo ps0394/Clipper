@@ -1,0 +1,104 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Configuration Language
+Document URL: https://developer.hashicorp.com/terraform/language/expressions
+Document profile: article
+
+Document text:
+---
+Hands-on:
+ Try the 
+Create Dynamic Expressions
+ tutorial.
+Expressions
+ refer to or compute values within a configuration.
+The simplest expressions are just literal values, like 
+"hello"
+ or 
+5
+,
+but the Terraform language also allows more complex expressions such as
+references to data exported by resources, arithmetic, conditional evaluation,
+and a number of built-in functions.
+Expressions can be used in a number of places in the Terraform language,
+but some contexts limit which expression constructs are allowed,
+such as requiring a literal value of a particular type or forbidding
+
+references to resource attributes
+.
+Each language feature's documentation describes any restrictions it places on
+expressions.
+You can experiment with the behavior of Terraform's expressions from
+the Terraform expression console, by running
+
+the 
+terraform console
+ command
+.
+The other pages in this section describe the features of Terraform's
+expression syntax.
+Types and Values
+
+documents the data types that Terraform expressions can resolve to, and the
+literal syntaxes for values of those types.
+Strings and Templates
+
+documents the syntaxes for string literals, including interpolation sequences
+and template directives.
+References to Values
+
+documents how to refer to named values like variables and resource attributes.
+Operators
+
+documents the arithmetic, comparison, and logical operators.
+Function Calls
+
+documents the syntax for calling Terraform's built-in functions.
+Conditional Expressions
+
+documents the 
+<CONDITION> ? <TRUE VAL> : <FALSE VAL>
+ expression, which
+chooses between two values based on a bool condition.
+For Expressions
+
+documents expressions like 
+[for s in var.list : upper(s)]
+, which can
+transform a complex type value into another complex type value.
+Splat Expressions
+
+documents expressions like 
+var.list[*].id
+, which can extract simpler
+collections from more complicated expressions.
+Dynamic Blocks
+
+documents a way to create multiple repeatable nested blocks within a resource
+or other construct.
+Validate your configuration
+
+to verify variable conditions, check blocks, and resource preconditions and postconditions.
+Type Constraints
+
+documents the syntax for referring to a type, rather than a value of that
+type. Input variables expect this syntax in their 
+type
+ argument.
+Version Constraints
+
+documents the syntax of special strings that define a set of allowed software
+versions. Terraform uses version constraints in several places.
+---

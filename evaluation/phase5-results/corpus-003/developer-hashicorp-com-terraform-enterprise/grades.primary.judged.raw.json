@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits required information about the additional enterprise-grade architectural features, which is present in the ground-truth answer.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 614,
+    "tokens_out": 30
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the crucial detail that information about HCP Terraform generally applies to Terraform Enterprise unless specifically stated otherwise.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 605,
+    "tokens_out": 31
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, which is the date when Terraform Cloud changed its name to HCP Terraform.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 582,
+    "tokens_out": 36
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes the same fact as the ground-truth answer, Private Terraform Enterprise (PTFE), and also mentions another correct name, Terraform Enterprise.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 603,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, listing the same contacts for customers with questions about deploying Terraform Enterprise.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 609,
+    "tokens_out": 33
+  }
+]

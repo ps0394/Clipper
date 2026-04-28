@@ -1,0 +1,47 @@
+```json
+[
+    {
+        "question": "What is AWS Lambda?",
+        "answer": "AWS Lambda is a compute service that runs code without the need to manage servers.",
+        "supporting_sentences": [
+            "AWS Lambda is a compute service that runs code without the need to manage servers."
+        ]
+    },
+    {
+        "question": "What are some use cases for AWS Lambda?",
+        "answer": "AWS Lambda can be used for file processing, long-running workflows, database operations, scheduled and periodic tasks, stream processing, web applications, mobile backends, and IoT backends.",
+        "supporting_sentences": [
+            "You can use Lambda for:",
+            "File processing: Process files automatically when uploaded to Amazon Simple Storage Service. See file processing examples for details.",
+            "Long-running workflows: Use durable Lambda functions to build stateful, multi-step workflows that can run for up to one year.",
+            "Database operations and integration examples: Respond to database changes and automate data workflows. See database examples for details.",
+            "Scheduled and periodic tasks: Run automated operations on a regular schedule using EventBridge. See scheduled task examples for details.",
+            "Stream processing: Process real-time data streams for analytics and monitoring. See Kinesis Data Streams for details.",
+            "Web applications: Build scalable web apps that automatically adjust to demand.",
+            "Mobile backends: Create secure API backends for mobile and web applications.",
+            "IoT backends: Handle web, mobile, IoT, and third-party API requests. See IoT for details."
+        ]
+    },
+    {
+        "question": "What is the maximum duration for which a long-running Lambda workflow can execute?",
+        "answer": "A long-running Lambda workflow can run for up to one year.",
+        "supporting_sentences": [
+            "Long-running workflows: Use durable Lambda functions to build stateful, multi-step workflows that can run for up to one year."
+        ]
+    },
+    {
+        "question": "What feature of AWS Lambda helps reduce cold start times?",
+        "answer": "Lambda SnapStart significantly reduces cold start times.",
+        "supporting_sentences": [
+            "Lambda SnapStart significantly reduce cold start times. Lambda SnapStart can provide as low as sub-second startup performance, typically with no changes to your function code."
+        ]
+    },
+    {
+        "question": "How does AWS Lambda manage computing resources?",
+        "answer": "Lambda runs your code on a high-availability compute infrastructure and manages all the computing resources, including server and operating system maintenance, capacity provisioning, automatic scaling, and logging.",
+        "supporting_sentences": [
+            "When using Lambda, you are responsible only for your code. Lambda runs your code on a high-availability compute infrastructure and manages all the computing resources, including server and operating system maintenance, capacity provisioning, automatic scaling, and logging."
+        ]
+    }
+]
+```

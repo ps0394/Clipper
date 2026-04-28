@@ -1,0 +1,106 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What does Terraform use to store information about your infrastructure?",
+      "answer": "Terraform stores information about your infrastructure in a state file.",
+      "supporting_sentences": [
+        "Terraform stores information about your infrastructure in a state file."
+      ]
+    },
+    "edited_pair": {
+      "question": "What does Terraform use to store information about your infrastructure?",
+      "answer": "Terraform stores information about your infrastructure in a state file.",
+      "supporting_sentences": [
+        "Terraform stores information about your infrastructure in a state file."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of the `terraform state list` command?",
+      "answer": "The `terraform state list` command is used to get the list of resource names and local identifiers in your state file.",
+      "supporting_sentences": [
+        "Run `terraform state list` to get the list of resource names and local identifiers in your state file.",
+        "This command is useful for more complex configurations where you need to find a specific resource without parsing state with `terraform show`."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of the `terraform state list` command?",
+      "answer": "The `terraform state list` command is used to get the list of resource names and local identifiers in your state file.",
+      "supporting_sentences": [
+        "Run `terraform state list` to get the list of resource names and local identifiers in your state file.",
+        "This command is useful for more complex configurations where you need to find a specific resource without parsing state with `terraform show`."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What AWS instance type is specified in the `main.tf` configuration for the EC2 instance?",
+      "answer": "The AWS instance type specified is `t2.micro`.",
+      "supporting_sentences": [
+        "  instance_type           = \"t2.micro\""
+      ]
+    },
+    "edited_pair": {
+      "question": "What AWS instance type is specified in the `main.tf` configuration for the EC2 instance?",
+      "answer": "The AWS instance type specified is `t2.micro`.",
+      "supporting_sentences": [
+        "  instance_type           = \"t2.micro\""
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What flag can be used with `terraform plan` and `terraform apply` to safely recreate a resource without editing the configuration?",
+      "answer": "The `-replace` flag can be used.",
+      "supporting_sentences": [
+        "You can use the `-replace` flag for `terraform plan` and `terraform apply` operations to safely recreate resources in your environment even if you have not edited the configuration."
+      ]
+    },
+    "edited_pair": {
+      "question": "What flag can be used with `terraform plan` and `terraform apply` to safely recreate a resource without editing the configuration?",
+      "answer": "The `-replace` flag can be used.",
+      "supporting_sentences": [
+        "You can use the `-replace` flag for `terraform plan` and `terraform apply` operations to safely recreate resources in your environment even if you have not edited the configuration."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What command is recommended by HashiCorp to move resources from one state file to another?",
+      "answer": "The `terraform state mv` command is recommended.",
+      "supporting_sentences": [
+        "The `terraform state mv` command moves resources from one state file to another.",
+        "Using the `terraform apply` command with the `-replace` flag is the HashiCorp-recommended process for managing resources without manually editing your state file."
+      ]
+    },
+    "edited_pair": {
+      "question": "What command is recommended by HashiCorp to move resources from one state file to another?",
+      "answer": "The `terraform state mv` command is recommended.",
+      "supporting_sentences": [
+        "The `terraform state mv` command moves resources from one state file to another.",
+        "Using the `terraform apply` command with the `-replace` flag is the HashiCorp-recommended process for managing resources without manually editing your state file."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

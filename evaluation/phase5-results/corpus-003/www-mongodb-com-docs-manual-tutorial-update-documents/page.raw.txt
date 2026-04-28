@@ -1,0 +1,569 @@
+mongoc_collection_t
+ *collection;
+mongoc_bulk_operation_t
+ *bulk;
+bson_t
+ *doc;
+bool
+ r;
+bson_error_t
+ error;
+bson_t
+ reply;
+collection = mongoc_database_get_collection (db, 
+"inventory"
+);
+bulk = mongoc_collection_create_bulk_operation_with_opts (collection, 
+NULL
+);
+doc = BCON_NEW (
+
+"item"
+, BCON_UTF8 (
+"canvas"
+),
+
+"qty"
+, BCON_INT64 (
+100
+),
+
+"size"
+, 
+"{"
+,
+
+"h"
+, BCON_DOUBLE (
+28
+),
+
+"w"
+, BCON_DOUBLE (
+35.5
+),
+
+"uom"
+, BCON_UTF8 (
+"cm"
+),
+
+"}"
+,
+
+"status"
+, BCON_UTF8 (
+"A"
+));
+r = mongoc_bulk_operation_insert_with_opts (bulk, doc, 
+NULL
+, &error);
+bson_destroy (doc);
+if
+ (!r) {
+   MONGOC_ERROR (
+"%s
+\n
+"
+, error.message);
+
+goto
+ done;
+}
+doc = BCON_NEW (
+
+"item"
+, BCON_UTF8 (
+"journal"
+),
+
+"qty"
+, BCON_INT64 (
+25
+),
+
+"size"
+, 
+"{"
+,
+
+"h"
+, BCON_DOUBLE (
+14
+),
+
+"w"
+, BCON_DOUBLE (
+21
+),
+
+"uom"
+, BCON_UTF8 (
+"cm"
+),
+
+"}"
+,
+
+"status"
+, BCON_UTF8 (
+"A"
+));
+r = mongoc_bulk_operation_insert_with_opts (bulk, doc, 
+NULL
+, &error);
+bson_destroy (doc);
+if
+ (!r) {
+   MONGOC_ERROR (
+"%s
+\n
+"
+, error.message);
+
+goto
+ done;
+}
+doc = BCON_NEW (
+
+"item"
+, BCON_UTF8 (
+"mat"
+),
+
+"qty"
+, BCON_INT64 (
+85
+),
+
+"size"
+, 
+"{"
+,
+
+"h"
+, BCON_DOUBLE (
+27.9
+),
+
+"w"
+, BCON_DOUBLE (
+35.5
+),
+
+"uom"
+, BCON_UTF8 (
+"cm"
+),
+
+"}"
+,
+
+"status"
+, BCON_UTF8 (
+"A"
+));
+r = mongoc_bulk_operation_insert_with_opts (bulk, doc, 
+NULL
+, &error);
+bson_destroy (doc);
+if
+ (!r) {
+   MONGOC_ERROR (
+"%s
+\n
+"
+, error.message);
+
+goto
+ done;
+}
+doc = BCON_NEW (
+
+"item"
+, BCON_UTF8 (
+"mousepad"
+),
+
+"qty"
+, BCON_INT64 (
+25
+),
+
+"size"
+, 
+"{"
+,
+
+"h"
+, BCON_DOUBLE (
+19
+),
+
+"w"
+, BCON_DOUBLE (
+22.85
+),
+
+"uom"
+, BCON_UTF8 (
+"cm"
+),
+
+"}"
+,
+
+"status"
+, BCON_UTF8 (
+"P"
+));
+r = mongoc_bulk_operation_insert_with_opts (bulk, doc, 
+NULL
+, &error);
+bson_destroy (doc);
+if
+ (!r) {
+   MONGOC_ERROR (
+"%s
+\n
+"
+, error.message);
+
+goto
+ done;
+}
+doc = BCON_NEW (
+
+"item"
+, BCON_UTF8 (
+"notebook"
+),
+
+"qty"
+, BCON_INT64 (
+50
+),
+
+"size"
+, 
+"{"
+,
+
+"h"
+, BCON_DOUBLE (
+8.5
+),
+
+"w"
+, BCON_DOUBLE (
+11
+),
+
+"uom"
+, BCON_UTF8 (
+"in"
+),
+
+"}"
+,
+
+"status"
+, BCON_UTF8 (
+"P"
+));
+r = mongoc_bulk_operation_insert_with_opts (bulk, doc, 
+NULL
+, &error);
+bson_destroy (doc);
+if
+ (!r) {
+   MONGOC_ERROR (
+"%s
+\n
+"
+, error.message);
+
+goto
+ done;
+}
+doc = BCON_NEW (
+
+"item"
+, BCON_UTF8 (
+"paper"
+),
+
+"qty"
+, BCON_INT64 (
+100
+),
+
+"size"
+, 
+"{"
+,
+
+"h"
+, BCON_DOUBLE (
+8.5
+),
+
+"w"
+, BCON_DOUBLE (
+11
+),
+
+"uom"
+, BCON_UTF8 (
+"in"
+),
+
+"}"
+,
+
+"status"
+, BCON_UTF8 (
+"D"
+));
+r = mongoc_bulk_operation_insert_with_opts (bulk, doc, 
+NULL
+, &error);
+bson_destroy (doc);
+if
+ (!r) {
+   MONGOC_ERROR (
+"%s
+\n
+"
+, error.message);
+
+goto
+ done;
+}
+doc = BCON_NEW (
+
+"item"
+, BCON_UTF8 (
+"planner"
+),
+
+"qty"
+, BCON_INT64 (
+75
+),
+
+"size"
+, 
+"{"
+,
+
+"h"
+, BCON_DOUBLE (
+22.85
+),
+
+"w"
+, BCON_DOUBLE (
+30
+),
+
+"uom"
+, BCON_UTF8 (
+"cm"
+),
+
+"}"
+,
+
+"status"
+, BCON_UTF8 (
+"D"
+));
+r = mongoc_bulk_operation_insert_with_opts (bulk, doc, 
+NULL
+, &error);
+bson_destroy (doc);
+if
+ (!r) {
+   MONGOC_ERROR (
+"%s
+\n
+"
+, error.message);
+
+goto
+ done;
+}
+doc = BCON_NEW (
+
+"item"
+, BCON_UTF8 (
+"postcard"
+),
+
+"qty"
+, BCON_INT64 (
+45
+),
+
+"size"
+, 
+"{"
+,
+
+"h"
+, BCON_DOUBLE (
+10
+),
+
+"w"
+, BCON_DOUBLE (
+15.25
+),
+
+"uom"
+, BCON_UTF8 (
+"cm"
+),
+
+"}"
+,
+
+"status"
+, BCON_UTF8 (
+"A"
+));
+r = mongoc_bulk_operation_insert_with_opts (bulk, doc, 
+NULL
+, &error);
+bson_destroy (doc);
+if
+ (!r) {
+   MONGOC_ERROR (
+"%s
+\n
+"
+, error.message);
+
+goto
+ done;
+}
+doc = BCON_NEW (
+
+"item"
+, BCON_UTF8 (
+"sketchbook"
+),
+
+"qty"
+, BCON_INT64 (
+80
+),
+
+"size"
+, 
+"{"
+,
+
+"h"
+, BCON_DOUBLE (
+14
+),
+
+"w"
+, BCON_DOUBLE (
+21
+),
+
+"uom"
+, BCON_UTF8 (
+"cm"
+),
+
+"}"
+,
+
+"status"
+, BCON_UTF8 (
+"A"
+));
+r = mongoc_bulk_operation_insert_with_opts (bulk, doc, 
+NULL
+, &error);
+bson_destroy (doc);
+if
+ (!r) {
+   MONGOC_ERROR (
+"%s
+\n
+"
+, error.message);
+
+goto
+ done;
+}
+doc = BCON_NEW (
+
+"item"
+, BCON_UTF8 (
+"sketch pad"
+),
+
+"qty"
+, BCON_INT64 (
+95
+),
+
+"size"
+, 
+"{"
+,
+
+"h"
+, BCON_DOUBLE (
+22.85
+),
+
+"w"
+, BCON_DOUBLE (
+30.5
+),
+
+"uom"
+, BCON_UTF8 (
+"cm"
+),
+
+"}"
+,
+
+"status"
+, BCON_UTF8 (
+"A"
+));
+r = mongoc_bulk_operation_insert_with_opts (bulk, doc, 
+NULL
+, &error);
+bson_destroy (doc);
+if
+ (!r) {
+   MONGOC_ERROR (
+"%s
+\n
+"
+, error.message);
+
+goto
+ done;
+}
+r = (
+bool
+) mongoc_bulk_operation_execute (bulk, &reply, &error);
+if
+ (!r) {
+   MONGOC_ERROR (
+"%s
+\n
+"
+, error.message);
+}

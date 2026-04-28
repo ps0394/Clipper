@@ -1,0 +1,1258 @@
+{
+  "parseability_score": 66.20414617886536,
+  "failure_mode": "moderate_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-003\\clickhouse-com-docs-getting-started-example-datasets-nyc-taxi\\page.rendered.html",
+  "url": "https://clickhouse.com/docs/getting-started/example-datasets/nyc-taxi",
+  "component_scores": {
+    "semantic_html": 66.72727272727272,
+    "content_extractability": 60.40829235773072,
+    "structured_data": 12,
+    "dom_navigability": 0,
+    "metadata_completeness": 70,
+    "http_compliance": 72.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 7,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "article",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "aside",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 2,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 14,
+      "heading_elements_count": 7,
+      "scoring_breakdown": {
+        "semantic_coverage": 32.72727272727273,
+        "aria_bonus": 20,
+        "heading_bonus": 14
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 24184,
+        "extracted_text_length": 12949,
+        "extracted_chars": 12949,
+        "extraction_ratio": 0.535,
+        "extracted_title": "New York taxi data",
+        "extracted_preview": "CREATE TABLE default.trips_mergetree_third ( trip_id UInt32,  vendor_id Enum8('1' = 1, '2' = 2, 'CMT' = 3, 'VTS' = 4, 'DDS' = 5, 'B02512' = 10, 'B02598' = 11, 'B02617' = 12, 'B02682' = 13, 'B02764' = 14),  pickup_date Date,  pickup_datetime DateTime,  dropoff_date Date,  dropoff_datetime DateTime,  ...",
+        "original_headings": 7,
+        "extracted_headings": 0,
+        "original_lists": 23,
+        "extracted_lists": 0,
+        "original_code_blocks": 39,
+        "extracted_code_blocks": 2,
+        "has_main_element": true,
+        "has_article_element": true
+      },
+      "score_breakdown": {
+        "signal_to_noise": 37.64909503331601,
+        "structure_preservation": 0.5128205128205128,
+        "boundary_detection": 22.246376811594203
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 0,
+        "microdata_items": 1,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [],
+      "key_fields_found": [],
+      "formats_present": 2,
+      "score_breakdown": {
+        "type_appropriateness": 0,
+        "field_completeness": 0,
+        "multiple_formats": 12,
+        "schema_validation": 0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": []
+      },
+      "sample_structured_data": {
+        "microdata": [
+          {
+            "type": "https://schema.org/BreadcrumbList",
+            "properties": {
+              "itemListElement": [
+                {
+                  "type": "https://schema.org/ListItem",
+                  "properties": {
+                    "item": "https://clickhouse.com/docs/getting-started/example-datasets",
+                    "name": "Example datasets",
+                    "position": "1"
+                  }
+                },
+                {
+                  "type": "https://schema.org/ListItem",
+                  "properties": {
+                    "name": "New York taxi data",
+                    "position": "2"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:image",
+                "https://clickhouse.com/docs/img/docs_social_share.png"
+              ],
+              [
+                "og:url",
+                "https://clickhouse.com/docs/getting-started/example-datasets/nyc-taxi"
+              ],
+              [
+                "og:locale",
+                "en"
+              ],
+              [
+                "og:locale:alternate",
+                "jp"
+              ],
+              [
+                "og:locale:alternate",
+                "zh"
+              ],
+              [
+                "og:locale:alternate",
+                "ru"
+              ],
+              [
+                "og:locale:alternate",
+                "ko"
+              ],
+              [
+                "og:title",
+                "New York taxi data | ClickHouse Docs"
+              ],
+              [
+                "og:description",
+                "Data for billions of taxi and for-hire vehicle (Uber, Lyft, etc.) trips originating in New York City since 2009"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures role attribute has an appropriate value for the element",
+          "help": "ARIA role must be appropriate for the element",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+          "id": "aria-allowed-role",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "presentation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role presentation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role presentation  is not allowed for given element",
+              "html": "<iframe title=\"reCAPTCHA\" width=\"256\" height=\"60\" role=\"presentation\" name=\"a-x8cp9qin028r\" frameborder=\"0\" scrolling=\"no\" sandbox=\"allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation\" src=\"https://www.google.com/recaptcha/enterprise/anchor?ar=1&amp;k=6Lck4YwlAAAAAEIE1hR--varWp0qu9F-8-emQn2v&amp;co=aHR0cHM6Ly9jbGlja2hvdXNlLmNvbTo0NDM.&amp;hl=en&amp;v=gTpTIWhbKpxADzTzkcabhXN4&amp;size=invisible&amp;anchor-ms=20000&amp;execute-ms=30000&amp;cb=97exyufztj2j\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "iframe[title=\"reCAPTCHA\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-valid-attr-value?application=axeAPI",
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": [
+                    "aria-controls=\"radix-:r0:\""
+                  ],
+                  "id": "aria-valid-attr-value",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute value: aria-controls=\"radix-:r0:\"",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"radix-:r0:\"",
+              "html": "<div type=\"button\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-controls=\"radix-:r0:\" data-state=\"closed\" class=\"sc-1dii14g-0 buBXLQ\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                ".sc-1dii14g-0"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+          ]
+        },
+        {
+          "description": "Ensures buttons have discernible text",
+          "help": "Buttons must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/button-name?application=axeAPI",
+          "id": "button-name",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button class=\"colorModeButton_EOjh navbar-color-toggle\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "#__docusaurus > .navbar.navbar--fixed-top.navBar_gvJn > .navbarHeaderContainer_hXE4.navbar-header > .secondary-nav--items.secondaryMenu_SZAs > .secondaryMenuRight_dXHH.secondary-nav--items-right > .navbar-color-toggle.colorModeButton_EOjh"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button class=\"colorModeButton_EOjh navbar-color-toggle\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                ".main-wrapper.mainWrapper_z2l0 > .navbar.navbar--fixed-top.navBar_gvJn > .navbarHeaderContainer_hXE4.navbar-header > .secondary-nav--items.secondaryMenu_SZAs > .secondaryMenuRight_dXHH.secondary-nav--items-right > .navbar-color-toggle.colorModeButton_EOjh"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "non-empty-if-present",
+                  "impact": "critical",
+                  "message": "Element has a value attribute and the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-value",
+                  "impact": "critical",
+                  "message": "Element has no value attribute or the value attribute is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": "",
+                  "id": "button-has-visible-text",
+                  "impact": "critical",
+                  "message": "Element does not have inner text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"\n  Element has no title attribute or the title attribute is empty",
+              "html": "<button class=\"docCloudClose_ma1o\"><svg viewBox=\"0 0 15 15\" width=\"10\" height=\"10\"><g stroke=\"var(--ifm-color-emphasis-600)\" stroke-width=\"1.2\"><path d=\"M.75.75l13.5 13.5M14.25.75L.75 14.25\"></path></g></svg></button>",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                ".docCloudClose_ma1o"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a"
+          ]
+        },
+        {
+          "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+          "help": "Elements must have sufficient color contrast",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 2.77,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#9698c3",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<footer class=\"footer footer_uuN5\">",
+                      "target": [
+                        ".main-wrapper.mainWrapper_z2l0 > footer"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"footer__copyright\">© 2016–2026 ClickHouse, Inc.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".main-wrapper.mainWrapper_z2l0 > footer > .container_gZiR.container-fluid.container > .footer__bottom.text--center > .footer__copyright"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 2.77,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#9698c3",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<footer class=\"footer footer_uuN5\">",
+                      "target": [
+                        ".main-wrapper.mainWrapper_z2l0 > footer"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"https://clickhouse.com/legal/trademark-policy\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer__link-item\">Trademark</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".main-wrapper.mainWrapper_z2l0 > footer > .container_gZiR.container-fluid.container > div:nth-child(2) > .footer__links.text--center > .footer__links > .footer__link-item[target=\"_blank\"][rel=\"noopener\\ noreferrer\"]:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 2.77,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#9698c3",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<footer class=\"footer footer_uuN5\">",
+                      "target": [
+                        ".main-wrapper.mainWrapper_z2l0 > footer"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"https://clickhouse.com/legal/privacy-policy\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer__link-item\">Privacy</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".main-wrapper.mainWrapper_z2l0 > footer > .container_gZiR.container-fluid.container > div:nth-child(2) > .footer__links.text--center > .footer__links > .footer__link-item[target=\"_blank\"][rel=\"noopener\\ noreferrer\"]:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 2.77,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#9698c3",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<footer class=\"footer footer_uuN5\">",
+                      "target": [
+                        ".main-wrapper.mainWrapper_z2l0 > footer"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"https://trust.clickhouse.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer__link-item\">Security</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".main-wrapper.mainWrapper_z2l0 > footer > .container_gZiR.container-fluid.container > div:nth-child(2) > .footer__links.text--center > .footer__links > .footer__link-item[href$=\"trust.clickhouse.com/\"][target=\"_blank\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 2.77,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#9698c3",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<footer class=\"footer footer_uuN5\">",
+                      "target": [
+                        ".main-wrapper.mainWrapper_z2l0 > footer"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"https://clickhouse.com/legal/agreements/terms-of-service\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer__link-item\">Terms of Service</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".main-wrapper.mainWrapper_z2l0 > footer > .container_gZiR.container-fluid.container > div:nth-child(2) > .footer__links.text--center > .footer__links > .footer__link-item[target=\"_blank\"][rel=\"noopener\\ noreferrer\"]:nth-child(7)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 2.77,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#9698c3",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<footer class=\"footer footer_uuN5\">",
+                      "target": [
+                        "#__docusaurus > footer"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"footer__copyright\">© 2016–2026 ClickHouse, Inc.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "#__docusaurus > footer > .container_gZiR.container-fluid.container > .footer__bottom.text--center > .footer__copyright"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 2.77,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#9698c3",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<footer class=\"footer footer_uuN5\">",
+                      "target": [
+                        "#__docusaurus > footer"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"https://clickhouse.com/legal/trademark-policy\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer__link-item\">Trademark</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "#__docusaurus > footer > .container_gZiR.container-fluid.container > div:nth-child(2) > .footer__links.text--center > .footer__links > .footer__link-item[target=\"_blank\"][rel=\"noopener\\ noreferrer\"]:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 2.77,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#9698c3",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<footer class=\"footer footer_uuN5\">",
+                      "target": [
+                        "#__docusaurus > footer"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"https://clickhouse.com/legal/privacy-policy\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer__link-item\">Privacy</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "#__docusaurus > footer > .container_gZiR.container-fluid.container > div:nth-child(2) > .footer__links.text--center > .footer__links > .footer__link-item[target=\"_blank\"][rel=\"noopener\\ noreferrer\"]:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 2.77,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#9698c3",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<footer class=\"footer footer_uuN5\">",
+                      "target": [
+                        "#__docusaurus > footer"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"https://trust.clickhouse.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer__link-item\">Security</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "#__docusaurus > footer > .container_gZiR.container-fluid.container > div:nth-child(2) > .footer__links.text--center > .footer__links > .footer__link-item[href$=\"trust.clickhouse.com/\"][target=\"_blank\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 2.77,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#9698c3",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<footer class=\"footer footer_uuN5\">",
+                      "target": [
+                        "#__docusaurus > footer"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #9698c3, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<a href=\"https://clickhouse.com/legal/agreements/terms-of-service\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer__link-item\">Terms of Service</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "#__docusaurus > footer > .container_gZiR.container-fluid.container > div:nth-child(2) > .footer__links.text--center > .footer__links > .footer__link-item[target=\"_blank\"][rel=\"noopener\\ noreferrer\"]:nth-child(7)"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value is unique",
+          "help": "id attribute value must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id?application=axeAPI",
+          "id": "duplicate-id",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "__docusaurus_skipToContent_fallback",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<div id=\"__docusaurus_skipToContent_fallback\" class=\"main-wrapper mainWrapper_z2l0 docsWrapper_bSxm\">",
+                      "target": [
+                        ".docsWrapper_bSxm"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<div id=\"__docusaurus_skipToContent_fallback\" class=\"main-wrapper mainWrapper_z2l0\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#__docusaurus > .main-wrapper.mainWrapper_z2l0"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/heading-order?application=axeAPI",
+          "id": "heading-order",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": 6,
+                  "id": "heading-order",
+                  "impact": "moderate",
+                  "message": "Heading order invalid",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Heading order invalid",
+              "html": "<h6>Try ClickHouse Cloud for FREE</h6>",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "h6"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures the page has at most one contentinfo landmark",
+          "help": "Page must not have more than one contentinfo landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/landmark-no-duplicate-contentinfo?application=axeAPI",
+          "id": "landmark-no-duplicate-contentinfo",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "page-no-duplicate-contentinfo",
+                  "impact": "moderate",
+                  "message": "Page has more than one contentinfo landmark",
+                  "relatedNodes": [
+                    {
+                      "html": "<footer class=\"footer footer_uuN5\">",
+                      "target": [
+                        ".main-wrapper.mainWrapper_z2l0 > footer"
+                      ]
+                    },
+                    {
+                      "html": "<footer class=\"footer footer_uuN5\">",
+                      "target": [
+                        "#__docusaurus > footer"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Page has more than one contentinfo landmark",
+              "html": "<html lang=\"en\" dir=\"ltr\" class=\"docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page plugin-docs plugin-id-default docs-doc-id-getting-started/example-datasets/nyc-taxi\" data-has-hydrated=\"true\" data-theme=\"light\" data-rh=\"lang,dir,class,data-has-hydrated\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures all page content is contained by landmarks",
+          "help": "All page content must be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/region?application=axeAPI",
+          "id": "region",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "region",
+                  "impact": "moderate",
+                  "message": "Some page content is not contained by landmarks",
+                  "relatedNodes": [
+                    {
+                      "html": "<img referrerpolicy=\"no-referrer-when-downgrade\" src=\"https://static.scarf.sh/a.png?x-pxid=e6377503-591b-4886-9398-e69c7fee0b91\" alt=\"\" height=\"0\" width=\"0\" style=\"height: 0px; width: 0px;\">",
+                      "target": [
+                        ".main-wrapper.mainWrapper_z2l0 > img[referrerpolicy=\"no-referrer-when-downgrade\"][alt=\"\"][height=\"\\30 \"]"
+                      ]
+                    },
+                    {
+                      "html": "<img referrerpolicy=\"no-referrer-when-downgrade\" src=\"https://static.scarf.sh/a.png?x-pxid=e6377503-591b-4886-9398-e69c7fee0b91\" alt=\"\" height=\"0\" width=\"0\" style=\"height: 0px; width: 0px;\">",
+                      "target": [
+                        "#__docusaurus > img[referrerpolicy=\"no-referrer-when-downgrade\"][alt=\"\"][height=\"\\30 \"]"
+                      ]
+                    },
+                    {
+                      "html": "<button class=\"mantine-focus-auto mantine-active m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root mantine-1j2pv9r\" data-size=\"lg\" type=\"button\" id=\"kapa-button\" style=\"--button-height: var(--button-height-lg); --button-padding-x: var(--button-padding-x-lg); --button-fz: var(--mantine-font-size-lg); --button-radius: calc(0.5rem * var(--mantine-scale)); --button-color: var(--mantine-color-white);\">",
+                      "target": [
+                        [
+                          "#kapa-widget-container",
+                          "#kapa-button"
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks",
+              "html": "<html lang=\"en\" dir=\"ltr\" class=\"docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page plugin-docs plugin-id-default docs-doc-id-getting-started/example-datasets/nyc-taxi\" data-has-hydrated=\"true\" data-theme=\"light\" data-rh=\"lang,dir,class,data-has-hydrated\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.keyboard",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 8,
+      "passes_count": 36,
+      "total_penalty": 115,
+      "penalty_per_rule": {
+        "aria-allowed-role": {
+          "impact": "minor",
+          "node_count": 1,
+          "raw_penalty": 5,
+          "capped_penalty": 5
+        },
+        "aria-valid-attr-value": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "button-name": {
+          "impact": "critical",
+          "node_count": 3,
+          "raw_penalty": 75,
+          "capped_penalty": 25
+        },
+        "color-contrast": {
+          "impact": "serious",
+          "node_count": 10,
+          "raw_penalty": 150,
+          "capped_penalty": 25
+        },
+        "duplicate-id": {
+          "impact": "minor",
+          "node_count": 1,
+          "raw_penalty": 5,
+          "capped_penalty": 5
+        },
+        "heading-order": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        },
+        "landmark-no-duplicate-contentinfo": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        },
+        "region": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        }
+      },
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 0,
+        "date": 0,
+        "topic": 15,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [
+          "meta:description",
+          "og:description"
+        ],
+        "author": [],
+        "date": [],
+        "topic": [
+          "meta:keywords"
+        ],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 5,
+      "fields_total": 7,
+      "json_ld_type": "none"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "absent",
+        "last_modified": "Mon, 27 Apr 2026 07:07:27 GMT",
+        "cache_control": "public, max-age=0, must-revalidate"
+      },
+      "agent_content_hints": {
+        "scoring_contribution": 0,
+        "diagnostic_only": true,
+        "rationale": "PRD F2.2/F2.3: retrieval-lift evidence deferred to Phase 6",
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": true,
+          "details": [
+            "link rel=alternate type=application/json href=/docs/knowledgebase/feed.json"
+          ]
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 12,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "sample",
+      "detection": {
+        "source": "dom",
+        "matched_value": "sample"
+      },
+      "weights": {
+        "semantic_html": 0.0,
+        "content_extractability": 0.5,
+        "structured_data": 0.0,
+        "dom_navigability": 0.0,
+        "metadata_completeness": 0.0,
+        "http_compliance": 0.5
+      },
+      "v1_weights_for_reference": {
+        "semantic_html": 0.2,
+        "content_extractability": 0.25,
+        "structured_data": 0.2,
+        "dom_navigability": 0.1,
+        "metadata_completeness": 0.15,
+        "http_compliance": 0.1
+      },
+      "scoring_version": "v2-evidence-partial"
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "sample",
+  "universal_score": 66.20414617886536,
+  "render_mode": "rendered",
+  "confidence_range": {
+    "scoring_version": "v2-evidence-partial",
+    "evidence_tier": "partial",
+    "headline_weights": {
+      "semantic_html": 0.0,
+      "content_extractability": 0.5,
+      "structured_data": 0.0,
+      "dom_navigability": 0.0,
+      "metadata_completeness": 0.0,
+      "http_compliance": 0.5
+    },
+    "calibration_corpus": {
+      "name": "corpus-002",
+      "n": 43,
+      "pearson_r_vs_accuracy_rendered": 0.548,
+      "gate_threshold": 0.35,
+      "source": "findings/phase-5-corpus-002-findings.md Addendum B"
+    },
+    "caveats": [
+      "Single corpus, single grader architecture, single run.",
+      "Four pillars carry zero headline weight in v2; still reported as diagnostics.",
+      "Profile-specific weights collapse to the same 2-pillar composite pending corpus-003.",
+      "Cross-judge accuracy variance: per-judge corpus-002 means span 0.591-0.698 across Llama-3.3-70B, GPT-4o, and DeepSeek-V3.2 (pooled kappa 0.706-0.817). The v2 composite-vs-accuracy Pearson r ranges from +0.440 to +0.618 across judges (all above the +0.35 ship gate). Report majority-vote CI [0.567, 0.688] or per-judge union CI [0.530, 0.758] when comparing across studies.",
+      "No temporal variance measured yet."
+    ]
+  },
+  "subscores": {
+    "semantic_html": 66.72727272727272,
+    "content_extractability": 60.40829235773072,
+    "structured_data": 12,
+    "dom_navigability": 0,
+    "metadata_completeness": 70,
+    "http_compliance": 72.0
+  },
+  "evidence_references": null
+}

@@ -1,0 +1,144 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Databricks on AWS
+Document URL: https://docs.databricks.com/aws/en/sql/language-manual/
+Document profile: reference
+
+Document text:
+---
+This is a SQL command reference for Databricks SQL and Databricks Runtime.
+
+For information about how to understand and use the syntax notation and symbols in this reference, see 
+How to use the SQL reference
+.
+
+For information about using SQL with Lakeflow Spark Declarative Pipelines, see 
+Pipeline SQL language reference
+.
+
+General reference
+​
+
+This general reference describes data types, functions, identifiers, literals, and semantics.
+
+Language fundamentals
+​
+
+Data types
+​
+
+Configuration parameters
+​
+
+Functions
+​
+
+Unity Catalog concepts
+​
+
+Special topics
+​
+
+DDL statements
+​
+
+Data definition statements create or modify the structure of database objects.
+
+ALTER statements
+​
+
+CREATE statements
+​
+
+DROP statements
+​
+
+Analyze statements
+​
+
+Other DDL statements
+​
+
+DML statements
+​
+
+Data manipulation statements add, change, or delete data in Delta Lake tables.
+
+Data retrieval statements
+​
+
+Retrieve rows from tables according to specified clauses. Databricks supports both standard SELECT syntax and 
+SQL Pipeline Syntax
+.
+
+Query statements
+​
+
+Query clauses
+​
+
+Delta Lake statements
+​
+
+Manage tables stored in Delta Lake format. For details, see 
+What is Delta Lake in Databricks?
+.
+
+SQL scripting statements
+​
+
+Execute procedural logic in SQL. See 
+SQL scripting
+ for an overview.
+
+Auxiliary statements
+​
+
+Collect statistics, manage caching, explore metadata, set configurations, and manage resources.
+
+ANALYZE statements
+​
+
+Cache statements
+​
+
+Applies to:
+ Databricks Runtime
+
+DESCRIBE statements
+​
+
+SHOW statements
+​
+
+Configuration and variable management
+​
+
+Resource management
+​
+
+Applies to:
+ Databricks Runtime
+
+Applies to:
+ Databricks SQL Connector
+
+Security statements
+​
+
+Manage access to data. For details, see 
+Hive metastore privileges and securable objects (legacy)
+.
+---

@@ -1,0 +1,37 @@
+[
+  {
+    "question": "What is the maximum number of buckets allowed per Cloudflare R2 account?",
+    "answer": "1,000,000",
+    "supporting_sentences": [
+      "Maximum number of buckets per account\n1,000,000"
+    ]
+  },
+  {
+    "question": "What is the maximum object size allowed in a Cloudflare R2 bucket?",
+    "answer": "5 TiB per object",
+    "supporting_sentences": [
+      "Object size\n5 TiB per object"
+    ]
+  },
+  {
+    "question": "How many custom domains can be associated with a single Cloudflare R2 bucket?",
+    "answer": "50",
+    "supporting_sentences": [
+      "Number of custom domains per bucket\n50"
+    ]
+  },
+  {
+    "question": "What happens if you exceed the rate limit for a managed public bucket using the r2.dev endpoint?",
+    "answer": "Requests will be temporarily throttled and you will receive a 429 Too Many Requests response.",
+    "supporting_sentences": [
+      "If you exceed the rate limit (hundreds of requests/second), requests to your r2.dev endpoint will be temporarily throttled and you will receive a 429 Too Many Requests response."
+    ]
+  },
+  {
+    "question": "What is the maximum upload size for a single-part upload in Cloudflare R2?",
+    "answer": "5 GiB",
+    "supporting_sentences": [
+      "Maximum upload size \n5 GiB (single-part) / 4.995 TiB (multi-part)"
+    ]
+  }
+]

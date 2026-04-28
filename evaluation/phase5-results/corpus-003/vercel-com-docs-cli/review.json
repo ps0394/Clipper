@@ -1,0 +1,116 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the primary ways to interact with Vercel Projects according to the documentation?",
+      "answer": "The primary ways to interact with Vercel Projects are through the command-line interface (CLI) or programmatically via the REST API.",
+      "supporting_sentences": [
+        "Vercel gives you multiple ways to interact with and configure your Vercel Projects. With the command-line interface (CLI) you can interact with the Vercel platform using a terminal, or through an automated system, enabling you to retrieve logs, manage certificates, replicate your deployment environment locally, manage Domain Name System (DNS) records, and more.",
+        "If you'd like to interface with the platform programmatically, check out the REST API documentation."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the primary ways to interact with Vercel Projects according to the documentation?",
+      "answer": "The primary ways to interact with Vercel Projects are through the command-line interface (CLI) or programmatically via the REST API.",
+      "supporting_sentences": [
+        "Vercel gives you multiple ways to interact with and configure your Vercel Projects. With the command-line interface (CLI) you can interact with the Vercel platform using a terminal, or through an automated system, enabling you to retrieve logs, manage certificates, replicate your deployment environment locally, manage Domain Name System (DNS) records, and more.",
+        "If you'd like to interface with the platform programmatically, check out the REST API documentation."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How can you update the Vercel CLI if it was installed via npm or Yarn?",
+      "answer": "The easiest way to update the Vercel CLI if installed via npm or Yarn is by running the installation command again.",
+      "supporting_sentences": [
+        "If you have installed our command-line interface through npm or Yarn, the easiest way to update it is by running the installation command yet again.",
+        "yarn global add vercel@latest"
+      ]
+    },
+    "edited_pair": {
+      "question": "How can you update the Vercel CLI if it was installed via npm or Yarn?",
+      "answer": "The easiest way to update the Vercel CLI if installed via npm or Yarn is by running the installation command again.",
+      "supporting_sentences": [
+        "If you have installed our command-line interface through npm or Yarn, the easiest way to update it is by running the installation command yet again.",
+        "yarn global add vercel@latest"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the two methods for authenticating with Vercel CLI in a CI/CD environment?",
+      "answer": "In a CI/CD environment, you can authenticate with Vercel CLI by setting the `VERCEL_TOKEN` environment variable or by passing the `--token` option to the command.",
+      "supporting_sentences": [
+        "In a CI/CD environment where manual input is not possible, you can create a token on your tokens page and then authenticate using one of these methods:",
+        "Set the VERCEL_TOKEN environment variable",
+        "Pass the --token option to the command"
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the two methods for authenticating with Vercel CLI in a CI/CD environment?",
+      "answer": "In a CI/CD environment, you can authenticate with Vercel CLI by setting the `VERCEL_TOKEN` environment variable or by passing the `--token` option to the command.",
+      "supporting_sentences": [
+        "In a CI/CD environment where manual input is not possible, you can create a token on your tokens page and then authenticate using one of these methods:",
+        "Set the VERCEL_TOKEN environment variable",
+        "Pass the --token option to the command"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which Vercel CLI command is used to replicate the deployment environment locally for testing?",
+      "answer": "The `vercel dev` command is used to replicate the Vercel deployment environment locally and test your project.",
+      "supporting_sentences": [
+        "Replicate the Vercel deployment environment locally and test your project.",
+        "vercel dev",
+        "vercel dev --port 3000"
+      ]
+    },
+    "edited_pair": {
+      "question": "Which Vercel CLI command is used to replicate the deployment environment locally for testing?",
+      "answer": "The `vercel dev` command is used to replicate the Vercel deployment environment locally and test your project.",
+      "supporting_sentences": [
+        "Replicate the Vercel deployment environment locally and test your project.",
+        "vercel dev",
+        "vercel dev --port 3000"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What command would you use to list recent deployments for a specific Vercel Project?",
+      "answer": "You would use the `vercel list [project-name]` command to list recent deployments for a specific Vercel Project.",
+      "supporting_sentences": [
+        "List recent deployments for the current Vercel Project.",
+        "vercel list [project-name]"
+      ]
+    },
+    "edited_pair": {
+      "question": "What command would you use to list recent deployments for a specific Vercel Project?",
+      "answer": "You would use the `vercel list [project-name]` command to list recent deployments for a specific Vercel Project.",
+      "supporting_sentences": [
+        "List recent deployments for the current Vercel Project.",
+        "vercel list [project-name]"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

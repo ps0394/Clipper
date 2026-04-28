@@ -1,0 +1,39 @@
+```json
+[
+    {
+        "question": "What function from the itertools module is used to return the first n items of an iterable as a list?",
+        "answer": "The `take` function returns the first n items of the iterable as a list.",
+        "supporting_sentences": [
+            "def take(n, iterable):\n\"Return first n items of the iterable as a list.\"\nreturn list(islice(iterable, n))"
+        ]
+    },
+    {
+        "question": "What does the `prepend` function do in the itertools documentation examples?",
+        "answer": "The `prepend` function prepends a single value in front of an iterable.",
+        "supporting_sentences": [
+            "def prepend(value, iterable):\n\"Prepend a single value in front of an iterable.\"\n# prepend(1, [2, 3, 4]) → 1 2 3 4"
+        ]
+    },
+    {
+        "question": "What is the purpose of the `unique_everseen` function?",
+        "answer": "The `unique_everseen` function yields unique elements while preserving order and remembers all elements ever seen.",
+        "supporting_sentences": [
+            "def unique_everseen(iterable, key=None):\n\"Yield unique elements, preserving order. Remember all elements ever seen.\""
+        ]
+    },
+    {
+        "question": "How does the `convolve` function in the itertools documentation relate to polynomial arithmetic?",
+        "answer": "The `convolve` function performs discrete linear convolution of two iterables, which is equivalent to polynomial multiplication.",
+        "supporting_sentences": [
+            "def convolve(signal, kernel):\n\"\"\"Discrete linear convolution of two iterables.\n    Equivalent to polynomial multiplication.\"\"\""
+        ]
+    },
+    {
+        "question": "What does the `is_prime` function return when given a prime number as input?",
+        "answer": "The `is_prime` function returns `True` if the input number is prime.",
+        "supporting_sentences": [
+            "def is_prime(n):\n\"Return True if n is prime.\"\n# is_prime(1_000_000_000_000_403) → True\nreturn n > 1 and next(factor(n)) == n"
+        ]
+    }
+]
+```

@@ -1,0 +1,277 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Streaming in web applications
+Document URL: https://vercel.com/docs/functions/streaming
+Document profile: sample
+
+Document text:
+---
+Streaming sends data to the client in small pieces, called chunks, as soon as they're ready. Unlike traditional methods that wait for the entire response, streaming lets users start seeing and using content sooner. For example, a server can send the first part of an HTML page immediately, then stream in additional content as it's generated.
+Vercel Functions support streaming responses, so you can render and display parts of the UI as soon as they are ready. This approach reduces perceived wait times and allows users to interact with your app before the entire page loads.
+Common use-cases include:
+Ecommerce
+: Render the most important product and account data early, letting customers shop sooner
+AI applications
+: Streaming responses from AIs powered by LLMs lets you display response text as it arrives rather than waiting for the full result
+HTTP responses typically send the entire payload to the client all at once. This approach can lead to noticeable delays for users, especially when handling large datasets or complex computations.
+How responses and requests typically flow between client and server, with the response sent in one large batch.
+With the Web Streams API, the server generates data and splits it into chunks. Each chunk is sent to the client as soon as it's ready. The client processes each chunk on arrival, so users can start seeing and interacting with content immediately. It is supported in 
+most major web browsers
+ and popular runtimes, such as 
+Node.js
+ and 
+Deno
+.
+The Web Streams API helps you:
+Break large data into chunks
+: Chunks are portions of data sent over time
+Handle backpressure
+: Backpressure occurs when chunks are streamed from the server faster than they can be processed in the client, causing a backup of data
+Build more responsive apps
+: Rendering your UI progressively as data chunks arrive can improve your users' perception of your app's performance
+Chunks in web streams are fundamental data units that can be of various types, such as strings, ArrayBuffers, or typed arrays, depending on the content (for example, 
+String
+ for text or 
+Uint8Array
+ for binary data).
+Standard function responses contain full payloads of data, while chunks are pieces of the payload that get streamed to the client as they're available.
+For example, imagine you want to create an AI chat app that uses a Large Language Model to generate replies. Due to their large data sets, replies from language models can generate slowly.
+Standard function responses require you send the full reply to the client when it's done, but streaming enables you to show each word of the reply as the model generates it, improving users' perception of your chat app's speed.
+How streamed responses typically work, with data sent continuously in small chunks.
+Chunk sizes can be out of your control, so it's important that your code can handle chunks of any size. Chunks sizes are influenced by the following factors:
+Data source
+: Sometimes the original data is already broken up. For example, OpenAI's language models produce responses in 
+tokens
+, or chunks of words
+Stream implementation
+: The server could be configured to stream small chunks quickly or large chunks at a lower pace
+Network
+: Factors like a network's Maximum Transmission Unit setting, or its geographical distance from the client, can cause chunk fragmentation and limit chunk size
+In local development, chunk sizes won't be impacted by network conditions, as no network transmission is happening
+For an example function that processes chunks, see 
+streaming
+.
+Once you understand how to deal with chunks of different sizes, you must understand how to deal with chunks arriving faster than you can process them in the client.
+When the server streams data faster than the client can process it, excess data will queue up in the client's memory. This issue is called backpressure, and it can lead to memory overflow errors, or data loss when the client's memory reaches capacity.
+For example, popular social media users can receive hundreds of notifications streamed to their web client per second. If their web client can't render the notifications fast enough, some may be lost, or the client may crash if its memory overflows.
+A diagram of backpressure.
+You can handle backpressure with flow control. This technique manages data transfer rates between sender and receiver, often by pausing the stream or buffering data until the client is ready to process more.
+The following examples show you how to implement streaming in your Next.js application using the concepts discussed earlier.
+This example creates a streaming endpoint that sends data in chunks. The server sends each piece of data as it becomes available:
+export
+
+async
+
+function
+
+GET
+(
+)
+
+{
+
+const
+ encoder 
+=
+
+new
+
+TextEncoder
+(
+)
+;
+
+const
+ stream 
+=
+
+new
+
+ReadableStream
+(
+{
+      controller
+.
+enqueue
+(
+encoder
+.
+encode
+(
+'First chunk\\\\n'
+)
+)
+;
+      controller
+.
+enqueue
+(
+encoder
+.
+encode
+(
+'Second chunk\\\\n'
+)
+)
+;
+      controller
+.
+enqueue
+(
+encoder
+.
+encode
+(
+'Third chunk\\\\n'
+)
+)
+;
+
+return
+
+new
+
+Response
+(
+stream
+,
+
+{
+    headers
+:
+
+{
+
+'Content-Type'
+:
+
+'text/plain; charset=utf-8'
+
+}
+,
+In this example, each call to 
+controller.enqueue()
+ sends a 
+chunk
+ to the client immediately. The 
+TextEncoder
+ converts text into bytes that can be transmitted over HTTP. The client receives and displays each chunk as it arrives, rather than waiting for all data to be ready.
+For AI applications, streaming lets you display generated text progressively rather than waiting for the complete response. The Vercel AI SDK simplifies this pattern:
+First, install the required packages:
+Then create a streaming route that sends AI-generated text in chunks:
+import
+
+{
+ convertToModelMessages
+,
+ streamText
+,
+
+UIMessage
+
+}
+
+from
+
+'ai'
+;
+export
+
+async
+
+function
+
+POST
+(
+req
+:
+
+Request
+)
+
+{
+
+const
+
+{
+ messages 
+}
+:
+
+{
+ messages
+:
+
+UIMessage
+[
+]
+
+}
+
+=
+
+await
+ req
+.
+json
+(
+)
+;
+
+const
+ result 
+=
+
+streamText
+(
+{
+    model
+:
+
+"anthropic/claude-sonnet-4.5"
+,
+    system
+:
+
+'You are a helpful assistant.'
+,
+    messages
+:
+
+await
+
+convertToModelMessages
+(
+messages
+)
+,
+
+return
+ result
+.
+toUIMessageStreamResponse
+(
+)
+;
+The AI SDK handles 
+backpressure
+ automatically. If the client can't process chunks as quickly as the AI generates them, the SDK pauses the stream until the client is ready. This prevents memory buildup and ensures smooth data flow.
+Vercel Functions
+: Learn about functions on Vercel.
+Streaming functions
+: Learn how Vercel enables streaming function responses over time for ecommerce, AI, and more.
+Vercel AI SDK
+: Use Vercel's AI SDK to power your streaming AI applications.
+---

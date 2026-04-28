@@ -1,0 +1,43 @@
+[
+  {
+    "question": "What is the purpose of an attention mask in the context of batching sequences together?",
+    "answer": "The attention mask is a binary tensor indicating the position of the padded indices so that the model does not attend to them. For the BertTokenizer, 1 indicates a value that should be attended to, while 0 indicates a padded value.",
+    "supporting_sentences": [
+      "The attention mask is an optional argument used when batching sequences together.",
+      "This argument indicates to the model which tokens should be attended to, and which should not.",
+      "The attention mask is a binary tensor indicating the position of the padded indices so that the model does not attend to them. For the BertTokenizer, 1 indicates a value that should be attended to, while 0 indicates a padded value."
+    ]
+  },
+  {
+    "question": "What is the role of the backbone in a neural network model?",
+    "answer": "The backbone is the network (embeddings and layers) that outputs the raw hidden states or features. It is usually connected to a head which accepts the features as its input to make a prediction.",
+    "supporting_sentences": [
+      "The backbone is the network (embeddings and layers) that outputs the raw hidden states or features.",
+      "It is usually connected to a head which accepts the features as its input to make a prediction."
+    ]
+  },
+  {
+    "question": "How does Connectionist Temporal Classification (CTC) work in speech recognition tasks?",
+    "answer": "CTC calculates the distribution of all possible outputs for a given input and chooses the most likely output from it. It allows a model to learn without knowing exactly how the input and output are aligned.",
+    "supporting_sentences": [
+      "An algorithm which allows a model to learn without knowing exactly how the input and output are aligned; CTC calculates the distribution of all possible outputs for a given input and chooses the most likely output from it.",
+      "CTC is commonly used in speech recognition tasks because speech doesn\u2019t always cleanly align with the transcript for a variety of reasons such as a speaker\u2019s different speech rates."
+    ]
+  },
+  {
+    "question": "What are input IDs in the context of tokenization?",
+    "answer": "The input IDs are token indices, numerical representations of tokens building the sequences that will be used as input by the model.",
+    "supporting_sentences": [
+      "The input ids are often the only required parameters to be passed to the model as input.",
+      "They are token indices, numerical representations of tokens building the sequences that will be used as input by the model."
+    ]
+  },
+  {
+    "question": "What is the purpose of token type IDs in models like BERT?",
+    "answer": "Token type IDs (also called segment IDs) are a binary mask identifying the two types of sequence in the model, where 0 represents the first sequence and 1 represents the second sequence.",
+    "supporting_sentences": [
+      "They are represented as a binary mask identifying the two types of sequence in the model.",
+      "The first sequence, the 'context' used for the question, has all its tokens represented by a 0, whereas the second sequence, corresponding to the 'question', has all its tokens represented by a 1."
+    ]
+  }
+]

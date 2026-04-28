@@ -1,0 +1,585 @@
+Expressions are 
+MQL
+ components that
+resolve to a value. Expressions are stateless, meaning they return a
+value without mutating any of the values used to build the expression.
+You can use expressions in the following MQL contexts:
+In the MongoDB Query Language, you can build expressions from the
+following components:
+For example, 
+{ $add: [ 3, "$inventory.total" ] }
+ is an expression
+that consists of the 
+$add
+ operator and two operands:
+The expression returns the result of adding 3 to the value at path
+
+inventory.total
+ of the input document.
+Expression operators are similar to functions that take arguments. In
+general, these operators take an array of arguments and have the
+following form:
+{ <operator>: [ <argument1>, <argument2> ... ] }
+If an operator accepts a single argument, you can omit the outer array
+designating the argument list:
+{ <operator>: <argument> }
+This page lists operators that you can use to construct
+
+expressions.
+Arithmetic expressions perform mathematic operations on numbers. Some
+arithmetic expressions can also support date arithmetic.
+Returns the absolute value of a number.
+Adds numbers to return the sum, or adds numbers and a date to
+return a new date. If adding numbers and a date, treats the
+numbers as milliseconds. Accepts any number of argument
+expressions, but at most, one expression can resolve to a
+date.
+Returns the smallest integer greater than or equal to the specified number.
+Returns the result of dividing the first number by the
+second. Accepts two argument expressions.
+Raises 
+e
+ to the specified exponent.
+Returns the largest integer less than or equal to the
+specified number.
+Calculates the natural log of a number.
+Calculates the log of a number in the specified base.
+Calculates the log base 10 of a number.
+Returns the remainder of the first number divided by the
+second. Accepts two argument expressions.
+Multiplies numbers to return the product. Accepts any number
+of argument expressions.
+Raises a number to the specified exponent.
+Rounds a number to to a whole integer 
+or
+ to a specified
+decimal place.
+Returns the result of the sigmoid function (the integration of the
+normal distribution with standard deviation 1).
+Calculates the square root.
+Returns the result of subtracting the second value from the
+first. If the two values are numbers, return the difference.
+If the two values are dates, return the difference in
+milliseconds. If the two values are a date and a number in
+milliseconds, return the resulting date. Accepts two argument
+expressions. If the two values are a date and a number,
+specify the date argument first as it is not meaningful to
+subtract a date from a number.
+Truncates a number to a whole integer 
+or
+ to a specified
+decimal place.
+Returns the element at the specified array index.
+Converts an array of key value pairs to a document.
+Concatenates arrays to return the concatenated array.
+Selects a subset of the array to return an array with only
+the elements that match the filter condition.
+Returns a specified number of elements from the beginning of an array.
+Distinct from the 
+$firstN
+ accumulator.
+Returns a boolean indicating whether a specified value is in
+an array.
+Searches an array for an occurrence of a specified value and
+returns the array index of the first occurrence. Array indexes start
+at zero.
+Determines if the operand is an array. Returns a boolean.
+Returns a specified number of elements from the end of an array.
+Distinct from the 
+$lastN
+ accumulator.
+Applies a subexpression to each element of an array and
+returns the array of resulting values in order. Accepts named
+parameters.
+Returns the 
+n
+ largest values in an array.
+Distinct from the 
+$maxN
+ accumulator.
+Returns the 
+n
+ smallest values in an array.
+Distinct from the 
+$minN
+ accumulator.
+Converts a document to an array of documents representing
+key-value pairs.
+Outputs an array containing a sequence of integers according
+to user-defined inputs.
+Applies an expression to each element in an array and
+combines them into a single value.
+Returns an array with the elements in reverse order.
+Returns the number of elements in the array. Accepts a single
+expression as argument.
+Returns a subset of an array.
+Sorts the elements of an array.
+Merge two arrays together.
+Returns the result of a bitwise 
+and
+ operation on an array of
+
+int
+ or 
+long
+ values.
+Returns the result of a bitwise 
+not
+ operation on a single argument
+or an array that contains a single 
+int
+ or 
+long
+ value.
+Returns the result of a bitwise 
+or
+ operation on an array of
+
+int
+ or 
+long
+ values.
+Returns the result of a bitwise 
+xor
+ (exclusive or) operation on an
+array of 
+int
+ and 
+long
+ values.
+Boolean expressions evaluate their argument expressions as booleans and
+return a boolean as the result.
+In addition to the 
+false
+ boolean value, Boolean expression evaluates
+as 
+false
+ the following: 
+null
+, 
+0
+, and 
+undefined
+
+values. The Boolean expression evaluates all other values as 
+true
+,
+including non-zero numeric values and arrays.
+Returns 
+true
+ only when 
+all
+ its expressions evaluate to
+
+true
+. Accepts any number of argument expressions.
+Returns the boolean value that is the opposite of its
+argument expression. Accepts a single argument expression.
+Returns 
+true
+ when 
+any
+ of its expressions evaluates to
+
+true
+. Accepts any number of argument expressions.
+Comparison expressions return a boolean except for 
+$cmp
+
+which returns a number.
+The comparison expressions take two argument expressions and compare
+both value and type, using the 
+specified BSON comparison order
+ for values of different types.
+Returns 
+0
+ if the two values are equivalent, 
+1
+ if the
+first value is greater than the second, and 
+-1
+ if the
+first value is less than the second.
+Returns 
+true
+ if the values are equivalent.
+Returns 
+true
+ if the first value is greater than the
+second.
+Returns 
+true
+ if the first value is greater than or equal
+to the second.
+Returns 
+true
+ if the first value is less than the second.
+Returns 
+true
+ if the first value is less than or equal to
+the second.
+Returns 
+true
+ if the values are 
+not
+ equivalent.
+A ternary operator that evaluates one expression, and
+depending on the result, returns the value of one of the
+other two expressions. Accepts either three expressions in an
+ordered list or three named parameters.
+Returns either the non-null result of the first expression or
+the result of the second expression if the first expression
+results in a null result. Null result encompasses instances
+of undefined values or missing fields. Accepts two
+expressions as arguments. The result of the second expression
+can be null.
+Evaluates a series of case expressions. When it finds an
+expression which evaluates to 
+true
+, 
+$switch
+ executes
+a specified expression and breaks out of the control flow.
+The following operators return the size of a data element:
+Returns the size of a given string or binary data value's
+content in bytes.
+Returns the size in bytes of a given document (i.e. bsontype
+
+Object
+) when encoded as 
+BSON.
+The following operators returns date objects or components of a date
+object:
+Adds a number of time units to a date object.
+Returns the difference between two dates.
+Constructs a BSON Date object given the date's constituent
+parts.
+Converts a date/time string to a date object.
+Subtracts a number of time units from a date object.
+Returns a document containing the constituent parts of a date.
+Returns the date as a formatted string.
+Returns the day of the month for a date as a number between 1
+and 31.
+Returns the day of the week for a date as a number between 1
+(Sunday) and 7 (Saturday).
+Returns the day of the year for a date as a number between 1
+and 366 (leap year).
+Returns the hour for a date as a number between 0 and 23.
+Returns the weekday number in ISO 8601 format, ranging from
+
+1
+ (for Monday) to 
+7
+ (for Sunday).
+Returns the week number in ISO 8601 format, ranging from
+
+1
+ to 
+53
+. Week numbers start at 
+1
+ with the week
+(Monday through Sunday) that contains the year's first
+Thursday.
+Returns the year number in ISO 8601 format. The year starts
+with the Monday of week 1 (ISO 8601) and ends with the Sunday
+of the last week (ISO 8601).
+Returns the milliseconds of a date as a number between 0 and
+999.
+Returns the minute for a date as a number between 0 and 59.
+Returns the month for a date as a number between 1 (January)
+and 12 (December).
+Returns the seconds for a date as a number between 0 and 60
+(leap seconds).
+Converts value to a Date.
+Returns the week number for a date as a number between 0 (the
+partial week that precedes the first Sunday of the year) and
+53 (leap year).
+Returns the year for a date as a number (e.g. 2014).
+The following arithmetic operators can take date operands:
+Adds numbers and a date to return a new date. If adding
+numbers and a date, treats the numbers as milliseconds.
+Accepts any number of argument expressions, but at most, one
+expression can resolve to a date.
+Returns the result of subtracting the second value from the
+first. If the two values are dates, return the difference in
+milliseconds. If the two values are a date and a number in
+milliseconds, return the resulting date. Accepts two argument
+expressions. If the two values are a date and a number,
+specify the date argument first as it is not meaningful to
+subtract a date from a number.
+Some accumulators for the 
+$group
+ stage are also available
+for use as expressions. When used as expressions, they calculate an
+aggregate value over the given input arguments or input array.
+The following operators are accumulators, but they are also available
+as expressions which accept an array of values as input.
+Returns an average of the specified expression or list of
+expressions for each document. Ignores non-numeric values.
+Returns a single array that combines the elements of two or more arrays.
+Returns the result of an 
+expression
+ for the first document in a group.
+Returns the result of an 
+expression
+ for the last document in a group.
+Returns the maximum of the specified expression or list of
+expressions for each document
+Returns the minimum of the specified expression or list of
+expressions for each document
+Returns an array of scalar values that correspond to specified
+
+percentile
+ values.
+Takes two or more arrays and returns an array containing the
+elements that appear in any input array.
+Returns the population standard deviation of the input values.
+Returns the sample standard deviation of the input values.
+Returns a sum of numerical values. Ignores non-numeric values.
+Return a value without parsing. Use for values that the
+aggregation pipeline may interpret as an expression. For
+example, use a 
+$literal
+ expression to a string
+that starts with a  dollar sign (
+$
+) to avoid parsing as a
+field path.
+Returns the value of a specified field from a document.
+You can use 
+$getField
+ to retrieve the value of
+fields with names that contain periods (
+.
+) or start
+with dollar signs (
+$
+).
+Returns a random float between 0 and 1
+Randomly select documents at a given rate. Although the exact
+number of documents selected varies on each run, the quantity
+chosen approximates the sample rate expressed as a percentage
+of the total number of documents.
+Computes and returns the hash of the input expression using
+the same hash function that MongoDB uses to create a hashed
+index.
+Combines multiple documents into a single document.
+Converts a document to an array of documents representing
+key-value pairs.
+Adds, updates, or removes a specified field in a document. You
+can use 
+$setField
+ to add, update,
+or remove fields with names that contain periods (
+.
+) or
+start with dollar signs (
+$
+).
+Set expressions performs set operation on arrays, treating arrays as
+sets. Set expressions ignores the duplicate entries in each input array
+and the order of the elements.
+If the set operation returns a set, the operation filters out
+duplicates in the result to output an array that contains only unique
+entries. The order of the elements in the output array is unspecified.
+If a set contains a nested array element, the set expression does 
+not
+ descend
+into the nested array but evaluates the array at top-level.
+Returns 
+true
+ if 
+no
+ element of a set evaluates to
+
+false
+, otherwise, returns 
+false
+. Accepts a single
+argument expression.
+Returns 
+true
+ if 
+any
+ elements of a set evaluate to
+
+true
+; otherwise, returns 
+false
+. Accepts a single
+argument expression.
+Returns a set with elements that appear in the first set
+but not in the second set; i.e. performs a 
+relative
+complement
+
+of the second set relative to the first. Accepts exactly
+two argument expressions.
+Returns 
+true
+ if the input sets have the same distinct
+elements. Accepts two or more argument expressions.
+Returns a set with elements that appear in 
+all
+ of the
+input sets. Accepts any number of argument expressions.
+Returns 
+true
+ if all elements of the first set appear
+in the second set, including when the first set equals the
+second set; i.e. not a 
+strict subset
+. Accepts exactly
+two argument expressions.
+Returns a set with elements that appear in 
+any
+ of the
+input sets.
+String expressions, with the exception of
+
+$concat
+, only have a well-defined behavior for strings of ASCII characters.
+$concat
+ behavior is well-defined regardless of
+the characters used.
+Concatenates any number of strings.
+Converts a date/time string to a date object.
+Returns the date as a formatted string.
+Searches a string for an occurrence of a substring and returns
+the UTF-8 byte index of the first occurrence. If the substring
+is not found, returns 
+-1
+.
+Searches a string for an occurrence of a substring and returns
+the UTF-8 code point index of the first occurrence. If the
+substring is not found, returns 
+-1
+Removes whitespace or the specified characters from the
+beginning of a string.
+Applies a regular expression (regex) to a string and returns
+information on the 
+first
+ matched substring.
+Applies a regular expression (regex) to a string and returns
+information on the all matched substrings.
+Applies a regular expression (regex) to a string and returns
+a boolean that indicates if a match is found or not.
+Replaces the first instance of a matched string in a given
+input.
+Replaces all instances of a matched string in a given input.
+Removes whitespace or the specified characters from the
+end of a string.
+Splits a string into substrings based on a delimiter. Returns
+an array of substrings. If the delimiter is not found within
+the string, returns an array containing the original string.
+Returns the number of UTF-8 encoded bytes in a string.
+Performs case-insensitive string comparison and returns:
+
+0
+ if two strings are equivalent, 
+1
+ if the first
+string is greater than the second, and 
+-1
+ if the first
+string is less than the second.
+Returns the substring of a string. Starts with the character
+at the specified UTF-8 byte index (zero-based) in the string
+and continues for the specified number of bytes.
+Returns the substring of a string. Starts with the character
+at the specified UTF-8 
+code point (CP)
+ index
+(zero-based) in the string and continues for the number of
+code points specified.
+Converts a string to lowercase. Accepts a single argument
+expression.
+Converts value to a string.
+Removes whitespace or the specified characters from the
+beginning and end of a string.
+Converts a string to uppercase. Accepts a single argument
+expression.
+Encrypted string expressions evaluate an argument against an encrypted
+field in a collection with 
+Queryable Encryption
+ enabled, and
+return a boolean.
+Returns 
+true
+ if a subset of characters in the encrypted string
+match the specified string.
+Returns 
+true
+ if the last characters of the encrypted string match
+the specified string.
+Returns 
+true
+ if the 
+normalized string
+ form of the
+encrypted string matches normalized string form of the specified string.
+Returns 
+true
+ if the first characters of the encrypted string match
+the specified string.
+Access available per-document metadata related to the
+aggregation operation.
+Timestamp expression operators return values from a 
+timestamp.
+Trigonometry expressions perform trigonometric operations on numbers.
+Values that represent angles are always input or output in  radians. Use
+
+$degreesToRadians
+ and 
+$radiansToDegrees
+ to
+convert between degree and radian measurements.
+Returns the sine of a value that is measured in radians.
+Returns the cosine of a value that is measured in radians.
+Returns the tangent of a value that is measured in radians.
+Returns the inverse sin (arc sine) of a value in radians.
+Returns the inverse cosine (arc cosine) of a value in radians.
+Returns the inverse tangent (arc tangent) of a value in
+radians.
+Returns the inverse tangent (arc tangent) of 
+y / x
+ in
+radians, where 
+y
+ and 
+x
+ are the first and second
+values passed to the expression respectively.
+Returns the inverse hyperbolic sine (hyperbolic arc sine) of a
+value in radians.
+Returns the inverse hyperbolic cosine (hyperbolic arc cosine)
+of a value in radians.
+Returns the inverse hyperbolic tangent (hyperbolic arc
+tangent) of a value in radians.
+Returns the hyperbolic sine of a value that is measured in
+radians.
+Returns the hyperbolic cosine of a value that is measured in
+radians.
+Returns the hyperbolic tangent of a value that is measured in
+radians.
+Converts a value from degrees to radians.
+Converts a value from radians to degrees.
+Defines variables for use within the scope of a subexpression
+and returns the result of the subexpression. Accepts named
+parameters.
+Accepts any number of argument expressions.
+Window operators return values from a defined span of documents from
+a collection, known as a 
+window
+. A 
+window
+ is defined in the
+
+$setWindowFields
+ stage, available starting in MongoDB
+5.0.
+The following window operators are available in the
+
+$setWindowFields
+ stage.

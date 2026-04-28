@@ -1,0 +1,497 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Install Terraform
+Document URL: https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+Document profile: tutorial
+
+Document text:
+---
+Terraform lets you safely and consistently manage your infrastructure as code
+across multiple cloud providers. To provision infrastructure with Terraform, you
+will write configuration in Terraform's configuration language, configure your
+cloud provider credentials, and apply your configuration with the Terraform
+Command Line Interface (CLI).
+To use Terraform, you first need to install it. HashiCorp distributes Terraform
+as a binary package. You can also install Terraform using popular package
+managers.
+HashiCorp distributes Terraform as an executable CLI that you can install on
+supported operating systems, including Microsoft Windows, macOS, and several
+Linux distributions. You can also compile the Terraform CLI from source if a
+pre-compiled binary is not available for your system.
+Package manager
+Manual installation
+If you use a package manager to install software on your macOS, Windows, or
+Linux system, you can use it to install Terraform.
+Homebrew on macOS
+Chocolatey on Windows
+Linux
+Homebrew
+ is a free and open-source package management system
+for macOS. If you have Homebrew installed, use it to install Terraform from your
+command line.
+First, install the HashiCorp tap, which is Hashicorp's official repository of
+all our Homebrew packages.
+$
+ brew tap hashicorp/tap
+
+$
+ brew tap hashicorp/tap
+
+Now, install Terraform from 
+hashicorp/tap/terraform
+.
+$
+ brew install hashicorp/tap/terraform
+
+$
+ brew install hashicorp/tap/terraform
+
+Chocolatey
+ is a free and open-source package
+management system for Windows. If you have Chocolatey installed, use it to
+install Terraform from your command line.
+$
+ choco install terraform
+
+$
+ choco install terraform
+
+Note
+HashiCorp does not maintain Chocolatey or the Terraform package. The latest
+version of Terraform is always available for you to download and install
+manually. Refer to the 
+Manual installation
+ tab below for instructions.
+HashiCorp maintains and signs packages for the following Linux distributions.
+Use the built-in package management system for your Linux distribution to
+install Terraform.
+Ubuntu/Debian
+CentOS/RHEL
+Fedora
+Amazon Linux 2
+Amazon Linux 2023
+Other Linux Distributions
+Ensure that your system is up to date and that you have installed the 
+gnupg
+ and
+
+software-properties-common
+ packages. You will use these packages
+to verify HashiCorp's GPG signature and install HashiCorp's Debian package
+repository.
+$
+ sudo apt-get update 
+&&
+ sudo
+ apt-get
+ install
+ -y
+ gnupg
+ software-properties-common
+
+$
+ sudo apt-get update 
+&&
+ sudo
+ apt-get
+ install
+ -y
+ gnupg
+ software-properties-common
+
+Install HashiCorp's GPG key.
+$
+ wget -O- https://apt.releases.hashicorp.com/gpg 
+|
+ \
+
+gpg --dearmor | \
+
+sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
+
+$
+ wget -O- https://apt.releases.hashicorp.com/gpg 
+|
+ \
+
+gpg --dearmor | \
+
+sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
+
+Verify the GPG key's fingerprint.
+$
+ gpg --no-default-keyring \
+
+--keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+
+--fingerprint
+
+$
+ gpg --no-default-keyring \
+
+--keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+
+--fingerprint
+
+The 
+gpg
+ command reports the key fingerprint:
+/usr/share/keyrings/hashicorp-archive-keyring.gpg
+
+-------------------------------------------------
+
+pub   rsa4096 XXXX-XX-XX [SC]
+
+AAAA AAAA AAAA AAAA
+
+uid         [ unknown] HashiCorp Security (HashiCorp Package Signing) <security+packaging@hashicorp.com>
+
+sub   rsa4096 XXXX-XX-XX [E]
+
+/usr/share/keyrings/hashicorp-archive-keyring.gpg
+
+-------------------------------------------------
+
+pub   rsa4096 XXXX-XX-XX [SC]
+
+AAAA AAAA AAAA AAAA
+
+uid         [ unknown] HashiCorp Security (HashiCorp Package Signing) <security+packaging@hashicorp.com>
+
+sub   rsa4096 XXXX-XX-XX [E]
+
+Add the official HashiCorp repository to your system.
+$
+ echo 
+"deb [arch=$(
+dpkg
+ --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(
+grep
+ -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release 
+||
+ lsb_release
+ -cs) main"
+ |
+ sudo
+ tee
+ /etc/apt/sources.list.d/hashicorp.list
+
+$
+ echo 
+"deb [arch=$(
+dpkg
+ --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(
+grep
+ -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release 
+||
+ lsb_release
+ -cs) main"
+ |
+ sudo
+ tee
+ /etc/apt/sources.list.d/hashicorp.list
+
+Update apt to download the package information from the HashiCorp repository.
+$
+ sudo apt update
+
+$
+ sudo apt update
+
+Install Terraform from the new repository.
+$
+ sudo apt-get install terraform
+
+$
+ sudo apt-get install terraform
+
+Install 
+yum-config-manager
+ to manage your repositories.
+$
+ sudo yum install -y yum-utils
+
+$
+ sudo yum install -y yum-utils
+
+Use 
+yum-config-manager
+ to add the official HashiCorp RHEL repository.
+$
+ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+
+$
+ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+
+Install Terraform from the new repository.
+$
+ sudo yum -y install terraform
+
+$
+ sudo yum -y install terraform
+
+Install 
+dnf config-manager
+ to manage your repositories.
+$
+ sudo dnf install -y dnf-plugins-core
+
+$
+ sudo dnf install -y dnf-plugins-core
+
+Use 
+dnf config-manager
+ to add the official HashiCorp Fedora repository.
+$
+ sudo dnf config-manager addrepo --from-repofile=https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+
+$
+ sudo dnf config-manager addrepo --from-repofile=https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+
+Install Terraform from the new repository.
+$
+ sudo dnf -y install terraform
+
+$
+ sudo dnf -y install terraform
+
+Install 
+yum-config-manager
+ to manage your repositories.
+$
+ sudo yum install -y yum-utils
+
+$
+ sudo yum install -y yum-utils
+
+Use 
+yum-config-manager
+ to add the official HashiCorp Amazon Linux repository.
+$
+ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+
+$
+ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+
+Install Terraform from the new repository.
+$
+ sudo yum -y install terraform
+
+$
+ sudo yum -y install terraform
+
+Install 
+dnf config-manager
+ to manage your repositories.
+$
+ sudo dnf install -y dnf-plugins-core
+
+$
+ sudo dnf install -y dnf-plugins-core
+
+Use 
+dnf config-manager
+ to add the official HashiCorp Amazon Linux repository.
+$
+ sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+
+$
+ sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+
+Install Terraform from the new repository.
+$
+ sudo dnf -y install terraform
+
+$
+ sudo dnf -y install terraform
+
+Other Linux distributions may have pre-built Terraform packages available. Refer
+to your package manager's documentation, or follow the steps above for 
+Manual
+installation
+.
+Install the 
+terraform
+ CLI by installing a pre-compiled executable or compiling
+it from source.
+Pre-compiled executable
+Compile from source
+To install Terraform, download the 
+appropriate zip archive
+ for your system and unzip it.
+Terraform runs as a single executable named 
+terraform
+. Any other files in the archive can be safely removed and Terraform will still function.
+To compile the Terraform executable from source, first clone the 
+HashiCorp
+Terraform repository
+.
+$
+ git clone https://github.com/hashicorp/terraform
+
+$
+ git clone https://github.com/hashicorp/terraform
+
+Navigate to the new directory.
+$
+ cd terraform
+
+$
+ cd terraform
+
+Next, compile the binary. The following command compiles the binary and stores
+it in 
+$GOPATH/bin/terraform
+.
+$
+ go install
+
+$
+ go install
+
+Finally, make sure that the 
+terraform
+ binary is available on your system's
+
+PATH
+. This process will differ depending on your operating system.
+Print out a colon-separated list of locations in your 
+PATH
+.
+$
+ echo $PATH
+
+$
+ echo $PATH
+
+Move the Terraform executable to one of the listed locations. This command
+assumes that the executable is currently in your downloads folder and that your
+
+PATH
+ includes 
+/usr/local/bin
+. Customize it if your locations are different.
+$
+ mv 
+~
+/Downloads/terraform /usr/local/bin/
+
+$
+ mv 
+~
+/Downloads/terraform /usr/local/bin/
+
+For more detail about adding Terraform to your path, refer to your operating
+system's documentation.
+Print out a semicolon-separated list of locations in your 
+PATH
+.
+Move the Terraform executable to one of the listed locations.
+$
+ move Downloads\terraform ...
+
+$
+ move Downloads\terraform ...
+
+For more details about adding binaries to your path, refer to the 
+documentation
+for
+Windows
+.
+HashiCorp regularly releases new versions of Terraform with new features and bug
+fixes. HashiCorp maintains compatibility between Terraform versions, so a
+Terraform configuration written for one version of Terraform should continue to
+work with any later minor version update. Refer to the 
+Terraform compatibility
+promise
+ for more details.
+Verify that the installation worked by opening a new terminal session and
+listing Terraform's available subcommands.
+$
+ terraform -help
+
+Usage: terraform [global options] <subcommand> [args]
+
+The available commands for execution are listed below.
+
+The primary workflow commands are given first, followed by
+
+less common or more advanced commands.
+
+Main commands:
+
+##...
+
+$
+ terraform -help
+
+Usage: terraform [global options] <subcommand> [args]
+
+The available commands for execution are listed below.
+
+The primary workflow commands are given first, followed by
+
+less common or more advanced commands.
+
+Main commands:
+
+##...
+
+Add 
+-help
+ to any Terraform command to learn more about what it does and
+available options.
+$
+ terraform plan -help
+
+$
+ terraform plan -help
+
+If you use either Bash or Zsh as your command line shell, you can enable tab
+completion for Terraform commands. To enable autocomplete, first ensure that a
+configuration file exists for your chosen shell.
+$
+ touch 
+~
+/.bashrc
+
+$
+ touch 
+~
+/.bashrc
+
+$
+ touch 
+~
+/.zshrc
+
+$
+ touch 
+~
+/.zshrc
+
+Then install the autocomplete package.
+$
+ terraform -install-autocomplete
+
+$
+ terraform -install-autocomplete
+
+After installing autocomplete support, you will need to restart your shell to
+enable it.
+Now that you have installed Terraform, you can use it to create and manage
+infrastructure with the cloud provider of your choice. Get started with one of
+the following providers:
+---

@@ -1,0 +1,47 @@
+```json
+[
+    {
+        "question": "What is the default policy available to all users for creating compute resources in Databricks?",
+        "answer": "The default policy available to all users is the Personal Compute policy, which allows them to create single-machine compute resources.",
+        "supporting_sentences": [
+            "By default, all users have access to the Personal Compute policy, allowing them to create single-machine compute resources."
+        ]
+    },
+    {
+        "question": "Which Databricks Runtime version is recommended for job compute running operational workloads?",
+        "answer": "Databricks recommends using the Long Term Support (LTS) Databricks Runtime version for job compute running operational workloads.",
+        "supporting_sentences": [
+            "For job compute running operational workloads, consider using the Long Term Support (LTS) Databricks Runtime version."
+        ]
+    },
+    {
+        "question": "What happens if a compute resource has zero worker nodes?",
+        "answer": "If the compute resource has zero workers, you can run non-Spark commands on the driver node, but Spark commands will fail.",
+        "supporting_sentences": [
+            "To run a Spark job, you need at least one worker node. If the compute resource has zero workers, you can run non-Spark commands on the driver node, but Spark commands will fail."
+        ]
+    },
+    {
+        "question": "What are the limitations of using AWS Graviton instance types in Databricks?",
+        "answer": "The following features do not support AWS Graviton instance types: Python UDFs (available on Databricks Runtime 15.2 and above), Databricks Container Services, Databricks SQL, Databricks on AWS GovCloud, and access to workspace files from web terminals.",
+        "supporting_sentences": [
+            "The following features do not support AWS Graviton instance types:",
+            "Python UDFs (Python UDFs are available on Databricks Runtime 15.2 and above)",
+            "Databricks Container Services",
+            "Databricks SQL",
+            "Databricks on AWS GovCloud",
+            "Access to workspace files, including those in Git folders, from web terminals"
+        ]
+    },
+    {
+        "question": "How does autoscaling work in Databricks for workspaces on the Premium plan or above?",
+        "answer": "Workspaces on the Premium plan or above use optimized autoscaling, which scales up from min to max in 2 steps, can scale down even if the compute resource is not idle, and scales down based on a percentage of current nodes.",
+        "supporting_sentences": [
+            "Workspace on the Premium plan or above use optimized autoscaling. Optimized autoscaling has the following characteristics:",
+            "Scales up from min to max in 2 steps.",
+            "Can scale down, even if the compute resource is not idle, by looking at the shuffle file state.",
+            "Scales down based on a percentage of current nodes."
+        ]
+    }
+]
+```

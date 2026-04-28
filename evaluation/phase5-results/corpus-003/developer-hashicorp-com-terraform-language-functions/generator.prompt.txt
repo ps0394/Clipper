@@ -1,0 +1,162 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Configuration Language
+Document URL: https://developer.hashicorp.com/terraform/language/functions
+Document profile: reference
+
+Document text:
+---
+alltrue
+.hcl
+returns true if all elements in the given collection are true or "true", or if the collection is empty
+anytrue
+.hcl
+returns true if any element in the given collection is true or "true", or the collection is empty
+chunklist
+.hcl
+splits a single list into fixed-size chunks, returning a list of lists
+coalesce
+.hcl
+takes any number of arguments and returns the first one that isn't null or an empty string
+coalescelist
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+takes any number of list arguments and returns the first one that isn't empty
+compact
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+takes a list of strings and returns a new list with any null or empty string elements removed
+concat
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+takes two or more lists and combines them into a single list
+contains
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+determines whether the list, tuple, or set given in its first argument contains at least one element that is equal to the value in the second argument
+distinct
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+takes a list and returns a new list with any duplicate elements removed
+element
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+retrieves a single element from a list
+flatten
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+takes a list and replaces any elements that are lists with a flattened sequence of the list contents
+index
+.hcl
+finds the first element for a given value in a list
+keys
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+takes a map and returns a list containing the keys from that map
+length
+.hcl
+returns the length of a given list, map, or string
+length
+.hcl
+returns the length of a given list, map, or string
+list
+
+deprecated after Terraform 0.12. Use 
+tolist
+ instead
+lookup
+.hcl
+retrieves the value of a single element from a map, given its key
+map
+
+deprecated after Terraform 0.12. Use 
+tomap
+ instead
+matchkeys
+.hcl
+constructs a new list by taking a subset of elements from one list whose indexes match the corresponding indexes of values in another list
+merge
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+takes an arbitrary number of maps or objects, and returns a single map or object that contains a merged set of elements from all arguments
+one
+.hcl
+returns the only element in the given list, set, or tuple, null if the given argument is empty, or raises an error if it has more than one value
+range
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+generates a list of numbers using a start value, a limit value, and a step value
+reverse
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+takes a sequence and produces a new sequence of the same length with all of the same elements as the given sequence but in reverse order
+setintersection
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+takes multiple sets and produces a single set containing only the elements that all of the given sets have in common
+setproduct
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+finds all of the possible combinations of elements from all of the given sets by computing the Cartesian product
+setsubtract
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+returns a new set containing the elements from the first set that are not present in the second set
+setunion
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+takes multiple sets and produces a single set containing the elements from all of the given sets
+slice
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+extracts some consecutive elements from within a list
+sort
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+takes a list of strings and returns a new list with those strings sorted lexicographically
+sum
+.hcl
+takes a list or set of numbers and returns the sum of those numbers
+transpose
+.hcl
+takes a map of lists of strings and swaps the keys and values to produce a new map of lists of strings
+values
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+takes a map and returns a list containing the values of the elements in that map
+zipmap
+.hcl,
+.tfcomponent.hcl,
+.tfdeploy.hcl
+constructs a map from a list of keys and a corresponding list of values
+---

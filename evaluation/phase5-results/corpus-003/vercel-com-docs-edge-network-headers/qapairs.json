@@ -1,0 +1,39 @@
+[
+  {
+    "question": "What are HTTP headers used to transmit between a client and a server?",
+    "answer": "Headers are small pieces of information that contain metadata about the request and response, such as the content type, cache-control directives, and authentication tokens.",
+    "supporting_sentences": [
+      "Headers are small pieces of information that are sent between the client (usually a web browser) and the server.",
+      "They contain metadata about the request and response, such as the content type, cache-control directives, and authentication tokens."
+    ]
+  },
+  {
+    "question": "What is the purpose of caching headers in Vercel's global network?",
+    "answer": "Caching headers instruct the client and server to cache resources like images, CSS files, and JavaScript files, so they don't need to be reloaded every time a user visits a site, reducing load times.",
+    "supporting_sentences": [
+      "Caching headers instruct the client and server to cache resources like images, CSS files, and JavaScript files, so they don't need to be reloaded every time a user visits your site.",
+      "By using caching headers, you can significantly reduce the time it takes for your site to load."
+    ]
+  },
+  {
+    "question": "Which header is used to enable data compression between the client and server?",
+    "answer": "The `Accept-Encoding` header is used to tell the client and server to compress data before it's sent over the network.",
+    "supporting_sentences": [
+      "Use the Accept-Encoding header to tell the client and server to compress data before it's sent over the network."
+    ]
+  },
+  {
+    "question": "Where can custom headers be configured for a Vercel application?",
+    "answer": "Custom headers can be configured in the `vercel.json` file.",
+    "supporting_sentences": [
+      "You can also use custom headers in your vercel.json file to add metadata specific to your application."
+    ]
+  },
+  {
+    "question": "What type of headers are discussed in the 'Cache-Control headers' section of the Vercel documentation?",
+    "answer": "The 'Cache-Control headers' section discusses the cache-control headers sent to each Vercel deployment and how to use them to control the caching behavior of an application.",
+    "supporting_sentences": [
+      "To learn about the cache-control headers sent to each Vercel deployment and how to use them to control the caching behavior of your application, see Cache-Control headers."
+    ]
+  }
+]

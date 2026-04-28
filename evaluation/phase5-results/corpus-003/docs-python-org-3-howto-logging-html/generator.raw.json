@@ -1,0 +1,39 @@
+```json
+[
+    {
+        "question": "What is the default logging level in Python's logging module?",
+        "answer": "The default level is WARNING.",
+        "supporting_sentences": [
+            "The default level is WARNING, which means that only events of this severity and higher will be tracked, unless the logging package is configured to do otherwise."
+        ]
+    },
+    {
+        "question": "Which method should be used to log a message for status monitoring during normal program operation?",
+        "answer": "A logger’s `info()` method (or `debug()` for very detailed output).",
+        "supporting_sentences": [
+            "Report events that occur during normal operation of a program (e.g. for status monitoring or fault investigation) - A logger’s info() (or debug() method for very detailed output for diagnostic purposes)"
+        ]
+    },
+    {
+        "question": "What argument can be passed to `logging.basicConfig()` to ensure each run of a script starts with a fresh log file instead of appending to an existing one?",
+        "answer": "The `filemode` argument with the value `'w'`.",
+        "supporting_sentences": [
+            "If you want each run to start afresh, not remembering the messages from earlier runs, you can specify the filemode argument, by changing the call in the above example to: `logging.basicConfig(filename='example.log', filemode='w', level=logging.DEBUG)`"
+        ]
+    },
+    {
+        "question": "What is the purpose of the `NullHandler` in Python's logging module?",
+        "answer": "To prevent a library’s logged events from being output to `sys.stderr` in the absence of logging configuration.",
+        "supporting_sentences": [
+            "A do-nothing handler is included in the logging package: NullHandler (since Python 3.1). An instance of this handler could be added to the top-level logger of the logging namespace used by the library (if you want to prevent your library’s logged events being output to sys.stderr in the absence of logging configuration)."
+        ]
+    },
+    {
+        "question": "What are the five standard logging levels in increasing order of severity?",
+        "answer": "DEBUG, INFO, WARNING, ERROR, CRITICAL.",
+        "supporting_sentences": [
+            "The standard levels and their applicability are described below (in increasing order of severity): DEBUG, INFO, WARNING, ERROR, CRITICAL."
+        ]
+    }
+]
+```

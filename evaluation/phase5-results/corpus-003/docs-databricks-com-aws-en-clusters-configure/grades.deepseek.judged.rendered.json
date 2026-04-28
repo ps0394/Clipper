@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly identifies the default policy as Personal Compute, matching the key fact in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 556,
+    "tokens_out": 25
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly identifies the Long Term Support (LTS) Databricks Runtime version as the recommended version, matching the factual content of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 565,
+    "tokens_out": 36
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer exactly matches the ground truth in factual content.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 575,
+    "tokens_out": 16
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer lists all the same unsupported features as the ground truth, with only minor wording differences that do not change the factual content.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 655,
+    "tokens_out": 32
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer adds extra details not required by the ground truth, but it also incorrectly states that scale-down \"can scale down even if the compute resource is not idle by looking at the shuffle file state,\" which introduces a specific condition (\"by looking at the shuffle file state\") not present in the ground truth and alters the factual claim.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 711,
+    "tokens_out": 72
+  }
+]

@@ -1,0 +1,347 @@
+If you want to get started quickly, click on the button below.
+
+This creates a repository in your GitHub account and deploys the application to Cloudflare Workers.
+
+import 
+{
+
+parse
+
+}
+ from 
+"cookie"
+;
+
+// The name of the cookie
+
+const
+
+COOKIE_NAME
+
+=
+
+"__uid"
+;
+
+const
+
+cookie
+
+=
+
+parse
+(
+request
+.
+headers
+.
+get
+(
+"Cookie"
+) 
+||
+
+""
+)
+;
+
+if
+ (
+cookie
+[
+COOKIE_NAME
+] 
+!=
+
+null
+) 
+{
+
+// Respond with the cookie value
+
+return
+
+new
+
+Response
+(
+cookie
+[
+COOKIE_NAME
+])
+;
+
+return
+
+new
+
+Response
+(
+"No cookie with name: "
+
++
+
+COOKIE_NAME
+)
+;
+
+import 
+{
+
+parse
+
+}
+ from 
+"cookie"
+;
+
+async
+
+fetch
+(
+request
+)
+:
+
+Promise
+<
+Response
+>
+
+{
+
+// The name of the cookie
+
+const
+
+COOKIE_NAME
+
+=
+
+"__uid"
+;
+
+const
+
+cookie
+
+=
+
+parse
+(
+request
+.
+headers
+.
+get
+(
+"Cookie"
+) 
+||
+
+""
+)
+;
+
+if
+ (
+cookie
+[
+COOKIE_NAME
+] 
+!=
+
+null
+) 
+{
+
+// Respond with the cookie value
+
+return
+
+new
+
+Response
+(
+cookie
+[
+COOKIE_NAME
+])
+;
+
+return
+
+new
+
+Response
+(
+"No cookie with name: "
+
++
+
+COOKIE_NAME
+)
+;
+}
+
+satisfies
+
+ExportedHandler
+;
+
+from
+ http
+.
+cookies 
+import
+ SimpleCookie
+from
+ workers 
+import
+ WorkerEntrypoint
+,
+ Response
+class
+
+Default
+(
+WorkerEntrypoint
+):
+
+async
+
+def
+
+fetch
+(
+self
+,
+
+request
+):
+
+cookies 
+=
+
+SimpleCookie
+(
+request
+.
+headers
+[
+"Cookie"
+]
+
+or
+
+""
+)
+
+if
+ cookie_name 
+in
+ cookies
+:
+
+# Respond with cookie value
+
+return
+
+Response
+(
+cookies
+[
+cookie_name
+].
+value
+)
+
+return
+
+Response
+(
+"No cookie with name: "
+
++
+ cookie_name
+)
+
+import 
+{
+
+Hono
+
+}
+ from 
+'hono'
+;
+import 
+{
+
+getCookie
+
+}
+ from 
+'hono/cookie'
+;
+
+// The name of the cookie
+
+const
+
+COOKIE_NAME
+
+=
+
+"__uid"
+;
+
+// Get the specific cookie value using Hono's cookie helper
+
+const
+
+cookieValue
+
+=
+
+getCookie
+(
+c
+,
+
+COOKIE_NAME
+)
+;
+
+// Respond with the cookie value
+
+return
+
+c
+.
+text
+(
+cookieValue
+)
+;
+
+return
+
+c
+.
+text
+(
+"No cookie with name: "
+
++
+
+COOKIE_NAME
+)
+;
+
+External dependencies
+This example requires the npm package 
+cookie
+ ↗
+ to be installed in your JavaScript project.
+The Hono example uses the built-in cookie utilities provided by Hono, so no external dependencies are needed for that implementation.

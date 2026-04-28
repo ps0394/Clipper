@@ -1,0 +1,112 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the minimum required version of the Azure CLI to complete this AKS tutorial?",
+      "answer": "2.35.0 or later",
+      "supporting_sentences": [
+        "If you're using Azure CLI, this tutorial requires that you're running the Azure CLI version 2.35.0 or later.",
+        "This tutorial requires Azure CLI version 2.35.0 or later."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the minimum required version of the Azure CLI to complete this AKS tutorial?",
+      "answer": "2.35.0 or later",
+      "supporting_sentences": [
+        "If you're using Azure CLI, this tutorial requires that you're running the Azure CLI version 2.35.0 or later.",
+        "This tutorial requires Azure CLI version 2.35.0 or later."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What command is used to create an AKS cluster named 'myAKSCluster' in the 'myResourceGroup' resource group using the Azure CLI?",
+      "answer": "`az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 3 --node-vm-size standard_l8s_v3 --generate-ssh-keys --attach-acr $ACRNAME`",
+      "supporting_sentences": [
+        "Create an AKS cluster using the `az aks create` command. The following example creates a cluster named `myAKSCluster` in the resource group named `myResourceGroup`...",
+        "az aks create \\\n    --resource-group myResourceGroup \\\n    --name myAKSCluster \\\n    --node-count 3 \\\n    --node-vm-size standard_l8s_v3 \\\n    --generate-ssh-keys \\\n    --attach-acr $ACRNAME"
+      ]
+    },
+    "edited_pair": {
+      "question": "What command is used to create an AKS cluster named 'myAKSCluster' in the 'myResourceGroup' resource group using the Azure CLI?",
+      "answer": "`az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 3 --node-vm-size standard_l8s_v3 --generate-ssh-keys --attach-acr $ACRNAME`",
+      "supporting_sentences": [
+        "Create an AKS cluster using the `az aks create` command. The following example creates a cluster named `myAKSCluster` in the resource group named `myResourceGroup`...",
+        "az aks create \\\n    --resource-group myResourceGroup \\\n    --name myAKSCluster \\\n    --node-count 3 \\\n    --node-vm-size standard_l8s_v3 \\\n    --generate-ssh-keys \\\n    --attach-acr $ACRNAME"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What role must a user have in their Azure subscription to successfully execute the AKS cluster creation command that grants the cluster identity the right to pull images from ACR?",
+      "answer": "Owner or Azure account administrator",
+      "supporting_sentences": [
+        "To execute the command successfully, you must have an `Owner` or `Azure account administrator` role in your Azure subscription.",
+        "To execute the command successfully, you need to have an `Owner` or `Azure account administrator` role in your Azure subscription."
+      ]
+    },
+    "edited_pair": {
+      "question": "What role must a user have in their Azure subscription to successfully execute the AKS cluster creation command that grants the cluster identity the right to pull images from ACR?",
+      "answer": "Owner or Azure account administrator",
+      "supporting_sentences": [
+        "To execute the command successfully, you must have an `Owner` or `Azure account administrator` role in your Azure subscription.",
+        "To execute the command successfully, you need to have an `Owner` or `Azure account administrator` role in your Azure subscription."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What command is used to configure `kubectl` to connect to an AKS cluster named 'myAKSCluster' in the 'myResourceGroup' resource group?",
+      "answer": "`az aks get-credentials --resource-group myResourceGroup --name myAKSCluster`",
+      "supporting_sentences": [
+        "Configure `kubectl` to connect to your Kubernetes cluster using the `az aks get-credentials` command. The following example gets credentials for the AKS cluster named `myAKSCluster` in `myResourceGroup`.",
+        "az aks get-credentials --resource-group myResourceGroup --name myAKSCluster"
+      ]
+    },
+    "edited_pair": {
+      "question": "What command is used to configure `kubectl` to connect to an AKS cluster named 'myAKSCluster' in the 'myResourceGroup' resource group?",
+      "answer": "`az aks get-credentials --resource-group myResourceGroup --name myAKSCluster`",
+      "supporting_sentences": [
+        "Configure `kubectl` to connect to your Kubernetes cluster using the `az aks get-credentials` command. The following example gets credentials for the AKS cluster named `myAKSCluster` in `myResourceGroup`.",
+        "az aks get-credentials --resource-group myResourceGroup --name myAKSCluster"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How many nodes does the tutorial create in the AKS cluster by default?",
+      "answer": "Three nodes",
+      "supporting_sentences": [
+        "This tutorial creates a three-node cluster.",
+        "--node-count 3"
+      ]
+    },
+    "edited_pair": {
+      "question": "How many nodes does the tutorial create in the AKS cluster by default?",
+      "answer": "Three nodes",
+      "supporting_sentences": [
+        "This tutorial creates a three-node cluster.",
+        "--node-count 3"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

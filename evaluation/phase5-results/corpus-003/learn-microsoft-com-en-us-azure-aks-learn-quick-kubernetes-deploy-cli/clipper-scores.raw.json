@@ -1,0 +1,693 @@
+{
+  "parseability_score": 81.83408048373644,
+  "failure_mode": "minor_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-003\\learn-microsoft-com-en-us-azure-aks-learn-quick-kubernetes-deploy-cli\\page.raw.html",
+  "url": "https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli",
+  "component_scores": {
+    "semantic_html": 72.72727272727272,
+    "content_extractability": 83.66816096747289,
+    "structured_data": 12,
+    "dom_navigability": 20,
+    "metadata_completeness": 85,
+    "http_compliance": 80.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 4,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "section",
+          "count": 7,
+          "proper_usage": true
+        },
+        {
+          "element": "aside",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 1,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 15,
+      "heading_elements_count": 16,
+      "scoring_breakdown": {
+        "semantic_coverage": 32.72727272727273,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 20021,
+        "extracted_text_length": 17091,
+        "extracted_chars": 17091,
+        "extraction_ratio": 0.854,
+        "extracted_title": "Deploy an Azure Kubernetes Service (AKS) Cluster Using Azure CLI - Azure Kubernetes Service",
+        "extracted_preview": "Azure Kubernetes Service (AKS) is a managed Kubernetes service that lets you quickly deploy and manage clusters. In this quickstart, you learn how to: Deploy an AKS cluster with default settings using the Azure CLI. Deploy a sample multi-container application with a group of microservices and web fr...",
+        "original_headings": 16,
+        "extracted_headings": 11,
+        "original_lists": 11,
+        "extracted_lists": 5,
+        "original_code_blocks": 61,
+        "extracted_code_blocks": 61,
+        "has_main_element": true,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 35,
+        "structure_preservation": 21.420454545454547,
+        "boundary_detection": 27.247706422018346
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 0,
+        "microdata_items": 1,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [],
+      "key_fields_found": [],
+      "formats_present": 2,
+      "score_breakdown": {
+        "type_appropriateness": 0,
+        "field_completeness": 0,
+        "multiple_formats": 12,
+        "schema_validation": 0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": []
+      },
+      "sample_structured_data": {
+        "microdata": [
+          {
+            "type": "http://schema.org/Organization",
+            "value": ""
+          }
+        ],
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:type",
+                "website"
+              ],
+              [
+                "og:image:alt",
+                "Microsoft Learn"
+              ],
+              [
+                "og:image",
+                "https://learn.microsoft.com/en-us/media/open-graph-image.png"
+              ],
+              [
+                "og:title",
+                "Deploy an Azure Kubernetes Service (AKS) Cluster Using Azure CLI - Azure Kubernetes Service"
+              ],
+              [
+                "og:url",
+                "https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli"
+              ],
+              [
+                "og:description",
+                "Learn how to deploy an Azure Kubernetes Service cluster (AKS) with default settings using Azure CLI and deploy a multi-container application."
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures role attribute has an appropriate value for the element",
+          "help": "ARIA role must be appropriate for the element",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+          "id": "aria-allowed-role",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "combobox"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role combobox  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role combobox  is not allowed for given element",
+              "html": "<input role=\"combobox\" maxlength=\"100\" aria-autocomplete=\"list\" autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\" id=\"site-header-search-autocomplete-input-mobile\" data-test-id=\"site-header-search-autocomplete-input-mobile\" class=\"autocomplete-input input \n\t\t\t\t\t\t\n\t\t\t\t\t\twidth-full\" type=\"search\" name=\"terms\" aria-expanded=\"false\" aria-owns=\"ax-1-listbox\" aria-controls=\"ax-1-listbox\" aria-activedescendant=\"\" aria-label=\"Search\" aria-describedby=\"ms--site-header-search-autocomplete-input-mobile-description\" placeholder=\"Search\" data-bi-name=\"site-header-search-autocomplete-input-mobile\" pattern=\".*\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#site-header-search-autocomplete-input-mobile"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "combobox"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role combobox  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role combobox  is not allowed for given element",
+              "html": "<input role=\"combobox\" maxlength=\"100\" aria-autocomplete=\"list\" autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\" id=\"site-header-search-autocomplete-input\" data-test-id=\"site-header-search-autocomplete-input\" class=\"autocomplete-input input input-sm\n\t\t\t\t\t\t\n\t\t\t\t\t\twidth-full\" type=\"search\" name=\"terms\" aria-expanded=\"false\" aria-owns=\"ax-0-listbox\" aria-controls=\"ax-0-listbox\" aria-activedescendant=\"\" aria-label=\"Search\" aria-describedby=\"ms--site-header-search-autocomplete-input-description\" placeholder=\"Search\" data-bi-name=\"site-header-search-autocomplete-input\" pattern=\".*\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#site-header-search-autocomplete-input"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "navigation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role navigation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role navigation  is not allowed for given element",
+              "html": "<nav id=\"affixed-left-container\" class=\"margin-top-xxs-tablet position-sticky display-flex flex-direction-column width-full\" aria-label=\"Primary\" data-bi-name=\"left-toc\" role=\"navigation\" style=\"top: 8px; height: calc(-89.7344px + 100vh); max-height: 15426.5px;\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#affixed-left-container"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "combobox"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role combobox  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role combobox  is not allowed for given element",
+              "html": "<input role=\"combobox\" maxlength=\"100\" aria-autocomplete=\"list\" autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\" id=\"ax-2\" data-test-id=\"ax-2\" class=\"autocomplete-input input input-sm\n\t\t\t\t\t\tcontrol has-icons-left\n\t\t\t\t\t\twidth-full\" type=\"text\" aria-expanded=\"false\" aria-owns=\"ax-3-listbox\" aria-controls=\"ax-3-listbox\" aria-activedescendant=\"\" aria-describedby=\"ms--ax-2-description\" placeholder=\"Find by title\" pattern=\".*\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#ax-2"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "main"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role main  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role main  is not allowed for given element",
+              "html": "<main id=\"main\" role=\"main\" class=\"layout-body-main \" data-bi-name=\"content\" lang=\"en-us\" dir=\"ltr\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#main"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "presentation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role presentation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role presentation  is not allowed for given element",
+              "html": "<img src=\"../../reusable-content/azure-cli/media/hdi-launch-cloud-shell.png\" role=\"presentation\" data-linktype=\"relative-path\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "img[role=\"presentation\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "contentinfo"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role contentinfo  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role contentinfo  is not allowed for given element",
+              "html": "<footer id=\"footer\" data-test-id=\"footer\" data-bi-name=\"footer\" class=\"footer-layout has-padding has-default-focus border-top  uhf-container\" role=\"contentinfo\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "#footer"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-valid-attr-value?application=axeAPI",
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": [
+                    "aria-controls=\"ms--collapsible-toc-content\""
+                  ],
+                  "id": "aria-valid-attr-value",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute value: aria-controls=\"ms--collapsible-toc-content\"",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"ms--collapsible-toc-content\"",
+              "html": "<button type=\"button\" class=\"button button-clear inner-focus\" data-collapsible-toc-toggle=\"\" aria-expanded=\"true\" aria-controls=\"ms--collapsible-toc-content\" aria-label=\"Collapse\" title=\"Collapse\" data-bi-name=\"toc-collapse\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "button[data-collapsible-toc-toggle=\"\"]"
+              ]
+            },
+            {
+              "all": [
+                {
+                  "data": [
+                    "aria-controls=\"{{ themeMenuId }}\""
+                  ],
+                  "id": "aria-valid-attr-value",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute value: aria-controls=\"{{ themeMenuId }}\"",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"{{ themeMenuId }}\"",
+              "html": "<button data-test-id=\"theme-selector-button\" class=\"dropdown-trigger button button-clear button-sm inner-focus theme-dropdown-trigger\" aria-controls=\"{{ themeMenuId }}\" aria-expanded=\"false\" title=\"Theme\" data-bi-name=\"theme\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                ".theme-dropdown-trigger"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+          ]
+        },
+        {
+          "description": "Ensures every form element has a label",
+          "help": "Form elements must have labels",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/label?application=axeAPI",
+          "id": "label",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Form element has explicit <label> that is hidden",
+              "html": "<input role=\"combobox\" maxlength=\"100\" aria-autocomplete=\"list\" autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\" id=\"ax-2\" data-test-id=\"ax-2\" class=\"autocomplete-input input input-sm\n\t\t\t\t\t\tcontrol has-icons-left\n\t\t\t\t\t\twidth-full\" type=\"text\" aria-expanded=\"false\" aria-owns=\"ax-3-listbox\" aria-controls=\"ax-3-listbox\" aria-activedescendant=\"\" aria-describedby=\"ms--ax-2-description\" placeholder=\"Find by title\" pattern=\".*\">",
+              "impact": "critical",
+              "none": [
+                {
+                  "data": null,
+                  "id": "hidden-explicit-label",
+                  "impact": "critical",
+                  "message": "Form element has explicit <label> that is hidden",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "#ax-2"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.forms",
+            "wcag2a",
+            "wcag332",
+            "wcag131",
+            "section508",
+            "section508.22.n"
+          ]
+        },
+        {
+          "description": "Ensures links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/link-name?application=axeAPI",
+          "id": "link-name",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<a href=\"https://shell.azure.com\" data-linktype=\"external\"><img src=\"../../reusable-content/azure-cli/media/hdi-launch-cloud-shell.png\" role=\"presentation\" data-linktype=\"relative-path\">\n</a>",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "a[href$=\"shell.azure.com\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "wcag244",
+            "section508",
+            "section508.22.a"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 4,
+      "passes_count": 40,
+      "total_penalty": 80,
+      "penalty_per_rule": {
+        "aria-allowed-role": {
+          "impact": "minor",
+          "node_count": 7,
+          "raw_penalty": 35,
+          "capped_penalty": 15
+        },
+        "aria-valid-attr-value": {
+          "impact": "critical",
+          "node_count": 2,
+          "raw_penalty": 50,
+          "capped_penalty": 25
+        },
+        "label": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "link-name": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        }
+      },
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 15,
+        "date": 15,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [
+          "meta:description",
+          "og:description"
+        ],
+        "author": [
+          "meta:author"
+        ],
+        "date": [
+          "meta:date"
+        ],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 6,
+      "fields_total": 7,
+      "json_ld_type": "none"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "\"drcWdmDnkUoWauJgKEWL+rrlXEo=\"",
+        "last_modified": "Mon, 27 Apr 2026 11:05:15 GMT",
+        "cache_control": "public, max-age=588"
+      },
+      "agent_content_hints": {
+        "scoring_contribution": 0,
+        "diagnostic_only": true,
+        "rationale": "PRD F2.2/F2.3: retrieval-lift evidence deferred to Phase 6",
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": true,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": [
+            "meta markdown_url: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli?accept=text/markdown"
+          ]
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 20,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "tutorial",
+      "detection": {
+        "ms_topic_raw": "quickstart",
+        "source": "ms_topic",
+        "matched_value": "quickstart"
+      },
+      "weights": {
+        "semantic_html": 0.0,
+        "content_extractability": 0.5,
+        "structured_data": 0.0,
+        "dom_navigability": 0.0,
+        "metadata_completeness": 0.0,
+        "http_compliance": 0.5
+      },
+      "v1_weights_for_reference": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.25,
+        "structured_data": 0.15,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      },
+      "scoring_version": "v2-evidence-partial"
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "tutorial",
+  "universal_score": 81.83408048373644,
+  "render_mode": "rendered",
+  "confidence_range": {
+    "scoring_version": "v2-evidence-partial",
+    "evidence_tier": "partial",
+    "headline_weights": {
+      "semantic_html": 0.0,
+      "content_extractability": 0.5,
+      "structured_data": 0.0,
+      "dom_navigability": 0.0,
+      "metadata_completeness": 0.0,
+      "http_compliance": 0.5
+    },
+    "calibration_corpus": {
+      "name": "corpus-002",
+      "n": 43,
+      "pearson_r_vs_accuracy_rendered": 0.548,
+      "gate_threshold": 0.35,
+      "source": "findings/phase-5-corpus-002-findings.md Addendum B"
+    },
+    "caveats": [
+      "Single corpus, single grader architecture, single run.",
+      "Four pillars carry zero headline weight in v2; still reported as diagnostics.",
+      "Profile-specific weights collapse to the same 2-pillar composite pending corpus-003.",
+      "Cross-judge accuracy variance: per-judge corpus-002 means span 0.591-0.698 across Llama-3.3-70B, GPT-4o, and DeepSeek-V3.2 (pooled kappa 0.706-0.817). The v2 composite-vs-accuracy Pearson r ranges from +0.440 to +0.618 across judges (all above the +0.35 ship gate). Report majority-vote CI [0.567, 0.688] or per-judge union CI [0.530, 0.758] when comparing across studies.",
+      "No temporal variance measured yet."
+    ]
+  },
+  "subscores": {
+    "semantic_html": 72.72727272727272,
+    "content_extractability": 83.66816096747289,
+    "structured_data": 12,
+    "dom_navigability": 20,
+    "metadata_completeness": 85,
+    "http_compliance": 80.0
+  },
+  "evidence_references": null
+}

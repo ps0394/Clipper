@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, even though it is more concise.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 539,
+    "tokens_out": 25
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the requirement for the `PyInit_foo()` function in a `.pyd` file for Python to import it as a module. Additional details do not contradict the ground truth.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 633,
+    "tokens_out": 55
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same factual content as the ground-truth answer.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 556,
+    "tokens_out": 19
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the specific details about linking against `pythonNN.lib` and `pythonNN.dll`, which are required for a complete answer.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 555,
+    "tokens_out": 35
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same factual content as the ground-truth answer, despite the difference in formatting.",
+    "judge_model": "gpt-4o",
+    "tokens_in": 545,
+    "tokens_out": 25
+  }
+]

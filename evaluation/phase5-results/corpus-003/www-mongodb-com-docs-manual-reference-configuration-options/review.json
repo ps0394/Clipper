@@ -1,0 +1,110 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What type of value does the `userToDNMapping` configuration option expect?",
+      "answer": "`userToDNMapping` expects a quote-enclosed JSON-string representing an ordered array of documents.",
+      "supporting_sentences": [
+        "`userToDNMapping` expects a quote-enclosed JSON-string representing an ordered array of documents."
+      ]
+    },
+    "edited_pair": {
+      "question": "What type of value does the `userToDNMapping` configuration option expect?",
+      "answer": "`userToDNMapping` expects a quote-enclosed JSON-string representing an ordered array of documents.",
+      "supporting_sentences": [
+        "`userToDNMapping` expects a quote-enclosed JSON-string representing an ordered array of documents."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "In which scenarios might you need to use `userToDNMapping` to transform a username into an LDAP Distinguished Name (DN)?",
+      "answer": "You may need to use `userToDNMapping` in the following scenarios: performing LDAP authentication with simple LDAP binding where users authenticate with usernames that are not full LDAP DNs, using an LDAP authorization query template that requires a DN, or transforming usernames of clients authenticating using different mechanisms (e.g., X.509, Kerberos) to a full LDAP DN for authorization.",
+      "supporting_sentences": [
+        "You may need to use `userToDNMapping` to transform a username into an LDAP DN in the following scenarios:",
+        "Performing LDAP authentication with simple LDAP binding, where users authenticate to MongoDB with usernames that are not full LDAP DNs.",
+        "Using an `LDAP authorization query template` that requires a DN.",
+        "Transforming the usernames of clients authenticating to Mongo DB using different authentication mechanisms (for example, X.509, kerberos) to a full LDAP DN for authorization."
+      ]
+    },
+    "edited_pair": {
+      "question": "In which scenarios might you need to use `userToDNMapping` to transform a username into an LDAP Distinguished Name (DN)?",
+      "answer": "You may need to use `userToDNMapping` in the following scenarios: performing LDAP authentication with simple LDAP binding where users authenticate with usernames that are not full LDAP DNs, using an LDAP authorization query template that requires a DN, or transforming usernames of clients authenticating using different mechanisms (e.g., X.509, Kerberos) to a full LDAP DN for authorization.",
+      "supporting_sentences": [
+        "You may need to use `userToDNMapping` to transform a username into an LDAP DN in the following scenarios:",
+        "Performing LDAP authentication with simple LDAP binding, where users authenticate to MongoDB with usernames that are not full LDAP DNs.",
+        "Using an `LDAP authorization query template` that requires a DN.",
+        "Transforming the usernames of clients authenticating to Mongo DB using different authentication mechanisms (for example, X.509, kerberos) to a full LDAP DN for authorization."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens if `userToDNMapping` is provided as an empty string or empty array in MongoDB 5.0 or later?",
+      "answer": "If providing an empty string or empty array to `userToDNMapping`, MongoDB maps the authenticated username as the LDAP DN.",
+      "supporting_sentences": [
+        "Starting in MongoDB 5.0, `userToDNMapping` accepts an empty string `\"\"` or empty array `[]` in place of a mapping document. If providing an empty string or empty array to `userToDNMapping`, MongoDB maps the authenticated username as the LDAP DN."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens if `userToDNMapping` is provided as an empty string or empty array in MongoDB 5.0 or later?",
+      "answer": "If providing an empty string or empty array to `userToDNMapping`, MongoDB maps the authenticated username as the LDAP DN.",
+      "supporting_sentences": [
+        "Starting in MongoDB 5.0, `userToDNMapping` accepts an empty string `\"\"` or empty array `[]` in place of a mapping document. If providing an empty string or empty array to `userToDNMapping`, MongoDB maps the authenticated username as the LDAP DN."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the two possible fields that can be used in a `userToDNMapping` document to transform a username?",
+      "answer": "The two possible fields are `substitution` or `ldapQuery`.",
+      "supporting_sentences": [
+        "Each document contains a regular expression `match` and either a `substitution` or `ldapQuery` template used for transforming the incoming username.",
+        "For each document in the array, you must use either `substitution` or `ldapQuery`. You cannot specify both in the same document."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the two possible fields that can be used in a `userToDNMapping` document to transform a username?",
+      "answer": "The two possible fields are `substitution` or `ldapQuery`.",
+      "supporting_sentences": [
+        "Each document contains a regular expression `match` and either a `substitution` or `ldapQuery` template used for transforming the incoming username.",
+        "For each document in the array, you must use either `substitution` or `ldapQuery`. You cannot specify both in the same document."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What error occurs if a transformation in `userToDNMapping` fails due to networking or authentication failures to the LDAP server?",
+      "answer": "`mongod` or `mongos` rejects the connection request and does not check the remaining documents in the array.",
+      "supporting_sentences": [
+        "`mongod` or `mongos` also returns an error if one of the transformations cannot be evaluated due to networking or authentication failures to the LDAP server. `mongod` or `mongos` rejects the connection request and does not check the remaining documents in the array."
+      ]
+    },
+    "edited_pair": {
+      "question": "What error occurs if a transformation in `userToDNMapping` fails due to networking or authentication failures to the LDAP server?",
+      "answer": "`mongod` or `mongos` rejects the connection request and does not check the remaining documents in the array.",
+      "supporting_sentences": [
+        "`mongod` or `mongos` also returns an error if one of the transformations cannot be evaluated due to networking or authentication failures to the LDAP server. `mongod` or `mongos` rejects the connection request and does not check the remaining documents in the array."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

@@ -1,0 +1,11 @@
+You can delete documents in MongoDB using the following methods:
+Delete operations do not drop indexes, even if deleting all documents
+from a collection.
+All write operations in MongoDB are atomic on the level of a single
+document. For more information on MongoDB and atomicity, see
+
+Atomicity and Transactions.
+With write concerns, you can specify the level of acknowledgment
+requested from MongoDB for write operations. For details, see
+
+Write Concern.

@@ -1,0 +1,2827 @@
+{
+  "parseability_score": 62.42025900024147,
+  "failure_mode": "moderate_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-003\\vercel-com-templates\\page.raw.html",
+  "url": "https://vercel.com/templates",
+  "component_scores": {
+    "semantic_html": 61.81818181818182,
+    "content_extractability": 60.84051800048295,
+    "structured_data": 12,
+    "dom_navigability": 0,
+    "metadata_completeness": 55,
+    "http_compliance": 64.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 2,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "footer",
+          "count": 1,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 39,
+      "heading_elements_count": 58,
+      "scoring_breakdown": {
+        "semantic_coverage": 21.81818181818182,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 8686,
+        "extracted_text_length": 1795,
+        "extracted_chars": 1795,
+        "extraction_ratio": 0.207,
+        "extracted_title": "Templates - Vercel",
+        "extracted_preview": "Get started with Next.js and React in seconds. An image gallery built on Next.js and Cloudinary. A full-featured, hackable Next.js AI chatbot built by Vercel Hume AI - Empathic Voice Interface Starter This template creates a voice chat using Hume AI's Empathic Voice Interface. Deploy Express backend...",
+        "original_headings": 58,
+        "extracted_headings": 7,
+        "original_lists": 25,
+        "extracted_lists": 0,
+        "original_code_blocks": 0,
+        "extracted_code_blocks": 0,
+        "has_main_element": true,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 32.95220551955528,
+        "structure_preservation": 6.206896551724138,
+        "boundary_detection": 21.68141592920354
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 0,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 23
+      },
+      "schema_types_found": [],
+      "key_fields_found": [],
+      "formats_present": 2,
+      "score_breakdown": {
+        "type_appropriateness": 0,
+        "field_completeness": 0,
+        "multiple_formats": 12,
+        "schema_validation": 0
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [],
+        "unvalidated_items": 0,
+        "missing_fields": [],
+        "invalid_fields": []
+      },
+      "sample_structured_data": {
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:title",
+                "Templates - Vercel"
+              ],
+              [
+                "og:description",
+                "Jumpstart your app development process with pre-built solutions from Vercel and our community."
+              ],
+              [
+                "og:url",
+                "https://vercel.com/templates"
+              ],
+              [
+                "og:site_name",
+                "Vercel"
+              ],
+              [
+                "og:locale",
+                "en_US"
+              ],
+              [
+                "og:image",
+                "https://vercel.com/templates/opengraph-image?0ac0d7a1312d656f"
+              ],
+              [
+                "og:image:type",
+                "image/png"
+              ],
+              [
+                "og:image:width",
+                "1200"
+              ],
+              [
+                "og:image:height",
+                "630"
+              ],
+              [
+                "og:image:alt",
+                "Templates Marketplace"
+              ],
+              [
+                "og:type",
+                "website"
+              ]
+            ]
+          }
+        ],
+        "microformat": [
+          {
+            "type": [
+              "h-max"
+            ],
+            "properties": {
+              "name": [
+                "Filter TemplatesClearUse Case0​Admin Dashboard​AI​Authentication​Backend​Blog​CDN​CMS​Cron​Documentation​Ecommerce​Edge Config​Edge Functions​Edge Middleware​Marketing Sites​Microfrontends​Monorepos​Multi-Tenant Apps​Portfolio​Realtime Apps​SaaS​Security​Starter​Vercel Firewall​Virtual Event​Web3Framework0​ Angular​ Astro​ Express​ FastAPI​ Flask​ Gatsby​ Go​ Hono​ Hugo​ Next.js​ Nitro​ Nuxt​ Other​ Python​ Qwik​ React​ React Router​ Remix​ Svelte​ VueCSS0​Chakra​CSS Modules​CSS-in-JSX​Material UI​Pinceau​Radix UI​Styled Components​Tailwind​Vanilla CSSDatabase0​Astra DB​AWS S3​Azure CosmosDB​Azure MySQL​CockroachDB​Convex​Couchbase​Firebase​Gel​Grafbase​Liveblocks​MongoDB​Neon​PlanetScale​Postgres​Prisma​Railway​Redis​Supabase​TiDB​Tigris​Turso​Upstash​Vercel Blob​XataCMS0​Agility​BaseHub​Builder.io​ButterCMS​Contentful​Crystallize​Decap​Glide Publishing Platform​Mux​Notion​Optimizely​Payload​Prismic​Sanity​Sitecore​Storyblok​Strapi​Wisp​WordPressAuthentication0​Auth0​Clerk Auth​NextAuth.js​Supabase Auth​Whop AuthExperimentation0​Growthbook​Hypertune​LaunchDarkly​Split​Statsig"
+              ]
+            },
+            "lang": "en"
+          },
+          {
+            "type": [
+              "h-full"
+            ],
+            "properties": {},
+            "children": [
+              {
+                "type": [
+                  "h-auto"
+                ],
+                "properties": {
+                  "name": [
+                    "Next.js Boilerplate thumbnail"
+                  ],
+                  "photo": [
+                    {
+                      "value": "https://vercel.com/vc-ap-vercel-templates/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1aHobcZ8H6WY48u5CMXlOe%2F0f0efe6bd469985b692555fbcad1cc01%2Fnextjs-template.png&w=3840&q=75",
+                      "alt": "Next.js Boilerplate thumbnail",
+                      "srcset": {
+                        "32w": "https://vercel.com/vc-ap-vercel-templates/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1aHobcZ8H6WY48u5CMXlOe%2F0f0efe6bd469985b692555fbcad1cc01%2Fnextjs-template.png&w=32&q=75",
+                        "48w": "https://vercel.com/vc-ap-vercel-templates/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1aHobcZ8H6WY48u5CMXlOe%2F0f0efe6bd469985b692555fbcad1cc01%2Fnextjs-template.png&w=48&q=75",
+                        "64w": "https://vercel.com/vc-ap-vercel-templates/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1aHobcZ8H6WY48u5CMXlOe%2F0f0efe6bd469985b692555fbcad1cc01%2Fnextjs-template.png&w=64&q=75",
+                        "96w": "https://vercel.com/vc-ap-vercel-templates/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1aHobcZ8H6WY48u5CMXlOe%2F0f0efe6bd469985b692555fbcad1cc01%2Fnextjs-template.png&w=96&q=75",
+                        "128w": "https://vercel.com/vc-ap-vercel-templates/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1aHobcZ8H6WY48u5CMXlOe%2F0f0efe6bd469985b692555fbcad1cc01%2Fnextjs-template.png&w=128&q=75",
+                        "256w": "https://vercel.com/vc-ap-vercel-templates/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1aHobcZ8H6WY48u5CMXlOe%2F0f0efe6bd469985b692555fbcad1cc01%2Fnextjs-template.png&w=256&q=75",
+                        "384w": "https://vercel.com/vc-ap-vercel-templates/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1aHobcZ8H6WY48u5CMXlOe%2F0f0efe6bd469985b692555fbcad1cc01%2Fnextjs-template.png&w=384&q=75",
+                        "640w": "https://vercel.com/vc-ap-vercel-templates/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1aHobcZ8H6WY48u5CMXlOe%2F0f0efe6bd469985b692555fbcad1cc01%2Fnextjs-template.png&w=640&q=75",
+                        "750w": "https://vercel.com/vc-ap-vercel-templates/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1aHobcZ8H6WY48u5CMXlOe%2F0f0efe6bd469985b692555fbcad1cc01%2Fnextjs-template.png&w=750&q=75",
+                        "828w": "https://vercel.com/vc-ap-vercel-templates/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1aHobcZ8H6WY48u5CMXlOe%2F0f0efe6bd469985b692555fbcad1cc01%2Fnextjs-template.png&w=828&q=75",
+                        "1080w": "https://vercel.com/vc-ap-vercel-templates/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1aHobcZ8H6WY48u5CMXlOe%2F0f0efe6bd469985b692555fbcad1cc01%2Fnextjs-template.png&w=1080&q=75",
+                        "1200w": "https://vercel.com/vc-ap-vercel-templates/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1aHobcZ8H6WY48u5CMXlOe%2F0f0efe6bd469985b692555fbcad1cc01%2Fnextjs-template.png&w=1200&q=75",
+                        "1920w": "https://vercel.com/vc-ap-vercel-templates/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1aHobcZ8H6WY48u5CMXlOe%2F0f0efe6bd469985b692555fbcad1cc01%2Fnextjs-template.png&w=1920&q=75",
+                        "2048w": "https://vercel.com/vc-ap-vercel-templates/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1aHobcZ8H6WY48u5CMXlOe%2F0f0efe6bd469985b692555fbcad1cc01%2Fnextjs-template.png&w=2048&q=75",
+                        "3840w": "https://vercel.com/vc-ap-vercel-templates/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1aHobcZ8H6WY48u5CMXlOe%2F0f0efe6bd469985b692555fbcad1cc01%2Fnextjs-template.png&w=3840&q=75"
+                      }
+                    }
+                  ]
+                },
+                "lang": "en"
+              }
+            ],
+            "lang": "en"
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures role attribute has an appropriate value for the element",
+          "help": "ARIA role must be appropriate for the element",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+          "id": "aria-allowed-role",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "link"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role link  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role link  is not allowed for given element",
+              "html": "<a role=\"link\" href=\"/login\" type=\"submit\" tabindex=\"0\" data-react-aria-pressable=\"true\" data-testid=\"header/log-in\" data-cdp-track=\"{&quot;event&quot;:&quot;header_login_clicked&quot;,&quot;options&quot;:{&quot;send_to&quot;:{&quot;product_analytics&quot;:true}}}\" data-zone=\"2d9dc9\" class=\"button-module__QyrFCa__base reset-module__ylizOa__reset button-module__QyrFCa__button reset-module__ylizOa__reset button-module__QyrFCa__secondary button-module__QyrFCa__small button-module__QyrFCa__invert\" data-geist-button=\"\" data-prefix=\"false\" data-suffix=\"false\" data-version=\"v1\" style=\"--geist-icon-size:16px\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "a[href$=\"login\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "link"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role link  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role link  is not allowed for given element",
+              "html": "<a role=\"link\" href=\"/contact/sales\" type=\"submit\" tabindex=\"0\" data-react-aria-pressable=\"true\" data-testid=\"header/contact\" data-zone=\"6a379c\" class=\"button-module__QyrFCa__base reset-module__ylizOa__reset button-module__QyrFCa__button reset-module__ylizOa__reset button-module__QyrFCa__secondary button-module__QyrFCa__small button-module__QyrFCa__invert\" data-geist-button=\"\" data-prefix=\"false\" data-suffix=\"false\" data-version=\"v1\" style=\"--geist-icon-size:16px\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "a[href$=\"sales\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "link"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role link  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role link  is not allowed for given element",
+              "html": "<a role=\"link\" href=\"/signup\" type=\"submit\" tabindex=\"0\" data-react-aria-pressable=\"true\" aria-hidden=\"true\" data-ghost=\"\" data-testid=\"header/sign-up\" data-cdp-track=\"{&quot;event&quot;:&quot;header_signup_clicked&quot;,&quot;options&quot;:{&quot;send_to&quot;:{&quot;product_analytics&quot;:true}}}\" data-zone=\"2d9dc9\" class=\"button-module__QyrFCa__base reset-module__ylizOa__reset button-module__QyrFCa__button reset-module__ylizOa__reset morphing-button-link-module__KniueW__ghostCta button-module__QyrFCa__small button-module__QyrFCa__invert\" data-geist-button=\"\" data-prefix=\"false\" data-suffix=\"false\" data-version=\"v1\" style=\"--geist-icon-size:16px\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".morphing-button-link-module__KniueW__ghostCta"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "link"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role link  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role link  is not allowed for given element",
+              "html": "<a role=\"link\" href=\"/signup\" type=\"submit\" tabindex=\"0\" data-react-aria-pressable=\"true\" style=\"width:auto;--geist-icon-size:16px\" data-testid=\"header/sign-up\" data-cdp-track=\"{&quot;event&quot;:&quot;header_signup_clicked&quot;,&quot;options&quot;:{&quot;send_to&quot;:{&quot;product_analytics&quot;:true}}}\" data-zone=\"2d9dc9\" class=\"button-module__QyrFCa__base reset-module__ylizOa__reset button-module__QyrFCa__button reset-module__ylizOa__reset morphing-button-link-module__KniueW__displayCta button-module__QyrFCa__small button-module__QyrFCa__invert\" data-geist-button=\"\" data-prefix=\"false\" data-suffix=\"false\" data-version=\"v1\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".morphing-button-link-module__KniueW__displayCta"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "link"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role link  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role link  is not allowed for given element",
+              "html": "<a role=\"link\" href=\"/kb/bulletin/vercel-april-2026-security-incident\" type=\"submit\" tabindex=\"0\" data-react-aria-pressable=\"true\" data-zone=\"667155\" class=\"button-module__QyrFCa__base reset-module__ylizOa__reset button-module__QyrFCa__button reset-module__ylizOa__reset geist-new-themed geist-new-default geist-new-default-fill button-module__QyrFCa__rounded button-module__QyrFCa__small button-module__QyrFCa__invert\" data-geist-button=\"\" data-prefix=\"false\" data-suffix=\"true\" data-version=\"v1\" style=\"--geist-icon-size:16px\" data-prefetch=\"true\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".geist-new-themed"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<summary role=\"button\" type=\"button\" tabindex=\"0\" data-react-aria-pressable=\"true\" data-testid=\"templates/gallery/filters/section/title\" class=\"flex w-full cursor-pointer items-center border-none bg-transparent px-2 py-3 font-medium text-inherit text-sm\" data-geist-button=\"\" data-prefix=\"true\" data-suffix=\"true\" data-version=\"v1\" style=\"--geist-icon-size: 16px;\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "details[open=\"\"] > summary"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<summary role=\"button\" type=\"button\" tabindex=\"0\" data-react-aria-pressable=\"true\" data-testid=\"templates/gallery/filters/section/title\" class=\"flex w-full cursor-pointer items-center border-none bg-transparent px-2 py-3 font-medium text-inherit text-sm\" data-geist-button=\"\" data-prefix=\"true\" data-suffix=\"true\" data-version=\"v1\" style=\"--geist-icon-size: 16px;\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "details:nth-child(2) > summary"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<summary role=\"button\" type=\"button\" tabindex=\"0\" data-react-aria-pressable=\"true\" data-testid=\"templates/gallery/filters/section/title\" class=\"flex w-full cursor-pointer items-center border-none bg-transparent px-2 py-3 font-medium text-inherit text-sm\" data-geist-button=\"\" data-prefix=\"true\" data-suffix=\"true\" data-version=\"v1\" style=\"--geist-icon-size: 16px;\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "details:nth-child(3) > summary"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<summary role=\"button\" type=\"button\" tabindex=\"0\" data-react-aria-pressable=\"true\" data-testid=\"templates/gallery/filters/section/title\" class=\"flex w-full cursor-pointer items-center border-none bg-transparent px-2 py-3 font-medium text-inherit text-sm\" data-geist-button=\"\" data-prefix=\"true\" data-suffix=\"true\" data-version=\"v1\" style=\"--geist-icon-size: 16px;\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "details:nth-child(4) > summary"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<summary role=\"button\" type=\"button\" tabindex=\"0\" data-react-aria-pressable=\"true\" data-testid=\"templates/gallery/filters/section/title\" class=\"flex w-full cursor-pointer items-center border-none bg-transparent px-2 py-3 font-medium text-inherit text-sm\" data-geist-button=\"\" data-prefix=\"true\" data-suffix=\"true\" data-version=\"v1\" style=\"--geist-icon-size: 16px;\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "details:nth-child(5) > summary"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<summary role=\"button\" type=\"button\" tabindex=\"0\" data-react-aria-pressable=\"true\" data-testid=\"templates/gallery/filters/section/title\" class=\"flex w-full cursor-pointer items-center border-none bg-transparent px-2 py-3 font-medium text-inherit text-sm\" data-geist-button=\"\" data-prefix=\"true\" data-suffix=\"true\" data-version=\"v1\" style=\"--geist-icon-size: 16px;\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "details:nth-child(6) > summary"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<summary role=\"button\" type=\"button\" tabindex=\"0\" data-react-aria-pressable=\"true\" data-testid=\"templates/gallery/filters/section/title\" class=\"flex w-full cursor-pointer items-center border-none bg-transparent px-2 py-3 font-medium text-inherit text-sm\" data-geist-button=\"\" data-prefix=\"true\" data-suffix=\"true\" data-version=\"v1\" style=\"--geist-icon-size: 16px;\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "details:nth-child(7) > summary"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-valid-attr-value?application=axeAPI",
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": [
+                    "aria-controls=\"menu-_R_2kpfiqdb_\""
+                  ],
+                  "id": "aria-valid-attr-value",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute value: aria-controls=\"menu-_R_2kpfiqdb_\"",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"menu-_R_2kpfiqdb_\"",
+              "html": "<a href=\"/home\" aria-controls=\"menu-_R_2kpfiqdb_\" aria-expanded=\"false\" data-testid=\"header/navbar/logo\" id=\"menu-button-_R_2kpfiqdbH1_\" style=\"popper:[object Object]\" data-cdp-track=\"{&quot;event&quot;:&quot;header_logo_clicked&quot;,&quot;options&quot;:{&quot;send_to&quot;:{&quot;product_analytics&quot;:true}}}\" data-zone=\"6a379c\" class=\"link-module__Q1NRQq__link no-underline vercel-logo inline-flex items-center [&amp;_img]:max-w-none\" data-prefetch=\"true\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "#menu-button-_R_2kpfiqdbH1_"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+          ]
+        },
+        {
+          "description": "Ensure the autocomplete attribute is correct and suitable for the form field",
+          "help": "autocomplete attribute must be used correctly",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/autocomplete-valid?application=axeAPI",
+          "id": "autocomplete-valid",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": null,
+                  "id": "autocomplete-appropriate",
+                  "impact": "serious",
+                  "message": "the autocomplete value is inappropriate for this type of input",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  the autocomplete value is inappropriate for this type of input",
+              "html": "<input placeholder=\"Search templates...\" aria-label=\"Search\" aria-invalid=\"false\" autocapitalize=\"none\" autocomplete=\"off\" autocorrect=\"off\" class=\"inline-flex appearance-none webkit-search-reset min-w-0 w-full border-none bg-[var(--ds-background-100)] text-[var(--geist-foreground)] order-1 outline-none focus:outline-none disabled:bg-[var(--ds-gray-100)] disabled:placeholder:text-[var(--accents-3)] disabled:[-webkit-text-fill-color:var(--accents-3)] disabled:opacity-100 disabled:text-[var(--ds-gray-700)] disabled:cursor-not-allowed [appearance:textfield] [&amp;::-webkit-inner-spin-button]:appearance-none [&amp;::-webkit-outer-spin-button]:appearance-none\" data-geist-input=\"\" id=\"input-_r_1_\" spellcheck=\"false\" type=\"search\" value=\"\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "#input-_r_1_"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.forms",
+            "wcag21aa",
+            "wcag135"
+          ]
+        },
+        {
+          "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+          "help": "Elements must have sufficient color contrast",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_5_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_5_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Admin Dashboard</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_5_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_6_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_6_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>AI</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_6_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_7_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_7_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Authentication</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_7_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_8_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_8_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Backend</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_8_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_9_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_9_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Blog</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_9_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_a_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_a_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>CDN</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_a_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_b_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_b_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>CMS</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_b_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_c_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_c_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Cron</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_c_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_d_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_d_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Documentation</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_d_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_e_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_e_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Ecommerce</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_e_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_f_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_f_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Edge Config</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_f_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_g_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_g_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Edge Functions</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_g_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_h_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_h_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Edge Middleware</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_h_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_i_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_i_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Marketing Sites</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_i_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_j_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_j_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Microfrontends</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_j_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_k_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_k_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Monorepos</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_k_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_l_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_l_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Multi-Tenant Apps</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_l_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_m_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_m_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Portfolio</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_m_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_n_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_n_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Realtime Apps</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_n_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_o_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_o_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>SaaS</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_o_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_p_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_p_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Security</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_p_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_q_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_q_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Starter</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_q_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_r_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_r_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Vercel Firewall</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_r_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_s_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_s_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Virtual Event</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_s_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#0NaN0NaN0NaN",
+                    "contrastRatio": null,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#171717",
+                    "fontSize": "9.8pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<label class=\"text-[13px] inline-flex items-start cursor-pointer rounded-sm bg-gray-100/70 px-2 py-2 transition-colors duration-100 hover:bg-gray-200 w-full\" data-version=\"v1\" for=\"checkbox-_r_t_\">",
+                      "target": [
+                        "label[for=\"checkbox-_r_t_\"]"
+                      ]
+                    },
+                    {
+                      "html": "<main class=\"bg-background-200\">",
+                      "target": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of NaN (foreground color: #171717, background color: #0NaN0NaN0NaN, font size: 9.8pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<span>Web3</span>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "label[for=\"checkbox-_r_t_\"] > .ml-2 > .gap-2.flex > span"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/nextjs-boilerplate\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(1)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">Get started with Next.js and React in seconds.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(1) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/image-gallery-starter\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(2)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">An image gallery built on Next.js and Cloudinary.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(2) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/chatbot\">",
+                      "target": [
+                        "a[href$=\"chatbot\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">A full-featured, hackable Next.js AI chatbot built by Vercel</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"chatbot\"] > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/empathic-voice-interface-starter\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(4)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">This template creates a voice chat using Hume AI's Empathic Voice Interface.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(4) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/express/express-on-bun\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(5)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">Deploy Express backends using the Bun runtime.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(5) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/hono/hono-on-bun\">",
+                      "target": [
+                        "a[href$=\"hono-on-bun\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">Deploy Hono backends using the Bun runtime.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                "a[href$=\"hono-on-bun\"] > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/documentation-starter-kit\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(7)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">Simple, powerful and flexible markdown-powered docs site. Built with Next.js.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(7) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/lead-processing-agent\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(8)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">An inbound lead qualification and research agent built with Next.js, AI SDK, Workflow DevKit, and the Vercel Slack Adapter.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(8) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/nextjs-commerce\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(9)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">Starter kit for high-performance commerce with Shopify.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(9) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/nitro/slack-agent-template\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(10)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">This is a Slack Agent template built with Bolt for JavaScript (TypeScript) and the Nitro server framework.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(10) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/portfolio-starter-kit\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(11)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">Easily create a portfolio with Next.js and Markdown.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(11) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/platforms-starter-kit\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(12)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">Next.js template for building multi-tenant applications with the App Router and Redis.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(12) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/app-directory\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(13)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">Examples of many Next.js App Router features.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(13) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/isr-blog-nextjs-wordpress\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(14)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">An Incremental Static Regeneration Blog Example Using Next.js and WordPress</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(14) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/customer-reviews-ai-summary-nextjs-vercel\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(15)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">Use a Large Language Model to summarize customer feedback.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(15) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/nextjs-contentlayer\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(16)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">A blog template with Next.js 13 App Router, Contentlayer, Tailwind CSS and dark mode.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(16) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/blog-starter-kit\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(17)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">A statically generated blog example using Next.js and Markdown.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(17) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/nuxt/nuxtjs-boilerplate\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(18)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">A Nuxt.js 3 app, bootstrapped with create-nuxt-app.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(18) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/liveblocks-starter-kit\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(19)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">Real-time collaborative product starter kit built with Next.js and Liveblocks</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(19) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/sanity-next-js-clean-app\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(20)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">A clean Next.js + Sanity starter with visual editing, drag-and-drop page builder, live content updates, and AI-powered media support.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(20) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 4.11,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#7d7d7d",
+                    "fontSize": "10.5pt",
+                    "fontWeight": "normal",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a data-zone=\"same\" class=\"link-module__Q1NRQq__link no-underline group relative block h-50 w-full max-w-100 cursor-pointer justify-self-center overflow-hidden rounded-lg border border-gray-300 border-solid bg-background-100 transition-all duration-100 ease-out [contain-intrinsic-size:auto_200px] [content-visibility:auto] focus-visible:shadow-focus-ring focus-visible:outline-none\" href=\"/templates/next.js/sanity-next-js-personal-website\">",
+                      "target": [
+                        ".block.h-50.max-w-100:nth-child(21)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.11 (foreground color: #7d7d7d, background color: #ffffff, font size: 10.5pt, font weight: normal). Expected contrast ratio of 4.5:1",
+              "html": "<div class=\"m-0 line-clamp-2 max-w-[20ch] text-pretty text-[14px] text-gray-800 leading-4.25\">A personal website built with Next.js and Sanity featuring visual editing, live previews, real-time collaboration, and editable projects.</div>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".block.h-50.max-w-100:nth-child(21) > .space-y-2.px-6.py-5 > .line-clamp-2.max-w-\\[20ch\\].text-pretty"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value used in ARIA and in labels is unique",
+          "help": "IDs used in ARIA and labels must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id-aria?application=axeAPI",
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "heading-frameworks",
+                  "id": "duplicate-id-aria",
+                  "impact": "critical",
+                  "message": "Document has multiple elements referenced with ARIA with the same id attribute: heading-frameworks",
+                  "relatedNodes": [
+                    {
+                      "html": "<h5 class=\"text-module__eElGjq__wrapper navigation-menu-module__AENi4G__heading\" data-version=\"v1\" style=\"--text-color:var(--ds-gray-900);--text-size:0.875rem;--text-line-height:1.25rem;--text-letter-spacing:initial;--text-weight:400\" id=\"heading-frameworks\">Open Source</h5>",
+                      "target": [
+                        "#radix-_R_4kpfiqdb_-content-resources > .navigation-menu-module__AENi4G__column > .navigation-menu-module__AENi4G__links:nth-child(3) > h5"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: heading-frameworks",
+              "html": "<h5 class=\"text-module__eElGjq__wrapper navigation-menu-module__AENi4G__heading\" data-version=\"v1\" style=\"--text-color:var(--ds-gray-900);--text-size:0.875rem;--text-line-height:1.25rem;--text-letter-spacing:initial;--text-weight:400\" id=\"heading-frameworks\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "#radix-_R_4kpfiqdb_-content-features > .navigation-menu-module__AENi4G__column > .navigation-menu-module__AENi4G__links:nth-child(3) > h5"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value is unique",
+          "help": "id attribute value must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id?application=axeAPI",
+          "id": "duplicate-id",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "clip0_53_108",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<clipPath id=\"clip0_53_108\">\n  <rect width=\"16\" height=\"16\" fill=\"red\"></rect>\n  </clipPath>",
+                      "target": [
+                        "a[data-feature=\"Next\\.js\"] > .navigation-menu-module__AENi4G__icons > .navigation-menu-module__AENi4G__iconHover.navigation-menu-module__AENi4G__icon.flex-initial > .invert-theme[data-testid=\"geist-icon\"][viewBox=\"\\30 \\ 0\\ 16\\ 16\"] > defs > clippath"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<clipPath id=\"clip0_53_108\">\n  <rect width=\"16\" height=\"16\" fill=\"red\"></rect>\n  </clipPath>",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".navigation-menu-module__AENi4G__icon.flex-initial.flex-col:nth-child(1) > .invert-theme[data-testid=\"geist-icon\"][viewBox=\"\\30 \\ 0\\ 16\\ 16\"] > defs > clippath"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "paint0_linear_872_3188",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<linearGradient id=\"paint0_linear_872_3188\" x1=\"8.68832\" y1=\"1.98437\" x2=\"1.79792\" y2=\"8.82805\" gradientUnits=\"userSpaceOnUse\">\n  <stop stop-color=\"#0096FF\"></stop>\n  <stop offset=\"1\" stop-color=\"#FF1E56\"></stop>\n  </linearGradient>",
+                      "target": [
+                        ".invert-theme[data-testid=\"geist-icon\"][viewBox=\"\\30 \\ 0\\ 16\\ 16\"] > defs > lineargradient[x1=\"\\38 \\.68832\"][y1=\"\\31 \\.98437\"][x2=\"\\31 \\.79792\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<linearGradient id=\"paint0_linear_872_3188\" x1=\"8.68832\" y1=\"1.98437\" x2=\"1.79792\" y2=\"8.82805\" gradientUnits=\"userSpaceOnUse\">\n  <stop stop-color=\"#0096FF\"></stop>\n  <stop offset=\"1\" stop-color=\"#FF1E56\"></stop>\n  </linearGradient>",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".navigation-menu-module__AENi4G__icon.flex-initial.flex-col:nth-child(1) > svg[data-testid=\"geist-icon\"][viewBox=\"\\30 \\ 0\\ 16\\ 16\"] > defs > lineargradient[x1=\"\\38 \\.68832\"][y1=\"\\31 \\.98437\"][x2=\"\\31 \\.79792\"]"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "clip0_872_3188",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<clipPath id=\"clip0_872_3188\">\n  <rect width=\"16\" height=\"16\" fill=\"white\"></rect>\n  </clipPath>",
+                      "target": [
+                        "a[data-feature=\"Turborepo\"] > .navigation-menu-module__AENi4G__icons > .navigation-menu-module__AENi4G__iconHover.navigation-menu-module__AENi4G__icon.flex-initial > .invert-theme[data-testid=\"geist-icon\"][viewBox=\"\\30 \\ 0\\ 16\\ 16\"] > defs > clippath"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<clipPath id=\"clip0_872_3188\">\n  <rect width=\"16\" height=\"16\" fill=\"white\"></rect>\n  </clipPath>",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "a[data-feature=\"Turborepo\"] > .navigation-menu-module__AENi4G__icons > .navigation-menu-module__AENi4G__icon.flex-initial.flex-col:nth-child(1) > svg[data-testid=\"geist-icon\"][viewBox=\"\\30 \\ 0\\ 16\\ 16\"] > defs > clippath"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/heading-order?application=axeAPI",
+          "id": "heading-order",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": 3,
+                  "id": "heading-order",
+                  "impact": "moderate",
+                  "message": "Heading order invalid",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Heading order invalid",
+              "html": "<h3 class=\"m-0 font-medium text-label-16\">Filter Templates</h3>",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                ".text-label-16"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/link-name?application=axeAPI",
+          "id": "link-name",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "has-visible-text",
+                  "impact": "minor",
+                  "message": "Element does not have text that is visible to screen readers",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-presentation",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"presentation\"",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "role-none",
+                  "impact": "minor",
+                  "message": "Element's default semantics were not overridden with role=\"none\"",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element's default semantics were not overridden with role=\"presentation\"\n  Element's default semantics were not overridden with role=\"none\"",
+              "html": "<a href=\"/home\" aria-controls=\"menu-_R_2kpfiqdb_\" aria-expanded=\"false\" data-testid=\"header/navbar/logo\" id=\"menu-button-_R_2kpfiqdbH1_\" style=\"popper:[object Object]\" data-cdp-track=\"{&quot;event&quot;:&quot;header_logo_clicked&quot;,&quot;options&quot;:{&quot;send_to&quot;:{&quot;product_analytics&quot;:true}}}\" data-zone=\"6a379c\" class=\"link-module__Q1NRQq__link no-underline vercel-logo inline-flex items-center [&amp;_img]:max-w-none\" data-prefetch=\"true\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "focusable-no-name",
+                  "impact": "serious",
+                  "message": "Element is in tab order and does not have accessible text",
+                  "relatedNodes": []
+                }
+              ],
+              "target": [
+                "#menu-button-_R_2kpfiqdbH1_"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "wcag244",
+            "section508",
+            "section508.22.a"
+          ]
+        },
+        {
+          "description": "Ensures that lists are structured correctly",
+          "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/list?application=axeAPI",
+          "id": "list",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed inside <li> elements",
+              "html": "<ul class=\"list-none m-0 p-0\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "only-listitems",
+                  "impact": "serious",
+                  "message": "List element has direct children that are not allowed inside <li> elements",
+                  "relatedNodes": [
+                    {
+                      "html": "<a href=\"/home\" data-zone=\"6a379c\" class=\"link-module__Q1NRQq__link no-underline\">",
+                      "target": [
+                        ".list-none.p-0 > .link-module__Q1NRQq__link[href$=\"home\"][data-zone=\"\\36 a379c\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                "div:nth-child(12) > .list-none.p-0"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.structure",
+            "wcag2a",
+            "wcag131"
+          ]
+        },
+        {
+          "description": "Ensures <meta name=\"viewport\"> does not disable text scaling and zooming",
+          "help": "Zooming and scaling must not be disabled",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/meta-viewport?application=axeAPI",
+          "id": "meta-viewport",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "maximum-scale",
+                  "id": "meta-viewport",
+                  "impact": "critical",
+                  "message": "maximum-scale on <meta> tag disables zooming on mobile devices",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  maximum-scale on <meta> tag disables zooming on mobile devices",
+              "html": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "meta[name=\"viewport\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.sensory-and-visual-cues",
+            "wcag2aa",
+            "wcag144"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 10,
+      "passes_count": 35,
+      "total_penalty": 185,
+      "penalty_per_rule": {
+        "aria-allowed-role": {
+          "impact": "minor",
+          "node_count": 12,
+          "raw_penalty": 60,
+          "capped_penalty": 15
+        },
+        "aria-valid-attr-value": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "autocomplete-valid": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "color-contrast": {
+          "impact": "serious",
+          "node_count": 46,
+          "raw_penalty": 690,
+          "capped_penalty": 25
+        },
+        "duplicate-id-aria": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "duplicate-id": {
+          "impact": "minor",
+          "node_count": 3,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "heading-order": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        },
+        "link-name": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "list": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "meta-viewport": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        }
+      },
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 0,
+        "date": 0,
+        "topic": 0,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title"
+        ],
+        "description": [
+          "meta:description",
+          "og:description"
+        ],
+        "author": [],
+        "date": [],
+        "topic": [],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 4,
+      "fields_total": 7,
+      "json_ld_type": "none"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "index, max-image-preview:large",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "absent",
+        "last_modified": "absent",
+        "cache_control": "public, max-age=0, must-revalidate"
+      },
+      "agent_content_hints": {
+        "scoring_contribution": 0,
+        "diagnostic_only": true,
+        "rationale": "PRD F2.2/F2.3: retrieval-lift evidence deferred to Phase 6",
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 4,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "article",
+      "detection": {
+        "source": "default"
+      },
+      "weights": {
+        "semantic_html": 0.0,
+        "content_extractability": 0.5,
+        "structured_data": 0.0,
+        "dom_navigability": 0.0,
+        "metadata_completeness": 0.0,
+        "http_compliance": 0.5
+      },
+      "v1_weights_for_reference": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.2,
+        "structured_data": 0.2,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      },
+      "scoring_version": "v2-evidence-partial"
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "article",
+  "universal_score": 62.42025900024147,
+  "render_mode": "rendered",
+  "confidence_range": {
+    "scoring_version": "v2-evidence-partial",
+    "evidence_tier": "partial",
+    "headline_weights": {
+      "semantic_html": 0.0,
+      "content_extractability": 0.5,
+      "structured_data": 0.0,
+      "dom_navigability": 0.0,
+      "metadata_completeness": 0.0,
+      "http_compliance": 0.5
+    },
+    "calibration_corpus": {
+      "name": "corpus-002",
+      "n": 43,
+      "pearson_r_vs_accuracy_rendered": 0.548,
+      "gate_threshold": 0.35,
+      "source": "findings/phase-5-corpus-002-findings.md Addendum B"
+    },
+    "caveats": [
+      "Single corpus, single grader architecture, single run.",
+      "Four pillars carry zero headline weight in v2; still reported as diagnostics.",
+      "Profile-specific weights collapse to the same 2-pillar composite pending corpus-003.",
+      "Cross-judge accuracy variance: per-judge corpus-002 means span 0.591-0.698 across Llama-3.3-70B, GPT-4o, and DeepSeek-V3.2 (pooled kappa 0.706-0.817). The v2 composite-vs-accuracy Pearson r ranges from +0.440 to +0.618 across judges (all above the +0.35 ship gate). Report majority-vote CI [0.567, 0.688] or per-judge union CI [0.530, 0.758] when comparing across studies.",
+      "No temporal variance measured yet."
+    ]
+  },
+  "subscores": {
+    "semantic_html": 61.81818181818182,
+    "content_extractability": 60.84051800048295,
+    "structured_data": 12,
+    "dom_navigability": 0,
+    "metadata_completeness": 55,
+    "http_compliance": 64.0
+  },
+  "evidence_references": null
+}

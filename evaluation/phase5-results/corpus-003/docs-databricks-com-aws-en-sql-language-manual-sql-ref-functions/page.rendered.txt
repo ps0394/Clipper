@@ -1,0 +1,32 @@
+Applies to:
+
+ Databricks Runtime
+
+Spark SQL provides two function features to meet a wide range of needs: built-in functions and user-defined functions (UDFs).
+
+To learn about function resolution and function invocation see: 
+Function invocation
+.
+
+Built-in functions
+​
+
+This article presents the usages and descriptions of categories of frequently used built-in functions for aggregation, arrays and maps, dates and timestamps, and JSON data.
+
+SQL and Python user-defined functions
+​
+
+SQL and Python user-defined functions (UDFs) are functions you can define yourself that can return scalar values or result sets.
+
+See 
+CREATE FUNCTION (SQL, Python)
+ for more information.
+
+External user-defined functions
+​
+
+UDFs allow you to define your own functions when the system's built-in functions are not enough to perform the desired task.
+To use UDFs, you first define the function, then register the function with Spark, and finally call the registered function.
+A UDF can act on a single row or act on multiple rows at once.
+Spark SQL also supports integration of existing Hive implementations of UDFs, user defined aggregate functions (UDAF),
+and user defined table functions (UDTF).

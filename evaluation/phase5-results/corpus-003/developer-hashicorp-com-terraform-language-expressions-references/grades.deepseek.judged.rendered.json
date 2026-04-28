@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer lists all the same main kinds of named values as the ground truth, with no omissions or contradictions.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 588,
+    "tokens_out": 27
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer matches the ground truth exactly in factual content, conveying that the reference is an object with attributes accessible via dot or square bracket notation.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 626,
+    "tokens_out": 33
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer exactly matches the ground truth in factual content.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 559,
+    "tokens_out": 16
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes all key facts from the ground truth: unknown value placeholders are used, the language handles them automatically in expressions, and it specifies that some situations (like the `count` meta-argument) cannot be unknown.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 636,
+    "tokens_out": 51
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes all facts from the ground truth: the placeholder marker `(sensitive value)` in plans and the hiding of derived values.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 720,
+    "tokens_out": 33
+  }
+]

@@ -1,0 +1,40 @@
+```json
+[
+    {
+        "question": "What permission do workspace admins have on all objects in their workspace by default?",
+        "answer": "Workspace admins have the CAN MANAGE permission on all objects in their workspace.",
+        "supporting_sentences": [
+            "Workspace admins have the CAN MANAGE permission on all objects in their workspace, which gives them the ability to manage permissions on all objects in their workspaces."
+        ]
+    },
+    {
+        "question": "What happens if a user is granted CAN VIEW permission on a notebook inside a folder but has no permissions on the parent folder?",
+        "answer": "The user can see that the parent folder is named but cannot view or access any other objects in the folder unless they have been granted permissions on them.",
+        "supporting_sentences": [
+            "If you grant a user access to an object inside the folder, they can view the parent folder's name, even if they do not have permissions on the parent folder.",
+            "The user cannot view or access any other objects in the folder unless they have been granted permissions on them."
+        ]
+    },
+    {
+        "question": "Under what condition can users with CAN ATTACH TO permission view service account keys in the log4j file?",
+        "answer": "Users with CAN ATTACH TO permissions can view the service account keys in the log4j file on compute resources that use the legacy access mode 'No isolation shared'.",
+        "supporting_sentences": [
+            "On compute resources that use the legacy access mode No isolation shared, users with CAN ATTACH TO permissions can view the service account keys in the log4j file."
+        ]
+    },
+    {
+        "question": "What Spark configuration property must be set to allow users with CAN ATTACH TO or CAN RESTART permission to view Spark driver logs on job, dedicated access mode, and standard access mode clusters?",
+        "answer": "The Spark configuration property `spark.databricks.acl.needAdminPermissionToViewLogs` must be set to `false`.",
+        "supporting_sentences": [
+            "To allow users with CAN ATTACH TO or CAN RESTART permission to view the logs on these clusters, set the following Spark configuration property in the cluster configuration: spark.databricks.acl.needAdminPermissionToViewLogs false."
+        ]
+    },
+    {
+        "question": "What permission do all workspace users automatically inherit for Lakebase projects?",
+        "answer": "All workspace users automatically inherit the CAN CREATE permission for Lakebase projects.",
+        "supporting_sentences": [
+            "All workspace users automatically inherit the CAN CREATE permission. This permission cannot be assigned or removed."
+        ]
+    }
+]
+```

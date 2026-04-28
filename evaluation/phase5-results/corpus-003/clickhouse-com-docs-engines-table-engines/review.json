@@ -1,0 +1,114 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What does the table engine in ClickHouse determine?",
+      "answer": "The table engine determines how and where data is stored, which queries are supported, concurrent data access, use of indexes, whether multithread request execution is possible, and data replication parameters.",
+      "supporting_sentences": [
+        "The table engine (type of table) determines:",
+        "How and where data is stored, where to write it to, and where to read it from.",
+        "Which queries are supported, and how.",
+        "Concurrent data access.",
+        "Use of indexes, if present.",
+        "Whether multithread request execution is possible.",
+        "Data replication parameters."
+      ]
+    },
+    "edited_pair": {
+      "question": "What does the table engine in ClickHouse determine?",
+      "answer": "The table engine determines how and where data is stored, which queries are supported, concurrent data access, use of indexes, whether multithread request execution is possible, and data replication parameters.",
+      "supporting_sentences": [
+        "The table engine (type of table) determines:",
+        "How and where data is stored, where to write it to, and where to read it from.",
+        "Which queries are supported, and how.",
+        "Concurrent data access.",
+        "Use of indexes, if present.",
+        "Whether multithread request execution is possible.",
+        "Data replication parameters."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the primary characteristic of the MergeTree family of table engines?",
+      "answer": "The primary characteristic of the MergeTree family is quick data insertion with subsequent background data processing.",
+      "supporting_sentences": [
+        "The most universal and functional table engines for high-load tasks. The property shared by these engines is quick data insertion with subsequent background data processing."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the primary characteristic of the MergeTree family of table engines?",
+      "answer": "The primary characteristic of the MergeTree family is quick data insertion with subsequent background data processing.",
+      "supporting_sentences": [
+        "The most universal and functional table engines for high-load tasks. The property shared by these engines is quick data insertion with subsequent background data processing."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are lightweight table engines in ClickHouse used for?",
+      "answer": "Lightweight engines are most effective when you need to quickly write many small tables (up to approximately 1 million rows) and read them later as a whole.",
+      "supporting_sentences": [
+        "Lightweight engines with minimum functionality. They're the most effective when you need to quickly write many small tables (up to approximately 1 million rows) and read them later as a whole."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are lightweight table engines in ClickHouse used for?",
+      "answer": "Lightweight engines are most effective when you need to quickly write many small tables (up to approximately 1 million rows) and read them later as a whole.",
+      "supporting_sentences": [
+        "Lightweight engines with minimum functionality. They're the most effective when you need to quickly write many small tables (up to approximately 1 million rows) and read them later as a whole."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is a virtual column in ClickHouse, and how is it defined?",
+      "answer": "A virtual column is an integral table engine attribute that is defined in the engine source code.",
+      "supporting_sentences": [
+        "A virtual column is an integral table engine attribute that is defined in the engine source code."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is a virtual column in ClickHouse, and how is it defined?",
+      "answer": "A virtual column is an integral table engine attribute that is defined in the engine source code.",
+      "supporting_sentences": [
+        "A virtual column is an integral table engine attribute that is defined in the engine source code."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens if you create a table with a column that has the same name as a virtual column?",
+      "answer": "If you create a table with a column that has the same name as one of the table virtual columns, the virtual column becomes inaccessible.",
+      "supporting_sentences": [
+        "If you create a table with a column that has the same name as one of the table virtual columns, the virtual column becomes inaccessible."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens if you create a table with a column that has the same name as a virtual column?",
+      "answer": "If you create a table with a column that has the same name as one of the table virtual columns, the virtual column becomes inaccessible.",
+      "supporting_sentences": [
+        "If you create a table with a column that has the same name as one of the table virtual columns, the virtual column becomes inaccessible."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

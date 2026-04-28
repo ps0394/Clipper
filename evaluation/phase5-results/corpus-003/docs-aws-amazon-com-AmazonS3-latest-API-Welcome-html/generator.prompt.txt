@@ -1,0 +1,122 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Amazon Simple Storage Service
+Document URL: https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html
+Document profile: reference
+
+Document text:
+---
+Welcome
+ Welcome to the 
+Amazon Simple Storage Service API Reference
+. This guide explains the Amazon Simple Storage Service (Amazon S3)
+		application programming interface (API). 
+You can use any toolkit that supports HTTP to use the REST API. You can even use a browser
+		to fetch objects, as long as they are anonymously readable.
+The REST API uses the standard HTTP headers and status codes, so that standard browsers and
+		toolkits work as expected. In some areas, we have added functionality to HTTP (for example, we
+		added headers to support access control). In these cases, we have done our best to add the new
+		functionality in a way that matched the style of standard HTTP usage.
+Version
+The current version of the Amazon S3 API is 
+2006-03-01
+. 
+Type
+
+Amazon S3 supports the REST API. 
+Support for SOAP over HTTP is deprecated, but it is still available over HTTPS.
+			However, new Amazon S3 features will not be supported for SOAP. We recommend that
+			you use either this REST API or the AWS SDKs at the following link:
+https://aws.amazon.com/developer/tools/
+This REST API reference includes:
+Read the following about authentication and access control before going to specific API
+		topics.
+Requests to Amazon S3 can be authenticated or anonymous. Authenticated access requires credentials that AWS can use to authenticate your requests.  
+API call recommendations
+Making REST API calls directly from your code can be cumbersome. It requires you to write
+		the necessary code to calculate a valid signature to authenticate your requests. We recommend the
+		following alternatives instead: 
+
+Use the 
+AWS SDKs
+ to send your requests.
+
+Also, see the 
+Sample Code and
+					Libraries
+. 
+
+If you use the SDKs, you don't need
+					to write code to calculate a signature for request authentication because the SDK
+					clients authenticate your requests by using access keys that you provide. Unless
+					you have a good reason not to, you should always use the AWS SDKs.
+
+Use the AWS CLI to make Amazon S3 API calls. For information about setting up the AWS
+					CLI and example Amazon S3 commands see the following topics:
+
+Set Up the AWS CLI
+ in the 
+Amazon Simple Storage Service User Guide
+. 
+
+Using
+						Amazon S3 with the AWS Command Line Interface
+ in the 
+AWS Command Line Interface User Guide
+.
+
+Making direct REST API calls
+The 
+PUT
+ request header is limited to 8 KB in size. Within the PUT request header, the system-defined metadata is limited to 2 KB in size. The size of system-defined metadata is measured by taking the sum of the number of bytes in the US-ASCII encoding of each key and value.
+If you'd like to make your own REST API calls instead of using one of the above alternatives, there
+			are some things to keep in mind. 
+
+To make direct REST API calls from your code, create a signature using valid credentials and include the
+			signature in your request. For information about various authentication methods and signature calculations, see 
+Authenticating Requests (AWS Signature Version 4)
+.
+The REST API uses standard HTTP headers and status codes, so
+        standard browsers and toolkits work as expected. In some areas, we have added functionality to HTTP
+        (for example, we added headers to support access control). In these cases, we have done our best to
+        add the new functionality in a way that matches the style of standard HTTP usage. For more information
+        about making requests, see 
+Making requests
+.
+
+Permissions
+You can have valid credentials to authenticate your requests, but unless you have S3 permissions from the account owner or bucket owner
+		you cannot create or access Amazon S3 resources. These permissions are typically granted through an AWS Identity and Access Management (IAM) 
+policy
+, such as a bucket policy. For example, you must have permissions to create
+		an S3 bucket or get an object in a bucket. For a complete list of S3 permissions, see 
+Actions, resources, and condition keys for Amazon S3
+. 
+For more information about the permissions to S3 API operations by S3 resource types, see 
+Required permissions for Amazon S3 API operations
+ in the 
+Amazon Simple Storage Service User Guide
+.
+If you use the root user credentials of your
+		AWS account, you have all the permissions. However, using root user credentials is not
+		recommended.
+		Instead,
+		we recommend that you create AWS Identity and Access Management (IAM) roles in your account and manage user permissions. For
+		more information, see 
+Access Management
+ in the 
+Amazon Simple Storage Service User Guide
+.
+---

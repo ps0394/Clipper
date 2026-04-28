@@ -1,0 +1,110 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "When was Python 3.12 released?",
+      "answer": "October 2, 2023",
+      "supporting_sentences": [
+        "Python 3.12 was released on October 2, 2023."
+      ]
+    },
+    "edited_pair": {
+      "question": "When was Python 3.12 released?",
+      "answer": "October 2, 2023",
+      "supporting_sentences": [
+        "Python 3.12 was released on October 2, 2023."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which package was removed from the Python 3.12 standard library?",
+      "answer": "distutils",
+      "supporting_sentences": [
+        "Of note, the distutils package has been removed from the standard library.",
+        "PEP 632: Remove the distutils package."
+      ]
+    },
+    "edited_pair": {
+      "question": "Which package was removed from the Python 3.12 standard library?",
+      "answer": "distutils",
+      "supporting_sentences": [
+        "Of note, the distutils package has been removed from the standard library.",
+        "PEP 632: Remove the distutils package."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What new syntax feature allows declaring type aliases in Python 3.12?",
+      "answer": "The `type` statement",
+      "supporting_sentences": [
+        "In addition, the PEP introduces a new way to declare type aliases using the type statement, which creates an instance of TypeAliasType:",
+        "type Point = tuple[float, float]"
+      ]
+    },
+    "edited_pair": {
+      "question": "What new syntax feature allows declaring type aliases in Python 3.12?",
+      "answer": "The `type` statement",
+      "supporting_sentences": [
+        "In addition, the PEP introduces a new way to declare type aliases using the type statement, which creates an instance of TypeAliasType:",
+        "type Point = tuple[float, float]"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What restriction on f-strings was lifted in Python 3.12?",
+      "answer": "F-strings can now reuse the same quotes as the enclosing f-string, support multi-line expressions, comments, backslashes, and unicode escape sequences.",
+      "supporting_sentences": [
+        "PEP 701 lifts some restrictions on the usage of f-strings.",
+        "Expression components inside f-strings can now be any valid Python expression, including strings reusing the same quote as the containing f-string, multi-line expressions, comments, backslashes, and unicode escape sequences."
+      ]
+    },
+    "edited_pair": {
+      "question": "What restriction on f-strings was lifted in Python 3.12?",
+      "answer": "F-strings can now reuse the same quotes as the enclosing f-string, support multi-line expressions, comments, backslashes, and unicode escape sequences.",
+      "supporting_sentences": [
+        "PEP 701 lifts some restrictions on the usage of f-strings.",
+        "Expression components inside f-strings can now be any valid Python expression, including strings reusing the same quote as the containing f-string, multi-line expressions, comments, backslashes, and unicode escape sequences."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What function is used to create an interpreter with its own GIL in Python 3.12?",
+      "answer": "Py_NewInterpreterFromConfig()",
+      "supporting_sentences": [
+        "Use the new Py_NewInterpreterFromConfig() function to create an interpreter with its own GIL:",
+        "PyStatus status = Py_NewInterpreterFromConfig(&tstate, &config);"
+      ]
+    },
+    "edited_pair": {
+      "question": "What function is used to create an interpreter with its own GIL in Python 3.12?",
+      "answer": "Py_NewInterpreterFromConfig()",
+      "supporting_sentences": [
+        "Use the new Py_NewInterpreterFromConfig() function to create an interpreter with its own GIL:",
+        "PyStatus status = Py_NewInterpreterFromConfig(&tstate, &config);"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

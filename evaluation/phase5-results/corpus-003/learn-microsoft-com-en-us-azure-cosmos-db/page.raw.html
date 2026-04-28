@@ -1,0 +1,1496 @@
+ <!DOCTYPE html>
+		<html
+			class="layout layout-single    hub show-breadcrumb default-focus"
+			lang="en-us"
+			dir="ltr"
+			data-authenticated="false"
+			data-auth-status-determined="false"
+			data-target="docs"
+			x-ms-format-detection="none"
+		>
+			
+		<head>
+			<title>Azure Cosmos DB documentation - Azure Cosmos DB | Microsoft Learn</title>
+			<meta charset="utf-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="color-scheme" content="light dark" />
+
+			<meta name="description" content="Fully managed, distributed NoSQL and vector database for cloud-scale and AI apps. High performance, availability, and low latency from Serverless to massive scale in one database. Visit our new **[Samples Gallery](https://aka.ms/AzureCosmosDB/Gallery/AI)** for the latest Vector Database and AI Samples." />
+			<link rel="canonical" href="https://learn.microsoft.com/en-us/azure/cosmos-db/" /> 
+
+			<!-- Non-customizable open graph and sharing-related metadata -->
+			<meta name="twitter:card" content="summary_large_image" />
+			<meta name="twitter:site" content="@MicrosoftLearn" />
+			<meta property="og:type" content="website" />
+			<meta property="og:image:alt" content="Microsoft Learn" />
+			<meta property="og:image" content="https://learn.microsoft.com/en-us/media/open-graph-image.png" />
+			<!-- Page specific open graph and sharing-related metadata -->
+			<meta property="og:title" content="Azure Cosmos DB documentation - Azure Cosmos DB" />
+			<meta property="og:url" content="https://learn.microsoft.com/en-us/azure/cosmos-db/" />
+			<meta property="og:description" content="Fully managed, distributed NoSQL and vector database for cloud-scale and AI apps. High performance, availability, and low latency from Serverless to massive scale in one database. Visit our new **[Samples Gallery](https://aka.ms/AzureCosmosDB/Gallery/AI)** for the latest Vector Database and AI Samples." />
+			<meta name="platform_id" content="22a8bb04-b623-805b-f15e-95976d0aa55b" /> <meta name="scope" content="Azure,Azure Cosmos DB" />
+			<meta name="locale" content="en-us" />
+			 
+			<meta name="uhfHeaderId" content="MSDocsHeader-NoSQL" />
+
+			<meta name="page_type" content="hub" />
+
+			<!--page specific meta tags-->
+			
+
+			<!-- custom meta tags -->
+			
+		<meta name="summary" content="Fully managed, distributed NoSQL, relational, and vector database for modern app development. High performance, high availability, and support for open-source PostgreSQL, MongoDB, and Apache Cassandra. Build cloud-native apps effortlessly." />
+	
+		<meta name="schema" content="Hub" />
+	
+		<meta name="permissioned-type" content="public" />
+	
+		<meta name="recommendations" content="true" />
+	
+		<meta name="recommendation_types" content="Training" />
+	
+		<meta name="recommendation_types" content="Certification" />
+	
+		<meta name="breadcrumb_path" content="../breadcrumb/azure-nosql/toc.json" />
+	
+		<meta name="feedback_system" content="Standard" />
+	
+		<meta name="feedback_product_url" content="https://learn.microsoft.com/answers/tags/187/azure-cosmos-db" />
+	
+		<meta name="feedback_help_link_url" content="/answers/tags/187/azure-cosmos-db/" />
+	
+		<meta name="feedback_help_link_type" content="get-help-at-qna" />
+	
+		<meta name="adobe-target" content="true" />
+	
+		<meta name="ms.service" content="azure-cosmos-db" />
+	
+		<meta name="ms.subservice" content="nosql" />
+	
+		<meta name="ms.reviewer" content="mjbrown" />
+	
+		<meta name="ms.author" content="sidandrews" />
+	
+		<meta name="author" content="seesharprun" />
+	
+		<meta name="ms.topic" content="hub-page" />
+	
+		<meta name="ms.date" content="2025-12-17T00:00:00Z" />
+	
+		<meta name="ai-usage" content="ai-generated" />
+	
+		<meta name="document_id" content="a2afe8b7-d1bd-7d35-eca2-21f7212fa516" />
+	
+		<meta name="document_version_independent_id" content="a2afe8b7-d1bd-7d35-eca2-21f7212fa516" />
+	
+		<meta name="updated_at" content="2026-04-27T13:06:00Z" />
+	
+		<meta name="original_content_git_url" content="https://github.com/MicrosoftDocs/nosql-query-docs-pr/blob/live/azure/cosmos-db/index.yml" />
+	
+		<meta name="gitcommit" content="https://github.com/MicrosoftDocs/nosql-query-docs-pr/blob/5d7ff7490aeadd18d72a9b8a0da2d6801255a3d6/azure/cosmos-db/index.yml" />
+	
+		<meta name="git_commit_id" content="5d7ff7490aeadd18d72a9b8a0da2d6801255a3d6" />
+	
+		<meta name="site_name" content="Docs" />
+	
+		<meta name="depot_name" content="Learn.azure-nosql" />
+	
+		<meta name="asset_id" content="cosmos-db/index" />
+	
+		<meta name="moniker_range_name" content="" />
+	
+		<meta name="item_type" content="Content" />
+	
+		<meta name="source_path" content="azure/cosmos-db/index.yml" />
+	
+		<meta name="github_feedback_content_git_url" content="https://github.com/MicrosoftDocs/nosql-query-docs/blob/main/azure/cosmos-db/index.yml" />
+	
+		<meta name="markdown_url" content="https://learn.microsoft.com/en-us/azure/cosmos-db/?accept=text/markdown" />
+	 
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/cd668c2f-f5b3-4573-8ad1-019570e3e2db" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/cc82e69d-afbe-4554-9f4c-6705fc860c42" data-source="generated" />
+	
+
+			<!-- assets and js globals -->
+			
+			<link rel="stylesheet" href="/static/assets/0.4.03398.7756-c1512039/styles/site.css" />
+			
+			<script src="https://wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js"></script>
+			<script src="https://js.monitor.azure.com/scripts/c/ms.jsll-4.min.js"></script>
+			<script src="/_themes/docs.theme/master/en-us/_themes/global/deprecation.js"></script>
+
+			<!-- msdocs global object -->
+			<script id="msdocs-script">
+		var msDocs = {
+  "environment": {
+    "accessLevel": "online",
+    "azurePortalHostname": "portal.azure.com",
+    "reviewFeatures": false,
+    "supportLevel": "production",
+    "systemContent": true,
+    "siteName": "learn",
+    "legacyHosting": false
+  },
+  "data": {
+    "contentLocale": "en-us",
+    "contentDir": "ltr",
+    "userLocale": "en-us",
+    "userDir": "ltr",
+    "pageTemplate": "Hub",
+    "brand": "Azure",
+    "context": {},
+    "standardFeedback": false,
+    "showFeedbackReport": false,
+    "feedbackHelpLinkType": "get-help-at-qna",
+    "feedbackHelpLinkUrl": "/answers/tags/187/azure-cosmos-db/",
+    "feedbackSystem": "Standard",
+    "feedbackGitHubRepo": "",
+    "feedbackProductUrl": "https://learn.microsoft.com/answers/tags/187/azure-cosmos-db",
+    "extendBreadcrumb": false,
+    "isEditDisplayable": false,
+    "isPrivateUnauthorized": false,
+    "hideViewSource": false,
+    "isPermissioned": false,
+    "hasRecommendations": false,
+    "contributors": [
+      {
+        "name": "Saisang",
+        "url": "https://github.com/Saisang"
+      }
+    ]
+  },
+  "functions": {}
+};;
+	</script>
+
+			<!-- base scripts, msdocs global should be before this -->
+			<script src="/static/assets/0.4.03398.7756-c1512039/scripts/en-us/index-docs.js"></script>
+			
+
+			<!-- json-ld -->
+			
+		</head>
+	
+			<body
+				id="body"
+				data-bi-name="body"
+				class="layout-body "
+				lang="en-us"
+				dir="ltr"
+			>
+				<header class="layout-body-header">
+		<div class="header-holder has-default-focus">
+			
+		<a
+			href="#main"
+			
+			style="z-index: 1070"
+			class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body"
+			
+		>
+			Skip to main content
+		</a>
+	
+
+			<div hidden id="cookie-consent-holder" data-test-id="cookie-consent-container"></div>
+			<!-- Unsupported browser warning -->
+			<div
+				id="unsupported-browser"
+				style="background-color: white; color: black; padding: 16px; border-bottom: 1px solid grey;"
+				hidden
+			>
+				<div style="max-width: 800px; margin: 0 auto;">
+					<p style="font-size: 24px">This browser is no longer supported.</p>
+					<p style="font-size: 16px; margin-top: 16px;">
+						Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+					</p>
+					<div style="margin-top: 12px;">
+						<a
+							href="https://go.microsoft.com/fwlink/p/?LinkID=2092881 "
+							style="background-color: #0078d4; border: 1px solid #0078d4; color: white; padding: 6px 12px; border-radius: 2px; display: inline-block;"
+						>
+							Download Microsoft Edge
+						</a>
+						<a
+							href="https://learn.microsoft.com/en-us/lifecycle/faq/internet-explorer-microsoft-edge"
+							style="background-color: white; padding: 6px 12px; border: 1px solid #505050; color: #171717; border-radius: 2px; display: inline-block;"
+						>
+							More info about Internet Explorer and Microsoft Edge
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- site header -->
+			<div
+				id="ms--site-header"
+				data-test-id="site-header-wrapper"
+				itemscope="itemscope"
+				itemtype="http://schema.org/Organization"
+			>
+				<div
+					id="ms--mobile-nav"
+					class="site-header display-none-tablet padding-inline-none gap-none"
+					data-bi-name="mobile-header"
+					data-test-id="mobile-header"
+				></div>
+				<div
+					id="ms--primary-nav"
+					class="site-header display-none display-flex-tablet"
+					data-bi-name="L1-header"
+					data-test-id="primary-header"
+				></div>
+				<div
+					id="ms--secondary-nav"
+					class="site-header display-none display-flex-tablet"
+					data-bi-name="L2-header"
+					data-test-id="secondary-header"
+					
+				></div>
+			</div>
+			
+		<!-- banner -->
+		<div data-banner>
+			<div id="disclaimer-holder"></div>
+			
+		</div>
+		<!-- banner end -->
+	
+		</div>
+	</header>
+				 
+
+				<main
+					id="main"
+					role="main"
+					class="layout-body-main "
+					data-bi-name="content"
+					lang="en-us"
+					dir="ltr"
+				>
+					
+			<div data-main-column class=" ">
+				 <div id="ms--hub-page-content">
+	<section id="hero" data-bi-name="hero" class="hero  has-background-azure has-text-azure-invert background-image-pattern-plus hero-xs background-image-pattern background-size-200">
+		<div class="hero-content">
+			<h1 id="hero-title" class="title is-1">Azure Cosmos DB documentation</h1>
+				<p>Fully managed, distributed NoSQL, relational, and vector database for modern app development. High performance, high availability, and support for open-source PostgreSQL, MongoDB, and Apache Cassandra. Build cloud-native apps effortlessly.</p>
+		</div>
+	</section>
+
+		<section id="highlighted-content" data-bi-name="highlighted-content">
+			<div class="uhf-container padding-block-sm">
+<div class="columns is-multiline">
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="icon-card" class="card is-full-height position-relative">
+				<div class="card-content display-flex">
+					<div class="media align-items-stretch">
+						<div class="media-left display-none display-block-tablet">
+							<div class="image image-64x64" aria-hidden="true">
+								<img src="/en-us/media/hubs/shared/icon-overview.svg?branch=main" alt="" role="presentation" data-linktype="absolute-path">
+							</div>
+						</div>
+						<div class="media-content">
+							<p class="card-supertitle margin-top-none margin-top-xs-tablet">Overview</p>
+							<a href="introduction" class="card-title stretched-link has-external-link-indicator" data-linktype="relative-path">Introduction to Azure Cosmos DB</a>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="icon-card" class="card is-full-height position-relative">
+				<div class="card-content display-flex">
+					<div class="media align-items-stretch">
+						<div class="media-left display-none display-block-tablet">
+							<div class="image image-64x64" aria-hidden="true">
+								<img src="/en-us/media/hubs/shared/icon-architecture.svg?branch=main" alt="" role="presentation" data-linktype="absolute-path">
+							</div>
+						</div>
+						<div class="media-content">
+							<p class="card-supertitle margin-top-none margin-top-xs-tablet">Architecture</p>
+							<a href="vector-database" class="card-title stretched-link has-external-link-indicator" data-linktype="relative-path">Vector Database in Azure Cosmos DB</a>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="icon-card" class="card is-full-height position-relative">
+				<div class="card-content display-flex">
+					<div class="media align-items-stretch">
+						<div class="media-left display-none display-block-tablet">
+							<div class="image image-64x64" aria-hidden="true">
+								<img src="/en-us/media/hubs/shared/icon-reference.svg?branch=main" alt="" role="presentation" data-linktype="absolute-path">
+							</div>
+						</div>
+						<div class="media-content">
+							<p class="card-supertitle margin-top-none margin-top-xs-tablet">Reference</p>
+							<a href="https://azure.microsoft.com/pricing/details/cosmos-db/" class="card-title stretched-link has-external-link-indicator" data-linktype="external">Pricing</a>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="icon-card" class="card is-full-height position-relative">
+				<div class="card-content display-flex">
+					<div class="media align-items-stretch">
+						<div class="media-left display-none display-block-tablet">
+							<div class="image image-64x64" aria-hidden="true">
+								<img src="/en-us/media/hubs/shared/icon-training.svg?branch=main" alt="" role="presentation" data-linktype="absolute-path">
+							</div>
+						</div>
+						<div class="media-content">
+							<p class="card-supertitle margin-top-none margin-top-xs-tablet">Training</p>
+							<a href="/en-us/certifications/azure-cosmos-db-developer-specialty/" class="card-title stretched-link has-external-link-indicator" data-linktype="absolute-path">Certification - Azure Cosmos DB Developer Specialty</a>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="icon-card" class="card is-full-height position-relative">
+				<div class="card-content display-flex">
+					<div class="media align-items-stretch">
+						<div class="media-left display-none display-block-tablet">
+							<div class="image image-64x64" aria-hidden="true">
+								<img src="/en-us/media/hubs/shared/icon-training.svg?branch=main" alt="" role="presentation" data-linktype="absolute-path">
+							</div>
+						</div>
+						<div class="media-content">
+							<p class="card-supertitle margin-top-none margin-top-xs-tablet">Training</p>
+							<a href="/en-us/certifications/azure-developer/" class="card-title stretched-link has-external-link-indicator" data-linktype="absolute-path">Certification - Azure Developer Associate</a>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="icon-card" class="card is-full-height position-relative">
+				<div class="card-content display-flex">
+					<div class="media align-items-stretch">
+						<div class="media-left display-none display-block-tablet">
+							<div class="image image-64x64" aria-hidden="true">
+								<img src="/en-us/media/hubs/shared/icon-tutorial.svg?branch=main" alt="" role="presentation" data-linktype="absolute-path">
+							</div>
+						</div>
+						<div class="media-content">
+							<p class="card-supertitle margin-top-none margin-top-xs-tablet">Tutorial</p>
+							<a href="ai-agents" class="card-title stretched-link has-external-link-indicator" data-linktype="relative-path">AI agents with Azure Cosmos DB</a>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="icon-card" class="card is-full-height position-relative">
+				<div class="card-content display-flex">
+					<div class="media align-items-stretch">
+						<div class="media-left display-none display-block-tablet">
+							<div class="image image-64x64" aria-hidden="true">
+								<img src="/en-us/media/hubs/shared/icon-get-started.svg?branch=main" alt="" role="presentation" data-linktype="absolute-path">
+							</div>
+						</div>
+						<div class="media-content">
+							<p class="card-supertitle margin-top-none margin-top-xs-tablet">Get started</p>
+							<a href="emulator" class="card-title stretched-link has-external-link-indicator" data-linktype="relative-path">Azure Cosmos DB Emulator</a>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+</div>
+			</div>
+		</section>
+
+
+		<section id="conceptual-content" data-bi-name="conceptual-content" class="padding-block-lg">
+			<div class="uhf-container anchor-headings">
+	<h2 class="title is-2 is-responsive margin-top-none ">APIs</h2>
+	<p class="margin-top-xs margin-bottom-sm">Choose from multiple APIs that provide compatibility with popular NoSQL and relational database models for modern applications.</p>
+<div class="columns is-multiline">
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="card" class="card is-full-height">
+				<div class="card-content">
+					<h3 class="card-title color-text font-size-lg">NoSQL</h3>
+						<p class="card-content-description">Build applications using native SQL queries with automatic indexing and schema flexibility for document-based workloads.</p>
+					<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-how-to-guide"></span>
+									</span>
+									<a href="/en-us/cosmos-db/query/overview" class="has-external-link-indicator" data-linktype="absolute-path">SQL queries</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-concept"></span>
+									</span>
+									<a href="nosql/modeling-data" class="has-external-link-indicator" data-linktype="relative-path">Model document data</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-top-xs">
+								<a href="nosql/" class="has-external-link-indicator display-block font-size-sm" data-linktype="relative-path">
+									<span>See more</span>
+									<span class="icon" aria-hidden="true">
+										<span class="docon docon-chevron-right-light"></span>
+									</span>
+								</a>
+							</li>
+					</ul>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="card" class="card is-full-height">
+				<div class="card-content">
+					<h3 class="card-title color-text font-size-lg">MongoDB</h3>
+						<p class="card-content-description">Migrate existing MongoDB applications seamlessly with full wire protocol compatibility and familiar MongoDB tools.</p>
+					<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-reference"></span>
+									</span>
+									<a href="mongodb/feature-support-42" class="has-external-link-indicator" data-linktype="relative-path">Supported features and syntax</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-concept"></span>
+									</span>
+									<a href="mongodb/consistency-mapping" class="has-external-link-indicator" data-linktype="relative-path">Mapping consistency levels</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-concept"></span>
+									</span>
+									<a href="mongodb/custom-commands" class="has-external-link-indicator" data-linktype="relative-path">Extension commands</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-top-xs">
+								<a href="mongodb/" class="has-external-link-indicator display-block font-size-sm" data-linktype="relative-path">
+									<span>See more</span>
+									<span class="icon" aria-hidden="true">
+										<span class="docon docon-chevron-right-light"></span>
+									</span>
+								</a>
+							</li>
+					</ul>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="card" class="card is-full-height">
+				<div class="card-content">
+					<h3 class="card-title color-text font-size-lg">Apache Cassandra</h3>
+						<p class="card-content-description">Build highly scalable applications using the Cassandra Query Language (CQL) with automatic global distribution.</p>
+					<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-reference"></span>
+									</span>
+									<a href="cassandra/support" class="has-external-link-indicator" data-linktype="relative-path">Wire protocol support</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-concept"></span>
+									</span>
+									<a href="cassandra/partitioning" class="has-external-link-indicator" data-linktype="relative-path">Partitioning</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-concept"></span>
+									</span>
+									<a href="cassandra/secondary-indexing" class="has-external-link-indicator" data-linktype="relative-path">Secondary indexing</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-top-xs">
+								<a href="cassandra/" class="has-external-link-indicator display-block font-size-sm" data-linktype="relative-path">
+									<span>See more</span>
+									<span class="icon" aria-hidden="true">
+										<span class="docon docon-chevron-right-light"></span>
+									</span>
+								</a>
+							</li>
+					</ul>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="card" class="card is-full-height">
+				<div class="card-content">
+					<h3 class="card-title color-text font-size-lg">Apache Gremlin</h3>
+						<p class="card-content-description">Create graph-based applications using the Gremlin graph traversal language for complex relationship queries.</p>
+					<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-reference"></span>
+									</span>
+									<a href="gremlin/support" class="has-external-link-indicator" data-linktype="relative-path">Wire protocol support</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-concept"></span>
+									</span>
+									<a href="gremlin/modeling" class="has-external-link-indicator" data-linktype="relative-path">Graph data modeling</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-how-to-guide"></span>
+									</span>
+									<a href="gremlin/bulk-executor-dotnet" class="has-external-link-indicator" data-linktype="relative-path">Import graph data</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-top-xs">
+								<a href="graph/" class="has-external-link-indicator display-block font-size-sm" data-linktype="relative-path">
+									<span>See more</span>
+									<span class="icon" aria-hidden="true">
+										<span class="docon docon-chevron-right-light"></span>
+									</span>
+								</a>
+							</li>
+					</ul>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="card" class="card is-full-height">
+				<div class="card-content">
+					<h3 class="card-title color-text font-size-lg">Table</h3>
+						<p class="card-content-description">Modernize Azure Table Storage applications with premium capabilities and global distribution.</p>
+					<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-reference"></span>
+									</span>
+									<a href="table/support" class="has-external-link-indicator" data-linktype="relative-path">Wire protocol support</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-how-to-guide"></span>
+									</span>
+									<a href="table/find-request-unit-charge" class="has-external-link-indicator" data-linktype="relative-path">Find request unit charge</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-reference"></span>
+									</span>
+									<a href="table/faq" class="has-external-link-indicator" data-linktype="relative-path">FAQ</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-top-xs">
+								<a href="table/" class="has-external-link-indicator display-block font-size-sm" data-linktype="relative-path">
+									<span>See more</span>
+									<span class="icon" aria-hidden="true">
+										<span class="docon docon-chevron-right-light"></span>
+									</span>
+								</a>
+							</li>
+					</ul>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="card" class="card is-full-height">
+				<div class="card-content">
+					<h3 class="card-title color-text font-size-lg">PostgreSQL</h3>
+						<p class="card-content-description">Build distributed relational applications using the familiar PostgreSQL wire protocol with horizontal scaling.</p>
+					<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-concept"></span>
+									</span>
+									<a href="distributed-relational" class="has-external-link-indicator" data-linktype="relative-path">Distributed relational databases</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-how-to-guide"></span>
+									</span>
+									<a href="postgresql/quickstart-app-stacks-python" class="has-external-link-indicator" data-linktype="relative-path">Connect and run SQL commands using Python</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-how-to-guide"></span>
+									</span>
+									<a href="postgresql/howto-modify-distributed-tables" class="has-external-link-indicator" data-linktype="relative-path">Distribute and modify tables</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-top-xs">
+								<a href="postgresql/" class="has-external-link-indicator display-block font-size-sm" data-linktype="relative-path">
+									<span>See more</span>
+									<span class="icon" aria-hidden="true">
+										<span class="docon docon-chevron-right-light"></span>
+									</span>
+								</a>
+							</li>
+					</ul>
+				</div>
+			</article>
+		</div>
+</div>
+	<h2 class="title is-2 is-responsive margin-top-none ">Developer and DevOps guides</h2>
+	<p class="margin-top-xs margin-bottom-sm">Advance your development and DevOps workflows with practical guides, tools, and best practices for building scalable applications on Azure Cosmos DB.</p>
+<div class="columns is-multiline">
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="card" class="card is-full-height">
+				<div class="card-content">
+					<h3 class="card-title color-text font-size-lg">Vector search and AI integration</h3>
+						<p class="card-content-description">Unlock new capabilities in your applications with Azure Cosmos DB by implementing powerful vector search and AI-driven features.</p>
+					<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-concept"></span>
+									</span>
+									<a href="vector-database" class="has-external-link-indicator" data-linktype="relative-path">Vector Database in Azure Cosmos DB</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-concept"></span>
+									</span>
+									<a href="nosql/vector-search" class="has-external-link-indicator" data-linktype="relative-path">Vector search in Azure Cosmos DB for NoSQL</a>
+								</div>
+							</li>
+					</ul>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="card" class="card is-full-height">
+				<div class="card-content">
+					<h3 class="card-title color-text font-size-lg">Infrastructure as code (IaC)</h3>
+						<p class="card-content-description">Automate deployment and management of Azure Cosmos DB resources using modern Infrastructure as Code (IaC) tools like Bicep, ARM templates, and Terraform.</p>
+					<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-quickstart"></span>
+									</span>
+									<a href="nosql/quickstart-template-json" class="has-external-link-indicator" data-linktype="relative-path">Azure Resource Manager templates</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-how-to-guide"></span>
+									</span>
+									<a href="nosql/quickstart-template-bicep" class="has-external-link-indicator" data-linktype="relative-path">Bicep templates</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-how-to-guide"></span>
+									</span>
+									<a href="nosql/quickstart-terraform" class="has-external-link-indicator" data-linktype="relative-path">Terraform provider</a>
+								</div>
+							</li>
+					</ul>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="card" class="card is-full-height">
+				<div class="card-content">
+					<h3 class="card-title color-text font-size-lg">Connect to your database</h3>
+						<p class="card-content-description">Learn how to connect to your Azure Cosmos DB using various tools, drivers, and popular programming languages across different APIs.</p>
+					<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-quickstart"></span>
+									</span>
+									<a href="nosql/quickstart-portal" class="has-external-link-indicator" data-linktype="relative-path">Create an Azure Cosmos DB for NoSQL account</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-quickstart"></span>
+									</span>
+									<a href="postgresql/quickstart-create-portal" class="has-external-link-indicator" data-linktype="relative-path">Create an Azure Cosmos DB for PostgreSQL account</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-quickstart"></span>
+									</span>
+									<a href="mongodb/quickstart-nodejs" class="has-external-link-indicator" data-linktype="relative-path">Create an Azure Cosmos DB for MongoDB account</a>
+								</div>
+							</li>
+					</ul>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="card" class="card is-full-height">
+				<div class="card-content">
+					<h3 class="card-title color-text font-size-lg">Performance optimization</h3>
+						<p class="card-content-description">Discover techniques to improve the speed, efficiency, and scalability of your Azure Cosmos DB applications across different workload patterns.</p>
+					<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-concept"></span>
+									</span>
+									<a href="nosql/performance-tips-dotnet-sdk-v3" class="has-external-link-indicator" data-linktype="relative-path">Performance tips for Azure Cosmos DB for NoSQL</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-how-to-guide"></span>
+									</span>
+									<a href="optimize-cost-reads-writes" class="has-external-link-indicator" data-linktype="relative-path">Optimize request costs</a>
+								</div>
+							</li>
+							<li class="is-unstyled margin-bottom-xxs font-size-sm">
+								<div class="justify-content-flex-start display-flex is-fullwidth font-size-sm has-text-wrap">
+									<span class="icon font-size-md has-text-primary margin-right-xxs" aria-hidden="true">
+										<span class="docon docon-topic-concept"></span>
+									</span>
+									<a href="partitioning" class="has-external-link-indicator" data-linktype="relative-path">Partitioning and horizontal scaling</a>
+								</div>
+							</li>
+					</ul>
+				</div>
+			</article>
+		</div>
+</div>
+			</div>
+		</section>
+
+		<section id="tools" data-bi-name="tools" class="padding-block-lg">
+			<div class="uhf-container anchor-headings padding-bottom-sm">
+	<h2 class="title is-2 is-responsive margin-top-none ">Build your first application</h2>
+	<p class="margin-top-xs margin-bottom-sm">Create a console application using Azure Cosmos DB and your preferred development language and API.</p>
+<div class="columns is-multiline">
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="icon-card" class="card is-full-height position-relative">
+				<div class="card-content display-flex">
+					<div class="media align-items-center">
+						<div class="media-left">
+							<div class="image image-32x32">
+								<img src="media/index/lang-dotnet.svg" alt="" aria-hidden="true" data-linktype="relative-path">
+							</div>
+						</div>
+						<div class="media-content">
+							<a id="net-(nosql)-0" href="nosql/quickstart-dotnet" class="card-title stretched-link has-external-link-indicator" data-linktype="relative-path">.NET (NoSQL)</a>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="icon-card" class="card is-full-height position-relative">
+				<div class="card-content display-flex">
+					<div class="media align-items-center">
+						<div class="media-left">
+							<div class="image image-32x32">
+								<img src="media/index/lang-python.svg" alt="" aria-hidden="true" data-linktype="relative-path">
+							</div>
+						</div>
+						<div class="media-content">
+							<a id="python-(nosql)-1" href="nosql/quickstart-python" class="card-title stretched-link has-external-link-indicator" data-linktype="relative-path">Python (NoSQL)</a>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="icon-card" class="card is-full-height position-relative">
+				<div class="card-content display-flex">
+					<div class="media align-items-center">
+						<div class="media-left">
+							<div class="image image-32x32">
+								<img src="media/index/lang-javascript.svg" alt="" aria-hidden="true" data-linktype="relative-path">
+							</div>
+						</div>
+						<div class="media-content">
+							<a id="javascript-(nosql)-2" href="nosql/quickstart-nodejs?pivots=programming-language-js" class="card-title stretched-link has-external-link-indicator" data-linktype="relative-path">JavaScript (NoSQL)</a>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="icon-card" class="card is-full-height position-relative">
+				<div class="card-content display-flex">
+					<div class="media align-items-center">
+						<div class="media-left">
+							<div class="image image-32x32">
+								<img src="media/index/lang-typescript.svg" alt="" aria-hidden="true" data-linktype="relative-path">
+							</div>
+						</div>
+						<div class="media-content">
+							<a id="typescript-(nosql)-3" href="nosql/quickstart-nodejs?pivots=programming-language-ts" class="card-title stretched-link has-external-link-indicator" data-linktype="relative-path">TypeScript (NoSQL)</a>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="icon-card" class="card is-full-height position-relative">
+				<div class="card-content display-flex">
+					<div class="media align-items-center">
+						<div class="media-left">
+							<div class="image image-32x32">
+								<img src="media/index/lang-java.svg" alt="" aria-hidden="true" data-linktype="relative-path">
+							</div>
+						</div>
+						<div class="media-content">
+							<a id="java-(nosql)-4" href="nosql/quickstart-java" class="card-title stretched-link has-external-link-indicator" data-linktype="relative-path">Java (NoSQL)</a>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="icon-card" class="card is-full-height position-relative">
+				<div class="card-content display-flex">
+					<div class="media align-items-center">
+						<div class="media-left">
+							<div class="image image-32x32">
+								<img src="media/index/lang-go.svg" alt="" aria-hidden="true" data-linktype="relative-path">
+							</div>
+						</div>
+						<div class="media-content">
+							<a id="go-(nosql)-5" href="nosql/quickstart-go" class="card-title stretched-link has-external-link-indicator" data-linktype="relative-path">Go (NoSQL)</a>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+		<div class="column is-6-tablet is-3-desktop">
+			<article data-bi-name="icon-card" class="card is-full-height position-relative">
+				<div class="card-content display-flex">
+					<div class="media align-items-center">
+						<div class="media-left">
+							<div class="image image-32x32">
+								<img src="media/index/lang-rust.svg" alt="" aria-hidden="true" data-linktype="relative-path">
+							</div>
+						</div>
+						<div class="media-content">
+							<a id="rust-(nosql)-6" href="nosql/quickstart-rust" class="card-title stretched-link has-external-link-indicator" data-linktype="relative-path">Rust (NoSQL)</a>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+</div>
+			</div>
+		</section>
+
+		<section id="additional-content" data-bi-name="additional-content" class="padding-block-lg">
+			<div class="uhf-container anchor-headings">
+						<h2 class="title is-2 is-responsive margin-top-none ">Core concepts and architecture</h2>
+						<p class="margin-top-xs margin-bottom-sm">Understand the fundamental concepts that power Azure Cosmos DB's global distribution, consistency, and performance capabilities.</p>
+					<div class="columns is-multiline">
+						<div class="column is-4-tablet is-4-desktop">
+								<article data-bi-name="summary-card" class="card is-full-height">
+									<div class="card-content">
+										<h3 class="card-title color-text font-size-lg">Explore core concepts</h3>
+											<p class="card-content-description">Learn about the essential building blocks of Azure Cosmos DB including resource models, global distribution, and consistency levels.</p>
+										<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="resource-model" class="has-external-link-indicator" data-linktype="relative-path">
+														Resource model
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="distribute-data-globally" class="has-external-link-indicator" data-linktype="relative-path">
+														Distribute data globally
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="partitioning" class="has-external-link-indicator" data-linktype="relative-path">
+														Partitioning
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="request-units" class="has-external-link-indicator" data-linktype="relative-path">
+														Throughput &amp; request units
+													</a>
+												</li>
+										</ul>
+									</div>
+								</article>
+						</div>
+						<div class="column is-4-tablet is-4-desktop">
+								<article data-bi-name="summary-card" class="card is-full-height">
+									<div class="card-content">
+										<h3 class="card-title color-text font-size-lg">Model your data</h3>
+											<p class="card-content-description">Design effective data models and partitioning strategies for optimal performance and cost efficiency.</p>
+										<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="nosql/model-partition-example" class="has-external-link-indicator" data-linktype="relative-path">
+														Data modeling and partitioning
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="concepts-limits" class="has-external-link-indicator" data-linktype="relative-path">
+														Azure Cosmos DB service quotas
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="distributed-nosql" class="has-external-link-indicator" data-linktype="relative-path">
+														Distributed NoSQL databases
+													</a>
+												</li>
+										</ul>
+									</div>
+								</article>
+						</div>
+						<div class="column is-4-tablet is-4-desktop">
+								<article data-bi-name="summary-card" class="card is-full-height">
+									<div class="card-content">
+										<h3 class="card-title color-text font-size-lg">Analytics with Microsoft Fabric</h3>
+											<p class="card-content-description">Integrate Azure Cosmos DB with Microsoft Fabric for analytics.</p>
+										<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="/en-us/fabric/database/mirrored-database/azure-cosmos-db?context=/azure/cosmos-db/context/context" class="has-external-link-indicator" data-linktype="absolute-path">
+														Azure Cosmos DB Mirroring
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="/en-us/fabric/database/cosmos-db/overview?context=/azure/cosmos-db/context/context" class="has-external-link-indicator" data-linktype="absolute-path">
+														Cosmos DB in Microsoft Fabric
+													</a>
+												</li>
+										</ul>
+									</div>
+								</article>
+						</div>
+					</div>
+						<h2 class="title is-2 is-responsive margin-top-none ">Security and compliance</h2>
+						<p class="margin-top-xs margin-bottom-sm">Protect your data and applications with comprehensive security features including encryption, access controls, and compliance certifications.</p>
+					<div class="columns is-multiline">
+						<div class="column is-4-tablet is-4-desktop">
+								<article data-bi-name="summary-card" class="card is-full-height">
+									<div class="card-content">
+										<h3 class="card-title color-text font-size-lg">Security overview</h3>
+											<p class="card-content-description">Comprehensive security features to protect your data at rest, in transit, and during processing.</p>
+										<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="/en-us/security/benchmark/azure/baselines/cosmos-db-security-baseline?context=/azure/cosmos-db/context/context" class="has-external-link-indicator" data-linktype="absolute-path">
+														Security baseline for Azure Cosmos DB
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="database-encryption-at-rest" class="has-external-link-indicator" data-linktype="relative-path">
+														Database encryption at rest
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="how-to-configure-firewall" class="has-external-link-indicator" data-linktype="relative-path">
+														Configure IP firewall
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="compliance" class="has-external-link-indicator" data-linktype="relative-path">
+														Compliance
+													</a>
+												</li>
+										</ul>
+									</div>
+								</article>
+						</div>
+						<div class="column is-4-tablet is-4-desktop">
+								<article data-bi-name="summary-card" class="card is-full-height">
+									<div class="card-content">
+										<h3 class="card-title color-text font-size-lg">Access control and authentication</h3>
+											<p class="card-content-description">Manage user access and authentication using Microsoft Entra ID, role-based access control, and resource tokens.</p>
+										<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="secure-access-to-data" class="has-external-link-indicator" data-linktype="relative-path">
+														Access control in Azure Cosmos DB
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="how-to-setup-rbac" class="has-external-link-indicator" data-linktype="relative-path">
+														Configure role-based access control with Microsoft Entra ID
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="access-key-vault-managed-identity" class="has-external-link-indicator" data-linktype="relative-path">
+														Access Azure Key Vault using managed identities
+													</a>
+												</li>
+										</ul>
+									</div>
+								</article>
+						</div>
+						<div class="column is-4-tablet is-4-desktop">
+								<article data-bi-name="summary-card" class="card is-full-height">
+									<div class="card-content">
+										<h3 class="card-title color-text font-size-lg">Network security</h3>
+											<p class="card-content-description">Secure your database connectivity using virtual networks, private endpoints, and firewall rules.</p>
+										<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="how-to-configure-private-endpoints" class="has-external-link-indicator" data-linktype="relative-path">
+														Configure private endpoints
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="how-to-configure-vnet-service-endpoint" class="has-external-link-indicator" data-linktype="relative-path">
+														Configure virtual network service endpoint
+													</a>
+												</li>
+										</ul>
+									</div>
+								</article>
+						</div>
+					</div>
+						<h2 class="title is-2 is-responsive margin-top-none ">Data migration and tools</h2>
+						<p class="margin-top-xs margin-bottom-sm">Migrate existing data to Azure Cosmos DB using various tools and services designed for different data sources and migration scenarios.</p>
+					<div class="columns is-multiline">
+						<div class="column is-4-tablet is-4-desktop">
+								<article data-bi-name="summary-card" class="card is-full-height">
+									<div class="card-content">
+										<h3 class="card-title color-text font-size-lg">Migration options</h3>
+											<p class="card-content-description">Choose the right migration approach for your data source and target API using Azure native tools and services.</p>
+										<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="cassandra/migrate-data" class="has-external-link-indicator" data-linktype="relative-path">
+														Cassandra Query Language (CQL) shell, Spark – API for Cassandra
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="/en-us/azure/dms/tutorial-mongodb-cosmos-db" class="has-external-link-indicator" data-linktype="absolute-path">
+														Azure Database Migration Service – API for MongoDB
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="migrate" class="has-external-link-indicator" data-linktype="relative-path">
+														Migrate hundreds of terabytes of data
+													</a>
+												</li>
+										</ul>
+									</div>
+								</article>
+						</div>
+						<div class="column is-4-tablet is-4-desktop">
+								<article data-bi-name="summary-card" class="card is-full-height">
+									<div class="card-content">
+										<h3 class="card-title color-text font-size-lg">Migration guides</h3>
+											<p class="card-content-description">Step-by-step migration guides for specific database platforms and migration tools.</p>
+										<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="cosmosdb-sql-api-migrate-data-striim" class="has-external-link-indicator" data-linktype="relative-path">
+														Oracle Database to Azure Cosmos DB API for NoSQL using Striim
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="cassandra/migrate-data-striim" class="has-external-link-indicator" data-linktype="relative-path">
+														Oracle Database to Azure Cosmos DB API for Cassandra using Striim
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="cassandra/oracle-migrate-cosmos-db-arcion" class="has-external-link-indicator" data-linktype="relative-path">
+														Oracle Database to Azure Cosmos DB API for Cassandra using Arcion
+													</a>
+												</li>
+										</ul>
+									</div>
+								</article>
+						</div>
+					</div>
+						<h2 class="title is-2 is-responsive margin-top-none ">Samples and resources</h2>
+						<p class="margin-top-xs margin-bottom-sm">Accelerate your Azure Cosmos DB development with code samples, community resources, and learning materials.</p>
+					<div class="columns is-multiline">
+						<div class="column is-4-tablet is-4-desktop">
+								<article data-bi-name="summary-card" class="card is-full-height">
+									<div class="card-content">
+										<h3 class="card-title color-text font-size-lg">Microsoft samples</h3>
+											<p class="card-content-description">Official Microsoft samples, galleries, and code repositories for Azure Cosmos DB development across all APIs.</p>
+										<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="https://azurecosmosdb.github.io/gallery/" class="has-external-link-indicator" data-linktype="external">
+														Azure Cosmos DB samples gallery
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="/en-us/answers/tags/187/azure-cosmos-db" class="has-external-link-indicator" data-linktype="absolute-path">
+														Microsoft Questions and Answers
+													</a>
+												</li>
+										</ul>
+									</div>
+								</article>
+						</div>
+						<div class="column is-4-tablet is-4-desktop">
+								<article data-bi-name="summary-card" class="card is-full-height">
+									<div class="card-content">
+										<h3 class="card-title color-text font-size-lg">Open-source community</h3>
+											<p class="card-content-description">Community-driven samples, tools, and resources from the Azure Cosmos DB open-source ecosystem.</p>
+										<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="https://github.com/azurecosmosdb/" class="has-external-link-indicator" data-linktype="external">
+														Azure Cosmos DB GitHub organization
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="https://github.com/search?q=org%3Aazure-samples+cosmos&amp;type=repositories" class="has-external-link-indicator" data-linktype="external">
+														Published GitHub samples
+													</a>
+												</li>
+										</ul>
+									</div>
+								</article>
+						</div>
+						<div class="column is-4-tablet is-4-desktop">
+								<article data-bi-name="summary-card" class="card is-full-height">
+									<div class="card-content">
+										<h3 class="card-title color-text font-size-lg">Videos and events</h3>
+											<p class="card-content-description">Stay updated with the latest Azure Cosmos DB developments through conferences, webinars, and educational video series.</p>
+										<ul class="has-line-height-reset margin-left-none margin-bottom-none margin-top-xs">
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="https://www.youtube.com/playlist?list=PLmamF3YkHLoLQhnFsKWhtKu_Tp0uXPFdn" class="has-external-link-indicator" data-linktype="external">
+														Azure Cosmos DB Conf 2025
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="https://www.youtube.com/playlist?list=PLmamF3YkHLoKMzT3gP4oqHiJbjMaiiLEh" class="has-external-link-indicator" data-linktype="external">
+														Azure Cosmos DB TV
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="https://youtube.com/playlist?list=PLmamF3YkHLoJyuoikrskPzpttybXiuFFL&amp;si=ljM012JQu0ReuYEo" class="has-external-link-indicator" data-linktype="external">
+														Azure Cosmos DB &amp; AI Integration
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="https://youtube.com/playlist?list=PLmamF3YkHLoJtcbM2-_e5U3R6tL2LLbig&amp;si=f-jDPhcUvEmvjpoj" class="has-external-link-indicator" data-linktype="external">
+														Customer Stories - Azure Cosmos DB real-world examples
+													</a>
+												</li>
+												<li class="is-unstyled margin-bottom-xxs font-size-sm">
+													<a href="https://youtube.com/playlist?list=PLmamF3YkHLoI69DIwplhBqk-KYoOLEqOs&amp;si=E6Q1NYfKgGDw279m" class="has-external-link-indicator" data-linktype="external">
+														Azure Cosmos DB Design Patterns
+													</a>
+												</li>
+										</ul>
+									</div>
+								</article>
+						</div>
+					</div>
+					<div class="columns">
+						<div class="column is-12 font-size-sm has-line-height-reset">
+							<p>Azure Cosmos DB is a fully managed NoSQL, relational, and vector database for modern app development. Build cloud-native apps with guaranteed speed at any scale, turnkey global distribution, and comprehensive SLA-backed availability.</p>
+<p><strong>Key capabilities:</strong></p>
+<ul>
+<li><strong>Single-digit millisecond response times</strong> with automatic and instant scalability</li>
+<li><strong>Multi-API support</strong> - NoSQL, MongoDB, PostgreSQL, Apache Cassandra, Apache Gremlin, and Table</li>
+<li><strong>AI-powered features</strong> - Vector database, Query Copilot, and seamless Foundry Tools integration</li>
+<li><strong>Enterprise-grade security</strong> - Encryption at rest, role-based access control, and compliance certifications</li>
+<li><strong>Global distribution</strong> - Multi-region writes and data distribution to any Azure region</li>
+</ul>
+<p><strong>Trusted by industry leaders:</strong> OpenAI relies on Azure Cosmos DB to dynamically scale ChatGPT, enabling high reliability and low maintenance for one of the fastest-growing consumer applications ever.</p>
+<p>Get started today with the <strong><a href="emulator" data-linktype="relative-path">Azure Cosmos DB Emulator</a></strong> for local development.</p>
+
+						</div>
+					</div>
+			</div>
+		</section>
+</div>
+
+
+			</div>
+		
+				</main>
+				  <div class="layout-body-footer " data-bi-name="layout-footer">
+		<footer
+			id="footer"
+			data-test-id="footer"
+			data-bi-name="footer"
+			class="footer-layout has-padding has-default-focus border-top  uhf-container"
+			role="contentinfo"
+		>
+			<div class="display-flex gap-xs flex-wrap-wrap is-full-height padding-right-lg-desktop">
+				
+		<a
+			data-mscc-ic="false"
+			href="#"
+			data-bi-name="select-locale"
+			class="locale-selector-link flex-shrink-0 button button-sm button-clear external-link-indicator"
+			id=""
+			title=""
+			><span class="icon" aria-hidden="true"
+				><span class="docon docon-world"></span></span
+			><span class="local-selector-link-text">en-us</span></a
+		>
+	 <div class="ccpa-privacy-link" data-ccpa-privacy-link hidden>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://aka.ms/yourcaliforniaprivacychoices"
+			data-bi-name="your-privacy-choices"
+			class="button button-sm button-clear flex-shrink-0 external-link-indicator"
+			id=""
+			title=""
+			>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 30 14"
+			xml:space="preserve"
+			height="16"
+			width="43"
+			aria-hidden="true"
+			focusable="false"
+		>
+			<path
+				d="M7.4 12.8h6.8l3.1-11.6H7.4C4.2 1.2 1.6 3.8 1.6 7s2.6 5.8 5.8 5.8z"
+				style="fill-rule:evenodd;clip-rule:evenodd;fill:#fff"
+			></path>
+			<path
+				d="M22.6 0H7.4c-3.9 0-7 3.1-7 7s3.1 7 7 7h15.2c3.9 0 7-3.1 7-7s-3.2-7-7-7zm-21 7c0-3.2 2.6-5.8 5.8-5.8h9.9l-3.1 11.6H7.4c-3.2 0-5.8-2.6-5.8-5.8z"
+				style="fill-rule:evenodd;clip-rule:evenodd;fill:#06f"
+			></path>
+			<path
+				d="M24.6 4c.2.2.2.6 0 .8L22.5 7l2.2 2.2c.2.2.2.6 0 .8-.2.2-.6.2-.8 0l-2.2-2.2-2.2 2.2c-.2.2-.6.2-.8 0-.2-.2-.2-.6 0-.8L20.8 7l-2.2-2.2c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0l2.2 2.2L23.8 4c.2-.2.6-.2.8 0z"
+				style="fill:#fff"
+			></path>
+			<path
+				d="M12.7 4.1c.2.2.3.6.1.8L8.6 9.8c-.1.1-.2.2-.3.2-.2.1-.5.1-.7-.1L5.4 7.7c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0L8 8.6l3.8-4.5c.2-.2.6-.2.9 0z"
+				style="fill:#06f"
+			></path>
+		</svg>
+	
+			<span>Your Privacy Choices</span></a
+		>
+	
+	</div>
+				<div class="flex-shrink-0">
+		<div class="dropdown has-caret-up">
+			<button
+				data-test-id="theme-selector-button"
+				class="dropdown-trigger button button-clear button-sm inner-focus theme-dropdown-trigger"
+				aria-controls="{{ themeMenuId }}"
+				aria-expanded="false"
+				title="Theme"
+				data-bi-name="theme"
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-sun"></span></span>
+				<span>Theme</span>
+				<span class="icon expanded-indicator" aria-hidden="true">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<div class="dropdown-menu" id="{{ themeMenuId }}" role="menu">
+				<ul class="theme-selector padding-xxs" data-test-id="theme-dropdown-menu">
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="light"
+						>
+							<span class="theme-light margin-right-xxs">
+								<span
+									class="theme-selector-icon border display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> Light </span>
+						</button>
+					</li>
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="dark"
+						>
+							<span class="theme-dark margin-right-xxs">
+								<span
+									class="border theme-selector-icon display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> Dark </span>
+						</button>
+					</li>
+					<li class="theme display-block">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							data-theme-to="high-contrast"
+						>
+							<span class="theme-high-contrast margin-right-xxs">
+								<span
+									class="border theme-selector-icon display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span role="menuitem"> High contrast </span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+			</div>
+			<ul class="links" data-bi-name="footerlinks">
+				<li class="manage-cookies-holder" hidden=""></li>
+				<li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/principles-for-ai-generated-content"
+			data-bi-name="aiDisclaimer"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>AI Disclaimer</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/previous-versions/"
+			data-bi-name="archivelink"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Previous Versions</a
+		>
+	
+	</li> <li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://techcommunity.microsoft.com/t5/microsoft-learn-blog/bg-p/MicrosoftLearnBlog"
+			data-bi-name="bloglink"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Blog</a
+		>
+	
+	</li> <li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/contribute"
+			data-bi-name="contributorGuide"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Contribute</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://go.microsoft.com/fwlink/?LinkId=521839"
+			data-bi-name="privacy"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Privacy</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://go.microsoft.com/fwlink/?linkid=2259814"
+			data-bi-name="consumer-health-privacy"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Consumer Health Privacy</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/legal/termsofuse"
+			data-bi-name="termsofuse"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Terms of Use</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://www.microsoft.com/legal/intellectualproperty/Trademarks/"
+			data-bi-name="trademarks"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Trademarks</a
+		>
+	
+	</li>
+				<li>&copy; Microsoft 2026</li>
+			</ul>
+		</footer>
+	</footer>
+			</body>
+		</html>

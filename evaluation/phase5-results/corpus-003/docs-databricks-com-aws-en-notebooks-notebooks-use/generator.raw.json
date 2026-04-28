@@ -1,0 +1,39 @@
+```json
+[
+    {
+        "question": "What are the two Python packages required for Python code formatting in Databricks notebooks?",
+        "answer": "black and tokenize-rt",
+        "supporting_sentences": [
+            "Databricks supports Python code formatting using black within the notebook. The notebook must be attached to a cluster with black and tokenize-rt Python packages installed."
+        ]
+    },
+    {
+        "question": "What keyboard shortcut can be used to format a single code cell in a Databricks notebook?",
+        "answer": "Cmd+Shift+F",
+        "supporting_sentences": [
+            "Keyboard shortcut: Press Cmd+Shift+F."
+        ]
+    },
+    {
+        "question": "Which Databricks Runtime versions preinstall the Python packages required for code formatting?",
+        "answer": "Databricks Runtime 11.3 LTS and above",
+        "supporting_sentences": [
+            "On Databricks Runtime 11.3 LTS and above, Databricks preinstalls black and tokenize-rt. You can use the formatter directly without needing to install these libraries."
+        ]
+    },
+    {
+        "question": "What is the implicit DataFrame variable name assigned to SQL cell results in a Databricks notebook?",
+        "answer": "_sqldf",
+        "supporting_sentences": [
+            "In a Databricks notebook, results from a SQL language cell are automatically made available as an implicit DataFrame assigned to the variable _sqldf."
+        ]
+    },
+    {
+        "question": "What are the supported language magic commands in Databricks notebooks?",
+        "answer": "%python, %r, %scala, and %sql",
+        "supporting_sentences": [
+            "The supported magic commands are: %python, %r, %scala, and %sql."
+        ]
+    }
+]
+```

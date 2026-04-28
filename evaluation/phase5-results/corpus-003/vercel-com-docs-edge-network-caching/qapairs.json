@@ -1,0 +1,50 @@
+[
+  {
+    "question": "What types of content does Vercel's CDN cache by default?",
+    "answer": "Vercel's CDN caches content including pages, API responses, and static assets.",
+    "supporting_sentences": [
+      "Vercel's CDN caches your content (including pages, API responses, and static assets) in data centers around the world, closer to your users than your origin server."
+    ]
+  },
+  {
+    "question": "Which pricing plans include CDN caching on Vercel?",
+    "answer": "CDN caching is available for all deployments and domains on your account, regardless of the pricing plan.",
+    "supporting_sentences": [
+      "CDN caching is available for all deployments and domains on your account, regardless of the pricing plan."
+    ]
+  },
+  {
+    "question": "What are the two ways to cache content on Vercel's CDN?",
+    "answer": "The two ways to cache content are static file caching (automatic) and using Incremental Static Regeneration or Cache-Control headers for dynamic content.",
+    "supporting_sentences": [
+      "There are two ways to cache content:",
+      "Static file caching is automatic for all deployments, requiring no manual configuration",
+      "To cache dynamic content that doesn't require real-time updates, use Incremental Static Regeneration. For more granular control, you can use Cache-Control headers."
+    ]
+  },
+  {
+    "question": "What Cache-Control directives must be included to cache the response of Vercel Functions on the CDN?",
+    "answer": "To cache the response of Functions on Vercel's CDN, you must include Cache-Control headers with any of the following directives: s-maxage=N, s-maxage=N, stale-while-revalidate=Z, or s-maxage=N, stale-while-revalidate=Z, stale-if-error=Z.",
+    "supporting_sentences": [
+      "To cache the response of Functions on Vercel's CDN, you must include Cache-Control headers with any of the following directives:",
+      "s-maxage=N",
+      "s-maxage=N, stale-while-revalidate=Z",
+      "s-maxage=N, stale-while-revalidate=Z, stale-if-error=Z"
+    ]
+  },
+  {
+    "question": "What are the criteria for a server response to be successfully cached with Vercel's CDN?",
+    "answer": "The criteria for a server response to be successfully cached with Vercel's CDN include: using GET or HEAD method, no Range or Authorization header in the request, response status codes 200, 404, 410, 301, 302, 307, or 308, response not exceeding 10MB, no set-cookie header, no private, no-cache, or no-store directives in Cache-Control, and no Vary: * header.",
+    "supporting_sentences": [
+      "For server responses to be successfully cached with Vercel's CDN, the following criteria must be met:",
+      "Request uses GET or HEAD method.",
+      "Request doesn't contain Range header.",
+      "Request doesn't contain Authorization header.",
+      "Response uses 200, 404, 410, 301, 302, 307 or 308 status code.",
+      "Response doesn't exceed 10MB in content length.",
+      "Response doesn't contain the set-cookie header.",
+      "Response doesn't contain the private, no-cache or no-store directives in the Cache-Control header.",
+      "Response doesn't contain Vary: * header, which is treated as equivalent to Cache-Control: private."
+    ]
+  }
+]

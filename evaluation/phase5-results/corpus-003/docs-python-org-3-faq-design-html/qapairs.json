@@ -1,0 +1,42 @@
+[
+  {
+    "question": "Why does Guido van Rossum believe indentation for grouping in Python is elegant?",
+    "answer": "Guido van Rossum believes that using indentation for grouping is extremely elegant and contributes a lot to the clarity of the average Python program. Most people learn to love this feature after a while.",
+    "supporting_sentences": [
+      "Guido van Rossum believes that using indentation for grouping is extremely elegant and contributes a lot to the clarity of the average Python program.",
+      "Most people learn to love this feature after a while."
+    ]
+  },
+  {
+    "question": "What is the underlying reason for the floating-point arithmetic result like `1.2 - 1.0` yielding `0.19999999999999996` in Python?",
+    "answer": "This behavior is due to how the underlying platform handles floating-point numbers, specifically because the `float` type in CPython uses a C `double` for storage, which stores values in binary floating-point with a fixed precision (typically 53 bits).",
+    "supporting_sentences": [
+      "This has little to do with Python, and much more to do with how the underlying platform handles floating-point numbers.",
+      "The `float` type in CPython uses a C `double` for storage. A `float` object\u2019s value is stored in binary floating-point with a fixed precision (typically 53 bits) and Python uses C operations, which in turn rely on the hardware implementation in the processor, to perform floating-point operations."
+    ]
+  },
+  {
+    "question": "What is one advantage of Python strings being immutable?",
+    "answer": "One advantage is performance: knowing that a string is immutable means we can allocate space for it at creation time, and the storage requirements are fixed and unchanging.",
+    "supporting_sentences": [
+      "One is performance: knowing that a string is immutable means we can allocate space for it at creation time, and the storage requirements are fixed and unchanging."
+    ]
+  },
+  {
+    "question": "What is the purpose of using `self` explicitly in Python methods?",
+    "answer": "Using `self` explicitly makes it clear that you are referencing an instance variable or method, avoids the need for special syntax when calling methods from a particular class, and solves the syntactic problem of distinguishing between instance variable assignments and local variable assignments.",
+    "supporting_sentences": [
+      "First, it\u2019s more obvious that you are using a method or instance attribute instead of a local variable. Reading `self.x` or `self.meth()` makes it absolutely clear that an instance variable or method is used even if you don\u2019t know the class definition by heart.",
+      "Second, it means that no special syntax is necessary if you want to explicitly reference or call the method from a particular class.",
+      "Finally, for instance variables it solves a syntactic problem with assignment: since local variables in Python are (by definition!) those variables to which a value is assigned in a function body (and that aren\u2019t explicitly declared global), there has to be some way to tell the interpreter that an assignment was meant to assign to an instance variable instead of to a local variable, and it should preferably be syntactic (for efficiency reasons)."
+    ]
+  },
+  {
+    "question": "What does the `with` statement in Python ensure when handling files in a loop?",
+    "answer": "The `with` statement ensures that file objects are explicitly closed regardless of the memory management scheme, preventing potential issues like running out of file descriptors.",
+    "supporting_sentences": [
+      "If you want to write code that will work with any Python implementation, you should explicitly close the file or use the `with` statement; this will work regardless of memory management scheme:",
+      "For this specific case using CPython\u2019s reference counting and destructor scheme, each new assignment to `f` closes the previous file. With a traditional GC, however, those file objects will only get collected (and closed) at varying and possibly long intervals."
+    ]
+  }
+]

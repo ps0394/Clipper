@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "The purpose is to ensure backslashes are not handled in any special way, so patterns like r\"\\n\" are interpreted as two characters ('\\' and 'n'), making it easier to write regular expressions.",
+    "run_index": 0,
+    "tokens_in": 10667,
+    "tokens_out": 42
+  },
+  {
+    "pair_index": 1,
+    "answer": "A|B, where A and B can be arbitrary REs, creates a regular expression that will match either A or B. An arbitrary number of REs can be separated by the '|' in this way. As the target string is scanned, REs separated by '|' are tried from left to right. When one pattern completely matches, that branch is accepted. This means that once A matches, B will not be tested further, even if it would produce a longer overall match. In other words, the '|' operator is never greedy. To match a literal '|', use \\|, or enclose it inside a character class, as in [|].",
+    "run_index": 0,
+    "tokens_in": 10656,
+    "tokens_out": 135
+  },
+  {
+    "pair_index": 2,
+    "answer": "Make the '.' special character match any character at all, including a newline; without this flag, '.' will match anything except a newline.",
+    "run_index": 0,
+    "tokens_in": 10658,
+    "tokens_out": 28
+  },
+  {
+    "pair_index": 3,
+    "answer": "Greedy quantifiers match as much text as possible, while non-greedy quantifiers (created by adding '?' after the quantifier) match as few characters as possible.",
+    "run_index": 0,
+    "tokens_in": 10661,
+    "tokens_out": 36
+  },
+  {
+    "pair_index": 4,
+    "answer": "Escape special characters in pattern. This is useful if you want to match an arbitrary literal string that may have regular expression metacharacters in it.",
+    "run_index": 0,
+    "tokens_in": 10658,
+    "tokens_out": 30
+  }
+]

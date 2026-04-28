@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer is missing the required information \"BSON documents\" which is part of the ground-truth answer.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 563,
+    "tokens_out": 28
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, with only minor wording differences.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 591,
+    "tokens_out": 25
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, indicating that a schema is not required for a collection in MongoDB.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 572,
+    "tokens_out": 32
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, including the lack of direct SQL support and the availability of a rich query language and the MongoDB Connector for BI.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 615,
+    "tokens_out": 41
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, explaining that MongoDB's use of BSON objects instead of strings prevents traditional SQL injection attacks.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 601,
+    "tokens_out": 36
+  }
+]

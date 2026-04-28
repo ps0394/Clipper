@@ -1,0 +1,110 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the recommended time-to-live (TTL) value for DNS data caching of Amazon RDS DB instances to avoid connection failures after a failover?",
+      "answer": "Less than 30 seconds.",
+      "supporting_sentences": [
+        "If your client application is caching the Domain Name Service (DNS) data of your DB instances, set a time-to-live (TTL) value of less than 30 seconds.",
+        "The underlying IP address of a DB instance can change after a failover. Caching the DNS data for an extended time can thus lead to connection failures."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the recommended time-to-live (TTL) value for DNS data caching of Amazon RDS DB instances to avoid connection failures after a failover?",
+      "answer": "Less than 30 seconds.",
+      "supporting_sentences": [
+        "If your client application is caching the Domain Name Service (DNS) data of your DB instances, set a time-to-live (TTL) value of less than 30 seconds.",
+        "The underlying IP address of a DB instance can change after a failover. Caching the DNS data for an extended time can thus lead to connection failures."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the maximum recommended number of tables across all databases in a MySQL or MariaDB DB instance to avoid performance degradation?",
+      "answer": "Fewer than 10,000 tables.",
+      "supporting_sentences": [
+        "We recommend having fewer than 10,000 tables total across all of the databases in a DB instance.",
+        "When there is performance degradation because of a large number of tables (more than 10 thousand), it is caused by MySQL working with storage files, including opening and closing them."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the maximum recommended number of tables across all databases in a MySQL or MariaDB DB instance to avoid performance degradation?",
+      "answer": "Fewer than 10,000 tables.",
+      "supporting_sentences": [
+        "We recommend having fewer than 10,000 tables total across all of the databases in a DB instance.",
+        "When there is performance degradation because of a large number of tables (more than 10 thousand), it is caused by MySQL working with storage files, including opening and closing them."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Which storage engine is recommended and supported for MySQL DB instances on Amazon RDS?",
+      "answer": "InnoDB.",
+      "supporting_sentences": [
+        "InnoDB is the recommended and supported storage engine for MySQL DB instances on Amazon RDS.",
+        "The point-in-time restore and snapshot restore features of Amazon RDS for MySQL require a crash-recoverable storage engine. These features are supported for the InnoDB storage engine only."
+      ]
+    },
+    "edited_pair": {
+      "question": "Which storage engine is recommended and supported for MySQL DB instances on Amazon RDS?",
+      "answer": "InnoDB.",
+      "supporting_sentences": [
+        "InnoDB is the recommended and supported storage engine for MySQL DB instances on Amazon RDS.",
+        "The point-in-time restore and snapshot restore features of Amazon RDS for MySQL require a crash-recoverable storage engine. These features are supported for the InnoDB storage engine only."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What should you disable during data loading into a PostgreSQL DB instance to improve efficiency?",
+      "answer": "The PostgreSQL autovacuum parameter and the synchronous_commit parameter.",
+      "supporting_sentences": [
+        "Disable the synchronous_commit parameter.",
+        "Disable the PostgreSQL autovacuum parameter."
+      ]
+    },
+    "edited_pair": {
+      "question": "What should you disable during data loading into a PostgreSQL DB instance to improve efficiency?",
+      "answer": "The PostgreSQL autovacuum parameter and the synchronous_commit parameter.",
+      "supporting_sentences": [
+        "Disable the synchronous_commit parameter.",
+        "Disable the PostgreSQL autovacuum parameter."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the three modes that should not be enabled for a Multi-AZ deployment with a SQL Server DB instance?",
+      "answer": "Simple recover mode, offline mode, and read-only mode.",
+      "supporting_sentences": [
+        "We recommend that you do not enable the following modes because they turn off transaction logging, which is required for Multi-AZ: Simple recover mode, Offline mode, Read-only mode."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the three modes that should not be enabled for a Multi-AZ deployment with a SQL Server DB instance?",
+      "answer": "Simple recover mode, offline mode, and read-only mode.",
+      "supporting_sentences": [
+        "We recommend that you do not enable the following modes because they turn off transaction logging, which is required for Multi-AZ: Simple recover mode, Offline mode, Read-only mode."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

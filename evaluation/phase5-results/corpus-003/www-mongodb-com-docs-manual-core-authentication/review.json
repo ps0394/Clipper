@@ -1,0 +1,108 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the status of LDAP authentication and authorization in MongoDB 8.0?",
+      "answer": "LDAP authentication and authorization is deprecated in MongoDB 8.0 but will continue to operate without changes throughout its lifetime. It will be removed in a future major release.",
+      "supporting_sentences": [
+        "Starting in MongoDB 8.0, LDAP authentication and authorization is deprecated.",
+        "LDAP is available and will continue to operate without changes throughout the lifetime of MongoDB 8.",
+        "LDAP will be removed in a future major release."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the status of LDAP authentication and authorization in MongoDB 8.0?",
+      "answer": "LDAP authentication and authorization is deprecated in MongoDB 8.0 but will continue to operate without changes throughout its lifetime. It will be removed in a future major release.",
+      "supporting_sentences": [
+        "Starting in MongoDB 8.0, LDAP authentication and authorization is deprecated.",
+        "LDAP is available and will continue to operate without changes throughout the lifetime of MongoDB 8.",
+        "LDAP will be removed in a future major release."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is required for a client to access MongoDB when access control is enabled?",
+      "answer": "When access control is enabled, MongoDB requires all clients to authenticate themselves to determine their access.",
+      "supporting_sentences": [
+        "When access control (authorization) is enabled, MongoDB requires all clients to authenticate themselves in order to determine their access."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is required for a client to access MongoDB when access control is enabled?",
+      "answer": "When access control is enabled, MongoDB requires all clients to authenticate themselves to determine their access.",
+      "supporting_sentences": [
+        "When access control (authorization) is enabled, MongoDB requires all clients to authenticate themselves in order to determine their access."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What type of connection is required for X.509 certificate authentication in MongoDB?",
+      "answer": "X.509 certificate authentication requires a secure TLS/SSL connection.",
+      "supporting_sentences": [
+        "X.509 certificate authentication requires a secure TLS/SSL connection."
+      ]
+    },
+    "edited_pair": {
+      "question": "What type of connection is required for X.509 certificate authentication in MongoDB?",
+      "answer": "X.509 certificate authentication requires a secure TLS/SSL connection.",
+      "supporting_sentences": [
+        "X.509 certificate authentication requires a secure TLS/SSL connection."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the prerequisites for using Kerberos authentication with MongoDB?",
+      "answer": "To use MongoDB with Kerberos, you must have a properly configured Kerberos deployment, configured Kerberos service principals for MongoDB, and a Kerberos user principal added to MongoDB.",
+      "supporting_sentences": [
+        "To use MongoDB with Kerberos, you must have a properly configured Kerberos deployment, configured Kerberos service principals for MongoDB, and a Kerberos user principal added to MongoDB."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the prerequisites for using Kerberos authentication with MongoDB?",
+      "answer": "To use MongoDB with Kerberos, you must have a properly configured Kerberos deployment, configured Kerberos service principals for MongoDB, and a Kerberos user principal added to MongoDB.",
+      "supporting_sentences": [
+        "To use MongoDB with Kerberos, you must have a properly configured Kerberos deployment, configured Kerberos service principals for MongoDB, and a Kerberos user principal added to MongoDB."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What authentication layer does MongoDB Enterprise support for single sign-on with third-party identity providers?",
+      "answer": "MongoDB Enterprise supports OpenID Connect authentication, which is an authentication layer built on top of OAuth2.",
+      "supporting_sentences": [
+        "MongoDB Enterprise supports OpenID Connect authentication. OpenID Connect is an authentication layer built on top of OAuth2.",
+        "You can use OpenID Connect to configure single sign-on between your MongoDB database and a third-party identity provider."
+      ]
+    },
+    "edited_pair": {
+      "question": "What authentication layer does MongoDB Enterprise support for single sign-on with third-party identity providers?",
+      "answer": "MongoDB Enterprise supports OpenID Connect authentication, which is an authentication layer built on top of OAuth2.",
+      "supporting_sentences": [
+        "MongoDB Enterprise supports OpenID Connect authentication. OpenID Connect is an authentication layer built on top of OAuth2.",
+        "You can use OpenID Connect to configure single sign-on between your MongoDB database and a third-party identity provider."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

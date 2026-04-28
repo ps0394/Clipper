@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "INET (i.e. IPv4) sockets and STREAM (i.e. TCP) sockets",
+    "run_index": 0,
+    "tokens_in": 4549,
+    "tokens_out": 19
+  },
+  {
+    "pair_index": 1,
+    "answer": "bind",
+    "run_index": 0,
+    "tokens_in": 4550,
+    "tokens_out": 2
+  },
+  {
+    "pair_index": 2,
+    "answer": "When a recv returns 0 bytes, it means the other side has closed (or is in the process of closing) the connection. You will not receive any more data on this connection. Ever.",
+    "run_index": 0,
+    "tokens_in": 4549,
+    "tokens_out": 41
+  },
+  {
+    "pair_index": 3,
+    "answer": "The `listen` method tells the socket library that we want it to queue up as many as a specified number of connect requests before refusing outside connections.",
+    "run_index": 0,
+    "tokens_in": 4547,
+    "tokens_out": 31
+  },
+  {
+    "pair_index": 4,
+    "answer": "The shutdown is an advisory to the socket at the other end. Depending on the argument you pass it, it can mean \u201cI\u2019m not going to send anymore, but I\u2019ll still listen\u201d, or \u201cI\u2019m not listening, good riddance!\u201d.",
+    "run_index": 0,
+    "tokens_in": 4552,
+    "tokens_out": 51
+  }
+]

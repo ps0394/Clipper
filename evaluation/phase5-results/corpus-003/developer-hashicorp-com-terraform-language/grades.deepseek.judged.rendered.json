@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer matches the ground truth exactly in factual content, stating the same primary purpose.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 550,
+    "tokens_out": 22
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer adds \"resource\" which is not part of the ground truth's list of basic syntax elements, and omits none, but the ground truth explicitly states three specific elements, and the candidate's inclusion of an extra, unlisted element changes the factual answer.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 552,
+    "tokens_out": 59
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer provides the same factual content as the ground truth, specifying the identical CIDR block.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 570,
+    "tokens_out": 24
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer exactly matches the ground truth in factual content.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 559,
+    "tokens_out": 16
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "not_in_document",
+    "rationale": "The candidate answer explicitly states \"not in document,\" which matches the specified condition for this judgment.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 554,
+    "tokens_out": 26
+  }
+]

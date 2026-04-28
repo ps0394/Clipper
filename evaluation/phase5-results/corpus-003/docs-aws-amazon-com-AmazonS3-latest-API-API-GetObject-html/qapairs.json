@@ -1,0 +1,37 @@
+[
+  {
+    "question": "What are the two request styles supported for general purpose buckets when using the GetObject API?",
+    "answer": "Both virtual-hosted-style requests and path-style requests are supported for general purpose buckets.",
+    "supporting_sentences": [
+      "General purpose buckets - Both the virtual-hosted-style requests and the path-style requests are supported."
+    ]
+  },
+  {
+    "question": "What type of requests are NOT supported for directory buckets in Amazon S3?",
+    "answer": "Path-style requests are not supported for directory buckets.",
+    "supporting_sentences": [
+      "Directory buckets - Only virtual-hosted-style requests are supported. Path-style requests are not supported."
+    ]
+  },
+  {
+    "question": "What permissions are required to access a specific version of an object using the GetObject API with a versionId in the request header?",
+    "answer": "The `s3:GetObjectVersion` permission is required to access a specific version of an object.",
+    "supporting_sentences": [
+      "If you include a versionId in your request header, you must have the s3:GetObjectVersion permission to access a specific version of an object."
+    ]
+  },
+  {
+    "question": "Which storage classes require restoring a copy before retrieving an object using the GetObject API?",
+    "answer": "The S3 Glacier Flexible Retrieval storage class, S3 Glacier Deep Archive storage class, S3 Intelligent-Tiering Archive Access tier, and S3 Intelligent-Tiering Deep Archive Access tier require restoring a copy before retrieving an object.",
+    "supporting_sentences": [
+      "If the object you are retrieving is stored in the S3 Glacier Flexible Retrieval storage class, the S3 Glacier Deep Archive storage class, the S3 Intelligent-Tiering Archive Access tier, or the S3 Intelligent-Tiering Deep Archive Access tier, before you can retrieve the object you must first restore a copy using RestoreObject."
+    ]
+  },
+  {
+    "question": "What are the only two supported options for server-side encryption in directory buckets?",
+    "answer": "The only two supported options for server-side encryption in directory buckets are SSE-S3 and SSE-KMS.",
+    "supporting_sentences": [
+      "Directory buckets - For directory buckets, there are only two supported options for server-side encryption: SSE-S3 and SSE-KMS."
+    ]
+  }
+]

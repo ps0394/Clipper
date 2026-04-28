@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "Child modules can expose resource attributes to parent modules.\nRoot modules can display values in CLI output.\nOther Terraform configurations using remote state can access root module outputs with the terraform_remote_state data source.",
+    "run_index": 0,
+    "tokens_in": 1161,
+    "tokens_out": 39
+  },
+  {
+    "pair_index": 1,
+    "answer": "module.<CHILD_MODULE_NAME>.<OUTPUT_NAME>",
+    "run_index": 0,
+    "tokens_in": 1160,
+    "tokens_out": 12
+  },
+  {
+    "pair_index": 2,
+    "answer": "Trying to access a sensitive output value directly in the CLI displays a redacted message instead of the actual value.",
+    "run_index": 0,
+    "tokens_in": 1160,
+    "tokens_out": 23
+  },
+  {
+    "pair_index": 3,
+    "answer": "module.<CHILD_MODULE_NAME>.<OUTPUT_NAME>",
+    "run_index": 0,
+    "tokens_in": 1164,
+    "tokens_out": 12
+  },
+  {
+    "pair_index": 4,
+    "answer": "Terraform stores the values of sensitive outputs in your state. If you use the terraform output CLI command with the -json or -raw flags, Terraform displays sensitive outputs in plain text.",
+    "run_index": 0,
+    "tokens_in": 1169,
+    "tokens_out": 37
+  }
+]

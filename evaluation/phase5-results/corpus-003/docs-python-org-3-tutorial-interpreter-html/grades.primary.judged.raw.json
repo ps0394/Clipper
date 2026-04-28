@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer matches the ground-truth answer exactly, conveying the same factual content.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 573,
+    "tokens_out": 21
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, differing only in wording and formatting.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 569,
+    "tokens_out": 26
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly conveys the same fact as the ground-truth answer, that `sys.argv[0]` is set to `'-'`.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 574,
+    "tokens_out": 34
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, differing only in wording.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 583,
+    "tokens_out": 24
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer does not convey the same facts as the ground-truth answer, as it omits the information about entering interactive mode afterwards.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 580,
+    "tokens_out": 33
+  }
+]

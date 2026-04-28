@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "Static files (pages, API responses, and static assets) are automatically cached for all deployments.",
+    "run_index": 0,
+    "tokens_in": 5396,
+    "tokens_out": 20
+  },
+  {
+    "pair_index": 1,
+    "answer": "CDN caching is available for all deployments and domains on your account, regardless of the pricing plan.",
+    "run_index": 0,
+    "tokens_in": 5393,
+    "tokens_out": 21
+  },
+  {
+    "pair_index": 2,
+    "answer": "Static file caching and Incremental Static Regeneration",
+    "run_index": 0,
+    "tokens_in": 5397,
+    "tokens_out": 10
+  },
+  {
+    "pair_index": 3,
+    "answer": "s-maxage=N\n\ns-maxage=N, stale-while-revalidate=Z\n\ns-maxage=N, stale-while-revalidate=Z, stale-if-error=Z",
+    "run_index": 0,
+    "tokens_in": 5402,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 4,
+    "answer": "Request uses GET or HEAD method.\n\nRequest doesn't contain Range header.\n\nRequest doesn't contain Authorization header.\n\nResponse uses 200, 404, 410, 301, 302, 307 or 308 status code.\n\nResponse doesn't exceed 10MB in content length.\n\nResponse doesn't contain the set-cookie header.\n\nResponse doesn't contain the private, no-cache or no-store directives in the Cache-Control header.\n\nResponse doesn't contain Vary: * header, which is treated as equivalent to Cache-Control: private.",
+    "run_index": 0,
+    "tokens_in": 5401,
+    "tokens_out": 101
+  }
+]

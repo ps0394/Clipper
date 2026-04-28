@@ -1,0 +1,102 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of the `CancellationToken` struct in .NET?",
+      "answer": "Propagates notification that operations should be canceled.",
+      "supporting_sentences": [
+        "Propagates notification that operations should be canceled."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of the `CancellationToken` struct in .NET?",
+      "answer": "Propagates notification that operations should be canceled.",
+      "supporting_sentences": [
+        "Propagates notification that operations should be canceled."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "How do you create a cancellation token in .NET?",
+      "answer": "By instantiating a `CancellationTokenSource` object and retrieving the token from its `CancellationTokenSource.Token` property.",
+      "supporting_sentences": [
+        "You create a cancellation token by instantiating a CancellationTokenSource object, which manages cancellation tokens retrieved from its CancellationTokenSource.Token property."
+      ]
+    },
+    "edited_pair": {
+      "question": "How do you create a cancellation token in .NET?",
+      "answer": "By instantiating a `CancellationTokenSource` object and retrieving the token from its `CancellationTokenSource.Token` property.",
+      "supporting_sentences": [
+        "You create a cancellation token by instantiating a CancellationTokenSource object, which manages cancellation tokens retrieved from its CancellationTokenSource.Token property."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens to the `IsCancellationRequested` property of a cancellation token when `CancellationTokenSource.Cancel` is called?",
+      "answer": "The `IsCancellationRequested` property on every copy of the cancellation token is set to `true`.",
+      "supporting_sentences": [
+        "When the owning object calls CancellationTokenSource.Cancel, the IsCancellationRequested property on every copy of the cancellation token is set to true."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens to the `IsCancellationRequested` property of a cancellation token when `CancellationTokenSource.Cancel` is called?",
+      "answer": "The `IsCancellationRequested` property on every copy of the cancellation token is set to `true`.",
+      "supporting_sentences": [
+        "When the owning object calls CancellationTokenSource.Cancel, the IsCancellationRequested property on every copy of the cancellation token is set to true."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "In the provided example, what triggers the cancellation of the operation?",
+      "answer": "A value of zero from the random number generator indicates that the measurement has failed, which triggers the cancellation.",
+      "supporting_sentences": [
+        "A value of zero indicates that the measurement has failed for one instrument, in which case the operation should be cancelled and no overall mean should be computed."
+      ]
+    },
+    "edited_pair": {
+      "question": "In the provided example, what triggers the cancellation of the operation?",
+      "answer": "A value of zero from the random number generator indicates that the measurement has failed, which triggers the cancellation.",
+      "supporting_sentences": [
+        "A value of zero indicates that the measurement has failed for one instrument, in which case the operation should be cancelled and no overall mean should be computed."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Are the public and protected members of `CancellationToken` thread-safe?",
+      "answer": "Yes, all public and protected members of `CancellationToken` are thread-safe and may be used concurrently from multiple threads.",
+      "supporting_sentences": [
+        "All public and protected members of CancellationToken are thread-safe and may be used concurrently from multiple threads."
+      ]
+    },
+    "edited_pair": {
+      "question": "Are the public and protected members of `CancellationToken` thread-safe?",
+      "answer": "Yes, all public and protected members of `CancellationToken` are thread-safe and may be used concurrently from multiple threads.",
+      "supporting_sentences": [
+        "All public and protected members of CancellationToken are thread-safe and may be used concurrently from multiple threads."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

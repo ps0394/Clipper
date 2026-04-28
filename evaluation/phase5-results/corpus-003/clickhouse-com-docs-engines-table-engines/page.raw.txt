@@ -1,0 +1,96 @@
+The table engine (type of table) determines:
+
+How and where data is stored, where to write it to, and where to read it from.
+
+Which queries are supported, and how.
+
+Concurrent data access.
+
+Use of indexes, if present.
+
+Whether multithread request execution is possible.
+
+Data replication parameters.
+
+Engine families
+​
+
+MergeTree
+​
+
+The most universal and functional table engines for high-load tasks. The property shared by these engines is quick data insertion with subsequent background data processing. 
+MergeTree
+ family engines support data replication (with 
+Replicated*
+ versions of engines), partitioning, secondary data-skipping indexes, and other features not supported in other engines.
+
+Engines in the family:
+
+Log
+​
+
+Lightweight 
+engines
+ with minimum functionality. They're the most effective when you need to quickly write many small tables (up to approximately 1 million rows) and read them later as a whole.
+
+Engines in the family:
+
+Integration engines
+​
+
+Engines for communicating with other data storage and processing systems.
+
+Engines in the family:
+
+Special engines
+​
+
+Engines in the family:
+
+Virtual columns
+​
+
+A virtual column is an integral table engine attribute that is defined in the engine source code.
+
+You shouldn't specify virtual columns in the 
+CREATE TABLE
+ query, and you can't see them in 
+SHOW CREATE TABLE
+ and 
+DESCRIBE TABLE
+ query results. Virtual columns are also read-only, so you can't insert data into virtual columns.
+
+To select data from a virtual column, you must specify its name in the 
+SELECT
+ query. 
+SELECT *
+ does not return values from virtual columns.
+
+If you create a table with a column that has the same name as one of the table virtual columns, the virtual column becomes inaccessible. We do not recommend doing this. To help avoid conflicts, virtual column names are usually prefixed with an underscore.
+
+_table
+ — Contains the name of the table from which data was read. Type: 
+String
+.
+
+Regardless of the table engine being used, each table includes a universal virtual column named 
+_table
+.
+
+When querying a table with the merge table engine, you can set the constant conditions on 
+_table
+ in the 
+WHERE/PREWHERE
+ clause (for example, 
+WHERE _table='xyz'
+). In this case the read operation is performed only for that tables where the condition on 
+_table
+ is satisfied, so the 
+_table
+ column acts as an index.
+
+When using queries formatted like 
+SELECT ... FROM (... UNION ALL ...)
+, we can determine which actual table the returned rows originate from by specifying the 
+_table
+ column.

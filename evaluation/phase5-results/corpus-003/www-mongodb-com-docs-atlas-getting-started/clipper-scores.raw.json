@@ -1,0 +1,1323 @@
+{
+  "parseability_score": 76.25826938554702,
+  "failure_mode": "minor_issues",
+  "html_path": "C:\\Repos\\Clipper\\evaluation\\phase5-results\\corpus-003\\www-mongodb-com-docs-atlas-getting-started\\page.raw.html",
+  "url": "https://www.mongodb.com/docs/atlas/getting-started/",
+  "component_scores": {
+    "semantic_html": 61.81818181818182,
+    "content_extractability": 80.51653877109405,
+    "structured_data": 31.886363636363633,
+    "dom_navigability": 0,
+    "metadata_completeness": 85,
+    "http_compliance": 72.0
+  },
+  "audit_trail": {
+    "semantic_html": {
+      "standard": "HTML5 Semantic Elements (W3C)",
+      "method": "Semantic markup analysis",
+      "elements_found": [],
+      "score_calculation": "Based on semantic element coverage and proper usage",
+      "semantic_elements_found": [
+        {
+          "element": "header",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "nav",
+          "count": 4,
+          "proper_usage": true
+        },
+        {
+          "element": "main",
+          "count": 1,
+          "proper_usage": true
+        },
+        {
+          "element": "section",
+          "count": 6,
+          "proper_usage": true
+        }
+      ],
+      "aria_elements_count": 63,
+      "heading_elements_count": 13,
+      "scoring_breakdown": {
+        "semantic_coverage": 21.81818181818182,
+        "aria_bonus": 20,
+        "heading_bonus": 20
+      }
+    },
+    "content_extractability": {
+      "standard": "Mozilla Readability (Firefox Reader View algorithm)",
+      "method": "Content extraction completeness and cleanliness analysis",
+      "score_calculation": "Signal-to-noise (40) + Structure preservation (30) + Boundary detection (30)",
+      "extraction_metrics": {
+        "raw_text_length": 10562,
+        "extracted_text_length": 4625,
+        "extracted_chars": 4625,
+        "extraction_ratio": 0.438,
+        "extracted_title": "Get Started - MongoDB Documentation - MongoDB Docs",
+        "extracted_preview": "Important The atlas deployments commands are deprecated as of Atlas CLI\r\nversion 1.52.0. Use atlas local commands for local deployments\r\nand atlas clusters commands for cloud deployments. We updated\r\nthis guide to use the new commands. In this guide, you will learn how to create a MongoDB Atlas\r\ndep...",
+        "original_headings": 13,
+        "extracted_headings": 7,
+        "original_lists": 12,
+        "extracted_lists": 1,
+        "original_code_blocks": 31,
+        "extracted_code_blocks": 27,
+        "has_main_element": true,
+        "has_article_element": false
+      },
+      "score_breakdown": {
+        "signal_to_noise": 36.255579300457164,
+        "structure_preservation": 14.927626137303555,
+        "boundary_detection": 29.333333333333336
+      }
+    },
+    "structured_data": {
+      "standard": "Schema.org (Google/Microsoft/Yahoo)",
+      "method": "Structured data quality and completeness validation",
+      "formats_found": [],
+      "score_calculation": "Type appropriateness (20) + Field completeness (30) + Multiple formats (20) + Schema validation (30)",
+      "extracted_metadata": {
+        "json_ld_items": 11,
+        "microdata_items": 0,
+        "opengraph_items": 1,
+        "microformat_items": 0
+      },
+      "schema_types_found": [
+        "TechArticle",
+        "HowTo",
+        "SoftwareSourceCode",
+        "SoftwareSourceCode",
+        "SoftwareSourceCode",
+        "SoftwareSourceCode",
+        "SoftwareSourceCode",
+        "SoftwareSourceCode",
+        "SoftwareSourceCode",
+        "SoftwareSourceCode",
+        "SoftwareSourceCode"
+      ],
+      "key_fields_found": [],
+      "formats_present": 2,
+      "score_breakdown": {
+        "type_appropriateness": 3.6363636363636367,
+        "field_completeness": 7.5,
+        "multiple_formats": 12,
+        "schema_validation": 8.749999999999998
+      },
+      "field_completeness_detail": {
+        "method": "per-type field completeness (Phase 4.1)",
+        "validated_items": [
+          {
+            "index": 1,
+            "type": "HowTo",
+            "present": 1,
+            "expected": 4,
+            "ratio": 0.25,
+            "missing": [
+              "step",
+              "description",
+              "totalTime"
+            ],
+            "invalid": []
+          }
+        ],
+        "unvalidated_items": 10,
+        "missing_fields": [
+          {
+            "type": "HowTo",
+            "fields": [
+              "step",
+              "description",
+              "totalTime"
+            ]
+          }
+        ],
+        "invalid_fields": [],
+        "average_ratio": 0.25
+      },
+      "sample_structured_data": {
+        "json-ld": [
+          {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "author": {
+              "@type": "Organization",
+              "name": "MongoDB Documentation Team"
+            },
+            "headline": "Get Started",
+            "mainEntity": [],
+            "genre": [
+              "Tutorial"
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "steps": [
+              {
+                "@type": "HowToStep",
+                "text": "Before you begin this tutorial, you must install\nthe following dependencies in your development\nenvironment:Atlas CLI: Command-line interface that allows you to manage\nyour deployments from the terminalMongoDB Shell: Interactive tool that connects to a deployment and\nprovides database operation supportDocker: Platform that allows you to run software within containers,\nincluding local MongoDB deploymentsSelect the tab corresponding to your operating system\nto view the commands that install these required development\ntools.Run the following commands to install the dependencies\nby using the Homebrew package manager. If you do not have\nHomebrew, you can install it by following the instructions on the\nHomebrew website.Run the following commands to install the dependencies\nby using the Chocolatey package manager. If you do not\nhave Chocolatey, you can install it by following the instructions\non the Chocolatey website.For other ways to install the Atlas CLI, see Atlas\nCLI install page.The preceding commands install the Docker Desktop\napplication. After the installation completes, ensure that you create\na Docker account and start the application.",
+                "name": "Install dependencies"
+              },
+              {
+                "@type": "HowToStep",
+                "text": "Run the following command and follow the prompts in the shell to deploy a cluster.\nIf you do not have an Atlas account, the following command\nprompts you to create one.This command creates a single-member replica set in a container\nthat runs on your local machine.Replace the <port number> placeholder with the port\nyou want to use. The default port is 27017, but you\ncan specify a different port if 27017 is not available.The command outputs the following information:Save the connection string URI for use in a future step.This command creates a free tier cluster on MongoDB Atlas.Replace the following placeholder values to create a new\ndatabase user with\natlasAdmin privileges in your deployment:<database username>: Specify a username for your new database user<database user password>: Specify a password for your new database userThe command outputs the following information:Save the connection string URI for use in a future step.",
+                "name": "Set up a fully-featured deployment"
+              },
+              {
+                "@type": "HowToStep",
+                "text": "You can connect to your deployment with the MongoDB Shell (mongosh) by running the\nfollowing command:Replace the <database username> and <database user password> placeholders\nwith the username and password you created for your database user.After connecting, you can run the following command to test\nyour connection:The command returns a list of databases in your deployment.",
+                "name": "Connect to your deployment"
+              }
+            ],
+            "name": "Create a MongoDB Atlas Deployment",
+            "image": "https://webimages.mongodb.com/_com_assets/cms/kuyj2focmkbxv7gh3-stacked_default_slate_blue.svg?auto=format%252Ccompress"
+          }
+        ],
+        "opengraph": [
+          {
+            "namespace": {
+              "og": "http://ogp.me/ns#"
+            },
+            "properties": [
+              [
+                "og:title",
+                "Get Started - MongoDB Documentation - MongoDB Docs"
+              ],
+              [
+                "og:url",
+                "https://www.mongodb.com/docs/get-started/"
+              ],
+              [
+                "og:image",
+                "https://www.mongodb.com/docs/assets/meta_generic.png"
+              ],
+              [
+                "og:image:secure_url",
+                "https://www.mongodb.com/docs/assets/meta_generic.png"
+              ],
+              [
+                "og:type",
+                "website"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "dom_navigability": {
+      "standard": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+      "method": "Automated accessibility evaluation",
+      "violations": [
+        {
+          "description": "Ensures role attribute has an appropriate value for the element",
+          "help": "ARIA role must be appropriate for the element",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+          "id": "aria-allowed-role",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "navigation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role navigation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role navigation  is not allowed for given element",
+              "html": "<nav role=\"navigation\" class=\"nav-light css-1ek23uy\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".nav-light"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<button role=\"button\" type=\"button\" class=\"css-7z0wyo\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".css-7z0wyo"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "navigation"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role navigation  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role navigation  is not allowed for given element",
+              "html": "<nav role=\"navigation\" class=\"nav-dark css-1ek23uy\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".nav-dark"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": [
+                    "button"
+                  ],
+                  "id": "aria-allowed-role",
+                  "impact": "minor",
+                  "message": "role button  is not allowed for given element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  role button  is not allowed for given element",
+              "html": "<button role=\"button\" type=\"button\" class=\"css-n3el1h\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".css-n3el1h"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "best-practice"
+          ]
+        },
+        {
+          "description": "Ensures all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/aria-valid-attr-value?application=axeAPI",
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [
+                {
+                  "data": [
+                    "aria-labelledby=\"Dark Mode Menu\""
+                  ],
+                  "id": "aria-valid-attr-value",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute value: aria-labelledby=\"Dark Mode Menu\"",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-labelledby=\"Dark Mode Menu\"",
+              "html": "<button aria-label=\"Dark Mode Menu\" aria-labelledby=\"Dark Mode Menu\" aria-expanded=\"false\" aria-haspopup=\"true\" tabindex=\"0\" aria-disabled=\"false\" class=\"leafygreen-ui-1qlrfdk\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                ".leafygreen-ui-1qlrfdk"
+              ]
+            },
+            {
+              "all": [
+                {
+                  "data": [
+                    "aria-controls=\"select-null-menu\"",
+                    "aria-describedby=\"select-null-description\""
+                  ],
+                  "id": "aria-valid-attr-value",
+                  "impact": "critical",
+                  "message": "Invalid ARIA attribute values: aria-controls=\"select-null-menu\" aria-describedby=\"select-null-description\"",
+                  "relatedNodes": []
+                }
+              ],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  Invalid ARIA attribute values: aria-controls=\"select-null-menu\" aria-describedby=\"select-null-description\"",
+              "html": "<button type=\"button\" class=\"leafygreen-ui-yxx2qh\" aria-disabled=\"false\" data-leafygreen-ui=\"button\" aria-label=\"Select your Language\" id=\"select-null\" aria-labelledby=\"select-null-label\" aria-controls=\"select-null-menu\" aria-expanded=\"false\" aria-describedby=\"select-null-description\" aria-invalid=\"false\" value=\"\" data-testid=\"leafygreen-ui-select-menubutton\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "#select-null"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+          ]
+        },
+        {
+          "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+          "help": "Elements must have sufficient color contrast",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": {
+                    "bgColor": "#e3fcf7",
+                    "contrastRatio": 3.05,
+                    "expectedContrastRatio": "4.5:1",
+                    "fgColor": "#00a35c",
+                    "fontSize": "9.0pt",
+                    "fontWeight": "bold",
+                    "missingData": null
+                  },
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.05 (foreground color: #00a35c, background color: #e3fcf7, font size: 9.0pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                  "relatedNodes": [
+                    {
+                      "html": "<a aria-current=\"page\" class=\"lg-ui-side-nav-item-0000 leafygreen-ui-owllh\" aria-label=\"Get Started\" aria-disabled=\"false\" href=\"/docs/get-started/\">Get Started</a>",
+                      "target": [
+                        ".leafygreen-ui-owllh"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.05 (foreground color: #00a35c, background color: #e3fcf7, font size: 9.0pt, font weight: bold). Expected contrast ratio of 4.5:1",
+              "html": "<a aria-current=\"page\" class=\"lg-ui-side-nav-item-0000 leafygreen-ui-owllh\" aria-label=\"Get Started\" aria-disabled=\"false\" href=\"/docs/get-started/\">Get Started</a>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".leafygreen-ui-owllh"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value used in ARIA and in labels is unique",
+          "help": "IDs used in ARIA and labels must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id-aria?application=axeAPI",
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "side-nav-undefined",
+                  "id": "duplicate-id-aria",
+                  "impact": "critical",
+                  "message": "Document has multiple elements referenced with ARIA with the same id attribute: side-nav-undefined",
+                  "relatedNodes": [
+                    {
+                      "html": "<nav id=\"side-nav-undefined\" class=\"leafygreen-ui-16ro74h\" aria-label=\"Double Panned Side navigation Panel\">",
+                      "target": [
+                        ".leafygreen-ui-16ro74h"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: side-nav-undefined",
+              "html": "<nav id=\"side-nav-undefined\" class=\"leafygreen-ui-fw8ayd\" aria-label=\"Accordion Side navigation Panel\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                ".leafygreen-ui-fw8ayd"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "menu-group-label-id-undefined",
+                  "id": "duplicate-id-aria",
+                  "impact": "critical",
+                  "message": "Document has multiple elements referenced with ARIA with the same id attribute: menu-group-label-id-undefined",
+                  "relatedNodes": [
+                    {
+                      "html": "<div data-testid=\"side-nav-group-header-label\" id=\"menu-group-label-id-undefined\" class=\"leafygreen-ui-g6ml2m\"><div class=\"leafygreen-ui-1rnl6t5\"><div class=\"leafygreen-ui-1tm4spc\">Sample Applications</div></div></div>",
+                      "target": [
+                        ".leafygreen-ui-1dv2wj > .leafygreen-ui-g6ml2m[data-testid=\"side-nav-group-header-label\"]"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: menu-group-label-id-undefined",
+              "html": "<div data-testid=\"side-nav-group-header-label\" id=\"menu-group-label-id-undefined\" class=\"leafygreen-ui-g6ml2m\"><div class=\"leafygreen-ui-1rnl6t5\"><div class=\"leafygreen-ui-1tm4spc\">Sample Applications</div></div></div>",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                ".leafygreen-ui-1rlf4n > .leafygreen-ui-g6ml2m[data-testid=\"side-nav-group-header-label\"]"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures every id attribute value is unique",
+          "help": "id attribute value must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id?application=axeAPI",
+          "id": "duplicate-id",
+          "impact": "minor",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "top-line",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<rect id=\"top-line\" x=\"0.5\" y=\"4.375\" rx=\"0.625\" ry=\"0.625\" width=\"15\" height=\"1.25\" fill=\"#B8C4C2\"></rect>",
+                      "target": [
+                        "rect[fill=\"\\#B8C4C2\"]:nth-child(1)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<rect id=\"top-line\" x=\"0.5\" y=\"4.375\" rx=\"0.625\" ry=\"0.625\" width=\"15\" height=\"1.25\" fill=\"#21313C\"></rect>",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "rect[fill=\"\\#21313C\"]:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "middle-line",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<rect id=\"middle-line\" x=\"0.5\" y=\"4.375\" rx=\"0.625\" ry=\"0.625\" width=\"15\" height=\"1.25\" fill=\"#B8C4C2\"></rect>",
+                      "target": [
+                        "rect[fill=\"\\#B8C4C2\"]:nth-child(2)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<rect id=\"middle-line\" x=\"0.5\" y=\"4.375\" rx=\"0.625\" ry=\"0.625\" width=\"15\" height=\"1.25\" fill=\"#21313C\"></rect>",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "rect[fill=\"\\#21313C\"]:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "bottom-line",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<rect id=\"bottom-line\" x=\"0.5\" y=\"4.375\" rx=\"0.625\" ry=\"0.625\" width=\"15\" height=\"1.25\" fill=\"#B8C4C2\"></rect>",
+                      "target": [
+                        "rect[fill=\"\\#B8C4C2\"]:nth-child(3)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<rect id=\"bottom-line\" x=\"0.5\" y=\"4.375\" rx=\"0.625\" ry=\"0.625\" width=\"15\" height=\"1.25\" fill=\"#21313C\"></rect>",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                "rect[fill=\"\\#21313C\"]:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": "tabs-undefined",
+                  "id": "duplicate-id",
+                  "impact": "minor",
+                  "message": "Document has multiple static elements with the same id attribute",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"leafygreen-ui-jp7pox\" id=\"tabs-undefined\">",
+                      "target": [
+                        ".leafygreen-ui-iffqj1.css-zjik7.edbh53g2:nth-child(2) > .leafygreen-ui-uajayf.css-fxp7t8.edbh53g0 > section > .cloud\\/local.leafygreen-ui-1b75luy[data-lgid=\"lg-tabs\"] > .leafygreen-ui-jp7pox"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"leafygreen-ui-jp7pox\" id=\"tabs-undefined\">",
+                      "target": [
+                        ".leafygreen-ui-iffqj1.css-zjik7.edbh53g2:nth-child(3) > .leafygreen-ui-uajayf.css-fxp7t8.edbh53g0 > section > .cloud\\/local.leafygreen-ui-1b75luy[data-lgid=\"lg-tabs\"] > .leafygreen-ui-jp7pox"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple static elements with the same id attribute",
+              "html": "<div class=\"leafygreen-ui-jp7pox\" id=\"tabs-undefined\">",
+              "impact": "minor",
+              "none": [],
+              "target": [
+                ".macos\\/windows > .leafygreen-ui-jp7pox"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+          ]
+        },
+        {
+          "description": "Ensures every form element has a label",
+          "help": "Form elements must have labels",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/label?application=axeAPI",
+          "id": "label",
+          "impact": "critical",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "aria-label",
+                  "impact": "serious",
+                  "message": "aria-label attribute does not exist or is empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "aria-labelledby",
+                  "impact": "serious",
+                  "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "implicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an implicit (wrapped) <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "explicit-label",
+                  "impact": "critical",
+                  "message": "Form element does not have an explicit <label>",
+                  "relatedNodes": []
+                },
+                {
+                  "data": null,
+                  "id": "non-empty-title",
+                  "impact": "serious",
+                  "message": "Element has no title attribute or the title attribute is empty",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  Element has no title attribute or the title attribute is empty",
+              "html": "<input type=\"search\" class=\"leafygreen-ui-qk8l6f\" placeholder=\"Search MongoDB Docs\" value=\"\">",
+              "impact": "critical",
+              "none": [],
+              "target": [
+                "input"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.forms",
+            "wcag2a",
+            "wcag332",
+            "wcag131",
+            "section508",
+            "section508.22.n"
+          ]
+        },
+        {
+          "description": "Ensures that lists are structured correctly",
+          "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/list?application=axeAPI",
+          "id": "list",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [],
+              "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed inside <li> elements",
+              "html": "<ul class=\"leafygreen-ui-1t33j14\">",
+              "impact": "serious",
+              "none": [
+                {
+                  "data": null,
+                  "id": "only-listitems",
+                  "impact": "serious",
+                  "message": "List element has direct children that are not allowed inside <li> elements",
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"leafygreen-ui-1x1jmmi\">",
+                      "target": [
+                        ".leafygreen-ui-1t33j14 > .leafygreen-ui-1x1jmmi"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"leafygreen-ui-10q43to\" data-nav-panel=\"fixed-sidenav\">",
+                      "target": [
+                        ".leafygreen-ui-10q43to"
+                      ]
+                    },
+                    {
+                      "html": "<div class=\"leafygreen-ui-a205e4\">",
+                      "target": [
+                        ".leafygreen-ui-1t33j14 > .leafygreen-ui-a205e4"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "target": [
+                ".leafygreen-ui-1t33j14"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.structure",
+            "wcag2a",
+            "wcag131"
+          ]
+        },
+        {
+          "description": "Ensures <li> elements are used semantically",
+          "help": "<li> elements must be contained in a <ul> or <ol>",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/listitem?application=axeAPI",
+          "id": "listitem",
+          "impact": "serious",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"leafygreen-ui-tw3z02\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".leafygreen-ui-1t33j14 > .leafygreen-ui-1x1jmmi > .leafygreen-ui-toinyf > .leafygreen-ui-tw3z02"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"leafygreen-ui-tw3z02\"><a aria-current=\"page\" class=\"lg-ui-side-nav-item-0000 leafygreen-ui-owllh\" aria-label=\"Get Started\" aria-disabled=\"false\" href=\"/docs/get-started/\">Get Started</a></li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".leafygreen-ui-xrnpe6 > .leafygreen-ui-tw3z02:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"leafygreen-ui-tw3z02\"><a aria-current=\"false\" class=\"lg-ui-side-nav-item-0000 leafygreen-ui-hfr4k3\" aria-label=\"Development\" aria-disabled=\"false\" href=\"/docs/development/\">Development</a></li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".leafygreen-ui-xrnpe6 > .leafygreen-ui-tw3z02:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"leafygreen-ui-tw3z02\"><a aria-current=\"false\" class=\"lg-ui-side-nav-item-0000 leafygreen-ui-hfr4k3\" aria-label=\"Management\" aria-disabled=\"false\" href=\"/docs/management/\">Management</a></li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".leafygreen-ui-xrnpe6 > .leafygreen-ui-tw3z02:nth-child(3)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"leafygreen-ui-tw3z02\"><a class=\"lg-ui-side-nav-item-0000 leafygreen-ui-hfr4k3\" href=\"/docs/drivers/\">Client Libraries</a></li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".leafygreen-ui-tw3z02:nth-child(4)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"leafygreen-ui-tw3z02\"><a aria-current=\"false\" class=\"lg-ui-side-nav-item-0000 leafygreen-ui-hfr4k3\" aria-label=\"Tools\" aria-disabled=\"false\" href=\"/docs/tools-and-connectors/\">Tools</a></li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".leafygreen-ui-tw3z02:nth-child(5)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"leafygreen-ui-tw3z02\"><a class=\"lg-ui-side-nav-item-0000 leafygreen-ui-hfr4k3\" href=\"/docs/voyageai/\">AI Models</a></li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".leafygreen-ui-xrnpe6 > .leafygreen-ui-tw3z02:nth-child(6)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"leafygreen-ui-tw3z02\"><a class=\"lg-ui-side-nav-item-0000 leafygreen-ui-hfr4k3\" href=\"/docs/atlas/architecture/current/\">Atlas Architecture Center</a></li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".leafygreen-ui-xrnpe6 > .leafygreen-ui-tw3z02:nth-child(7)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"leafygreen-ui-tw3z02\"><a aria-current=\"page\" class=\"lg-ui-side-nav-item-0000 leafygreen-ui-dg7n2l\" aria-label=\"Quick Start\" aria-disabled=\"false\" href=\"/docs/get-started/\">Quick Start</a></li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".leafygreen-ui-1ls0vvh > .leafygreen-ui-tw3z02:nth-child(1)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"leafygreen-ui-tw3z02\"><a aria-current=\"false\" class=\"lg-ui-side-nav-item-0000 leafygreen-ui-zjq2gk\" aria-label=\"Build with AI\" aria-disabled=\"false\" href=\"/docs/build-with-ai/\">Build with AI</a></li>",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".leafygreen-ui-1ls0vvh > .leafygreen-ui-tw3z02:nth-child(2)"
+              ]
+            },
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "listitem",
+                  "impact": "serious",
+                  "message": "List item does not have a <ul>, <ol> or role=\"list\" parent element",
+                  "relatedNodes": []
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  List item does not have a <ul>, <ol> or role=\"list\" parent element",
+              "html": "<li class=\"leafygreen-ui-1dv2wj\">",
+              "impact": "serious",
+              "none": [],
+              "target": [
+                ".leafygreen-ui-1dv2wj"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.structure",
+            "wcag2a",
+            "wcag131"
+          ]
+        },
+        {
+          "description": "Ensures all page content is contained by landmarks",
+          "help": "All page content must be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/region?application=axeAPI",
+          "id": "region",
+          "impact": "moderate",
+          "nodes": [
+            {
+              "all": [],
+              "any": [
+                {
+                  "data": null,
+                  "id": "region",
+                  "impact": "moderate",
+                  "message": "Some page content is not contained by landmarks",
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"sl_opaque notranslate leafygreen-ui-1u834jw\">Join us at MongoDB.local London on 7 May to unlock new possibilities for your data. Use WEB50 to save 50%.</span>",
+                      "target": [
+                        ".leafygreen-ui-1u834jw"
+                      ]
+                    },
+                    {
+                      "html": "<svg width=\"109\" height=\"40\" viewBox=\"0 0 109 40\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">",
+                      "target": [
+                        "svg[width=\"\\31 09\"]"
+                      ]
+                    },
+                    {
+                      "html": "<span class=\"sl_opaque notranslate leafygreen-ui-1mk9kyl\">Register now &gt;</span>",
+                      "target": [
+                        ".leafygreen-ui-1mk9kyl"
+                      ]
+                    },
+                    {
+                      "html": "<button data-testid=\"side-nav-collapse-toggle\" aria-label=\"Collapse navigation\" aria-controls=\"side-nav-undefined\" aria-expanded=\"true\" class=\"leafygreen-ui-v87gj9\">",
+                      "target": [
+                        ".leafygreen-ui-4dh4uv > .leafygreen-ui-1morqrl > .leafygreen-ui-v87gj9[data-testid=\"side-nav-collapse-toggle\"][aria-label=\"Collapse\\ navigation\"]"
+                      ]
+                    },
+                    {
+                      "html": "<button data-lgid=\"lg-button\" type=\"button\" class=\"lg-ui-button-0000 leafygreen-ui-u10pj2\" aria-disabled=\"false\" aria-label=\"Ask MongoDB AI\">",
+                      "target": [
+                        ".leafygreen-ui-u10pj2"
+                      ]
+                    },
+                    {
+                      "html": "<button aria-label=\"Dark Mode Menu\" aria-labelledby=\"Dark Mode Menu\" aria-expanded=\"false\" aria-haspopup=\"true\" tabindex=\"0\" aria-disabled=\"false\" class=\"leafygreen-ui-1qlrfdk\">",
+                      "target": [
+                        ".leafygreen-ui-1qlrfdk"
+                      ]
+                    },
+                    {
+                      "html": "<label data-lgid=\"lg-label\" class=\"leafygreen-ui-11b6yii\" for=\"rating\">Rate this page</label>",
+                      "target": [
+                        ".leafygreen-ui-11b6yii"
+                      ]
+                    },
+                    {
+                      "html": "<svg class=\"leafygreen-ui-iypmng\" height=\"24\" width=\"24\" role=\"img\" aria-label=\"Favorite Icon\" data-testid=\"rating-star\" viewBox=\"0 0 16 16\" tabindex=\"0\">",
+                      "target": [
+                        "div:nth-child(1) > .css-e0dnmk.e1ajxwyb1 > .leafygreen-ui-iypmng[aria-label=\"Favorite\\ Icon\"][data-testid=\"rating-star\"]"
+                      ]
+                    },
+                    {
+                      "html": "<svg class=\"leafygreen-ui-iypmng\" height=\"24\" width=\"24\" role=\"img\" aria-label=\"Favorite Icon\" data-testid=\"rating-star\" viewBox=\"0 0 16 16\" tabindex=\"0\">",
+                      "target": [
+                        "div:nth-child(2) > .css-e0dnmk.e1ajxwyb1 > .leafygreen-ui-iypmng[aria-label=\"Favorite\\ Icon\"][data-testid=\"rating-star\"]"
+                      ]
+                    },
+                    {
+                      "html": "<svg class=\"leafygreen-ui-iypmng\" height=\"24\" width=\"24\" role=\"img\" aria-label=\"Favorite Icon\" data-testid=\"rating-star\" viewBox=\"0 0 16 16\" tabindex=\"0\">",
+                      "target": [
+                        "div:nth-child(3) > .css-e0dnmk.e1ajxwyb1 > .leafygreen-ui-iypmng[aria-label=\"Favorite\\ Icon\"][data-testid=\"rating-star\"]"
+                      ]
+                    },
+                    {
+                      "html": "<svg class=\"leafygreen-ui-iypmng\" height=\"24\" width=\"24\" role=\"img\" aria-label=\"Favorite Icon\" data-testid=\"rating-star\" viewBox=\"0 0 16 16\" tabindex=\"0\">",
+                      "target": [
+                        "div:nth-child(4) > .css-e0dnmk.e1ajxwyb1 > .leafygreen-ui-iypmng[aria-label=\"Favorite\\ Icon\"][data-testid=\"rating-star\"]"
+                      ]
+                    },
+                    {
+                      "html": "<svg class=\"leafygreen-ui-iypmng\" height=\"24\" width=\"24\" role=\"img\" aria-label=\"Favorite Icon\" data-testid=\"rating-star\" viewBox=\"0 0 16 16\" tabindex=\"0\">",
+                      "target": [
+                        "div:nth-child(5) > .css-e0dnmk.e1ajxwyb1 > .leafygreen-ui-iypmng[aria-label=\"Favorite\\ Icon\"][data-testid=\"rating-star\"]"
+                      ]
+                    },
+                    {
+                      "html": "<p class=\"leafygreen-ui-1lvnqao\">On this page</p>",
+                      "target": [
+                        ".leafygreen-ui-1lvnqao"
+                      ]
+                    },
+                    {
+                      "html": "<span>Create a MongoDB Atlas Deployment</span>",
+                      "target": [
+                        ".leafygreen-ui-1qpv1j4 > .leafygreen-ui-1e7a0ei > .leafygreen-ui-70ed0j.lg-ui-0001[target=\"_self\"] > span"
+                      ]
+                    },
+                    {
+                      "html": "<span>Install dependencies</span>",
+                      "target": [
+                        ".leafygreen-ui-1qpv1j4 > .leafygreen-ui-1jqtqlb:nth-child(2) > .leafygreen-ui-eqe9un.lg-ui-0001[href$=\"#install-dependencies\"] > span"
+                      ]
+                    },
+                    {
+                      "html": "<span>Set up a fully-featured deployment</span>",
+                      "target": [
+                        ".leafygreen-ui-1qpv1j4 > .leafygreen-ui-1jqtqlb:nth-child(3) > .leafygreen-ui-eqe9un.lg-ui-0001[target=\"_self\"] > span"
+                      ]
+                    },
+                    {
+                      "html": "<span>Connect to your deployment</span>",
+                      "target": [
+                        ".leafygreen-ui-1qpv1j4 > .leafygreen-ui-1jqtqlb:nth-child(4) > .leafygreen-ui-eqe9un.lg-ui-0001[href=\"#connect-to-your-deployment\"] > span"
+                      ]
+                    },
+                    {
+                      "html": "<span>Create Your First MongoDB Application</span>",
+                      "target": [
+                        ".leafygreen-ui-1qpv1j4 > .leafygreen-ui-1jqtqlb:nth-child(5) > .leafygreen-ui-nda2v9.lg-ui-0001[target=\"_self\"] > span"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks",
+              "html": "<html lang=\"en\" class=\"light-theme system\">",
+              "impact": "moderate",
+              "none": [],
+              "target": [
+                "html"
+              ]
+            }
+          ],
+          "tags": [
+            "cat.keyboard",
+            "best-practice"
+          ]
+        }
+      ],
+      "passes": [],
+      "score_calculation": "Based on violation severity and frequency",
+      "violations_count": 9,
+      "passes_count": 38,
+      "total_penalty": 170,
+      "penalty_per_rule": {
+        "aria-allowed-role": {
+          "impact": "minor",
+          "node_count": 4,
+          "raw_penalty": 20,
+          "capped_penalty": 15
+        },
+        "aria-valid-attr-value": {
+          "impact": "critical",
+          "node_count": 2,
+          "raw_penalty": 50,
+          "capped_penalty": 25
+        },
+        "color-contrast": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "duplicate-id-aria": {
+          "impact": "critical",
+          "node_count": 2,
+          "raw_penalty": 50,
+          "capped_penalty": 25
+        },
+        "duplicate-id": {
+          "impact": "minor",
+          "node_count": 4,
+          "raw_penalty": 20,
+          "capped_penalty": 15
+        },
+        "label": {
+          "impact": "critical",
+          "node_count": 1,
+          "raw_penalty": 25,
+          "capped_penalty": 25
+        },
+        "list": {
+          "impact": "serious",
+          "node_count": 1,
+          "raw_penalty": 15,
+          "capped_penalty": 15
+        },
+        "listitem": {
+          "impact": "serious",
+          "node_count": 11,
+          "raw_penalty": 165,
+          "capped_penalty": 25
+        },
+        "region": {
+          "impact": "moderate",
+          "node_count": 1,
+          "raw_penalty": 10,
+          "capped_penalty": 10
+        }
+      },
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown",
+      "evaluation_method": "Live browser with axe-core"
+    },
+    "metadata_completeness": {
+      "standard": "Dublin Core + Schema.org + OpenGraph metadata",
+      "method": "Metadata field presence and quality check",
+      "score_calculation": "Sum of field scores (title 15, description 15, author 15, date 15, topic 15, language 10, canonical 15)",
+      "field_scores": {
+        "title": 15,
+        "description": 15,
+        "author": 15,
+        "date": 0,
+        "topic": 15,
+        "language": 10,
+        "canonical_url": 15
+      },
+      "field_sources": {
+        "title": [
+          "title_tag",
+          "og:title",
+          "schema:name"
+        ],
+        "description": [
+          "meta:description"
+        ],
+        "author": [
+          "schema:author"
+        ],
+        "date": [],
+        "topic": [
+          "meta:keywords"
+        ],
+        "language": [
+          "html:lang"
+        ],
+        "canonical_url": [
+          "link:canonical"
+        ]
+      },
+      "fields_present": 6,
+      "fields_total": 7,
+      "json_ld_type": "SoftwareSourceCode"
+    },
+    "http_compliance": {
+      "standard": "RFC 7231 + robots.txt + Cache headers",
+      "method": "Agent-focused HTTP compliance evaluation",
+      "score_calculation": "HTML reachability (15) + Redirect efficiency (25) + Robots/crawl permissions (20) + Cache headers (20) + Agent content hints (20)",
+      "html_reachability": {
+        "status_code": 200,
+        "content_type": "text/html; charset=UTF-8"
+      },
+      "redirect_efficiency": {
+        "method": "No redirect data (assuming direct access)"
+      },
+      "crawl_permissions": {
+        "meta_robots": "none (permissive by default)",
+        "robots_txt_status": 200,
+        "robots_txt_blocked": false
+      },
+      "cache_headers": {
+        "etag": "\"3e028820ec2ec5f2e8c73c7196248960-ssl-df\"",
+        "last_modified": "absent",
+        "cache_control": "public,max-age=0,must-revalidate"
+      },
+      "agent_content_hints": {
+        "scoring_contribution": 0,
+        "diagnostic_only": true,
+        "rationale": "PRD F2.2/F2.3: retrieval-lift evidence deferred to Phase 6",
+        "signals_found": {
+          "has_markdown_alternate": false,
+          "has_markdown_url_meta": false,
+          "has_llm_hints": false,
+          "has_llms_txt_ref": false,
+          "has_non_html_alternate": false,
+          "details": []
+        }
+      },
+      "score_breakdown": {
+        "html_reachability": 15,
+        "redirect_efficiency": 25.0,
+        "crawl_permissions": 20,
+        "cache_headers": 12,
+        "agent_content_hints": 0
+      }
+    },
+    "_environment": {
+      "clipper_version": "3.0.0",
+      "python_version": "3.14.4",
+      "platform": "Windows-11-10.0.26220-SP0",
+      "beautifulsoup4": "4.14.3",
+      "readability-lxml": "0.8.4.1",
+      "extruct": "0.18.0",
+      "httpx": "0.28.1",
+      "axe-selenium-python": "2.1.6",
+      "selenium": "4.43.0",
+      "browser_version": "147.0.7727.116",
+      "chromedriver_version": "147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4})",
+      "axe_version": "unknown"
+    },
+    "_content_type": {
+      "profile": "article",
+      "detection": {
+        "schema_type_raw": "TechArticle",
+        "source": "schema_type",
+        "matched_value": "TechArticle"
+      },
+      "weights": {
+        "semantic_html": 0.0,
+        "content_extractability": 0.5,
+        "structured_data": 0.0,
+        "dom_navigability": 0.0,
+        "metadata_completeness": 0.0,
+        "http_compliance": 0.5
+      },
+      "v1_weights_for_reference": {
+        "semantic_html": 0.25,
+        "content_extractability": 0.2,
+        "structured_data": 0.2,
+        "dom_navigability": 0.15,
+        "metadata_completeness": 0.1,
+        "http_compliance": 0.1
+      },
+      "scoring_version": "v2-evidence-partial"
+    }
+  },
+  "standards_authority": {
+    "semantic_html": "HTML5 Semantic Elements (W3C)",
+    "content_extractability": "Mozilla Readability (Firefox Reader View algorithm)",
+    "structured_data": "Schema.org (Google/Microsoft/Yahoo)",
+    "dom_navigability": "WCAG 2.1 AA (W3C) + axe-core (Deque Systems)",
+    "metadata_completeness": "Dublin Core + Schema.org + OpenGraph",
+    "http_compliance": "RFC 7231 + robots.txt + Cache headers"
+  },
+  "evaluation_methodology": "Clipper Standards-Based Access Gate",
+  "partial_evaluation": false,
+  "failed_pillars": [],
+  "content_type": "article",
+  "universal_score": 76.25826938554702,
+  "render_mode": "rendered",
+  "confidence_range": {
+    "scoring_version": "v2-evidence-partial",
+    "evidence_tier": "partial",
+    "headline_weights": {
+      "semantic_html": 0.0,
+      "content_extractability": 0.5,
+      "structured_data": 0.0,
+      "dom_navigability": 0.0,
+      "metadata_completeness": 0.0,
+      "http_compliance": 0.5
+    },
+    "calibration_corpus": {
+      "name": "corpus-002",
+      "n": 43,
+      "pearson_r_vs_accuracy_rendered": 0.548,
+      "gate_threshold": 0.35,
+      "source": "findings/phase-5-corpus-002-findings.md Addendum B"
+    },
+    "caveats": [
+      "Single corpus, single grader architecture, single run.",
+      "Four pillars carry zero headline weight in v2; still reported as diagnostics.",
+      "Profile-specific weights collapse to the same 2-pillar composite pending corpus-003.",
+      "Cross-judge accuracy variance: per-judge corpus-002 means span 0.591-0.698 across Llama-3.3-70B, GPT-4o, and DeepSeek-V3.2 (pooled kappa 0.706-0.817). The v2 composite-vs-accuracy Pearson r ranges from +0.440 to +0.618 across judges (all above the +0.35 ship gate). Report majority-vote CI [0.567, 0.688] or per-judge union CI [0.530, 0.758] when comparing across studies.",
+      "No temporal variance measured yet."
+    ]
+  },
+  "subscores": {
+    "semantic_html": 61.81818181818182,
+    "content_extractability": 80.51653877109405,
+    "structured_data": 31.886363636363633,
+    "dom_navigability": 0,
+    "metadata_completeness": 85,
+    "http_compliance": 72.0
+  },
+  "evidence_references": null
+}

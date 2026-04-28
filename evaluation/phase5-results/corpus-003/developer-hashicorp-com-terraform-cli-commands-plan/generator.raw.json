@@ -1,0 +1,42 @@
+```json
+[
+    {
+        "question": "What is the primary purpose of the `terraform plan` command?",
+        "answer": "The `terraform plan` command creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure.",
+        "supporting_sentences": [
+            "The terraform plan command creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure."
+        ]
+    },
+    {
+        "question": "What are the three operations Terraform performs by default when creating a plan?",
+        "answer": "Terraform reads the current state of any already-existing remote objects, compares the current configuration to the prior state and notes any differences, and proposes a set of change actions that should make the remote objects match the configuration.",
+        "supporting_sentences": [
+            "Reads the current state of any already-existing remote objects to make sure that the Terraform state is up-to-date.",
+            "Compares the current configuration to the prior state and noting any differences.",
+            "Proposes a set of change actions that should, if applied, make the remote objects match the configuration."
+        ]
+    },
+    {
+        "question": "What is the purpose of the `-out=FILE` option in the `terraform plan` command?",
+        "answer": "The `-out=FILE` option saves the generated plan to a file on disk, which you can later execute by passing the file to `terraform apply` as an extra argument.",
+        "supporting_sentences": [
+            "You can use the optional -out=FILE option to save the generated plan to a file on disk, which you can later execute by passing the file to terraform apply as an extra argument."
+        ]
+    },
+    {
+        "question": "What are the two alternative planning modes available for `terraform plan` and `terraform apply`?",
+        "answer": "The two alternative planning modes are Destroy mode and Refresh-only mode.",
+        "supporting_sentences": [
+            "Destroy mode: creates a plan whose goal is to destroy all remote objects that currently exist, leaving an empty Terraform state.",
+            "Refresh-only mode: creates a plan whose goal is only to update the Terraform state and any root module output values to match changes made to remote objects outside of Terraform."
+        ]
+    },
+    {
+        "question": "What does the `-target=ADDRESS` option do in the `terraform plan` command?",
+        "answer": "The `-target=ADDRESS` option instructs Terraform to focus its planning efforts only on resource instances which match the given address and on any objects that those instances depend on.",
+        "supporting_sentences": [
+            "-target=ADDRESS - Instructs Terraform to focus its planning efforts only on resource instances which match the given address and on any objects that those instances depend on."
+        ]
+    }
+]
+```

@@ -1,0 +1,41 @@
+[
+  {
+    "question": "What is a module in Terraform?",
+    "answer": "A module is a collection of resources that Terraform manages together.",
+    "supporting_sentences": [
+      "A module is a collection of resources that Terraform manages together."
+    ]
+  },
+  {
+    "question": "What are the two types of modules mentioned in the document?",
+    "answer": "The two types of modules are the root module and child modules.",
+    "supporting_sentences": [
+      "Every Terraform workspace includes configuration files in its root directory. Terraform refers to this configuration as the root module.",
+      "Modules you configure using module blocks are called child modules."
+    ]
+  },
+  {
+    "question": "Where can Terraform load modules from?",
+    "answer": "Terraform can load modules from the local file system, a Terraform registry, and VCS repositories.",
+    "supporting_sentences": [
+      "Terraform can load modules from multiple sources, including the local file system, a Terraform registry, and VCS repositories."
+    ]
+  },
+  {
+    "question": "Who creates and maintains the modules on the public Terraform registry?",
+    "answer": "Modules on the public registry are created and maintained by HashiCorp, their partners, and the Terraform community.",
+    "supporting_sentences": [
+      "Modules on the public registry are created and maintained by HashiCorp, our partners, and the Terraform community."
+    ]
+  },
+  {
+    "question": "What are the three phases described in the module implementation workflow?",
+    "answer": "The three phases are Develop, Distribute, and Provision.",
+    "supporting_sentences": [
+      "The following phases describe the module implementation workflow:",
+      "Develop: Module developers collect resource configurations into a module. Modules follow a standard structure and should include documentation. Refer to Develop modules for more information.",
+      "Distribute : Terraform lets users access modules from several kinds of sources, including S3 buckets and GitHub repositories. The most common method is to publish your module to the public Terraform registry or to a private registry. Refer to Publishing modules for more information.",
+      "Provision: Module consumers can use the module block in their configurations to call modules published to one of the supported kinds of sources. Refer to use modules in your configuration for more information."
+    ]
+  }
+]

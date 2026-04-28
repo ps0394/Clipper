@@ -1,0 +1,777 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Best practices for Amazon RDS - Amazon Relational Database Service</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="assets_root" content="/assets"><meta name="target_state" content="CHAP_BestPractices"><meta name="default_state" content="CHAP_BestPractices"><link rel="icon" type="image/ico" href="/assets/images/favicon.ico"><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico"><link rel="canonical" href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html"><meta name="description" content="Follow these best practices for working with Amazon RDS."><meta name="deployment_region" content="IAD"><meta name="product" content="Amazon Relational Database Service"><meta name="guide" content="User Guide"><meta name="abstract" content="Amazon Web Services (AWS) documentation to help you set up, operate, and scale a relational database in the AWS Cloud using Amazon Relational Database Service (Amazon RDS). You can create DB instances that run Amazon Aurora, MariaDB, Microsoft SQL Server, MySQL, Oracle, and PostgreSQL."><meta name="guide-locale" content="en_us"><meta name="tocs" content="toc-contents.json"><link rel="canonical" href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html"><link rel="alternate" href="https://docs.aws.amazon.com/id_id/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="id-id"><link rel="alternate" href="https://docs.aws.amazon.com/id_id/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="id"><link rel="alternate" href="https://docs.aws.amazon.com/de_de/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="de-de"><link rel="alternate" href="https://docs.aws.amazon.com/de_de/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="de"><link rel="alternate" href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="en-us"><link rel="alternate" href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="en"><link rel="alternate" href="https://docs.aws.amazon.com/es_es/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="es-es"><link rel="alternate" href="https://docs.aws.amazon.com/es_es/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="es"><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="fr-fr"><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="fr"><link rel="alternate" href="https://docs.aws.amazon.com/it_it/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="it-it"><link rel="alternate" href="https://docs.aws.amazon.com/it_it/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="it"><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="ja-jp"><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="ja"><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="ko-kr"><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="ko"><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="pt-br"><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="pt"><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="zh-cn"><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="zh-tw"><link rel="alternate" href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html" hreflang="x-default"><meta name="feedback-item" content="RDS"><meta name="this_doc_product" content="Amazon Relational Database Service"><meta name="this_doc_guide" content="User Guide"> <script async="" src="https://a.b.cdn.console.awsstatic.com/a/v1/CEQ753HGI4VIEBGCDVTGJAUVQGBTUEBLQAPUZKXOPUCG73VLELWQ/4f9d21011c2f449797c97ad39e28d981db54e8abc2d447ce9b3129dbc8be99c4.js" crossorigin="anonymous"></script><script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"><script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'rds'}"></script><meta id="panorama-serviceSubSection" value="User Guide"><meta id="panorama-serviceConsolePage" value="Best practices for Amazon RDS"><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/816.ee399c0bee656eceb6d0.css"><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/2514.a11f076dc4fb2cca74eb.css"><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/4011.397f421b3798c0b7d477.css"><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/4845.6a595925b3d104a21f39.css"><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/8745.41985563f64e72bd14ae.css"><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/6420.4035928faf176abb7346.css"><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/3486.74ba6c31bf7a6e9619ce.css"><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/1759.691ade396dc86297ed81.css"><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/6208.0d22eea0741becffb14f.css"><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/5999.ba438acf0bb4227e2a73.css"><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/7342.a255ffa4610ca45ee17a.css"><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/3708.1abf383dfb7f28a7a55e.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-3708" src="https://docs.aws.amazon.com/assets/r/3708.712595a3e5c42552af9d.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/8736.24e4aedc7402456643b1.css"><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/5257.caa6b15afb10fd910731.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-352" src="https://docs.aws.amazon.com/assets/r/352.e659e2a1a775ec910c64.js"></script><link rel="stylesheet" type="text/css" href="https://docs.aws.amazon.com/assets/r/5521.8435a18a94708b32bbb0.css"><script charset="utf-8" data-webpack="@amzn/aws-docs-website-assets-react:chunk-5521" src="https://docs.aws.amazon.com/assets/r/5521.65b3c2ecf161c12300a9.js"></script></head>
+<body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="CHAP_BestPractices.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><title>Best practices for Amazon RDS - Amazon Relational Database Service</title><meta name="pdf" content="/pdfs/AmazonRDS/latest/UserGuide/rds-ug.pdf#CHAP_BestPractices"><meta name="rss" content="rdsupdates.rss"><meta name="forums" content="https://repost.aws/tags/TAsibBK6ZeQYihN9as4S_psg"><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=RDS&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html"><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html"><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html"><meta name="keywords" content="Amazon Relational Database Service,RDS,DB Instance"><link rel="alternate" type="text/markdown" href="CHAP_BestPractices.md" title="Markdown version"><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon RDS",
+        "item" : "https://docs.aws.amazon.com/rds/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Best practices for Amazon RDS",
+        "item" : "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html"
+      }
+    ]
+}
+</script><div id="main"><div style="display: none"><a href="/pdfs/AmazonRDS/latest/UserGuide/rds-ug.pdf#CHAP_BestPractices" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/rds/index.html">Amazon RDS</a><a href="Welcome.html">User Guide</a></div><div id="page-toc-src"><a href="#CHAP_BestPractices.DiskPerformance">Amazon RDS basic operational guidelines</a><a href="#CHAP_BestPractices.Performance.RAM">DB instance RAM recommendations</a><a href="#CHAP_BestPractices.Upgrades">Keeping database engine versions up to date</a><a href="#CHAP_BestPractices.Drivers">AWS database drivers</a><a href="#CHAP_BestPractices.EnhancedMonitoring">Using Enhanced Monitoring</a><a href="#CHAP_BestPractices.UsingMetrics">Using metrics</a><a href="#CHAP_BestPractices.TuningQueries">Tuning queries</a><a href="#CHAP_BestPractices.MySQLStorage">Best practices for working with MySQL</a><a href="#CHAP_BestPractices.MariaDB">Best practices for working with MariaDB</a><a href="#CHAP_BestPractices.Oracle">Best practices for working with Oracle</a><a href="#CHAP_BestPractices.PostgreSQL">Best practices for working with PostgreSQL</a><a href="#CHAP_BestPractices.SQLServer">Best practices for working with SQL Server</a><a href="#CHAP_BestPractices.DBParameterGroup">Working with DB parameter groups</a><a href="#CHAP_BestPractices.AutoDBCreation">Automating DB instance creation</a><a href="#CHAP_BestPractices.Presentation">New features video</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="CHAP_BestPractices">Best practices for Amazon RDS</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Learn best practices for working with Amazon RDS. As new best practices are identified, we will
+        keep this section up to date. </p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><p><a href="#CHAP_BestPractices.DiskPerformance">Amazon RDS basic operational guidelines</a></p></li><li><p><a href="#CHAP_BestPractices.Performance.RAM">DB instance RAM recommendations</a></p></li><li><p><a href="#CHAP_BestPractices.Upgrades">Keeping database engine versions up to date</a></p></li><li><p><a href="#CHAP_BestPractices.Drivers">AWS database drivers</a></p></li><li><p><a href="#CHAP_BestPractices.EnhancedMonitoring">Using Enhanced Monitoring to identify operating system issues</a></p></li><li><p><a href="#CHAP_BestPractices.UsingMetrics">Using metrics to identify performance issues</a></p></li><li><p><a href="#CHAP_BestPractices.TuningQueries">Tuning queries</a></p></li><li><p><a href="#CHAP_BestPractices.MySQLStorage">Best practices for working with MySQL</a></p></li><li><p><a href="#CHAP_BestPractices.MariaDB">Best practices for working with MariaDB</a></p></li><li><p><a href="#CHAP_BestPractices.Oracle">Best practices for working with Oracle</a></p></li><li><p><a href="#CHAP_BestPractices.PostgreSQL">Best practices for working with PostgreSQL</a></p></li><li><p><a href="#CHAP_BestPractices.SQLServer">Best practices for working with SQL Server</a></p></li><li><p><a href="#CHAP_BestPractices.DBParameterGroup">Working with DB parameter groups</a></p></li><li><p><a href="#CHAP_BestPractices.AutoDBCreation">Best practices for automating DB instance creation</a></p></li><li><p><a href="#CHAP_BestPractices.Presentation">Amazon RDS new features video</a></p></li></ul></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For common recommendations for Amazon RDS, see <a href="./monitoring-recommendations.html">Recommendations from Amazon RDS</a>.</p></div></div><h2 id="CHAP_BestPractices.DiskPerformance">Amazon RDS basic operational guidelines</h2>
+        
+            <p>The following are basic operational guidelines that everyone should follow when
+            working with Amazon RDS. Note that the Amazon RDS Service Level Agreement requires that
+            you follow these guidelines:</p>
+        <div class="itemizedlist">
+             
+             
+             
+           
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Use metrics to monitor your memory, CPU, replica lag, and storage usage. You
+                    can set up Amazon CloudWatch to notify you when the usage patterns change or when your deployment 
+                    approaches capacity limits. This allows you to maintain system performance and availability.</p>
+            </li><li class="listitem">
+                <p>Scale up your DB instance when you are approaching storage capacity limits.
+                    You should have some buffer in storage and memory to accommodate unforeseen
+                    increases in demand from your applications.</p>
+            </li><li class="listitem">
+                <p>Enable automatic backups and set the backup window to occur during the daily
+                    low in write IOPS. That's when a backup is least disruptive to your
+                    database usage.</p>
+            </li><li class="listitem">
+              <p>If your database workload requires more I/O than you have provisioned, recovery after a
+                  failover or database failure will be slow. To increase the I/O capacity of a DB
+                  instance, do any or all of the following:</p>
+              <div class="itemizedlist">
+                   
+                   
+                   
+              <ul class="itemizedlist"><li class="listitem"><p>Migrate to a different DB instance class with high I/O capacity.</p></li><li class="listitem"><p>Convert from magnetic storage to either General Purpose or Provisioned IOPS storage, depending
+                            on how much of an increase you need. For information on available
+                            storage types, see <a href="./CHAP_Storage.html#Concepts.Storage">Amazon RDS storage types</a>.</p>
+                      <p>If you convert to Provisioned IOPS storage, make sure you also use a 
+                          DB instance class that is optimized for Provisioned IOPS. For information on Provisioned IOPS, 
+                          see <a href="./CHAP_Storage.html#USER_PIOPS">Provisioned IOPS SSD storage</a>.</p>
+                  </li><li class="listitem"><p>If you are already using Provisioned IOPS storage, provision additional throughput capacity. </p></li></ul></div>
+          </li><li class="listitem">
+                <p>If your client application is caching the Domain Name Service (DNS) data of
+                    your DB instances, set a time-to-live (TTL) value of less than 30 seconds. The
+                    underlying IP address of a DB instance can change after a failover. Caching the
+                    DNS data for an extended time can thus lead to connection failures. Your
+                    application might try to connect to an IP address that's no longer in
+                    service.</p>
+            </li><li class="listitem">
+                <p>Test failover for your DB instance to understand how long the process takes
+                    for your particular use case. Also test failover to ensure that the application
+                    that accesses your DB instance can automatically connect to the new DB instance
+                    after failover occurs.</p>
+            </li></ul></div>
+        
+    <h2 id="CHAP_BestPractices.Performance.RAM">DB instance RAM recommendations</h2>
+        
+        <p>An Amazon RDS performance best practice is to allocate enough RAM so that your
+                <em>working set</em> resides almost completely in memory. The working
+            set is the data and indexes that are frequently in use on your instance. The more you
+            use the DB instance, the more the working set will grow.</p>
+        <p>To tell if your working set is almost all in memory, check the ReadIOPS metric (using
+            Amazon CloudWatch) while the DB instance is under load. The value of ReadIOPS should be small and
+            stable. In some cases, scaling up the DB instance class to a class with more RAM results
+            in a dramatic drop in ReadIOPS. In these cases, your working set was not almost
+            completely in memory. Continue to scale up until ReadIOPS no longer drops dramatically
+            after a scaling operation, or ReadIOPS is reduced to a very small amount. For
+            information on monitoring a DB instance's metrics, see <a href="./USER_Monitoring.html">Viewing metrics in the Amazon RDS console</a>.</p>
+     
+        <h2 id="CHAP_BestPractices.Upgrades">Keeping database engine versions up to date</h2>
+        <p>Regularly upgrade your database engine version to maintain security, performance, and
+            compliance. Amazon RDS releases new minor and major versions that include security patches,
+            performance enhancements, and new features. Running an outdated database engine can
+            expose your workloads to known vulnerabilities, compatibility issues, and reduced
+            support from AWS and database vendors.</p>
+        <p>To minimize disruption, consider the following when you plan upgrades:</p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><b>Test in a staging environment</b> –
+                    Validate the new version against your workload before you upgrade production
+                    databases.</p>
+            </li><li class="listitem">
+                <p><b>Use Amazon RDS managed upgrades</b> – Enable
+                    automatic minor version upgrades for easier patching.</p>
+            </li><li class="listitem">
+                <p><b>Schedule major version upgrades</b> –
+                    Review release notes, test application compatibility, and plan a controlled
+                    upgrade window.</p>
+            </li></ul></div>
+        <p>Regular upgrades help ensure your database remains secure, optimized, and aligned with
+            AWS best practices.</p>
+     
+        <h2 id="CHAP_BestPractices.Drivers">AWS database drivers</h2>
+        <p>We recommend the AWS suite of drivers for application connectivity. The drivers have
+            been designed to provide support for faster switchover and failover times, and
+            authentication with AWS Secrets Manager, AWS Identity and Access Management (IAM), and Federated Identity. The AWS
+            drivers rely on monitoring DB instance status and being aware of the instance topology to
+            determine the new writer. This approach reduces switchover and failover times to
+            single-digit seconds, compared to tens of seconds for open-source drivers.</p>
+        <p>As new service features are introduced, the goal of the AWS suite of drivers is to
+            have built-in support for these service features.</p>
+        <p>For more information, see <a href="./CHAP_CommonTasks.Connect.html#RDS.Connecting.Drivers">Connecting to DB instances with the AWS drivers</a>.</p>
+     
+        <h2 id="CHAP_BestPractices.EnhancedMonitoring">Using Enhanced Monitoring to identify operating system issues</h2>
+        
+        <p>When Enhanced Monitoring is enabled, Amazon RDS provides metrics in real time for the
+            operating system (OS) that your DB instance runs on. You can view the metrics for your
+            DB instance using the console. You can also consume the Enhanced Monitoring JSON output
+            from Amazon CloudWatch Logs in a monitoring system of your choice. For more information about
+            Enhanced Monitoring, see <a href="./USER_Monitoring.OS.html">Monitoring OS metrics with Enhanced Monitoring</a>.</p>
+    <h2 id="CHAP_BestPractices.UsingMetrics">Using metrics to identify performance issues</h2>
+        
+        <p> To identify performance issues caused by insufficient resources and other common
+            bottlenecks, you can monitor the metrics available for your Amazon RDS DB instance. </p>
+         
+            <h3 id="CHAP_BestPractices.UsingMetrics.ViewingMetrics">Viewing performance metrics</h3>
+            
+            <p>You should monitor performance metrics on a regular basis to see the average,
+                maximum, and minimum values for a variety of time ranges. If you do so, you can
+                identify when performance is degraded. You can also set Amazon CloudWatch alarms for
+                particular metric thresholds so you are alerted if they are reached. </p>
+            <p>To troubleshoot performance issues, it's important to understand the baseline
+                performance of the system. When you set up a DB instance and run it with a typical
+                workload, capture the average, maximum, and minimum values of all performance
+                metrics. Do so at a number of different intervals (for example, one hour, 24 hours,
+                one week, two weeks). This can give you an idea of what is normal. It helps to get
+                comparisons for both peak and off-peak hours of operation. You can then use this
+                information to identify when performance is dropping below standard levels.</p>
+            <p>If you use Multi-AZ DB clusters, monitor the time difference between the latest
+                transaction on the writer DB instance and the latest applied transaction on a reader
+                DB instance. This difference is called <em>replica lag</em>. For more
+                information, see <a href="./multi-az-db-clusters-concepts.html#multi-az-db-clusters-concepts-replica-lag">Replica lag and Multi-AZ DB clusters</a>.</p>
+            <p>You can view the combined Performance Insights and CloudWatch metrics in the Performance Insights dashboard and monitor your
+                DB instance. To use this monitoring view, Performance Insights must be turned on for your DB
+                instance. For information about this monitoring view, see <a href="./Viewing_Unifiedmetrics.html">Viewing combined metrics with the Performance Insights dashboard</a>.</p>
+            <p>You can create a performance analysis report for a specific time period and 
+                view the insights identified and the recommendations to resolve the issues. For more information see, <a href="./USER_PerfInsights.UsingDashboard.AnalyzePerformanceTimePeriod.html">Creating a performance analysis report in Performance Insights</a>.</p>
+            <div class="procedure"><h6>To view performance metrics</h6><ol><li><p> Sign in to the AWS Management Console and open the Amazon RDS console at <a href="https://console.aws.amazon.com/rds/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/rds/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p></li><li><p> In the navigation pane, choose <b>Databases</b>, and then choose a DB instance. </p></li><li><p> Choose <b>Monitoring</b>.</p>
+                        <p>The dashboard provides the performance metrics. The metrics default to
+                        show the information for the last three hours. </p></li><li><p> Use the numbered buttons in the upper-right to page through the additional metrics, or adjust
+                        the settings to see more metrics. </p></li><li><p> Choose a performance metric to adjust the time range in order to see data for other than the
+                        current day. You can change the <b>Statistic</b>,
+                            <b>Time Range</b>, and <b>Period</b> values to adjust the information displayed. For
+                        example, you might want to see the peak values for a metric for each day of
+                        the last two weeks. If so, set <b>Statistic</b> to
+                            <b>Maximum</b>, <b>Time
+                            Range</b> to <b>Last 2 Weeks</b>, and
+                            <b>Period</b> to <b>Day</b>. </p>
+                
+                </li></ol></div>
+            <p> You can also view performance metrics using the CLI or API. For more information,
+                see <a href="./USER_Monitoring.html">Viewing metrics in the Amazon RDS console</a>. </p>
+            <div class="procedure"><h6><b>To set a CloudWatch alarm</b></h6><ol><li>
+                    <p>Sign in to the AWS Management Console and open the Amazon RDS console at <a href="https://console.aws.amazon.com/rds/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/rds/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+                </li><li>
+                    <p>In the navigation pane, choose <b>Databases</b>, and then choose a DB instance. </p>
+                </li><li>
+                    <p>Choose <b>Logs &amp; events</b>.</p>
+                </li><li>
+                    <p>In the <b>CloudWatch alarms</b> section, choose <b>Create alarm</b>.</p>
+                    <div class="mediaobject">
+                         
+                            <img src="/images/AmazonRDS/latest/UserGuide/images/CreateAlarm.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="Create Alarm dialog box">
+                            
+                            
+                         
+                         
+                    </div>
+                </li><li>
+                    <p>For <b>Send notifications</b>, choose <b>Yes</b>, and for <b>Send notifications to</b>, 
+                        choose <b>New email or SMS topic</b>.</p>
+                </li><li>
+                    <p>For <b>Topic name</b>, enter a name for the notification, and for <b>With these recipients</b>, 
+                        enter a comma-separated list of email addresses and phone numbers.</p>
+                </li><li>
+                    <p>For <b>Metric</b>, choose the alarm statistic and metric to set. </p>
+                </li><li>
+                    <p>For <b>Threshold</b>, specify whether the metric must be greater than, less than, or equal to the threshold, 
+                        and specify the threshold value.  </p>
+                </li><li>
+                    <p>For <b>Evaluation period</b>, choose the evaluation period
+                        for the alarm. For <b>consecutive period(s) of</b>, choose the
+                        period during which the threshold must have been reached in order to trigger
+                        the alarm.</p>
+                </li><li>
+                    <p>For <b>Name of alarm</b>, enter a name for the alarm.</p></li><li>
+                    <p>Choose <b>Create Alarm</b>.</p>
+                </li></ol></div>
+            <p>The alarm appears in the <b>CloudWatch alarms</b> section.</p>
+         
+        
+        <h3 id="CHAP_BestPractices.EvaluatingMetrics">Evaluating performance metrics</h3>
+            
+            <p> A DB instance has a number of different categories of metrics, and how to
+                determine acceptable values depends on the metric. </p>
+
+                
+            <div class="itemizedlist">
+                <h6>CPU</h6>
+                 
+            <ul class="itemizedlist"><li class="listitem"><p> CPU Utilization – Percentage of computer processing capacity used. </p></li></ul></div>
+            
+            <div class="itemizedlist">
+                <h6>Memory</h6>
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Freeable Memory – How much RAM is available on the DB instance, in
+                        bytes. The red line in the Monitoring tab metrics is marked at 75% for
+                        CPU, Memory and Storage Metrics. If instance memory consumption frequently
+                        crosses that line, then this indicates that you should check your workload or
+                        upgrade your instance. </p>
+                </li><li class="listitem"><p> Swap Usage – How much swap space is used by the DB instance, in bytes. </p></li></ul></div>
+                
+            <div class="itemizedlist">
+                <h6>Disk space</h6>
+                 
+            <ul class="itemizedlist"><li class="listitem"><p> Free Storage Space – How much disk space is not currently being used by the DB instance, in
+                            megabytes. </p></li></ul></div>
+              
+            <div class="itemizedlist">
+                <h6>Input/output operations</h6>
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem"><p> Read IOPS, Write IOPS – The average number of disk read or write operations per second. </p></li><li class="listitem"><p> Read Latency, Write Latency – The average time for a read or write operation in milliseconds. </p></li><li class="listitem"><p> Read Throughput, Write Throughput – The average number of megabytes read from or written to
+                        disk per second. </p></li><li class="listitem"><p> Queue Depth – The number of I/O operations that are waiting to be written to or read from
+                        disk. </p></li></ul></div>
+            
+            <div class="itemizedlist">
+                <h6>Network traffic</h6>
+                 
+            <ul class="itemizedlist"><li class="listitem"><p> Network Receive Throughput, Network Transmit Throughput – The rate of network traffic to and
+                        from the DB instance in bytes per second. </p></li></ul></div>
+            
+            <div class="itemizedlist">
+                <h6>Database connections</h6>
+                 
+            <ul class="itemizedlist"><li class="listitem"><p> DB Connections – The number of client sessions that are connected to the DB instance. </p></li></ul></div>
+            <p> For more detailed individual descriptions of the performance metrics available,
+                see <a href="./monitoring-cloudwatch.html">Monitoring Amazon RDS metrics with Amazon CloudWatch</a>. </p>
+                
+           
+          
+            <p> Generally speaking, acceptable values for performance metrics depend on what your
+                baseline looks like and what your application is doing. Investigate consistent or
+                trending variances from your baseline. Advice about specific types of metrics
+                follows: </p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem"><p>
+                        <b>High CPU or RAM consumption –</b> High
+                        values for CPU or RAM consumption might be appropriate. For example, they
+                        might be so if they are in keeping with your goals for your application
+                        (like throughput or concurrency) and are expected. </p></li><li class="listitem"><p>
+                        <b>Disk space consumption – </b> Investigate disk
+                        space consumption if space used is consistently at or above 85 percent of
+                        the total disk space. See if it is possible to delete data from the instance
+                        or archive data to a different system to free up space. </p></li><li class="listitem"><p>
+                        <b>Network traffic –</b> For network
+                        traffic, talk with your system administrator to understand what expected
+                        throughput is for your domain network and internet connection. Investigate
+                        network traffic if throughput is consistently lower than expected. </p></li><li class="listitem"><p>
+                        <b>Database connections –</b> Consider
+                        constraining database connections if you see high numbers of user
+                        connections in conjunction with decreases in instance performance and
+                        response time. The best number of user connections for your DB instance will
+                        vary based on your instance class and the complexity of the operations being
+                        performed. To determine the number of database connections, associate your
+                        DB instance with a parameter group. In this group, set the <em>User Connections</em> parameter to other than 0
+                        (unlimited). You can either use an existing parameter group or create a new
+                        one. For more information, see <a href="./USER_WorkingWithParamGroups.html">Parameter groups for Amazon RDS</a>. </p></li><li class="listitem"><p>
+                        <b>IOPS metrics –</b> The expected values for IOPS
+                        metrics depend on disk specification and server configuration, so use your
+                        baseline to know what is typical. Investigate if values are consistently
+                        different than your baseline. For best IOPS performance, make sure your
+                        typical working set will fit into memory to minimize read and write
+                        operations. </p></li></ul></div>
+            
+            <p> For issues with performance metrics, a first step to improve performance is to
+                tune the most used and most expensive queries. Tune them to see if doing so lowers
+                the pressure on system resources. For more information, see <a href="#CHAP_BestPractices.TuningQueries">Tuning queries</a>.</p>
+            <p> If your queries are tuned and an issue persists, consider upgrading your Amazon RDS
+                    <a href="./Concepts.DBInstanceClass.html">DB instance classes</a>. You might upgrade it to one with
+                more of the resource (CPU, RAM, disk space, network bandwidth, I/O capacity) that is
+                related to the issue. </p>
+         
+     
+        <h2 id="CHAP_BestPractices.TuningQueries">Tuning queries</h2>
+        <p>One of the best ways to improve DB instance performance is to tune your most commonly
+            used and most resource-intensive queries. Here, you tune them to make them less
+            expensive to run. For information on improving queries, use the following
+            resources:</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>MySQL – See <a href="https://dev.mysql.com/doc/refman/8.0/en/select-optimization.html" rel="noopener noreferrer" target="_blank"><span>Optimizing SELECT
+                        statements</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the MySQL documentation. For additional query tuning resources, see <a href="http://www.mysql.com/why-mysql/performance/" rel="noopener noreferrer" target="_blank"><span>MySQL performance tuning and optimization
+                    resources</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li><li class="listitem">
+                <p>Oracle – See <a href="https://docs.oracle.com/database/121/TGSQL/toc.htm" rel="noopener noreferrer" target="_blank"><span>Database SQL Tuning Guide</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the
+                    Oracle Database documentation.</p>
+            </li><li class="listitem">
+                <p>SQL Server – See <a href="http://technet.microsoft.com/en-us/library/ms191227.aspx" rel="noopener noreferrer" target="_blank"><span>Analyzing a
+                        query</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the Microsoft documentation. You can also use the execution-, index-, and I/O-related data
+                    management views (DMVs) described in <a href="https://docs.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/system-dynamic-management-views" rel="noopener noreferrer" target="_blank"><span>System Dynamic Management Views</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the Microsoft documentation to troubleshoot SQL Server query
+                    issues.</p>
+                <p>A common aspect of query tuning is creating effective indexes. For potential index improvements for your DB instance,
+                    see <a href="https://docs.microsoft.com/en-us/sql/relational-databases/performance/database-engine-tuning-advisor" rel="noopener noreferrer" target="_blank"><span>Database Engine Tuning Advisor</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the Microsoft documentation. For information on using Tuning Advisor on
+                    RDS for SQL Server, see <a href="./Appendix.SQLServer.CommonDBATasks.Workload.html">Analyzing your database workload on an Amazon RDS for SQL Server DB instance with Database Engine Tuning Advisor</a>.</p>
+            </li><li class="listitem">
+                <p>PostgreSQL – See <a href="http://www.postgresql.org/docs/current/using-explain.html" rel="noopener noreferrer" target="_blank"><span>Using EXPLAIN</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                    in the PostgreSQL documentation to learn how to analyze a query plan. You can use this information to modify a query or
+                    underlying tables in order to improve query performance.</p>
+                <p>For information about how to specify joins in your query for the best performance, see <a href="http://www.postgresql.org/docs/current/explicit-joins.html" rel="noopener noreferrer" target="_blank"><span>Controlling the planner with explicit JOIN
+                        clauses</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li><li class="listitem">
+                <p>MariaDB – See <a href="https://mariadb.com/kb/en/mariadb/query-optimizations/" rel="noopener noreferrer" target="_blank"><span>Query optimizations</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                    in the MariaDB documentation.</p>
+            </li></ul></div>
+     
+        <h2 id="CHAP_BestPractices.MySQLStorage">Best practices for working with MySQL</h2>
+        
+        <p>Both table sizes and number of tables in a MySQL database can affect performance.</p>
+        
+         
+            <h3 id="CHAP_BestPractices.MySQLStorage.TableSize">Table size</h3>
+            
+            <p>Typically, operating system constraints on file sizes determine the effective maximum table size for MySQL databases. 
+               So, the limits usually aren't determined by internal MySQL constraints.</p>
+            
+            <p>On a MySQL DB instance, avoid tables in your database growing too large. 
+                Although the general storage limit is 64 TiB, provisioned storage limits restrict 
+                the maximum size of a MySQL table file to 16 TiB. Partition your large tables so that file sizes are well 
+                under the 16 TiB limit. This approach can also improve performance and recovery time. For more information, see 
+                <a href="./MySQL.KnownIssuesAndLimitations.html#MySQL.Concepts.Limits.FileSize">MySQL file size limits in Amazon RDS</a>.</p>
+            
+            <p>Very large tables (greater than 100 GB in size) can negatively affect performance for both reads and writes (including DML statements and 
+                especially DDL statements). Indexes on larges tables can significantly improve select performance, but they can also degrade the performance 
+                of DML statements. DDL statements, such as <code class="code">ALTER TABLE</code>, can be significantly slower for the large tables 
+                because those operations might completely rebuild a table in some cases. These DDL statements might lock the tables for the duration 
+                of the operation.</p>
+            
+            <p>The amount of memory required by MySQL for reads and writes depends on the tables involved in the operations. It is a best practice 
+                to have at least enough RAM to the hold the indexes of <em>actively</em> used tables. To find the ten largest tables and indexes 
+                in a database, use the following query:</p>
+            
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (sql)--><code class="sql ">select table_schema, TABLE_NAME, dat, idx from 
+(SELECT table_schema, TABLE_NAME, 
+       ( data_length ) / 1024 / 1024 as dat,
+       ( index_length ) / 1024 / 1024 as idx
+FROM information_schema.TABLES
+order by 3 desc ) a
+order by 3 desc 
+limit 10;</code></pre>
+            
+         
+        
+         
+            <h3 id="CHAP_BestPractices.MySQLStorage.NumberOfTables">Number of tables</h3>
+            
+            <p>Your underlying file system might have a limit on the number of files that
+                represent tables. However, MySQL has no limit on the number of tables. Despite this,
+                the total number of tables in the MySQL InnoDB storage engine can contribute to the
+                performance degradation, regardless of the size of those tables. To limit the
+                operating system impact, you can split the tables across multiple databases in the
+                same MySQL DB instance. Doing so might limit the number of files in a directory but
+                won't solve the overall problem.</p>
+            
+            <p>When there is performance degradation because of a large number of tables (more than 10 thousand), it is caused by MySQL working with storage
+                files, including opening and closing them. To address this issue, you can increase the size of the <code class="code">table_open_cache</code> and 
+                <code class="code">table_definition_cache</code> parameters. However, increasing the values of those parameters might significantly increase the amount of 
+                memory MySQL uses, and might even use all of the available memory. For more information, see 
+                <a href="https://dev.mysql.com/doc/refman/8.0/en/table-cache.html" rel="noopener noreferrer" target="_blank"><span>
+                    How MySQL Opens and Closes Tables</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the MySQL documentation.</p>
+            
+            <p>In addition, too many tables can significantly affect MySQL startup time. Both a clean shutdown and restart and a crash recovery 
+                can be affected, especially in versions prior to MySQL 8.0.</p>
+            
+            <p>We recommend having fewer than 10,000 tables total across all of the databases in
+                a DB instance. For a use case with a large number of tables in a MySQL database, see
+                    <a href="https://www.percona.com/blog/2017/10/01/one-million-tables-mysql-8-0/" rel="noopener noreferrer" target="_blank"><span> One
+                    Million Tables in MySQL 8.0</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            
+         
+        
+         
+            <h3 id="CHAP_BestPractices.MySQLStorage.StorageEngine">Storage engine</h3>
+
+            <p>The point-in-time restore and snapshot restore features of Amazon RDS for MySQL require
+                a crash-recoverable storage engine. These features are supported for the InnoDB
+                storage engine only. Although MySQL supports multiple storage engines with varying
+                capabilities, not all of them are optimized for crash recovery and data durability.
+                For example, the MyISAM storage engine doesn't support reliable crash recovery and
+                might prevent a point-in-time restore or snapshot restore from working as intended.
+                This might result in lost or corrupt data when MySQL is restarted after a crash. </p>
+            <p>InnoDB is the recommended and supported storage engine for MySQL DB instances on
+                Amazon RDS. InnoDB instances can also be migrated to Aurora, while MyISAM instances can't
+                be migrated. However, MyISAM performs better than InnoDB if you require intense,
+                full-text search capability. If you still choose to use MyISAM with Amazon RDS, following
+                the steps outlined in <a href="./Overview.BackupDeviceRestrictions.html">Automated backups with unsupported MySQL storage engines</a> can be helpful in certain
+                scenarios for snapshot restore functionality.</p>
+            <p>If you want to convert existing MyISAM tables to InnoDB tables, you can use the
+                process outlined in <a href="http://dev.mysql.com/doc/refman/5.0/en/converting-tables-to-innodb.html" rel="noopener noreferrer" target="_blank"><span>Converting Tables from MyISAM to InnoDB</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the MySQL
+                documentation. MyISAM and InnoDB have different strengths and weaknesses, so you
+                should fully evaluate the impact of making this switch on your applications before
+                doing so. </p>
+            <p>In addition, Federated Storage Engine is currently not supported by Amazon RDS for
+                MySQL.</p>
+
+         
+        
+     
+        <h2 id="CHAP_BestPractices.MariaDB">Best practices for working with MariaDB</h2>
+        
+        <p>Both table sizes and number of tables in a MariaDB database can affect performance.</p>
+        
+         
+            <h3 id="CHAP_BestPractices.MariaDB.TableSize">Table size</h3>
+            
+            <p>Typically, operating system constraints on file sizes determine the effective maximum table size for MariaDB databases. 
+                So, the limits usually aren't determined by internal MariaDB constraints.</p>
+            
+            <p>On a MariaDB DB instance, avoid tables in your database growing too large. 
+                Although the general storage limit is 64 TiB, provisioned storage limits restrict 
+                the maximum size of a MariaDB table file to 16 TiB. Partition your large tables so that file sizes are well 
+                under the 16 TiB limit. This approach can also improve performance and recovery time.</p>
+            
+            <p>Very large tables (greater than 100 GB in size) can negatively affect performance for both reads and writes (including DML statements and 
+                especially DDL statements). Indexes on larges tables can significantly improve select performance, but they can also degrade the performance 
+                of DML statements. DDL statements, such as <code class="code">ALTER TABLE</code>, can be significantly slower for the large tables 
+                because those operations might completely rebuild a table in some cases. These DDL statements might lock the tables for the duration 
+                of the operation.</p>
+            
+            <p>The amount of memory required by MariaDB for reads and writes depends on the tables involved in the operations. It is a best practice 
+                to have at least enough RAM to the hold the indexes of <em>actively</em> used tables. To find the ten largest tables and indexes 
+                in a database, use the following query:</p>
+            
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (sql)--><code class="sql ">select table_schema, TABLE_NAME, dat, idx from 
+(SELECT table_schema, TABLE_NAME, 
+       ( data_length ) / 1024 / 1024 as dat,
+       ( index_length ) / 1024 / 1024 as idx
+FROM information_schema.TABLES
+order by 3 desc ) a
+order by 3 desc 
+limit 10;</code></pre>
+            
+         
+        
+         
+            <h3 id="CHAP_BestPractices.MariaDB.NumberOfTables">Number of tables</h3>
+            
+            <p>Your underlying file system might have a limit on the number of files that
+                represent tables. However, MariaDB has no limit on the number of tables. Despite
+                this, the total number of tables in the MariaDB InnoDB storage engine can contribute
+                to the performance degradation, regardless of the size of those tables. To limit the
+                operating system impact, you can split the tables across multiple databases in the
+                same MariaDB DB instance. Doing so might limit the number of files in a directory
+                but doesn’t solve the overall problem.</p>
+            
+            <p>When there is performance degradation because of a large number of tables (more
+                than 10,000), it's caused by MariaDB working with storage files. This work includes
+                MariaDB opening and closing storage files. To address this issue, you can increase
+                the size of the <code class="code">table_open_cache</code> and
+                    <code class="code">table_definition_cache</code> parameters. However, increasing the values
+                of those parameters might significantly increase the amount of memory MariaDB uses.
+                It might even use all of the available memory. For more information, see <a href="https://mariadb.com/kb/en/optimizing-table_open_cache/" rel="noopener noreferrer" target="_blank"><span> Optimizing
+                    table_open_cache</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the MariaDB documentation.</p>
+            
+            <p>In addition, too many tables can significantly affect MariaDB startup time. Both a clean shutdown and restart and a crash recovery 
+                can be affected. We recommend having fewer than ten thousand tables total across all of the databases in a DB instance.</p>
+            
+         
+        
+         
+            <h3 id="CHAP_BestPractices.MariaDB.StorageEngine">Storage engine</h3>
+
+            <p>The point-in-time restore and snapshot restore features of Amazon RDS for MariaDB
+                require a crash-recoverable storage engine. Although MariaDB supports multiple
+                storage engines with varying capabilities, not all of them are optimized for crash
+                recovery and data durability. For example, although Aria is a crash-safe replacement
+                for MyISAM, it might still prevent a point-in-time restore or snapshot restore from
+                working as intended. This might result in lost or corrupt data when MariaDB is
+                restarted after a crash. InnoDB is the recommended and supported storage engine for
+                MariaDB DB instances on Amazon RDS. If you still choose to use Aria with Amazon RDS, following
+                the steps outlined in <a href="./Overview.BackupDeviceRestrictionsMariaDB.html">Automated backups with unsupported MariaDB storage engines</a> can be helpful in
+                certain scenarios for snapshot restore functionality.</p>
+            <p>If you want to convert existing MyISAM tables to InnoDB tables, you can use the
+                process outlined in <a href="https://mariadb.com/kb/en/converting-tables-from-myisam-to-innodb/" rel="noopener noreferrer" target="_blank"><span>Converting Tables from MyISAM to InnoDB</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the MariaDB
+                documentation. MyISAM and InnoDB have different strengths and weaknesses, so you
+                should fully evaluate the impact of making this switch on your applications before
+                doing so. </p>
+
+         
+        
+     
+        <h2 id="CHAP_BestPractices.Oracle">Best practices for working with Oracle</h2>
+        <p>For information about best practices for working with Amazon RDS for Oracle, see 
+            <a href="https://docs.aws.amazon.com/aws-technical-content/latest/oracle-database-aws-best-practices/introduction.html">
+                Best practices for running Oracle database on Amazon Web Services</a>.</p>
+        <p>A 2020 AWS virtual workshop included a presentation on running production Oracle
+            databases on Amazon RDS. A video of the presentation is available here:</p>
+        <div class="mediaobject">
+             
+                <iframe width="480" height="390" frameborder="0" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" sandbox="allow-scripts allow-same-origin allow-popups" src="https://www.youtube-nocookie.com/embed/vpSWZx4-M-M"></iframe>
+             
+             
+        </div>
+        
+    <h2 id="CHAP_BestPractices.PostgreSQL">Best practices for working with PostgreSQL</h2>
+        
+        <p>Of two important areas where you can improve performance with RDS for PostgreSQL, one is
+            when loading data into a DB instance. Another is when using the PostgreSQL
+            autovacuum feature. The following sections cover some of the practices we recommend for
+            these areas.</p>
+        <p>For information on how Amazon RDS implements other common PostgreSQL DBA tasks, see <a href="./Appendix.PostgreSQL.CommonDBATasks.html">Common DBA tasks for Amazon RDS for PostgreSQL</a>.</p>
+        <h3 id="CHAP_BestPractices.PostgreSQL.LoadingData">Loading data into a PostgreSQL DB instance</h3>
+            
+            <p>When loading data into an Amazon RDS for PostgreSQL DB instance, modify your DB instance
+                settings and your DB parameter group values. Set these to allow for the most
+                efficient importing of data into your DB instance.</p>
+            <p>Modify your DB instance settings to the following:</p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>Disable DB instance backups (set backup_retention to 0)</p>
+                    </li><li class="listitem">
+                        <p>Disable Multi-AZ</p>
+                    </li></ul></div>
+            <p>Modify your DB parameter group to include the following settings. Also, test the
+                parameter settings to find the most efficient settings for your DB instance.</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                <p>Increase the value of the <code class="code">maintenance_work_mem</code> parameter. For more information about PostgreSQL resource
+                        consumption parameters, see the <a href="http://www.postgresql.org/docs/current/runtime-config-resource.html" rel="noopener noreferrer" target="_blank"><span>PostgreSQL documentation</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li><li class="listitem">
+                    <p>Increase the value of the <code class="code">max_wal_size</code> and
+                            <code class="code">checkpoint_timeout</code> parameters to reduce the number of
+                        writes to the write-ahead log (WAL) log.</p>
+                </li><li class="listitem">
+                    <p>Disable the <code class="code">synchronous_commit</code> parameter.</p>
+                </li><li class="listitem">
+                    <p>Disable the PostgreSQL autovacuum parameter.</p>
+                </li><li class="listitem">
+                    <p>Make sure that none of the tables you're importing are unlogged. Data
+                        stored in unlogged tables can be lost during a failover. For more
+                        information, see <a href="https://www.postgresql.org/docs/current/sql-createtable.html" rel="noopener noreferrer" target="_blank"><span>CREATE TABLE UNLOGGED</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                </li></ul></div>
+            <p>Use the <code class="code">pg_dump -Fc</code> (compressed) or <code class="code">pg_restore -j</code>
+                (parallel) commands with these settings.</p>
+            <p>After the load operation completes, return your DB instance and DB parameters to their normal settings.</p>
+         
+        
+        
+        
+        
+        <h3 id="CHAP_BestPractices.PostgreSQL.Autovacuum">Working with the PostgreSQL autovacuum feature</h3>
+            
+        
+        <p>The autovacuum feature for PostgreSQL databases is a feature that we strongly
+                recommend you use to maintain the health of your PostgreSQL DB instance. Autovacuum
+                automates the execution of the VACUUM and ANALYZE command Using autovacuum is
+                required by PostgreSQL, not imposed by Amazon RDS, and its use is critical to good
+                performance. The feature is enabled by default for all new Amazon RDS for PostgreSQL DB
+                instances, and the related configuration parameters are appropriately set by
+                default.</p>
+        <p>Your database administrator needs to know and understand this maintenance operation. For the PostgreSQL documentation on
+            autovacuum, see <a href="http://www.postgresql.org/docs/current/routine-vacuuming.html#AUTOVACUUM" rel="noopener noreferrer" target="_blank"><span>The Autovacuum Daemon</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <p>Autovacuum is not a "resource free" operation, but it works in the background and
+                yields to user operations as much as possible. When enabled, autovacuum checks for
+                tables that have had a large number of updated or deleted tuples. It also protects
+                against&nbsp;loss of very old data due to transaction ID wraparound. For more information, 
+                see <a href="https://www.postgresql.org/docs/current/routine-vacuuming.html#VACUUM-FOR-WRAPAROUND" rel="noopener noreferrer" target="_blank"><span>Preventing transaction ID wraparound failures</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <p>Autovacuum should not be thought of as a high-overhead operation that can be reduced
+            to gain better performance. On the contrary, tables that have a high velocity of updates
+            and deletes will quickly deteriorate over time if autovacuum is not run.</p>
+        <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p> Not running autovacuum can result in an eventual required outage to perform a much more
+                    intrusive vacuum operation. In some cases, an RDS for PostgreSQL DB instance might
+                    become unavailable because of an over-conservative use of autovacuum. In these
+                    cases, the PostgreSQL database shuts down to protect itself. At that point,
+                    Amazon RDS must perform a single-user-mode full vacuum directly on the DB instance.
+                    This full vacuum can result in&nbsp;a multi-hour outage.<em> </em>Thus, we strongly recommend that you do not turn off autovacuum,
+                    which is turned on by default. </p></div></div>
+        <p>The autovacuum parameters determine when and how hard autovacuum works. The<code class="code">autovacuum_vacuum_threshold</code> and
+            <code class="code">autovacuum_vacuum_scale_factor</code> parameters determine when autovacuum is run. The <code class="code">autovacuum_max_workers</code>, <code class="code">autovacuum_nap_time</code>,
+            <code class="code">autovacuum_cost_limit</code>, and <code class="code">autovacuum_cost_delay</code> parameters determine how hard autovacuum works. For more information about
+            autovacuum, when it runs, and what parameters are required, see <a href="https://www.postgresql.org/docs/current/routine-vacuuming.html" rel="noopener noreferrer" target="_blank"><span>Routine Vacuuming</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+            in the PostgreSQL documentation.</p>
+        <p> The following query shows the number of "dead" tuples in a table named table1: </p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (sql)--><code class="sql ">SELECT relname, n_dead_tup, last_vacuum, last_autovacuum FROM 
+pg_catalog.pg_stat_all_tables 
+WHERE n_dead_tup &gt; 0 and relname =&nbsp;'table1';</code></pre>
+        <p>The results of the query will resemble the following:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (none)--><code class="nohighlight">relname | n_dead_tup | last_vacuum | last_autovacuum
+---------+------------+-------------+-----------------
+ tasks   |   81430522 |             |
+(1 row) </code></pre>
+      
+    
+         
+         
+            <h3 id="CHAP_BestPractices.pgSQL.Presentation">Amazon RDS for PostgreSQL best practices video</h3>
+            <p>The 2020 AWS re:Invent conference included a presentation on new features and best practices for
+                working with PostgreSQL on Amazon RDS. A video of the presentation is available here:</p>
+            <div class="mediaobject">
+                 
+                    <iframe width="480" height="390" frameborder="0" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" sandbox="allow-scripts allow-same-origin allow-popups" src="https://www.youtube-nocookie.com/embed/3JLPWOoiVB8"></iframe>
+                 
+                 
+            </div>
+            
+         
+        
+<h2 id="CHAP_BestPractices.SQLServer">Best practices for working with SQL Server</h2>
+        
+        <p>Best practices for a Multi-AZ deployment with a SQL Server DB instance include the
+            following:</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem"><p>Use Amazon RDS DB events to monitor failovers. For example, you can be notified by text
+                    message or email when a DB instance fails over. For more information about
+                    Amazon RDS events, see <a href="./USER_Events.html">Working with Amazon RDS event notification</a>.</p></li><li class="listitem"><p>If your application caches DNS values, set time to live (TTL) to less than 30 seconds. Setting
+                    TTL as so is a good practice in case there is a failover. In a failover, the IP
+                    address might change and the cached value might no longer be in service.</p></li><li class="listitem"><p>We recommend that you <em>do not</em> enable the following modes because they turn
+                    off transaction logging, which is required for Multi-AZ: </p><div class="itemizedlist">
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>Simple recover mode</p>
+                        </li><li class="listitem">
+                            <p>Offline mode</p>
+                        </li><li class="listitem">
+                            <p>Read-only mode</p>
+                        </li></ul></div>
+                </li><li class="listitem"><p>Test to determine how long it takes for your DB instance to failover. Failover time can vary
+                    due to the type of database, the instance class, and the storage type you use.
+                    You should also test your application's ability to continue working if a
+                    failover occurs.</p></li><li class="listitem"><p>To shorten failover time, do the following:</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem"><p>Ensure that you have sufficient Provisioned IOPS allocated for your workload. Inadequate I/O
+                            can lengthen failover times. Database recovery requires I/O.</p></li><li class="listitem"><p>Use smaller transactions. Database recovery relies on transactions, so if you can break up
+                            large transactions into multiple smaller transactions, your failover
+                            time should be shorter.</p></li></ul></div>
+            </li><li class="listitem"><p>Take into consideration that during a failover, there will be elevated latencies. As part of
+                    the failover process, Amazon RDS automatically replicates your data to a new standby
+                    instance. This replication means that new data is being committed to two
+                    different DB instances. So there might be some latency until the standby DB
+                    instance has caught up to the new primary DB instance.</p></li><li class="listitem"><p>Deploy your applications in all Availability Zones. If an Availability Zone does go down, your
+                    applications in the other Availability Zones will still be available.</p></li></ul></div>
+        <p>When working with a Multi-AZ deployment of SQL Server, remember that Amazon RDS
+            creates replicas for all SQL Server databases on your instance. If you don't want specific 
+            databases to have secondary replicas, set up a separate DB instance that doesn't use Multi-AZ for
+            those databases.</p>
+         
+            <h3 id="CHAP_BestPractices.SQLServer.Presentation">Amazon RDS for SQL Server best practices video</h3>
+            <p>The 2019 AWS re:Invent conference included a presentation on new features and best practices for
+                working with SQL Server on Amazon RDS. A video of the presentation is available here:</p>
+            <div class="mediaobject">
+                 
+                    <iframe width="480" height="390" frameborder="0" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" sandbox="allow-scripts allow-same-origin allow-popups" src="https://www.youtube-nocookie.com/embed/R4Vj88iqu5s"></iframe>
+                 
+                 
+            </div>
+            
+         
+    <h2 id="CHAP_BestPractices.DBParameterGroup">Working with DB parameter groups</h2>
+        
+        <p>We recommend that you try out DB parameter group changes on a test DB instance before applying parameter group changes 
+            to your production DB instances. Improperly setting DB engine parameters in a DB parameter group can have unintended adverse effects, 
+            including degraded performance and system instability. Always exercise caution when modifying DB engine parameters and 
+            back up your DB instance before modifying a DB parameter group. 
+            </p>
+        
+        <p>For information about backing up your DB instance, see 
+            <a href="./CHAP_CommonTasks.BackupRestore.html">Backing up, restoring, and exporting data</a>.</p>
+        
+    <h2 id="CHAP_BestPractices.AutoDBCreation">Best practices for automating DB instance creation</h2>
+        
+        <p>It’s an Amazon RDS best practice to create a DB instance with the preferred minor version
+            of the database engine. You can use the AWS CLI, Amazon RDS API, or AWS CloudFormation to automate DB
+            instance creation. When you use these methods, you can specify only the major version
+            and Amazon RDS automatically creates the instance with the preferred minor version. For
+            example, if PostgreSQL 12.5 is the preferred minor version, and if you specify version
+            12 with <code class="code">create-db-instance</code>,  the DB instance will be version 12.5.</p>
+        <p>To determine the preferred minor version, you can run the
+                <code class="code">describe-db-engine-versions</code> command with the
+                <code class="code">--default-only</code> option as shown in the following example.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (none)--><code class="nohighlight">aws rds describe-db-engine-versions --default-only --engine postgres
+
+<span>{</span>
+    "DBEngineVersions": [
+        <span>{</span>
+            "Engine": "postgres",
+            "EngineVersion": "12.5",
+            "DBParameterGroupFamily": "postgres12",
+            "DBEngineDescription": "PostgreSQL",
+            "DBEngineVersionDescription": "PostgreSQL 12.5-R1",
+            ...some output truncated...
+        }
+    ]
+}</code></pre>
+        <p>For information on creating DB instances programmatically, see the following
+            resources:</p>
+        <div class="itemizedlist">
+             
+             
+             
+            
+        <ul class="itemizedlist"><li class="listitem"><p>Using the AWS CLI – <a href="https://docs.aws.amazon.com/cli/latest/reference/rds/create-db-instance.html">create-db-instance</a></p></li><li class="listitem"><p>Using the Amazon RDS API – <a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html">CreateDBInstance</a></p></li><li class="listitem"><p>Using AWS CloudFormation – <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbinstance.html">AWS::RDS::DBInstance</a></p></li></ul></div>
+     
+        <h2 id="CHAP_BestPractices.Presentation">Amazon RDS new features video</h2>
+        <p>The 2023 AWS re:Invent conference included a presentation on new
+            Amazon RDS features. A video of the presentation is available here:</p>
+        <div class="mediaobject">
+             
+                <iframe width="560" height="315" frameborder="0" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" sandbox="allow-scripts allow-same-origin allow-popups" src="https://www.youtube-nocookie.com/embed/IFg8EZGtLsM?si=e7T7LzW616AMd3i3"></iframe>
+             
+             
+        </div>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./CHAP_Tutorials.html">Tutorials and sample code</div><div id="next" class="next-link" accesskey="n" href="./ProgrammaticAccess.html">Programmatic access to Amazon RDS</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=RDS&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=RDS&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html"></awsui-button></p></div></div></div></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

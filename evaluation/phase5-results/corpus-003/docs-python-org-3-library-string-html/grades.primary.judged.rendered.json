@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, identifying the curly braces {} as the characters used to surround replacement fields.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 573,
+    "tokens_out": 33
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer is missing the '!a' conversion flag and its corresponding function, ascii().",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 608,
+    "tokens_out": 23
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground-truth answer, differing only in minor wording and punctuation details.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 659,
+    "tokens_out": 28
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, stating that the default alignment is left-aligned, denoted by '<'.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 576,
+    "tokens_out": 33
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, omitting only the condition that triggers this behavior, which is implied by the question itself.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 603,
+    "tokens_out": 37
+  }
+]

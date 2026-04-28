@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits \"BSON documents,\" which is part of the required multi-item answer.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 536,
+    "tokens_out": 25
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground truth: MongoDB creates the missing database or collection upon the first data storage.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 562,
+    "tokens_out": 29
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states that a schema is not required, matching the factual content of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 543,
+    "tokens_out": 25
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts as the ground truth: MongoDB does not support SQL queries directly, it has its own query language, and SQL can be used via the MongoDB Connector for BI.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 589,
+    "tokens_out": 44
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same facts: MongoDB builds queries as BSON objects, not strings, making it not vulnerable to traditional SQL injection attacks.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 574,
+    "tokens_out": 33
+  }
+]

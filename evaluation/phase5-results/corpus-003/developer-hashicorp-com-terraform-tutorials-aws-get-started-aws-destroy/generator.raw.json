@@ -1,0 +1,42 @@
+```json
+[
+    {
+        "question": "What command is used in Terraform to destroy all resources managed by a configuration?",
+        "answer": "terraform destroy",
+        "supporting_sentences": [
+            "You can also destroy all of the resources managed by your configuration with the terraform destroy command.",
+            "Destroy your workspace by running terraform destroy."
+        ]
+    },
+    {
+        "question": "What file must be modified to remove an EC2 instance from a Terraform configuration?",
+        "answer": "main.tf",
+        "supporting_sentences": [
+            "Open main.tf and comment out the aws_instance.app_server resource block to remove the EC2 instance from your configuration."
+        ]
+    },
+    {
+        "question": "What happens to the `instance_hostname` output value if the EC2 instance is removed from `main.tf`?",
+        "answer": "The configuration would be invalid unless the output value is also commented out.",
+        "supporting_sentences": [
+            "Because the instance_hostname output value in outputs.tf refers to the EC2 instance you removed from main.tf, you must also comment out the output value, or your configuration would be invalid."
+        ]
+    },
+    {
+        "question": "What is the required response to approve Terraform's plan to destroy resources?",
+        "answer": "yes",
+        "supporting_sentences": [
+            "Approve Terraform’s plan to destroy your instance and remove your output value by responding yes to the confirmation prompt.",
+            "Only 'yes' will be accepted to approve."
+        ]
+    },
+    {
+        "question": "How many resources were destroyed when running `terraform destroy` in the example provided?",
+        "answer": "15",
+        "supporting_sentences": [
+            "Plan: 0 to add, 0 to change, 15 to destroy.",
+            "Destroy complete! Resources: 15 destroyed."
+        ]
+    }
+]
+```

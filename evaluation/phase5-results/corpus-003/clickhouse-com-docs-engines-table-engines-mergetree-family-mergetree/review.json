@@ -1,0 +1,124 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the default value for the index_granularity setting in MergeTree table engines?",
+      "answer": "8192",
+      "supporting_sentences": [
+        "The granule size is restricted by the index_granularity and index_granularity_bytes settings of the table engine. The number of rows in a granule lays in the [1, index_granularity] range, depending on the size of the rows.",
+        "The index_granularity setting can be omitted because 8192 is the default value."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the default value for the index_granularity setting in MergeTree table engines?",
+      "answer": "8192",
+      "supporting_sentences": [
+        "The granule size is restricted by the index_granularity and index_granularity_bytes settings of the table engine. The number of rows in a granule lays in the [1, index_granularity] range, depending on the size of the rows.",
+        "The index_granularity setting can be omitted because 8192 is the default value."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the two data storage formats for data parts in MergeTree tables?",
+      "answer": "Wide and Compact",
+      "supporting_sentences": [
+        "Data parts can be stored in Wide or Compact format.",
+        "In Wide format each column is stored in a separate file in a filesystem, in Compact format all columns are stored in one file."
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the two data storage formats for data parts in MergeTree tables?",
+      "answer": "Wide and Compact",
+      "supporting_sentences": [
+        "Data parts can be stored in Wide or Compact format.",
+        "In Wide format each column is stored in a separate file in a filesystem, in Compact format all columns are stored in one file."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What happens when rows in a column expire due to a TTL clause in a MergeTree table?",
+      "answer": "ClickHouse replaces them with the default values for the column data type. If all the column values in the data part expire, ClickHouse deletes this column from the data part in a filesystem.",
+      "supporting_sentences": [
+        "When the values in the column expire, ClickHouse replaces them with the default values for the column data type. If all the column values in the data part expire, ClickHouse deletes this column from the data part in a filesystem."
+      ]
+    },
+    "edited_pair": {
+      "question": "What happens when rows in a column expire due to a TTL clause in a MergeTree table?",
+      "answer": "ClickHouse replaces them with the default values for the column data type. If all the column values in the data part expire, ClickHouse deletes this column from the data part in a filesystem.",
+      "supporting_sentences": [
+        "When the values in the column expire, ClickHouse replaces them with the default values for the column data type. If all the column values in the data part expire, ClickHouse deletes this column from the data part in a filesystem."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of the PARTITION BY clause in a MergeTree table engine?",
+      "answer": "The PARTITION BY clause specifies the partitioning key, which separates data belonging to different partitions into different parts.",
+      "supporting_sentences": [
+        "Tables can be partitioned using an arbitrary partition expression. Partition pruning ensures partitions are omitted from reading when the query allows it.",
+        "PARTITION BY \u2014 The partitioning key. Optional. In most cases, you don't need a partition key, and if you do need to partition, generally you do not need a partition key more granular than by month."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of the PARTITION BY clause in a MergeTree table engine?",
+      "answer": "The PARTITION BY clause specifies the partitioning key, which separates data belonging to different partitions into different parts.",
+      "supporting_sentences": [
+        "Tables can be partitioned using an arbitrary partition expression. Partition pruning ensures partitions are omitted from reading when the query allows it.",
+        "PARTITION BY \u2014 The partitioning key. Optional. In most cases, you don't need a partition key, and if you do need to partition, generally you do not need a partition key more granular than by month."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What are the supported types of data skipping indexes in MergeTree table engines?",
+      "answer": "MinMax, Set, Bloom filter, ngrambf_v1 (deprecated), tokenbf_v1 (deprecated), sparse_grams, text, and vector similarity.",
+      "supporting_sentences": [
+        "The MergeTree table engine supports the following types of skip indexes.",
+        "MinMax skip index",
+        "Set",
+        "Bloom filter",
+        "N-gram bloom filter (Deprecated)",
+        "Token bloom filter (Deprecated)",
+        "Sparse grams bloom filter",
+        "Text index",
+        "Vector similarity"
+      ]
+    },
+    "edited_pair": {
+      "question": "What are the supported types of data skipping indexes in MergeTree table engines?",
+      "answer": "MinMax, Set, Bloom filter, ngrambf_v1 (deprecated), tokenbf_v1 (deprecated), sparse_grams, text, and vector similarity.",
+      "supporting_sentences": [
+        "The MergeTree table engine supports the following types of skip indexes.",
+        "MinMax skip index",
+        "Set",
+        "Bloom filter",
+        "N-gram bloom filter (Deprecated)",
+        "Token bloom filter (Deprecated)",
+        "Sparse grams bloom filter",
+        "Text index",
+        "Vector similarity"
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

@@ -1,0 +1,725 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: What’s New In Python 3.13
+Document URL: https://docs.python.org/3/whatsnew/3.13.html
+Document profile: article
+
+Document text:
+---
+This article explains the new features in Python 3.13, compared to 3.12.
+Python 3.13 was released on October 7, 2024.
+For full details, see the 
+changelog
+.
+
+Summary – Release Highlights
+
+Python 3.13 is a stable release of the Python programming
+language, with a mix of changes to the language, the implementation
+and the standard library.
+The biggest changes include a new 
+interactive interpreter
+,
+experimental support for running in a 
+free-threaded mode
+ (
+PEP 703
+),
+and a 
+Just-In-Time compiler
+ (
+PEP 744
+).
+
+Error messages continue to improve, with tracebacks now highlighted in color
+by default. The 
+locals()
+ builtin now has 
+defined semantics
+ for changing the returned mapping,
+and type parameters now support default values.
+
+The library changes contain removal of deprecated APIs and modules,
+as well as the usual improvements in user-friendliness and correctness.
+Several legacy standard library modules have now 
+been removed
+ following their deprecation in Python 3.11 (
+PEP 594
+).
+
+This article doesn’t attempt to provide a complete specification
+of all new features, but instead gives a convenient overview.
+For full details refer to the documentation,
+such as the 
+Library Reference
+
+and 
+Language Reference
+.
+To understand the complete implementation and design rationale for a change,
+refer to the PEP for a particular new feature;
+but note that PEPs usually are not kept up-to-date
+once a feature has been fully implemented.
+See 
+Porting to Python 3.13
+ for guidance on upgrading from
+earlier versions of Python.
+
+Interpreter improvements:
+
+Python data model improvements:
+
+Significant improvements in the standard library:
+
+Security improvements:
+
+C API improvements:
+
+The 
+Py_mod_gil
+ slot is now used to indicate that
+an extension module supports running with the 
+GIL
+ disabled.
+
+The 
+PyTime C API
+ has been added,
+providing access to system clocks.
+
+PyMutex
+ is a new lightweight mutex that occupies a single byte.
+
+There is a new 
+suite of functions
+
+for generating 
+PEP 669
+ monitoring events in the C API.
+
+New typing features:
+
+Platform support:
+
+Important removals:
+
+PEP 594
+: The remaining 19 “dead batteries”
+(legacy stdlib modules) have been removed from the standard library:
+
+aifc
+, 
+audioop
+, 
+cgi
+, 
+cgitb
+, 
+chunk
+,
+
+crypt
+, 
+imghdr
+, 
+mailcap
+, 
+msilib
+, 
+nis
+,
+
+nntplib
+, 
+ossaudiodev
+, 
+pipes
+, 
+sndhdr
+,
+
+spwd
+, 
+sunau
+, 
+telnetlib
+, 
+uu
+ and 
+xdrlib
+.
+
+Remove the 
+2to3
+ tool and 
+lib2to3
+ module
+(deprecated in Python 3.11).
+
+Remove the 
+tkinter.tix
+ module (deprecated in Python 3.6).
+
+Remove the 
+locale.resetlocale()
+ function.
+
+Remove the 
+typing.io
+ and 
+typing.re
+ namespaces.
+
+Remove chained 
+classmethod
+ descriptors.
+
+Release schedule changes:
+
+PEP 602
+ (“Annual Release Cycle for Python”) has been updated
+to extend the full support (‘bugfix’) period for new releases to two years.
+This updated policy means that:
+
+Python 3.9–3.12 have one and a half years of full support,
+followed by three and a half years of security fixes.
+
+Python 3.13 and later have two years of full support,
+followed by three years of security fixes.
+
+New Features
+
+A better interactive interpreter
+
+Python now uses a new 
+interactive
+ shell by default, based on code
+from the 
+PyPy project
+.
+When the user starts the 
+REPL
+ from an interactive terminal,
+the following new features are now supported:
+
+Multiline editing with history preservation.
+
+Direct support for REPL-specific commands like 
+help
+, 
+exit
+,
+and 
+quit
+, without the need to call them as functions.
+
+Prompts and tracebacks with 
+color enabled by default
+.
+
+Interactive help browsing using 
+F1
+ with a separate command
+history.
+
+History browsing using 
+F2
+ that skips output as well as the
+
+>>>
+ and 
+…
+ prompts.
+
+“Paste mode” with 
+F3
+ that makes pasting larger blocks of code
+easier (press 
+F3
+ again to return to the regular prompt).
+
+To disable the new interactive shell,
+set the 
+PYTHON_BASIC_REPL
+ environment variable.
+For more on interactive mode, see 
+Interactive Mode
+.
+
+(Contributed by Pablo Galindo Salgado, Łukasz Langa, and
+Lysandros Nikolaou in 
+gh-111201
+ based on code from the PyPy project.
+Windows support contributed by Dino Viehland and Anthony Shaw.)
+
+Improved error messages
+
+The interpreter now uses color by default when displaying tracebacks in the
+terminal. This feature 
+can be controlled
+
+via the new 
+PYTHON_COLORS
+ environment variable as well as
+the canonical 
+NO_COLOR
+ and 
+FORCE_COLOR
+ environment variables.
+(Contributed by Pablo Galindo Salgado in 
+gh-112730
+.)
+
+A common mistake is to write a script with the same name as a
+standard library module. When this results in errors, we now
+display a more helpful error message:
+
+$ python random.py
+
+Traceback (most recent call last):
+
+  File 
+"/home/me/random.py"
+, line 
+1
+, in 
+<module>
+
+import
+
+random
+
+  File 
+"/home/me/random.py"
+, line 
+3
+, in 
+<module>
+
+print
+(
+random
+.
+randint
+(
+5
+))
+
+^^^^^^^^^^^^^^
+
+AttributeError
+: 
+module 'random' has no attribute 'randint' (consider renaming '/home/me/random.py' since it has the same name as the standard library module named 'random' and prevents importing that standard library module)
+
+Similarly, if a script has the same name as a third-party
+module that it attempts to import and this results in errors,
+we also display a more helpful error message:
+
+$ python numpy.py
+
+Traceback (most recent call last):
+
+  File 
+"/home/me/numpy.py"
+, line 
+1
+, in 
+<module>
+
+import
+
+numpy
+
+as
+
+np
+
+  File 
+"/home/me/numpy.py"
+, line 
+3
+, in 
+<module>
+
+np
+.
+array
+([
+1
+,
+
+2
+,
+
+3
+])
+
+^^^^^^^^
+
+AttributeError
+: 
+module 'numpy' has no attribute 'array' (consider renaming '/home/me/numpy.py' if it has the same name as a library you intended to import)
+
+(Contributed by Shantanu Jain in 
+gh-95754
+.)
+
+The error message now tries to suggest the correct keyword argument
+when an incorrect keyword argument is passed to a function.
+
+Copy
+>>> 
+"Better error messages!"
+.
+split
+(
+max_split
+=
+1
+)
+
+Traceback (most recent call last):
+
+  File 
+"<python-input-0>"
+, line 
+1
+, in 
+<module>
+
+"Better error messages!"
+.
+split
+(
+max_split
+=
+1
+)
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+
+TypeError
+: 
+split() got an unexpected keyword argument 'max_split'. Did you mean 'maxsplit'?
+
+(Contributed by Pablo Galindo Salgado and Shantanu Jain in 
+gh-107944
+.)
+
+Free-threaded CPython
+
+CPython now has experimental support for running in a free-threaded mode,
+with the 
+global interpreter lock
+ (GIL) disabled.
+This is an experimental feature and therefore is not enabled by default.
+The free-threaded mode requires a different executable,
+usually called 
+python3.13t
+ or 
+python3.13t.exe
+.
+Pre-built binaries marked as 
+free-threaded
+ can be installed as part of
+the official 
+Windows
+
+and 
+macOS
+ installers,
+or CPython can be built from source with the 
+--disable-gil
+ option.
+
+Free-threaded execution allows for full utilization of the available
+processing power by running threads in parallel on available CPU cores.
+While not all software will benefit from this automatically, programs
+designed with threading in mind will run faster on multi-core hardware.
+
+The free-threaded mode is experimental
+ and work is ongoing to improve it:
+expect some bugs and a substantial single-threaded performance hit.
+Free-threaded builds of CPython support optionally running with the GIL
+enabled at runtime using the environment variable 
+PYTHON_GIL
+ or
+the command-line option 
+-X
+
+gil=1
+.
+
+To check if the current interpreter supports free-threading, 
+python
+
+-VV
+
+and 
+sys.version
+ contain “experimental free-threading build”.
+The new 
+sys._is_gil_enabled()
+ function can be used to check whether
+the GIL is actually disabled in the running process.
+
+C-API extension modules need to be built specifically for the free-threaded
+build. Extensions that support running with the 
+GIL
+ disabled should
+use the 
+Py_mod_gil
+ slot. Extensions using single-phase init should
+use 
+PyUnstable_Module_SetGIL()
+ to indicate whether they support
+running with the GIL disabled. Importing C extensions that don’t use these
+mechanisms will cause the GIL to be enabled, unless the GIL was explicitly
+disabled with the 
+PYTHON_GIL
+ environment variable or the
+
+-X
+
+gil=0
+ option.
+pip 24.1 or newer is required to install packages with C extensions in the
+free-threaded build.
+
+This work was made possible thanks to many individuals and
+organizations, including the large community of contributors to Python
+and third-party projects to test and enable free-threading support.
+Notable contributors include:
+Sam Gross, Ken Jin, Donghee Na, Itamar Oren, Matt Page, Brett Simmers,
+Dino Viehland, Carl Meyer, Nathan Goldbaum, Ralf Gommers,
+Lysandros Nikolaou, and many others.
+Many of these contributors are employed by Meta, which has
+provided significant engineering resources to support this project.
+
+An experimental just-in-time (JIT) compiler
+
+When CPython is configured and built using
+the 
+--enable-experimental-jit
+ option,
+a just-in-time (JIT) compiler is added which may speed up some Python programs.
+On Windows, use 
+PCbuild/build.bat
+
+--experimental-jit
+ to enable the JIT
+or 
+--experimental-jit-interpreter
+ to enable the Tier 2 interpreter.
+Build requirements and further supporting information 
+are contained at
+
+Tools/jit/README.md
+.
+
+The 
+--enable-experimental-jit
+ option takes these (optional) values,
+defaulting to 
+yes
+ if 
+--enable-experimental-jit
+ is present
+without the optional value.
+
+no
+: Disable the entire Tier 2 and JIT pipeline.
+
+yes
+: Enable the JIT.
+To disable the JIT at runtime, pass the environment variable 
+PYTHON_JIT=0
+.
+
+yes-off
+: Build the JIT but disable it by default.
+To enable the JIT at runtime, pass the environment variable 
+PYTHON_JIT=1
+.
+
+interpreter
+: Enable the Tier 2 interpreter but disable the JIT.
+The interpreter can be disabled by running with 
+PYTHON_JIT=0
+.
+
+The internal architecture is roughly as follows:
+
+We start with specialized 
+Tier 1 bytecode
+.
+See 
+What’s new in 3.11
+ for details.
+
+When the Tier 1 bytecode gets hot enough, it gets translated
+to a new purely internal intermediate representation (IR),
+called the 
+Tier 2 IR
+, and sometimes referred to as micro-ops (“uops”).
+
+The Tier 2 IR uses the same stack-based virtual machine as Tier 1,
+but the instruction format is better suited to translation to machine code.
+
+We have several optimization passes for Tier 2 IR, which are applied
+before it is interpreted or translated to machine code.
+
+There is a Tier 2 interpreter, but it is mostly intended for debugging
+the earlier stages of the optimization pipeline.
+The Tier 2 interpreter can be enabled by configuring Python
+with 
+--enable-experimental-jit=interpreter
+.
+
+When the JIT is enabled, the optimized
+Tier 2 IR is translated to machine code, which is then executed.
+
+The machine code translation process uses a technique called
+
+copy-and-patch
+. It has no runtime dependencies, but there is a new
+build-time dependency on LLVM.
+
+(JIT by Brandt Bucher, inspired by a paper by Haoran Xu and Fredrik Kjolstad.
+Tier 2 IR by Mark Shannon and Guido van Rossum.
+Tier 2 optimizer by Ken Jin.)
+
+Defined mutation semantics for 
+locals()
+
+Historically, the expected result of mutating the return value of
+
+locals()
+ has been left to individual Python implementations to define.
+Starting from Python 3.13, 
+PEP 667
+ standardises
+the historical behavior of CPython for most code execution scopes,
+but changes 
+optimized scopes
+
+(functions, generators, coroutines, comprehensions, and generator expressions)
+to explicitly return independent snapshots of the currently assigned local
+variables, including locally referenced nonlocal variables captured in closures.
+
+This change to the semantics of 
+locals()
+ in optimized scopes also
+affects the default behavior of code execution functions that implicitly
+target 
+locals()
+ if no explicit namespace is provided
+(such as 
+exec()
+ and 
+eval()
+).
+In previous versions, whether or not changes could be accessed by calling
+
+locals()
+ after calling the code execution function was
+implementation-dependent. In CPython specifically, such code would typically
+appear to work as desired, but could sometimes fail in optimized scopes based
+on other code (including debuggers and code execution tracing tools)
+potentially resetting the shared snapshot in that scope.
+Now, the code will always run against an independent snapshot of
+the local variables in optimized scopes, and hence the changes will never
+be visible in subsequent calls to 
+locals()
+.
+To access the changes made in these cases, an explicit namespace reference
+must now be passed to the relevant function.
+Alternatively, it may make sense to update affected code to use a higher level
+code execution API that returns the resulting code execution namespace
+(e.g. 
+runpy.run_path()
+ when executing Python files from disk).
+
+To ensure debuggers and similar tools can reliably update local variables in
+scopes affected by this change, 
+FrameType.f_locals
+ now
+returns a write-through proxy to the frame’s local and locally referenced
+nonlocal variables in these scopes, rather than returning an inconsistently
+updated shared 
+dict
+ instance with undefined runtime semantics.
+
+See 
+PEP 667
+ for more details, including related C API changes
+and deprecations. Porting notes are also provided below for the affected
+
+Python APIs
+ and 
+C APIs
+.
+
+(PEP and implementation contributed by Mark Shannon and Tian Gao in
+
+gh-74929
+. Documentation updates provided by Guido van Rossum and
+Alyssa Coghlan.)
+
+Support for mobile platforms
+
+PEP 730
+: iOS is now a 
+PEP 11
+ supported platform, with the
+
+arm64-apple-ios
+ and 
+arm64-apple-ios-simulator
+ targets at tier 3
+(iPhone and iPad devices released after 2013 and the Xcode iOS simulator
+running on Apple silicon hardware, respectively).
+
+x86_64-apple-ios-simulator
+
+(the Xcode iOS simulator running on older 
+x86_64
+ hardware)
+is not a tier 3 supported platform, but will have best-effort support.
+(PEP written and implementation contributed by Russell Keith-Magee in
+
+gh-114099
+.)
+
+PEP 738
+: Android is now a 
+PEP 11
+ supported platform, with the
+
+aarch64-linux-android
+ and 
+x86_64-linux-android
+ targets at tier 3.
+The 32-bit targets 
+arm-linux-androideabi
+ and 
+i686-linux-android
+
+are not tier 3 supported platforms, but will have best-effort support.
+(PEP written and implementation contributed by Malcolm Smith in
+
+gh-116622
+.)
+---

@@ -1,0 +1,117 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Table Engines | ClickHouse Docs
+Document URL: https://clickhouse.com/docs/engines/table-engines
+Document profile: article
+
+Document text:
+---
+The table engine (type of table) determines:
+
+How and where data is stored, where to write it to, and where to read it from.
+
+Which queries are supported, and how.
+
+Concurrent data access.
+
+Use of indexes, if present.
+
+Whether multithread request execution is possible.
+
+Data replication parameters.
+
+Engine families
+​
+
+MergeTree
+​
+
+The most universal and functional table engines for high-load tasks. The property shared by these engines is quick data insertion with subsequent background data processing. 
+MergeTree
+ family engines support data replication (with 
+Replicated*
+ versions of engines), partitioning, secondary data-skipping indexes, and other features not supported in other engines.
+
+Engines in the family:
+
+Log
+​
+
+Lightweight 
+engines
+ with minimum functionality. They're the most effective when you need to quickly write many small tables (up to approximately 1 million rows) and read them later as a whole.
+
+Engines in the family:
+
+Integration engines
+​
+
+Engines for communicating with other data storage and processing systems.
+
+Engines in the family:
+
+Special engines
+​
+
+Engines in the family:
+
+Virtual columns
+​
+
+A virtual column is an integral table engine attribute that is defined in the engine source code.
+
+You shouldn't specify virtual columns in the 
+CREATE TABLE
+ query, and you can't see them in 
+SHOW CREATE TABLE
+ and 
+DESCRIBE TABLE
+ query results. Virtual columns are also read-only, so you can't insert data into virtual columns.
+
+To select data from a virtual column, you must specify its name in the 
+SELECT
+ query. 
+SELECT *
+ does not return values from virtual columns.
+
+If you create a table with a column that has the same name as one of the table virtual columns, the virtual column becomes inaccessible. We do not recommend doing this. To help avoid conflicts, virtual column names are usually prefixed with an underscore.
+
+_table
+ — Contains the name of the table from which data was read. Type: 
+String
+.
+
+Regardless of the table engine being used, each table includes a universal virtual column named 
+_table
+.
+
+When querying a table with the merge table engine, you can set the constant conditions on 
+_table
+ in the 
+WHERE/PREWHERE
+ clause (for example, 
+WHERE _table='xyz'
+). In this case the read operation is performed only for that tables where the condition on 
+_table
+ is satisfied, so the 
+_table
+ column acts as an index.
+
+When using queries formatted like 
+SELECT ... FROM (... UNION ALL ...)
+, we can determine which actual table the returned rows originate from by specifying the 
+_table
+ column.
+---

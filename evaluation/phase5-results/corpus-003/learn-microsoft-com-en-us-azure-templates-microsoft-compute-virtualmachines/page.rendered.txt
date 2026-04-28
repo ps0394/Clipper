@@ -1,0 +1,686 @@
+(++)Ethereum on Ubuntu
+
+This template deploys a (++)Ethereum client on a Ubuntu virtual machines
+
+1 VM in vNet - Multiple data disks
+
+This template creates a single VM running Windows Server 2016 with multiple data disks attached.
+
+101-1vm-2nics-2subnets-1vnet
+
+Creates a new VM with two NICs which connect to two different subnets within the same VNet.
+
+2 VMs in a Load Balancer and configure NAT rules on the LB
+
+This template allows you to create 2 Virtual Machines in an Availability Set and configure NAT rules through the load balancer. This template also deploys a Storage Account, Virtual Network, Public IP address and Network Interfaces. In this template, we use the resource loops capability to create the network interfaces and virtual machines
+
+2 VMs in a Load Balancer and load balancing rules
+
+This template allows you to create 2 Virtual Machines under a Load balancer and configure a load balancing rule on Port 80. This template also deploys a Storage Account, Virtual Network, Public IP address, Availability Set and Network Interfaces. In this template, we use the resource loops capability to create the network interfaces and virtual machines
+
+2 VMs in VNET - Internal Load Balancer and LB rules
+
+This template allows you to create 2 Virtual Machines in a VNET and under an internal Load balancer and configure a load balancing rule on Port 80. This template also deploys a Storage Account, Virtual Network, Public IP address, Availability Set and Network Interfaces.
+
+201-vnet-2subnets-service-endpoints-storage-integration
+
+Creates 2 new VMs with a NIC each, in two different subnets within the same VNet. Sets service endpoint on one of the subnets and secures storage account to that subnet.
+
+Add multiple VMs into a Virtual Machine Scale Set
+
+This template will create N number of VM's with managed disks, public IPs and network interfaces. It will create the VMs in a Virtual Machine Scale Set in Flexible Orchestration mode. They will be provisioned in a Virtual Network which will also be created as part of the deployment
+
+AKS Cluster with a NAT Gateway and an Application Gateway
+
+This sample shows how to a deploy an AKS cluster with NAT Gateway for outbound connections and an Application Gateway for inbound connections.
+
+AKS cluster with the Application Gateway Ingress Controller
+
+This sample shows how to deploy an AKS cluster with Application Gateway, Application Gateway Ingress Controller, Azure Container Registry, Log Analytics and Key Vault
+
+Alsid Syslog/Sentinel proxy
+
+This template creates and configures a Syslog server with an onboarded Azure Sentinel Agent for a specified workspace.
+
+Apache Webserver on Ubuntu VM
+
+This template uses the Azure Linux CustomScript extension to deploy an Apache web server. The deployment template creates an Ubuntu VM, installs Apache2 and creates a simple HTML file. Go to ../demo.html to see the deployed page.
+
+App Configuration with VM
+
+This template references existing key-value configurations from an existing config store and uses retrieved values to set properties of the resources the template creates.
+
+App Gateway with WAF, SSL, IIS and HTTPS redirection
+
+This template deploys an Application Gateway with WAF, end to end SSL and HTTP to HTTPS redirect on the IIS servers.
+
+App Service Environment with Azure SQL backend
+
+This template creates an App Service Environment with an Azure SQL backend along with private endpoints along with associated resources typically used in an private/isolated environment.
+
+Application Security Groups
+
+This template shows how to put together the pieces to secure workloads using NSGs with Application Security Groups. It will deploy a Linux VM running NGINX and through the usage of Applicaton Security Groups on Network Security Groups we will allow access to ports 22 and 80 to a VM assigned to Application Security Group called webServersAsg.
+
+Azure Application Gateway Log Analyzer using GoAccess
+
+This template uses the Azure Linux CustomScript extension to deploy an Azure Application Gateway Log Analyzer using GoAccess. The deployment template creates an Ubuntu VM, installs Application Gateway Log Processor, GoAccess, Apache WebServer and configures it to analyze Azure Application Gateway access logs.
+
+Azure Container Service Engine (acs-engine) - Swarm Mode
+
+The Azure Container Service Engine (acs-engine) generates ARM (Azure Resource Manager) templates for Docker enabled clusters on Microsoft Azure with your choice of DC/OS, Kubernetes, Swarm Mode, or Swarm orchestrators. The input to the tool is a cluster definition. The cluster definition is very similar to (in many cases the same as) the ARM template syntax used to deploy a Microsoft Azure Container Service cluster.
+
+Azure data disk performance meter
+
+This template allows you to run a data disk performance test for different workload types using fio utility.
+
+Azure Game Developer Virtual Machine
+
+Azure Game Developer Virtual Machine includes Licencsed Engines like Unreal.
+
+Azure Machine Learning end-to-end secure setup
+
+This set of Bicep templates demonstrates how to set up Azure Machine Learning end-to-end in a secure set up. This reference implementation includes the Workspace, a compute cluster, compute instance and attached private AKS cluster.
+
+Azure Machine Learning end-to-end secure setup (legacy)
+
+This set of Bicep templates demonstrates how to set up Azure Machine Learning end-to-end in a secure set up. This reference implementation includes the Workspace, a compute cluster, compute instance and attached private AKS cluster.
+
+Azure managed disk performance meter
+
+This template allows you to run a managed disk performance test for different workload types using fio utility.
+
+Azure managed disk RAID performance meter
+
+This template allows you to run a managed disk RAID performance test for different workload types using fio utility.
+
+Azure Route Server in BGP peering with Quagga
+
+This template deploys a Router Server and Ubuntu VM with Quagga. Two external BGP sessions are established between the Router Server and Quagga. Installation and configuration of Quagga is executed by Azure custom script extension for linux
+
+Azure sysbench CPU performance meter
+
+This template allows you to run a CPU performance test using sysbench utility.
+
+Azure Traffic Manager VM example
+
+This template shows how to create an Azure Traffic Manager profile load-balancing across multiple virtual machines.
+
+Azure Traffic Manager VM example with Availability Zones
+
+This template shows how to create an Azure Traffic Manager profile load-balancing across multiple virtual machines placed in Availability Zones.
+
+Azure VM-to-VM bandwidth meter
+
+This template allows you to run VM-to-VM bandwidth test with PsPing utility.
+
+Azure VM-to-VM multithreaded throughput meter
+
+This template allows you to run VM-to-VM throughput test with NTttcp utility.
+
+Barracuda Web Application Firewall with Backend IIS Servers
+
+This Azure quickstart template deploys a Barracuda Web Application Firewall Solution on Azure with required number of backend Windows 2012 based IIS Web Servers.Templates includes latest Barracuda WAF with Pay as you go license and latest Windows 2012 R2 Azure Image for IIS.The Barracuda Web Application Firewall inspects inbound web traffic and blocks SQL injections, Cross-Site Scripting, malware uploads & application DDoS and other attacks targeted at your web applications. One External LB is deployed with NAT rules to enable Remote desktop access to backend web servers. Please follow post deployment configuration guide available in GitHub template directory to learn more about post deployment steps related to Barracuda web application firewall and web applications publishing.
+
+Basic RDS farm deployment
+
+This template creates a basic RDS farm deployment
+
+Bitcore Node and Utilities for Bitcoin on CentOS VM
+
+This template uses the Azure Linux CustomScript extension to deploy a Bitcore Node instance with the complete set of Bitcoin utilities. The deployment template creates a CentOS VM, installs Bitcore and provides a simple bitcored executable. With this template, you will be running a full node on the Bitcoin network as well as a block explorer called Insight.
+
+Blockchain Template
+
+Deploy a VM with Groestlcoin Core installed.
+
+BrowserBox Azure Edition
+
+This template deploys BrowserBox on an Azure Ubuntu Server 22.04 LTS, Debian 11, or RHEL 8.7 LVM VM.
+
+CentOS/UbuntuServer Auto Dynamic Disks & Docker 1.12(cs)
+
+This is a common template for creating single instance CentOS 7.2/7.1/6.5 or Ubuntu Server 16.04.0-LTS with configurable number of data disks (configurable sizes). Maximum 16 disks can be mentioned in the portal parameters and maximum size of each disk should be less than 1023 GB. The MDADM RAID0 Array is automounted and survives restarts. Latest Docker 1.12(cs3) (Swarm), docker-compose 1.9.0 & docker-machine 0.8.2 is available for usage from user azure-cli is auto running as a docker container. This single instance template is an offshoot of the HPC/GPU Clusters Template @ 
+https://github.com/azurebigcompute/BigComputeBench
+
+Chef Backend High-Availability Cluster
+
+This template creates a chef-backend cluster with front-end nodes attached
+
+Chef with JSON parameters on Ubuntu/CentOS
+
+Deploy an Ubuntu/CentOS VM With Chef with JSON parameters
+
+Classroom Linux JupyterHub
+
+This template deploy a Jupyter Server for a classroom of up to 100 users. You can provide the username, password, virtual machine name and select between CPU or GPU computing.
+
+CloudLens with Moloch example
+
+This template shows how to setup network visibility in the Azure public cloud using the CloudLens agent to tap traffic on one vm and forward it to a network packet storing & indexing tool, in this case Moloch.
+
+Concourse CI
+
+Concourse is a CI system composed of simple tools and ideas. It can express entire pipelines, integrating with arbitrary resources, or it can be used to execute one-off tasks, either locally or in another CI system. This template can help to prepare neccessary Azure resources to setup such a CI system, and make the setup more simple.
+
+Connect to a Event Hubs namespace via private endpoint
+
+This sample shows how to use configure a virtual network and private DNS zone to access a Event Hubs namespace via a private endpoint.
+
+Connect to a Key Vault via private endpoint
+
+This sample shows how to use configure a virtual network and private DNS zone to access Key Vault via private endpoint.
+
+Connect to a Service Bus namespace via private endpoint
+
+This sample shows how to use configure a virtual network and private DNS zone to access a Service Bus namespace via private endpoint.
+
+Connect to a storage account from a VM via private endpoint
+
+This sample shows how to use connect a virtual network to access a blob storage account via private endpoint.
+
+Connect to an Azure File Share via a Private Endpoint
+
+This sample shows how to use configure a virtual network and private DNS zone to access an Azure File Share via a private endpoint.
+
+Create 2 VMs in LB and a SQL Server VM with NSG
+
+This template creates 2 Windows VMs (that can be used as web FE) with in an Availability Set and a Load Balancer with port 80 open. The two VMs can be reached using RDP on port 6001 and 6002. This template also create a SQL Server 2014 VM that can be reached via RDP connection defined in a Network Security Group.
+
+Create 2 VMs Linux with LB and SQL Server VM with SSD
+
+This template creates 2 Linux VMs (that can be used as web FE) with in an Availability Set and a Load Balancer with port 80 open. The two VMs can be reached using SSH on port 6001 and 6002. This template also create a SQL Server 2014 VM that can be reached via RDP connection defined in a Network Security Group. All VMs storage can use Premium Storage (SSD) and you can choose to creare VMs with all DS sizes
+
+Create a cross-region load balancer
+
+This template creates a cross-region load balancer with a backend pool containing two regional load balancers. Cross-region load balancer is currently available in limited regions. The regional load balancers behind the cross-region load balancer can be in any region.
+
+Create a data management gateway and install on an Azure VM
+
+This template deploys a virtual machine and creates a workable data management gateway
+
+Create a DevTest environment with P2S VPN and IIS
+
+This template creates a simple DevTest environment with a Point-to-Site VPN and IIS on a Windows server which is a great way to get started.
+
+Create a Firewall with FirewallPolicy and IpGroups
+
+This template creates an Azure Firewall with FirewalllPolicy referencing Network Rules with IpGroups. Also, includes a Linux Jumpbox vm setup
+
+Create a Firewall, FirewallPolicy with Explicit Proxy
+
+This template creates an Azure Firewall, FirewalllPolicy with Explicit Proxy and Network Rules with IpGroups. Also, includes a Linux Jumpbox vm setup
+
+Create a load-balancer with a Public IPv6 address
+
+This template creates an Internet-facing load-balancer with a Public IPv6 address, load balancing rules, and two VMs for the backend pool.
+
+Create a new AD Domain with 2 DCs using Availability Zones
+
+This template creates 2 VMs in separate Availability Zones to be AD DCs (primary and backup) for a new Forest and Domain
+
+Create a new encrypted windows vm from gallery image
+
+This template creates a new encrypted windows vm using the server 2k12 gallery image.
+
+Create a Private AKS Cluster
+
+This sample shows how to create a private AKS cluster in a virtual network along with a jumpbox virtual machine.
+
+Create a Private AKS Cluster with a Public DNS Zone
+
+This sample shows how to a deploy a private AKS cluster with a Public DNS Zone.
+
+Create a sandbox setup of Azure Firewall with Linux VMs
+
+This template creates a virtual network with 3 subnets (server subnet, jumpbox subet and AzureFirewall subnet), a jumpbox VM with public IP, A server VM, UDR route to point to Azure Firewall for the Server Subnet and an Azure Firewall with 1 or more Public IP addresses, 1 sample application rule, 1 sample network rule and default private ranges
+
+Create a sandbox setup of Azure Firewall with Zones
+
+This template creates a virtual network with three subnets (server subnet, jumpbox subnet, and Azure Firewall subnet), a jumpbox VM with public IP, A server VM, UDR route to point to Azure Firewall for the ServerSubnet,an Azure Firewall with one or more Public IP addresses, one sample application rule, and one sample network rule and Azure Firewall in Availability Zones 1, 2, and 3.
+
+Create a sandbox setup with Firewall Policy
+
+This template creates a virtual network with 3 subnets (server subnet, jumpbox subet and AzureFirewall subnet), a jumpbox VM with public IP, A server VM, UDR route to point to Azure Firewall for the Server Subnet and an Azure Firewall with 1 or more Public IP addresses. Also creates a Firewall policy with 1 sample application rule, 1 sample network rule and default private ranges
+
+Create a Site-to-Site VPN Connection with VM
+
+This template allows you to create a Site-to-Site VPN Connection using Virtual Network Gateways
+
+Create a standard internal load balancer
+
+This template creates a standard internal Azure Load Balancer with a rule load-balancing port 80
+
+Create a standard load-balancer
+
+This template creates an Internet-facing load-balancer, load balancing rules, and three VMs for the backend pool with each VM in a redundant zone.
+
+Create a two VM SQL Server Reporting Services Deployment
+
+This template creates two new Azure VMs, each with a public IP address, it configures one VM to be an SSRS Server, one with SQL Server mixed auth for the SSRS Catalog with the SQL Agent Started. All VMs have public facing RDP and diagnostics enabled , the diagnostics is stored in a consolidated diagnostics storage account different than the vm disk
+
+Create a virtual machine in an Extended Zone
+
+This template create a virtual machine in an Extended Zone
+
+Create a VM from a EfficientIP VHD
+
+This template creates a VM from a EfficientIP VHD and let you connect it to an existing VNET that can reside in another Resource Group then the virtual machine
+
+Create a VM from a Windows Image with 4 Empty Data Disks
+
+This template allows you to create a Windows Virtual Machine from a specified image. It also attaches 4 empty data disks. Note that you can specify the size of the empty data disks.
+
+Create a VM from User Image
+
+This template allows you to create a Virtual Machines from a User image. This template also deploys a Virtual Network, Public IP addresses and a Network Interface.
+
+Create a VM in a new or existing vnet from a custom VHD
+
+This template creates a VM from a specialized VHD and let you connect it to a new or existing VNET that can reside in another Resource Group than the virtual machine
+
+Create a VM in a new or existing vnet from a generalized VHD
+
+This template creates a VM from a generalized VHD and let you connect it to a new or existing VNET that can reside in another Resource Group than the virtual machine
+
+Create a VM in a VNET in different Resource Group
+
+This template creates a VM in a VNET which is in a different Resource Group
+
+Create a VM with a dynamic selection of data disks
+
+This template allows the user to select the number of data disks they'd like to add to the VM.
+
+Create a VM with multiple empty StandardSSD_LRS Data Disks
+
+This template allows you to create a Windows Virtual Machine from a specified image. It also attaches multiple empty StandardSSD data disks by default. Note that you can specify the size and the Storage type (Standard_LRS, StandardSSD_LRS and Premium_LRS) of the empty data disks.
+
+Create a VM with multiple NICs and RDP accessible
+
+This template allows you to create a Virtual Machines with multiple (2) network interfaces (NICs), and RDP connectable with a configured load balancer and an inbound NAT rule. More NICs can easily  be added with this template. This template also deploys a Storage Account, Virtual Network, Public IP address, and 2 Network Interfaces (front-end and back-end).
+
+Create a Windows VM with Anti-Malware extension enabled
+
+This template creates a Windows VM and sets up the Anti-Malware protection
+
+Create an Azure Application Gateway v2
+
+This template creates an Azure Application Gateway with two Windows Server 2016 servers in the backend pool
+
+Create an Azure Firewall sandbox with forced tunneling
+
+This template creates an Azure Firewall sandbox (Linux) with one firewall force tunneled through another firewall in a peered VNET
+
+Create an Azure Firewall with IpGroups
+
+This template creates an Azure Firewall with Application and Network Rules referring to IP Groups. Also, includes a Linux Jumpbox vm setup
+
+Create an Azure Firewall with multiple IP public addresses
+
+This template creates an Azure Firewall with two public IP addresses and two Windows Server 2019 servers to test.
+
+Create an Azure VM with a new Active Directory Forest
+
+This template creates a new Azure VM, it configures the VM to be an Active Directory Domain Controller for a new forest
+
+Create an Azure VM with a new AD Forest
+
+This template creates a new Azure VM, it configures the VM to be an AD DC for a new Forest
+
+Create an Azure WAF v2 on Azure Application Gateway
+
+This template creates an Azure Web Application Firewall v2 on Azure Application  Gateway with two Windows Server 2016 servers in the backend pool
+
+Create an IOT Hub and Ubuntu edge simulator
+
+This template creates an IOT Hub and Virtual Machine Ubuntu edge simulator.
+
+Create an IPv6 Application Gateway
+
+This template creates an application gateway with an IPv6 frontend in a dual-stack virtual network.
+
+Create an new AD Domain with 2 Domain Controllers
+
+This template creates 2 new VMs to be AD DCs (primary and backup) for a new Forest and Domain
+
+Create an Ubuntu GNOME desktop
+
+This template creates an ubuntu desktop machine.  This works great for use as a jumpbox behind a NAT.
+
+Create and encrypt a new Linux VMSS with jumpbox
+
+This template deploys a Linux VMSS using the latest Linux image, adds data volumes, and then encrypts the data volumes of each Linux VMSS instance.  It also deploys a jumpbox with a public IP address in the same virtual network as the Linux VMSS instances with private IP addresses.  This allows connecting to the jumpbox via its public IP address, and then connecting to the Linux VMSS instances via private IP addresses.
+
+Create and encrypt a new Windows VMSS with jumpbox
+
+This template allows you to deploy a simple VM Scale Set of Windows VMs using the lastest patched version of serveral Windows versions. This template also deploys a jumpbox with a public IP address in the same virtual network. You can connect to the jumpbox via this public IP address, then connect from there to VMs in the scale set via private IP addresses.This template enables encryption on the VM Scale Set of Windows VMs.
+
+Create new encrypted managed disks win-vm from gallery image
+
+This template creates a new encrypted managed disks windows vm using the server 2k12 gallery image.
+
+Create new Ubuntu VM pre-populated with Puppet Agent
+
+This template creates a Ubuntu VM and installs the Puppet Agent into it using the CustomScript extension.
+
+Create sandbox of Azure Firewall, client VM, and server VM
+
+This template creates a virtual network with 2 subnets (server subnet and AzureFirewall subnet), A server VM, a client VM, a public IP address for each VM, and a route table to send traffic between VMs through the firewall.
+
+Create SQL MI with jumpbox inside new virtual network
+
+Deploy Azure Sql Database Managed Instance (SQL MI) and JumpBox with SSMS inside new Virtual Network.
+
+Create Ubuntu vm data disk raid0
+
+This template creates a virtual machine with multiple disks attached.  A script partitions and formats the disks in raid0 array.
+
+Create VM from existing VHDs and connect it to existingVNET
+
+This template creates a VM from VHDs (OS + data disk) and let you connect it to an existing VNET that can reside in another Resource Group then the virtual machine
+
+Create VMs in Availability Sets using Resource Loops
+
+Create 2-5 VMs in Availability Sets using Resource Loops.  The VMs can be Unbuntu or Windows with a maximum of 5 VMs since this sample uses a single storageAccount
+
+Create, configure and deploy Web Application to an Azure VM
+
+Create and configure a Windows VM with SQL Azure database, and deploy web application to the environment using PowerShell DSC
+
+Creates AVD with Microsoft Entra ID Join
+
+This template allows you to create Azure Virtual Desktop resources such as host pool, application group, workspace, a test session host and its extensions with Microsoft Entra ID join
+
+Custom Script extension on a Ubuntu VM
+
+This template creates a Ubuntu VM and installs the CustomScript extension
+
+Deploy a 3 node Percona XtraDB Cluster in Availability Zones
+
+This template deploys a 3 node MySQL high availability cluster on CentOS 6.5 or Ubuntu 12.04
+
+Deploy a Bastion host in a hub Virtual Network
+
+This template creates two vNets with peerings, a Bastion host in the Hub vNet and a Linux VM in the spoke vNet
+
+Deploy a Django app
+
+This template uses the Azure Linux CustomScript extension to deploy an application. This example creates an Ubuntu VM, does a silent install of Python, Django and Apache, then creates a simple Django app
+
+Deploy a Hub and Spoke topology sandbox
+
+This template creates a basic hub-and-spoke topology setup. It creates a Hub VNet with subnets DMZ, Management, Shared and Gateway (optionally), with two Spoke VNets (development and production) containing a workload subnet each. It also deploys a Windows Jump-Host on the Management subnet of the HUB, and establishes VNet peerings between the Hub and the two spokes.
+
+Deploy a Kibana dashboard with Docker
+
+This template allows you to deploy an Ubuntu VM with Docker installed (using the Docker Extension) and Kibana/Elasticsearch containers created and configured to serve an analytic dashboard.
+
+Deploy a LAMP app
+
+This template uses the Azure Linux CustomScript extension to deploy an application. It creates an Ubuntu VM, does a silent install of MySQL, Apache and PHP, then creates a simple PHP script.
+
+Deploy a Linux or Windows VM with MSI
+
+This template allows you to deploy a Linux or Windows VM with a Managed Service Identity.
+
+Deploy a Linux VM (Ubuntu) with multiple NICs
+
+This template creates a VNet with multiple subnets and deploys a Ubuntu VM with multiple NICs
+
+Deploy a Linux VM with the Azul Zulu OpenJDK JVM
+
+This template allows you to create a Linux VM with the Azul Zulu OpenJDK JVM.
+
+Deploy a MySQL Server
+
+This template uses the Azure Linux CustomScript extension to deploy a MySQL server. It creates an Ubuntu VM, does a silent install of MySQL server, version:5.6
+
+Deploy a Nextflow genomics cluster
+
+This template deploys a scalable Nextflow cluster with a Jumpbox, n cluster nodes, docker support and shared storage.
+
+Deploy a PostgreSQL Server on Ubuntu Virtual Machine
+
+This template uses the Azure Linux CustomScript extension to deploy a postgresql server. It creates an Ubuntu VM, does a silent install of MySQL server, version:9.3.5
+
+Deploy a Premium Windows VM
+
+This template allows you to deploy a Premium Windows VM using a few different options for the Windows version, using the latest patched version.
+
+Deploy a Premium Windows VM with diagnostics
+
+This template allows you to deploy a Premium Windows VM using a few different options for the Windows version, using the latest patched version.
+
+Deploy a simple FreeBSD VM in resource group location
+
+This template allows you to deploy a simple FreeBSD VM using a few different options for the FreeBSD version, using the latest patched version. This will deploy in resource group location on a D1 VM Size.
+
+Deploy a simple Linux VM and update private IP to static
+
+This template allows you to deploy a simple Linux VM using Ubuntu from the marketplace. This will deploy a VNET, Subnet, and an A1 size VM in the resource group location with a dynamically assigned IP address and then convert it to static IP.
+
+Deploy a simple Linux VM with Accelerated Networking
+
+This template allows you to deploy a simple Linux VM with Accelerated Networking using Ubuntu version 18.04-LTS with the latest patched version. This will deploy a D3_v2 size VM in the resource group location and return the FQDN of the VM.
+
+Deploy a simple Ubuntu Linux VM 20.04-LTS
+
+This template deploys an Ubuntu Server with a few options for the VM. You can provide the VM Name, OS Version, VM size, and admin username and password. As default the VM size is Standard_D2s_v3 and OS version is 20.04-LTS.
+
+Deploy a simple VM Scale Set with Linux VMs and a Jumpbox
+
+This template allows you to deploy a simple VM Scale Set of Linux VMs using the latest patched version of Ubuntu Linux 15.10 or 14.04.4-LTS. There is also a jumpbox to enable connections from outside of the VNet the VMs are in.
+
+Deploy a simple VM Scale Set with Windows VMs and a Jumpbox
+
+This template allows you to deploy a simple VM Scale Set of Windows VMs using the lastest patched version of serveral Windows versions. This template also deploys a jumpbox with a public IP address in the same virtual network. You can connect to the jumpbox via this public IP address, then connect from there to VMs in the scale set via private IP addresses.
+
+Deploy a simple Windows VM
+
+This template allows you to deploy a simple Windows VM using a few different options for the Windows version, using the latest patched version. This will deploy an A2 size VM in the resource group location and return the FQDN of the VM.
+
+Deploy a simple Windows VM with monitoring and diagnostics
+
+This template allows you to deploy a simple Windows VM along with the diagnostics extension which enables monitoring and diagnostics for the VM
+
+Deploy a simple Windows VM with tags
+
+This template will deploy a D2_v3 Windows VM, NIC, Storage Account, Virtual Network, Public IP Address, and Network Security Group. The tag object is created in the variables and will be applied on all resources, where applicable.
+
+Deploy a single-VM WordPress to Azure
+
+This template deploys a complete LAMP stack, then installs and initializes WordPress. Once the deployment is finished, you need to go to 
+http://fqdn.of.your.vm/wordpress/
+ to finish the configuration, create an account, and get started with WordPress.
+
+Deploy a trusted launch capable Linux virtual machine
+
+This template allows you to deploy a trusted launch capable Linux virtual machine using a few different options for the Linux version, using the latest patched version. If you enable Secureboot and vTPM, the Guest Attestation extension will be installed on your VM. This extension will perform remote 
+attestation
+ by the cloud. By default, this will deploy an Standard_D2_v3 size virtual machine in the resource group location and return the FQDN of the virtual machine.
+
+Deploy a trusted launch capable Windows virtual machine
+
+This template allows you to deploy a trusted launch capable Windows virtual machine using a few different options for the Windows version, using the latest patched version. If you enable Secureboot and vTPM, the Guest Attestation extension will be installed on your VM. This extension will perform remote 
+attestation
+ by the cloud. By default, this will deploy an Standard_D2_v3 size virtual machine in the resource group location and return the FQDN of the virtual machine.
+
+Deploy a Ubuntu Linux DataScience VM 18.04
+
+This template deploy a Ubuntu Server with some tools for Data Science. You can provide the username, password, virtual machine name and select between CPU or GPU computing.
+
+Deploy a Ubuntu VM with the OMS extension
+
+This template allows you to deploy a Ubuntu VM with the OMS extension installed and onboarded to a specified workspace
+
+Deploy a Virtual Machine with Custom Data
+
+This template allows you to create a Virtual Machine with Custom Data passed down to the VM. This template also deploys a Storage Account, Virtual Network, Public IP addresses and a Network Interface.
+
+Deploy a Virtual Machine with SSH rsa public key
+
+This template allows you to create a Virtual Machine with SSH rsa public key
+
+Deploy a Virtual Machine with User Data
+
+This template allows you to create a Virtual Machine with User Data passed down to the VM. This template also deploys a Virtual Network, Public IP addresses, and a Network Interface.
+
+Deploy a VM into an Availability Zone
+
+This template allows you to deploy a simple VM (Windows or Ubuntu), using the latest patched version. This will deploy a A2_v2 size VM in the location specified and return the FQDN of the VM.
+
+Deploy a VM Scale Set with Linux VMs behind ILB
+
+This template allows you to deploy a VM Scale Set of Linux VMs using the latest patched version of Ubuntu Linux 15.10 or 14.04.4-LTS. These VMs are behind an internal load balancer with NAT rules for ssh connections.
+
+Deploy a VM with multiple IPs
+
+This template allows you to deploy a VM with 3 IP configurations. This template will deploy a Linux/Windows VM called 
+myVM1
+ with 3 IP configurations: 
+IPConfig-1
+, 
+IPConfig-2
+ and 
+IPConfig-3
+, respectively.
+
+Deploy a Windows Server VM with Visual Studio
+
+This template deploys a Windows Server VM with Visual Code Studio Community 2019, with a few options for the VM. You can provide the name of VM, the admin username and admin password.
+
+Deploy a Windows VM and configures WinRM https listener
+
+This template allows you to deploy a simple Windows VM using a few different options for the Windows version. This will then configure a WinRM https listener. User need to provide the value of parameter 'hostNameScriptArgument' which is the fqdn of the VM. Example: testvm.westus.cloupdapp.azure.com or *.westus.cloupdapp.azure.com
+
+Deploy a Windows VM and enable backup using Azure Backup
+
+This template allows you to deploy a Windows VM and Recovery Services Vault configured with the DefaultPolicy for Protection.
+
+Deploy a Windows VM with a variable number of data disks
+
+This template allows you to deploy a simple VM and specify the number of data disks at deploy time using a parameter.  Note that the number and size of data disks is bound by the VM size.  The VM size for this sample is Standard_DS4_v2 with a default of 16 data disks.
+
+Deploy a Windows VM with the Azul Zulu OpenJDK JVM
+
+This template allows you to create a Windows VM with the Azul Zulu OpenJDK JVM
+
+Deploy a Windows VM with the OMS extension
+
+This template allows you to deploy a Windows VM with the OMS extension installed and onboarded to a specified workspace
+
+Deploy a Windows VM with Windows Admin Center extension
+
+This template allows you to deploy a Windows VM with Windows Admin Center extension to manage the VM directly from Azure Portal.
+
+Deploy a WordPress blog with Docker
+
+This template allows you to deploy an Ubuntu VM with Docker installed (using the Docker Extension) and WordPress/MySQL containers created and configured to serve a blog server.
+
+Deploy an Open-Source Parse Server with Docker
+
+This template allows you to deploy an Ubuntu VM with Docker installed (using the Docker Extension) and an Open Source Parse Server container created and configured to replace the (now sunset) Parse service.
+
+Deploy an Openvpn Access Server
+
+This template uses the Azure Linux CustomScript extension to deploy an openvpn access server. It creates an Ubuntu VM, does a silent install of openvpn access server, then make the basic server network settings: define the VPN Server Hostname to be the VM's public ip's DNS name
+
+Deploy an Ubuntu VM with Docker Engine
+
+This template allows you to deploy an Ubuntu VM with Docker (using the Docker Extension). You can later SSH into the VM and run Docker containers.
+
+Deploy Anbox Cloud
+
+This template deploys Anbox Cloud on an Ubuntu VM. Completing the installation of Anbox Cloud requires user interaction following the deployment; please consult the README for instructions. The template supports both launching of a VM from an Ubuntu Pro image and association of an Ubuntu Pro token with a VM launched from a non-Pro image. The former is the default behaviour; users seeking to attach a token to a VM launched from a non-Pro image must override the default arguments for the ubuntuImageOffer, ubuntuImageSKU, and ubuntuProToken parameters. The template is also parametric in the VM size and disk sizes. Non-default argument values for these parameters must comply with 
+https://documentation.ubuntu.com/anbox-cloud/reference/requirements/#anbox-cloud-appliance-4
+.
+
+Deploy CKAN
+
+This template deploys CKAN using Apache Solr (for search) and PostgreSQL (database) on an Ubuntu VM. CKAN, Solr and PostgreSQL are deployed as individual Docker containers on the VM.
+
+Deploy Darktrace vSensors
+
+This template allows you to deploy one or more stand-alone Darktrace vSensors
+
+Deploy HBase geo replication
+
+This template allows you to configure an Azure environment for HBase replication across two different regions with VPN vnet-to-vnet connection.
+
+Deploy IOMAD cluster on Ubuntu
+
+This template deploys IOMAD as a LAMP application on Ubuntu. It creates a one or more Ubuntu VM for the front end and a single VM for the backend. It does a silent install of Apache and PHP on the front end VM's and MySQL on the backend VM. Then it deploys IOMAD on the cluster. It configures a load balancer for directing requests to the front end VM's. It also configures NAT rules to allow admin access to each of the VM's. It also sets up a moodledata data directory using file storage shared among the VM's. After the deployment is successful, you can go to /iomad on each frontend VM (using web admin access) to start configuring IOMAD.
+
+Deploy IOMAD on Ubuntu on a single VM
+
+This template deploys IOMAD as a LAMP application on Ubuntu. It creates a single Ubuntu VM, does a silent install of MySQL, Apache and PHP on it, and then deploys IOMAD on it.  After the deployment is successful, you can go to /iomad to start congfiguring IOMAD.
+
+Deploy MySQL Flexible Server with Private Endpoint
+
+This template provides a way to deploy a Azure Database for MySQL Flexible Server with Private Endpoint.
+
+Deploy Neo4J in Docker and data on external disk
+
+This template allows you to deploy an Ubuntu VM with Docker installed (using the Docker Extension) and a Neo4J container which uses an external disk to store it's data.
+
+Deploy Neo4J in Ubuntu VM
+
+This template allows you to deploy an Ubuntu VM with Neo4J binaries and runs Neo4J on its designated ports.
+
+Deploy Net Disk against Ubuntu
+
+This template allows deploying seafile server 6.1.1 on Azure Ubuntu VM
+
+Deploy Octopus Deploy 3.0 with a trial license
+
+This template allows you to deploy a single Octopus Deploy 3.0 server with a trial license. This will deploy on a single Windows Server 2012R2 VM (Standard D2) and SQL DB (S1 tier) into the location specified for the Resource Group.
+
+Deploy Open edX (lilac version) through tutor
+
+This template creates a single Ubuntu VM, and deploys Open edX through tutor on them.
+
+Deploy Open edX devstack on a single Ubuntu VM
+
+This template creates a single Ubuntu VM and deploys Open edX devstack on it.
+
+Deploy Open edX Dogwood (Multi-VM)
+
+This template creates a network of Ubuntu VMs, and deploys Open edX Dogwood on them. Deployment supports 1-9 application VMs and backend Mongo and MySQL VMs.
+
+Deploy Open edX fullstack (Ficus) on a single Ubuntu VM
+
+This template creates a single Ubuntu VM and deploys Open edX fullstack (Ficus) on it.
+
+Deploy OpenLDAP cluster on Ubuntu
+
+This template deploys an OpenLDAP cluster on Ubuntu. It creates multiple Ubuntu VMs (up to 5, but can be easily increased) and does a silent install of OpenLDAP on them. Then it sets up N-way multi-master replication on them. After the deployment is successful, you can go to /phpldapadmin to start congfiguring OpenLDAP.
+
+Deploy OpenLDAP on Ubuntu on a single VM
+
+This template deploys OpenLDAP on Ubuntu. It creates a single Ubuntu VM and does a silent install of OpenLDAP on it.  After the deployment is successful, you can go to /phpldapadmin to start congfiguring OpenLDAP.
+
+Deploy OpenSIS Community Edition cluster on Ubuntu
+
+This template deploys OpenSIS Community Edition as a LAMP application on Ubuntu. It creates a one or more Ubuntu VM for the front end and a single VM for the backend. It does a silent install of Apache and PHP on the front end VM's and MySQL on the backend VM. Then it deploys OpenSIS Community Edition on the cluster.  After the deployment is successful, you can go to /opensis-ce on each of the front end VM's (using web admin access) to start congfiguring OpenSIS.
+
+Deploy OpenSIS Community Edition on Ubuntu on a single VM
+
+This template deploys OpenSIS Community Edition as a LAMP application on Ubuntu. It creates a single Ubuntu VM, does a silent install of MySQL, Apache and PHP on it, and then deploys OpenSIS Community Edition.  After the deployment is successful, you can go to /opensis-ce to start congfiguting OpenSIS.
+
+Deploy Secure AI Foundry with a managed virtual network
+
+This template creates a secure Azure AI Foundry environment with robust network and identity security restrictions.
+
+Deploy Shibboleth Identity Provider cluster on Ubuntu
+
+This template deploys Shibboleth Identity Provider on Ubuntu in a clustered configuration. After the deployment is successful, you can go to https://your-domain:8443/idp/profile/Status (note port number) to check success.
+
+Deploy Shibboleth Identity Provider cluster on Windows
+
+This template deploys Shibboleth Identity Provider on Windows in a clustered configuration. After the deployment is successful, you can go to https://your-domain:8443/idp/profile/status (note port number) to check success.
+
+Deploy Shibboleth Identity Provider on Ubuntu on a single VM
+
+This template deploys Shibboleth Identity Provider on Ubuntu.  After the deployment is successful, you can go to https://your-domain:8443/idp/profile/status (note port number) 
+
+[document truncated for prompt size]

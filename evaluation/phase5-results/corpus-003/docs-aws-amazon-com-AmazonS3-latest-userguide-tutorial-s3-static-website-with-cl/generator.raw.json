@@ -1,0 +1,42 @@
+```json
+[
+    {
+        "question": "What is Amazon S3 primarily used for?",
+        "answer": "Amazon S3 is an object storage service used to store and protect any amount of data for a range of use cases, such as data lakes, websites, mobile applications, backup and restore, archive, enterprise applications, IoT devices, and big data analytics.",
+        "supporting_sentences": [
+            "Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.",
+            "Customers of all sizes and industries can use Amazon S3 to store and protect any amount of data for a range of use cases, such as data lakes, websites, mobile applications, backup and restore, archive, enterprise applications, IoT devices, and big data analytics."
+        ]
+    },
+    {
+        "question": "Which Amazon S3 storage class is designed for the lowest latency and highest performance?",
+        "answer": "S3 Express One Zone is the storage class designed for the lowest latency and highest performance, delivering consistent, single-digit millisecond data access for latency-sensitive applications.",
+        "supporting_sentences": [
+            "Amazon S3 Express One Zone is a high-performance, single-zone Amazon S3 storage class that is purpose-built to deliver consistent, single-digit millisecond data access for your most latency-sensitive applications.",
+            "S3 Express One Zone is the lowest latency cloud object storage class available today, with data access speeds up to 10x faster and with request costs 50 percent lower than S3 Standard."
+        ]
+    },
+    {
+        "question": "What is the purpose of S3 Object Lock in Amazon S3?",
+        "answer": "S3 Object Lock prevents Amazon S3 objects from being deleted or overwritten for a fixed amount of time or indefinitely, helping meet regulatory requirements that require write-once-read-many (WORM) storage or adding protection against object changes and deletions.",
+        "supporting_sentences": [
+            "S3 Object Lock – Prevent Amazon S3 objects from being deleted or overwritten for a fixed amount of time or indefinitely. You can use Object Lock to help meet regulatory requirements that require write-once-read-many (WORM) storage or to simply add another layer of protection against object changes and deletions."
+        ]
+    },
+    {
+        "question": "What are the four types of Amazon S3 buckets?",
+        "answer": "The four types of Amazon S3 buckets are general purpose buckets, directory buckets, table buckets, and vector buckets.",
+        "supporting_sentences": [
+            "Amazon S3 supports four types of buckets—general purpose buckets, directory buckets, table buckets, and vector buckets."
+        ]
+    },
+    {
+        "question": "What does Amazon S3 provide strong read-after-write consistency for?",
+        "answer": "Amazon S3 provides strong read-after-write consistency for PUT and DELETE requests of objects in your Amazon S3 bucket in all AWS Regions, as well as for read operations on Amazon S3 Select, Amazon S3 access control lists (ACLs), Amazon S3 Object Tags, and object metadata.",
+        "supporting_sentences": [
+            "Amazon S3 provides strong read-after-write consistency for PUT and DELETE requests of objects in your Amazon S3 bucket in all AWS Regions. This behavior applies to both writes of new objects as well as PUT requests that overwrite existing objects and DELETE requests.",
+            "In addition, read operations on Amazon S3 Select, Amazon S3 access control lists (ACLs), Amazon S3 Object Tags, and object metadata (for example, the HEAD object) are strongly consistent."
+        ]
+    }
+]
+```

@@ -1,0 +1,43 @@
+```json
+[
+    {
+        "question": "What is the purpose of adding variable blocks to a Terraform configuration?",
+        "answer": "Variable blocks define an input interface for a module, allowing users to pass custom values to the module at runtime without altering the module's source code.",
+        "supporting_sentences": [
+            "You can add variable blocks to your configuration to define input interface for your module. This lets users pass custom values to your module at run time.",
+            "A variable block lets module consumers customize module behavior without altering the module's source code."
+        ]
+    },
+    {
+        "question": "What are the default values for the `instance_type` and `environment` variables in the provided example?",
+        "answer": "The default value for `instance_type` is `t2.micro`, and the default value for `environment` is `dev`.",
+        "supporting_sentences": [
+            "variable \"instance_type\" { type = string description = \"EC2 instance type for the web server\" default = \"t2.micro\" }",
+            "variable \"environment\" { type = string description = \"Deployment environment name\" default = \"dev\" }"
+        ]
+    },
+    {
+        "question": "What happens if a Terraform variable does not have a default value?",
+        "answer": "Terraform prompts the user to assign a value before it generates a plan.",
+        "supporting_sentences": [
+            "If a variable does not have a default value, such as the subnet_id variable, then Terraform prompts the user to assign a value before it generates a plan.",
+            "If a module defines a variable without a default argument, Terraform prompts the user to supply a value for that variable before it generates a plan."
+        ]
+    },
+    {
+        "question": "What is the syntax for referencing a variable in a Terraform configuration?",
+        "answer": "The syntax for referencing a variable is `var.<NAME>`.",
+        "supporting_sentences": [
+            "To reference a variable in other parts of your configuration, use var.<NAME> syntax."
+        ]
+    },
+    {
+        "question": "What is the order of precedence for assigning variable values in Terraform?",
+        "answer": "The order of precedence is: command line `-var` and `-var-file` options, `*.auto.tfvars` or `*.auto.tfvars.json` files, `terraform.tfvars.json` file, `terraform.tfvars` file, environment variables, and finally the `default` argument of the variable block.",
+        "supporting_sentences": [
+            "Once you assign a value to a variable, you cannot reassign that variable within the same file. However, if the root module receives multiple values for the same variable name from different sources, Terraform uses the following order of precedence: Any -var and -var-file options on the command line in the order provided and variables from HCP Terraform, Any *.auto.tfvars or *.auto.tfvars.json files in lexical order, The terraform.tfvars.json file, The terraform.tfvars file, Environment variables, The default argument of the variable block."
+            "Values defined in HCP Terraform and on the command line take precedence over other ways of assigning variable values. The variable's default argument is at the lowest level of precedence."
+        ]
+    }
+]
+```

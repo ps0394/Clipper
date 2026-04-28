@@ -1,0 +1,133 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Aggregation Pipeline
+Document URL: https://www.mongodb.com/docs/manual/core/aggregation-pipeline/
+Document profile: article
+
+Document text:
+---
+An aggregation pipeline consists of one or more 
+stages
+ that process documents. These
+documents can come from a collection, a view, or a specially designed stage.
+Each stage performs an operation on the input documents. For example, a stage
+can 
+$filter
+ documents, 
+$group
+ documents, and calculate
+values. The documents that a stage outputs are then passed to the next stage in
+the pipeline.
+An aggregation pipeline can return results for groups of documents. You can also
+update documents with an aggregation pipeline using the stages shown in
+
+Updates with Aggregation Pipeline.
+When you run aggregation pipelines on MongoDB Atlas deployments in the
+MongoDB Atlas UI, you can preview the results at each stage.
+An aggregation pipeline consists of one or more 
+stages
+ that process documents:
+A stage does not have to output one document for every input
+document. For example, some stages may produce new documents or
+filter out documents.
+The same stage can appear multiple times in the pipeline with these
+stage exceptions: 
+$out
+, 
+$merge
+, and
+
+$geoNear
+.
+For all aggregation stages, see
+
+Aggregation Stages.
+Some aggregation pipeline stages accept 
+expressions
+. Operators calculate values based on input expressions.
+In the MongoDB Query Language, you can build expressions from the
+following components:
+For example, 
+{ $add: [ 3, "$inventory.total" ] }
+ is an expression
+that consists of the 
+$add
+ operator and two operands:
+The expression returns the result of adding 3 to the value at path
+
+inventory.total
+ of the input document.
+Field path
+ expressions are used to access fields in
+input documents. To specify a field path, prefix the field name or the
+
+dotted field path
+ (if the field is in an
+embedded document) with a dollar sign 
+$
+. For example, 
+"$user"
+ to
+specify the field path for the 
+user
+ field or 
+"$user.name"
+ to
+specify the field path to the embedded 
+"user.name"
+ field.
+"$<field>"
+ is equivalent to 
+"$$CURRENT.<field>"
+ where the
+
+CURRENT
+ is a system variable that defaults to the root of
+the current object, unless stated otherwise in specific stages.
+For more information and examples, see 
+Field Paths.
+To run an aggregation pipeline, use:
+To update documents with an aggregation pipeline, use:
+Starting in MongoDB 5.0, 
+map-reduce
+ is
+deprecated:
+Instead of 
+map-reduce
+, you should use an
+
+aggregation pipeline
+. Aggregation
+pipelines provide better performance and usability than map-reduce.
+You can rewrite map-reduce operations using 
+aggregation pipeline
+stages
+, such as
+
+$group
+, 
+$merge
+, and others.
+For map-reduce operations that require custom functionality, you can
+use the 
+$accumulator
+ and 
+$function
+ aggregation
+operators. You can use those
+operators to define custom aggregation expressions in JavaScript.
+For examples of aggregation pipeline alternatives to map-reduce, see:
+To learn more about aggregation pipelines, see:
+---

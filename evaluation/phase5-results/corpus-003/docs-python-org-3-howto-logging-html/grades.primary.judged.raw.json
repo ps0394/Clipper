@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, which is that the default logging level is WARNING.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 560,
+    "tokens_out": 29
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, omitting only the optional detail about debug() for very detailed output.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 581,
+    "tokens_out": 33
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, specifying the `filemode` argument with the value `'w'`.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 590,
+    "tokens_out": 33
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer conveys the same fact as the ground-truth answer, which is to prevent a library's logged events from being output to sys.stderr in the absence of logging configuration.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 678,
+    "tokens_out": 41
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer matches the ground-truth answer exactly, listing the same five standard logging levels in increasing order of severity.",
+    "judge_model": "Llama-3.3-70B-Instruct",
+    "tokens_in": 575,
+    "tokens_out": 28
+  }
+]

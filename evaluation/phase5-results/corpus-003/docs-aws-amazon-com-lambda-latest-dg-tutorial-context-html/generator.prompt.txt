@@ -1,0 +1,142 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: What is AWS Lambda?
+Document URL: https://docs.aws.amazon.com/lambda/latest/dg/tutorial-context.html
+Document profile: tutorial
+
+Document text:
+---
+What is AWS Lambda?
+Join Serverless experts for free hands-on workshops to learn how to build Serverless 
+      applications with best practices. 
+Click here
+ to sign up.
+AWS Lambda is a compute service that runs code without the need to manage servers. Your code runs, scaling up and down automatically, with pay-per-use pricing. 
+    To get started, see 
+Create your first function
+.
+You can use Lambda for:
+
+File processing
+: Process files automatically when uploaded to Amazon Simple Storage Service. See 
+file processing examples
+ for details.
+
+Long-running workflows:
+ Use 
+durable Lambda functions
+ to build stateful, multi-step workflows that can run for up to one year. Perfect for order processing, approval workflows, human-in-the-loop processes, and complex data pipelines that need to remember their progress.
+
+Database operations and integration examples
+: Respond to database changes and automate data workflows. See 
+database examples
+ for details.
+
+Scheduled and periodic tasks
+: Run automated operations on a regular schedule using EventBridge. See 
+scheduled task examples
+ for details.
+
+Stream processing
+: Process real-time data streams for analytics and monitoring. See 
+Kinesis Data Streams
+ for details.
+
+Web applications
+: Build scalable web apps that automatically adjust to demand.
+
+Mobile backends
+: Create secure API backends for mobile and web applications.
+
+IoT backends
+: Handle web, mobile, IoT, and third-party API requests. See 
+IoT
+ for details.
+
+For pricing information, see 
+AWS Lambda Pricing
+.
+
+How Lambda works
+
+When using Lambda, you are responsible only for your code. Lambda runs your code on a high-availability compute infrastructure and manages all the computing resources,
+      including server and operating system maintenance, capacity provisioning, automatic scaling, and logging.
+
+Because Lambda is a serverless, 
+      event-driven compute service, it uses a different programming paradigm than traditional web applications. The following model illustrates how Lambda works:
+
+You write and organize your code in 
+Lambda functions
+, which are the basic building blocks you use to create a Lambda application.
+
+You control security and access through 
+Lambda permissions
+, using 
+execution roles
+ to manage what AWS services your functions can interact with and what resource policies can interact with your code.
+
+Event sources and AWS services 
+trigger
+ your Lambda functions, passing event data in JSON format, which your functions process (this includes event source mappings).
+
+Lambda runs your code
+ with language-specific runtimes (like Node.js and Python) in execution environments that package your runtime, layers, and extensions.
+
+Key features
+
+Configure, control, and deploy secure applications:
+
+Environment variables
+ modify application behavior without new code deployments.
+
+Versions
+ safely test new features while maintaining stable production environments.
+
+Lambda layers
+ optimize code reuse and maintenance by sharing common components across multiple functions.
+
+Code signing
+ enforce security compliance by ensuring only approved code reaches production systems.
+
+Scale and perform reliably:
+
+Concurrency and scaling controls
+ precisely manage application responsiveness and resource utilization during traffic spikes.
+
+Lambda SnapStart
+ significantly reduce cold start times. Lambda SnapStart can provide as low as sub-second startup performance, typically with no changes to your function code.
+
+Response streaming
+ optimize function performance by delivering large payloads incrementally for real-time processing.
+
+Container images
+ package functions with complex dependencies using container workflows.
+
+Connect and integrate seamlessly:
+
+VPC networks
+ secure sensitive resources and internal services.
+
+File systems
+ integration that shares persistent data and manage stateful operations across function invocations.
+
+Function URLs
+ create public-facing APIs and endpoints without additional services.
+
+Lambda extensions
+ augment functions with monitoring, security, and operational tools.
+
+Related information
+---

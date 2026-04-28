@@ -1,0 +1,44 @@
+[
+  {
+    "question": "What are the three kinds of modules in Python?",
+    "answer": "The three kinds of modules in Python are: modules written in Python (.py); modules written in C and dynamically loaded (.dll, .pyd, .so, .sl, etc); and modules written in C and linked with the interpreter.",
+    "supporting_sentences": [
+      "There are (at least) three kinds of modules in Python:",
+      "modules written in Python (.py);",
+      "modules written in C and dynamically loaded (.dll, .pyd, .so, .sl, etc);",
+      "modules written in C and linked with the interpreter; to get a list of these, type:"
+    ]
+  },
+  {
+    "question": "How can you make a Python script executable on Unix variants?",
+    "answer": "To make a Python script executable on Unix variants, you need to do two things: the script file\u2019s mode must be executable (e.g., using `chmod +x scriptfile`), and the first line must begin with `#!` followed by the path of the Python interpreter.",
+    "supporting_sentences": [
+      "You need to do two things: the script file\u2019s mode must be executable and the first line must begin with #! followed by the path of the Python interpreter.",
+      "The first is done by executing chmod +x scriptfile or perhaps chmod 755 scriptfile.",
+      "The second can be done in a number of ways. The most straightforward way is to write #!/usr/local/bin/python as the very first line of your file, using the pathname for where the Python interpreter is installed on your platform."
+    ]
+  },
+  {
+    "question": "What module should you use instead of the `_thread` module for threading in Python?",
+    "answer": "You should use the `threading` module instead of the `_thread` module.",
+    "supporting_sentences": [
+      "Be sure to use the threading module and not the _thread module.",
+      "The threading module builds convenient abstractions on top of the low-level primitives provided by the _thread module."
+    ]
+  },
+  {
+    "question": "What is the purpose of the `atexit` module in Python?",
+    "answer": "The `atexit` module provides a `register` function that is similar to C\u2019s `onexit()`.",
+    "supporting_sentences": [
+      "The atexit module provides a register function that is similar to C\u2019s onexit()."
+    ]
+  },
+  {
+    "question": "How can you remove a file in Python?",
+    "answer": "You can remove a file in Python using `os.remove(filename)` or `os.unlink(filename)`.",
+    "supporting_sentences": [
+      "Use os.remove(filename) or os.unlink(filename); for documentation, see the os module.",
+      "The two functions are identical; unlink() is simply the name of the Unix system call for this function."
+    ]
+  }
+]

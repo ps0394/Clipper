@@ -1,0 +1,40 @@
+[
+  {
+    "question": "What is Delta Lake in Databricks?",
+    "answer": "Delta Lake is the optimized storage layer that provides the foundation for tables in a lakehouse on Databricks. It is open source software that extends Parquet data files with a file-based transaction log for ACID transactions and scalable metadata handling.",
+    "supporting_sentences": [
+      "Delta Lake is the optimized storage layer that provides the foundation for tables in a lakehouse on Databricks.",
+      "Delta Lake is open source software that extends Parquet data files with a file-based transaction log for ACID transactions and scalable metadata handling."
+    ]
+  },
+  {
+    "question": "What is the default format for all operations on Databricks?",
+    "answer": "Delta Lake is the default format for all operations on Databricks.",
+    "supporting_sentences": [
+      "Delta Lake is the default format for all operations on Databricks.",
+      "Unless otherwise specified, all tables on Databricks are Delta tables."
+    ]
+  },
+  {
+    "question": "What does Delta Lake use to ensure that all data written to a table matches the set requirements?",
+    "answer": "Delta Lake validates schema on write.",
+    "supporting_sentences": [
+      "Delta Lake validates schema on write, ensuring that all data written to a table matches the requirements you've set."
+    ]
+  },
+  {
+    "question": "How does Delta Lake handle previous versions of a table?",
+    "answer": "Each write to a Delta table creates a new table version, and you can use the transaction log to review modifications to your table and query previous table versions.",
+    "supporting_sentences": [
+      "Each write to a Delta table creates a new table version.",
+      "You can use the transaction log to review modifications to your table and query previous table versions."
+    ]
+  },
+  {
+    "question": "What architecture does Databricks encourage users to leverage for processing data through a series of tables?",
+    "answer": "Databricks encourages users to leverage a medallion architecture.",
+    "supporting_sentences": [
+      "Databricks encourages users to leverage a medallion architecture to process data through a series of tables as data is cleaned and enriched."
+    ]
+  }
+]

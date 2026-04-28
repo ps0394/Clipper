@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What is the maximum request body size for a Free plan Cloudflare account?",
+    "answer": "100 MB",
+    "supporting_sentences": [
+      "Request body size limits depend on your Cloudflare account plan, not your Workers plan.",
+      "Cloudflare Plan | Maximum request body size",
+      "Free | 100 MB"
+    ]
+  },
+  {
+    "question": "What is the default CPU time limit per HTTP request for Workers on the Paid plan?",
+    "answer": "30 seconds",
+    "supporting_sentences": [
+      "Limit | Workers Free | Workers Paid",
+      "CPU time per HTTP request | 10 ms | 5 min (default: 30 seconds)"
+    ]
+  },
+  {
+    "question": "What error code is returned when a Worker exceeds its CPU time limit?",
+    "answer": "Error 1102",
+    "supporting_sentences": [
+      "When a Worker exceeds its CPU time limit, Cloudflare returns Error 1102 to the client with the message Worker exceeded resource limits."
+    ]
+  },
+  {
+    "question": "How many subrequests per invocation are allowed for Workers on the Free plan?",
+    "answer": "50",
+    "supporting_sentences": [
+      "Limit | Workers Free | Workers Paid",
+      "Subrequests per invocation | 50 | 10,000 (up to 10M)"
+    ]
+  },
+  {
+    "question": "What is the maximum number of Workers allowed per account on the Free plan?",
+    "answer": "100",
+    "supporting_sentences": [
+      "Limit | Workers Free | Workers Paid",
+      "Workers per account | 100 | 500"
+    ]
+  }
+]

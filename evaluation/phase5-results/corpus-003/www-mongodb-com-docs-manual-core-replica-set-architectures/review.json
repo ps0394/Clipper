@@ -1,0 +1,104 @@
+[
+  {
+    "pair_index": 0,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the standard number of members in a production replica set for MongoDB?",
+      "answer": "Three members.",
+      "supporting_sentences": [
+        "The standard replica set deployment for a production system is a three-member replica set."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the standard number of members in a production replica set for MongoDB?",
+      "answer": "Three members.",
+      "supporting_sentences": [
+        "The standard replica set deployment for a production system is a three-member replica set."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 1,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the maximum number of voting members allowed in a MongoDB replica set?",
+      "answer": "7 voting members.",
+      "supporting_sentences": [
+        "A replica set can have up to 7 voting members."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the maximum number of voting members allowed in a MongoDB replica set?",
+      "answer": "7 voting members.",
+      "supporting_sentences": [
+        "A replica set can have up to 7 voting members."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 2,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the purpose of an arbiter in a MongoDB replica set?",
+      "answer": "An arbiter does not store a copy of the data and requires fewer resources, used to break ties in elections when there is an even number of voting members.",
+      "supporting_sentences": [
+        "An arbiter does not store a copy of the data and requires fewer resources.",
+        "If you have an even number of voting members, deploy another data bearing voting member or, if constraints prohibit against another data bearing voting member, an arbiter."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the purpose of an arbiter in a MongoDB replica set?",
+      "answer": "An arbiter does not store a copy of the data and requires fewer resources, used to break ties in elections when there is an even number of voting members.",
+      "supporting_sentences": [
+        "An arbiter does not store a copy of the data and requires fewer resources.",
+        "If you have an even number of voting members, deploy another data bearing voting member or, if constraints prohibit against another data bearing voting member, an arbiter."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 3,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "What is the recommended minimum number of data centers for deploying config server and shard replica sets in production?",
+      "answer": "At least three data centers.",
+      "supporting_sentences": [
+        "For production deployments, we recommend deploying config server and shard replica sets on at least three data centers."
+      ]
+    },
+    "edited_pair": {
+      "question": "What is the recommended minimum number of data centers for deploying config server and shard replica sets in production?",
+      "answer": "At least three data centers.",
+      "supporting_sentences": [
+        "For production deployments, we recommend deploying config server and shard replica sets on at least three data centers."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  },
+  {
+    "pair_index": 4,
+    "decision": "accept",
+    "generated_pair": {
+      "question": "Why should DNS hostnames be used instead of IP addresses when configuring MongoDB replica set members?",
+      "answer": "To avoid configuration updates due to IP address changes.",
+      "supporting_sentences": [
+        "To avoid configuration updates due to IP address changes, use DNS hostnames instead of IP addresses."
+      ]
+    },
+    "edited_pair": {
+      "question": "Why should DNS hostnames be used instead of IP addresses when configuring MongoDB replica set members?",
+      "answer": "To avoid configuration updates due to IP address changes.",
+      "supporting_sentences": [
+        "To avoid configuration updates due to IP address changes, use DNS hostnames instead of IP addresses."
+      ]
+    },
+    "reject_reason": null,
+    "reviewer_id": "auto"
+  }
+]

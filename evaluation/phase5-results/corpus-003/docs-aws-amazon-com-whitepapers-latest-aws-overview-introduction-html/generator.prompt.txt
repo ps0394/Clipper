@@ -1,0 +1,49 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Overview of Amazon Web Services
+Document URL: https://docs.aws.amazon.com/whitepapers/latest/aws-overview/introduction.html
+Document profile: article
+
+Document text:
+---
+Overview of Amazon Web Services
+Publication date: 
+August 27, 2024
+ (
+Document history
+)
+ Amazon Web Services offers a broad set of global cloud-based products including compute, storage,
+    databases, analytics, networking, mobile, developer tools, management tools, IoT, security, and
+    enterprise applications: on-demand, available in seconds, with pay-as-you-go pricing. From data
+    warehousing to deployment tools, directories to content delivery, over 200 AWS services are
+    available.
+New services can be provisioned quickly, without the upfront fixed expense. This allows
+    enterprises, start-ups, small and medium-sized businesses, and customers in the public sector to
+    access the building blocks they need to respond quickly to changing business requirements. This
+    whitepaper provides you with an overview of the beneﬁts of the AWS Cloud and introduces you to
+    the services that make up the platform. 
+
+Introduction
+
+In 2006, Amazon Web Services (AWS) began offering IT infrastructure services to businesses as web
+      services—now commonly known as cloud computing. One of the key benefits of cloud computing is
+      the opportunity to replace upfront capital infrastructure expenses with low variable costs
+      that scale with your business. With the cloud, businesses no longer need to plan for and
+      procure servers and other IT infrastructure weeks or months in advance. Instead, they can
+      instantly spin up hundreds or thousands of servers in minutes and deliver results faster. 
+
+Today, AWS provides a highly reliable, scalable, low-cost infrastructure platform in the
+      cloud that powers hundreds of thousands of businesses in 190 countries around the world.
+---

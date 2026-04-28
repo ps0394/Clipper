@@ -1,0 +1,87 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Authentication on Self-Managed Deployments
+Document URL: https://www.mongodb.com/docs/manual/core/authentication/
+Document profile: article
+
+Document text:
+---
+Note
+Starting in MongoDB 8.0, LDAP authentication and authorization is
+deprecated. LDAP is available and will continue to operate without
+changes throughout the lifetime of MongoDB 8. LDAP will be removed in a
+future major release.
+For details, see 
+LDAP Deprecation.
+Authentication is the process of verifying the identity of a client.
+When access control (
+authorization
+) is
+enabled, MongoDB requires all clients to authenticate themselves in
+order to determine their access.
+Although authentication and 
+authorization
+
+are closely connected, authentication is distinct from authorization:
+To get started using access control, follow these tutorials:
+MongoDB Atlas (M10 and above)
+MongoDB Atlas (Free and Flex Tiers)
+MongoDB supports 
+X.509 certificate authentication
+ for client authentication and internal
+authentication of the members of replica sets and sharded clusters.
+X.509 certificate authentication requires a secure 
+TLS/SSL
+connection.
+To use MongoDB with X.509, you must use valid certificates generated and
+signed by a certificate authority. The client X.509 certificates
+must meet the 
+client certificate requirements.
+For more information on X.509 and MongoDB, see:
+MongoDB Enterprise
+
+supports 
+Kerberos Authentication
+. Kerberos is
+an industry standard authentication protocol for large client/server
+systems that provides authentication using short-lived tokens that are
+called tickets.
+To use MongoDB with Kerberos, you must have a properly configured
+Kerberos deployment, configured 
+Kerberos service principals
+ for MongoDB, and a 
+Kerberos user
+principal
+ added to MongoDB.
+For more information on Kerberos and MongoDB, see:
+MongoDB Enterprise
+
+and 
+MongoDB Atlas
+ support
+
+LDAP Proxy Authentication
+ proxy
+authentication through a Lightweight Directory Access Protocol (LDAP)
+service.
+For more information on Kerberos and MongoDB, see:
+These mechanisms allow MongoDB to integrate into your
+existing authentication system.
+MongoDB Enterprise supports OpenID Connect authentication. OpenID
+Connect is an authentication layer built on top of OAuth2. You can use OpenID
+Connect to configure single sign-on between your MongoDB database and a third-party
+identity provider.
+For more information on OpenID Connect and MongoDB, see:
+---

@@ -1,0 +1,59 @@
+Structured Streaming concepts
+
+Apache Spark Structured Streaming is a near real-time processing engine that offers end-to-end fault tolerance with exactly-once processing guarantees using familiar Spark APIs. Structured Streaming lets you express computation on streaming data in the same way you express a batch computation on static data. The Structured Streaming engine performs the computation incrementally and continuously updates the result as streaming data arrives.
+
+For a step-by-step tutorial, see 
+Run your first Structured Streaming workload
+.
+
+Read from a data stream
+​
+
+Use Structured Streaming to incrementally ingest data from supported data sources.
+
+Auto Loader
+
+Incrementally and efficiently process new data files as they arrive in cloud storage.
+
+Standard connectors
+
+Connect to message buses, queues, and enterprise applications using standard connectors.
+
+Micro-batch size
+
+Limit input rates to maintain consistent batch sizes and prevent processing delays.
+
+Write to a data sink
+​
+
+Configure how Structured Streaming delivers data to target systems.
+
+Checkpoints
+
+Store processing state to enable fault tolerance and exactly-once delivery semantics.
+
+Output mode
+
+Choose between append, update, and complete modes for stateful streaming queries.
+
+Trigger intervals
+
+Set trigger intervals to balance latency and cost for your processing requirements.
+
+Stateful and stateless processing
+​
+
+Stateless queries process rows without retaining state. Stateful queries maintain intermediate state for aggregations, joins, and deduplication.
+
+Watermarks
+
+Control how long Structured Streaming waits for late-arriving data in stateful operations.
+
+Stateful streaming
+
+Manage aggregations, stream-stream joins, and deduplication using stateful operators.
+
+Monitor and manage
+​
+
+Track query performance, apply optimizations, and govern data access for production Structured Streaming workloads.

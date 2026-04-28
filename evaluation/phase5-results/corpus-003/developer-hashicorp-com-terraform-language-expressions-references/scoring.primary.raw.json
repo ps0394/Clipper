@@ -1,0 +1,37 @@
+[
+  {
+    "pair_index": 0,
+    "answer": "Resources\nInput variables\nLocal values\nChild module outputs\nData sources\nFilesystem and workspace info\nBlock-local values",
+    "run_index": 0,
+    "tokens_in": 3038,
+    "tokens_out": 24
+  },
+  {
+    "pair_index": 1,
+    "answer": "If the resource doesn't use count or for_each, the reference's value is an object. The resource's attributes are elements of the object, and you can access them using dot or square bracket notation.",
+    "run_index": 0,
+    "tokens_in": 3051,
+    "tokens_out": 41
+  },
+  {
+    "pair_index": 2,
+    "answer": "path.module is the filesystem path of the module where the expression is placed.",
+    "run_index": 0,
+    "tokens_in": 3038,
+    "tokens_out": 16
+  },
+  {
+    "pair_index": 3,
+    "answer": "Terraform uses special unknown value placeholders for information that it cannot predict during the plan phase. The Terraform language automatically handles unknown values in expressions, and adding a known value to an unknown value automatically produces an unknown value as a result. Unknown values appear in the terraform plan output as (known after apply).",
+    "run_index": 0,
+    "tokens_in": 3037,
+    "tokens_out": 60
+  },
+  {
+    "pair_index": 4,
+    "answer": "A provider attribute marked as sensitive behaves similarly to an input variable declared as sensitive, where Terraform will hide the value in the plan and apply messages and will also hide any other values you derive from it as sensitive. If you use a sensitive value from a resource attribute as part of an output value then Terraform will require you to also mark the output value itself as sensitive, to confirm that you intended to export it. Terraform will still record sensitive values in the state, and so anyone who can access the state data will have access to the sensitive values in cleartext.",
+    "run_index": 0,
+    "tokens_in": 3042,
+    "tokens_out": 113
+  }
+]

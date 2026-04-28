@@ -1,0 +1,28 @@
+Choosing a Primary Key
+How to select primary keys that maximize query performance and minimize storage overhead.
+Select Data Types
+Choose optimal data types to reduce memory usage, improve compression, and accelerate queries.
+Use Materialized Views
+Leverage materialized views to pre-aggregate data and dramatically speed up analytical queries.
+Minimize and Optimize JOINs
+Best practices for using ClickHouse's 
+JOIN
+ capabilities efficiently.
+Choosing a Partitioning Key
+Select partitioning strategies that enable efficient data pruning and faster query execution.
+Selecting an Insert Strategy
+Optimize data ingestion throughput and reduce resource consumption with proper insert patterns.
+Data Skipping Indices
+Apply secondary indices strategically to skip irrelevant data blocks and accelerate filtered queries.
+Avoid Mutations
+Design schemas and workflows that eliminate costly 
+UPDATE
+/
+DELETE
+ operations for better performance.
+Avoid OPTIMIZE FINAL
+Prevent performance bottlenecks by understanding when 
+OPTIMIZE FINAL
+ hurts more than it helps.
+Use JSON where appropriate
+Balance flexibility and performance when working with semi-structured JSON data in ClickHouse.

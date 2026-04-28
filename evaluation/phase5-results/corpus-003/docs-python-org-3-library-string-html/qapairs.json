@@ -1,0 +1,37 @@
+[
+  {
+    "question": "What characters are used to surround replacement fields in Python's format string syntax?",
+    "answer": "Replacement fields are surrounded by curly braces `{}` in Python's format string syntax.",
+    "supporting_sentences": [
+      "Format strings contain \u201creplacement fields\u201d surrounded by curly braces `{}.`"
+    ]
+  },
+  {
+    "question": "What are the three conversion flags supported in Python's format string syntax, and what functions do they call?",
+    "answer": "The three conversion flags are `!s` (calls `str()`), `!r` (calls `repr()`), and `!a` (calls `ascii()`).",
+    "supporting_sentences": [
+      "Three conversion flags are currently supported: `!s` which calls `str()` on the value, `!r` which calls `repr()` and `!a` which calls `ascii()`."
+    ]
+  },
+  {
+    "question": "What does the `#` option in a format specification do for integer types in Python's format mini-language?",
+    "answer": "For integers, the `#` option adds the respective prefix `0b`, `0o`, or `0x` (or `0X` for uppercase hex) to the output value when binary, octal, or hexadecimal output is used.",
+    "supporting_sentences": [
+      "The `#` option causes the \u201calternate form\u201d to be used for the conversion. [...] For integers, when binary, octal, or hexadecimal output is used, this option adds the respective prefix `0b`, `0o`, `0x`, or `0X` to the output value."
+    ]
+  },
+  {
+    "question": "What is the default alignment for most objects in Python's format specification mini-language?",
+    "answer": "The default alignment for most objects is left-aligned (`<`).",
+    "supporting_sentences": [
+      "'<' Forces the field to be left-aligned within the available space (this is the default for most objects)."
+    ]
+  },
+  {
+    "question": "What happens if a placeholder is missing from the mapping or keyword arguments when using the `safe_substitute` method of a `Template` string?",
+    "answer": "If placeholders are missing, the original placeholder will appear in the resulting string intact instead of raising a `KeyError`.",
+    "supporting_sentences": [
+      "Like `substitute()`, except that if placeholders are missing from `mapping` and `kwds`, instead of raising a `KeyError` exception, the original placeholder will appear in the resulting string intact."
+    ]
+  }
+]

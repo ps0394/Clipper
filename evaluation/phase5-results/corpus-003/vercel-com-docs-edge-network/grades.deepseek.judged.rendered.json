@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer omits the required information about the number of countries (51) that is part of the ground-truth answer.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 548,
+    "tokens_out": 31
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer lists general benefits but omits the specific framework-aware benefit described in the ground truth: reading config at build time to eliminate manual cache-control headers.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 583,
+    "tokens_out": 37
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "incorrect",
+    "rationale": "The candidate answer adds \"a platform-wide firewall with DDoS mitigation,\" which is not present in the ground truth, and this addition contradicts the ground truth's specification that DDoS mitigation is already included in the listed features.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 608,
+    "tokens_out": 49
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes all three caching tiers listed in the ground truth: ISR, CDN cache, and runtime cache.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 577,
+    "tokens_out": 29
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes both required formats listed in the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 552,
+    "tokens_out": 17
+  }
+]

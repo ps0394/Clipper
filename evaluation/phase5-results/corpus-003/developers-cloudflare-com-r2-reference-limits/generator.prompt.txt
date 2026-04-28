@@ -1,0 +1,82 @@
+You are generating question/answer pairs for a calibration corpus that measures how well a documentation page supports retrieval-based question answering.
+
+The document below is the full extracted text of a single web page. Your job is to produce 5 fact-based question/answer pairs whose answers are unambiguously stated in the document. These Q/A pairs will later be used to test whether other LLMs can answer the same questions using only the document text.
+
+Strict rules:
+
+1. Every answer must be directly and unambiguously supported by sentences in the document. If the answer requires outside knowledge, common sense, or inference beyond what the document states, do not include it.
+2. Questions must be self-contained. Do not write questions that only make sense if you have already read the document (e.g., "What is the second step?"). Questions should make sense to a reader who has not seen the document.
+3. Questions must span different sections of the document, not cluster in one easy region.
+4. Questions must be fact-based. No opinion questions, no "why should you use X" questions unless the document itself states the reason.
+5. For each Q/A pair, list the supporting sentences verbatim from the document.
+
+Output format: a single JSON array with exactly 5 objects, each with keys `question`, `answer`, and `supporting_sentences` (an array of strings). No prose before or after. Do not wrap the JSON in a code block.
+
+Document title: Limits · Cloudflare R2 docs
+Document URL: https://developers.cloudflare.com/r2/reference/limits/
+Document profile: faq
+
+Document text:
+---
+Feature
+Limit
+Data storage per bucket
+Unlimited
+Number of objects per bucket
+Unlimited
+Maximum number of buckets per account
+1,000,000
+Maximum rate of bucket management operations per bucket 
+50 per second
+Number of custom domains per bucket
+50
+Object key length
+1,024 bytes
+Object metadata size
+8,192 bytes
+Object size
+5 TiB per object 
+Maximum upload size 
+5 GiB (single-part) / 4.995 TiB (multi-part) 
+Maximum upload parts
+10,000
+Maximum concurrent writes to the same object name (key)
+1 per second 
+
+Limits specified in MiB (mebibyte), GiB (gibibyte), or TiB (tebibyte) are storage units of measurement based on base-2. 1 GiB (gibibyte) is equivalent to 2
+30
+ bytes (or 1024
+3
+ bytes). This is distinct from 1 GB (gigabyte), which is 10
+9
+ bytes (or 1000
+3
+ bytes).
+
+Rate limiting on managed public buckets through 
+r2.dev
+
+Managed public bucket access through an 
+r2.dev
+ subdomain is not intended for production usage and has a variable rate limit applied to it. The 
+r2.dev
+ endpoint for your bucket is designed to enable testing.
+
+If you exceed the rate limit (hundreds of requests/second), requests to your 
+r2.dev
+ endpoint will be temporarily throttled and you will receive a 
+429 Too Many Requests
+ response.
+
+Bandwidth (throughput) may also be throttled when using the 
+r2.dev
+ endpoint.
+
+For production use cases, connect a 
+custom domain
+ to your bucket. Custom domains allow you to serve content from a domain you control (for example, 
+assets.example.com
+), configure fine-grained caching, set up redirect and rewrite rules, mutate content via 
+Cloudflare Workers
+, and get detailed URL-level analytics for content served from your R2 bucket.
+---

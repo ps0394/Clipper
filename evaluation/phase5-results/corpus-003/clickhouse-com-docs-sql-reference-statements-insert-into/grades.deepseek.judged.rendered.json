@@ -1,0 +1,47 @@
+[
+  {
+    "pair_index": 0,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states that EXCEPT allows insertion into all columns except those specified, matching the factual content of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 595,
+    "tokens_out": 30
+  },
+  {
+    "pair_index": 1,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes both cases specified in the ground truth: values from DEFAULT expressions, or zeros/empty strings if those are not defined.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 609,
+    "tokens_out": 32
+  },
+  {
+    "pair_index": 2,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer includes all key facts from the ground truth: validation occurs only during CREATE/ALTER TABLE, not during INSERT, allowing insertion into tables with disallowed types if they already exist.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 681,
+    "tokens_out": 42
+  },
+  {
+    "pair_index": 3,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly states that the clause inserts data from client-side files, matching the core fact in the ground truth; extra details about format and compression are not required.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 618,
+    "tokens_out": 38
+  },
+  {
+    "pair_index": 4,
+    "run_index": 0,
+    "label": "correct",
+    "rationale": "The candidate answer correctly identifies the setting as \"select_sequential_consistency,\" which matches the factual content of the ground truth.",
+    "judge_model": "DeepSeek-V3.2",
+    "tokens_in": 569,
+    "tokens_out": 30
+  }
+]
