@@ -283,12 +283,12 @@ Sessions are dependency-ordered, not time-boxed. Entry and exit criteria below; 
 
 - **Entry:** Session 9 closed with A3 failure diagnosed as range restriction (current state).
 - **Goal:** produce a regression dataset where `accuracy_rendered` has std ≥ 0.20 so the F2.6 gate is statistically meaningful.
-- **Approach (Option A):** swap the Phase 5 generator from Mistral-Large-3 to a weaker model (Llama-3.1-8B or GPT-3.5-turbo equivalent on Foundry). Reuse the existing 271 corpus-003 fetches and Q/A pairs on disk; rerun only the scoring + judging stages. No new corpus, no new sampling design, no fetcher changes.
+- **Approach (Option A):** swap the Phase 5 **scorer primary** from gpt-4.1 to a weaker reader model (e.g. GPT-3.5-turbo, Llama-3.1-8B, or any sub-frontier comprehension model available in Foundry). The scorer primary is the model that *answers* the Q/A pairs given the page text — its accuracy is the dependent variable in the F2.6 regression. Reuse the existing 271 corpus-003 fetches and Mistral-Large-3 Q/A pairs on disk; rerun only the answering stage + 3-judge panel. The generator and the page text stay constant so we are testing only the comprehension-side spread, not Q/A quality.
 - **Acceptance:** before computing the F2.6 gate, verify accuracy std ≥ 0.20 on at least one judge. If std stays under 0.20 even with a weaker generator, escalate to Option B (sparse-content corpus with relaxed `MIN_DOCUMENT_CHARS`) before declaring v2 untestable.
 - **Work:**
-  - Pick a weaker generator deployment available in Foundry; pre-register the choice.
-  - Re-run generator + scoring stages against existing corpus-003 fetches.
-  - Re-run the 3-judge panel.
+  - Pick a weaker scorer-primary deployment available in Foundry; pre-register the choice.
+  - Re-run the answering stage against existing corpus-003 fetches + Q/A pairs (new tooling: `phase5 rescore`).
+  - Re-run the 3-judge panel against the new answers.
   - Re-run Session 9's regression and stability scripts ([scripts/phase8-session9-regression.py](../scripts/phase8-session9-regression.py), [scripts/phase8-session9-variance.py](../scripts/phase8-session9-variance.py)).
 - **Exit:** A3 / A4 either pass or fail on the variance-producing dataset; A6 closes accordingly.
 
